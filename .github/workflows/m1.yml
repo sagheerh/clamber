@@ -51,6 +51,30 @@ jobs:
           PYLOG
           exit "$status"
 
+      - name: Production preset and capsule-contact component tests (NOT FA-5)
+        shell: bash
+        run: |
+          set +e
+          tests/run_m1_contacts.sh 2>&1 | tee "$RUNNER_TEMP/m1-contact-units.log"
+          status=${PIPESTATUS[0]}
+          set -e
+          python3 - "$RUNNER_TEMP/m1-contact-units.log" "$status" <<'PYLOG'
+          import re, sys
+          for line in open(sys.argv[1]).read().splitlines():
+              if re.search(r"SCRIPT ERROR|ERROR:|FAIL|Parse Error|M1 contact primitives:|M1 controlled foot:|M1 contact scope:", line):
+                  level = "notice" if sys.argv[2] == "0" else "error"
+                  print(f"::{level} title=M1 controlled contact units only::" + line.replace("%", "%25").replace("\r", "%0D"))
+          PYLOG
+          exit "$status"
+      - name: Preserve contact UNIT log (not FA-5 stance)
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: m1-contact-unit-log-${{ github.run_id }}
+          path: ${{ runner.temp }}/m1-contact-units.log
+          if-no-files-found: warn
+          retention-days: 7
+
       - name: Owner geometry and explicit pending runtime feel plans
         shell: bash
         run: |

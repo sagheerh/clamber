@@ -26,5 +26,5 @@ for path, marker, floor in [(sys.argv[1], 'M1 math foundations', 82),
         raise SystemExit('ERROR: missing/failed/below-floor primitive suite: ' + marker)
     counts.append(int(matches[0]))
 print(f'M1 primitive total: {sum(counts)} checks, 0 failures ({counts[0]} point/link + {counts[1]} integration/clock)')
-print('M1 acceptance: NOT RUN (primitive fixtures only; no creature/contact/presets/full replay/soak)')
+print('M1 acceptance: NOT RUN (primitive fixtures only; no complete creature/full replay/soak; contact units run separately)')
 PYRESULT

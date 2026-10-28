@@ -1,29 +1,26 @@
 extends RefCounted
-## Commit B scaffolding: topology-only fixtures and unexecuted runtime plans.
-## No poses, contacts, motors, successes or sleep observations are fabricated.
+## Production preset definitions; runtime feel plans are still unexecuted.
+## Runtime observations are still unknown; no gait/sleep/success evidence implied.
+const TUNING = preload("res://core/tuning.tres")
 
 
 static func preset_geometry() -> Array:
-	return [
-		{
-			"name": "Slug",
-			"kinds": ["head", "motor", "foot"],
-			"parents": [-1, 0, 1],
-			"channels": ["", "L", ""],
-		},
-		{
-			"name": "Hopper",
-			"kinds": ["head", "motor", "passive", "limb", "motor", "foot", "limb", "foot"],
-			"parents": [-1, 0, 0, 1, 2, 3, 4, 6],
-			"channels": ["", "L", "", "", "R", "", "", ""],
-		},
-		{
-			"name": "TwinRoller",
-			"kinds": ["head", "motor", "passive", "motor", "foot", "foot"],
-			"parents": [-1, 0, 1, 2, 3, 0],
-			"channels": ["", "L", "", "L", "", ""],
-		},
-	]
+	var presets: Array = []
+	var tuning: Tuning = TUNING
+	for name in CreaturePresets.FILES:
+		var model := CreaturePresets.load_model(name, tuning)
+		if model == null:
+			return []
+		var definition := model.definition()
+		var kinds: Array = []
+		var parents: Array = []
+		var channels: Array = []
+		for part in definition.parts:
+			kinds.append(part.kind)
+			parents.append(part.parent)
+			channels.append(part.channel)
+		presets.append({"name": name, "kinds": kinds, "parents": parents, "channels": channels})
+	return presets
 
 
 static func pending_runtime(tuning: Tuning) -> Array:

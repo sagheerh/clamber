@@ -1,6 +1,6 @@
 # CLAMBER progress
 
-## Current milestone: M0 — APPROVED / COMPLETE (owner override); M1 — IN PROGRESS / owner contact geometry supplied, contacts NOT RUN
+## Current milestone: M0 — APPROVED / COMPLETE (owner override); M1 — IN PROGRESS / production definitions and contact components, coupled gates NOT RUN
 
 Session date: 2026-10-28. Normative inputs: `docs/GDD.md` and
 `docs/ui/CLAMBER_UI.jpeg`. M0 is accepted by the GDD owner under M0-D07, dated 2026-10-28. Verdict:
@@ -31,7 +31,7 @@ scaffold/PR; no M1 implementation or gate completion is claimed by this closeout
 
 ### Explicit stubs / not built
 
-Full creature solver, creature model/validation/codec, run/fall/checkpoint systems, generator,
+Full coupled creature solver, general builder validation/codec, run/fall/checkpoint systems, generator,
 wallet/medals/score, schema migrations, settings/debounces, lifecycle run/audio
 consumers, all S00–S16 screens and native plugins. Stub null/empty returns are
 nonfunctional and unused. No autoload, gameplay, art, audio, production signing,
@@ -253,3 +253,43 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
 - Local review checks35 Python tests; pinned-engine results tracked in PR #3.
 - Next M1: actual creature definitions/body/contact primitives, D-10 against real
   definitions, then FA-5 before static scenes/AC traces. All runtime NOT RUN.
+
+
+### Part3a — production models and capsule/SDF contact components
+
+- R7 fixes9a45f6d are all green: M1 run40674737989 has381 mathematical checks
+  (82+299) and127 analytic geometry checks, zero failures; M0/Android
+  run40674737947 also passed. F20 controls remain in PR body.
+- Actual engineering presets now live in `data/creatures/preset_*.json` (3/8/6
+  parts). Cardinal rest directions/shortest limb slot are engineering initial
+  definitions, NOT approved gaits/tutorial inputs. CreatureModel derives physical
+  parameters from unchanged tuning, validates rooted trees/channels/basic budgets,
+  sums mass and caches hierarchy pairs. General builder/codec is still a stub.
+- CapsuleBody creates float64 endpoints with half segment mass each; snapshots
+  preserve contact history and restore/contact publication preserve endpoint
+  identity. SdfGrid copies explicit distance samples/material at0.25WU, bilinearly
+  samples and rejects undefined normals/outside queries. CapsuleContact performs
+  sampled positional/velocity response, current/previous temporal crossing checks,
+  explicit min-material friction, static slip and owner ratio/floor/bias foot gate.
+  Projection/non-finite errors reject atomically; no pretend public Sim recovery.
+- Universal D-10 includes feet/siblings in real definitions. Layer11 feet are
+  excluded from the actual creature self-response mask. Geometry harness now reads
+  the production catalog, fails if any preset is absent; its floor is128.
+- Added `tests/sim/test_contacts.gd` and pinned `tests/run_m1_contacts.sh`, CI unit
+  step and unit-log artifact. Tests change real projections/velocities, trace four
+  controlled cached-load responses, two separately controlled half-weight contacts,
+  airborne/stale-cache and not-lowest exclusion, swept closed-slab crossing,
+  snapshots/endpoint identity and atomic rejection. **Not coupled stance/FA-5.**
+- Local static review35 Python tests, GDScript formatter/linter, shell syntax,
+  diff checks pass. New engine suite/128 geometry checks await pinned CI at this
+  increment; no runtime result is asserted before it runs. New unit count floor208
+  is separate from the unchanged accepted381 mathematical baseline.
+- Tuning/derivation/GDD values unchanged; derivation SHA verified exactly.
+- Still unbuilt: coupled rigid links/parent hinges, motors/angular limits,
+  self-contact response, sleep/recovery/public Sim. FA-3/4/5/6, AC-201/202/204,
+  A9/full deterministic replay/stall/baseline/bitflip/tick cost/captures NOT RUN.
+  Complete-creature determinism attempts remain0. No M2/camera/screens.
+- **Next — M1:** pin component CI, then couple rigid bodies/hinges and contacts to
+  obtain real foot-load/stance traces for FA-5. Only after FA-5: FA-3/static600,
+  AC-201 settle+sleep≤4s, AC-202 stretch, AC-204 soak, and motors/tutorial FA-4/6.
+  FA-6 actual10-run count10/10 or≤4/10 => STOP/report logs/outcomes; never retune.

@@ -66,6 +66,8 @@ func _initialize() -> void:
 	var fixtures: Array = []
 	var expected_counts := [3, 8, 6]
 	var presets: Array = Harness.preset_geometry()
+	_check(presets.size() == 3, "all production preset definitions loaded")
+	silhouette = presets.size() == 3
 	for index in range(presets.size()):
 		var preset: Dictionary = presets[index]
 		_check(preset.kinds.size() == expected_counts[index], "named preset fixture part count")
@@ -128,7 +130,8 @@ func _initialize() -> void:
 				"tutorial success count is unknown, not zero or invented"
 			)
 	_report = {
-		"scope": "analytic geometry and topology-only preset fixtures; no runtime presets",
+		"scope":
+		"analytic geometry and production engineering preset definitions; no gait/runtime evidence",
 		"source": "owner M1-D04",
 		"derivation_sha256": "6453508be7cb808f643544ec3f3fdbd6560840876fc070511f4b5f50065dbc5e",
 		"d10_limit_wu": limit,

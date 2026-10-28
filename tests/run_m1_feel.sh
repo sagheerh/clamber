@@ -21,7 +21,7 @@ python3 - "$report" <<'PYREPORT'
 import json, sys
 report = json.load(open(sys.argv[1]))
 assert report['failures'] == 0
-assert report['checks'] >= 127, 'Owner geometry count floor regressed'
+assert report['checks'] >= 128, 'Owner geometry count floor regressed'
 assert all(row['status'] == 'PASS (analytic only)' for row in report['analytic'].values())
 assert all(row['status'] == 'NOT RUN' and row['observations'] is None for row in report['runtime'])
 assert next(row for row in report['runtime'] if row['id'] == 'FA-6')['success_count'] is None

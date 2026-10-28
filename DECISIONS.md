@@ -271,3 +271,35 @@ prose/checkbox bypass. No runtime claim follows from analytical evidence.
 F21 authorizes pixels+1e-9 >= target, test-harness-only float noise allowance, not
 legibility slack or new physics tuning. Real0.5px loss and errors larger than the
 specified allowance still fail. Collision radii and derivation bytes are unchanged.
+
+## M1-D05 — Part3a production definitions and contact primitives
+
+The first Part3 increment promotes the accepted3/8/6-part topologies into actual
+engineering preset JSON definitions in data/creatures/, with cardinal rest axes
+(quantised0/90-degree directions) and the shortest existing limb slot. These are
+authored engineering rest poses, not approved gaits or a tutorial scenario.
+CreatureModel derives masses/lengths/radii from unchanged tuning and precomputes
+D-10 hierarchy-distance≥2 candidates, including feet for the universal geometry
+guard; the actual self-response mask excludes layer11 feet per GDD4.4. Geometry harness reads these real definitions,
+not a separate test topology. Codec/general builder validation remains deferred.
+
+Capsule bodies own two float64 endpoints of half the derived segment mass each.
+A signed-distance grid uses the existing0.25WU cell size and explicit caller-owned
+terrain samples/material. The capsule contact primitive projects sampled points
+along the segment and sweeps between previous/current points at grid spacing,
+retaining the entering-side normal when projecting a crossing (including a closed
+slab whose start/end positions are both clear),
+and applies normal/restitution and tangential response in stable sample order.
+Only actual FOOT_GRIP parts may get the bias, only when lowest/grounded and prior
+measured normal force reaches max(floor,ratio*creature_mass*abs(g)). No default
+non-foot friction or terrain material is invented: material inputs are explicit.
+Contact rejection (undefined/out-of-grid normals, non-finite state, excessive
+projection) leaves the live body untouched. Projection-limit errors are reported,
+not silently respawned; public Sim recovery is not implemented by this primitive.
+
+These kernels are not yet a coupled creature/contact/hinge solver. Tests exercise
+real contact projections and velocity changes with controlled foot load fixtures;
+that is NOT FA-5 whole-creature stance evidence. FA-5 remains NOT RUN until coupled
+foot-load traces, before FA-3/static scenes or AC claims. Motors/limits, self-contact
+response, sleep/recovery and full Sim replay are still outstanding. No owner value
+is retuned and no new force/slip tolerance is invented.

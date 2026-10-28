@@ -1,0 +1,47 @@
+{
+  "name": "TwinRoller",
+  "parts": [
+    {
+      "kind": "head",
+      "parent": -1,
+      "axis": "RIGHT",
+      "channel": "",
+      "length_index": 0
+    },
+    {
+      "kind": "motor",
+      "parent": 0,
+      "axis": "DOWN",
+      "channel": "L",
+      "length_index": 0
+    },
+    {
+      "kind": "passive",
+      "parent": 1,
+      "axis": "RIGHT",
+      "channel": "",
+      "length_index": 0
+    },
+    {
+      "kind": "motor",
+      "parent": 2,
+      "axis": "DOWN",
+      "channel": "L",
+      "length_index": 0
+    },
+    {
+      "kind": "foot",
+      "parent": 3,
+      "axis": "RIGHT",
+      "channel": "",
+      "length_index": 0
+    },
+    {
+      "kind": "foot",
+      "parent": 0,
+      "axis": "LEFT",
+      "channel": "",
+      "length_index": 0
+    }
+  ]
+}
