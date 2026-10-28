@@ -84,3 +84,17 @@ thresholds remain unresolved and must not be invented. No later gate is waived.
 determinism/feel harness.** M1 is ready, not complete. Excludes S03 climb,
 pause/fall/build screens. Real-engine M1 CI evidence and baseline are not yet
 available; the M0 CI suite is not evidence of M1 determinism/performance.
+
+### M1 kickoff — separate scaffold after M0 merge
+
+- M0 PR [#1](https://github.com/sagheerh/clamber/pull/1) is **MERGED**, merge commit
+  `c641990be2d77c57c223bc7cbc54d0097c3d8816`, verdict
+  **APPROVE — HUMAN OVERRIDE**. Closeout record commit: `5c6cbbb`.
+- M1 starts in a separate draft PR with `.review/m1_ac_matrix.md`. It records the
+  standalone solver/three-preset/harness scope and every required gate as pending.
+- This kickoff contains no solver, presets, baseline, captures, M1 runtime test or
+  tuning/save/test changes. The M0 engine stub remains explicitly nonfunctional.
+- Required next increment: mathematical state/preset fixtures and independent
+  solver work, with exact public interfaces and no invented grip threshold.
+- M1 gates are **NOT RUN / NOT MET** until the actual pinned-engine harness and
+  evidence exist. Do not treat M0's 475 checks or owner waiver as M1 acceptance.
