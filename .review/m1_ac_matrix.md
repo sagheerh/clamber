@@ -208,7 +208,7 @@ compare ALL grounded contacts with43.4±0.723N; foot-only weight only with sole-
 support. Existing43.59610684435376N satisfies that invariant. No force-channel
 failure follows from the foot carrying only about9.695N while head/motor support
 also exists. The unexplained+.196N bias requires a measured momentum ledger,
-not a waiver or force correction. New ledger/geometry execution initially pending.
+not a waiver or force correction. Pinned bc4202a / CI40694232799 measured upward momentum0.163422370294806Ns; damping removes0.003268447405896114Ns per tick, explaining+.196106844353767N. Clamp0/internal drift at float noise; no force correction.
 
 F30 authored pose decision PENDING. Every-body start/completed endpoints/bottoms
 and cheap all-preset/all-part authored bottom flags diagnose the gap. No axes,

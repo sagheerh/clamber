@@ -168,6 +168,11 @@ class LoadTraceTests(unittest.TestCase):
             b['contact_reported_impulse_y_ns'] += extra / 60
             b['contact_velocity_impulse_y_ns'] += extra / 60
             b['predicted_support_bias_n'] = b['observed_support_bias_n'] = extra
+            momentum = extra / (.02 * 60)
+            b['momentum_before_y_ns'] = b['momentum_after_y_ns'] = momentum
+            for body in row['feet'] + row['other_bodies']:
+                for key in ('start_avy', 'start_bvy', 'avy', 'bvy'):
+                    body[key] = momentum / 1.55
         result = analyze(rows)
         self.assertTrue(result['force_window_within_owner_tolerance'])
         self.assertTrue(result['momentum_ledger_verified'])
@@ -187,6 +192,47 @@ class LoadTraceTests(unittest.TestCase):
         self.assertEqual(result['grip_toggle_ticks'], [])
         self.assertEqual(result['grip_engaged_ticks'], [])
         self.assertFalse(result['foot_load_path_exercised'])
+
+    def test_damping_claim_checked_against_raw_start_momentum_and_resource(self):
+        rows = fixture()
+        for row in rows:
+            extra = .196
+            row['feet'][0]['measured_reaction_n'] += extra
+            row['sum_measured_reaction_n'] += extra
+            b = row['momentum_budget']
+            b['contact_reported_impulse_y_ns'] += extra / 60
+            b['contact_velocity_impulse_y_ns'] += extra / 60
+            b['damping_impulse_y_ns'] = -extra / 60
+            b['predicted_support_bias_n'] = b['observed_support_bias_n'] = extra
+        # The algebra balances but zero start velocities cannot produce this drag.
+        self.assertFalse(analyze(rows)['momentum_ledger_verified'])
+
+    def test_nonconserving_internal_rows_cannot_be_hidden_by_budget_terms(self):
+        rows = fixture()
+        rows[99]['momentum_budget']['internal_impulse_y_ns'] = .1
+        rows[99]['momentum_budget']['clamp_impulse_y_ns'] = -.1
+        self.assertFalse(analyze(rows)['momentum_ledger_verified'])
+
+    def test_grip_flag_without_real_reaction_is_not_a_foot_load_path(self):
+        rows = fixture()
+        for row in rows:
+            row['feet'][0]['gripping'] = row['tick'] > 0
+            row['feet'][0]['measured_reaction_n'] = row['sum_measured_reaction_n'] = 0.0
+            row['other_bodies'][0]['grounded'] = True
+            row['other_bodies'][0]['measured_reaction_n'] = row['other_body_reaction_n'] = 43.4
+        result = analyze(rows)
+        self.assertTrue(result['force_window_within_owner_tolerance'])
+        self.assertTrue(result['momentum_ledger_verified'])
+        self.assertEqual(result['grip_engagement'], 'grip engaged')
+        self.assertFalse(result['foot_load_path_exercised'])
+
+    def test_loaded_grip_parser_control_does_not_upgrade_runtime_acceptance(self):
+        rows = fixture()
+        for row in rows[1:]:
+            row['feet'][0]['gripping'] = True
+        result = analyze(rows)
+        self.assertTrue(result['foot_load_path_exercised'])
+        self.assertEqual(result['FA-5'], 'NOT RUN')
 
 
 if __name__ == '__main__':

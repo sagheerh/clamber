@@ -2,11 +2,15 @@
 """Raw Slug diagnostic: all-contact conservation is separate from F30 foot-path blocker."""
 import json
 import math
+import re
 from pathlib import Path
 import sys
 
 WEIGHT_N = 43.4
 CEILING_N = 0.723  # Owner literal, NOT rounded upward to W/60.
+# Read the actual resource; this is a diagnostic identity, not a new tuning default.
+LINEAR_DAMPING = float(re.search(r'^physics_linear_damping = (.+)$',
+    (Path(__file__).resolve().parents[1] / 'core/tuning.tres').read_text(), re.M)[1])
 IDENTITY_EPS = 1e-12  # Float64 bookkeeping only; NEVER added to force acceptance.
 
 
@@ -29,6 +33,7 @@ def analyze(rows):
     previous = 0
     toggles = []
     engaged = []
+    loaded_grip = []
     last_grip = None
     totals = []
     ledgers = []
@@ -81,6 +86,8 @@ def analyze(rows):
         grip = tuple(foot['gripping'] for foot in row['feet'])
         if any(grip):
             engaged.append(tick)
+        if any(f['gripping'] and f['measured_reaction_n'] > 0 for f in row['feet']):
+            loaded_grip.append(tick)
         if last_grip is not None and last_grip != grip:
             toggles.append(tick)
         last_grip = grip
@@ -105,6 +112,7 @@ def analyze(rows):
         expected = {
             'momentum_before_y_ns': before, 'momentum_after_y_ns': after,
             'momentum_change_y_ns': change, 'gravity_impulse_y_ns': -WEIGHT_N * dt,
+            'damping_impulse_y_ns': -LINEAR_DAMPING * before,
             'contact_reported_impulse_y_ns': contact, 'residual_y_ns': residual,
             'predicted_support_bias_n': predicted, 'observed_support_bias_n': observed,
         }
@@ -113,6 +121,7 @@ def analyze(rows):
             'residual_y_ns': residual,
             'contact_cross_error_ns': budget['contact_velocity_impulse_y_ns'] - contact,
             'bias_error_n': observed - predicted,
+            'internal_impulse_y_ns': internal,
         })
     window = rows[300:]
     steady_totals = totals[300:]
@@ -123,7 +132,8 @@ def analyze(rows):
     }
     ledger_good = all(r['claimed_terms_match_raw'] and abs(r['residual_y_ns']) <= IDENTITY_EPS and
                       abs(r['contact_cross_error_ns']) <= IDENTITY_EPS and
-                      abs(r['bias_error_n']) <= IDENTITY_EPS for r in ledgers)
+                      abs(r['bias_error_n']) <= IDENTITY_EPS and
+                      abs(r['internal_impulse_y_ns']) <= IDENTITY_EPS for r in ledgers)
     return {
         'scope': 'hinged engineering load probe, NOT FA acceptance or determinism',
         'rows': len(rows), 'steady_window_ticks': [300, 599], 'ceiling_n': CEILING_N,
@@ -131,9 +141,10 @@ def analyze(rows):
         'max_absolute_errors_n': maxima,
         'force_window_within_owner_tolerance': all(v <= CEILING_N for v in maxima.values()),
         'momentum_ledger_verified': ledger_good,
+        'source_linear_damping': LINEAR_DAMPING,
         'ledger_identity_epsilon': IDENTITY_EPS,
         'ledger_maxima': {key: max(abs(r[key]) for r in ledgers)
-                          for key in ('residual_y_ns', 'contact_cross_error_ns', 'bias_error_n')},
+                          for key in ('residual_y_ns', 'contact_cross_error_ns', 'bias_error_n', 'internal_impulse_y_ns')},
         'steady_momentum_budget_ranges': {
             key: [min(r['momentum_budget'][key] for r in window),
                   max(r['momentum_budget'][key] for r in window)]
@@ -142,7 +153,8 @@ def analyze(rows):
         'bias_equation': 'R-W=(dP_y-J_damping-J_clamp-J_internal)/dt; gravity=-W*dt; no force correction',
         'grip_engaged_ticks': engaged,
         'grip_engagement': 'grip engaged' if engaged else 'grip never engaged',
-        'foot_load_path_exercised': bool(engaged),
+        'foot_load_path_exercised': bool(loaded_grip),
+        'loaded_grip_ticks': loaded_grip,
         'grip_toggle_ticks': toggles,
         'steady_ranges_n': {
             key: [min(r[key] for r in window), max(r[key] for r in window)]
@@ -152,6 +164,7 @@ def analyze(rows):
                                          max(r['measured_reaction_n'] for r in steady_totals)],
         'peak_foot_applied_n': max(f['applied_load_n'] for r in rows for f in r['feet']),
         'peak_foot_measured_n': max(f['measured_reaction_n'] for r in rows for f in r['feet']),
+        'steady_peak_foot_measured_n': max(f['measured_reaction_n'] for r in window for f in r['feet']),
         'first': rows[0], 'last': rows[-1],
         'limitations': ['F30 authored pose decision PENDING; no pose/radius/angular-limit changes',
                         'free rotational hinges; angular limits/motors/self-response absent',
@@ -170,12 +183,14 @@ if __name__ == '__main__':
     for label, key in [('errors', 'max_absolute_errors_n'), ('ranges', 'steady_ranges_n'),
                        ('all-terrain reaction', 'all_terrain_reaction_range_n'),
                        ('momentum ledger maxima', 'ledger_maxima'),
+                       ('momentum ledger verified', 'momentum_ledger_verified'),
                        ('momentum budget ranges', 'steady_momentum_budget_ranges'),
                        ('first', 'first'), ('last', 'last'), ('grip toggle ticks', 'grip_toggle_ticks')]:
         print('M1 Slug ' + label + ': ' + json.dumps(summary[key], sort_keys=True))
     print('M1 Slug engagement: ' + summary['grip_engagement'])
     print('M1 Slug peaks: applied=' + str(summary['peak_foot_applied_n']) +
-          'N measured=' + str(summary['peak_foot_measured_n']) + 'N; N1 gate=17.36N')
+          'N measured=' + str(summary['peak_foot_measured_n']) + 'N (all600), steady measured=' + str(summary['steady_peak_foot_measured_n']) +
+          'N; N1 gate=17.36N')
     if not summary['foot_load_path_exercised']:
         print('M1 Slug F30 BLOCKED: genuine foot load path not exercised; owner pose decision pending')
     raise SystemExit(0 if good and summary['momentum_ledger_verified'] and summary['foot_load_path_exercised'] else 1)

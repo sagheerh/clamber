@@ -451,3 +451,18 @@ No qualifying production load is injected; synthetic parser falsification is NOT
 physics evidence. FA-3/4/5/6 and all coupled AC/A9/replay/soak/timing/§10.6/captures
 remain NOT RUN, determinism attempts0. Next M1: read measured budget/geometry,
 await owner pose decision; no band/two-foot advance or M2.
+
+
+M1-D08 measured follow-up @bc4202a / pinned CI40694232799: last300 end/start
+P_y=+0.1634223702948058..0.16342237029480586Ns. Measured J_damping=
+-0.0032684474058961143..-0.003268447405896114Ns, J_clamp=0, |dP|<=2.78e-17Ns,
+|J_internal|<=1.12e-16Ns. Thus replacing the damping drag requires
+-J_damping/(1/60)=+0.196106844353767N support in addition to43.4N gravity.
+Predicted bias0.19610684435375852..0.19610684435376852N matches observed
+0.19610684435376413..0.19610684435377124N; global ledger residual<=1.12e-15Ns
+and independent batch-velocity/contact-reaction discrepancy<=5.56e-16Ns over600.
+F31 is now quantitatively explained by measured terms, not assumed/waived. This
+supersedes the earlier pending hypothesis in this decision's initial entry.
+Further parser checks verify damping=-resource_damping*raw_start_P_y and internal
+cancellation; do not correct force channels. Geometry matches R10's authored gap
+calculations. Pose decision STILL PENDING; no angular-limit or pose branch.

@@ -108,10 +108,13 @@ jobs:
           set -e
           python3 - "$RUNNER_TEMP/m1-load-console.log" "$status" <<'PYLOG'
           import re, sys
-          for line in open(sys.argv[1]).read().splitlines():
-              if re.search(r"SCRIPT ERROR|ERROR:|FAIL|Parse Error|M1 load-path components:|M1 isolated gravity|M1 Slug trace:|M1 Slug force window|M1 Slug errors:|M1 Slug ranges:|M1 Slug all-terrain reaction:|M1 Slug first:|M1 Slug last:|M1 Slug grip toggle|M1 Slug momentum|M1 Slug engagement|M1 Slug peaks|M1 Slug F30", line):
-                  level = "notice" if sys.argv[2] == "0" else "error"
-                  print(f"::{level} title=M1 Slug load diagnostic only::" + line.replace("%", "%25").replace("\r", "%0D"))
+          pattern = r"SCRIPT ERROR|ERROR:|FAIL|Parse Error|M1 load-path components:|M1 isolated gravity|M1 Slug"
+          selected = [line for line in open(sys.argv[1]).read().splitlines() if re.search(pattern, line)]
+          # GitHub caps error annotations per step. Group so F30/engagement/last
+          # cannot be truncated behind the earlier passing evidence.
+          message = "\n".join(selected).replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+          level = "notice" if sys.argv[2] == "0" else "error"
+          print(f"::{level} title=M1 Slug diagnostic evidence (not FA acceptance)::" + message)
           PYLOG
           exit "$status"
       - name: Preserve full raw Slug diagnostic including failures

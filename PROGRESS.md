@@ -21,8 +21,9 @@ scaffold/PR; no M1 implementation or gate completion is claimed by this closeout
 - Current increment adds every-body START/completed endpoints/bottoms, cheap
   every-part/all-preset bottom audit, measured discrete momentum ledger, corrected
   all-grounded parser, and explicit "grip never engaged"/F30 blocker. Pinned engine
-  execution of these additions PENDING; +.19610684435376N bias not yet explained
-  by measured terms. CI must remain red without genuine foot load path.
+  measurement @bc4202a (CI40694232799) reproduced600 rows: damping accounts for
+  +.19610684435376N; all-contact conservation passes. CI remains red without genuine
+  foot load path. Further parser checks verify drag against raw start momentum.
 - FA-3/4/5/6/all coupled AC/A9/§10.6/timing/captures NOT RUN; attempts0. Next single
   milestone M1: verify the measured ledger and await owner's F30 pose decision.
 
@@ -522,3 +523,47 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
 - Full diagnostic stays red for no actual grip/foot load path independently of
   all-grounded force pass; report says "grip never engaged". F30 owner pending;
   FA-3/4/5/6/all AC/A9/runtime gates NOT RUN, complete-creature attempts0.
+
+
+### R10 first pinned measurements @bc4202a
+
+- M1 push run40694232799: static58 Python tests passed;381 math/237 contact/
+  129 analytic/80 load-path checks passed,600 raw diagnostic rows completed.
+  Overall M1 RED for missing foot path, not force conservation or unit compilation.
+  M0/Android push run40694232735 passed; duplicate PR runs40694241017/40694240944
+  also have M1 diagnostic red and M0/Android green. Numeric annotations retrieved
+  through GitHub API; not a claim of locally downloading the raw ZIP.
+- All-grounded max applied-vs-weight7.105427357601002e-15N;
+  reaction-vs-weight0.19610684435377124N; cross0.19610684435376413N.
+  All satisfy literal0.723N on EVERY tick300..599. No foot-only weight test is
+  substituted; no clipping/normalizing/subtracting the measured bias.
+- MEASURED last300 budget: P_before/P_after=0.1634223702948058..
+  0.16342237029480586Ns UPWARD; dP=-2.7755575615628914e-17..
+  +2.7755575615628914e-17Ns; J_gravity=-0.7233333333333334Ns;
+  J_damping=-0.0032684474058961143..-0.003268447405896114Ns;
+  J_clamp=0; J_internal=-2.7755575615628914e-17..1.1102230246251565e-16Ns;
+  J_contact=0.7266017807392293..0.7266017807392295Ns.
+- Therefore R-W=(dP-J_damping-J_clamp-J_internal)/dt predicts
+  +0.19610684435375852..0.19610684435376852N, matching observed
+  +0.19610684435376413..0.19610684435377124N. Damping removes2percent of positive
+  carried endpoint momentum each tick; terrain support replaces this downward
+  drag as well as gravity. This is a measured discrete balance, not a waiver.
+- Over ALL600, independent Python raw-momentum residual max1.1102230246251565e-15Ns;
+  batch velocity-delta vs reported reaction*dt max5.551115123125783e-16Ns;
+  bias identity discrepancy max5.861977570020827e-14N. No gravity-free generalization
+  or2x sampling normalization. All-terrain43.59610684435376..43.59610684435377N and
+  per-foot force ranges are byte-value unchanged from R9.
+- Authored root(0,0) audit reproduces Slug motor-.395/foot-.350 (gap.045WU);
+  Hopper limbs-.765/feet-.750 (gap.015WU); TwinRoller motor-.695/feet-.650 and-.050
+  (gaps.045/.645WU). All3/8/6 parts printed, with non-foot-below-foot flags.
+  Tick0 START motor bottom-.065 vs foot-.020; completed both≈-.020, confirming
+  why completed positions alone conceal the authored gap. No pose changed.
+- Follow-up parser explicitly checks measured drag against resource damping times
+  independently reconstructed raw start momentum; significant internal-row drift
+  fails bookkeeping. Additional falsifications reject fabricated drag and a grip
+  flag without measured foot reaction.24 parser controls/62 Python total pass
+  locally; original seven controls retained. These remain synthetic parser tests,
+  NOT physical load evidence. Grouped annotation avoids GitHub's per-step cap
+  hiding engagement, peaks or the completed tick599 behind earlier evidence.
+- Owner F30 decision remains pending; no axes/radii/angular limits or tuning changed.
+  All runtime acceptance remains NOT RUN; complete-creature attempts0.
