@@ -348,3 +348,25 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
   APK path remains`assets/`. Exact-byte/all-three-file guards and negative cases
   stay intact. Runtime/M0headless/static jobs passed; no Android pass claimed for
   that failed run. Followup CI pending. No physics/test tolerance changes.
+
+
+### Part3a final implementation CI @5ff93bf — ALL GREEN
+
+- M1 run40677962012 (check122781079671):381 mathematical checks (82+299),
+ 208 contact-component checks and128 production-definition analytic checks,
+ all zero failures. Static review37 Python tests passes. FA-1/2/7 analytically
+ checked only; no rendered/device/feel result is inferred.
+- M0/Android run40677961953:504 headless checks/0 failures and Android PASS.
+ The package-inspection step passed exact source-byte checks for all three JSON
+ presets in AAB`assetPackInstallTime/assets/` and universal APK`assets/`, alongside
+ unchanged manifest/ABI/native16KB/ZIP-alignment checks. Earlier failed packaging
+ assumption is superseded, not waived. No installation/performance claim.
+- Canonical draft PR#3 records controls, failures/fixes, actual controlled response
+ traces, source-pinned runs and unit-vs-runtime scope. All implementation pushed.
+- **M1 not complete:** FA-3/4/5/6, AC-201/202/204, complete-creature A9/replay/
+ stall/frame/baseline/bitflip/timing/§10.6/captures remain NOT RUN; attempts0.
+ General codec/builder, coupled links/hinges, motors/limits, self response and
+ sleep/checkpoint recovery remain unbuilt. No M2/camera/screens.
+- **Next single milestone — M1:** couple rigid bodies/hinges and contacts, obtain
+ measured FA-5 load-band/two-foot/airborne traces before static600/AC-201, then
+ AC-202→AC-204→FA-4/6 last. Preserve FA-6 stop/report rule and unchanged tuning.
