@@ -19,7 +19,7 @@ python3 - "$folder/probe.log" <<'PYRESULT'
 import re, sys
 text = open(sys.argv[1]).read()
 counts = re.findall(r'^M1 load-path components: (\d+) checks, 0 failures$', text, re.M)
-if len(counts) != 1 or int(counts[0]) < 78:
-    raise SystemExit('ERROR: missing/failed/below-floor load-path components (78 minimum)')
+if len(counts) != 1 or int(counts[0]) < 80:
+    raise SystemExit('ERROR: missing/failed/below-floor load-path components (80 minimum)')
 PYRESULT
 python3 tests/load_trace_report.py "$folder/slug-600.jsonl" "$folder/slug-summary.json"

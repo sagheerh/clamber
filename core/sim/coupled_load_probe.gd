@@ -285,6 +285,7 @@ static func lowest_mask(parts: Array[CapsuleBody], tuning: Tuning) -> Array[bool
 
 func _trace(previous_count: int, lowest: Array, hinge_y: Array[float]) -> Dictionary:
 	var feet: Array = []
+	var other_bodies: Array = []
 	var applied: float = TUNING.physics_zero
 	var measured: float = TUNING.physics_zero
 	var positional: float = TUNING.physics_zero
@@ -293,6 +294,15 @@ func _trace(previous_count: int, lowest: Array, hinge_y: Array[float]) -> Dictio
 		var body := bodies[index]
 		if body.kind != "foot":
 			other += body.measured_reaction_n
+			other_bodies.append(
+				{
+					"part": index,
+					"kind": body.kind,
+					"grounded": body.grounded,
+					"measured_reaction_n": body.measured_reaction_n,
+					"positional_cleanup_n": body.positional_cleanup_n
+				}
+			)
 			continue
 		var penetration: float = -INF
 		var extent := body.rest_length
@@ -334,6 +344,7 @@ func _trace(previous_count: int, lowest: Array, hinge_y: Array[float]) -> Dictio
 		"sum_measured_reaction_n": measured,
 		"sum_positional_cleanup_n": positional,
 		"other_body_reaction_n": other,
+		"other_bodies": other_bodies,
 		"weight_n": weight,
 		"applied_error_n": applied - weight,
 		"measured_error_n": measured - weight,

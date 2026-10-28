@@ -41,9 +41,25 @@ func _hinge_impulse() -> void:
 
 func _unequal_height() -> void:
 	var model := CreaturePresets.load_model("Slug", TUNING)
-	var low := model.create_bodies(0.0, 1.0)[2]
-	var high := model.create_bodies(0.0, 1.2)[2]
+	var low := model.create_bodies(0.0, 0.33)[2]
+	var high := model.create_bodies(2.0, 0.53)[2]
 	var pair: Array[CapsuleBody] = [high, low]
+	var lowest: Array[bool] = [false, true]
+	var friction: Array[float] = [TUNING.physics_grip_friction, TUNING.physics_grip_friction]
+	var bounce: Array[float] = [TUNING.physics_foot_restitution, TUNING.physics_foot_restitution]
+	_check(
+		(
+			CapsuleContact.resolve_tick(
+				pair, _stepped_floor(), model.total_mass(), lowest, friction, bounce, TUNING
+			)
+			== OK
+		),
+		"unequal-height surfaces resolve"
+	)
+	_check(
+		high.grounded and low.grounded,
+		"both feet really grounded at unequal heights before eligibility query"
+	)
 	var before := [high.snapshot(), low.snapshot()]
 	var mask := CoupledLoadProbe.lowest_mask(pair, TUNING)
 	_check(mask == [false, true], "unequal-height fixture excludes higher foot")
@@ -53,6 +69,21 @@ func _unequal_height() -> void:
 		"lowest geometry independent of array order"
 	)
 	_check(before == [high.snapshot(), low.snapshot()], "lowest eligibility never writes grounded")
+
+
+func _stepped_floor() -> SdfGrid:
+	var rows: Array = []
+	for iy in range(17):
+		var row := PackedFloat64Array()
+		for ix in range(25):
+			var x: float = -2.0 + ix * TUNING.physics_sdf_cell_wu
+			var y: float = -1.0 + iy * TUNING.physics_sdf_cell_wu
+			row.append(y - (0.2 if x >= 1.5 else 0.0))
+		rows.append(row)
+	var grid := SdfGrid.new()
+	if grid.configure(rows, -2.0, -1.0, TUNING.physics_grip_friction, TUNING) != OK:
+		push_error("stepped fixture setup failed")
+	return grid
 
 
 func _floor() -> SdfGrid:

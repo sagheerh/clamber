@@ -422,3 +422,29 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
  FA-3/4/5/6/AC/A9 gates stay NOT RUN. Complete-creature attempts0. No M2/camera/
  captures/retuning. Next M1: inspect every raw Slug tick and report findings before
  any FA-5 band or two-foot stance work.
+
+
+### R9 first executed600-row finding @206d205
+
+- Pinned M1 CI40689842649 ran381 math,237 contact,128 analytic and78 load-path
+ components, all zero component failures. Isolated0.30-mass foot's independent
+ two-endpoint reaction=8.40000000000000036N, with no divide-by-two correction.
+- ALL600 coupled Slug rows were generated. Fixed last300 force acceptance FAILED:
+ max|applied-43.4|=33.7224813369873N;
+ max|reaction-43.4|=33.70455115394039N;
+ max|applied-reaction|=0.017930183046905412N. No grip toggles recorded.
+- CI is RED on that actual force criterion, not on a compile/unit failure. The
+ closely agreeing channels do NOT establish that the foot carries the full body.
+ Added non-foot post-resolve flags/reactions and first/last/range annotations to
+ investigate support elsewhere, without changing physics or tolerance. No stance
+ claim, no FA-5 band, no Hopper/TwinRoller advance. Sleep remains unimplemented.
+- M0/Android run40689842574 passed506 checks/0 failures and Android inspection.
+ Existing exact preset bytes, radii, owner values and derivation are unchanged.
+- Full600-row diagnostic artifact12816646171 (45670 bytes), SHA256
+ 2df54e2e4025a3808bf35724b10dc11fd825be6800de314dde6ff58fe13b18c2.
+ API metadata retrieved; local ZIP download blocked by artifact-host access.
+ Do not claim local inspection of that ZIP. Independent parser processed all rows
+ in CI and its annotations were retrieved. Raw artifact remains on GitHub.
+- Unequal-height fixture strengthened to two actually post-resolve grounded feet
+ on separate elevations, then read-only/reversed eligibility. Load-path component
+ floor78->80. Next M1: inspect raw support routing finding; no gate/tuning changes.

@@ -54,6 +54,14 @@ def analyze(rows):
         'max_absolute_errors_n': maxima,
         'force_window_within_owner_tolerance': all(v <= CEILING_N for v in maxima.values()),
         'grip_toggle_ticks': toggles,
+        'steady_ranges_n': {
+            key: [min(r[key] for r in window), max(r[key] for r in window)]
+            for key in ('sum_applied_load_n', 'sum_measured_reaction_n', 'sum_positional_cleanup_n')
+        },
+        'all_terrain_reaction_range_n': [
+            min(r['sum_measured_reaction_n'] + r.get('other_body_reaction_n', 0) for r in window),
+            max(r['sum_measured_reaction_n'] + r.get('other_body_reaction_n', 0) for r in window),
+        ],
         'first': rows[0], 'last': rows[-1],
         'limitations': ['free rotational hinges; angular limits/motors/self-response absent',
                         'sleep is not implemented; all rows remain awake'],
@@ -69,5 +77,9 @@ if __name__ == '__main__':
     good = summary['force_window_within_owner_tolerance']
     print('M1 Slug force window: ' + ('WITHIN TOLERANCE' if good else 'FINDING (outside fixed tolerance)'))
     print('M1 Slug errors: ' + json.dumps(summary['max_absolute_errors_n'], sort_keys=True))
+    print('M1 Slug ranges: ' + json.dumps(summary['steady_ranges_n'], sort_keys=True))
+    print('M1 Slug all-terrain reaction: ' + json.dumps(summary['all_terrain_reaction_range_n']))
+    print('M1 Slug first: ' + json.dumps(summary['first'], sort_keys=True))
+    print('M1 Slug last: ' + json.dumps(summary['last'], sort_keys=True))
     print('M1 Slug grip toggle ticks: ' + json.dumps(summary['grip_toggle_ticks']))
     raise SystemExit(0 if good else 1)
