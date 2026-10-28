@@ -37,6 +37,7 @@ def summarize(folder):
                 'per_part_steady_max_endpoint_speed_ranges_wu_s': [
                     {'part': b['part'], 'range': b['steady_max_endpoint_speed_range_wu_s']} for b in motion['bodies']],
                 'steady_momentum_range_ns': motion['momentum_final_observed_envelope_ns'],
+                'last_per_part_net_delta_wu': [{'part': b['part'], 'delta': b['last_net_delta_wu']} for b in motion['bodies']],
                 'steady_grip_fraction': motion['steady_grip_fraction'],
                 'steady_foot_support_share_range': motion['steady_foot_support_share_range'],
                 'all_grounded_force_window_within_literal_tolerance': report['force_window_within_owner_tolerance'],

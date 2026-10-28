@@ -507,3 +507,16 @@ Do not implement A/B/C or angular limits. Order is F35 instrumentation -> unchan
 baseline + diagnostic sweep -> owner pose decision -> pose+F36 assertion -> FA-5
 band. FA-3/4/5/6 and all other coupled runtime gates NOT RUN; determinism attempts0.
 No retune, M2, or captures. Geometry unchanged outside synthetic test bodies.
+
+
+M1-D09 first measured follow-up @21a9174 / CI40699163425: all600 baseline position
+and speed identities verified; first tick inside final observed P envelope66;
+exact-constant final suffix absent. Per-phase ledger identifies contact projection
+as the main vertical cancellation for head/motor/footB, but HINGE rows lift footA.
+Prediction integrates damped previous v+gravity (downward), not completed upward v.
+Six isolated iteration probes all complete: increasing1->24 changes peak norm only
+.2019055601->.2019043696WU/s, leaving a nonzero floor. No new value adopted.
+Y/bottom repetition is not full position stasis: measured X drift≈−7.175e-6WU/tick
+at599; head bottom also changes during the initial falling transient. F35 is a
+forward measured issue, not a rest/sleep pass or a behavioral fix authorization.
+F37 measured grip fraction0; foot support share≈.222392538, no new threshold.

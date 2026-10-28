@@ -69,6 +69,8 @@ def motion_profile(rows, close):
             'steady_com_speed_range_wu_s': [min(b['com_speed_wu_s'] for b in observed), max(b['com_speed_wu_s'] for b in observed)],
             'last_endpoint_speeds_wu_s': body['endpoint_speeds_wu_s'],
             'last_net_delta_wu': body['net_delta_wu'],
+            'steady_net_delta_ranges_wu': [[min(b['net_delta_wu'][i] for b in observed),
+                                             max(b['net_delta_wu'][i] for b in observed)] for i in range(4)],
             'last_position_delta_wu': body['position_delta_wu'],
             'last_completed_velocity_dt_wu': body['completed_velocity_dt_wu'],
             'last_predictor_minus_completed_velocity_dt_wu': body['predictor_minus_completed_velocity_dt_wu'],

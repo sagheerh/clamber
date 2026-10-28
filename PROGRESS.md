@@ -19,7 +19,8 @@ scaffold/PR; no M1 implementation or gate completion is claimed by this closeout
   hinge and contact position projection per endpoint/part/tick. Also distinguish
   same-tick predictor displacement from completed-velocity*dt. No behavioral fix.
 - Add isolated position-iteration sweep1/2/4/6/12/24 (source default6 unchanged).
-  Runtime measurements PENDING at this commit; no value adopted. No damping
+  First pinned baseline/sweep @21a9174 completed; velocity plateau persists even
+  at24 iterations (max endpoint speed≈.20190437WU/s). No value adopted. No damping
   change, velocity epsilon, pose/radius/limits branch or sleep implementation.
 - F36 synthetic deliberately lowered motor must trip the shared bottom audit;
   hard production flag assertion deferred to the authorized pose-decision commit.
@@ -636,3 +637,49 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
   Existing any-loaded-grip boolean is labeled existence-only, NOT sustained stance.
 - Local checks pending final command below; pinned baseline/sweep measurements
   still PENDING. No behavioral corrections, no tuning/preset/contact changes.
+
+
+### R11 first executed observations @21a9174 / M1 CI40699163425
+
+- Static72 Python tests;381 math/237 contact/131 analytic/80 load checks pass.
+  Baseline600 motion/speed/position identities and accepted F31 ledger VERIFIED.
+  Six fresh600 sweeps1/2/4/6/12/24 all OBSERVED, ledgers verified; sweep step PASS.
+  Baseline load step remains RED only for F30/no gripping path. No rest claim.
+- P_y transient is NOT monotonic: ticks0/1/2=-.41174373333333336/
+  -.736673289905942/-1.0039825972757102Ns, tick5=-1.6166856921413673Ns,
+  tick30=.17897176428114156Ns, tick60=.16342237029481205Ns. From tick66,
+  all remaining values lie in observed final range.1634223702948058..
+  .16342237029480586Ns. No exact-constant suffix of≥2 ending599; ulp-scale
+  fluctuations persist. Descriptive envelope, NOT new rest/velocity epsilon.
+- Actual same-tick prediction integrates damped PREVIOUS velocity plus gravity,
+  not the COMPLETED velocity. At599 it moves endpoints DOWN.0044800..
+  .0076698WU. Position projection cancels these measured displacements, while
+  the independent velocity passes finish with upward velocities again. Do not
+  pretend dt*v_completed was the downward predictor or directly cancelled.
+- Per-endpoint Y ledger at599 (integration, distance, hinge, contact), WU:
+  head A=(-.00448000608301,+.00000010103090,0,+.00447990505211);
+  head B=(-.00651220824272,-.00000010103090,+.00003404447646,+.00647826479716);
+  motor A=(-.00651220824272,-.00000059016495,-.00005461301432,+.00656741142199);
+  motor B=(-.00625878080878,+.00000059016495,-.00392010260583,+.01017829324966);
+  foot A=(-.00625878080878,-.00001338336054,+.00627216416932,0);
+  foot B=(-.00766977665548,+.00001338336054,0,+.00765639329494).
+  Net Y is floating noise. Contact projection dominates head/motor/footB;
+  footA is lifted by HINGE rows, not contact position projection. Distance rows
+  are small but explicitly accounted for. Max position ledger residual over600
+  1.5612511283791264e-17WU. All per-part/per-tick vectors remain in raw/profile.
+- Precision correction to "positions static": last300 Y/bottoms repeat, but all
+  bodies drift X≈−7.1751877234e-6WU/tick at599 (≈.004305WU/600 ticks if sustained).
+  Also HEAD tick0 bottom+.2222222222 is NOT tick599−.020; initial transient exists.
+  Forward F35 concern remains valid; report measured positions, not a fixed pose.
+- Steady max endpoint norm vs iterations1/2/4/6/12/24:
+  .201905560144957/.2019046404620631/.2019044236543067/.20190439092127008/
+  .20190437249764873/.2019043696109208WU/s. More position iterations do NOT
+  remove the nonzero velocity plateau; do not recommend adopting24 as a fix.
+  Follow-up also emits per-case X/Y net displacement to separate geometric creep
+  sensitivity from persistent velocity amplitude. Source default remains6.
+- F37: last300 grip0/300 (fraction0); foot/all-grounded measured support
+  .22239253795468855...22239253795468863 (mean.2223925379546886≈22.2393percent).
+  Existence is not sustained support; no new threshold. F36 synthetic actual
+  lowered-motor control passed; production assertion still awaits pose commit.
+- No F35 fix or acceptance claimed. F30 owner decision pending; no A/B/C branch,
+  no damping/velocity epsilon/new iteration default. FA-3/4/5/6 NOT RUN; attempts0.
