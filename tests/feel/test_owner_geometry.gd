@@ -133,7 +133,8 @@ func _initialize() -> void:
 		"scope":
 		"analytic geometry and production engineering preset definitions; no gait/runtime evidence",
 		"source": "owner M1-D04",
-		"derivation_sha256": "6453508be7cb808f643544ec3f3fdbd6560840876fc070511f4b5f50065dbc5e",
+		"original_derivation_sha256":
+		"6453508be7cb808f643544ec3f3fdbd6560840876fc070511f4b5f50065dbc5e",
 		"d10_limit_wu": limit,
 		"preset_geometry": fixtures,
 		"head_mass_derived": TUNING.physics_head_mass_per_wu * TUNING.physics_head_length_wu,

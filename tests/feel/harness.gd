@@ -76,7 +76,21 @@ static func pending_runtime(tuning: Tuning) -> Array:
 				"cases":
 				["below_ratio", "at_ratio", "two_foot_stance", "airborne", "floor_dominates"],
 				"required_fields":
-				["mass_sum", "gravity", "normal_force_last_tick", "grounded", "grip", "slip_trace"],
+				[
+					"mass_sum",
+					"gravity",
+					"previous_grounded_feet",
+					"applied_load_n",
+					"measured_reaction_n",
+					"positional_cleanup_n",
+					"support_sum",
+					"support_error",
+					"grounded",
+					"grip",
+					"sleep",
+					"slip_trace",
+					"gate_toggles"
+				],
 				"reason":
 				"No foot/contact response implemented; formula alone is not slip/grip evidence",
 			}

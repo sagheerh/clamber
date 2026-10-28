@@ -11,6 +11,7 @@ func _initialize() -> void:
 	_controlled_feet()
 	_swept_contact()
 	_rejection_and_restore()
+	_frozen_count_replay()
 	print("M1 contact primitives: %d checks, %d failures" % [_checks, _failures])
 	print("M1 contact scope: controlled component loads only; FA-3/4/5/6 and AC gates NOT RUN")
 	quit(0 if _failures == 0 else 1)
@@ -165,6 +166,7 @@ func _resolve(body: CapsuleBody, grid: SdfGrid, total_mass: float, lowest: bool 
 		lowest,
 		TUNING.physics_grip_friction,
 		TUNING.physics_foot_restitution,
+		1,
 		TUNING
 	)
 
@@ -177,11 +179,11 @@ func _controlled_feet() -> void:
 	var threshold: float = maxf(
 		TUNING.physics_grip_normal_force_floor, TUNING.physics_grip_normal_force_ratio * weight
 	)
-	# Explicit controlled prior-force state, NOT force measured from a whole-creature stance.
+	# Explicit controlled applied-load input, NOT force measured from a whole-creature stance.
 	for load in [threshold * 0.5, threshold, weight / 2.0, weight]:
 		var foot := _foot()
 		_place(foot, foot.radius - TUNING.physics_contact_slop_wu - 0.01, 1.0, -1.0)
-		foot.normal_force_last_tick = load
+		foot.applied_load_n = load
 		var first := foot.a
 		var second := foot.b
 		_check(_resolve(foot, grid, mass) == OK, "controlled foot contact resolves")
@@ -204,8 +206,8 @@ func _controlled_feet() -> void:
 			"positional response projects out of floor"
 		)
 		_check(
-			foot.normal_force_last_tick > 0.0,
-			"response measures new normal force, not fabricated zero"
+			foot.measured_reaction_n > 0.0,
+			"velocity impulse is reported separately, not as applied support load"
 		)
 		_check(
 			foot.a == first and foot.b == second,
@@ -214,8 +216,8 @@ func _controlled_feet() -> void:
 		print(
 			(
 				(
-					"M1 controlled foot: prior_force=%.17f threshold=%.17f vx=%.17f "
-					+ "grounded=%s grip=%s measured_next_force=%s"
+					"M1 controlled foot: applied_load_n=%.17f threshold=%.17f vx=%.17f "
+					+ "grounded=%s grip=%s measured_impulse_force=%s"
 				)
 				% [
 					load,
@@ -223,7 +225,7 @@ func _controlled_feet() -> void:
 					foot.a.velocity_x,
 					foot.grounded,
 					foot.gripping,
-					foot.normal_force_last_tick
+					foot.measured_reaction_n
 				]
 			)
 		)
@@ -231,27 +233,28 @@ func _controlled_feet() -> void:
 	for i in range(2):
 		var foot := _foot()
 		_place(foot, 0.0, 1.0, -1.0)
-		foot.normal_force_last_tick = weight / 2.0
+		foot.applied_load_n = weight / 2.0
 		_check(
 			_resolve(foot, grid, mass) == OK and foot.gripping,
 			"two controlled half-weight contacts grip"
 		)
 	var airborne := _foot()
 	_place(airborne, 1.0, 1.0, -1.0)
-	airborne.normal_force_last_tick = weight
+	airborne.applied_load_n = weight
 	_check(_resolve(airborne, grid, mass) == OK, "airborne response")
 	_check(
 		(
 			not airborne.grounded
 			and not airborne.gripping
-			and airborne.normal_force_last_tick == 0.0
+			and airborne.measured_reaction_n == 0.0
+			and airborne.applied_load_n == weight
 			and airborne.a.velocity_x == 1.0
 		),
 		"airborne cannot grip even with stale loaded history"
 	)
 	var elevated := _foot()
 	_place(elevated, 0.0, 1.0, -1.0)
-	elevated.normal_force_last_tick = weight
+	elevated.applied_load_n = weight
 	_check(
 		(
 			_resolve(elevated, grid, mass, false) == OK
@@ -266,7 +269,7 @@ func _rejection_and_restore() -> void:
 	var grid := _floor()
 	var foot := _foot()
 	_place(foot, 0.0, 1.0, -1.0)
-	foot.normal_force_last_tick = 100.0
+	foot.applied_load_n = 100.0
 	var before := foot.snapshot()
 	_check(_resolve(foot, grid, 1.55) == OK, "checkpoint response")
 	var expected := foot.snapshot()
@@ -304,7 +307,7 @@ func _rejection_and_restore() -> void:
 		"unqueryable terrain rejection atomic"
 	)
 	var malformed := before.duplicate(true)
-	malformed.force = INF
+	malformed.applied_load_n = INF
 	_check(
 		foot.restore(malformed) != OK and foot.snapshot() == before,
 		"bad contact snapshot restore atomic"
@@ -360,4 +363,97 @@ func _swept_contact() -> void:
 	_check(
 		foot.a.velocity_x <= 0.0 and foot.b.velocity_x <= 0.0,
 		"entering-side normal reverses incoming speed"
+	)
+
+
+func _batch(feet: Array[CapsuleBody]) -> Error:
+	var lowest: Array[bool] = []
+	var friction: Array[float] = []
+	var restitution: Array[float] = []
+	for foot in feet:
+		lowest.append(true)
+		friction.append(TUNING.physics_grip_friction)
+		restitution.append(TUNING.physics_foot_restitution)
+	return CapsuleContact.resolve_tick(feet, _floor(), 1.55, lowest, friction, restitution, TUNING)
+
+
+func _states(feet: Array[CapsuleBody]) -> Array:
+	var result: Array = []
+	for foot in feet:
+		result.append(foot.snapshot())
+	return result
+
+
+func _frozen_count_replay() -> void:
+	# Controlled immutable inputs only. This is NOT a gravity/hinge load path.
+	var feet: Array[CapsuleBody] = [_foot(), _foot()]
+	for foot in feet:
+		_place(foot, 0.03, 1.0, 0.0)
+		foot.applied_load_n = 10.0
+	_check(_batch(feet) == OK, "first contact N0 resolves")
+	_check(
+		feet[0].grounded and feet[1].grounded and not feet[0].gripping and not feet[1].gripping,
+		"N0 disables grip for entire first contact tick"
+	)
+	var checkpoint := _states(feet)
+	for foot in feet:
+		_place(foot, 0.03, 1.0, 0.0)
+	_check(
+		_batch(feet) == OK and feet[0].gripping and feet[1].gripping,
+		"next tick frozen N2 threshold is 8.68 for both"
+	)
+	var expected := _states(feet)
+	for i in range(2):
+		_check(
+			feet[i].restore(checkpoint[i]) == OK,
+			"restore completed previous tick flags and channels"
+		)
+		_place(feet[i], 0.03, 1.0, 0.0)
+	_check(
+		_batch(feet) == OK and _states(feet) == expected,
+		"restore-and-continue byte-equivalent component replay without N state"
+	)
+	# One foot lifts off. The other still sees old N2 until the next tick.
+	for foot in feet:
+		_place(foot, 0.03, 1.0, 0.0)
+	_place(feet[0], 1.0, 1.0, 0.0)
+	var lift := _states(feet)
+	_check(
+		_batch(feet) == OK and not feet[0].grounded and feet[1].gripping,
+		"lift-off uses frozen N2, not mutable in-loop flags"
+	)
+	var forward := _states(feet)
+	var reverse: Array[CapsuleBody] = [_foot(), _foot()]
+	_check(
+		reverse[0].restore(lift[1]) == OK and reverse[1].restore(lift[0]) == OK,
+		"reverse-order checkpoint"
+	)
+	_check(
+		(
+			_batch(reverse) == OK
+			and reverse[0].snapshot() == forward[1]
+			and reverse[1].snapshot() == forward[0]
+		),
+		"body order cannot change frozen N or response"
+	)
+	_place(feet[1], 0.03, 1.0, 0.0)
+	_check(
+		_batch(feet) == OK and not feet[1].gripping, "next tick N1 doubles threshold; no smoothing"
+	)
+	_check(
+		feet[1].applied_load_n == 10.0 and feet[1].measured_reaction_n == 0.0,
+		"slop-rest reaction zero cannot clobber immutable input"
+	)
+	var embedded := _foot()
+	_place(embedded, 0.0, 1.0, 0.0)
+	embedded.applied_load_n = 0.0
+	_check(_resolve(embedded, _floor(), 1.55) == OK, "position-only cleanup")
+	_check(
+		(
+			embedded.positional_cleanup_n > 0.0
+			and embedded.measured_reaction_n == 0.0
+			and embedded.applied_load_n == 0.0
+			and not embedded.gripping
+		),
+		"penetration artefact never becomes qualifying load"
 	)

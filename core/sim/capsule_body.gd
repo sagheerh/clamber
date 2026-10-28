@@ -8,7 +8,12 @@ var kind: String
 var radius: float
 var mass: float
 var rest_length: float
-var normal_force_last_tick: float = TUNING.physics_zero
+## Caller-owned applied compressive load; contact response must never overwrite it.
+var applied_load_n: float = TUNING.physics_zero
+## Velocity-level terrain impulse / dt; NOT positional cleanup or a support producer.
+var measured_reaction_n: float = TUNING.physics_zero
+## Position correction / dt squared, diagnostic only; never enables grip.
+var positional_cleanup_n: float = TUNING.physics_zero
 var grounded: bool = false
 var gripping: bool = false
 
@@ -30,7 +35,9 @@ func configure(part: CreaturePart, x: float, y: float) -> Error:
 	radius = part.radius
 	mass = part.mass
 	rest_length = part.length
-	normal_force_last_tick = TUNING.physics_zero
+	applied_load_n = TUNING.physics_zero
+	measured_reaction_n = TUNING.physics_zero
+	positional_cleanup_n = TUNING.physics_zero
 	grounded = false
 	gripping = false
 	return OK
@@ -49,8 +56,7 @@ func is_valid() -> bool:
 		and is_finite(rest_length)
 		and rest_length > TUNING.physics_zero
 		and kind in ["head", "limb", "passive", "motor", "foot"]
-		and is_finite(normal_force_last_tick)
-		and normal_force_last_tick >= TUNING.physics_zero
+		and _valid_channels()
 	)
 
 
@@ -62,14 +68,18 @@ func snapshot() -> Dictionary:
 		"radius": radius,
 		"mass": mass,
 		"length": rest_length,
-		"force": normal_force_last_tick,
+		"applied_load_n": applied_load_n,
+		"measured_reaction_n": measured_reaction_n,
+		"positional_cleanup_n": positional_cleanup_n,
 		"grounded": grounded,
 		"gripping": gripping,
 	}
 
 
 func restore(state: Dictionary) -> Error:
-	for key in ["radius", "mass", "length", "force"]:
+	for key in [
+		"radius", "mass", "length", "applied_load_n", "measured_reaction_n", "positional_cleanup_n"
+	]:
 		var value: Variant = state.get(key)
 		if (
 			not (value is int or value is float)
@@ -121,7 +131,16 @@ func restore(state: Dictionary) -> Error:
 	mass = state.mass
 	radius = state.radius
 	rest_length = state.length
-	normal_force_last_tick = state.force
+	applied_load_n = state.applied_load_n
+	measured_reaction_n = state.measured_reaction_n
+	positional_cleanup_n = state.positional_cleanup_n
 	grounded = state.grounded
 	gripping = state.gripping
 	return OK
+
+
+func _valid_channels() -> bool:
+	for value in [applied_load_n, measured_reaction_n, positional_cleanup_n]:
+		if not is_finite(value) or value < TUNING.physics_zero:
+			return false
+	return true

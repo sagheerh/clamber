@@ -314,3 +314,35 @@ redo/extension of the M0 device waiver. Native/manifest/alignment checks remain.
 The exact-load component test exposed floating-operation grouping at40%: compute
 creature weight before applying the ratio. This changes no physical constant or
 tolerance; no force epsilon was added and the exact-boundary assertion is intact.
+
+
+## M1-D06 — Owner R8/F24 approval; force-channel first increment
+
+The owner APPROVED per-foot expected share, not creature-level summed eligibility
+or capping builds/feet. Both alternatives are rejected: summed eligibility can
+lend an underloaded foot another foot's force; a cap conflicts with the third-leg
+reward. T=max(5,0.40*W/N), with N frozen from feet's post-resolve grounded flags
+at END of the previous tick; N0 disables all grip. Grounded is ONLY the existing
+post-resolve sample-inside-radius+slop flag. No persistent N field, proximity
+predicate, hysteresis, grace, decay or gate damping is added. Touchdown/lift-off
+must expose the next-tick step. Slug N1 remains17.36N; the unchanged5N floor binds
+for Slug-mass arithmetic at N>=4 (5/10.85 approximately0.46).
+
+The owner explicitly requires an addendum in the derivation file in the SAME
+commit as code/FA-5 row. Original281 lines/SHA6453508... remain byte-identical;
+append-only attributed addendum is independently hash-pinned. This authorized
+append is not a retune or a rewrite of the pinned original.
+
+First increment separates caller-owned applied_load_n from measured_reaction_n
+(velocity contact impulse/dt) and positional_cleanup_n (position correction/dt²,
+NOT physical support). Contact response never assigns a measured/cleanup value to
+applied_load_n. Frozen-N batch response stages all bodies before publication;
+component tests actually restore completed flags and continue, including reversed
+order and lift-off. The old max(position,impulse) support estimate is removed.
+
+IMPORTANT: no producer of coupled applied load is claimed by this increment.
+F22 remains OPEN until real gravity/hinge load transfer and Slug's600-tick trace.
+The owner's same-tick steady support tolerance is0.723N for every last300 ticks,
+not0.723333...; report all raw transient imbalance/toggling. A quiet contact's
+zero impulse output is not a gravity-support estimate. No synthetic qualifying
+loads may migrate from the component tests into the production coupling path.

@@ -370,3 +370,23 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
 - **Next single milestone — M1:** couple rigid bodies/hinges and contacts, obtain
  measured FA-5 load-band/two-foot/airborne traces before static600/AC-201, then
  AC-202→AC-204→FA-4/6 last. Preserve FA-6 stop/report rule and unchanged tuning.
+
+
+### R8 / owner F24 — force-channel first increment (coupling NOT built)
+
+- Owner accepts prior Part3a as COMPONENTS; F20/F21 closed.208 component checks
+  are NOT determinism; complete-creature determinism attempts remain0.
+- Applied-load input and measured impulse-reaction output are split; positional
+  cleanup is a third diagnostic, never load. The response cannot clobber input.
+- Frozen previous completed tick's post-resolve grounded count is computed once
+  by batch resolve, no stored N or alternate grounding predicate. N0 disables
+  first-contact grip; expected-share band and5N floor recorded with rejected
+  alternatives, FA-5 row and owner-attributed append-only derivation addendum.
+- Added actual snapshot restore-and-continue and reverse-order component tests,
+  zero-to-two touchdown, two-to-one lift-off, immutable-input and positional-only
+  false-grip controls. These are controlled components, NOT a coupled stance.
+- F22/F25 load producer/conservation and Slug600 trace remain NOT IMPLEMENTED;
+  FA-3/4/5/6 and all coupled AC/A9 runtime claims remain NOT RUN. No sleep result
+  is fabricated. The0.723N last300/600 criterion is recorded, not relaxed.
+- Next M1: implement real gravity/hinges/contact load transfer for one Slug,
+  record every required tick, then FA-5 band and only then two-foot presets.

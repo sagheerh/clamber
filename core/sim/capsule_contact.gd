@@ -11,6 +11,7 @@ static func resolve(
 	lowest: bool,
 	material_friction: float,
 	restitution: float,
+	grounded_feet_previous: int,
 	tuning: Tuning
 ) -> Error:
 	if body == null or not body.is_valid() or terrain == null or tuning == null:
@@ -36,6 +37,7 @@ static func resolve(
 		or material_friction < TUNING.physics_zero
 		or restitution < TUNING.physics_zero
 		or restitution > TUNING.physics_one
+		or grounded_feet_previous < TUNING.physics_zero
 		or tuning.physics_tick_hz != TUNING.physics_tick_hz
 		or tuning.physics_grip_normal_force_ratio < TUNING.physics_zero
 		or tuning.physics_grip_normal_force_floor <= TUNING.physics_zero
@@ -52,7 +54,14 @@ static func resolve(
 	if work.restore(body.snapshot()) != OK:
 		return ERR_INVALID_DATA
 	var status := _response(
-		work, terrain, creature_mass, lowest, material_friction, restitution, tuning
+		work,
+		terrain,
+		creature_mass,
+		lowest,
+		material_friction,
+		restitution,
+		grounded_feet_previous,
+		tuning
 	)
 	return status if status != OK else body.restore(work.snapshot())
 
@@ -64,6 +73,7 @@ static func _response(
 	lowest: bool,
 	friction: float,
 	restitution: float,
+	grounded_feet_previous: int,
 	tuning: Tuning
 ) -> Error:
 	var zero := TUNING.physics_zero
@@ -83,18 +93,25 @@ static func _response(
 	):
 		return ERR_PARAMETER_RANGE_ERROR
 	var intervals := maxi(one, ceili(extent / terrain.cell_size()))
-	# Form creature weight first: the gate is a ratio of that physical load.
-	# No force epsilon/slack: exact cached threshold still qualifies.
-	var threshold := maxf(
-		tuning.physics_grip_normal_force_floor,
-		(
-			tuning.physics_grip_normal_force_ratio
-			* (creature_mass * absf(tuning.physics_gravity_wu_s2))
+	# Owner R8/F24: frozen previous-tick count, not a count during this loop.
+	var threshold: float = tuning.physics_grip_normal_force_floor
+	if grounded_feet_previous > zero:
+		threshold = maxf(
+			threshold,
+			(
+				tuning.physics_grip_normal_force_ratio
+				* (creature_mass * absf(tuning.physics_gravity_wu_s2))
+				/ grounded_feet_previous
+			)
 		)
-	)
 	if not is_finite(threshold):
 		return ERR_INVALID_DATA
-	var may_grip := body.kind == "foot" and lowest and body.normal_force_last_tick >= threshold
+	var may_grip := (
+		grounded_feet_previous > zero
+		and body.kind == "foot"
+		and lowest
+		and body.applied_load_n >= threshold
+	)
 	body.grounded = false
 	body.gripping = false
 	var positional: float = zero
@@ -149,7 +166,8 @@ static func _response(
 		body.a.velocity_y += body.a.inverse_mass * v * (ny * bounce + nx * tangential)
 		body.b.velocity_x += body.b.inverse_mass * u * (nx * bounce - ny * tangential)
 		body.b.velocity_y += body.b.inverse_mass * u * (ny * bounce + nx * tangential)
-	body.normal_force_last_tick = maxf(positional, impulse)
+	body.measured_reaction_n = impulse
+	body.positional_cleanup_n = positional
 	for entry in [[body.a, original_a], [body.b, original_b]]:
 		var point: SimBody = entry[zero]
 		var before: Array = entry[one]
@@ -207,3 +225,57 @@ static func _swept_sample(
 			last_distance = probe.distance
 			last_u = u
 	return current
+
+
+static func resolve_tick(
+	bodies: Array[CapsuleBody],
+	terrain: SdfGrid,
+	creature_mass: float,
+	lowest: Array[bool],
+	friction: Array[float],
+	restitution: Array[float],
+	tuning: Tuning
+) -> Error:
+	# No cached N state: derive from complete previous-tick snapshots BEFORE resolving.
+	if (
+		bodies.is_empty()
+		or lowest.size() != bodies.size()
+		or friction.size() != bodies.size()
+		or restitution.size() != bodies.size()
+	):
+		return ERR_INVALID_DATA
+	var work: Array[CapsuleBody] = []
+	var count: int = TUNING.physics_zero
+	for body in bodies:
+		if (
+			body == null
+			or not body.is_valid()
+			or body in bodies.slice(TUNING.physics_zero, work.size())
+		):
+			return ERR_INVALID_DATA
+		var state := body.snapshot()
+		if state.kind == "foot" and state.grounded:
+			count += TUNING.physics_one
+		var candidate := CapsuleBody.new()
+		if candidate.restore(state) != OK:
+			return ERR_INVALID_DATA
+		work.append(candidate)
+	for index in range(work.size()):
+		var status := resolve(
+			work[index],
+			terrain,
+			creature_mass,
+			lowest[index],
+			friction[index],
+			restitution[index],
+			count,
+			tuning
+		)
+		if status != OK:
+			return status
+	# All candidates validated; publish scalar endpoint state, retaining identities.
+	for index in range(work.size()):
+		var status := bodies[index].restore(work[index].snapshot())
+		if status != OK:
+			return status
+	return OK

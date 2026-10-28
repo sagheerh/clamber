@@ -39,7 +39,11 @@ class OwnerGeometrySourceTests(unittest.TestCase):
         self.assertNotRegex((ROOT / 'core/tuning.gd').read_text(), r'@export var \w*head\w*(?:angular|limit)')
 
     def test_derivation_byte_identity(self):
-        data = (ROOT / '.review/M1_B01_CONTACT_GEOMETRY_DERIVATION.md').read_bytes()
+        document = (ROOT / '.review/M1_B01_CONTACT_GEOMETRY_DERIVATION.md').read_bytes()
+        data = b''.join(document.splitlines(keepends=True)[:281])
+        addendum = document[len(data):]
+        self.assertTrue(addendum.startswith(b'\n## Owner addendum'))
+        self.assertEqual(hashlib.sha256(addendum).hexdigest(), '2e3ac4e03170834d9334f1af5c29666e02c2c297ddb560ae8b395691d16c2ed9')
         self.assertEqual(hashlib.sha256(data).hexdigest(),
                          '6453508be7cb808f643544ec3f3fdbd6560840876fc070511f4b5f50065dbc5e')
         self.assertEqual(data.count(b'\n'), 281)
@@ -72,6 +76,14 @@ class OwnerGeometrySourceTests(unittest.TestCase):
                 self.assertIn('res://' + relative, catalog)
                 self.assertTrue(any(fnmatch.fnmatchcase(relative, pattern) for pattern in filters),
                                 'non-resource production JSON must be included in exports')
+
+    def test_owner_f24_expected_share_floor(self):
+        weight = Decimal('43.4')
+        thresholds = [max(Decimal('5'), Decimal('0.40') * weight / n) for n in range(1, 5)]
+        self.assertEqual(thresholds, [Decimal('17.36'), Decimal('8.68'),
+                                    Decimal('17.36') / 3, Decimal('5')])
+        self.assertGreater(Decimal('5') / (weight / 4), Decimal('0.46'))
+        self.assertLess(Decimal('0.723'), weight / 60)  # Do not round the owner's ceiling up.
 
 
 if __name__ == '__main__':

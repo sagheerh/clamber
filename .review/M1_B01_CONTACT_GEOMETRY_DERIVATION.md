@@ -279,3 +279,49 @@ After this lands: creature bodies + feet + contact response, then AC-201, AC-202
 AC-204, three presets with 10 s captures. A9 replay/baseline/bit-flip and tick cost
 stay NOT RUN until they actually run. No M2, no camera, no screens.
 ```
+
+## Owner addendum — R8 F24 expected-share decision (2026-10-28)
+
+Attribution: explicitly APPROVED by the GDD owner after R8; not an engineer's
+reinterpretation. The original 281 lines above are preserved byte-for-byte.
+
+FA-5 “a foot loaded below 40% of weight slips” is reinterpreted as “below 40%
+of its expected share W/N_grounded”, with the existing absolute floor retained:
+
+- W = sum(m_i) * abs(g).
+- N = this creature's feet whose post-resolve grounded flag was true at the END
+  of the previous completed tick. Freeze N once before any per-body resolve.
+- For N >= 1, T_foot = max(5.0, 0.40 * W / N).
+- N == 0 disables grip for EVERY foot. First contact therefore has no grip.
+- Each foot independently satisfies T_foot plus existing grounded/lowest eligibility.
+- Grounded has ONE definition: the post-resolve flag set by a sample inside
+  radius + contact_slop. No separate proximity predicate is introduced.
+- N is reconstructed from CapsuleBody snapshots; no new persistent count field.
+  Restore-and-continue replay must prove equality. Touchdown/lift-off changes
+  the following tick's threshold abruptly; report toggles, never smooth them.
+
+Slug: W=43.4 N, N=1 => T=17.36 N. For Slug-mass reference arithmetic the 5 N
+floor binds at N>=4: W/4=10.85 N, 5/10.85 approximately 0.46 effective ratio,
+not 0.40. This floor is intentional and unchanged. Each shipped foot contributes
+8.4 N to W, so W/N>=8.4 and equal support shares meet both the 5 N floor and
+40% share term for permitted builds. This is feasibility arithmetic, not a trace.
+
+Rejected by the owner: creature-level summed grip eligibility (can enable an
+underloaded foot from other feet's loads), and capping foot count/builds (conflicts
+with the third-leg reward and currently permitted builds).
+
+R8 force-channel contract: applied_load_n is caller-owned load input, immutable
+during contact response. measured_reaction_n is separate output. Positional
+cleanup is reported separately and is NOT support load or a qualifying input.
+No qualifying loads or prescribed weight shares may be injected into production.
+The gravity -> hinges/constraints -> foot -> terrain load path remains required.
+
+Required Slug diagnostic: 600 static ticks, EVERY tick logged with per-foot
+support, sum, error vs 43.4, grounded/gripping and sleep state. Steady-state
+acceptance: abs(sum_support - 43.4) <= 0.723 N throughout the last 300 ticks.
+The owner relates this ceiling to W*dt=43.4/60 (1.67%); the supplied literal
+0.723 N ceiling is retained, not rounded upward to 0.723333... . Report all
+transient or oscillating deviations without clipping or changing the tolerance.
+No hysteresis, decay, grace tick, new gate damping, retuning, M2, camera or captures.
+FA-3/4/5/6 remain NOT RUN until genuine required traces exist. Component replay
+is not complete-creature determinism; its attempts remain 0 at this addendum.
