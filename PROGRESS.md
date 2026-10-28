@@ -98,3 +98,22 @@ available; the M0 CI suite is not evidence of M1 determinism/performance.
   solver work, with exact public interfaces and no invented grip threshold.
 - M1 gates are **NOT RUN / NOT MET** until the actual pinned-engine harness and
   evidence exist. Do not treat M0's 475 checks or owner waiver as M1 acceptance.
+
+### M1 scaffold fix — review infrastructure (no solver)
+
+- Vendored the full external review pack verbatim at `docs/CLAMBER_REVIEW_AGENT.md`
+  so the matrix and CI share one normative copy instead of paraphrased excerpts.
+- Added `scripts/review_checks.sh`: M0 static/inspector tests, shell syntax, and the
+  A9/INV static guards (no global RNG, tick-derived inputs, `_process(delta)`, or
+  engine physics nodes in core; no transcendentals in `core/sim`; seed is a
+  `Sim.setup` parameter; 60 Hz fixed step; vendored pack present; matrix honest).
+  It is a **static honesty gate**, not M1 runtime evidence.
+- Reconciled `.review/m1_ac_matrix.md` with PART B M1, A9.1–A9.7, INV-01–INV-10,
+  A5/A8/A10/A12, the two frame conditions, the one-bit falsification requirement,
+  and the M0 regression/test-count baseline (488 checks). Every runtime row remains
+  **NOT RUN**.
+- Renamed the workflow to `CI` and added a `review-scaffold` job that runs
+  `scripts/review_checks.sh` with `pipefail`; the headless and Android jobs are
+  unchanged M0 regression. Passing these jobs is still not M1 acceptance.
+- No solver, preset, baseline, threshold, tuning, save or runtime change is
+  included in this scaffold fix.

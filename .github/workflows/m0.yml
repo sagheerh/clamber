@@ -1,8 +1,33 @@
-name: M0 headless gates
+name: CI
 on: [push, pull_request, workflow_dispatch]
 permissions:
   contents: read
 jobs:
+  review-scaffold:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - name: Review pack invariants and scaffold honesty
+        shell: bash
+        run: |
+          set -o pipefail
+          scripts/review_checks.sh 2>&1 | tee "$RUNNER_TEMP/review-checks.log"
+      - name: Publish review-check diagnostics
+        if: failure()
+        shell: bash
+        run: |
+          set +e
+          python3 - "$RUNNER_TEMP/review-checks.log" <<'PYLOG'
+          import re, sys
+          from pathlib import Path
+          path = Path(sys.argv[1])
+          lines = path.read_text(errors="replace").splitlines() if path.exists() else []
+          selected = [line for line in lines if re.search(r"FAILED|^ - |ERROR|missing", line)]
+          for line in (selected or lines[-20:])[:40]:
+              escaped = line.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+              print("::error title=M1 review scaffold::" + escaped)
+          PYLOG
   headless:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
