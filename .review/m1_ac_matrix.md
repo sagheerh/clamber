@@ -71,8 +71,8 @@ Provenance: `docs/CLAMBER_REVIEW_AGENT.provenance.md`. **M1-B02 RESOLVED
 | §10.6 repeatability | Fixed scenario 10000 ticks, 100 local repeats; recorded 60 s cross-architecture/device replay and 200-run soak tracked separately | NOT RUN | No device/architecture evidence; no M0 waiver carries forward |
 | FA-1 | Collision diameter at least15px and head30px at width-derived150px/WU; analytic only, not camera/device evidence | PASS (analytic only) | CI40677962012; $RUNNER_TEMP/m1-owner-geometry.json |
 | FA-2 | Every shipped limb length has aspect ratio3:1..12:1; analytic geometry only | PASS (analytic only) | CI40677962012; $RUNNER_TEMP/m1-owner-geometry.json |
-| FA-3 | All three real presets:600 static ticks, zero sleep-breaking contacts; contact trace and actual observations | NOT RUN | R11 instrumented engineering Slug probe only; persistent velocity field; no all-preset FA-3 acceptance scenes |
-| FA-4 | Slug settles/sleeps within4s and L-hold lurches approximately one body length; record distances/input | NOT RUN | No motor/tutorial trace |
+| FA-3 | All three real presets:600 static ticks, zero sleep-breaking contacts; contact trace and actual observations | NOT RUN | R12 F38 live model equilibrium; F40 motor intra-step0.94..1.53 reference px at150px/WU and60Hz, rendered buzz absent; F39 soak extrapolation below; no all-preset static scene |
+| FA-4 | Slug settles/sleeps within4s and L-hold lurches approximately one body length; record distances/input | NOT RUN | R12 asleep definition is a separate pending owner decision from F30 pose; no predicate chosen; no motor/tutorial trace |
 | FA-5 | Owner R8/F24: foot load below max(5N,40percent of expected share W/N_previous_grounded) slips; at/above grips with grounded/lowest eligibility; frozen previous-tick N; N0 disables grip; two-foot stance and airborne traces required | NOT RUN | R11 engineering probe: last300 grip0/300, foot support share about22.2393percent; F30 pose pending; no accepted band or stance trace |
 | FA-6 | Ten scripted tutorial runs, actual per-run outcomes and input log; target6..8 successes, stop on10 or at most4 | NOT RUN | Actual success_count unknown; no tutorial scenario |
 | FA-7 | Head visual-radius dominance in all three presets; analytic only, not rendered silhouette proof | PASS (analytic only) | CI40677962012; $RUNNER_TEMP/m1-owner-geometry.json |
@@ -248,3 +248,29 @@ flag assertions MUST land with the authorized pose commit, not before decision.
 F30 owner decision PENDING; no A/B/C, radius/damping/velocity-epsilon/limit fix.
 FA-3/4/5/6 and all other coupled runtime gates stay NOT RUN; determinism attempts0.
 Next M1: owner pose decision -> authorized pose+F36 assertion -> only then FA-5 band.
+
+
+## M1-D10 R12 forward findings, no acceptance upgrade
+
+F36/F37 owner-CLOSED, instrumentation retained. F38: iteration convergence is
+convergence toward a nonzero model equilibrium, NOT more iterations awaiting a
+rest solution. Only new experiment is600 ticks each at spawnY.33/.53/.73 with
+unchanged configured6 iterations; initial zero motion and all existing ledger
+checks retained. Results pending at implementation commit. Owner must separately
+answer F30 pose and FA-4 asleep definition; no positional/velocity/model option
+selected, no velocity epsilon/damping/pose/radius/iteration-default change.
+
+F39 forward SOAK exposure at late baseline rate7.1751877234e-6WU/tick:
+
+- 600 ticks / FA-3 duration: .004305WU, .646 reference pixels.
+- 3600 ticks: .025831WU,3.875 reference pixels.
+- 10000 ticks / §10.6 duration: .071752WU,10.763 reference pixels.
+- 18000 ticks / five minutes at60Hz: .129153WU,19.373 reference pixels.
+
+These are rate-times-horizon estimates, NOT executed soak/§10.6 evidence and NOT
+an FA-3 blocker. No claim of a bounded drift. The proposed ordering-bias cause
+is a review hypothesis; individual completed-v mismatch is not a COM ledger.
+F40 reference intra-step motor prediction=.977/.939px downward, contact projection
+=.985/1.527px upward; solver churn/feel risk tracked with FA-3 above, not a captured
+visible bob.150px/WU is a diagnostic reference, not an M2 runtime camera adoption.
+FA-3/4/5/6 and all coupled runtime gates NOT RUN; determinism attempts0.

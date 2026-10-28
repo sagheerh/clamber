@@ -8,28 +8,29 @@ Session date: 2026-10-28. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R11 / measurement-only work
+### Current R12 / spawn-sensitivity only
 
-- F22/F23/F25 and now F31 owner-CLOSED. R11 independently reproduced momentum,
-  damping and all-contact bias. Keep raw-endpoint/damping/resource/contact checks
-  and algebra-balanced-but-fake-physics controls. Conservation is closed.
-- F35 forward MAJOR: persistent nonzero upward velocities while positions repeat
-  are not a resting fixed point. Instrument only: per-part endpoint/COM speeds,
-  full600 decay profile, actual displacement attributed to integration, distance,
-  hinge and contact position projection per endpoint/part/tick. Also distinguish
-  same-tick predictor displacement from completed-velocity*dt. No behavioral fix.
-- Add isolated position-iteration sweep1/2/4/6/12/24 (source default6 unchanged).
-  First pinned baseline/sweep @21a9174 completed; velocity plateau persists even
-  at24 iterations (max endpoint speed≈.20190437WU/s). No value adopted. No damping
-  change, velocity epsilon, pose/radius/limits branch or sleep implementation.
-- F36 synthetic deliberately lowered motor must trip the shared bottom audit;
-  hard production flag assertion deferred to the authorized pose-decision commit.
-  F37 steady grip fraction and foot/all-grounded support share added; path-exists
-  is explicitly NOT sustained support. No new acceptance threshold.
-- F30 remains the only active red gate; owner A/C pose decision PENDING (B radius
-  changes rejected). FA-3/4/5/6/all coupled runtime gates NOT RUN; determinism0.
-  Next M1: inspect unchanged baseline + F35 sweep, then owner pose decision before
-  pose+F36 hard assertion; only then FA-5 band. No M2/retune/captures.
+- F36/F37 owner-CLOSED; instrumentation accepted. Preserve F31 verification,
+  shared two-sided bad-pose control and grip-fraction/support-share reporting.
+  F36 hard production assertion still belongs in the authorized pose commit.
+- F38 reclassifies F35: more iterations converge faster toward a NONZERO model
+  equilibrium (P_inf≈.1634223589Ns), not toward rest. NOT awaiting more iterations.
+  Only new experiment: unchanged600 at y=.33/.53/.73, configured6 iterations,
+  zero initial motion; report final300 P ranges without choosing asleep/model.
+  Runtime result PENDING at this implementation commit. No behavior change.
+- F30 pose and FA-4 asleep definition are SEPARATE pending owner decisions.
+  Positional stillness / new owner-authored velocity threshold / model change
+  are options, NOT approvals. No velocity epsilon/damping/radius/pose change.
+- F39 late X drift horizon values are analytic extrapolations, NOT executed soak:
+  600=.004305WU,3600=.025831WU,10000=.071752WU,18000=.129153WU. Ordering-bias
+  causality is a hypothesis; per-endpoint completed-v mismatch alone cannot
+  establish net COM injection. Existing phase/start-v data are cross-checked in
+  this same experiment, no extra physical experiment or fix.
+- F40 motor intra-step excursions=.94..1.53 reference pixels at150px/WU,60Hz.
+  Tracked beside FA-3; rendered buzz is NOT observed and captures remain NOT RUN.
+- Next M1: spawn result -> owner F30 AND asleep definition -> authorized pose
+  with hard F36 assertion -> only then FA-5 band. FA-3/4/5/6/all coupled runtime
+  gates NOT RUN; complete-creature determinism attempts0; no retune/M2/captures.
 
 ### Exists
 
@@ -715,3 +716,25 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
   F30 owner pose decision pending; all runtime gates NOT RUN; determinism0.
   Next single milestone M1: await owner decision, then authorized pose+F36
   hard assertion before FA-5 band; no retune/M2/captures.
+
+
+### R12 implementation before pinned execution
+
+- Reconciled rehydrated local Git metadata to existing pushed c3b7b01 ONLY after
+  comparing EVERY source file with that commit byte-for-byte; no source discarded.
+  Branch remains arena/4cd0a587-clamber. No branch switching or source reset.
+- Added test-only --spawn-y=.33/.53/.73, default unchanged.33; raw metadata records
+  requested height. Same real model/materials/seedless diagnostic/fixed60Hz/zero
+  initial motion; no iterations override for R12. Core physics files untouched.
+- New three-spawn observer validates all600 rows/case, actual raw initial root,
+  zero initial velocities, constant height metadata, configured6 iterations,
+  existing F31+motion identities, final300 P range/mean/final and COM vertical
+  speed. No equality tolerance/rest threshold introduced. Missing or aborted
+  data stays NOT COMPLETED, not an equilibrium estimate. Runtime PENDING.
+- Accepted R11 iteration experiment remains manually reproducible via workflow
+  dispatch/scripts; routine CI now runs ONLY requested R12 spawn experiment in
+  its place. Baseline F30 red is retained; no acceptance test is skipped/weakened.
+- Local review78 Python tests (19/5/40/6/8), changed-GD formatter, full linter,
+  shell/diff checks pass. Original72 tests retained. New synthetic controls check
+  metadata, initial motion, iterations, incomplete cases and no sleep adoption;
+  they are NOT physical evidence. No new feel constants, no source retune.

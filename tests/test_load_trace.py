@@ -353,6 +353,93 @@ class LoadTraceTests(unittest.TestCase):
         self.assertTrue(all(c['status'] == 'NOT COMPLETED' for c in result['cases']))
         self.assertTrue(all('steady_max_endpoint_speed_range_wu_s' not in c for c in result['cases']))
 
+    def _spawn_case(self, folder, height):
+        import json
+        root = Path(folder) / f'spawn-{height}'
+        root.mkdir()
+        rows = fixture()
+        for row in rows:
+            row['diagnostic_spawn_y_wu'] = float(height)
+            head = row['other_bodies'][0]
+            for key in ('ay', 'by', 'start_ay', 'start_by'):
+                head[key] = float(height)
+            head['bottom_wu'] = head['bottom_start_wu'] = float(height) - head['radius_wu']
+        (root / 'engine-status.txt').write_text('0')
+        (root / 'slug-600.jsonl').write_text(''.join(json.dumps(r) + '\n' for r in rows))
+        return root, rows
+
+    def test_spawn_all_three_at_configured_six_without_sleep_adoption(self):
+        from load_spawn_report import summarize, HEIGHTS
+        with tempfile.TemporaryDirectory() as folder:
+            for height in HEIGHTS:
+                self._spawn_case(folder, height)
+            result = summarize(folder)
+        self.assertTrue(all(c['status'] == 'OBSERVED' for c in result['cases']))
+        self.assertEqual([c['spawn_y_wu'] for c in result['cases']], [.33, .53, .73])
+        self.assertEqual(result['configured_position_iterations'], 6)
+        self.assertFalse(result['comparison']['rest_or_sleep_definition_adopted'])
+        self.assertEqual(result['FA-4'], 'NOT RUN')
+
+    def test_missing_spawn_data_is_not_an_equilibrium(self):
+        from load_spawn_report import summarize
+        with tempfile.TemporaryDirectory() as folder:
+            result = summarize(folder)
+        self.assertEqual(result['comparison']['status'], 'INCOMPLETE')
+        self.assertTrue(all(c['status'] == 'NOT COMPLETED' for c in result['cases']))
+        self.assertTrue(all('last_p_y_ns' not in c for c in result['cases']))
+
+    def test_spawn_rejects_mismatched_height_and_nonzero_initial_motion(self):
+        import json
+        from load_spawn_report import summarize
+        for mode in ('height', 'motion'):
+            with self.subTest(mode=mode), tempfile.TemporaryDirectory() as folder:
+                root, rows = self._spawn_case(folder, '0.33')
+                if mode == 'height':
+                    rows[99]['diagnostic_spawn_y_wu'] = .53
+                else:
+                    rows[0]['other_bodies'][0]['start_avx'] = .1
+                (root / 'slug-600.jsonl').write_text(''.join(json.dumps(r) + '\n' for r in rows))
+                result = summarize(folder)
+            self.assertEqual(result['cases'][0]['status'], 'NOT COMPLETED')
+
+    def test_spawn_rejects_iteration_change(self):
+        import json
+        from load_spawn_report import summarize
+        with tempfile.TemporaryDirectory() as folder:
+            root, rows = self._spawn_case(folder, '0.33')
+            for row in rows:
+                row['diagnostic_position_iterations'] = 12
+            (root / 'slug-600.jsonl').write_text(''.join(json.dumps(r) + '\n' for r in rows))
+            result = summarize(folder)
+        self.assertEqual(result['cases'][0]['status'], 'NOT COMPLETED')
+
+    def test_spawn_comparison_different_or_same_never_chooses_asleep(self):
+        from load_spawn_report import comparison
+        for values in ([.1, .2, .3], [.163, .163, .163]):
+            cases = [{'status': 'OBSERVED', 'steady_p_y_range_ns': [v, v], 'last_p_y_ns': v} for v in values]
+            result = comparison(cases)
+            self.assertEqual(result['last300_momentum_envelopes_overlap'], values[0] == values[-1])
+            self.assertAlmostEqual(result['last_tick_momentum_spread_ns'], max(values)-min(values))
+            self.assertFalse(result['rest_or_sleep_definition_adopted'])
+
+    def test_com_x_reconciliation_not_single_endpoint_velocity_comparison(self):
+        from load_spawn_report import x_reconciliation
+        row = fixture()[0]
+        bodies = row['feet'] + row['other_bodies']
+        head = row['other_bodies'][0]
+        head['start_avx'] = .12
+        dx = (.77 / 2) * .12 * .98 / 60 / 1.55
+        for body in bodies:
+            for end, index in (('a', 0), ('b', 2)):
+                own_integration = body['start_' + end + 'vx'] * .98 / 60
+                body[end + 'x'] = body['start_' + end + 'x'] + dx
+                body['position_delta_wu']['integration'][index] = own_integration
+                body['position_delta_wu']['hinge'][index] = dx - own_integration
+        result = x_reconciliation(row)
+        self.assertAlmostEqual(result['net_com_x_wu'], result['predictor_from_raw_start_vx_wu'])
+        self.assertAlmostEqual(result['phase_com_x_wu']['hinge'], 0.0)
+        self.assertEqual(result['completed_vx_dt_com_wu'], 0.0)
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

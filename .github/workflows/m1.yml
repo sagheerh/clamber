@@ -149,8 +149,10 @@ jobs:
           if-no-files-found: warn
           retention-days: 7
 
+      # Accepted R11 experiment remains manually reproducible; R12 requests only
+      # the three-spawn experiment on normal pushes, not another iteration sweep.
       - name: R11 isolated position-iteration sensitivity (NOT adoption or FA)
-        if: always()
+        if: ${{ always() && github.event_name == 'workflow_dispatch' }}
         shell: bash
         run: |
           set +e
@@ -168,12 +170,41 @@ jobs:
           PYLOG
           exit "$status"
       - name: Preserve all iteration traces and per-tick motion profiles
-        if: always()
+        if: ${{ always() && github.event_name == 'workflow_dispatch' }}
         uses: actions/upload-artifact@v5
         with:
           name: m1-r11-motion-sweep-${{ github.run_id }}
           path: |
             ${{ runner.temp }}/m1-sweep/
             ${{ runner.temp }}/m1-sweep-console.log
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: R12 three spawn heights at unchanged configured iterations (NOT rest acceptance)
+        if: always()
+        shell: bash
+        run: |
+          set +e
+          M1_SPAWN_REPORT_DIR="$RUNNER_TEMP/m1-spawn" bash tests/run_m1_spawn_probe.sh > "$RUNNER_TEMP/m1-spawn-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-spawn-console.log" "$status" <<'PYLOG'
+          import sys
+          with open(sys.argv[1]) as file:
+              for line in file.read().splitlines():
+                  if line.startswith('M1 spawn') or 'ERROR' in line:
+                      level = 'notice' if sys.argv[2] == '0' else 'error'
+                      escaped = line.replace('%', '%25').replace('\r', '%0D')
+                      print(f'::{level} title=M1 R12 spawn observation ONLY::' + escaped)
+          PYLOG
+          exit "$status"
+      - name: Preserve all three spawn traces and motion profiles
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: m1-r12-spawn-probe-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-spawn/
+            ${{ runner.temp }}/m1-spawn-console.log
           if-no-files-found: warn
           retention-days: 7

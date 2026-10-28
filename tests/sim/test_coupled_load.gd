@@ -135,6 +135,7 @@ func _gravity_reaction() -> void:
 func _slug() -> void:
 	# Isolated diagnostic override ONLY; no resource or adopted/default value changes.
 	var tuning: Tuning = TUNING.duplicate(true)
+	var spawn_y := 0.33
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--iterations="):
 			var value := arg.trim_prefix("--iterations=")
@@ -143,6 +144,13 @@ func _slug() -> void:
 				quit(1)
 				return
 			tuning.physics_position_iterations = value.to_int()
+		if arg.begins_with("--spawn-y="):
+			var value := arg.trim_prefix("--spawn-y=")
+			if not value.is_valid_float() or float(value) not in [0.33, 0.53, 0.73]:
+				push_error("invalid R12 diagnostic spawn height")
+				quit(1)
+				return
+			spawn_y = float(value)
 	var model := CreaturePresets.load_model("Slug", tuning)
 	var probe := CoupledLoadProbe.new()
 	# Explicit uniform diagnostic material; NOT a new non-foot production default.
@@ -154,7 +162,7 @@ func _slug() -> void:
 		TUNING.physics_foot_restitution,
 		TUNING.physics_foot_restitution
 	]
-	if probe.setup(model, _floor(), 0.0, 0.33, friction, bounce, tuning) != OK:
+	if probe.setup(model, _floor(), 0.0, spawn_y, friction, bounce, tuning) != OK:
 		push_error("probe setup failed")
 		quit(1)
 		return
@@ -175,6 +183,7 @@ func _slug() -> void:
 		if row.status != OK:
 			push_error("coupled probe aborted at tick%d status%s" % [tick, row.status])
 			break
+		row["diagnostic_spawn_y_wu"] = spawn_y
 		var text := JSON.stringify(row, "", true, true)
 		print("M1 Slug tick: " + text)
 		if file != null:

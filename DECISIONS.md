@@ -520,3 +520,43 @@ Y/bottom repetition is not full position stasis: measured X drift≈−7.175e-6W
 at599; head bottom also changes during the initial falling transient. F35 is a
 forward measured issue, not a rest/sleep pass or a behavioral fix authorization.
 F37 measured grip fraction0; foot support share≈.222392538, no new threshold.
+
+
+## M1-D10 — R12 nonzero equilibrium, spawn-only experiment and separate sleep decision
+
+R12 owner CLOSES F36/F37 and accepts instrumentation. Preserve all F31 checks,
+F36 two-sided real-body lowered-motor control, F37 existence-vs-sustained metrics.
+Hard production pose assertions still land in the authorized pose commit.
+
+F38 supersedes any reading of F35 as an iteration-convergence defect. The six
+iteration results approach a NONZERO P_inf≈.1634223589Ns; observed envelope entry
+127/77/67/66/65/64 improves while the live field remains. More iterations reach
+that model equilibrium faster; they do not remove it. No adopted iteration value.
+The ONLY new physical experiment is600 unchanged ticks from y=.33/.53/.73 with
+configured6 iterations, same model/materials and zero initial motion. Report all
+final300 P ranges plus final/mean; pending at this code commit. Do not choose a
+rest attractor/sleep definition or discuss a behavioral fix before this evidence.
+Finite600 data are not a mathematical proof of global attractor existence.
+
+FA-4 "asleep" definition is an owner decision SEPARATE from F30 pose. Options:
+positional stillness, an owner-authored threshold above the velocity floor, or a
+model change. None is selected/implemented; no velocity epsilon or damping change.
+F30 A/C decision pending, B pinned-radius changes rejected, no pose/limit branch.
+Order: spawn experiment -> owner pose AND asleep answers -> authorized pose with
+hard F36 assertion -> only then FA-5 band. FA-3/4/5/6 NOT RUN; determinism attempts0.
+
+F39 is a forward SOAK finding, not an FA-3 blocker: extrapolate late baseline
+|dx|=7.1751877234e-6WU/tick to600/3600/10000/18000 ticks. At reference150px/WU,
+these are .004305/.025831/.071752/.129153WU or .646/3.875/10.763/19.373px.
+NOT actual long runs; persistence is assumed and no bound established. Report
+reviewer's Gauss-Seidel zero-mode interpretation as a hypothesis, not a proved
+cause: a single endpoint's completed vx*dt is not the integrator predictor or
+whole-creature COM motion. The existing raw phase/start-v ledger can establish
+mass-weighted COM attribution without another experiment. No friction/order fix.
+
+F40 at requested reference150px/WU: motor prediction .977/.939px down and contact
+projection .985/1.527px up per60Hz step; net Y is float noise. Record beside FA-3
+so numerical churn and possible feel buzz are not investigated twice. This is an
+INTRA-STEP excursion proxy, NOT a rendered/captured 60Hz bob measurement. No render
+sampling/interpolation assumption or new runtime camera scale adopted. No M2 or
+captures. Original derivation/tuning/presets/contact/body/hinge unchanged.
