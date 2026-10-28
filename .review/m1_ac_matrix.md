@@ -69,6 +69,13 @@ Provenance: `docs/CLAMBER_REVIEW_AGENT.provenance.md`. **M1-B02 RESOLVED
 | A9.7 mandatory falsification | Flip exactly one documented input bit at one documented tick; demonstrate a DIFFERENT hash from the unmodified baseline; fail if equal | NOT RUN | None |
 | A9.7 baseline / CI regression | Generate baseline with real engine, commit fixture identity/hash/tuning fingerprint; CI must reject unexplained hash changes and require a linked DECISIONS.md explanation for an intentional change | NOT RUN | Baseline deliberately absent, not zero or invented |
 | §10.6 repeatability | Fixed scenario 10000 ticks, 100 local repeats; recorded 60 s cross-architecture/device replay and 200-run soak tracked separately | NOT RUN | No device/architecture evidence; no M0 waiver carries forward |
+| FA-1 | Collision diameter at least15px and head30px at width-derived150px/WU; analytic only, not camera/device evidence | PASS (analytic only) | CI40672331407; $RUNNER_TEMP/m1-owner-geometry.json |
+| FA-2 | Every shipped limb length has aspect ratio3:1..12:1; analytic geometry only | PASS (analytic only) | CI40672331407; $RUNNER_TEMP/m1-owner-geometry.json |
+| FA-3 | All three real presets:600 static ticks, zero sleep-breaking contacts; contact trace and actual observations | NOT RUN | No static creature scene executed |
+| FA-4 | Slug settles/sleeps within4s and L-hold lurches approximately one body length; record distances/input | NOT RUN | No motor/tutorial trace |
+| FA-5 | Foot load below40percent slips, at/above grips, two-foot stance grips, airborne never grips | NOT RUN | No integrated stance/contact trace |
+| FA-6 | Ten scripted tutorial runs, actual per-run outcomes and input log; target6..8 successes, stop on10 or at most4 | NOT RUN | Actual success_count unknown; no tutorial scenario |
+| FA-7 | Head visual-radius dominance in all three presets; analytic only, not rendered silhouette proof | PASS (analytic only) | CI40672331407; $RUNNER_TEMP/m1-owner-geometry.json |
 
 ## Implementation increments (not completed)
 

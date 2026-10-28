@@ -110,3 +110,8 @@ static func pending_runtime(tuning: Tuning) -> Array:
 		)
 	)
 	return cases
+
+
+static func readable_pixels(pixels: float, target: float) -> bool:
+	# Owner F21: float-noise only, NOT legibility slack or physics tuning.
+	return is_finite(pixels) and is_finite(target) and pixels + 1e-9 >= target

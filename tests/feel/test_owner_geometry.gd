@@ -19,6 +19,12 @@ func _initialize() -> void:
 		not _pair_allowed(limit / 2.0, limit / 2.0, limit),
 		"exact equality to D-10 bound is forbidden"
 	)
+	_check(Harness.readable_pixels(14.999999999999998, 15.0), "F21 float-noise boundary accepted")
+	_check(not Harness.readable_pixels(14.5, 15.0), "F21 real half-pixel regression rejected")
+	_check(
+		not Harness.readable_pixels(15.0 - 2e-9, 15.0), "F21 allowance is not wider than specified"
+	)
+	_check(not Harness.readable_pixels(NAN, 15.0), "F21 non-finite pixels rejected")
 	var readability := true
 	var min_pixels := INF
 	for kind in KINDS:
@@ -32,9 +38,9 @@ func _initialize() -> void:
 		var target: float = TUNING.feel_min_collision_diameter_px
 		if kind == "head":
 			target = TUNING.feel_min_head_collision_diameter_px
-		readability = readability and pixels >= target
+		readability = readability and Harness.readable_pixels(pixels, target)
 		_check(
-			pixels >= target,
+			Harness.readable_pixels(pixels, target),
 			"FA-1 " + kind + " collision diameter: %s px, target %s" % [pixels, target]
 		)
 		# Universal bound covers every future topology, not just current fixtures.

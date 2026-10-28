@@ -136,6 +136,22 @@ class MatrixGuardTests(unittest.TestCase):
         for status in ['NOT RUN', 'NOT RUN for M1', 'STATIC CHECK ONLY']:
             self.assertEqual(validate_matrix(self.changed('AC-201', status, 'None')), [])
 
+    def test_fa_scopes_and_prose_escape_fail_closed(self):
+        for gate in ['FA-1', 'FA-2', 'FA-7']:
+            for evidence in ['CI40672331407', '$RUNNER_TEMP/m1-owner-geometry.json']:
+                self.assertEqual(validate_matrix(self.changed(gate, 'PASS (analytic only)', evidence)), [])
+            for evidence in ['', 'None', 'commit 0668d66', 'some_report.json']:
+                self.assertTrue(validate_matrix(self.changed(gate, 'PASS (analytic only)', evidence)))
+        for gate in ['FA-3', 'FA-4', 'FA-5', 'FA-6']:
+            for status in ['PASS (analytic only)', 'STATIC CHECK ONLY', 'NOT RUN for M1', 'PASS']:
+                self.assertTrue(validate_matrix(self.changed(gate, status, 'CI40672331407')))
+        for line in ['FA-6: PASS (8/10 successes)', '- [x] FA-6: COMPLETE',
+                     'FA-1: PASS (analytic only) CI40672331407']:
+            self.assertTrue(validate_matrix(self.matrix + '\n' + line))
+        for gate in ['FA-1', 'FA-2', 'FA-3', 'FA-4', 'FA-5', 'FA-6', 'FA-7']:
+            row = next(line for line in self.matrix.splitlines() if line.startswith('| ' + gate + ' |'))
+            self.assertTrue(validate_matrix(self.matrix.replace(row, '')))
+
     def test_missing_table_gate_and_malformed_row_fail_closed(self):
         self.assertTrue(validate_matrix(''))
         row = next(line for line in self.matrix.splitlines() if line.startswith('| AC-201 |'))

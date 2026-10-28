@@ -239,3 +239,17 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
   counts/artifact and source-pinned CI evidence will be in PR #3 after execution.
 - **Next: M1** — after B green, creature bodies/feet/contact response, then actual
   acceptance traces. Feature stop is lifted. No M2/camera/screens or silent tuning.
+
+### R7 F20/F21 corrections (before Part3 claims)
+
+- A/B accepted by owner at0668d66; no redo of accepted constants/foundations.
+- Seven FA gate rows now mandatory. Analytic status scoped strictly toFA-1/2/7
+  with run/report citation; runtimeFA-3..6 stay NOT RUN; prose/checkbox escapes fail.
+- Real tracked FA-6 analytic-status mutation exits1; restored FA-1 analytic row
+  exits0; original out-of-table prose bypass exits1. Full transcript in PR #3 body.
+- FA-1 adds owner-authorized1e-9px float-noise allowance only. Four assertions cover
+  boundary noise, half-pixel regression, beyond-allowance loss and non-finite input.
+  Geometry count floor rises123→127. No tuning/radius/derivation change.
+- Local review checks35 Python tests; pinned-engine results tracked in PR #3.
+- Next M1: actual creature definitions/body/contact primitives, D-10 against real
+  definitions, then FA-5 before static scenes/AC traces. All runtime NOT RUN.

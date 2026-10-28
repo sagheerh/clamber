@@ -261,3 +261,13 @@ The owner explicitly lifted the earlier feature-work stop. After Commit B is
 pushed/green, creature bodies/feet/contact response are authorized as the next
 separate M1 increment, followed by actual AC traces/captures. No new permission
 for M2/camera is implied. M1-B04 is flag-only, not a blocker to M1 contacts.
+
+## R7 — F20/F21 gate and float-noise corrections
+
+Owner accepted A/B@0668d66. F20 adds FA-1..7 to the guarded gate table. Only exact
+FA-1/2/7 may use PASS (analytic only), citing a CI run or owner-geometry JSON path;
+FA-3..6 stay NOT RUN. Out-of-table FA claims are rejected, including the original
+prose/checkbox bypass. No runtime claim follows from analytical evidence.
+F21 authorizes pixels+1e-9 >= target, test-harness-only float noise allowance, not
+legibility slack or new physics tuning. Real0.5px loss and errors larger than the
+specified allowance still fail. Collision radii and derivation bytes are unchanged.

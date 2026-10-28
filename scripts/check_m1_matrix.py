@@ -10,14 +10,20 @@ PACK_SHA256 = 'e3bd06654e0f92aaca55d0cc85e79f6d589a45aa6d9ddab5f4f068db22edb9a1'
 SUCCESS = re.compile(r'\b(?:met|pass|passed|verified)\b', re.I)
 RUNTIME = re.compile(
     r'\bAC-20[124]\b|\bpresets?\b|\btick cost\b|\bA9\.[23457]\b|'
-    r'§\s*10\.6\b|\bA12\b|\bA5\.6\b|\bA10\b|\bA8 replay\b', re.I)
+    r'§\s*10\.6\b|\bA12\b|\bA5\.6\b|\bA10\b|\bA8 replay\b|\bFA-[3456]\b', re.I)
 REQUIRED = ('AC-201', 'AC-202', 'AC-204', 'presets', 'Tick cost', 'A9.2',
-            'A9.3', 'A9.4', 'A9.5', 'A9.7', '§10.6', 'A12', 'A5.6')
+            'A9.3', 'A9.4', 'A9.5', 'A9.7', '§10.6', 'A12', 'A5.6',
+            'FA-1', 'FA-2', 'FA-3', 'FA-4', 'FA-5', 'FA-6', 'FA-7')
 CITATION = re.compile(
     r'\b(?:CI|run)\s*#?\s*\d{6,}\b|'
     r'\bcommit\s*[:#]?\s*[0-9a-f]{7,40}\b|'
     r'https://github\.com/[^\s]+/actions/runs/\d+', re.I)
-# Only these two gates can claim success during the foundation-only increment.
+ANALYTIC_GATES = {'FA-1', 'FA-2', 'FA-7'}
+ANALYTIC_STATUS = 'PASS (analytic only)'
+ANALYTIC_CITATION = re.compile(
+    r'\b(?:CI|run)\s*#?\s*\d{6,}\b|https://github\.com/[^\s]+/actions/runs/\d+|'
+    r'(?:^|[\s(])[^\s|]*(?:m1-owner-geometry|owner-geometry)\.json\b', re.I)
+# Success scopes are exact gate/status/citation triples, never vocabulary guesses.
 PENDING_STATUSES = {'NOT RUN', 'NOT RUN for M1', 'STATIC CHECK ONLY'}
 HEADER = ['Gate / source', 'Required acceptance evidence', 'Status', 'Evidence reference']
 EXCEPTIONS = {'M0 regression': 'PASS (regression only)',
@@ -32,6 +38,11 @@ def validate_matrix(text):
     errors, rows = [], []
     for number, line in enumerate(text.splitlines(), 1):
         if not line.strip().startswith('|'):
+            # FA claims must live in the guarded table, not prose/checkbox escape hatches.
+            if re.search(r'\bFA-[1-7]\b', line, re.I) and (
+                SUCCESS.search(line) or re.search(r'FA-[1-7]\s*:', line, re.I)
+            ):
+                errors.append(f'line {number}: FA claim outside guarded gate table')
             continue
         if not line.strip().endswith('|'):
             errors.append(f'line {number}: unterminated matrix row')
@@ -48,23 +59,31 @@ def validate_matrix(text):
         rows.append(cells)
         success = SUCCESS.search(' '.join(cells))
         prefix = f'line {number} ({gate})'
-        if status not in PENDING_STATUSES and status != EXCEPTIONS.get(gate):
+        analytic = gate in ANALYTIC_GATES and status == ANALYTIC_STATUS
+        if status not in PENDING_STATUSES and status != EXCEPTIONS.get(gate) and not analytic:
             errors.append(f'{prefix}: status not allowlisted: {status!r}')
         if status in EXCEPTIONS.values() and (status != EXCEPTIONS.get(gate) or not CITATION.search(evidence)):
             errors.append(f'{prefix}: scoped status requires its exact gate and run/commit evidence')
+        if re.fullmatch(r'FA-[3456]', gate) and status != 'NOT RUN':
+            errors.append(f'{prefix}: runtime FA status must remain NOT RUN')
+        if analytic and not ANALYTIC_CITATION.search(evidence):
+            errors.append(f'{prefix}: analytic-only status needs CI run or geometry report path')
         if success and (not evidence or re.match(r'^None\b', evidence, re.I)):
             errors.append(f'{prefix}: success token with empty/None evidence')
         if RUNTIME.search(gate) and success:
             errors.append(f'{prefix}: runtime acceptance success claim forbidden; keep NOT RUN')
         if success:
             expected = EXCEPTIONS.get(gate)
-            if not expected or status != expected or not CITATION.search(evidence):
+            if not ((expected and status == expected and CITATION.search(evidence)) or
+                    (analytic and ANALYTIC_CITATION.search(evidence))):
                 errors.append(f'{prefix}: success requires a scoped regression/count-floor status and run/commit evidence')
     if not rows:
         errors.append('acceptance table missing or empty')
     gates = ' '.join(row[0] for row in rows).casefold()
     for required in REQUIRED:
-        if required.casefold() not in gates:
+        present = (any(row[0] == required for row in rows) if required.startswith('FA-')
+                   else required.casefold() in gates)
+        if not present:
             errors.append(f'required gate missing: {required}')
     not_run = sum(row[2] in {'NOT RUN', 'NOT RUN for M1'} for row in rows)
     if not_run < 12:
