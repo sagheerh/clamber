@@ -1,0 +1,12 @@
+.godot/
+.tools/
+exports/
+*.apk
+*.aab
+*.keystore
+*.jks
+__pycache__/
+# Locally generated matching Android Gradle template and CI download artifacts.
+/android/
+Godot_*.zip
+SHA512-SUMS.txt

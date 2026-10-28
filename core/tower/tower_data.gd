@@ -1,0 +1,3 @@
+class_name TowerData
+extends RefCounted
+## M0 compile-only stub. Implementation deferred to its assigned milestone.
