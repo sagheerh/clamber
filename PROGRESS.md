@@ -1,6 +1,6 @@
 # CLAMBER progress
 
-## Current milestone: M0 — APPROVED / COMPLETE (owner override); M1 — READY
+## Current milestone: M0 — APPROVED / COMPLETE (owner override); M1 — IN PROGRESS / contact tuning BLOCKED
 
 Session date: 2026-10-28. Normative inputs: `docs/GDD.md` and
 `docs/ui/CLAMBER_UI.jpeg`. M0 is accepted by the GDD owner under M0-D07, dated 2026-10-28. Verdict:
@@ -96,7 +96,7 @@ Full review-pack text is still absent; the source document is explicitly partial
 Owner selected independent work while missing radii/head properties/grip threshold
 are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
 
-### M1 independent increment 1 — pending real-engine unit validation
+### M1 independent increment 1 — real-engine primitive unit tests PASS
 
 - Scaffold-only commit `2358c83` passed CI before mathematical implementation:
   M1 static run40631318799 and M0 regression/Android run40631318609.
@@ -111,3 +111,19 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
 - Original M0 tests, public Sim interface, tuning values and boot scene unchanged.
 - Presets/model/contact/debug view and M1 runtime gates remain blocked/not run;
   no head properties/radii/grip threshold or baseline hash has been invented.
+
+### M1 measured status / next
+
+- Mathematical commit3bbb8fa passed pinned-engine CI40631790195: **81 primitive
+  unit checks, zero failures**. M0 regression/Android CI40631790078 also passed;
+  original 475 engine +13 Python =488 floor is enforced with no test reduction.
+- `scripts/review_checks.sh` exits0 (42 script/scene files scanned, 21 Python
+  tests); the output is pasted in PR#3. These scans do not certify the absent full
+  review pack or any M1 runtime gate. F2 is explicitly only partially addressed.
+- Detailed source/run evidence and limits: `docs/validation/M1.md`.
+- AC-201/202/204, distinct gaits/captures, 3600-tick/100×/two-machine replay,
+  bit-flip, baseline, soak and performance: **NOT RUN / NOT MET**. No complete
+  creature determinism attempt has run; the two-failed-attempt budget is unused.
+- **Next: M1**, after owner supplies radii/head mass/length/grip threshold (M1-B01)
+  and original external review source (M1-B02). Continue dependent model/contact/
+  preset/solver work only with those values; do not invent them or move to M2.

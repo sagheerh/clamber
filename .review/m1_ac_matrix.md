@@ -1,6 +1,6 @@
 # M1 acceptance matrix — scaffold, NOT approval evidence
 
-**Status: READY FOR IMPLEMENTATION; all M1 runtime gates NOT RUN.**
+**Status: independent math unit tests PASS; all M1 creature runtime acceptance gates NOT RUN.**
 
 M0 was landed separately in PR [#1](https://github.com/sagheerh/clamber/pull/1),
 merge commit `c641990be2d77c57c223bc7cbc54d0097c3d8816`. Its closeout is approved
@@ -35,8 +35,8 @@ Reconciled with the supplied R3 PART B/A9 checklist in
 | Gate / source | Required acceptance evidence | Status | Evidence reference |
 |---|---|---|---|
 | Full INV-01..INV-10 sweep | Static subset via scripts/review_checks.sh plus full manual/semantic sweep using the original pack; do not invent INV IDs | PARTIAL / full mapping BLOCKED | Original pack not supplied |
-| M0 regression | Preserve original 475 engine checks and all existing tests; separate M0 regression workflow | NOT RUN on this branch | Historical M0 results are not M1 gates |
-| A8 test-count floor | At least 475 engine +13 original Python checks =488; no count reduction without a reviewed DECISIONS.md explanation | ENFORCED by log checker; real CI pending | scripts/check_m0_regression.py |
+| M0 regression | Preserve original 475 engine checks and all existing tests; separate M0 regression workflow | PASS (regression only) | CI40631790078: 475 engine +13 Python |
+| A8 test-count floor | At least 475 engine +13 original Python checks =488; no count reduction without a reviewed DECISIONS.md explanation | PASS (count floor only) | CI40631790078; scripts/check_m0_regression.py |
 | A8 replay baseline | M1+ replay matches a genuinely generated committed baseline; unexplained changes fail CI | NOT RUN | No M1 baseline exists |
 | A5.6 five-fakes | Run original pack five-fakes procedure; preserve evidence | BLOCKED / NOT RUN | Full definitions not supplied |
 | A12 verdict/review | Produce .review/m1_verdict.md and .json plus formal PR review before signoff | NOT RUN | No verdict or approval claimed |
@@ -85,7 +85,7 @@ Reconciled with the supplied R3 PART B/A9 checklist in
 - Reference-device performance and cross-device/architecture evidence still need
   actual hardware. M0-D07 cannot be used to waive those later gates.
 
-**Current verdict: M1 SCAFFOLD ONLY — NOT REVIEWABLE AS A COMPLETED MILESTONE.**
+**Current verdict: M1 INDEPENDENT FOUNDATIONS ONLY — NOT A COMPLETED MILESTONE.**
 
 ## Owner clarifications — current independent-work boundary
 
@@ -103,3 +103,11 @@ job. They do not implement creature integration/contact, presets or a Sim replay
 All AC-201/202/204, A9 runtime, performance, gait and cross-architecture acceptance
 rows remain NOT RUN. The public Sim functions still have their M0 stub bodies.
 No arbitrary point-fixture values may be promoted to gameplay tuning defaults.
+
+### Real-engine foundation evidence (not acceptance)
+
+Commit3bbb8fa: pinned Godot4.7.2 CI40631790195 passed **81 point/link unit checks**.
+M0 regression/Android CI40631790078 passed with the unchanged 488 baseline floor.
+See docs/validation/M1.md for links, tested behavior and exclusions. Sim remains
+unimplemented; no baseline, gait, contact, full replay or soak evidence exists.
+Complete creature determinism attempts:0; the two-failed-attempt limit is unused.
