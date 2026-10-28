@@ -83,9 +83,14 @@ static func _response(
 	):
 		return ERR_PARAMETER_RANGE_ERROR
 	var intervals := maxi(one, ceili(extent / terrain.cell_size()))
+	# Form creature weight first: the gate is a ratio of that physical load.
+	# No force epsilon/slack: exact cached threshold still qualifies.
 	var threshold := maxf(
 		tuning.physics_grip_normal_force_floor,
-		tuning.physics_grip_normal_force_ratio * creature_mass * absf(tuning.physics_gravity_wu_s2)
+		(
+			tuning.physics_grip_normal_force_ratio
+			* (creature_mass * absf(tuning.physics_gravity_wu_s2))
+		)
 	)
 	if not is_finite(threshold):
 		return ERR_INVALID_DATA

@@ -304,4 +304,16 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
 - The companion M0 compile sweep on81d0840 also caught a typed-inference error
   in capsule restore (`state.mass` is a Variant); inverse mass is now explicitly
   float. Old M0 result504 checks/2 compile failures is not regression evidence.
-  Corrective queued969ef16 runs are superseded before execution by this fix.
+  Runs969ef16 are superseded; only5bb9132 and later include both compile fixes.
+
+- Pinned5bb9132 run40676484751 executed208 contact checks and found2 assertions
+  failing at the exact40% cached-load boundary;381 math checks still pass. Actual
+  trace: prior17.36, threshold display17.36, vx0.1, gripfalse; below8.68 also slips,
+  above21.7/43.4 grips with vx0.0; each measured next reaction18.36. Root cause:
+  `(ratio*mass)*abs(g)` rounds17.360000000000003 vs ratio of already-computed
+  creature weight17.36. Grouped `ratio*(mass*abs(g))` per the weight-band definition,
+  without force epsilon, changed constants, or weakened assertions. Tests now log
+  cached load/threshold/vx at17 decimals. These are controlled unit traces, NOT FA-5.
+- M0 at5bb9132 run40676485104 headless passed504 checks/0 failures; Android still
+  pending when recorded. New geometry step skipped on failed component run.
+  Complete-creature determinism attempts remain0; no owner tuning change needed.

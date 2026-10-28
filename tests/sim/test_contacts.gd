@@ -214,7 +214,7 @@ func _controlled_feet() -> void:
 		print(
 			(
 				(
-					"M1 controlled foot: prior_force=%s threshold=%s vx=%s "
+					"M1 controlled foot: prior_force=%.17f threshold=%.17f vx=%.17f "
 					+ "grounded=%s grip=%s measured_next_force=%s"
 				)
 				% [
