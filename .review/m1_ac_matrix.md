@@ -256,7 +256,7 @@ F36/F37 owner-CLOSED, instrumentation retained. F38: iteration convergence is
 convergence toward a nonzero model equilibrium, NOT more iterations awaiting a
 rest solution. Only new experiment is600 ticks each at spawnY.33/.53/.73 with
 unchanged configured6 iterations; initial zero motion and all existing ledger
-checks retained. Results pending at implementation commit. Owner must separately
+checks retained. At8463240 all3 final300 P ranges coincide at[.1634223702948058,.16342237029480586]Ns; mean.16342237029480583Ns, nonzero COM vy≈.1054337873WU/s. Owner must separately
 answer F30 pose and FA-4 asleep definition; no positional/velocity/model option
 selected, no velocity epsilon/damping/pose/radius/iteration-default change.
 
@@ -274,3 +274,13 @@ F40 reference intra-step motor prediction=.977/.939px downward, contact projecti
 =.985/1.527px upward; solver churn/feel risk tracked with FA-3 above, not a captured
 visible bob.150px/WU is a diagnostic reference, not an M2 runtime camera adoption.
 FA-3/4/5/6 and all coupled runtime gates NOT RUN; determinism attempts0.
+
+
+R12 observed common plateau is not a rest verdict: spawn envelope entry66/70/73,
+all3 motion/momentum ledgers reconcile; no asleep definition adopted. F30 pose
+and FA-4 asleep answers remain separate owner decisions. F39 attribution refined:
+whole-creature mass-weighted dx is accounted for by actual integration of raw
+retained start vx; distance/hinge net COM contributions are float noise, contactX0.
+Per-endpoint completed-velocity mismatch is not proof of a net position pump or
+friction irrelevance. Real drift exposure remains a forward SOAK finding. No fix,
+pose branch, model choice or runtime acceptance upgrade. FA-3/4/5/6 NOT RUN.

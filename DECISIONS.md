@@ -560,3 +560,23 @@ so numerical churn and possible feel buzz are not investigated twice. This is an
 INTRA-STEP excursion proxy, NOT a rendered/captured 60Hz bob measurement. No render
 sampling/interpolation assumption or new runtime camera scale adopted. No M2 or
 captures. Original derivation/tuning/presets/contact/body/hinge unchanged.
+
+
+M1-D10 measured follow-up @8463240 / CI40710677636: y=.33/.53/.73, all unchanged6
+iterations/zero motion/600 ticks, give identical final300 P range
+[.1634223702948058,.16342237029480586]Ns and mean.16342237029480583Ns. Final values
+.16342237029480583/.16342237029480583/.16342237029480586Ns; observed envelope entry
+66/70/73. Common nonzero COM vy≈.1054337872869715WU/s, max endpoint norm
+.20190439092127008WU/s. This supports a shared observed equilibrium for the three
+requested starts, NOT sleep acceptance or a proof over arbitrary spawn states.
+No predicate/threshold/model/pose chosen; owner F30 and asleep decisions remain.
+
+F39 causal precision: at599 baseline mass-weighted COM dx=-7.175187723425593e-6WU,
+actual integration dx=-7.175187723396494e-6; distance=-2.927783044006219e-17,
+hinge=+1.789698646617957e-19, contact=0. Raw retained START vx independently gives
+-7.175187723393609e-6. COMPLETED vx*dt COM=-7.321620125911735e-6. The endpoint
+18x comparison does not establish displacement without velocity: integration
+accounts for net COM translation, while internal rows redistribute per-point
+positions. Friction irrelevance/position-order injection are NOT proven. This is
+analysis of the same existing trace, not an extra experiment or fix. Real creep
+and all requested soak extrapolations stand; none is an executed soak gate.

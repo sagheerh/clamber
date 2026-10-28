@@ -17,7 +17,8 @@ scaffold/PR; no M1 implementation or gate completion is claimed by this closeout
   equilibrium (P_inf≈.1634223589Ns), not toward rest. NOT awaiting more iterations.
   Only new experiment: unchanged600 at y=.33/.53/.73, configured6 iterations,
   zero initial motion; report final300 P ranges without choosing asleep/model.
-  Runtime result PENDING at this implementation commit. No behavior change.
+  Pinned @8463240: all3 final300 P ranges are identical; mean
+  .16342237029480583Ns, COM vy≈.1054337873WU/s. No behavior change.
 - F30 pose and FA-4 asleep definition are SEPARATE pending owner decisions.
   Positional stillness / new owner-authored velocity threshold / model change
   are options, NOT approvals. No velocity epsilon/damping/radius/pose change.
@@ -738,3 +739,51 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
   shell/diff checks pass. Original72 tests retained. New synthetic controls check
   metadata, initial motion, iterations, incomplete cases and no sleep adoption;
   they are NOT physical evidence. No new feel constants, no source retune.
+
+
+### R12 executed spawn sensitivity @8463240 / CI40710677636
+
+- 78 Python tests pass;381 math/237 contact/131 analytic/80 baseline load checks
+  pass. All3 requested fresh600-tick spawn probes complete with unchanged6
+  iterations, same model/materials and initial zero motion; F31 and motion
+  identities verified. Spawn observer step succeeds. Baseline remains RED for
+  F30 only, NOT for conservation, instrumentation, or a chosen sleep predicate.
+  M0 headless506/0 + Android green in CI40710677582. No device/timing claim.
+- Heights.33/.53/.73 ALL produce final300 P range
+  [.1634223702948058,.16342237029480586]Ns and identical mean
+  .16342237029480583Ns. Final P=.16342237029480583/.16342237029480583/
+  .16342237029480586Ns (spread2.7755575615628914e-17Ns). Envelope entry66/70/73.
+  Final mass-weighted COM vy=.1054337872869715..0.10543378728697152WU/s.
+  Max endpoint norm.20190439092127008WU/s for all3; grip fraction0 and foot
+  share.2223925379546886. Shared observed NONZERO equilibrium for these starts;
+  no global-attractor proof, rest acceptance or asleep predicate adopted.
+- F39 attribution qualification from EXISTING telemetry, not a fourth experiment:
+  mass-weighted baseline COM dx=-7.175187723425593e-6WU at599; integration
+  contributes-7.175187723396494e-6; distance rows-2.927783044006219e-17;
+  hinge rows+1.789698646617957e-19; contact projection0. Raw start vx*0.98*dt
+  independently predicts-7.175187723393609e-6WU. Completed-velocity COM vx*dt
+  is-7.321620125911735e-6WU. Thus net COM drift IS accounted for by integration
+  of the retained horizontal field; per-endpoint position rows redistribute it.
+  Comparing headA alone with its completed velocity does NOT establish net
+  position injection, friction irrelevance, or the proposed position-order cause.
+  Drift is real and soak projections remain unchanged; no causal fix selected.
+- F39 horizon and F40 reference-scale churn are recorded beside FA-3. Horizon
+  numbers are analytic rate extrapolations, NOT3600/10000/18000-tick executions.
+  Motor churn is intra-step .94..1.53 reference px, NOT captured visible bob.
+- Raw spawn artifact12825803242,1693399bytes, SHA256
+  6ec8d96cfcb8ed7d6e0ee5078de7ac6ff330a32de16fe50b512ab204c9e5ee78;
+  baseline artifact12826381798,791602bytes, SHA256
+  8321a585c6a832e3dafb25556e557e785dc3b726e8ed2e3c8f3985205e9ff4c8.
+  All raw600/profile/summary/logs retained per case. API annotations/metadata
+  inspected and all3 row payloads parsed; raw ZIP NOT locally downloaded.
+- All34 accepted parser/control methods source-text unchanged fromc3b7b01;
+  original72 checks retained, plus6 R12 controls. Source core/data/creature/
+  contact/body/hinge/tuning/derivation/export diff is EMPTY. Full linter, targeted
+  formatter, shell syntax, matrix guard and diff checks pass. No thresholds
+  widened; no smoothing, clipping, prescribed loads, or adopted constants.
+- Owner F36/F37 CLOSED. F38 shared-equilibrium observation supplied without
+  self-awarded closure; F39 remains forward SOAK finding with corrected attribution.
+  F30 pose AND FA-4 asleep definition remain SEPARATE pending owner decisions.
+  Next M1: await both answers, then authorized pose+hard F36 assertion, only then
+  FA-5 band. FA-3/4/5/6/all coupled runtime gates NOT RUN; determinism attempts0.
+  No retune, velocity epsilon, damping change, M2, or captures.
