@@ -190,3 +190,20 @@ replayed. Chunk comparisons cover solver snapshots and clock pending/dropped
 seconds; last_steps is a frame-local diagnostic, not a trajectory input. This is
 a primitive clock contract, not A9.4/A9.5 replay evidence.
 M1-B01 and all creature-runtime acceptance gates remain unchanged/NOT RUN.
+
+## M1 cleanup record — F16–F19 (no geometry)
+
+F16 raises A8's M0 floors to the measured476 engine /489 combined (13 original
+Python) atcb4a0d9. Removing the accumulator's compile assertion must now fail;
+no M0 tests are removed or weakened. Historical475/488 records remain historical.
+F17 propagates a failed frame rollback's Error instead of the original tick Error;
+a test double forces a changed solver plus failing restore and checks that exact
+failure reaches the caller. This is not a successful recovery or an atomicity pass.
+F18 retains both per-tick and per-frame snapshots for the current public APIs:
+standalone step is transactional; advance is transactional across multiple ticks.
+No performance optimization/measurement is claimed. Before §10.4 signoff, measure
+both current mode and any frame-only candidate on30 bodies/120 constraints, with
+identical atomicity assertions, and label each result's configuration. Frame-only
+is NOT implemented or measured; neither mode currently has tick-cost evidence.
+F19: A9.5 varies outer frame delivery, not the shipped fixed60 Hz simulation or
+DistanceConstraint's independently injectable mathematical test rate.

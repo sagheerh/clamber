@@ -42,8 +42,8 @@ func advance(frame_seconds: float) -> Error:
 		var status := _solver.step()
 		if status != OK:
 			# The outer call is atomic even if an earlier tick in this frame succeeded.
-			_solver.restore(before)
-			return status
+			var rollback_status := _solver.restore(before)
+			return rollback_status if rollback_status != OK else status
 	_pending = remaining
 	_dropped = dropped
 	_last_steps = steps

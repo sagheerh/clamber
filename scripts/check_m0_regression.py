@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""A8: keep M0's separate engine floor and combined 488-check floor."""
+"""A8: keep M0's separate engine floor and combined 489-check floor."""
 import re
 import sys
 from pathlib import Path
 
-ENGINE_BASELINE = 475
-COMBINED_BASELINE = 488
+ENGINE_BASELINE = 476
+COMBINED_BASELINE = 489
 
 
 def validate(text):
@@ -18,14 +18,14 @@ def validate(text):
     python = sum(map(int, re.findall(r'^Ran (\d+) tests? in ', text, re.M)))
     # No automatic waiver: changing these floors needs a reviewed DECISIONS entry.
     if engine < ENGINE_BASELINE or python < 13 or engine + python < COMBINED_BASELINE:
-        raise ValueError(f'Count regression: engine={engine}, Python={python}, combined={engine + python}; baseline=475+13=488')
+        raise ValueError(f'Count regression: engine={engine}, Python={python}, combined={engine + python}; baseline={ENGINE_BASELINE}+13={COMBINED_BASELINE}')
     return engine, python
 
 
 if __name__ == '__main__':
     try:
         engine, python = validate(Path(sys.argv[1]).read_text())
-        print(f'PASS: M0 regression engine={engine} (>=475), Python={python} (>=13), total={engine + python} (>=488).')
+        print(f'PASS: M0 regression engine={engine} (>={ENGINE_BASELINE}), Python={python} (>=13), total={engine + python} (>={COMBINED_BASELINE}).')
     except (ValueError, OSError) as error:
         print('::error title=A8 M0 regression::' + str(error))
         raise SystemExit(1) from error

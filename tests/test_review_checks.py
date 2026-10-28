@@ -35,15 +35,19 @@ class ReviewChecksTests(unittest.TestCase):
         self.assertTrue(violations('const UI = preload("res://ui/example.gd")', 'core/sim/example.gd'))
 
     def test_m0_exact_baseline(self):
-        self.assertEqual(validate('Ran 6 tests in x\nRan 7 tests in x\nM0: 475 checks, 0 failures\n'), (475, 13))
+        self.assertEqual(validate('Ran 6 tests in x\nRan 7 tests in x\nM0: 476 checks, 0 failures\n'), (476, 13))
 
     def test_engine_floor_cannot_be_hidden_by_more_python_checks(self):
         with self.assertRaises(ValueError):
-            validate('Ran 100 tests in x\nM0: 474 checks, 0 failures\n')
+            validate('Ran 100 tests in x\nM0: 475 checks, 0 failures\n')
+
+    def test_previous_m0_floor_now_fails_even_with_original_python_checks(self):
+        with self.assertRaises(ValueError):
+            validate('Ran 6 tests in x\nRan 7 tests in x\nM0: 475 checks, 0 failures\n')
 
     def test_count_errors_or_missing_completion_fail(self):
-        for log in ['M0: 475 checks, 0 failures\n', 'Ran 13 tests in x\nM0: 475 checks, 1 failures\n',
-                    'Ran 13 tests in x\nSCRIPT ERROR: x\nM0: 475 checks, 0 failures\n',
+        for log in ['M0: 476 checks, 0 failures\n', 'Ran 13 tests in x\nM0: 476 checks, 1 failures\n',
+                    'Ran 13 tests in x\nSCRIPT ERROR: x\nM0: 476 checks, 0 failures\n',
                     'Ran 13 tests in x\n', 'Ran 12 tests in x\nM0: 476 checks, 0 failures\n']:
             with self.subTest(log=log), self.assertRaises(ValueError):
                 validate(log)

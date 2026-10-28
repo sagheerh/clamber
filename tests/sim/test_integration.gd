@@ -9,6 +9,19 @@ var _checks := 0
 var _failures := 0
 
 
+class RollbackFailureSolver:
+	extends PointLinkSolver
+	var restore_calls := 0
+
+	func step() -> Error:
+		var status := super.step()
+		return ERR_BUSY if status == OK else status
+
+	func restore(_state: Dictionary) -> Error:
+		restore_calls += 1
+		return ERR_CANT_CREATE
+
+
 func _initialize() -> void:
 	_setup_guards()
 	_gravity()
@@ -18,6 +31,7 @@ func _initialize() -> void:
 	_frame_chunks()
 	_invalid_state_and_input()
 	_frame_rollback()
+	_rollback_failure_is_reported()
 	_restore_and_step()
 	print("M1 integration primitives: %d checks, %d failures" % [_checks, _failures])
 	quit(0 if _failures == 0 else 1)
@@ -349,3 +363,24 @@ func _restore_and_step() -> void:
 	var detached := before.duplicate(true)
 	detached.solver.bodies[0].x = 999.0
 	_check(f.clock.snapshot() == before, "returned nested snapshots do not alias live state")
+
+
+func _rollback_failure_is_reported() -> void:
+	var body := _point(0.0, 0.0, 1.0)
+	var solver := RollbackFailureSolver.new()
+	_check(solver.setup([body], [], TUNING) == OK, "rollback-failure graph setup")
+	var clock := Clock.new()
+	_check(clock.setup(solver) == OK, "rollback-failure clock setup")
+	var before := solver.snapshot()
+	_check(
+		clock.advance(solver.fixed_step()) == ERR_CANT_CREATE,
+		"rollback failure supersedes tick error"
+	)
+	_check(solver.restore_calls == 1, "failed frame actually attempted rollback")
+	_check(
+		solver.snapshot() != before and solver.tick_count() == 1,
+		"forced rollback failure exposes changed solver, not silent recovery"
+	)
+	_check(
+		clock.snapshot().last_steps == 0, "failed call does not publish successful clock progress"
+	)

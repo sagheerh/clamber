@@ -204,3 +204,15 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
   §10.6, tick cost and captures remain NOT RUN. Determinism attempts:0.
 - Next: **M1** owner review of this independent increment and owner M1-B01 input
   before dependent creature work. No M2/camera or invented physical values.
+
+### Commit A — F16–F19 only (no contact geometry)
+
+- M0 regression floors raised to476/489; original13 Python floor preserved. Added
+  a negative fixture for the old475-check run, including surplus-Python masking.
+- Accumulator now returns a failed rollback's Error; a fault-injected solver forces
+  a changed state and failed restore. Existing atomicity assertions remain intact.
+- F18 records current tick+frame snapshot policy and a mandatory two-configuration
+  benchmark protocol before any tick-cost claim. Measurements remain NOT RUN.
+- A9.5 explicitly varies frame delivery, not fixed60 tick_hz.
+- Next M1: only after Commit A is pushed/green, verify owner derivation hash and
+  prepare the separate constants/geometry-tests/feel-scaffold Commit B.
