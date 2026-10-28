@@ -19,8 +19,8 @@ python3 - "$logs/contacts.log" <<'PYRESULT'
 import re, sys
 text = open(sys.argv[1]).read()
 counts = re.findall(r'^M1 contact primitives: (\d+) checks, 0 failures$', text, re.M)
-if len(counts) != 1 or int(counts[0]) < 208:
-    raise SystemExit('ERROR: missing/failed/below-floor contact unit suite (208 minimum)')
+if len(counts) != 1 or int(counts[0]) < 237:
+    raise SystemExit('ERROR: missing/failed/below-floor contact unit suite (237 minimum)')
 if len(re.findall(r'^M1 controlled foot:', text, re.M)) != 4:
     raise SystemExit('ERROR: missing controlled load response traces')
 print('M1 contact units verified; controlled loads are NOT whole-creature FA-5 evidence')

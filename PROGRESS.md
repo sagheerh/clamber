@@ -390,3 +390,10 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
   is fabricated. The0.723N last300/600 criterion is recorded, not relaxed.
 - Next M1: implement real gravity/hinges/contact load transfer for one Slug,
   record every required tick, then FA-5 band and only then two-foot presets.
+
+- First R8 pinned component execution e26a1d6 / CI40686657656:233 component
+  checks,381 math,128 analytic, all zero failures. Strengthened N0 fixture to a
+  qualifying100N input; added actual1->2 touchdown-next-tick step to accompany
+  2->1 lift-off and byte-equal restore/continue. New component floor237; original
+  accepted208 checks retained with corrected split-field semantics. These remain
+  COMPONENT tests, not FA-5 acceptance, not a Slug600 trace and not determinism.

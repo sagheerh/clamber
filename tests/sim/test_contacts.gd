@@ -389,12 +389,14 @@ func _frozen_count_replay() -> void:
 	var feet: Array[CapsuleBody] = [_foot(), _foot()]
 	for foot in feet:
 		_place(foot, 0.03, 1.0, 0.0)
-		foot.applied_load_n = 10.0
+		foot.applied_load_n = 100.0
 	_check(_batch(feet) == OK, "first contact N0 resolves")
 	_check(
 		feet[0].grounded and feet[1].grounded and not feet[0].gripping and not feet[1].gripping,
 		"N0 disables grip for entire first contact tick"
 	)
+	for foot in feet:
+		foot.applied_load_n = 10.0
 	var checkpoint := _states(feet)
 	for foot in feet:
 		_place(foot, 0.03, 1.0, 0.0)
@@ -410,7 +412,7 @@ func _frozen_count_replay() -> void:
 		)
 		_place(feet[i], 0.03, 1.0, 0.0)
 	_check(
-		_batch(feet) == OK and _states(feet) == expected,
+		_batch(feet) == OK and var_to_bytes(_states(feet)) == var_to_bytes(expected),
 		"restore-and-continue byte-equivalent component replay without N state"
 	)
 	# One foot lifts off. The other still sees old N2 until the next tick.
@@ -443,6 +445,19 @@ func _frozen_count_replay() -> void:
 	_check(
 		feet[1].applied_load_n == 10.0 and feet[1].measured_reaction_n == 0.0,
 		"slop-rest reaction zero cannot clobber immutable input"
+	)
+	# Touchdown uses old N1 for both feet; only the following tick sees N2.
+	for foot in feet:
+		_place(foot, 0.03, 1.0, 0.0)
+	_check(
+		_batch(feet) == OK and not feet[0].gripping and not feet[1].gripping,
+		"touchdown tick still uses N1, independent of resolve order"
+	)
+	for foot in feet:
+		_place(foot, 0.03, 1.0, 0.0)
+	_check(
+		_batch(feet) == OK and feet[0].gripping and feet[1].gripping,
+		"following tick N2 halves threshold without hysteresis"
 	)
 	var embedded := _foot()
 	_place(embedded, 0.0, 1.0, 0.0)
