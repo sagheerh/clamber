@@ -1,0 +1,33 @@
+; CLAMBER — pinned to Godot 4.7.2-stable (standard/GDScript build).
+config_version=5
+
+[application]
+config/name="CLAMBER"
+config/version="0.0.0"
+config/description="M0 engineering boot surface; no gameplay or final screens."
+run/main_scene="res://ui/boot.tscn"
+config/features=PackedStringArray("4.7", "Mobile")
+config/engine_version_pin="4.7.2-stable"
+
+[display]
+window/size/viewport_width=1080
+window/size/viewport_height=2340
+window/size/window_width_override=360
+window/size/window_height_override=780
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep"
+window/handheld/orientation=1
+
+[physics]
+common/physics_ticks_per_second=60
+
+[rendering]
+renderer/rendering_method="mobile"
+renderer/rendering_method.mobile="mobile"
+textures/default_filters/use_nearest_mipmap_filter=false
+2d/snap/snap_2d_transforms_to_pixel=true
+anti_aliasing/quality/msaa_2d=0
+environment/defaults/default_clear_color=Color(0, 0.098039216, 0.184313725, 1)
+
+[clamber]
+engine_version="4.7.2-stable"
