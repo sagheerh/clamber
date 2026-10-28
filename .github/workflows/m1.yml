@@ -108,13 +108,25 @@ jobs:
           set -e
           python3 - "$RUNNER_TEMP/m1-load-console.log" "$status" <<'PYLOG'
           import re, sys
-          pattern = r"SCRIPT ERROR|ERROR:|FAIL|Parse Error|M1 load-path components:|M1 isolated gravity|M1 Slug"
+          pattern = r"SCRIPT ERROR|ERROR:|FAIL|Parse Error|M1 load-path components:|M1 isolated gravity|M1 Slug (?!tick:)"
           selected = [line for line in open(sys.argv[1]).read().splitlines() if re.search(pattern, line)]
-          # GitHub caps error annotations per step. Group so F30/engagement/last
-          # cannot be truncated behind the earlier passing evidence.
-          message = "\n".join(selected).replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+          # Raw600 rows remain in the artifact, NOT annotations. GitHub caps both
+          # annotation count and each message (4096 chars). Pack bounded chunks.
           level = "notice" if sys.argv[2] == "0" else "error"
-          print(f"::{level} title=M1 Slug diagnostic evidence (not FA acceptance)::" + message)
+          messages = []
+          current = ""
+          for line in selected:
+              for start in range(0, len(line), 3500):
+                  chunk = line[start:start + 3500]
+                  if len(current) + len(chunk) + 1 > 3500:
+                      messages.append(current)
+                      current = ""
+                  current += ("\n" if current else "") + chunk
+          if current:
+              messages.append(current)
+          for message in messages:
+              escaped = message.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+              print(f"::{level} title=M1 Slug diagnostic evidence (not FA acceptance)::" + escaped)
           PYLOG
           exit "$status"
       - name: Preserve full raw Slug diagnostic including failures

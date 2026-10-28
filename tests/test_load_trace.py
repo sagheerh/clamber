@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 """Synthetic parser falsification; these rows are NOT physics evidence."""
 import copy
+import contextlib
+import io
+from pathlib import Path
+import sys
+import tempfile
+import textwrap
+from unittest.mock import patch
+from urllib.parse import unquote
 import unittest
 from load_trace_report import analyze
 
@@ -233,6 +241,32 @@ class LoadTraceTests(unittest.TestCase):
         result = analyze(rows)
         self.assertTrue(result['foot_load_path_exercised'])
         self.assertEqual(result['FA-5'], 'NOT RUN')
+
+    def test_ci_annotations_exclude_raw_ticks_and_preserve_bounded_engagement_evidence(self):
+        workflow = (Path(__file__).resolve().parents[1] / '.github/workflows/m1.yml').read_text()
+        load_step = workflow[workflow.index('      - name: Hinged Slug600'):]
+        source = textwrap.dedent(load_step.split('          import re, sys\n', 1)[1].split('          PYLOG', 1)[0])
+        # Exercise the actual workflow Python, not a duplicate implementation.
+        lines = ['M1 Slug tick: ' + 'raw' * 1000] * 600
+        lines += ['M1 Slug first: ' + 'x' * 3100, 'M1 Slug last: ' + 'y' * 3100,
+                  'M1 Slug momentum ledger verified: true',
+                  'M1 Slug engagement: grip never engaged',
+                  'M1 Slug peaks: measured=9.9N', 'M1 Slug F30 BLOCKED: owner pose decision pending']
+        output = io.StringIO()
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / 'console.log'
+            path.write_text('\n'.join(lines))
+            with patch.object(sys, 'argv', ['workflow', str(path), '1']), contextlib.redirect_stdout(output):
+                exec('import re, sys\n' + source, {})
+        commands = output.getvalue().splitlines()
+        self.assertLessEqual(len(commands), 9)
+        messages = [unquote(line.split('::', 2)[2]) for line in commands]
+        self.assertTrue(all(len(message) <= 3500 for message in messages))
+        combined = '\n'.join(messages)
+        self.assertNotIn('M1 Slug tick:', combined)
+        for label in ('first:', 'last:', 'momentum ledger verified: true',
+                      'engagement: grip never engaged', 'peaks:', 'F30 BLOCKED:'):
+            self.assertIn('M1 Slug ' + label, combined)
 
 
 if __name__ == '__main__':

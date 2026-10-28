@@ -561,9 +561,20 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
 - Follow-up parser explicitly checks measured drag against resource damping times
   independently reconstructed raw start momentum; significant internal-row drift
   fails bookkeeping. Additional falsifications reject fabricated drag and a grip
-  flag without measured foot reaction.24 parser controls/62 Python total pass
+  flag without measured foot reaction.24 parser controls plus1 annotation test/63 Python total pass
   locally; original seven controls retained. These remain synthetic parser tests,
   NOT physical load evidence. Grouped annotation avoids GitHub's per-step cap
   hiding engagement, peaks or the completed tick599 behind earlier evidence.
 - Owner F30 decision remains pending; no axes/radii/angular limits or tuning changed.
   All runtime acceptance remains NOT RUN; complete-creature attempts0.
+
+- Reporting follow-up: @ad9e5d0's first grouped annotation accidentally included
+  raw tick lines and hit GitHub's4096-character message cap. Corrected selection
+  excludes raw ticks from annotations ONLY (all600 stay in artifacts), packs
+  <=3500-character messages, and tests the ACTUAL embedded workflow Python with
+  600 mock raw lines plus first/last/ledger/engagement/F30 evidence. No raw data or
+  transients dropped from the diagnostic. No physics or acceptance change.
+- Formatter scope: targeted changed-GDScript format check passes. Whole-tree
+  formatter check flags pre-existing core/tuning.gd; byte-equal1f2c19f copy also
+  fails that formatter check. Protected tuning source is intentionally unchanged;
+  linter/static checks pass. This is not a new formatting pass claim for the tree.
