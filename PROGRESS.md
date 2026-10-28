@@ -1,10 +1,12 @@
 # CLAMBER progress
 
-## Current milestone: M0 — engine/build validated; physical-device gate BLOCKED
+## Current milestone: M0 — APPROVED / COMPLETE (owner override); M1 — READY
 
 Session date: 2026-10-28. Normative inputs: `docs/GDD.md` and
-`docs/ui/CLAMBER_UI.jpeg`. M0 implementation and follow-up validation only; do not
-start M1 until the remaining device criterion has actual evidence.
+`docs/ui/CLAMBER_UI.jpeg`. M0 is accepted by the GDD owner under M0-D07, dated 2026-10-28. Verdict:
+**APPROVE — HUMAN OVERRIDE**. Missing device evidence and measured FPS/P95 are
+waived for M0 only, not represented as measured. Land M0 before the separate M1
+scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
 ### Exists
 
@@ -38,8 +40,8 @@ transient CI outputs, not tracked source.
 
 ### Validation evidence
 
-Validated code: `12cbe203b64cc9590be302fbb67bbafde7922694`.
-[Successful CI run 40625278718](https://github.com/sagheerh/clamber/actions/runs/40625278718).
+Validated code: `ba7179b4d6d7fee26522853590578135973fd7bc`.
+[Successful CI run 40625642314](https://github.com/sagheerh/clamber/actions/runs/40625642314).
 Exact commands, jobs, versions and artifact digest: `docs/validation/M0.md`.
 
 - `python3 tests/test_static.py`: **6 PASS** locally and in CI.
@@ -54,8 +56,11 @@ Exact commands, jobs, versions and artifact digest: `docs/validation/M0.md`.
   build-tools36.1.0/NDK29.0.14206865, matching4.7.2 templates.
 - Bundletool validation/APK generation; actual manifest/ABI/native16KB/ZIP16KB:
   **PASS**. Debug artifact is downloadable from the successful run for seven days.
-- Physical install, navy display, safe-area/lifecycle checks and 60 fps/P95 frame
-  trace: **NOT RUN**. The user explicitly confirmed no device is available.
+- Physical install and solid navy/no-UI/no-gameplay boot: **OWNER VERBAL
+  VERIFICATION**, 2026-10-28; not E4 evidence. No screenshot/adb log, device
+  identity, lifecycle/safe-area record or frame-time capture was attached.
+- Measured 60 fps/P95 and remaining device artifacts: **WAIVED FOR M0 ONLY** by
+  M0-D07, not measured. The 60 fps engine cap is not measurement evidence.
 - Local engine/Android execution remains unavailable; CI results above are real
   runner executions, not local execution or hardware measurements.
 
@@ -65,12 +70,17 @@ Exact commands, jobs, versions and artifact digest: `docs/validation/M0.md`.
 |---|---|---|
 | `godot --headless --run-tests` exits0 | **Met** | Pinned CI engine, 475 checks/0 failures |
 | Save garbage → backup → defaults test passes | **Met** | Real-engine save test suite passes |
-| Android debug AAB-derived install; navy at60fps | **Not met** | Build/packaging PASS; physical hardware unavailable |
+| Android debug install/boot and measured 60 fps/P95 | **Accepted by owner override** | Verbal boot verification; missing artifacts and measured performance waived for M0 only (M0-D07) |
 | ≥40 named tunables; no core hardcoded numbers | **Met** | 376 fields; static/resource checks PASS |
 
 ### Decisions / next
 
-M0-D01–D06 and M0-B01–B03 are in `DECISIONS.md`. Follow-up fixed JSON-domain /
-float64-representation test assumptions and Android build validation only; no
-physics, economy or codec implementation changed. M0-B01 now refers only to the
-physical-device gate. **Next: finish M0 hardware acceptance; do not begin M1.**
+M0-D01–D07 are in `DECISIONS.md`; M0-B01 is closed by the owner-only waiver.
+M0 review-pack script/matrix artifacts were explicitly waived for M0 (M0-D07).
+M0-B02 (camera zoom) remains for M2; M0-B03's unspecified grip/haptic/generator
+thresholds remain unresolved and must not be invented. No later gate is waived.
+
+**Next milestone: M1 — standalone custom solver + three presets + headless
+determinism/feel harness.** M1 is ready, not complete. Excludes S03 climb,
+pause/fall/build screens. Real-engine M1 CI evidence and baseline are not yet
+available; the M0 CI suite is not evidence of M1 determinism/performance.

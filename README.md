@@ -127,8 +127,9 @@ artifacts, not a release or production signing setup.
 that runner's editor SDK paths. Normal local editor users can follow the commands
 above without changing their editor settings file manually.
 
-**Remaining limitation:** the sandbox still lacks the local toolchain, but CI can
-run the pinned engine and Android tools. The user confirmed no physical device is
-available. No device installation, navy-screen screenshot, lifecycle/cutout check,
-or 60 fps measurement is claimed. M0 remains open until that hardware evidence
-exists. See the validation record for exact commits, results and artifact links.
+**M0 closeout:** on 2026-10-28 the owner verbally verified physical-device
+installation and solid navy/no-UI/no-gameplay boot, and approved M0 COMPLETE under
+GDD §16.1. M0-D07 records **APPROVE — HUMAN OVERRIDE** and the M0-only waiver of
+missing device artifacts and measured 60 fps/P95. No E4 artifact was attached;
+`Engine.max_fps = 60` is a cap, not a measurement. The waiver does not apply to any
+later milestone. See `docs/validation/M0.md` for the final CI/artifact references.
