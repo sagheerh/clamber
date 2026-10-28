@@ -635,8 +635,9 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
 - F37 reports last300 gripping count/fraction and per-tick measured grounded foot
   support / ALL grounded support, with range/mean; zero denominator undefined.
   Existing any-loaded-grip boolean is labeled existence-only, NOT sustained stance.
-- Local checks pending final command below; pinned baseline/sweep measurements
-  still PENDING. No behavioral corrections, no tuning/preset/contact changes.
+- Local static72 Python/changed-GD format/linter/shell/diff checks passed.
+  Measurements below supersede initial runtime-pending status. No behavioral
+  corrections, no tuning/preset/contact changes.
 
 
 ### R11 first executed observations @21a9174 / M1 CI40699163425
@@ -683,3 +684,34 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
   lowered-motor control passed; production assertion still awaits pose commit.
 - No F35 fix or acceptance claimed. F30 owner decision pending; no A/B/C branch,
   no damping/velocity epsilon/new iteration default. FA-3/4/5/6 NOT RUN; attempts0.
+
+
+### R11 verified follow-up @4697137 / CI40699727411
+
+- Baseline600 and all6 independent600 sweeps completed; motion/position identities
+  and accepted F31 momentum checks verified. M1 static72 Python;381 math/237 contact/
+  131 analytic/80 baseline load checks, all zero component failures. F30 is still
+  the sole failing gate; diagnostic sweep step succeeds as observations ONLY.
+  M0 headless506/0 and Android green in CI40699727445. No device/timing inference.
+- X drift magnitude does NOT shrink with more iterations: headA per tick at
+  1/2/4/6/12/24 is−7.14510179693e-6/−7.16869662992e-6/−7.17437319565e-6/
+  −7.17518772340e-6/−7.17563168037e-6/−7.17570091621e-6WU. Peak speed barely
+  changes and stays nonzero. Both observations argue against adopting more
+  position iterations as a fix. No value adopted; no behavioral correction.
+- Full baseline artifact12820897682 (791211bytes), SHA256
+  f0c0c98c8b0c18f0ec05505ef19a9999d2657a5ba7fdcb267f9a4b54b9f8c441;
+  full sweep artifact12819933805 (3468821bytes), SHA256
+  8ab96a2f68e0b8189b63d4bbd96386f3784cf23927b795ea5795265247b084b0.
+  Each raw600/profile/summary retained; no tick discarded, smoothing or clipping.
+  GitHub API annotations/metadata inspected, NOT a locally downloaded raw ZIP.
+- Original seven parser tests and BOTH algebra-balanced/fake-physics rejection
+  methods source-text compared with3c9f942, unchanged. Protected tuning/data/
+  creature/contact/hinge/derivation diff against3c9f942 is empty. Math foundations
+  untouched; no acceptance threshold weakened. Norm comparison tolerance is only
+  existing arithmetic identity checking, NEVER a velocity-zero/rest/sleep epsilon.
+- F31 is owner-CLOSED. F35 observation complete but FORWARD ISSUE UNFIXED, no
+  self-awarded closure/rest claim. F36 negative control done; production assertion
+  explicitly deferred to pose commit. F37 metrics emitted without threshold.
+  F30 owner pose decision pending; all runtime gates NOT RUN; determinism0.
+  Next single milestone M1: await owner decision, then authorized pose+F36
+  hard assertion before FA-5 band; no retune/M2/captures.

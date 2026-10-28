@@ -71,9 +71,9 @@ Provenance: `docs/CLAMBER_REVIEW_AGENT.provenance.md`. **M1-B02 RESOLVED
 | §10.6 repeatability | Fixed scenario 10000 ticks, 100 local repeats; recorded 60 s cross-architecture/device replay and 200-run soak tracked separately | NOT RUN | No device/architecture evidence; no M0 waiver carries forward |
 | FA-1 | Collision diameter at least15px and head30px at width-derived150px/WU; analytic only, not camera/device evidence | PASS (analytic only) | CI40677962012; $RUNNER_TEMP/m1-owner-geometry.json |
 | FA-2 | Every shipped limb length has aspect ratio3:1..12:1; analytic geometry only | PASS (analytic only) | CI40677962012; $RUNNER_TEMP/m1-owner-geometry.json |
-| FA-3 | All three real presets:600 static ticks, zero sleep-breaking contacts; contact trace and actual observations | NOT RUN | R9 partial Slug load preflight only; no all-preset FA-3 acceptance scenes |
+| FA-3 | All three real presets:600 static ticks, zero sleep-breaking contacts; contact trace and actual observations | NOT RUN | R11 instrumented engineering Slug probe only; persistent velocity field; no all-preset FA-3 acceptance scenes |
 | FA-4 | Slug settles/sleeps within4s and L-hold lurches approximately one body length; record distances/input | NOT RUN | No motor/tutorial trace |
-| FA-5 | Owner R8/F24: foot load below max(5N,40percent of expected share W/N_previous_grounded) slips; at/above grips with grounded/lowest eligibility; frozen previous-tick N; N0 disables grip; two-foot stance and airborne traces required | NOT RUN | R10 corrects R9: all-grounded support meets literal ceiling; F30 authored foot path blocked; grip never engaged; no accepted band or stance trace |
+| FA-5 | Owner R8/F24: foot load below max(5N,40percent of expected share W/N_previous_grounded) slips; at/above grips with grounded/lowest eligibility; frozen previous-tick N; N0 disables grip; two-foot stance and airborne traces required | NOT RUN | R11 engineering probe: last300 grip0/300, foot support share about22.2393percent; F30 pose pending; no accepted band or stance trace |
 | FA-6 | Ten scripted tutorial runs, actual per-run outcomes and input log; target6..8 successes, stop on10 or at most4 | NOT RUN | Actual success_count unknown; no tutorial scenario |
 | FA-7 | Head visual-radius dominance in all three presets; analytic only, not rendered silhouette proof | PASS (analytic only) | CI40677962012; $RUNNER_TEMP/m1-owner-geometry.json |
 
@@ -225,3 +225,26 @@ nonzero for F30. Actual all600 peak foot measured14.81106559439147N (steady-wind
 peak9.695448846059607N), applied14.807263336585688N <17.36N gate. Grip never engaged.
 No runtime acceptance upgraded. Raw diagnostic artifact12818438383 preserves
 all600, not just annotated first/last. M0/Android CI40695219716 green.
+
+
+## M1-D09 R11 measurement-only follow-up
+
+F31 is owner-CLOSED after independent reconstruction; conservation F22/F23/F25/F31
+stays closed. Current Slug diagnostic is NOT rest/stance acceptance: it retains a
+live velocity field. Baseline and iteration sweep @4697137 / CI40699727411 validate
+all600 per-part speed/displacement observations. P enters its observed final300
+range at tick66 but has no exact-constant terminal suffix. Per-part/tick phase
+ledgers distinguish integration, distance, hinge and contact position projection.
+They also distinguish actual downward predictor displacement from completed
+upward velocity*dt. Contact lifts most endpoints, but HINGE rows lift footA.
+
+Iterations1/2/4/6/12/24 leave max speed about.20190556..0.20190437WU/s; no iteration
+value adopted, source remains6. Increasing iterations does not remove the field.
+All parts also creep X roughly−7.175e-6WU/tick at6; Y/bottoms repeat only after the
+initial transient. F37 grip fraction0/300, foot/all-grounded support share about
+.222392538. Existence-only boolean is not sustained stance; no threshold invented.
+F36 actual synthetic lowered-motor audit control is implemented; hard production
+flag assertions MUST land with the authorized pose commit, not before decision.
+F30 owner decision PENDING; no A/B/C, radius/damping/velocity-epsilon/limit fix.
+FA-3/4/5/6 and all other coupled runtime gates stay NOT RUN; determinism attempts0.
+Next M1: owner pose decision -> authorized pose+F36 assertion -> only then FA-5 band.
