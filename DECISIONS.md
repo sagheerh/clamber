@@ -303,3 +303,14 @@ that is NOT FA-5 whole-creature stance evidence. FA-5 remains NOT RUN until coup
 foot-load traces, before FA-3/static scenes or AC claims. Motors/limits, self-contact
 response, sleep/recovery and full Sim replay are still outstanding. No owner value
 is retuned and no new force/slip tolerance is invented.
+
+
+M1-D05 export plumbing: production preset JSON is non-resource data, so the
+Android preset explicitly includes data/creatures/preset_*.json. The existing
+AAB/APK inspector now checks exact packaged preset bytes, with missing/modified
+negative fixtures. This is packaging for M1 definitions, not M2/product UI or a
+redo/extension of the M0 device waiver. Native/manifest/alignment checks remain.
+
+The exact-load component test exposed floating-operation grouping at40%: compute
+creature weight before applying the ratio. This changes no physical constant or
+tolerance; no force epsilon was added and the exact-boundary assertion is intact.

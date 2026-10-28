@@ -317,3 +317,25 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
 - M0 at5bb9132 run40676485104 headless passed504 checks/0 failures; Android still
   pending when recorded. New geometry step skipped on failed component run.
   Complete-creature determinism attempts remain0; no owner tuning change needed.
+
+
+### Part3a executed component evidence @e702232
+
+- All four checks green: M1 run40676727247 / M0Android run40676727258.
+ 381 accepted math checks (82+299),208 new production/contact component checks,
+ 128 real-definition analytic geometry checks,504 M0 checks, all zero failures.
+- Exact controlled traces (not coupled FA-5): prior8.68 =>vx≈0.1/gripfalse;
+ prior17.36,21.7,43.4 =>vx0/griptrue. Each fixture measures new reaction18.36.
+ No force epsilon/physical tuning or assertion relaxation. Earlier compile/unit
+ failures above are retained, not counted as complete-creature determinism runs.
+- Contact UNIT artifact12811047142 (762 bytes) digest
+ sha256:527433c59c7079906ce3e538b0a792a33fbb5555477ce47730117973b9682c02;
+ geometry artifact12810024839 (1148 bytes) digest
+ sha256:f983971a93166c35e06a68bcdc047a98804a18be135bc91d6717a8f232ea3260.
+ Metadata retrieved via API; ZIPs not downloaded/inspected locally.
+- Production non-resource JSON now explicitly included in Android exports;
+ existing package inspector verifies exact bytes in both AAB/APK, with missing/
+ modified synthetic controls. This packaging addition awaits its own CI run.
+ Local review now37 Python tests; original native/manifest/alignment checks intact.
+- R7 order/gates unchanged: coupled FA-5 still NOT RUN; next is M1 body/hinge/
+ contact coupling and measured foot-load traces, NOT static scenes or motors yet.

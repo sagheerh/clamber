@@ -6,7 +6,7 @@ import unittest
 import zipfile
 from pathlib import Path
 
-from inspect_android import check_elf, check_manifest, inspect
+from inspect_android import check_elf, check_manifest, inspect, check_preset_assets, PRESET_FILES, ROOT
 
 MANIFEST = '''<manifest xmlns:android="http://schemas.android.com/apk/res/android"
 package="org.clamber.game"><uses-sdk android:minSdkVersion="26" android:targetSdkVersion="36"/>
@@ -62,6 +62,10 @@ class AndroidInspectorTests(unittest.TestCase):
             for path, prefix in [(aab, 'base/lib/'), (apk, 'lib/')]:
                 with zipfile.ZipFile(path, 'w') as archive:
                     archive.writestr(prefix + 'arm64-v8a/libgodot.so', elf())
+                    assets = 'base/assets/' if path == aab else 'assets/'
+                    for filename in PRESET_FILES:
+                        relative = 'data/creatures/' + filename
+                        archive.writestr(assets + relative, (ROOT / relative).read_bytes())
             result = inspect(aab, apk, MANIFEST, 'PAGE_ALIGNMENT_16K')
             self.assertEqual(result['device_frame_timing'], 'NOT MEASURED')
             with self.assertRaises(ValueError):
@@ -70,6 +74,24 @@ class AndroidInspectorTests(unittest.TestCase):
                 archive.writestr('lib/x86_64/unexpected.so', elf())
             with self.assertRaises(ValueError):
                 inspect(aab, apk, MANIFEST, 'PAGE_ALIGNMENT_16K')
+
+    def test_missing_and_modified_preset_assets(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / 'test.zip'
+            for prefix in ['base/assets/', 'assets/']:
+                for mode in ['missing', 'modified']:
+                    with self.subTest(prefix=prefix, mode=mode):
+                        with zipfile.ZipFile(path, 'w') as archive:
+                            for filename in PRESET_FILES:
+                                relative = 'data/creatures/' + filename
+                                if filename == PRESET_FILES[0] and mode == 'missing':
+                                    continue
+                                data = (ROOT / relative).read_bytes()
+                                if filename == PRESET_FILES[0] and mode == 'modified':
+                                    data += b' '
+                                archive.writestr(prefix + relative, data)
+                        with self.assertRaises(ValueError):
+                            check_preset_assets(path, prefix)
 
 
 if __name__ == '__main__':

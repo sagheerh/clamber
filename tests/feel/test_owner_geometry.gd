@@ -166,7 +166,9 @@ func _initialize() -> void:
 	print("M1 owner geometry: %d checks, %d failures" % [_checks, _failures])
 	for id in _report.analytic:
 		print("M1 geometry %s: %s" % [id, _report.analytic[id].status])
-	print("M1 feel runtime: FA-3/4/5/6 NOT RUN (no contacts/motors/static-scene/tutorial evidence)")
+	print(
+		"M1 feel runtime: FA-3/4/5/6 NOT RUN (no coupled contacts/motors/static-scene/tutorial evidence)"
+	)
 	quit(0 if _failures == 0 else 1)
 
 

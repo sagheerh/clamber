@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """Owner-input/source assertions, not runtime feel evidence."""
+import fnmatch
+import json
 from decimal import Decimal
 from pathlib import Path
 import hashlib
@@ -53,6 +55,23 @@ class OwnerGeometrySourceTests(unittest.TestCase):
         self.assertEqual(weight, Decimal('43.40'))
         self.assertEqual(max(Decimal('5'), Decimal('0.40') * weight), Decimal('17.3600'))
         self.assertEqual(max(Decimal('5'), Decimal('0.40') * Decimal('0.01') * Decimal('28')), Decimal('5'))
+
+    def test_production_catalog_and_nonresource_export(self):
+        config = (ROOT / 'export_presets.cfg').read_text()
+        filters = re.search(r'^include_filter="([^"]*)"$', config, re.M).group(1).split(',')
+        catalog = (ROOT / 'core/creature/presets.gd').read_text()
+        harness = (ROOT / 'tests/feel/harness.gd').read_text()
+        self.assertIn('CreaturePresets.load_model', harness)
+        for filename, name, count in [('slug', 'Slug', 3), ('hopper', 'Hopper', 8),
+                                      ('twinroller', 'TwinRoller', 6)]:
+            relative = f'data/creatures/preset_{filename}.json'
+            with self.subTest(preset=name):
+                data = json.loads((ROOT / relative).read_text())
+                self.assertEqual(data['name'], name)
+                self.assertEqual(len(data['parts']), count)
+                self.assertIn('res://' + relative, catalog)
+                self.assertTrue(any(fnmatch.fnmatchcase(relative, pattern) for pattern in filters),
+                                'non-resource production JSON must be included in exports')
 
 
 if __name__ == '__main__':
