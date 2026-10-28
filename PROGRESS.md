@@ -8,6 +8,24 @@ Session date: 2026-10-28. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
+### Current R10 correction / blocked work
+
+- F22/F23/F25 CLOSED by owner review. R9's foot-only43.4N requirement was the
+  owner's incorrect wording, corrected in R10: ALL grounded contacts carry weight;
+  foot-only weight applies ONLY to sole-foot support. Existing43.59610684435376N
+  meets literal±0.723N. R9's "force defect"/next-angular-fix conclusions below are
+  historical and superseded, not current policy.
+- F30 authored feet above parent bellies is the real foot-path blocker. A pose-axis
+  recommendation is NOT approval; B radius changes rejected in review; C sprawl
+  only partly defensible. Owner decision PENDING. No angular/pose/radius branch.
+- Current increment adds every-body START/completed endpoints/bottoms, cheap
+  every-part/all-preset bottom audit, measured discrete momentum ledger, corrected
+  all-grounded parser, and explicit "grip never engaged"/F30 blocker. Pinned engine
+  execution of these additions PENDING; +.19610684435376N bias not yet explained
+  by measured terms. CI must remain red without genuine foot load path.
+- FA-3/4/5/6/all coupled AC/A9/§10.6/timing/captures NOT RUN; attempts0. Next single
+  milestone M1: verify the measured ledger and await owner's F30 pose decision.
+
 ### Exists
 
 - Pinned Godot4.7.2-stable project: Mobile renderer, 1080×2340, portrait,
@@ -476,3 +494,31 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
  exactly NOT RUN. Next M1: complete missing angular/attachment constraints and
  rerun this unchanged Slug diagnostic before any band or two-foot stance.
  Complete-creature determinism attempts remain0; no retune/M2/camera/captures.
+
+
+### R10 — diagnostic-only implementation, pinned execution pending
+
+- Supersedes R9 interpretation, NOT accepted force code: all-grounded invariant
+  restored; producer/conservation F22/F23/F25 CLOSED, F27/28/29 accepted. F30 is an
+  authored-pose blocker, not a missing angular-limit fix. No pose/radius/limits
+  changes, no setting changes, original derivation and addendum remain byte-equal.
+- Every tick now exports all bodies' start/completed endpoint positions/bottoms,
+  velocities/inverse masses and applied/reaction/cleanup channels; start state
+  exposes authored spacing even when projection masks it by completed tick0.
+- Analytic CI prints each preset/part bottom and flags non-foot below any foot,
+  BEFORE600. New analytic check floor129 (was128). It diagnoses, does not pick A.
+- Discrete momentum budget measures existing damping, gravity, clamp, internal
+  rows, independent across-batch contact velocity deltas and before/after P_y.
+  Python reconstructs P_y from endpoints and verifies reaction*dt independently.
+  Bias equation includes measured dP/damping/clamp/internal; no force correction.
+  Hypothesized damping contribution remains UNVERIFIED until actual pinned run.
+- Original seven parser falsifications retained;13 more added (20 total), including
+  shared support correctly passing force conservation while never-gripping is
+  BLOCKED; airborne load excluded; literal ceiling; body geometry and ledger
+  falsifications. Synthetic rows are parser controls ONLY, not physical evidence.
+- Local static/review58 Python tests pass. Formatter/linter/shell/diff checks and
+  pinned-engine execution status will be recorded after verification. All old
+  math/contact/load component floors unchanged. No component count is determinism.
+- Full diagnostic stays red for no actual grip/foot load path independently of
+  all-grounded force pass; report says "grip never engaged". F30 owner pending;
+  FA-3/4/5/6/all AC/A9/runtime gates NOT RUN, complete-creature attempts0.

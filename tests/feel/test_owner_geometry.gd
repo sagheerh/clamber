@@ -129,6 +129,8 @@ func _initialize() -> void:
 				plan.success_count == null,
 				"tutorial success count is unknown, not zero or invented"
 			)
+	var bottoms := _preset_bottoms()
+	_check(bottoms.size() == 3, "non-vacuous authored bottom audit for all presets")
 	_report = {
 		"scope":
 		"analytic geometry and production engineering preset definitions; no gait/runtime evidence",
@@ -137,6 +139,7 @@ func _initialize() -> void:
 		"6453508be7cb808f643544ec3f3fdbd6560840876fc070511f4b5f50065dbc5e",
 		"d10_limit_wu": limit,
 		"preset_geometry": fixtures,
+		"authored_preset_bottoms": bottoms,
 		"head_mass_derived": TUNING.physics_head_mass_per_wu * TUNING.physics_head_length_wu,
 		"analytic":
 		{
@@ -205,3 +208,35 @@ func _distance_two(parents: Array, a: int, c: int) -> bool:
 
 func _above_slop(radius: float, slop: float) -> bool:
 	return radius > slop
+
+
+func _preset_bottoms() -> Array:
+	var rows: Array = []
+	for name in CreaturePresets.FILES:
+		var model := CreaturePresets.load_model(name, TUNING)
+		if model == null:
+			return []
+		var parts: Array = []
+		for body in model.create_bodies(0.0, 0.0):
+			parts.append(
+				{
+					"part": parts.size(),
+					"kind": body.kind,
+					"bottom_wu": minf(body.a.y, body.b.y) - body.radius
+				}
+			)
+		var flags: Array = []
+		for foot in parts:
+			for part in parts:
+				if foot.kind == "foot" and part.kind != "foot" and part.bottom_wu < foot.bottom_wu:
+					flags.append(
+						{
+							"non_foot": part.part,
+							"foot": foot.part,
+							"gap_wu": foot.bottom_wu - part.bottom_wu
+						}
+					)
+		var row := {"preset": name, "parts": parts, "non_foot_below_foot": flags}
+		rows.append(row)
+		print("M1 preset bottoms: " + JSON.stringify(row, "", true, true))
+	return rows

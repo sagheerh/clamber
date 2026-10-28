@@ -73,7 +73,7 @@ Provenance: `docs/CLAMBER_REVIEW_AGENT.provenance.md`. **M1-B02 RESOLVED
 | FA-2 | Every shipped limb length has aspect ratio3:1..12:1; analytic geometry only | PASS (analytic only) | CI40677962012; $RUNNER_TEMP/m1-owner-geometry.json |
 | FA-3 | All three real presets:600 static ticks, zero sleep-breaking contacts; contact trace and actual observations | NOT RUN | R9 partial Slug load preflight only; no all-preset FA-3 acceptance scenes |
 | FA-4 | Slug settles/sleeps within4s and L-hold lurches approximately one body length; record distances/input | NOT RUN | No motor/tutorial trace |
-| FA-5 | Owner R8/F24: foot load below max(5N,40percent of expected share W/N_previous_grounded) slips; at/above grips with grounded/lowest eligibility; frozen previous-tick N; N0 disables grip; two-foot stance and airborne traces required | NOT RUN | R9 Slug600 partial-hinge preflight exists; full-weight force criterion fails; no accepted band or stance trace |
+| FA-5 | Owner R8/F24: foot load below max(5N,40percent of expected share W/N_previous_grounded) slips; at/above grips with grounded/lowest eligibility; frozen previous-tick N; N0 disables grip; two-foot stance and airborne traces required | NOT RUN | R10 corrects R9: all-grounded support meets literal ceiling; F30 authored foot path blocked; grip never engaged; no accepted band or stance trace |
 | FA-6 | Ten scripted tutorial runs, actual per-run outcomes and input log; target6..8 successes, stop on10 or at most4 | NOT RUN | Actual success_count unknown; no tutorial scenario |
 | FA-7 | Head visual-radius dominance in all three presets; analytic only, not rendered silhouette proof | PASS (analytic only) | CI40677962012; $RUNNER_TEMP/m1-owner-geometry.json |
 
@@ -198,3 +198,22 @@ Packaging followup5ff93bf is green: M1 CI40677962012 repeats381+208+128 checks
 with zero failures; M0/Android CI40677961953 passes504 headless checks and exact
 production-preset bytes in install-time AAB module/universal APK, plus the original
 native/manifest/alignment checks. No physical installation/timing waiver extended.
+
+
+## M1-D08 R10 correction (not runtime acceptance)
+
+F22/F23/F25 CLOSED by owner review; actual producer and independent conservation
+accepted. R9's foot-only43.4N wording came from the owner and is corrected in R10:
+compare ALL grounded contacts with43.4±0.723N; foot-only weight only with sole-foot
+support. Existing43.59610684435376N satisfies that invariant. No force-channel
+failure follows from the foot carrying only about9.695N while head/motor support
+also exists. The unexplained+.196N bias requires a measured momentum ledger,
+not a waiver or force correction. New ledger/geometry execution initially pending.
+
+F30 authored pose decision PENDING. Every-body start/completed endpoints/bottoms
+and cheap all-preset/all-part authored bottom flags diagnose the gap. No axes,
+radii or angular limits changed. Grip never engaged; no genuine foot/grip path
+has been demonstrated. Check must remain red for that blocker independently of
+correct all-grounded conservation. FA-3/4/5/6 and all other runtime rows stay
+NOT RUN; complete-creature determinism attempts0. Next M1: measured explanation
+and owner pose decision before load-band/stance; no M2/retune/captures.

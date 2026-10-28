@@ -404,3 +404,50 @@ AND their difference <=0.723 throughout ticks300..599. Positional never compensa
 for missing reaction. Findings exit nonzero and remain in CI artifacts; no
 continue-on-error, smoothing, tolerance widening or hidden transient clipping.
 Complete-creature determinism attempts remain0. FA-3/4/5/6 remain NOT RUN.
+
+
+## M1-D08 — R10 correction, accepted producer; authored pose decision pending
+
+R10 owner review CLOSES F22/F23/F25: actual gravity plus signed hinge impulse is
+accepted as the qualifying load producer; isolated reaction8.4N and independent
+all-terrain support validate conservation. Preserve the implementation/tests.
+R10 explicitly corrects the OWNER'S R9 wording: compare weight with the sum over
+ALL grounded contacts, not just feet. Foot-only43.4N is required only if the foot
+is the sole support. R9's foot-only force-failure diagnosis and proposed angular
+constraints as the next fix are superseded.43.59610684435376N passes the literal
+43.4±0.723N ceiling; foot-only underload is not a force-channel defect. F27/28/29
+remain accepted; F24/frozen previous grounded N and intentional lag are unchanged.
+
+F30 is MAJOR pending the owner's pose decision. R10 recommends A (author foot
+axes so pads are lower than their own subtree); this recommendation is NOT an
+approval. B radius changes are rejected in review (pinned FA-1/7 radii). C sprawl
+is only partially defensible for Slug, not the two-foot demonstration. No A/B/C
+branch, angular limits, mass/radius/axis/force-gate/D10 or solver-setting changes
+are authorized by this diagnostic work. Limits cannot fix authored geometry or
+supply a restoring torque. The cheap root(0,0) analytic audit prints every part's
+bottom=min(endpointY)-radius and flags every non-foot below any foot. It does not
+silently change the authored model or promote analytic FA checks to runtime.
+
+F32 telemetry now includes START and completed endpoints/bottom for EVERY body;
+start tick0 retains the authored gap before terrain projection masks it. Endpoint
+velocities/inverse masses allow an independent Python reconstruction of total
+momentum. F31's +0.19610684435376N all-contact bias is NOT waived: a diagnostic-only
+ledger measures gravity, damping, clamp, internal-row and contact momentum changes
+without feeding them into physics. The flat-SDF identity is
+  dP_y = J_gravity + J_damping + J_clamp + J_internal + J_contact
+  R-W = (dP_y-J_damping-J_clamp-J_internal)/dt.
+Contact momentum change is measured independently across each real batch and
+compared with summed reported reaction*dt. Internal rows should cancel; keep their
+measured floating-point residual, do not assume exact cancellation. Nothing is
+subtracted from the acceptance force. Bookkeeping identity tolerance1e-12 is only
+float64 arithmetic/serialization checking; the literal force ceiling gets NO epsilon.
+Actual numeric explanation requires pinned-engine measurements, pending at this
+commit; damping is a hypothesis until then. No restitution/damping retune.
+
+F33 reports "grip never engaged", not an empty toggle-list success. The report
+separates correct all-grounded force acceptance from actual foot/grip engagement;
+CI stays RED without a genuine foot load path even if conservation passes.
+No qualifying production load is injected; synthetic parser falsification is NOT
+physics evidence. FA-3/4/5/6 and all coupled AC/A9/replay/soak/timing/§10.6/captures
+remain NOT RUN, determinism attempts0. Next M1: read measured budget/geometry,
+await owner pose decision; no band/two-foot advance or M2.

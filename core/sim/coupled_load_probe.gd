@@ -138,30 +138,46 @@ func _step(before: Dictionary) -> Dictionary:
 		hinge_y.append(TUNING.physics_zero)
 		reaction.append(TUNING.physics_zero)
 		cleanup.append(TUNING.physics_zero)
-	var projected := _predict_and_project(dt)
+	var budget := {
+		"dt_s": dt,
+		"momentum_before_y_ns": _momentum_y(),
+		"damping_impulse_y_ns": float(TUNING.physics_zero),
+		"gravity_impulse_y_ns": float(TUNING.physics_zero),
+		"clamp_impulse_y_ns": float(TUNING.physics_zero),
+		"internal_impulse_y_ns": float(TUNING.physics_zero),
+		"contact_velocity_impulse_y_ns": float(TUNING.physics_zero),
+	}
+	var projected := _predict_and_project(dt, budget)
 	if projected != OK:
 		return {"status": projected}
-	var response := _velocity_contacts(before, dt, hinge_x, hinge_y, reaction, cleanup)
+	var response := _velocity_contacts(before, dt, hinge_x, hinge_y, reaction, cleanup, budget)
 	if response.status != OK:
 		return response
 	for index in range(bodies.size()):
 		bodies[index].measured_reaction_n = reaction[index]
 		bodies[index].positional_cleanup_n = cleanup[index]
 	_ticks += TUNING.physics_one
-	return _trace(previous_count, response.lowest, hinge_y)
+	return _trace(previous_count, response.lowest, hinge_y, before, budget)
 
 
-func _predict_and_project(dt: float) -> Error:
+func _predict_and_project(dt: float, budget: Dictionary) -> Error:
 	var retention := TUNING.physics_one - _tuning.physics_linear_damping
 	for body in bodies:
 		for point in [body.a, body.b]:
 			point.previous_x = point.x
 			point.previous_y = point.y
 			# Damping acts on existing motion; gravity is a full external impulse.
+			var mass: float = float(TUNING.physics_one) / point.inverse_mass
+			var before_damping: float = point.velocity_y
+			var damped: float = point.velocity_y * retention
+			budget.damping_impulse_y_ns += mass * (damped - before_damping)
 			point.velocity_x *= retention
-			point.velocity_y = point.velocity_y * retention + _tuning.physics_gravity_wu_s2 * dt
+			point.velocity_y = damped + _tuning.physics_gravity_wu_s2 * dt
+			budget.gravity_impulse_y_ns += mass * _tuning.physics_gravity_wu_s2 * dt
+			var before_clamp: float = point.velocity_y
 			if not _clamp_velocity(point):
 				return ERR_INVALID_DATA
+			budget.clamp_impulse_y_ns += mass * (point.velocity_y - before_clamp)
 			point.x += point.velocity_x * dt
 			point.y += point.velocity_y * dt
 	for link in _links:
@@ -183,11 +199,13 @@ func _velocity_contacts(
 	hinge_x: Array[float],
 	hinge_y: Array[float],
 	reaction: Array[float],
-	cleanup: Array[float]
+	cleanup: Array[float],
+	budget: Dictionary
 ) -> Dictionary:
 	var lowest: Array[bool] = []
 	# Position corrections do NOT become velocity impulses or qualifying loads.
 	for velocity_pass in range(_tuning.physics_velocity_passes):
+		var before_internal := _momentum_y()
 		for link in _links:
 			if not _rigid_velocity(link):
 				return {"status": ERR_INVALID_DATA}
@@ -204,6 +222,7 @@ func _velocity_contacts(
 			hinge_y[index] += impulse.y
 			hinge_x[parent] -= impulse.x
 			hinge_y[parent] -= impulse.y
+		budget.internal_impulse_y_ns += _momentum_y() - before_internal
 		for index in range(bodies.size()):
 			var body := bodies[index]
 			# Reconstruct ONLY previous post-resolve flags for each internal pass.
@@ -222,11 +241,13 @@ func _velocity_contacts(
 				TUNING.physics_zero, -(external_x * normal.nx + external_y * normal.ny) / dt
 			)
 		lowest = lowest_mask(bodies, _tuning)
+		var before_contact := _momentum_y()
 		var status := CapsuleContact.resolve_tick(
 			bodies, _terrain, _mass, lowest, _friction, _restitution, _tuning
 		)
 		if status != OK:
 			return {"status": status}
+		budget.contact_velocity_impulse_y_ns += _momentum_y() - before_contact
 		for index in range(bodies.size()):
 			reaction[index] += bodies[index].measured_reaction_n
 			cleanup[index] += bodies[index].positional_cleanup_n
@@ -284,7 +305,13 @@ static func lowest_mask(parts: Array[CapsuleBody], tuning: Tuning) -> Array[bool
 	return result
 
 
-func _trace(previous_count: int, lowest: Array, hinge_y: Array[float]) -> Dictionary:
+func _trace(
+	previous_count: int,
+	lowest: Array,
+	hinge_y: Array[float],
+	before: Dictionary,
+	budget: Dictionary
+) -> Dictionary:
 	var feet: Array = []
 	var other_bodies: Array = []
 	var applied: float = TUNING.physics_zero
@@ -293,17 +320,20 @@ func _trace(previous_count: int, lowest: Array, hinge_y: Array[float]) -> Dictio
 	var other: float = TUNING.physics_zero
 	for index in range(bodies.size()):
 		var body := bodies[index]
+		var geometry := _body_geometry(body, before.bodies[index])
 		if body.kind != "foot":
 			other += body.measured_reaction_n
 			other_bodies.append(
 				{
 					"part": index,
 					"kind": body.kind,
+					"applied_load_n": body.applied_load_n,
 					"grounded": body.grounded,
 					"measured_reaction_n": body.measured_reaction_n,
 					"positional_cleanup_n": body.positional_cleanup_n
 				}
 			)
+			other_bodies.back().merge(geometry)
 			continue
 		var penetration: float = -INF
 		var extent := body.rest_length
@@ -332,10 +362,34 @@ func _trace(previous_count: int, lowest: Array, hinge_y: Array[float]) -> Dictio
 				"lowest": lowest[index]
 			}
 		)
+		feet.back().merge(geometry)
 		applied += body.applied_load_n
 		measured += body.measured_reaction_n
 		positional += body.positional_cleanup_n
 	var weight := _mass * absf(_tuning.physics_gravity_wu_s2)
+	budget.momentum_after_y_ns = _momentum_y()
+	budget.momentum_change_y_ns = budget.momentum_after_y_ns - budget.momentum_before_y_ns
+	budget.contact_reported_impulse_y_ns = (measured + other) * budget.dt_s
+	budget.residual_y_ns = (
+		budget.momentum_change_y_ns
+		- (
+			budget.gravity_impulse_y_ns
+			+ budget.damping_impulse_y_ns
+			+ budget.clamp_impulse_y_ns
+			+ budget.internal_impulse_y_ns
+			+ budget.contact_reported_impulse_y_ns
+		)
+	)
+	budget.observed_support_bias_n = measured + other - weight
+	budget.predicted_support_bias_n = (
+		(
+			budget.momentum_change_y_ns
+			- budget.damping_impulse_y_ns
+			- budget.clamp_impulse_y_ns
+			- budget.internal_impulse_y_ns
+		)
+		/ budget.dt_s
+	)
 	return {
 		"status": OK,
 		"tick": _ticks - TUNING.physics_one,
@@ -346,10 +400,44 @@ func _trace(previous_count: int, lowest: Array, hinge_y: Array[float]) -> Dictio
 		"sum_positional_cleanup_n": positional,
 		"other_body_reaction_n": other,
 		"other_bodies": other_bodies,
+		"momentum_budget": budget,
 		"weight_n": weight,
 		"applied_error_n": applied - weight,
 		"measured_error_n": measured - weight,
 		"cross_error_n": applied - measured,
 		"sleep_state": "awake",
 		"sleep_implemented": false
+	}
+
+
+func _momentum_y() -> float:
+	var momentum: float = TUNING.physics_zero
+	for body in bodies:
+		for point in [body.a, body.b]:
+			momentum += point.velocity_y / point.inverse_mass
+	return momentum
+
+
+func _body_geometry(body: CapsuleBody, start: Dictionary) -> Dictionary:
+	return {
+		"mass": body.mass,
+		"inverse_mass_a": body.a.inverse_mass,
+		"inverse_mass_b": body.b.inverse_mass,
+		"radius_wu": body.radius,
+		"ax": body.a.x,
+		"ay": body.a.y,
+		"bx": body.b.x,
+		"by": body.b.y,
+		"avx": body.a.velocity_x,
+		"avy": body.a.velocity_y,
+		"bvx": body.b.velocity_x,
+		"bvy": body.b.velocity_y,
+		"bottom_wu": minf(body.a.y, body.b.y) - body.radius,
+		"start_avy": start.a.velocity_y,
+		"start_bvy": start.b.velocity_y,
+		"start_ax": start.a.x,
+		"start_ay": start.a.y,
+		"start_bx": start.b.x,
+		"start_by": start.b.y,
+		"bottom_start_wu": minf(start.a.y, start.b.y) - body.radius,
 	}
