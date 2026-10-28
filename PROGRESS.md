@@ -31,7 +31,7 @@ scaffold/PR; no M1 implementation or gate completion is claimed by this closeout
 
 ### Explicit stubs / not built
 
-Solver, creature model/validation/codec, run/fall/checkpoint systems, generator,
+Full creature solver, creature model/validation/codec, run/fall/checkpoint systems, generator,
 wallet/medals/score, schema migrations, settings/debounces, lifecycle run/audio
 consumers, all S00–S16 screens and native plugins. Stub null/empty returns are
 nonfunctional and unused. No autoload, gameplay, art, audio, production signing,
@@ -126,9 +126,8 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
 - AC-201/202/204, distinct gaits/captures, 3600-tick/100×/two-machine replay,
   bit-flip, baseline, soak and performance: **NOT RUN / NOT MET**. No complete
   creature determinism attempt has run; the two-failed-attempt budget is unused.
-- **Next: M1** — after the R4 fix commit has green CI, a separate
-  integration + fixed-1/60 accumulator increment over mathematical bodies/links,
-  tuning gravity and deterministic ordering. No contacts/radii/gaits/presets/
+- **Next: M1** — owner review of the independent integration/clock increment
+  and owner input M1-B01 before any dependent creature implementation. No contacts/radii/gaits/presets/
   baseline/runtime claims. M1-B01 radii/head mass/length/grip threshold with units
   still requires owner input before dependent work. M1-B02 is resolved, not waived.
   Do not move to M2.
@@ -164,3 +163,26 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
 - Actual AC-201 COMPLETE and MEASURED (4 s) mutations with CI evidence each exit1;
   restored matrix exits0. Full fresh transcript is in PR #3's body.
 - Integration is the next separate increment; runtime acceptance remains NOT RUN.
+
+### M1 independent increment 2 — point/link integration and outer accumulator
+
+- F15 commit201644e is green: M1 CI40638310619 and M0/Android CI40638310666.
+  Original82 primitive checks and 475 M0 engine checks retained.
+- `core/sim/solver.gd`: tuned fixed-step scalar integration, gravity, linear
+  damping/clamp, fixed index-order link projections and tick-boundary lambda reset.
+- `core/sim/accumulator.gd`: callback-free outer clock with frame_seconds input;
+  tuned catch-up cap, exact dropped-time accounting and retained sub-cap remainder.
+  No elapsed-time argument to the solver. Placement/naming/math: M1-D03.
+- Candidate restore validates the entire graph/state; tick and whole-frame failures
+  roll back atomically. No silent repair of non-finite events.
+- `tests/sim/test_integration.gd` + extended `tests/run_m1_math.sh`: actual assertions
+  for all six R5 evidence categories, plus pinned points, damping/clamp, invalid
+  graph/configuration and late-frame rollback. Existing82 checks remain intact.
+- Local review checks exit0: **44 script/scene files, 29 Python tests**. Lint,
+  shell syntax and diff checks passed. New pinned-engine counts/results are recorded
+  in PR #3 after execution; local Godot remains unavailable.
+- Still stubs/missing: public creature Sim, model, contacts, hinges/motors/feet/SDF,
+  sleep/recovery, presets, diagnostic scene and all creature-runtime acceptance.
+  No tuning values, M0 tests, accepted point/link math or scanner restrictions changed.
+- Next: **M1** owner review/input before dependent work. M1-B01 remains owner-supplied;
+  no radius/head mass-length/grip value invented. No M2/camera. All runtime NOT RUN.

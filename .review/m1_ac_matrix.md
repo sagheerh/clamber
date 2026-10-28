@@ -43,7 +43,7 @@ Provenance: `docs/CLAMBER_REVIEW_AGENT.provenance.md`. **M1-B02 RESOLVED
 | INV-02 | Only two-bit gameplay mask; E2 router read and InputEvent grep outside ui | NOT RUN | Gameplay router not implemented |
 | INV-03 | No global/unseeded RNG in sim/run/tower; E1 | NOT RUN | scripts/review_static.py subset only; full implementation review outstanding |
 | INV-04 | No solver transcendentals; E1 | NOT RUN | scripts/review_static.py subset only; full implementation review outstanding |
-| INV-05 / A9.2 | Fixed 1/60 via accumulator, no raw frame delta; E2 | NOT RUN | No accumulator implemented |
+| INV-05 / A9.2 | Fixed 1/60 via accumulator, no raw frame delta; E2 | NOT RUN | Point/link clock primitive only; tests/sim/test_integration.gd; full Sim runtime review not executed |
 | INV-06 | Tuning resource owns all core numbers; E1 plus spot-read | NOT RUN | scripts/review_static.py subset only; full implementation review outstanding |
 | INV-07 | No screens beyond S00–S16 or monetised gameplay; E1/E2 | NOT RUN | Full M1 scope review outstanding |
 | INV-08 | Nothing blocks first flag; E2/manual run | NOT RUN | First-flag loop not implemented |
@@ -56,7 +56,7 @@ Provenance: `docs/CLAMBER_REVIEW_AGENT.provenance.md`. **M1-B02 RESOLVED
 | A12 verdict/review | Produce .review/m1_verdict.md and .json plus formal PR review before signoff | NOT RUN | No verdict or approval claimed |
 | Engine / architecture | Real Godot4.7.2 import, M0 regression suite unchanged, core remains headless; static scans enforce RNG/math/node/input restrictions | NOT RUN for M1 | None; M0-only results are not M1 proof |
 | A9.1 / A9.6 static restrictions | Recursive core/sim, core/run, core/tower scans for RNG/clock/frame sources, raw delta callbacks and solver transcendentals; scan scripts AND scene node types | STATIC CHECK ONLY | scripts/review_checks.sh; no runtime proof |
-| A9.2 accumulator | Fixed 1/60, outer accumulator, no raw frame delta in solver, catch-up/drop as GDD §4.2 | NOT RUN | No accumulator implemented |
+| A9.2 accumulator | Fixed 1/60, outer accumulator, no raw frame delta in solver, catch-up/drop as GDD §4.2 | NOT RUN | Point/link clock primitive only; tests/sim/test_integration.gd; full Sim runtime review not executed |
 | A9.3 injected RNG | Preserve seed parameter in Sim.setup and explicitly inject seeded xoshiro128**; stub signature alone is insufficient | NOT RUN | Sim remains a stub |
 | AC-201 | No-input trace shows settling AND sleep within ≤4 s; record sleep tick and velocities using tuning thresholds | NOT RUN | None |
 | AC-202 | Maximum absolute limb-length error ≤0.05 WU over a two-minute run; assert and log measured maximum | NOT RUN | None |
@@ -93,8 +93,8 @@ Provenance: `docs/CLAMBER_REVIEW_AGENT.provenance.md`. **M1-B02 RESOLVED
   solver work meanwhile. Haptics/generation are outside this packet.
 - Full review pack is vendored unchanged; M1-B02 is resolved, not waived.
   Execute the original protocol before signoff; file presence is not review evidence.
-- No preset geometry, captures, performance measurement or real-engine M1 test
-  run exists yet. No baseline may be approved from `Sim.state_hash()`'s M0 stub.
+- No preset geometry, captures, performance measurement or complete creature-runtime
+  M1 test run exists yet. No baseline may be approved from `Sim.state_hash()`'s M0 stub.
 - Reference-device performance and cross-device/architecture evidence still need
   actual hardware. M0-D07 cannot be used to waive those later gates.
 
@@ -144,3 +144,14 @@ exact gate and a run/commit citation. Unknown/empty statuses fail closed; the
 NOT RUN status-row floor remains12. The original seven guard tests are retained;
 a parameterised eighth covers all six reported synonyms, empty status and later
 tables. Fresh COMPLETE/MEASURED working-file negative controls are in PR #3.
+
+## Independent increment 2 — point/link integration and clock (M1-D03)
+
+`core/sim/solver.gd` integrates explicit mathematical points/links at the tuned
+fixed 1/60; `core/sim/accumulator.gd` takes frame_seconds outside the fixed-step
+math. `tests/sim/test_integration.gd` covers the capped clock, exact dropped time,
+chunk equivalence at equal ticks, tuned gravity, repeated index ordering,
+non-finite/overflow rejection, atomic tick/frame/restore and exact checkpoint
+continuation. These are synthetic primitive fixtures, not A9 runtime acceptance.
+The public Sim stays a stub. All runtime rows above remain NOT RUN; no contacts,
+radii, head/grip values, presets, baseline, bit-flip, tick timing or captures.

@@ -43,7 +43,7 @@ jobs:
           python3 - "$RUNNER_TEMP/m1-math.log" "$status" <<'PYLOG'
           import re, sys
           lines = open(sys.argv[1]).read().splitlines()
-          pattern = r"SCRIPT ERROR|ERROR:|FAIL|Parse Error|M1 math foundations:|M1 acceptance:"
+          pattern = r"SCRIPT ERROR|ERROR:|FAIL|Parse Error|M1 math foundations:|M1 integration primitives:|M1 primitive total:|M1 acceptance:"
           for line in [line for line in lines if re.search(pattern, line)][:35]:
               level = "notice" if sys.argv[2] == "0" else "error"
               escaped = line.replace("%", "%25").replace("\r", "%0D")

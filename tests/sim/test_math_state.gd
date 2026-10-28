@@ -16,7 +16,7 @@ func _initialize() -> void:
 	_invalid_constraints()
 	_snapshot_projection()
 	print("M1 math foundations: %d checks, %d failures" % [_checks, _failures])
-	print("M1 acceptance: NOT RUN (no creature/contact/accumulator/replay/soak implementation)")
+	print("M1 acceptance: NOT RUN (no creature/contact/replay/soak implementation)")
 	quit(0 if _failures == 0 else 1)
 
 

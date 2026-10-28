@@ -148,3 +148,45 @@ approved creature/preset tuning. Unit projection/restoration tests are NOT the M
 3600-tick replay, baseline, bit-flip falsification, contact soak or gait captures.
 No complete creature determinism attempt has run; the two-attempt stop budget has
 not been consumed and D-11 is not being proposed on infrastructure blockers.
+
+## M1-D03 — Independent point/link integration and outer clock (R5)
+
+R5 explicitly authorizes only mathematical bodies/links, fixed-step integration,
+gravity from tuning, deterministic ordering and the capped outer accumulator.
+`core/sim/solver.gd` is a RefCounted PointLinkSolver, not the public creature Sim.
+`core/sim/accumulator.gd` is a separate RefCounted outer clock. Its entry point is
+`advance(frame_seconds)`; neither class contains engine callbacks or reads clocks.
+A future §10.1 driver may supply elapsed time, but this increment adds no UI/driver.
+No raw frame time reaches `step()`. The scanner is unchanged (including its ban
+on raw-time callback identifiers).
+
+The fixed step is `physics_one / physics_tick_hz`, shipped at exactly 1/60,
+consistent with accepted DistanceConstraint. `physics_fixed_dt_s` remains the
+unchanged serialized mirror; M0-D05 records its decimal parsing difference.
+The solver freezes a duplicate of supplied tuning at setup, requires the shipped
+60 Hz contract, and uses supplied gravity, position iterations, distance repeats,
+linear damping and velocity clamp. Semi-implicit Euler applies gravity, then
+per-tick linear retention (one minus damping), clamps speed, then drifts positions.
+After index-ordered distance projections, velocities are reconstructed and
+clamped. Pinned mathematical points remain fixed. No angular/velocity-constraint
+passes, contact, sleep, hard-reset/recovery, creature or feel acceptance is implied.
+No tuning constant/value is added or changed.
+
+Body order is caller-supplied part-index order; link order is caller-supplied
+constraint-index order. Setup copies the arrays, rejects duplicates/foreign link
+endpoints and preserves this order; it never sorts by object IDs or dictionaries.
+The fixed graph/configuration is included in snapshot identity. Restore validates
+all candidate bodies/links before publishing; a failed step rolls back the whole
+tick, and a failed frame rolls back all ticks in that frame. Non-finite input/state
+is reported as an error, never silently healed. Snapshots include velocities,
+previous positions, multipliers, tick count and all outer-clock future state.
+
+The clock retains fractional time below the catch-up cap. On reaching the supplied
+cap (3), it drops the entire remaining time, including any fractional remainder,
+and records the exact dropped seconds. It computes remaining time as accumulated
+seconds minus executed steps times the fixed step. Chunk-equivalence tests avoid
+cap-triggered dropping and compare equal simulated ticks; dropped wall time is not
+replayed. Chunk comparisons cover solver snapshots and clock pending/dropped
+seconds; last_steps is a frame-local diagnostic, not a trajectory input. This is
+a primitive clock contract, not A9.4/A9.5 replay evidence.
+M1-B01 and all creature-runtime acceptance gates remain unchanged/NOT RUN.
