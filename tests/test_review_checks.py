@@ -111,6 +111,18 @@ class MatrixGuardTests(unittest.TestCase):
         errors = validate_matrix('\n'.join(lines))
         self.assertIn('NOT RUN row floor: 11 < 12', errors)
 
+    def test_status_allowlist_rejects_bypasses_and_empty_in_every_table(self):
+        for status in ['COMPLETE', 'DONE', 'GREEN', 'ACCEPTED', 'SOLVED', 'MEASURED (4 s)', '']:
+            with self.subTest(status=status):
+                errors = validate_matrix(self.changed('AC-201', status, 'CI40636758741'))
+                self.assertTrue(any('status not allowlisted' in e for e in errors))
+                # A later table or a headerless row must not escape the scan.
+                row = f'| AC-201 | synthetic fixture | {status} | CI40636758741 |'
+                for gap in ['\n\n', '\n\n## Later table\n\n| Gate / source | Required acceptance evidence | Status | Evidence reference |\n|---|---|---|---|\n']:
+                    self.assertTrue(validate_matrix(self.matrix + gap + row))
+        for status in ['NOT RUN', 'NOT RUN for M1', 'STATIC CHECK ONLY']:
+            self.assertEqual(validate_matrix(self.changed('AC-201', status, 'None')), [])
+
     def test_missing_table_gate_and_malformed_row_fail_closed(self):
         self.assertTrue(validate_matrix(''))
         row = next(line for line in self.matrix.splitlines() if line.startswith('| AC-201 |'))

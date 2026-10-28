@@ -18,6 +18,8 @@ CITATION = re.compile(
     r'\bcommit\s*[:#]?\s*[0-9a-f]{7,40}\b|'
     r'https://github\.com/[^\s]+/actions/runs/\d+', re.I)
 # Only these two gates can claim success during the foundation-only increment.
+PENDING_STATUSES = {'NOT RUN', 'NOT RUN for M1', 'STATIC CHECK ONLY'}
+HEADER = ['Gate / source', 'Required acceptance evidence', 'Status', 'Evidence reference']
 EXCEPTIONS = {'M0 regression': 'PASS (regression only)',
               'A8 test-count floor': 'PASS (count floor only)'}
 
@@ -28,16 +30,15 @@ def plain(cell):
 
 def validate_matrix(text):
     errors, rows = [], []
-    in_table = False
     for number, line in enumerate(text.splitlines(), 1):
-        if line.strip() == '| Gate / source | Required acceptance evidence | Status | Evidence reference |':
-            in_table = True
-            continue
-        if not in_table:
-            continue
         if not line.strip().startswith('|'):
-            break
+            continue
+        if not line.strip().endswith('|'):
+            errors.append(f'line {number}: unterminated matrix row')
+            continue
         cells = [plain(cell) for cell in re.split(r'(?<!\\)\|', line.strip())[1:-1]]
+        if cells == HEADER:
+            continue
         if cells and all(re.fullmatch(r'[-:]+', cell) for cell in cells):
             continue
         if len(cells) != 4:
@@ -47,6 +48,10 @@ def validate_matrix(text):
         rows.append(cells)
         success = SUCCESS.search(' '.join(cells))
         prefix = f'line {number} ({gate})'
+        if status not in PENDING_STATUSES and status != EXCEPTIONS.get(gate):
+            errors.append(f'{prefix}: status not allowlisted: {status!r}')
+        if status in EXCEPTIONS.values() and (status != EXCEPTIONS.get(gate) or not CITATION.search(evidence)):
+            errors.append(f'{prefix}: scoped status requires its exact gate and run/commit evidence')
         if success and (not evidence or re.match(r'^None\b', evidence, re.I)):
             errors.append(f'{prefix}: success token with empty/None evidence')
         if RUNTIME.search(gate) and success:
@@ -61,7 +66,7 @@ def validate_matrix(text):
     for required in REQUIRED:
         if required.casefold() not in gates:
             errors.append(f'required gate missing: {required}')
-    not_run = sum(any(re.search(r'\bNOT RUN\b', cell, re.I) for cell in row) for row in rows)
+    not_run = sum(row[2] in {'NOT RUN', 'NOT RUN for M1'} for row in rows)
     if not_run < 12:
         errors.append(f'NOT RUN row floor: {not_run} < 12')
     return errors

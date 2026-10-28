@@ -134,3 +134,13 @@ at least 12 rows must contain NOT RUN. The two regression/count-floor rows
 require explicit scoped status and a CI run or commit reference. Negative
 fixtures exercise those rules; the actual AC-201 mutation/revert transcript is
 in the canonical PR #3 body. This guard does not execute or approve runtime gates.
+
+### R5 F15 — fail-closed status allowlist
+
+Every pipe-table row in this file is checked, including later/headerless tables.
+Only `NOT RUN`, `NOT RUN for M1`, `STATIC CHECK ONLY`, and the two exact scoped
+regression/count-floor statuses above are allowed. Scoped statuses require their
+exact gate and a run/commit citation. Unknown/empty statuses fail closed; the
+NOT RUN status-row floor remains12. The original seven guard tests are retained;
+a parameterised eighth covers all six reported synonyms, empty status and later
+tables. Fresh COMPLETE/MEASURED working-file negative controls are in PR #3.

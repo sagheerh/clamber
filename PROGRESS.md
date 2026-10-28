@@ -151,3 +151,16 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
   fix commit are tracked in PR #3; no new engine result is claimed here yet.
 - No integration, accumulator, contacts, presets or baseline added. Accepted M0
   tests/tuning/save and public Sim interface are unchanged. Determinism attempts:0.
+
+### M1 R5 F15 — status allowlist (before integration)
+
+- R5 owner accepted F7/F12/F13/F14 at0ec87d0 and independently verified its CI.
+- F15 replaces permissive status handling with an exact allowlist over every
+  pipe-table row, not only the first table. Scoped exceptions and NOT RUN≥12
+  remain enforced. Scanner restrictions are unchanged.
+- Seven existing guard tests retained; one parameterised test adds the six
+  reported bypass statuses, empty status and later/headerless table cases.
+- `scripts/review_checks.sh`: exit0, **29 Python tests** (16+6+7).
+- Actual AC-201 COMPLETE and MEASURED (4 s) mutations with CI evidence each exit1;
+  restored matrix exits0. Full fresh transcript is in PR #3's body.
+- Integration is the next separate increment; runtime acceptance remains NOT RUN.
