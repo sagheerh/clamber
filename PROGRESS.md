@@ -1,80 +1,76 @@
 # CLAMBER progress
 
-## Current milestone: M0 — implementation present; validation BLOCKED
+## Current milestone: M0 — engine/build validated; physical-device gate BLOCKED
 
-Do not start M1 until M0's engine/device gates have evidence. Session date:
-2026-10-28. Normative inputs: `docs/GDD.md` and `docs/ui/CLAMBER_UI.jpeg`.
-Read §10.3, §10.4, §10.5, §11.6 before implementation; consulted the numerical
-specifications throughout the GDD for tuning. No gameplay/art/product screens built.
+Session date: 2026-10-28. Normative inputs: `docs/GDD.md` and
+`docs/ui/CLAMBER_UI.jpeg`. M0 implementation and follow-up validation only; do not
+start M1 until the remaining device criterion has actual evidence.
 
 ### Exists
 
-- `project.godot`: Godot 4.7.2-stable pin, Mobile renderer, portrait, 1080 × 2340,
-  canvas_items/keep, 60 Hz, pixel snapping, MSAA off, GDD navy clear color.
-- `ui/boot.tscn` / `.gd`: engineering boot only; 60 fps cap, lifecycle pause and
-  synchronous-save flush signals, master mute/restore, no automatic gameplay resume.
-- `ui/components/safe_area.gd`: Android physical insets transformed into viewport
-  margins; empty container, zero desktop insets. Runtime/device checks pending.
-- `core/tuning.gd` / `.tres`: **376 explicitly serialized exported fields** in the
-  seven required groups. `docs/TUNING.md` gives source references. Includes part
-  stats, solver/motor/fall values, camera, score, economy, generator, save/codec,
-  audio/haptics/UI policies, performance budgets and evaluation thresholds. No
-  feel/economy changes. No numeric literals in any core `.gd` script.
-- `core/data/save_store.gd`: schema-checked JSON; flushed tmp → staged previous
-  valid backup → atomic primary replacement; `.bak` → `.tmp` → defaults recovery;
-  non-fatal recovery/write-failure signals. Never replaces a good backup with a
-  corrupt primary. Synchronous writes, no queue to flush in M0.
-- `platform/{share_plugin,billing,ads,haptics}.gd`: injectable unavailable/no-op
-  interfaces, explicit completion signals where relevant, Android TODOs, no SDKs.
-- Required architecture directories, compile-only core/shared component stubs,
-  reserved Sim/CreatureCodec interfaces, palette tokens and empty theme.
-- `tests/run_tests.sh`: exact-version check, clean import and project test dispatch.
-  GDScript tests cover save corruption, defaults, precedence, interrupted writes,
-  invalid schema/root, write failures, core loading, tuning, safe-area transforms,
-  platform no-ops. `tests/test_static.py`: dependency-free architecture gates.
-- `.github/workflows/m0.yml`: checksum-verified pinned editor + headless tests.
-- `export_presets.cfg`: debug Android AAB, Gradle, minSdk 26, targetSdk 36, arm64
-  only, immersive, no network permissions. Export/device gates not run.
-- `README.md`: setup/test/export instructions, AAB→APKs installation procedure,
-  signing/alignment reminders, limitations and architecture handoff.
+- Pinned Godot4.7.2-stable project: Mobile renderer, 1080×2340, portrait,
+  canvas_items/keep, 60 Hz, pixel snapping, MSAA off, ETC2/ASTC import enabled.
+- Engineering-only navy boot surface with safe-area container and lifecycle hooks.
+- `core/tuning.gd` / `.tres`: **376 exported fields**, seven required groups,
+  `docs/TUNING.md` source map. No core numeric literals; no feel/economy changes.
+- Atomic JSON SaveStore: flushed tmp, previous validated backup, atomic replacement;
+  primary → backup → tmp → defaults recovery; checked errors and recovery signals.
+- Share/billing/ads/haptics unavailable/no-op interfaces, no SDKs/network calls.
+- Architecture/shared-component stubs and reserved Sim/CreatureCodec signatures.
+- Test launcher rejects wrong engine versions, script errors, failed assertions and
+  missing completion markers. Six static tests, seven inspector unit tests, and
+  real-engine persistence/tuning/safe-area/stub tests.
+- CI headless and Android jobs with checksum-verified exact engine/templates;
+  Android debug AAB export and bundletool-derived signed debug APK generation.
+- Actual manifest/ABI checks, native ELF 16 KB and APK ZIP alignment checks;
+  seven-day Actions artifact retention. Generated binaries/keys remain outside Git.
+- README, decisions, and `docs/validation/M0.md` with reproducible evidence and
+  remaining hardware checklist.
 
 ### Explicit stubs / not built
 
 Solver, creature model/validation/codec, run/fall/checkpoint systems, generator,
 wallet/medals/score, schema migrations, settings/debounces, lifecycle run/audio
-consumers, all S00–S16 screens, all native plugins. Stub Sim/codec null/empty returns
-are deliberately nonfunctional and unused. No autoloads, art, audio, gameplay,
-Android Gradle template, signed artifact, purchases, advertising, or networking.
-Historical migration fixtures are unspecified and were not fabricated.
+consumers, all S00–S16 screens and native plugins. Stub null/empty returns are
+nonfunctional and unused. No autoload, gameplay, art, audio, production signing,
+purchase, advertising or network feature. Android Gradle files/artifacts are
+transient CI outputs, not tracked source.
 
-### Validation evidence (local)
+### Validation evidence
 
-- `python3 tests/test_static.py`: **6 tests PASS**. Checks exact resource/export
-  correspondence and inventory coverage, named normative values, zero core numeric
-  literals/UI/platform dependencies, sim guardrails, project/export pins, skeleton,
-  references and reserved public signatures.
-- `PYTHONPATH=.tools/python .tools/python/bin/gdlint core ui platform tests`:
-  **PASS**, 36 GDScript files parsed/linted (gdtoolkit, not Godot type checking).
-  Only unused arguments on verbatim stub interfaces and early-return count on the
-  checked atomic-write function are explicitly suppressed.
-- `bash -n tests/run_tests.sh`: **PASS**.
-- `tests/run_tests.sh`: static suite passes, then **exit 127 — exact engine absent**.
-- `godot --headless --run-tests`: **NOT RUN**, no executable available.
-- CI: configured, **not dispatched**, no claimed green build.
-- Android AAB/export/install/16 KB alignment/60 fps/safe areas/lifecycle on device:
-  **NOT RUN**. No JDK/SDK/adb/device; release asset download is network-blocked.
+Validated code: `12cbe203b64cc9590be302fbb67bbafde7922694`.
+[Successful CI run 40625278718](https://github.com/sagheerh/clamber/actions/runs/40625278718).
+Exact commands, jobs, versions and artifact digest: `docs/validation/M0.md`.
+
+- `python3 tests/test_static.py`: **6 PASS** locally and in CI.
+- `python3 tests/test_android_inspection.py`: **7 PASS** locally and in CI
+  (synthetic inspector fixtures, separate from actual artifact checks).
+- `gdlint core ui platform tests` (local gdtoolkit): **PASS**.
+- `bash -n tests/run_tests.sh tests/build_android.sh`: **PASS**.
+- `godot --headless --editor --import` on pinned CI engine: **PASS**.
+- `godot --headless --run-tests` on pinned CI engine: **475 checks, 0 failures**,
+  exit0, including garbage→backup and both-corrupt→defaults recovery.
+- Debug Android AAB export: **PASS** on equipped CI runner, JDK17/SDK36,
+  build-tools36.1.0/NDK29.0.14206865, matching4.7.2 templates.
+- Bundletool validation/APK generation; actual manifest/ABI/native16KB/ZIP16KB:
+  **PASS**. Debug artifact is downloadable from the successful run for seven days.
+- Physical install, navy display, safe-area/lifecycle checks and 60 fps/P95 frame
+  trace: **NOT RUN**. The user explicitly confirmed no device is available.
+- Local engine/Android execution remains unavailable; CI results above are real
+  runner executions, not local execution or hardware measurements.
 
 ### Definition of Done
 
 | Criterion | State | Evidence |
 |---|---|---|
-| `godot --headless --run-tests` exits 0 | **Not met** | Runtime unavailable; launcher correctly fails rather than skipping |
-| Save garbage → backup → defaults test passes | **Not met** | Test implemented; requires engine execution |
-| Android debug AAB-derived install; navy at 60 fps | **Not met** | Preset/instructions only; no device/artifact/performance evidence |
-| ≥40 named tunables; no core hardcoded numbers | **Met (static)** | 376 fields; static scan passes |
+| `godot --headless --run-tests` exits0 | **Met** | Pinned CI engine, 475 checks/0 failures |
+| Save garbage → backup → defaults test passes | **Met** | Real-engine save test suite passes |
+| Android debug AAB-derived install; navy at60fps | **Not met** | Build/packaging PASS; physical hardware unavailable |
+| ≥40 named tunables; no core hardcoded numbers | **Met** | 376 fields; static/resource checks PASS |
 
-### Decisions / blockers / next
+### Decisions / next
 
-M0-D01–D04 and M0-B01–B03 are in `DECISIONS.md`. Only M0-B01 blocks M0
-completion; unresolved future feel/generator values were not guessed. **Next:
-finish M0 validation on an equipped runner/device, not M1 implementation.**
+M0-D01–D06 and M0-B01–B03 are in `DECISIONS.md`. Follow-up fixed JSON-domain /
+float64-representation test assumptions and Android build validation only; no
+physics, economy or codec implementation changed. M0-B01 now refers only to the
+physical-device gate. **Next: finish M0 hardware acceptance; do not begin M1.**

@@ -10,7 +10,7 @@ in this milestone. Boot is a solid GDD navy (`#00192F`) surface.
   `project.godot`, CI, and the test launcher. Do not silently substitute a release.
 - Mobile renderer (Vulkan), 2D, 1080 × 2340, `canvas_items` / `keep`, portrait.
 - Android export: matching **4.7.2-stable** templates, OpenJDK 17, Android SDK
-  platform 36/build tools supported by that pinned template, minSdk 26,
+  platform 36, build tools **36.1.0**, NDK **29.0.14206865**, minSdk 26,
   targetSdk 36, arm64-v8a only. Native libraries must pass 16 KB alignment checks.
 - No plugins, downloaded art, accounts, network permissions, or SDK integrations.
 
@@ -55,7 +55,12 @@ atomic saves, previous-save backup, garbage/invalid schema recovery,
 `.bak` before `.tmp`, defaults/deep-copy, interrupted writes, write failures,
 safe-area transforms on portrait/16:9/21:9/letterboxed displays, platform no-ops.
 The GitHub Actions workflow runs these gates with the exact engine version and
-checksum-verifies the downloaded editor. CI has been configured, **not run here**.
+checksum-verifies the downloaded editor. Real CI execution/evidence is recorded in
+[`docs/validation/M0.md`](docs/validation/M0.md). The launcher fails on script errors
+or a missing successful completion marker, even if Godot exits with status 0.
+
+`python3 tests/test_android_inspection.py` runs seven synthetic inspector tests;
+these are separate from inspecting a real Android artifact.
 
 ## Tuning and architecture
 
@@ -94,7 +99,7 @@ payload-specific validation and migrations remain stubs, not invented schemas.
    is required. Do not upgrade its Gradle/NDK dependencies independently.
 3. Run `mkdir -p exports` then:
    ```sh
-   godot --headless --path . --export-debug Android exports/clamber-debug.aab
+   godot --headless --path . --install-android-build-template --export-debug Android exports/clamber-debug.aab
    ```
 4. An AAB cannot be installed directly with `adb install`. Use official Android
    `bundletool build-apks --bundle=exports/clamber-debug.aab --output=exports/clamber.apks`
@@ -108,8 +113,22 @@ payload-specific validation and migrations remain stubs, not invented schemas.
    Use Android's `check_elf_alignment.sh` and `zipalign -c -P 16 -v 4` on the
    bundletool-produced APKs. P95 target is ≤16.6 ms on Snapdragon 660-class hardware.
 
-**Current validation limitation:** this sandbox has no Godot, JDK, Android SDK,
-`adb`, or physical device. GitHub release metadata is reachable, but editor assets
-redirect to a host blocked by the network allowlist. No engine compilation,
-headless execution, AAB, installation, alignment or 60 fps measurement is claimed.
-M0 remains open until those gates have actual evidence.
+### Automated build and remaining hardware gate
+
+The `android` CI job installs the checksum-verified, exact-version Android source
+template, exports a debug AAB, runs bundletool 1.18.3 validation, creates a signed
+universal debug APK using a disposable CI-only key, and checks the actual manifest,
+ABI, every packaged native library's ELF load alignment and APK zip alignment.
+The `m0-android-debug` Actions artifact contains the AAB, APK and inspection reports
+(retention: seven days). Signing keys are never uploaded. These are debug-only
+artifacts, not a release or production signing setup.
+
+`tests/build_android.sh` automates the export on a clean equipped runner; it sets
+that runner's editor SDK paths. Normal local editor users can follow the commands
+above without changing their editor settings file manually.
+
+**Remaining limitation:** the sandbox still lacks the local toolchain, but CI can
+run the pinned engine and Android tools. The user confirmed no physical device is
+available. No device installation, navy-screen screenshot, lifecycle/cutout check,
+or 60 fps measurement is claimed. M0 remains open until that hardware evidence
+exists. See the validation record for exact commits, results and artifact links.
