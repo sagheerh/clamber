@@ -1,10 +1,11 @@
-# M0 tuning inventory
+# Tuning inventory
 
 All runtime fields are explicit in `core/tuning.tres`. This inventory maps them to the GDD.
 Architecture/schema identities are also centralized to keep numeric literals out of core scripts.
 Example save IDs/timestamps, sample tower geometry/scores, document versions, dates, SDK/build
 requirements, market research and experimental metrics are not runtime tuning. Build requirements
-remain in project/export/CI configuration. No gameplay values have been changed.
+remain in project/export/CI configuration. Existing GDD gameplay values are unchanged. Owner M1-D04 adds provisional contact
+geometry/grip and analytic feel-check inputs; these are not measured feel evidence.
 
 | Group | Field | Source | Value |
 |---|---|---|---|
@@ -384,3 +385,37 @@ remain in project/export/CI configuration. No gameplay values have been changed.
 | Generator | `generator_reference_parts` | §6.1–6.5 | `8` |
 | Generator | `generator_reference_time_multiplier` | §6.1–6.5 | `3.0` |
 | Generator | `generator_reroll_attempts` | §6.1–6.5 | `40` |
+
+## Owner M1-D04 additions (provisional, not retuned)
+
+| Group | Field | Source | Value |
+|---|---|---|---|
+| Owner geometry / feel | `physics_limb_collision_radius_wu` | owner M1-D04 | `0.065` |
+| Owner geometry / feel | `physics_passive_collision_radius_wu` | owner M1-D04 | `0.085` |
+| Owner geometry / feel | `physics_motor_collision_radius_wu` | owner M1-D04 | `0.095` |
+| Owner geometry / feel | `physics_foot_collision_radius_wu` | owner M1-D04 | `0.050` |
+| Owner geometry / feel | `physics_head_collision_radius_wu` | owner M1-D04 | `0.100` |
+| Owner geometry / feel | `art_limb_visual_radius_wu` | owner M1-D04 | `0.065` |
+| Owner geometry / feel | `art_passive_visual_radius_wu` | owner M1-D04 | `0.105` |
+| Owner geometry / feel | `art_motor_visual_radius_wu` | owner M1-D04 | `0.120` |
+| Owner geometry / feel | `art_foot_visual_radius_wu` | owner M1-D04 | `0.065` |
+| Owner geometry / feel | `art_head_visual_radius_wu` | owner M1-D04 | `0.135` |
+| Owner geometry / feel | `physics_head_mass_per_wu` | owner M1-D04 | `2.2` |
+| Owner geometry / feel | `physics_head_length_wu` | owner M1-D04 | `0.35` |
+| Owner geometry / feel | `physics_grip_normal_force_ratio` | owner M1-D04 | `0.40` |
+| Owner geometry / feel | `physics_grip_normal_force_floor` | owner M1-D04 | `5.0` |
+| Owner geometry / feel | `physics_d10_bend_margin_wu` | owner M1-D04 | `0.06` |
+| Owner geometry / feel | `feel_readability_px_per_wu` | owner M1-D04 | `150.0` |
+| Owner geometry / feel | `feel_min_collision_diameter_px` | owner M1-D04 | `15.0` |
+| Owner geometry / feel | `feel_min_head_collision_diameter_px` | owner M1-D04 | `30.0` |
+| Owner geometry / feel | `feel_limb_aspect_ratio_min` | owner M1-D04 | `3.0` |
+| Owner geometry / feel | `feel_limb_aspect_ratio_max` | owner M1-D04 | `12.0` |
+| Owner geometry / feel | `feel_static_scene_ticks` | owner M1-D04 | `600` |
+| Owner geometry / feel | `feel_tutorial_runs` | owner M1-D04 | `10` |
+| Owner geometry / feel | `feel_tutorial_successes_min` | owner M1-D04 | `6` |
+| Owner geometry / feel | `feel_tutorial_successes_max` | owner M1-D04 | `8` |
+
+Head mass is derived (2.2 ×0.35 =0.77), never an independently authored mass.
+Visual fields are art-only, never physics inputs. FA readability scale150px/WU
+is not a camera choice; M1-B04 remains unresolved. Existing foot bias1.4 and static
+slip0.15 are unchanged. Any retuning requires owner approval with measurements.

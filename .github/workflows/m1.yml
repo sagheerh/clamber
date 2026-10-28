@@ -50,3 +50,27 @@ jobs:
               print(f"::{level} title=M1 primitive tests only::{escaped}")
           PYLOG
           exit "$status"
+
+      - name: Owner geometry and explicit pending runtime feel plans
+        shell: bash
+        run: |
+          set +e
+          M1_GEOMETRY_REPORT="$RUNNER_TEMP/m1-owner-geometry.json" tests/run_m1_feel.sh 2>&1 | tee "$RUNNER_TEMP/m1-geometry.log"
+          status=${PIPESTATUS[0]}
+          set -e
+          python3 - "$RUNNER_TEMP/m1-geometry.log" "$status" <<'PYLOG'
+          import re, sys
+          for line in open(sys.argv[1]).read().splitlines():
+              if re.search(r"SCRIPT ERROR|ERROR:|FAIL|Parse Error|M1 owner geometry:|M1 geometry FA-|M1 feel runtime:", line):
+                  level = "notice" if sys.argv[2] == "0" else "error"
+                  print(f"::{level} title=M1 analytic geometry only::" + line.replace("%", "%25").replace("\r", "%0D"))
+          PYLOG
+          exit "$status"
+      - name: Preserve analytic report (not a runtime artifact)
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: m1-owner-geometry-${{ github.run_id }}
+          path: ${{ runner.temp }}/m1-owner-geometry.json
+          if-no-files-found: warn
+          retention-days: 7

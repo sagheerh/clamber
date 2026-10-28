@@ -87,10 +87,8 @@ Provenance: `docs/CLAMBER_REVIEW_AGENT.provenance.md`. **M1-B02 RESOLVED
 ## Unresolved owner inputs / evidence risks
 
 - M0-B02: 0.75 vs0.72 camera zoom remains for M2; no camera work in M1.
-- M0-B03: grip normal-force threshold, haptic impulse threshold and generator
-  parameters remain unspecified. Do not create numeric defaults. Before any
-  dependent grip behavior, obtain the owner's value; proceed only on independent
-  solver work meanwhile. Haptics/generation are outside this packet.
+- M0-B03 grip-input portion is resolved by M1-D04's supplied ratio/floor.
+  Haptic/generator inputs remain unspecified and out of scope; do not invent them.
 - Full review pack is vendored unchanged; M1-B02 is resolved, not waived.
   Execute the original protocol before signoff; file presence is not review evidence.
 - No preset geometry, captures, performance measurement or complete creature-runtime
@@ -161,3 +159,13 @@ checks (82+292), zero failures. M0/Android CI40639067949 records476 engine check
 and13 original Python; the unchanged per-script compile check adds one for the
 accumulator file. Original475/488 floors are unchanged. These are unit/regression
 results only; all runtime acceptance rows remain NOT RUN.
+
+## M1-D04 geometry boundary
+
+M1-B01 RESOLVED (owner inputs supplied), not measured acceptance. Derivation hash
+6453508be7cb808f643544ec3f3fdbd6560840876fc070511f4b5f50065dbc5e verified;
+281-line source vendored unchanged. M1-B04 is flag-only, no runtime camera choice.
+FA-1/2/7 have analytic geometry checks (not render/device/feel measurements).
+FA-3/4/5/6 are NOT RUN; tests/feel/harness.gd lists cases/evidence fields with null
+observations and null FA-6 success count. All runtime acceptance above stays NOT RUN.
+The owner lifted the stop; next after B green is creature bodies/feet/contacts.

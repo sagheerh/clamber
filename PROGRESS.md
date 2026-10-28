@@ -1,6 +1,6 @@
 # CLAMBER progress
 
-## Current milestone: M0 — APPROVED / COMPLETE (owner override); M1 — IN PROGRESS / contact tuning BLOCKED
+## Current milestone: M0 — APPROVED / COMPLETE (owner override); M1 — IN PROGRESS / owner contact geometry supplied, contacts NOT RUN
 
 Session date: 2026-10-28. Normative inputs: `docs/GDD.md` and
 `docs/ui/CLAMBER_UI.jpeg`. M0 is accepted by the GDD owner under M0-D07, dated 2026-10-28. Verdict:
@@ -13,7 +13,7 @@ scaffold/PR; no M1 implementation or gate completion is claimed by this closeout
 - Pinned Godot4.7.2-stable project: Mobile renderer, 1080×2340, portrait,
   canvas_items/keep, 60 Hz, pixel snapping, MSAA off, ETC2/ASTC import enabled.
 - Engineering-only navy boot surface with safe-area container and lifecycle hooks.
-- `core/tuning.gd` / `.tres`: **376 exported fields**, seven required groups,
+- `core/tuning.gd` / `.tres`: **400 exported fields** (376 original +24 owner M1-D04), seven original groups,
   `docs/TUNING.md` source map. No core numeric literals; no feel/economy changes.
 - Atomic JSON SaveStore: flushed tmp, previous validated backup, atomic replacement;
   primary → backup → tmp → defaults recovery; checked errors and recovery signals.
@@ -216,3 +216,26 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
 - A9.5 explicitly varies frame delivery, not fixed60 tick_hz.
 - Next M1: only after Commit A is pushed/green, verify owner derivation hash and
   prepare the separate constants/geometry-tests/feel-scaffold Commit B.
+
+### Commit B — M1-D04 constants, geometry guards and feel scaffolding
+
+- Commit A0ee3548 passed pinned M1 CI40670975708 (381 checks, zero failures) and
+  M0/Android CI40670975949 before geometry work. Its M0 floors are476/489.
+- Owner derivation imported as the single immutable281-line file with verified
+  SHA-2566453508be7cb808f643544ec3f3fdbd6560840876fc070511f4b5f50065dbc5e.
+- M1-D04 records supplied collision/art radii, derived head mass, ratio/floor grip,
+  no root hinge, cosmetic-only eyes and provisional/no-silent-retune requirements.
+  M1-B01 is RESOLVED (inputs supplied); M1-B04 is unresolved FLAG ONLY, no camera.
+- Added24 named exports/resource values/inventory entries sourced owner M1-D04.
+  All376 pre-existing fields/values, GDD§3.2 and foot bias/slip remain unchanged.
+- Real analytic harness: all25 kind-pair D-10 bounds, distance-two pairs in
+  Slug3/Hopper8/TwinRoller6 topology fixtures, strict slop clearance and FA-1/2/7
+  checks. Topology-only fixtures are NOT runtime presets or captured gaits.
+- Static visual-radius isolation forbids direct/dynamic references by core except
+  schema declarations; source tests pin exact owner constants and derivation hash.
+- Runtime feel plans list required measurements without observations/successes.
+  FA-3/4/5/6, contacts, AC-201/202/204, A9, baseline, timing and captures NOT RUN.
+- Local script review:34 Python tests; lint/shell/diff checks pass. Real geometry
+  counts/artifact and source-pinned CI evidence will be in PR #3 after execution.
+- **Next: M1** — after B green, creature bodies/feet/contact response, then actual
+  acceptance traces. Feature stop is lifted. No M2/camera/screens or silent tuning.

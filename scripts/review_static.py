@@ -22,6 +22,12 @@ def violations(text, path):
     elif re.search(PHYSICS_NODES, code):
         problems.append('engine physics node')
     if path.startswith('core/') and path.endswith('.gd'):
+        visual_source = text
+        if path == 'core/tuning.gd':
+            # Declarations are not reads; runtime code in the schema is NOT exempt.
+            visual_source = re.sub(r'^\s*@export var \w*_visual_radius_\w*:\s*\w+\s*$', '', text, flags=re.M)
+        if re.search(r'\b\w*_visual_radius_\w*\b', visual_source):
+            problems.append('visual radius referenced by core physics')
         if re.search(r'res://(?:ui|platform)/', text):
             problems.append('core UI/platform dependency')
         if re.search(r'(?<![\w])(?:0[xX][\da-fA-F]+|\d+(?:\.\d*)?)', code):

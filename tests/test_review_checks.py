@@ -34,6 +34,15 @@ class ReviewChecksTests(unittest.TestCase):
         self.assertTrue(violations('var mass = 1.0', 'core/creature/example.gd'))
         self.assertTrue(violations('const UI = preload("res://ui/example.gd")', 'core/sim/example.gd'))
 
+    def test_visual_radius_isolation_including_dynamic_lookup(self):
+        for code in ['tuning.art_head_visual_radius_wu', 'tuning.get("art_motor_visual_radius_wu")']:
+            for path in ['core/sim/example.gd', 'core/creature/example.gd', 'core/tuning.gd']:
+                with self.subTest(code=code, path=path):
+                    self.assertIn('visual radius referenced by core physics', violations(code, path))
+            self.assertNotIn('visual radius referenced by core physics', violations(code, 'ui/example.gd'))
+        self.assertNotIn('visual radius referenced by core physics',
+                         violations('@export var art_head_visual_radius_wu: float', 'core/tuning.gd'))
+
     def test_m0_exact_baseline(self):
         self.assertEqual(validate('Ran 6 tests in x\nRan 7 tests in x\nM0: 476 checks, 0 failures\n'), (476, 13))
 

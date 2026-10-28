@@ -100,8 +100,8 @@ and implementation belong in a separate commit and PR after that boundary.
 - **M0-B02 (before camera implementation):** §2.3 S03 specifies airborne zoom 0.75,
   §4.8 specifies 0.72. Both are preserved under section-specific tuning names;
   neither is selected or used in M0. Which is normative?
-- **M0-B03 (before contact/haptics/generator implementation):** §4.4 foot normal-force
-  grip threshold, §11.3 landing haptic impulse threshold, and §6.3 generation salt,
+- **M0-B03:** grip-input portion resolved by M1-D04; §11.3 landing haptic
+  impulse threshold and §6.3 generation salt,
   profile weights/heights are named but have no supplied numeric values. They are
   intentionally not fabricated as zero-valued tunables. Supply values when those
   milestones are assigned. No M0 feature depends on them.
@@ -123,8 +123,8 @@ constitute execution of its invariant sweep, five-fakes or A12 review.
 
 ## M1 blockers — needs human answer before dependent implementation
 
-- M1-B01: supply body radii, head mass/length treatment and M0-B03 grip threshold
-  with units. No moving-creature acceptance until the dependent physics exists.
+- M1-B01: **RESOLVED (owner inputs supplied)** by M1-D04. No contact/feel
+  acceptance follows from receiving provisional constants.
 - M1-B02: **RESOLVED (vendored), not waived**. Full owner-supplied review pack
   imported unchanged on 2026-10-28; see provenance for its exact hash. Full
   INV-01..INV-10/five-fakes/A12 execution remains outstanding.
@@ -207,3 +207,57 @@ identical atomicity assertions, and label each result's configuration. Frame-onl
 is NOT implemented or measured; neither mode currently has tick-cost evidence.
 F19: A9.5 varies outer frame delivery, not the shipped fixed60 Hz simulation or
 DistanceConstraint's independently injectable mathematical test rate.
+
+## M1-D04 — Owner contact geometry / grip inputs (provisional)
+
+Owner decision supplied2026-10-28. Full derivation imported byte-identically from
+`arena/5b72e4ab-clamber` at `ad9fbbcb57e1f9cdfcb720cfe616d13221991480`, ONLY
+`.review/M1_B01_CONTACT_GEOMETRY_DERIVATION.md`:281 lines, SHA-256
+`6453508be7cb808f643544ec3f3fdbd6560840876fc070511f4b5f50065dbc5e`.
+Hash verified before reading/using the file. Commit A0ee3548 was pushed and green
+(M1 CI40670975708, M0/Android CI40670975949) before this geometry work.
+
+Collision radii in WU: limb0.065, passive0.085, motor0.095, foot0.050, head0.100.
+Art-only visual radii in WU: limb0.065, passive0.105, motor0.120, foot0.065,
+head0.135. Visual fields are declared in Tuning but MUST NOT be referenced by
+other core scripts, including dynamic property-name lookups. Tests enforce this.
+No physics state gets a visual radius or eye-look-at input (INV-10).
+
+Root head: mass per WU2.2, length0.35, derived mass0.77. No parent hinge or angular
+limit. It collides with terrain and with parts at hierarchy distance≥2 per D-10.
+Foot grip uses normal_force_last_tick >= max(5.0, 0.40 * sum(m_i) * abs(g)),
+conditioned on an actual ground contact; airborne never grips. The 0.40 ratio and
+5.0 floor replace any earlier absolute-threshold idea. Existing foot bias1.4,
+static slip0.15, GDD§3.2 masses/lengths/friction/stiffness/torque are unchanged.
+M1-B01 is RESOLVED (owner inputs supplied), not a claim of implemented contact.
+M0-B03's grip-input portion is resolved; haptic/generator inputs remain open.
+
+All additions are named exports/resource values/inventory entries sourced
+"owner M1-D04", including D-10 bend margin0.06 and the owner feel-check constants.
+D-10 requires each distance-two pair's radius sum STRICTLY below
+joint_length - contact_slop - bend_margin =0.22; reaching the bound fails.
+Every collision radius must strictly exceed contact slop. Tests cover all25 kind
+pairs and three topology-only preset fixtures (Slug3/Hopper8/TwinRoller6), including
+sibling distance-two pairs. These fixtures choose no rest pose/gait and are NOT
+runtime presets/captures; future authored runtime presets must run the same guard.
+
+FA-1 uses width-derived150px/WU only for analytic readability, not camera setup.
+FA-2 checks all eight limb lengths. FA-7 checks visual HEAD dominance in all three
+fixtures. FA-3 static600-tick scenes, FA-4 settle/sleep and approximate one-length
+lurch, FA-5 grip band, FA-6 ten-run success count remain NOT RUN until actual
+contacts/motors/scenarios exist. Harness plans/evidence slots must not default to
+successful observations. FA-4's approximate lurch is recorded as distance/body
+length, not an invented numeric acceptance band. FA-6 must report actual counts;
+do not inject random variations into identical deterministic runs to force6–8.
+These are provisional design inputs, NOT measured feel evidence. If an owner value
+must change to satisfy any FA/AC, STOP, report measurements and ask; no silent
+retuning, tolerance widening or weakened assertions.
+
+**M1-B04 — FLAG ONLY, unresolved camera/chunk scale:** GDD line569 width7.2WU
+at1080px implies150px/WU; line797 height8.0WU at2340px implies292.5px/WU.
+Neither is chosen for runtime/camera. No camera, M2 or product-screen work.
+
+The owner explicitly lifted the earlier feature-work stop. After Commit B is
+pushed/green, creature bodies/feet/contact response are authorized as the next
+separate M1 increment, followed by actual AC traces/captures. No new permission
+for M2/camera is implied. M1-B04 is flag-only, not a blocker to M1 contacts.
