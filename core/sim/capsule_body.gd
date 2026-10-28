@@ -18,7 +18,7 @@ func configure(part: CreaturePart, x: float, y: float) -> Error:
 		return ERR_INVALID_DATA
 	var first := SimBody.new()
 	var second := SimBody.new()
-	var inverse := float(TUNING.physics_one + TUNING.physics_one) / part.mass
+	var inverse: float = float(TUNING.physics_one + TUNING.physics_one) / part.mass
 	if (
 		first.setup(x, y, inverse) != OK
 		or second.setup(x + part.axis_x * part.length, y + part.axis_y * part.length, inverse) != OK
@@ -94,7 +94,7 @@ func restore(state: Dictionary) -> Error:
 	var second := SimBody.new()
 	if first.restore(state.a) != OK or second.restore(state.b) != OK:
 		return ERR_INVALID_DATA
-	var inverse := float(TUNING.physics_one + TUNING.physics_one) / state.mass
+	var inverse: float = float(TUNING.physics_one + TUNING.physics_one) / state.mass
 	if not is_finite(inverse) or first.inverse_mass != inverse or second.inverse_mass != inverse:
 		return ERR_INVALID_DATA
 	if (

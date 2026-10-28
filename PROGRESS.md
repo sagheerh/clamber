@@ -300,3 +300,8 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
   Replaced with Godot's `ERR_PARAMETER_RANGE_ERROR`; no physical value/assertion
   changed. Geometry step skipped in that run, not passed. Unit failure is not a
   complete-creature determinism attempt. Re-run pending.
+
+- The companion M0 compile sweep on81d0840 also caught a typed-inference error
+  in capsule restore (`state.mass` is a Variant); inverse mass is now explicitly
+  float. Old M0 result504 checks/2 compile failures is not regression evidence.
+  Corrective queued969ef16 runs are superseded before execution by this fix.
