@@ -94,3 +94,12 @@ values: per-part radii (including head), head mass/length and grip normal-force
 threshold are missing. Collision, creature simulation and gait gates remain
 blocked on those inputs. Mathematical body/constraint state can proceed without
 choosing them. Full external pack vendoring remains explicitly incomplete.
+
+## Independent increment 1 (M1-D02)
+
+Scaffold commit2358c83 CI was green before this code increment. The new point-body
+state and XPBD distance-link primitive have their own synthetic real-engine unit
+job. They do not implement creature integration/contact, presets or a Sim replay.
+All AC-201/202/204, A9 runtime, performance, gait and cross-architecture acceptance
+rows remain NOT RUN. The public Sim functions still have their M0 stub bodies.
+No arbitrary point-fixture values may be promoted to gameplay tuning defaults.

@@ -95,3 +95,19 @@ sweep, five-fakes and A12 evidence requirements. A separate M1 static CI job and
 Full review-pack text is still absent; the source document is explicitly partial.
 Owner selected independent work while missing radii/head properties/grip threshold
 are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
+
+### M1 independent increment 1 — pending real-engine unit validation
+
+- Scaffold-only commit `2358c83` passed CI before mathematical implementation:
+  M1 static run40631318799 and M0 regression/Android run40631318609.
+- Draft PR: https://github.com/sagheerh/clamber/pull/3 (active session branch);
+  prior scaffold PR#2 is left unchanged on its earlier branch.
+- `core/sim/body.gd`: explicit float64 point state, finite/bounds validation,
+  non-aliasing snapshot, checked atomic restore; no collision radii/default mass.
+- `core/sim/constraint.gd`: independent XPBD distance-link projection, explicit
+  compliance and tick-boundary multiplier reset; no creature integration/contact.
+- `tests/sim/test_math_state.gd` + `tests/run_m1_math.sh`: synthetic unit fixtures,
+  pinned real-engine CI job; these are NOT creature/replay/soak acceptance.
+- Original M0 tests, public Sim interface, tuning values and boot scene unchanged.
+- Presets/model/contact/debug view and M1 runtime gates remain blocked/not run;
+  no head properties/radii/grip threshold or baseline hash has been invented.

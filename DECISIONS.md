@@ -127,3 +127,22 @@ need the original source before signoff. F2 remains partially blocked, not done.
 - M1-B02: supply full external review pack. Partial R3 text is tracked honestly;
   it cannot establish full INV-01..INV-10/five-fakes/A12 review compliance.
 - M0-B02 remains a camera/M2 question; haptic/generator values remain out of scope.
+
+## M1-D02 — Scalar point/link foundations are not a creature solver
+
+Independent increment 1 uses float64 GDScript scalar x/y, previous position,
+velocity and explicitly supplied inverse mass. It introduces no radius, head
+property, gravity/integration, sleep, contact, hinge or actuation tuning. Zero
+inverse mass represents a mathematical pinned point; it is not a head default.
+DistanceConstraint implements the standard XPBD distance projection with caller-
+supplied rest length/compliance and fixed step derived from tuning tick rate.
+Its multiplier must be reset by the future tick owner, not silently per iteration.
+
+Coincident endpoints have no defined gradient; reject them rather than fabricate
+an axis/epsilon. Unsolvable pinned pairs and non-finite/overflow candidates return
+errors without partial mutation. Snapshot restoration validates all fields before
+mutation. Synthetic fixture values in tests are mathematical examples, not
+approved creature/preset tuning. Unit projection/restoration tests are NOT the M1
+3600-tick replay, baseline, bit-flip falsification, contact soak or gait captures.
+No complete creature determinism attempt has run; the two-attempt stop budget has
+not been consumed and D-11 is not being proposed on infrastructure blockers.
