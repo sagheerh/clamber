@@ -475,3 +475,35 @@ is LAST300, whereas ALL600 measured peak14.81106559439147N and applied peak
 14.807263336585688N are still below17.36N. Grip never engaged. No transient clipping
 or false no-toggle success. No pose branch authorized; F31/F32/F33 evidence supplied
 for review without assigning an owner acceptance verdict to those minors.
+
+
+## M1-D09 — R11 closure and forward measurement-only limit-cycle diagnosis
+
+R11 owner CLOSES F31 after independent reconstruction of raw endpoint momentum,
+resource damping, all-contact support and real clamp measurement. Conservation
+F22/F23/F25/F31 is CLOSED. Preserve those checks and the two algebra-balanced but
+physically fake ledger controls; components are NOT complete-creature determinism.
+
+F35 forward MAJOR: steady nonzero velocity field with repeating positions is NOT
+rest. Before any fix, record EVERY part's endpoint/COM speed, all600 momentum decay,
+and measured per-endpoint displacement contributions from integration, distance
+rows, hinge rows and contact position projection. Log predictor-vs-completed-v
+phase offset too: end-of-tick v*dt is not the actual same-tick predictor displacement.
+No changes to0.02 damping, no velocity epsilon/sleep predicate, no behavioral fix.
+Run isolated diagnostic-only position-iteration samples1/2/4/6/12/24; source default6
+is NOT changed/adopted. Results and mechanism attribution require actual runtime,
+pending at implementation commit; do not infer which phase pumps from source alone.
+The observed last300 P envelope defines a descriptive plateau-entry tick only,
+never a rest tolerance; exact-constant suffix is reported separately without epsilon.
+
+F36: synthetic lowered-motor pose must trip the shared audit now; flags become
+hard production assertions in the authorized pose-decision commit, NOT before.
+F37: retain existence-only boolean but ALSO print last300 grip fraction and foot
+share of ALL grounded measured reaction; no new sustained-support threshold.
+
+F30 remains the only red gate and owner pose decision is PENDING: A pose-axis rule
+recommended, B pinned radius changes rejected, C sprawl/re-target requires decision.
+Do not implement A/B/C or angular limits. Order is F35 instrumentation -> unchanged
+baseline + diagnostic sweep -> owner pose decision -> pose+F36 assertion -> FA-5
+band. FA-3/4/5/6 and all other coupled runtime gates NOT RUN; determinism attempts0.
+No retune, M2, or captures. Geometry unchanged outside synthetic test bodies.

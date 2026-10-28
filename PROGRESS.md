@@ -8,24 +8,27 @@ Session date: 2026-10-28. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R10 correction / blocked work
+### Current R11 / measurement-only work
 
-- F22/F23/F25 CLOSED by owner review. R9's foot-only43.4N requirement was the
-  owner's incorrect wording, corrected in R10: ALL grounded contacts carry weight;
-  foot-only weight applies ONLY to sole-foot support. Existing43.59610684435376N
-  meets literal±0.723N. R9's "force defect"/next-angular-fix conclusions below are
-  historical and superseded, not current policy.
-- F30 authored feet above parent bellies is the real foot-path blocker. A pose-axis
-  recommendation is NOT approval; B radius changes rejected in review; C sprawl
-  only partly defensible. Owner decision PENDING. No angular/pose/radius branch.
-- Current increment adds every-body START/completed endpoints/bottoms, cheap
-  every-part/all-preset bottom audit, measured discrete momentum ledger, corrected
-  all-grounded parser, and explicit "grip never engaged"/F30 blocker. Pinned engine
-  measurement @be04bbf (CI40695219730) reproduced600 rows: damping accounts for
-  +.19610684435376N; all-contact conservation passes. CI remains red without genuine
-  foot load path. Further parser checks verify drag against raw start momentum.
-- FA-3/4/5/6/all coupled AC/A9/§10.6/timing/captures NOT RUN; attempts0. Next single
-  milestone M1: verify the measured ledger and await owner's F30 pose decision.
+- F22/F23/F25 and now F31 owner-CLOSED. R11 independently reproduced momentum,
+  damping and all-contact bias. Keep raw-endpoint/damping/resource/contact checks
+  and algebra-balanced-but-fake-physics controls. Conservation is closed.
+- F35 forward MAJOR: persistent nonzero upward velocities while positions repeat
+  are not a resting fixed point. Instrument only: per-part endpoint/COM speeds,
+  full600 decay profile, actual displacement attributed to integration, distance,
+  hinge and contact position projection per endpoint/part/tick. Also distinguish
+  same-tick predictor displacement from completed-velocity*dt. No behavioral fix.
+- Add isolated position-iteration sweep1/2/4/6/12/24 (source default6 unchanged).
+  Runtime measurements PENDING at this commit; no value adopted. No damping
+  change, velocity epsilon, pose/radius/limits branch or sleep implementation.
+- F36 synthetic deliberately lowered motor must trip the shared bottom audit;
+  hard production flag assertion deferred to the authorized pose-decision commit.
+  F37 steady grip fraction and foot/all-grounded support share added; path-exists
+  is explicitly NOT sustained support. No new acceptance threshold.
+- F30 remains the only active red gate; owner A/C pose decision PENDING (B radius
+  changes rejected). FA-3/4/5/6/all coupled runtime gates NOT RUN; determinism0.
+  Next M1: inspect unchanged baseline + F35 sweep, then owner pose decision before
+  pose+F36 hard assertion; only then FA-5 band. No M2/retune/captures.
 
 ### Exists
 
@@ -612,3 +615,24 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
   FA-3/4/5/6/all coupled AC/A9/§10.6/runtime timing NOT RUN; determinism attempts0.
   Next single milestone M1: await owner's F30 decision, then authorized foot-path
   proof before FA-5 load-band/two-foot work. No angular-limit next-fix inference.
+
+
+### R11 instrumentation before pinned execution
+
+- F31 owner-CLOSED; accepted conservation verification unchanged. F35 measured
+  displacement ledger surrounds existing integration/distance/hinge/contact calls
+  without changing call order/arithmetic or writing physical state. Per-body
+  endpoint norms/COM norm and all600 profile added. No rest/sleep epsilon; first
+  plateau entry is described relative to the OBSERVED last300 P range, not a gate.
+- Iteration samples1/2/4/6/12/24 use fresh diagnostic-only tuning clones. Source
+  resource remains6; each600 trace/profile is preserved separately. No value is
+  selected/adopted and no force data normalized for the sweep. Engine/partial
+  failures remain explicit NOT COMPLETED, never zero-amplitude observations.
+- F36 now tests a real synthetic body-pose motor lowered from a clear pose through
+  the SAME bottom calculation/flagger as production. Production flags remain
+  findings until owner pose commit; that commit MUST hard-assert the chosen rule.
+- F37 reports last300 gripping count/fraction and per-tick measured grounded foot
+  support / ALL grounded support, with range/mean; zero denominator undefined.
+  Existing any-loaded-grip boolean is labeled existence-only, NOT sustained stance.
+- Local checks pending final command below; pinned baseline/sweep measurements
+  still PENDING. No behavioral corrections, no tuning/preset/contact changes.

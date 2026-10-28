@@ -147,20 +147,34 @@ func _step(before: Dictionary) -> Dictionary:
 		"internal_impulse_y_ns": float(TUNING.physics_zero),
 		"contact_velocity_impulse_y_ns": float(TUNING.physics_zero),
 	}
-	var projected := _predict_and_project(dt, budget)
+	var positions: Array = []
+	for body in bodies:
+		var phases := {}
+		for phase in ["integration", "distance", "hinge", "contact"]:
+			phases[phase] = [
+				float(TUNING.physics_zero),
+				float(TUNING.physics_zero),
+				float(TUNING.physics_zero),
+				float(TUNING.physics_zero)
+			]
+		positions.append(phases)
+	var projected := _predict_and_project(dt, budget, positions)
 	if projected != OK:
 		return {"status": projected}
-	var response := _velocity_contacts(before, dt, hinge_x, hinge_y, reaction, cleanup, budget)
+	var response := _velocity_contacts(
+		before, dt, hinge_x, hinge_y, reaction, cleanup, budget, positions
+	)
 	if response.status != OK:
 		return response
 	for index in range(bodies.size()):
 		bodies[index].measured_reaction_n = reaction[index]
 		bodies[index].positional_cleanup_n = cleanup[index]
 	_ticks += TUNING.physics_one
-	return _trace(previous_count, response.lowest, hinge_y, before, budget)
+	return _trace(previous_count, response.lowest, hinge_y, before, budget, positions)
 
 
-func _predict_and_project(dt: float, budget: Dictionary) -> Error:
+func _predict_and_project(dt: float, budget: Dictionary, positions: Array) -> Error:
+	var before_integration := _positions()
 	var retention := TUNING.physics_one - _tuning.physics_linear_damping
 	for body in bodies:
 		for point in [body.a, body.b]:
@@ -180,16 +194,21 @@ func _predict_and_project(dt: float, budget: Dictionary) -> Error:
 			budget.clamp_impulse_y_ns += mass * (point.velocity_y - before_clamp)
 			point.x += point.velocity_x * dt
 			point.y += point.velocity_y * dt
+	_book_positions(before_integration, positions, "integration")
 	for link in _links:
 		link.reset_multiplier()
 	for iteration in range(_tuning.physics_position_iterations):
+		var before_distance := _positions()
 		for link in _links:
 			for repetition in range(_tuning.physics_distance_solves_per_iteration):
 				if link.project(_tuning) != OK:
 					return ERR_INVALID_DATA
+		_book_positions(before_distance, positions, "distance")
+		var before_hinge := _positions()
 		for hinge in _hinges:
 			if hinge.project_position() != OK:
 				return ERR_INVALID_DATA
+		_book_positions(before_hinge, positions, "hinge")
 	return OK
 
 
@@ -200,7 +219,8 @@ func _velocity_contacts(
 	hinge_y: Array[float],
 	reaction: Array[float],
 	cleanup: Array[float],
-	budget: Dictionary
+	budget: Dictionary,
+	positions: Array
 ) -> Dictionary:
 	var lowest: Array[bool] = []
 	# Position corrections do NOT become velocity impulses or qualifying loads.
@@ -242,11 +262,13 @@ func _velocity_contacts(
 			)
 		lowest = lowest_mask(bodies, _tuning)
 		var before_contact := _momentum_y()
+		var before_contact_positions := _positions()
 		var status := CapsuleContact.resolve_tick(
 			bodies, _terrain, _mass, lowest, _friction, _restitution, _tuning
 		)
 		if status != OK:
 			return {"status": status}
+		_book_positions(before_contact_positions, positions, "contact")
 		budget.contact_velocity_impulse_y_ns += _momentum_y() - before_contact
 		for index in range(bodies.size()):
 			reaction[index] += bodies[index].measured_reaction_n
@@ -310,7 +332,8 @@ func _trace(
 	lowest: Array,
 	hinge_y: Array[float],
 	before: Dictionary,
-	budget: Dictionary
+	budget: Dictionary,
+	positions: Array
 ) -> Dictionary:
 	var feet: Array = []
 	var other_bodies: Array = []
@@ -321,6 +344,7 @@ func _trace(
 	for index in range(bodies.size()):
 		var body := bodies[index]
 		var geometry := _body_geometry(body, before.bodies[index])
+		geometry.position_delta_wu = positions[index]
 		if body.kind != "foot":
 			other += body.measured_reaction_n
 			other_bodies.append(
@@ -401,6 +425,7 @@ func _trace(
 		"other_body_reaction_n": other,
 		"other_bodies": other_bodies,
 		"momentum_budget": budget,
+		"diagnostic_position_iterations": _tuning.physics_position_iterations,
 		"weight_n": weight,
 		"applied_error_n": applied - weight,
 		"measured_error_n": measured - weight,
@@ -433,6 +458,28 @@ func _body_geometry(body: CapsuleBody, start: Dictionary) -> Dictionary:
 		"bvx": body.b.velocity_x,
 		"bvy": body.b.velocity_y,
 		"bottom_wu": minf(body.a.y, body.b.y) - body.radius,
+		"speed_a_wu_s":
+		sqrt(body.a.velocity_x * body.a.velocity_x + body.a.velocity_y * body.a.velocity_y),
+		"speed_b_wu_s":
+		sqrt(body.b.velocity_x * body.b.velocity_x + body.b.velocity_y * body.b.velocity_y),
+		"com_speed_wu_s":
+		(
+			sqrt(
+				(
+					(
+						(body.a.velocity_x + body.b.velocity_x)
+						* (body.a.velocity_x + body.b.velocity_x)
+					)
+					+ (
+						(body.a.velocity_y + body.b.velocity_y)
+						* (body.a.velocity_y + body.b.velocity_y)
+					)
+				)
+			)
+			/ (TUNING.physics_one + TUNING.physics_one)
+		),
+		"start_avx": start.a.velocity_x,
+		"start_bvx": start.b.velocity_x,
 		"start_avy": start.a.velocity_y,
 		"start_bvy": start.b.velocity_y,
 		"start_ax": start.a.x,
@@ -441,3 +488,17 @@ func _body_geometry(body: CapsuleBody, start: Dictionary) -> Dictionary:
 		"start_by": start.b.y,
 		"bottom_start_wu": minf(start.a.y, start.b.y) - body.radius,
 	}
+
+
+func _positions() -> Array:
+	var values: Array = []
+	for body in bodies:
+		values.append([body.a.x, body.a.y, body.b.x, body.b.y])
+	return values
+
+
+func _book_positions(before: Array, ledger: Array, phase: String) -> void:
+	var after := _positions()
+	for index in range(bodies.size()):
+		for coordinate in range(before[index].size()):
+			ledger[index][phase][coordinate] += after[index][coordinate] - before[index][coordinate]

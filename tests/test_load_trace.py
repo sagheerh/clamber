@@ -18,7 +18,7 @@ def fixture():
     for tick in range(600):
         rows.append({
             'tick': tick, 'status': 0, 'previous_grounded_feet': 0 if tick == 0 else 1,
-            'weight_n': 43.4, 'sleep_state': 'awake', 'sleep_implemented': False,
+            'diagnostic_position_iterations': 6, 'weight_n': 43.4, 'sleep_state': 'awake', 'sleep_implemented': False,
             'sum_applied_load_n': 43.4, 'sum_measured_reaction_n': 43.4,
             'sum_positional_cleanup_n': 0.0,
             'other_bodies': [], 'other_body_reaction_n': 0.0,
@@ -38,6 +38,9 @@ def fixture():
                         ax=0.0, ay=.03, bx=.25, by=.03, avx=0.0, avy=0.0, bvx=0.0, bvy=0.0,
                         start_ax=0.0, start_ay=.03, start_bx=.25, start_by=.03,
                         start_avy=0.0, start_bvy=0.0,
+                        start_avx=0.0, start_bvx=0.0,
+                        speed_a_wu_s=0.0, speed_b_wu_s=0.0, com_speed_wu_s=0.0,
+                        position_delta_wu={p: [0.0]*4 for p in ("integration", "distance", "hinge", "contact")},
                         bottom_wu=.03 - .05, bottom_start_wu=.03 - .05)
             if kind != 'foot':
                 row['other_bodies'].append(body)
@@ -248,7 +251,9 @@ class LoadTraceTests(unittest.TestCase):
         source = textwrap.dedent(load_step.split('          import re, sys\n', 1)[1].split('          PYLOG', 1)[0])
         # Exercise the actual workflow Python, not a duplicate implementation.
         lines = ['M1 Slug tick: ' + 'raw' * 1000] * 600
-        lines += ['M1 Slug first: ' + 'x' * 3100, 'M1 Slug last: ' + 'y' * 3100,
+        import json
+        fake_row = fixture()[0]
+        lines += ['M1 Slug first: ' + json.dumps(fake_row), 'M1 Slug last: ' + json.dumps(fake_row),
                   'M1 Slug momentum ledger verified: true',
                   'M1 Slug engagement: grip never engaged',
                   'M1 Slug peaks: measured=9.9N', 'M1 Slug F30 BLOCKED: owner pose decision pending']
@@ -267,6 +272,86 @@ class LoadTraceTests(unittest.TestCase):
         for label in ('first:', 'last:', 'momentum ledger verified: true',
                       'engagement: grip never engaged', 'peaks:', 'F30 BLOCKED:'):
             self.assertIn('M1 Slug ' + label, combined)
+
+    def test_single_grip_tick_is_distinguished_from_sustained_support(self):
+        rows = fixture()
+        rows[350]['feet'][0]['gripping'] = True
+        result = analyze(rows)
+        self.assertTrue(result['foot_load_path_exercised'])
+        self.assertEqual(result['motion']['steady_grip_ticks'], 1)
+        self.assertEqual(result['motion']['steady_grip_fraction'], 1 / 300)
+        self.assertEqual(result['motion']['steady_foot_support_share_range'], [1.0, 1.0])
+        self.assertEqual(result['FA-5'], 'NOT RUN')
+
+    def test_support_share_uses_all_grounded_reaction_and_excludes_cleanup(self):
+        rows = fixture()
+        for row in rows:
+            row['feet'][0]['measured_reaction_n'] = row['sum_measured_reaction_n'] = 8.68
+            row['feet'][0]['positional_cleanup_n'] = row['sum_positional_cleanup_n'] = 999.0
+            row['other_bodies'][0]['grounded'] = True
+            row['other_bodies'][0]['measured_reaction_n'] = row['other_body_reaction_n'] = 34.72
+        result = analyze(rows)
+        self.assertAlmostEqual(result['motion']['steady_foot_support_share_mean'], .2)
+        self.assertEqual(result['motion']['steady_grip_fraction'], 0.0)
+
+    def test_position_ledger_claim_not_trusted(self):
+        rows = fixture()
+        rows[99]['feet'][0]['position_delta_wu']['hinge'][1] = .002
+        self.assertFalse(analyze(rows)['motion']['position_ledger_and_speed_identities_verified'])
+
+    def test_missing_position_phase_rejected(self):
+        rows = fixture()
+        del rows[99]['other_bodies'][0]['position_delta_wu']['distance']
+        with self.assertRaises(ValueError):
+            analyze(rows)
+
+    def test_fake_speed_claim_rejected_as_identity_not_sleep_threshold(self):
+        rows = fixture()
+        rows[99]['feet'][0]['speed_a_wu_s'] = .1
+        self.assertFalse(analyze(rows)['motion']['position_ledger_and_speed_identities_verified'])
+
+    def test_decay_profile_reports_nonzero_plateau_without_a_rest_epsilon(self):
+        rows = fixture()
+        for i, row in enumerate(rows):
+            row['momentum_budget']['momentum_after_y_ns'] = 1 / (i+1) if i < 200 else .004
+        result = analyze(rows)['motion']
+        self.assertEqual(result['first_tick_all_remaining_inside_final_observed_envelope'], 200)
+        self.assertEqual(result['first_tick_exact_constant_suffix_at_least_two_rows'], 200)
+        self.assertEqual(result['momentum_final_observed_envelope_ns'], [.004, .004])
+
+    def test_zero_ground_support_share_is_undefined_not_divided_or_clipped(self):
+        rows = fixture()
+        for row in rows:
+            row['feet'][0]['measured_reaction_n'] = row['sum_measured_reaction_n'] = 0.0
+        result = analyze(rows)['motion']
+        self.assertIsNone(result['steady_foot_support_share_range'])
+        self.assertEqual(result['steady_undefined_support_share_ticks'], 300)
+
+    def test_sweep_is_observation_only_with_every_sample_and_no_adoption(self):
+        import json
+        from load_motion_sweep import summarize, ITERATIONS
+        with tempfile.TemporaryDirectory() as folder:
+            for count in ITERATIONS:
+                path = Path(folder) / f'iterations-{count}'
+                path.mkdir()
+                rows = fixture()
+                for row in rows:
+                    row['diagnostic_position_iterations'] = count
+                (path / 'engine-status.txt').write_text('0')
+                (path / 'slug-600.jsonl').write_text(''.join(json.dumps(r) + '\n' for r in rows))
+            result = summarize(folder)
+        self.assertEqual([c['iterations'] for c in result['cases']], [1, 2, 4, 6, 12, 24])
+        self.assertTrue(all(c['status'] == 'OBSERVED' for c in result['cases']))
+        self.assertFalse(result['adopted_new_value'])
+        self.assertEqual(result['configured_position_iterations'], 6)
+        self.assertEqual(result['FA-3'], 'NOT RUN')
+
+    def test_missing_sweep_data_is_not_a_zero_amplitude_result(self):
+        from load_motion_sweep import summarize
+        with tempfile.TemporaryDirectory() as folder:
+            result = summarize(folder)
+        self.assertTrue(all(c['status'] == 'NOT COMPLETED' for c in result['cases']))
+        self.assertTrue(all('steady_max_endpoint_speed_range_wu_s' not in c for c in result['cases']))
 
 
 if __name__ == '__main__':

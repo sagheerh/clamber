@@ -5,6 +5,7 @@ import math
 import re
 from pathlib import Path
 import sys
+from load_motion_report import motion_profile
 
 WEIGHT_N = 43.4
 CEILING_N = 0.723  # Owner literal, NOT rounded upward to W/60.
@@ -134,7 +135,13 @@ def analyze(rows):
                       abs(r['contact_cross_error_ns']) <= IDENTITY_EPS and
                       abs(r['bias_error_n']) <= IDENTITY_EPS and
                       abs(r['internal_impulse_y_ns']) <= IDENTITY_EPS for r in ledgers)
+    motion, _ = motion_profile(rows, close)
+    iterations = {r['diagnostic_position_iterations'] for r in rows}
+    if len(iterations) != 1 or next(iter(iterations)) <= 0:
+        raise ValueError('Mixed/invalid diagnostic iteration count')
     return {
+        'diagnostic_position_iterations': next(iter(iterations)),
+        'motion': motion,
         'scope': 'hinged engineering load probe, NOT FA acceptance or determinism',
         'rows': len(rows), 'steady_window_ticks': [300, 599], 'ceiling_n': CEILING_N,
         'invariant': 'ALL grounded contacts vs weight; foot-only vs weight ONLY for sole-foot support',
@@ -178,6 +185,9 @@ if __name__ == '__main__':
     rows = [json.loads(line) for line in Path(sys.argv[1]).read_text().splitlines()]
     summary = analyze(rows)
     Path(sys.argv[2]).write_text(json.dumps(summary, indent=2) + '\n')
+    _, profile = motion_profile(rows, close)
+    Path(sys.argv[2]).with_name('slug-motion-profile.jsonl').write_text(
+        ''.join(json.dumps(r, sort_keys=True) + '\n' for r in profile))
     good = summary['force_window_within_owner_tolerance']
     print('M1 Slug force window (ALL grounded): ' + ('WITHIN TOLERANCE' if good else 'FINDING (outside fixed tolerance)'))
     for label, key in [('errors', 'max_absolute_errors_n'), ('ranges', 'steady_ranges_n'),
@@ -187,10 +197,14 @@ if __name__ == '__main__':
                        ('momentum budget ranges', 'steady_momentum_budget_ranges'),
                        ('first', 'first'), ('last', 'last'), ('grip toggle ticks', 'grip_toggle_ticks')]:
         print('M1 Slug ' + label + ': ' + json.dumps(summary[key], sort_keys=True))
+    motion = summary['motion']
+    for body in motion['bodies']:
+        print('M1 Slug motion part: ' + json.dumps(body, sort_keys=True))
+    print('M1 Slug motion summary: ' + json.dumps({k: v for k, v in motion.items() if k != 'bodies'}, sort_keys=True))
     print('M1 Slug engagement: ' + summary['grip_engagement'])
     print('M1 Slug peaks: applied=' + str(summary['peak_foot_applied_n']) +
           'N measured=' + str(summary['peak_foot_measured_n']) + 'N (all600), steady measured=' + str(summary['steady_peak_foot_measured_n']) +
           'N; N1 gate=17.36N')
     if not summary['foot_load_path_exercised']:
         print('M1 Slug F30 BLOCKED: genuine foot load path not exercised; owner pose decision pending')
-    raise SystemExit(0 if good and summary['momentum_ledger_verified'] and summary['foot_load_path_exercised'] else 1)
+    raise SystemExit(0 if good and summary['momentum_ledger_verified'] and motion['position_ledger_and_speed_identities_verified'] and summary['foot_load_path_exercised'] else 1)

@@ -109,7 +109,16 @@ jobs:
           python3 - "$RUNNER_TEMP/m1-load-console.log" "$status" <<'PYLOG'
           import re, sys
           pattern = r"SCRIPT ERROR|ERROR:|FAIL|Parse Error|M1 load-path components:|M1 isolated gravity|M1 Slug (?!tick:)"
-          selected = [line for line in open(sys.argv[1]).read().splitlines() if re.search(pattern, line)]
+          import json
+          with open(sys.argv[1]) as file:
+              selected = [line for line in file.read().splitlines() if re.search(pattern, line)]
+          for i, line in enumerate(selected):
+              if line.startswith(('M1 Slug first:', 'M1 Slug last:')):
+                  label, raw = line.split(': ', 1)
+                  row = json.loads(raw)
+                  keys = ('part', 'ax', 'ay', 'bx', 'by', 'bottom_start_wu', 'bottom_wu', 'speed_a_wu_s', 'speed_b_wu_s')
+                  compact = {'tick': row['tick'], 'bodies': [{k: b[k] for k in keys} for b in row['feet'] + row['other_bodies']]}
+                  selected[i] = label + ': ' + json.dumps(compact, sort_keys=True)
           # Raw600 rows remain in the artifact, NOT annotations. GitHub caps both
           # annotation count and each message (4096 chars). Pack bounded chunks.
           level = "notice" if sys.argv[2] == "0" else "error"
@@ -137,5 +146,34 @@ jobs:
           path: |
             ${{ runner.temp }}/m1-load/
             ${{ runner.temp }}/m1-load-console.log
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: R11 isolated position-iteration sensitivity (NOT adoption or FA)
+        if: always()
+        shell: bash
+        run: |
+          set +e
+          M1_SWEEP_REPORT_DIR="$RUNNER_TEMP/m1-sweep" bash tests/run_m1_motion_sweep.sh > "$RUNNER_TEMP/m1-sweep-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-sweep-console.log" "$status" <<'PYLOG'
+          import sys
+          with open(sys.argv[1]) as file:
+              for line in file.read().splitlines():
+                  if line.startswith('M1 sweep') or 'ERROR' in line:
+                      level = 'notice' if sys.argv[2] == '0' else 'error'
+                      escaped = line.replace('%', '%25').replace('\r', '%0D')
+                      print(f'::{level} title=M1 R11 sweep observation ONLY::' + escaped)
+          PYLOG
+          exit "$status"
+      - name: Preserve all iteration traces and per-tick motion profiles
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: m1-r11-motion-sweep-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-sweep/
+            ${{ runner.temp }}/m1-sweep-console.log
           if-no-files-found: warn
           retention-days: 7

@@ -129,6 +129,26 @@ func _initialize() -> void:
 				plan.success_count == null,
 				"tutorial success count is unknown, not zero or invented"
 			)
+	var synthetic := CreaturePresets.load_model("Slug", TUNING).create_bodies(0.0, 0.0)
+	# Isolated test pose: move only the motor, never production axes/radii.
+	synthetic[1].a.y += 0.1
+	synthetic[1].b.y += 0.1
+	_check(
+		_bottom_flags(_bottom_parts(synthetic)).is_empty(),
+		"synthetic clear pose has no bottom flag"
+	)
+	synthetic[1].a.y -= 0.1
+	synthetic[1].b.y -= 0.1
+	var bad := _bottom_flags(_bottom_parts(synthetic))
+	_check(
+		(
+			bad.size() == 1
+			and bad[0].non_foot == 1
+			and bad[0].foot == 2
+			and absf(bad[0].gap_wu - 0.045) < 1e-12
+		),
+		"synthetic deliberately lowered motor MUST flag; hard production assertion awaits pose decision"
+	)
 	var bottoms := _preset_bottoms()
 	_check(bottoms.size() == 3, "non-vacuous authored bottom audit for all presets")
 	_report = {
@@ -216,27 +236,37 @@ func _preset_bottoms() -> Array:
 		var model := CreaturePresets.load_model(name, TUNING)
 		if model == null:
 			return []
-		var parts: Array = []
-		for body in model.create_bodies(0.0, 0.0):
-			parts.append(
-				{
-					"part": parts.size(),
-					"kind": body.kind,
-					"bottom_wu": minf(body.a.y, body.b.y) - body.radius
-				}
-			)
-		var flags: Array = []
-		for foot in parts:
-			for part in parts:
-				if foot.kind == "foot" and part.kind != "foot" and part.bottom_wu < foot.bottom_wu:
-					flags.append(
-						{
-							"non_foot": part.part,
-							"foot": foot.part,
-							"gap_wu": foot.bottom_wu - part.bottom_wu
-						}
-					)
+		var parts := _bottom_parts(model.create_bodies(0.0, 0.0))
+		var flags := _bottom_flags(parts)
 		var row := {"preset": name, "parts": parts, "non_foot_below_foot": flags}
 		rows.append(row)
 		print("M1 preset bottoms: " + JSON.stringify(row, "", true, true))
 	return rows
+
+
+func _bottom_flags(parts: Array) -> Array:
+	var flags: Array = []
+	for foot in parts:
+		for part in parts:
+			if foot.kind == "foot" and part.kind != "foot" and part.bottom_wu < foot.bottom_wu:
+				flags.append(
+					{
+						"non_foot": part.part,
+						"foot": foot.part,
+						"gap_wu": foot.bottom_wu - part.bottom_wu
+					}
+				)
+	return flags
+
+
+func _bottom_parts(bodies: Array[CapsuleBody]) -> Array:
+	var parts: Array = []
+	for body in bodies:
+		parts.append(
+			{
+				"part": parts.size(),
+				"kind": body.kind,
+				"bottom_wu": minf(body.a.y, body.b.y) - body.radius
+			}
+		)
+	return parts

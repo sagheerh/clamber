@@ -133,7 +133,17 @@ func _gravity_reaction() -> void:
 
 
 func _slug() -> void:
-	var model := CreaturePresets.load_model("Slug", TUNING)
+	# Isolated diagnostic override ONLY; no resource or adopted/default value changes.
+	var tuning: Tuning = TUNING.duplicate(true)
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--iterations="):
+			var value := arg.trim_prefix("--iterations=")
+			if not value.is_valid_int() or value.to_int() <= 0:
+				push_error("invalid diagnostic position iterations")
+				quit(1)
+				return
+			tuning.physics_position_iterations = value.to_int()
+	var model := CreaturePresets.load_model("Slug", tuning)
 	var probe := CoupledLoadProbe.new()
 	# Explicit uniform diagnostic material; NOT a new non-foot production default.
 	var friction: Array[float] = [
@@ -144,7 +154,7 @@ func _slug() -> void:
 		TUNING.physics_foot_restitution,
 		TUNING.physics_foot_restitution
 	]
-	if probe.setup(model, _floor(), 0.0, 0.33, friction, bounce, TUNING) != OK:
+	if probe.setup(model, _floor(), 0.0, 0.33, friction, bounce, tuning) != OK:
 		push_error("probe setup failed")
 		quit(1)
 		return

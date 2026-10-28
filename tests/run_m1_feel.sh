@@ -34,7 +34,7 @@ for preset in report['authored_preset_bottoms']:
     assert [(r['non_foot'], r['foot']) for r in flags] == [(r['non_foot'], r['foot']) for r in expected_flags]
     assert all(math.isclose(a['gap_wu'], b['gap_wu'], rel_tol=0, abs_tol=1e-12)
                for a, b in zip(flags, expected_flags))
-assert report['checks'] >= 129, 'Owner geometry count floor regressed'
+assert report['checks'] >= 131, 'Owner geometry count floor regressed'
 assert all(row['status'] == 'PASS (analytic only)' for row in report['analytic'].values())
 assert all(row['status'] == 'NOT RUN' and row['observations'] is None for row in report['runtime'])
 assert next(row for row in report['runtime'] if row['id'] == 'FA-6')['success_count'] is None
