@@ -62,7 +62,7 @@ class AndroidInspectorTests(unittest.TestCase):
             for path, prefix in [(aab, 'base/lib/'), (apk, 'lib/')]:
                 with zipfile.ZipFile(path, 'w') as archive:
                     archive.writestr(prefix + 'arm64-v8a/libgodot.so', elf())
-                    assets = 'base/assets/' if path == aab else 'assets/'
+                    assets = 'assetPackInstallTime/assets/' if path == aab else 'assets/'
                     for filename in PRESET_FILES:
                         relative = 'data/creatures/' + filename
                         archive.writestr(assets + relative, (ROOT / relative).read_bytes())
@@ -78,7 +78,7 @@ class AndroidInspectorTests(unittest.TestCase):
     def test_missing_and_modified_preset_assets(self):
         with tempfile.TemporaryDirectory() as folder:
             path = Path(folder) / 'test.zip'
-            for prefix in ['base/assets/', 'assets/']:
+            for prefix in ['assetPackInstallTime/assets/', 'assets/']:
                 for mode in ['missing', 'modified']:
                     with self.subTest(prefix=prefix, mode=mode):
                         with zipfile.ZipFile(path, 'w') as archive:

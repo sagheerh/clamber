@@ -339,3 +339,12 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
  Local review now37 Python tests; original native/manifest/alignment checks intact.
 - R7 order/gates unchanged: coupled FA-5 still NOT RUN; next is M1 body/hinge/
  contact coupling and measured foot-load traces, NOT static scenes or motors yet.
+
+- Packaging check correctly failed ata8f071a (run40677420055): inspector assumed
+  production assets live under`base/assets/` in the AAB. Pinned Godot4.7.2 source
+  `platform/android/export/export_plugin.cpp` uses the install-time asset-pack
+  module;`platform/android/java/app/assetPackInstallTime/build.gradle` fixes its
+  name to`assetPackInstallTime`. Corrected AAB path to that module's`assets/`;
+  APK path remains`assets/`. Exact-byte/all-three-file guards and negative cases
+  stay intact. Runtime/M0headless/static jobs passed; no Android pass claimed for
+  that failed run. Followup CI pending. No physics/test tolerance changes.

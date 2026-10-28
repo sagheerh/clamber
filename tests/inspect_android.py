@@ -23,7 +23,9 @@ def check_preset_assets(path, prefix):
             try:
                 actual = archive.read(prefix + relative)
             except KeyError as error:
-                raise ValueError('Production preset missing from package: ' + relative) from error
+                matches = [name for name in archive.namelist() if name.endswith('/' + relative)]
+                raise ValueError('Production preset missing from package: ' + prefix + relative
+                                 + '; matching entries=' + repr(matches)) from error
             if actual != (ROOT / relative).read_bytes():
                 raise ValueError('Production preset bytes differ in package: ' + relative)
             paths.append(relative)
@@ -100,7 +102,7 @@ def inspect(aab, apk, manifest, config):
     return {'manifest': check_manifest(manifest),
             'aab_native_load_segments': check_archive(aab, 'base/lib/'),
             'apk_native_load_segments': check_archive(apk, 'lib/'),
-            'aab_production_presets': check_preset_assets(aab, 'base/assets/'),
+            'aab_production_presets': check_preset_assets(aab, 'assetPackInstallTime/assets/'),
             'apk_production_presets': check_preset_assets(apk, 'assets/'),
             'bundle_page_alignment': '16KB',
             'device_installation': 'NOT MEASURED', 'device_frame_timing': 'NOT MEASURED'}
