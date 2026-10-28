@@ -466,3 +466,12 @@ supersedes the earlier pending hypothesis in this decision's initial entry.
 Further parser checks verify damping=-resource_damping*raw_start_P_y and internal
 cancellation; do not correct force channels. Geometry matches R10's authored gap
 calculations. Pose decision STILL PENDING; no angular-limit or pose branch.
+
+
+R10 final implementation verification be04bbf / CI40695219730:600 rows, ledger
+verified including independently reconstructed damping, all-contact literal gate
+passes, check RED solely for F30. Peak scope clarified: measured9.695448846059607N
+is LAST300, whereas ALL600 measured peak14.81106559439147N and applied peak
+14.807263336585688N are still below17.36N. Grip never engaged. No transient clipping
+or false no-toggle success. No pose branch authorized; F31/F32/F33 evidence supplied
+for review without assigning an owner acceptance verdict to those minors.

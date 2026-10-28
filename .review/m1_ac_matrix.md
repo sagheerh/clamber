@@ -217,3 +217,11 @@ has been demonstrated. Check must remain red for that blocker independently of
 correct all-grounded conservation. FA-3/4/5/6 and all other runtime rows stay
 NOT RUN; complete-creature determinism attempts0. Next M1: measured explanation
 and owner pose decision before load-band/stance; no M2/retune/captures.
+
+
+R10 verified implementation be04bbf / CI40695219730 processes600 rows, reports
+ledger verified true and all-grounded force within literal tolerance, but exits
+nonzero for F30. Actual all600 peak foot measured14.81106559439147N (steady-window
+peak9.695448846059607N), applied14.807263336585688N <17.36N gate. Grip never engaged.
+No runtime acceptance upgraded. Raw diagnostic artifact12818438383 preserves
+all600, not just annotated first/last. M0/Android CI40695219716 green.

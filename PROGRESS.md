@@ -21,7 +21,7 @@ scaffold/PR; no M1 implementation or gate completion is claimed by this closeout
 - Current increment adds every-body START/completed endpoints/bottoms, cheap
   every-part/all-preset bottom audit, measured discrete momentum ledger, corrected
   all-grounded parser, and explicit "grip never engaged"/F30 blocker. Pinned engine
-  measurement @bc4202a (CI40694232799) reproduced600 rows: damping accounts for
+  measurement @be04bbf (CI40695219730) reproduced600 rows: damping accounts for
   +.19610684435376N; all-contact conservation passes. CI remains red without genuine
   foot load path. Further parser checks verify drag against raw start momentum.
 - FA-3/4/5/6/all coupled AC/A9/§10.6/timing/captures NOT RUN; attempts0. Next single
@@ -578,3 +578,37 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
   formatter check flags pre-existing core/tuning.gd; byte-equal1f2c19f copy also
   fails that formatter check. Protected tuning source is intentionally unchanged;
   linter/static checks pass. This is not a new formatting pass claim for the tree.
+
+
+### R10 final implementation verification @be04bbf
+
+- Exact implementation SHA be04bbf3fcdb106718a81f47c6adb4340982d2a2.
+  M1 CI40695219730 static PASS63 Python;381 math/237 contact/129 analytic/80 load
+  components PASS,600 raw rows processed; momentum ledger VERIFIED true over all
+  600, including independent damping-vs-raw-start-momentum/resource identity and
+  internal cancellation checks. M1 diagnostic RED solely for F30/no genuine foot
+  load path. M0 headless506/0 and Android PASS in CI40695219716.
+- Corrected annotations now expose COMPLETE first0/last599, engagement, peaks,
+  ledger verification and F30 blocker within per-message/count limits. Retrieved
+  annotations via API and parsed both row JSONs independently; raw ZIP not locally
+  downloaded. Full artifact12818438383,435766bytes, SHA256
+  d65c97a9845bda4f484fe34a9133efddf3f05c6023d17f717d2c7588e9733d90,
+  https://github.com/sagheerh/clamber/actions/runs/40695219730/artifacts/12818438383.
+- IMPORTANT peak scope:9.695448846059607N is the measured peak over ticks300..599,
+  NOT all600. Actual all600 measured peak14.81106559439147N; actual applied peak
+  14.807263336585688N, below unchanged N1 grip gate17.36N. Grip NEVER engaged on
+  ANY tick. Empty toggle list is not a success; no smoothing/clipping hides the
+  transient peak. All-gravity/support conservation and measured damping bias are
+  unchanged. Global internal-row residual max8.881784197001252e-16Ns.
+- Local scripts/review_checks.sh PASS63 tests; changed-GD formatter PASS, full
+  linter PASS, shell syntax/diff checks PASS. AST/source-text comparison confirms
+  all seven original parser test methods are unchanged; cases were not weakened.
+  Protected accepted foundations/tuning/presets/derivation/contact/hinge/export
+  byte guards PASS against1f2c19f. Whole-tree formatter baseline exception above
+  remains explicitly reported; no protected source changed to tidy it.
+- F22/F23/F25 stay owner-CLOSED; measured F31 explanation and F32/F33 diagnostics
+  supplied for review, not self-awarded owner acceptance. F30 owner pose decision
+  PENDING. No pose/radius/angular-limit branch, no retune/M2/camera/captures.
+  FA-3/4/5/6/all coupled AC/A9/§10.6/runtime timing NOT RUN; determinism attempts0.
+  Next single milestone M1: await owner's F30 decision, then authorized foot-path
+  proof before FA-5 load-band/two-foot work. No angular-limit next-fix inference.
