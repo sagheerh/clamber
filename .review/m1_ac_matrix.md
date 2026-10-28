@@ -10,7 +10,8 @@ that the M0 headless suite validates M1. No baseline hash is fabricated here.
 
 ## Normative inputs and boundaries
 
-- Owner M1 packet dated 2026-10-28 and its supplied PART B / A9 requirements.
+- Owner M1 packet and full review pack supplied 2026-10-28: PART A A1–A13,
+  A9 seven points, A10 five fakes, PART B INV-01–10 / M1, PARTS C/D/E.
 - GDD §3.2–3.4, §4.1–4.6, §10.3/§10.4/§10.6, §13.1 and §16.1.
 - Scope: standalone custom PBD/XPBD solver, three preset creatures, headless
   determinism/feel harness and evidence. Preserve the public Sim interface.
@@ -29,16 +30,29 @@ that the M0 headless suite validates M1. No baseline hash is fabricated here.
 
 ## Required gates and evidence
 
-Reconciled with the supplied R3 PART B/A9 checklist in
-`docs/CLAMBER_REVIEW_AGENT.md` (explicitly partial; full pack absent).
+Reconciled with the full, owner-supplied 2026-10-28 review pack in
+`docs/CLAMBER_REVIEW_AGENT.md`, byte-identical and unmodified, 379 lines. SHA-256:
+`e3bd06654e0f92aaca55d0cc85e79f6d589a45aa6d9ddab5f4f068db22edb9a1`.
+Provenance: `docs/CLAMBER_REVIEW_AGENT.provenance.md`. **M1-B02 RESOLVED
+(vendored), not waived.** All pending sweep/protocol executions remain pending.
 
 | Gate / source | Required acceptance evidence | Status | Evidence reference |
 |---|---|---|---|
-| Full INV-01..INV-10 sweep | Static subset via scripts/review_checks.sh plus full manual/semantic sweep using the original pack; do not invent INV IDs | PARTIAL / full mapping BLOCKED | Original pack not supplied |
+| Full PART B INV-01..INV-10 sweep | Complete the ten checks below with original pack E1/E2/E4 evidence; static subset alone is insufficient | NOT RUN | Full pack vendored; full semantic/manual sweep outstanding |
+| INV-01 | No engine physics nodes in core; E1 scanner plus E2 code review | NOT RUN | scripts/review_static.py subset only; full review outstanding |
+| INV-02 | Only two-bit gameplay mask; E2 router read and InputEvent grep outside ui | NOT RUN | Gameplay router not implemented |
+| INV-03 | No global/unseeded RNG in sim/run/tower; E1 | NOT RUN | scripts/review_static.py subset only; full implementation review outstanding |
+| INV-04 | No solver transcendentals; E1 | NOT RUN | scripts/review_static.py subset only; full implementation review outstanding |
+| INV-05 / A9.2 | Fixed 1/60 via accumulator, no raw frame delta; E2 | NOT RUN | No accumulator implemented |
+| INV-06 | Tuning resource owns all core numbers; E1 plus spot-read | NOT RUN | scripts/review_static.py subset only; full implementation review outstanding |
+| INV-07 | No screens beyond S00–S16 or monetised gameplay; E1/E2 | NOT RUN | Full M1 scope review outstanding |
+| INV-08 | Nothing blocks first flag; E2/manual run | NOT RUN | First-flag loop not implemented |
+| INV-09 | Offline game, platform stubs; E1/E4 airplane-mode run | NOT RUN | No M1 runtime/device evidence |
+| INV-10 | Cosmetics cannot alter physics; E2 diff of both paths | NOT RUN | Full M1 code-path review outstanding |
 | M0 regression | Preserve original 475 engine checks and all existing tests; separate M0 regression workflow | PASS (regression only) | CI40631790078: 475 engine +13 Python |
 | A8 test-count floor | At least 475 engine +13 original Python checks =488; no count reduction without a reviewed DECISIONS.md explanation | PASS (count floor only) | CI40631790078; scripts/check_m0_regression.py |
 | A8 replay baseline | M1+ replay matches a genuinely generated committed baseline; unexplained changes fail CI | NOT RUN | No M1 baseline exists |
-| A5.6 five-fakes | Run original pack five-fakes procedure; preserve evidence | BLOCKED / NOT RUN | Full definitions not supplied |
+| A5.6 / A10 five-fakes | Hunt all five: hollow test, ticked box, weakened gate, stub that passes, borrowed artifact; cite locations/evidence for each | NOT RUN | Full definitions vendored; procedure not yet executed |
 | A12 verdict/review | Produce .review/m1_verdict.md and .json plus formal PR review before signoff | NOT RUN | No verdict or approval claimed |
 | Engine / architecture | Real Godot4.7.2 import, M0 regression suite unchanged, core remains headless; static scans enforce RNG/math/node/input restrictions | NOT RUN for M1 | None; M0-only results are not M1 proof |
 | A9.1 / A9.6 static restrictions | Recursive core/sim, core/run, core/tower scans for RNG/clock/frame sources, raw delta callbacks and solver transcendentals; scan scripts AND scene node types | STATIC CHECK ONLY | scripts/review_checks.sh; no runtime proof |
@@ -46,7 +60,7 @@ Reconciled with the supplied R3 PART B/A9 checklist in
 | A9.3 injected RNG | Preserve seed parameter in Sim.setup and explicitly inject seeded xoshiro128**; stub signature alone is insufficient | NOT RUN | Sim remains a stub |
 | AC-201 | No-input trace shows settling AND sleep within ≤4 s; record sleep tick and velocities using tuning thresholds | NOT RUN | None |
 | AC-202 | Maximum absolute limb-length error ≤0.05 WU over a two-minute run; assert and log measured maximum | NOT RUN | None |
-| AC-204 | 200-run soak; zero NaN/∞, log all runs/seeds and failures; do not silently heal/discard non-finite events to pass | NOT RUN | None |
+| AC-204 | 200-run soak; zero NaN/∞, log all runs/seeds and failures; do not silently heal/discard non-finite events from the record | NOT RUN | None |
 | Three presets / §16.1 | Three authored presets, identical recorded L/R pattern, three different motions; 10 s capture for EACH, plus shared input/seed and trace references | NOT RUN | No presets or captures implemented |
 | Tick cost / §10.4 | Measured solver tick ≤3.0 ms at 30 bodies; record actual constraint count (GDD budget:120), hardware/build and timing method | NOT RUN | No timing measurement; CI timing alone is not reference-device evidence |
 | A9.4 replay ×3 | Same initial state/seed/tuning and tick-indexed input log replayed three times; exact matching state hashes and result fields | NOT RUN | No M1 baseline/hash |
@@ -77,9 +91,8 @@ Reconciled with the supplied R3 PART B/A9 checklist in
   parameters remain unspecified. Do not create numeric defaults. Before any
   dependent grip behavior, obtain the owner's value; proceed only on independent
   solver work meanwhile. Haptics/generation are outside this packet.
-- The standalone review-pack PART B / full A9 document is not present in the
-  checkout. The supplied owner-message requirements are captured above; reconcile
-  any additional external protocol detail before signing off A9, not by guessing.
+- Full review pack is vendored unchanged; M1-B02 is resolved, not waived.
+  Execute the original protocol before signoff; file presence is not review evidence.
 - No preset geometry, captures, performance measurement or real-engine M1 test
   run exists yet. No baseline may be approved from `Sim.state_hash()`'s M0 stub.
 - Reference-device performance and cross-device/architecture evidence still need
@@ -93,7 +106,8 @@ On 2026-10-28 the owner selected independent work only, not invented contact
 values: per-part radii (including head), head mass/length and grip normal-force
 threshold are missing. Collision, creature simulation and gait gates remain
 blocked on those inputs. Mathematical body/constraint state can proceed without
-choosing them. Full external pack vendoring remains explicitly incomplete.
+choosing them. Full external pack vendoring is complete (M1-B02 resolved, not
+waived); the full review protocol has not been executed.
 
 ## Independent increment 1 (M1-D02)
 
@@ -111,3 +125,12 @@ M0 regression/Android CI40631790078 passed with the unchanged 488 baseline floor
 See docs/validation/M1.md for links, tested behavior and exclusions. Sim remains
 unimplemented; no baseline, gait, contact, full replay or soak evidence exists.
 Complete creature determinism attempts:0; the two-failed-attempt limit is unused.
+
+## R4 claim-freeze guard (not runtime evidence)
+
+`scripts/review_checks.sh` enforces this table: no runtime acceptance row may
+claim Met/PASS/PASSED/VERIFIED; no success token may have empty/None evidence;
+at least 12 rows must contain NOT RUN. The two regression/count-floor rows
+require explicit scoped status and a CI run or commit reference. Negative
+fixtures exercise those rules; the actual AC-201 mutation/revert transcript is
+in the canonical PR #3 body. This guard does not execute or approve runtime gates.

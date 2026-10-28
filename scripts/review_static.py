@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Known-source invariants only. Does not invent the missing review-pack INV mapping."""
+"""Static subset of the vendored review pack; semantic/manual INV sweep is separate."""
 import re
 from pathlib import Path
 

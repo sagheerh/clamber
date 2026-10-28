@@ -12,7 +12,7 @@ jobs:
       - name: Review checks and scanner falsification fixtures
         run: scripts/review_checks.sh
       - name: Record scope of evidence
-        run: echo '::notice title=M1 scaffold only::Static subset passed. Replay, baseline, bit-flip, soak, performance and captures NOT RUN. Full external pack absent.'
+        run: echo '::notice title=M1 scaffold only::Static subset passed. Replay, baseline, bit-flip, soak, performance and captures NOT RUN. Full owner-supplied review pack vendored unchanged; full semantic sweep/five-fakes/A12 review still pending.'
   math-foundations:
     name: M1 point/link unit tests (NOT creature determinism)
     runs-on: ubuntu-24.04

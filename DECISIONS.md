@@ -115,17 +115,19 @@ require feel-affecting choices; do not infer these from limb lengths or use zero
 as a hidden default. Mathematical body/link state and review infrastructure may
 proceed. No contact, gait, performance or determinism acceptance is claimed.
 
-The owner also selected use of the supplied review requirements for now. The file
-`docs/CLAMBER_REVIEW_AGENT.md` is explicitly a partial transcription, not the full
-external pack. Original INV mapping/five-fakes definitions and A12 details still
-need the original source before signoff. F2 remains partially blocked, not done.
+R4 correction: the earlier attribution of an owner decision about excerpts was
+incorrect and is withdrawn. The owner supplied the complete review pack on
+2026-10-28. It is now vendored byte-identically and unmodified; provenance and
+SHA-256 are in `docs/CLAMBER_REVIEW_AGENT.provenance.md`. Vendoring does not
+constitute execution of its invariant sweep, five-fakes or A12 review.
 
 ## M1 blockers — needs human answer before dependent implementation
 
 - M1-B01: supply body radii, head mass/length treatment and M0-B03 grip threshold
   with units. No moving-creature acceptance until the dependent physics exists.
-- M1-B02: supply full external review pack. Partial R3 text is tracked honestly;
-  it cannot establish full INV-01..INV-10/five-fakes/A12 review compliance.
+- M1-B02: **RESOLVED (vendored), not waived**. Full owner-supplied review pack
+  imported unchanged on 2026-10-28; see provenance for its exact hash. Full
+  INV-01..INV-10/five-fakes/A12 execution remains outstanding.
 - M0-B02 remains a camera/M2 question; haptic/generator values remain out of scope.
 
 ## M1-D02 — Scalar point/link foundations are not a creature solver

@@ -5,6 +5,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 from review_static import violations
 from check_m0_regression import validate
+from check_m1_matrix import validate_matrix, validate_pack, RUNTIME
 
 
 class ReviewChecksTests(unittest.TestCase):
@@ -46,6 +47,75 @@ class ReviewChecksTests(unittest.TestCase):
                     'Ran 13 tests in x\n', 'Ran 12 tests in x\nM0: 476 checks, 0 failures\n']:
             with self.subTest(log=log), self.assertRaises(ValueError):
                 validate(log)
+
+
+class MatrixGuardTests(unittest.TestCase):
+    matrix = (Path(__file__).resolve().parents[1] / '.review/m1_ac_matrix.md').read_text()
+
+    def changed(self, gate, status, evidence):
+        lines = self.matrix.splitlines()
+        for index, line in enumerate(lines):
+            if line.startswith('| ' + gate + ' |'):
+                cells = line.split('|')
+                cells[3], cells[4] = ' ' + status + ' ', ' ' + evidence + ' '
+                lines[index] = '|'.join(cells)
+                return '\n'.join(lines)
+        self.fail('fixture gate missing: ' + gate)
+
+    def test_current_matrix_and_immutable_pack(self):
+        self.assertEqual(validate_matrix(self.matrix), [])
+        pack = (Path(__file__).resolve().parents[1] / 'docs/CLAMBER_REVIEW_AGENT.md').read_bytes()
+        self.assertEqual(validate_pack(pack), [])
+        self.assertTrue(validate_pack(pack + b'provenance\n'))
+        self.assertTrue(validate_pack(pack.replace(b'CLAMBER', b'CLAMBeR', 1)))
+
+    def test_each_runtime_row_rejects_every_success_token_with_real_evidence(self):
+        for line in self.matrix.splitlines():
+            if not line.startswith('| '):
+                continue
+            gate = line.split('|')[1].strip()
+            if not RUNTIME.search(gate):
+                continue
+            for token in ['Met', 'PASS', 'PASSED', 'VERIFIED', '**verified**']:
+                with self.subTest(gate=gate, token=token):
+                    errors = validate_matrix(self.changed(gate, token, 'CI40631790078'))
+                    self.assertTrue(any('runtime acceptance success claim' in e for e in errors))
+
+    def test_success_hidden_in_evidence_is_rejected(self):
+        errors = validate_matrix(self.changed('AC-201', 'NOT RUN', 'VERIFIED CI40631790078'))
+        self.assertTrue(any('runtime acceptance success claim' in e for e in errors))
+
+    def test_success_requires_nonempty_non_none_evidence(self):
+        for evidence in ['', 'None', '`None`', 'none; no run']:
+            with self.subTest(evidence=evidence):
+                errors = validate_matrix(self.changed('M0 regression', 'PASS (regression only)', evidence))
+                self.assertTrue(any('empty/None evidence' in e for e in errors))
+
+    def test_regression_and_count_floor_exceptions_require_scope_and_citation(self):
+        for gate, status in [('M0 regression', 'PASS (regression only)'),
+                             ('A8 test-count floor', 'PASS (count floor only)')]:
+            for citation in ['CI40631790078', 'commit f51ecd480ce5e5476428740755f2dd33a87a5e79']:
+                self.assertEqual(validate_matrix(self.changed(gate, status, citation)), [])
+            self.assertTrue(validate_matrix(self.changed(gate, 'PASS', 'CI40631790078')))
+            self.assertTrue(validate_matrix(self.changed(gate, status, 'scripts/check_m0_regression.py')))
+        self.assertTrue(validate_matrix(self.changed('AC-201', 'PASS (regression only)', 'CI40631790078')))
+
+    def test_not_run_floor_is_falsifiable(self):
+        lines, count = [], 0
+        for line in self.matrix.splitlines():
+            if line.startswith('| ') and 'NOT RUN' in line:
+                count += 1
+                if count > 11:
+                    line = line.replace('NOT RUN', 'PENDING')
+            lines.append(line)
+        errors = validate_matrix('\n'.join(lines))
+        self.assertIn('NOT RUN row floor: 11 < 12', errors)
+
+    def test_missing_table_gate_and_malformed_row_fail_closed(self):
+        self.assertTrue(validate_matrix(''))
+        row = next(line for line in self.matrix.splitlines() if line.startswith('| AC-201 |'))
+        self.assertTrue(validate_matrix(self.matrix.replace(row, '')))
+        self.assertTrue(validate_matrix(self.matrix.replace(row, '| AC-201 | NOT RUN |')))
 
 
 if __name__ == '__main__':

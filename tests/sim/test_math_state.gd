@@ -12,6 +12,7 @@ func _initialize() -> void:
 	_rigid_link()
 	_mass_weighting()
 	_compliant_link()
+	_injected_tick_rate()
 	_invalid_constraints()
 	_snapshot_projection()
 	print("M1 math foundations: %d checks, %d failures" % [_checks, _failures])
@@ -113,6 +114,26 @@ func _compliant_link() -> void:
 	var state := link.snapshot()
 	link.reset_multiplier()
 	_check(link.restore(state) == OK and link.snapshot() == state, "restore compliance and lambda")
+
+
+func _injected_tick_rate() -> void:
+	# Synthetic resource only: do not alter shipped tuning or accepted fixtures.
+	var tuning: Tuning = TUNING.duplicate(true)
+	tuning.physics_tick_hz = 120
+	var a := Body.new()
+	var b := Body.new()
+	var link := Link.new()
+	var initialized := a.setup(0.0, 0.0, 1.0) == OK and b.setup(2.0, 0.0, 1.0) == OK
+	initialized = initialized and link.setup(a, b, 1.0, 0.01) == OK
+	var projected_60 := initialized and link.project(TUNING) == OK
+	var multiplier_60 := link.multiplier
+	initialized = a.setup(0.0, 0.0, 1.0) == OK and b.setup(2.0, 0.0, 1.0) == OK
+	link.reset_multiplier()
+	var projected_120 := initialized and link.project(tuning) == OK
+	_check(
+		projected_60 and projected_120 and link.multiplier != multiplier_60,
+		"injected synthetic 120 Hz resource changes compliant multiplier from 60 Hz"
+	)
 
 
 func _invalid_constraints() -> void:

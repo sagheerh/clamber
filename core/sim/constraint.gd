@@ -52,7 +52,7 @@ func project(tuning: Tuning) -> Error:
 	if not is_valid() or tuning == null or tuning.physics_tick_hz <= TUNING.physics_zero:
 		return ERR_INVALID_DATA
 	# No raw frame elapsed time is accepted here. The tick rate is resource-owned.
-	var fixed_step := float(TUNING.physics_one) / float(tuning.physics_tick_hz)
+	var fixed_step := float(tuning.physics_one) / float(tuning.physics_tick_hz)
 	var dx := body_b.x - body_a.x
 	var dy := body_b.y - body_a.y
 	var squared_length := dx * dx + dy * dy

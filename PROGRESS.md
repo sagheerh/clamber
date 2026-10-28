@@ -85,14 +85,16 @@ determinism/feel harness.** M1 is ready, not complete. Excludes S03 climb,
 pause/fall/build screens. Real-engine M1 CI evidence and baseline are not yet
 available; the M0 CI suite is not evidence of M1 determinism/performance.
 
-### M1 active-branch kickoff / R3 scaffold fixes
+### M1 PR #3 kickoff / R3 scaffold fixes
 
-Work now uses `arena/4cd0a587-clamber` (active), not the earlier PR #2 head branch.
+M1 working branch for PR #3: `arena/4cd0a587-clamber`, not the earlier PR #2 branch.
 M0 approval/closeout is untouched. The earlier M1 matrix is restored and reconciled
 with supplied A9.1–A9.7, A8 475-engine/488-total regression floors, full invariant
 sweep, five-fakes and A12 evidence requirements. A separate M1 static CI job and
 `scripts/review_checks.sh` are added; their green status is NOT runtime evidence.
-Full review-pack text is still absent; the source document is explicitly partial.
+Full review pack is now vendored unchanged (owner-supplied 2026-10-28);
+`docs/CLAMBER_REVIEW_AGENT.provenance.md` records the exact source/hash.
+M1-B02 is RESOLVED (vendored), not waived; protocol execution is not signoff.
 Owner selected independent work while missing radii/head properties/grip threshold
 are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
 
@@ -100,7 +102,7 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
 
 - Scaffold-only commit `2358c83` passed CI before mathematical implementation:
   M1 static run40631318799 and M0 regression/Android run40631318609.
-- Draft PR: https://github.com/sagheerh/clamber/pull/3 (active session branch);
+- Draft PR: https://github.com/sagheerh/clamber/pull/3 (sole canonical M1 draft);
   prior scaffold PR#2 is left unchanged on its earlier branch.
 - `core/sim/body.gd`: explicit float64 point state, finite/bounds validation,
   non-aliasing snapshot, checked atomic restore; no collision radii/default mass.
@@ -118,12 +120,34 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
   unit checks, zero failures**. M0 regression/Android CI40631790078 also passed;
   original 475 engine +13 Python =488 floor is enforced with no test reduction.
 - `scripts/review_checks.sh` exits0 (42 script/scene files scanned, 21 Python
-  tests); the output is pasted in PR#3. These scans do not certify the absent full
-  review pack or any M1 runtime gate. F2 is explicitly only partially addressed.
+  tests) at accepted head f51ecd4; the output is pasted in PR#3. These scans do
+  not certify the full invariant sweep or any M1 runtime gate.
 - Detailed source/run evidence and limits: `docs/validation/M1.md`.
 - AC-201/202/204, distinct gaits/captures, 3600-tick/100×/two-machine replay,
   bit-flip, baseline, soak and performance: **NOT RUN / NOT MET**. No complete
   creature determinism attempt has run; the two-failed-attempt budget is unused.
-- **Next: M1**, after owner supplies radii/head mass/length/grip threshold (M1-B01)
-  and original external review source (M1-B02). Continue dependent model/contact/
-  preset/solver work only with those values; do not invent them or move to M2.
+- **Next: M1** — after the R4 fix commit has green CI, a separate
+  integration + fixed-1/60 accumulator increment over mathematical bodies/links,
+  tuning gravity and deterministic ordering. No contacts/radii/gaits/presets/
+  baseline/runtime claims. M1-B01 radii/head mass/length/grip threshold with units
+  still requires owner input before dependent work. M1-B02 is resolved, not waived.
+  Do not move to M2.
+
+### M1 R4 mechanical fix increment (no integration)
+
+- Full owner-supplied pack vendored byte-identically, SHA-256 verified, 379 lines;
+  provenance outside the immutable file. Incorrect owner attribution withdrawn;
+  M1-B02 RESOLVED (vendored), not waived. PR #3 remains the sole canonical draft.
+- Matrix now maps the original PART B INV-01–10 and A5.6/A10 five-fakes. Full
+  semantic sweep/five-fakes/A12 review and every runtime gate remain NOT RUN.
+- `scripts/review_checks.sh`: exit0; 42 script/scene files and **28 Python tests**
+  (15 review/guard +6 original static +7 original inspector). Guard enforces the
+  claim freeze, evidence cells, ≥12 NOT RUN rows and immutable pack identity.
+- Actual AC-201 working-file mutation to `PASS | None`: exit1; exact restore:
+  exit0. Full transcript is in the PR #3 body, not just a unit-test claim.
+- F13 uses injected `tuning.physics_one` for the fixed step (and therefore both
+  factors of its square); one new synthetic 120 Hz versus 60 Hz primitive test.
+  Local lint/shell/diff checks passed. Pinned-engine/M0/Android results for this
+  fix commit are tracked in PR #3; no new engine result is claimed here yet.
+- No integration, accumulator, contacts, presets or baseline added. Accepted M0
+  tests/tuning/save and public Sim interface are unchanged. Determinism attempts:0.
