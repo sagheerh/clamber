@@ -4,6 +4,8 @@ extends RefCounted
 const TUNING = preload("res://core/tuning.tres")
 
 
+## Fixture-only primitive: caller-supplied N/eligibility are NOT a coupled entry point.
+## Coupled code MUST use resolve_tick(), which freezes N from completed snapshots.
 static func resolve(
 	body: CapsuleBody,
 	terrain: SdfGrid,

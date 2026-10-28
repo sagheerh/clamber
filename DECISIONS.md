@@ -346,3 +346,61 @@ The owner's same-tick steady support tolerance is0.723N for every last300 ticks,
 not0.723333...; report all raw transient imbalance/toggling. A quiet contact's
 zero impulse output is not a gravity-support estimate. No synthetic qualifying
 loads may migrate from the component tests into the production coupling path.
+
+
+## M1-D07 — R9 coupled engineering load producer and unfiltered diagnostic
+
+R9 accepts step1 only; F22/F25 remain open pending real force balance. The new
+CoupledLoadProbe is an engineering bridge on production-model CapsuleBody's SAME
+SimBody endpoints, not the public Sim. It integrates gravity, rigid distance rows
+and two translational rows per parent/child hinge. Rotational freedom is genuine:
+angular limits, motor torques, self response and sleep optimization are NOT built.
+There is no root parent hinge. All rows remain physically awake; logs explicitly
+say sleep_implemented=false. No stance/sleep/determinism acceptance follows.
+
+Velocity constraint impulse is measured BEFORE mutating endpoints, applied equal
+and opposite, accumulated per segment. Applied compressive load is the positive
+projection of that segment's actual gravity impulse plus its signed inter-segment
+hinge impulse onto the terrain normal, divided by dt. Bone-internal impulses cancel
+in a segment's total. No whole-creature weight shares or contact position corrections
+enter this producer. Contact reaction remains independently computed by the accepted
+capsule contact velocity response. Impulses from both velocity passes are summed,
+not averaged or divided by an observed factor. Positional cleanup is separate.
+
+The new bridge damps existing velocity before adding the full external gravity
+impulse (v*=1-damping; v+=g*dt). This is documented integration ordering, not a
+change of any tuning value. The accepted independent PointLinkSolver is untouched.
+Rigid/hinge positional correction is deliberately NOT converted into applied-load
+velocity impulse. Six position iterations/two rigid solves and two velocity passes
+remain the resource values. No extra iterations or convergence epsilon is invented.
+
+F27: resolve() is documented fixture-only. The coupled path calls ONLY batch
+resolve_tick. For each internal velocity pass it restores the tick-start grounded
+flags before that batch snapshots them. N remains the same previous-completed-tick
+count throughout; it is not cached as new persistent state. Trace prints that N.
+
+F28 lowest geometry: Y is up. Candidate capsule contact height is
+min(endpointA.y,endpointB.y)-collision_radius. A part is co-lowest when its height
+is within existing contact_slop of the minimum across the creature. This ONLY
+computes eligibility, never grounded; actual grounded is still the one post-resolve
+sample predicate. An unequal-height/order-reversed fixture proves exclusion and
+that the query never mutates grounded. CapsuleContact alone owns contact flags.
+
+Diagnostic conditions: unchanged Slug JSON/rest axes, spawn(0,0.33) (foot at
+radius-slop before prediction), zero initial motion, explicit flat SDF. The test
+passes uniform foot-material friction/restitution as diagnostic materials for all
+parts; this is NOT a new default non-foot production material. No pose, mass,
+radius, stiffness, force gate or tolerance is retuned to obtain a passing stand.
+A free-hinge model may topple or rest on non-foot capsules; other-body reaction is
+therefore printed too. Findings are not silently fixed by a different rest pose.
+
+F26 independent unit integrates an isolated0.30-mass foot under-28 gravity and
+checks the two-endpoint reaction converges to8.4N, not16.8N. The earlier no-gravity
+slop fixture's zero impulse is not generalized to a gravity-loaded contact.
+The raw Slug600 trace prints EVERY tick, all three per-foot sums, hinge/gravity
+impulses, penetration, previous N, eligibility, grounded/grip and actual awake
+state. Python independently re-sums channels and requires BOTH force sums vs43.4
+AND their difference <=0.723 throughout ticks300..599. Positional never compensates
+for missing reaction. Findings exit nonzero and remain in CI artifacts; no
+continue-on-error, smoothing, tolerance widening or hidden transient clipping.
+Complete-creature determinism attempts remain0. FA-3/4/5/6 remain NOT RUN.

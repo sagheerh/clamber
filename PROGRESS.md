@@ -397,3 +397,28 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
   2->1 lift-off and byte-equal restore/continue. New component floor237; original
   accepted208 checks retained with corrected split-field semantics. These remain
   COMPONENT tests, not FA-5 acceptance, not a Slug600 trace and not determinism.
+
+
+### R9 — real gravity/hinge load bridge; raw diagnostic pending execution
+
+- R9 accepts step1. Added shared-endpoint translational hinges and a coupled
+ engineering load probe: gravity + measured equal/opposite hinge impulse supplies
+ applied_load_n. Contact impulse output is independent; position cleanup is never
+ a source. No prescribed whole-weight share or injected qualifying production load.
+- Coupled entry uses batch only; frozen previous flags survive both velocity
+ passes. resolve is fixture-only. Co-lowest capsule surface uses existing slop;
+ unequal-height/reversed-order read-only fixture added before any stance claim.
+- Independent isolated-foot gravity test expects8.4N, not2x. Added600-row JSONL
+ diagnostic and independently falsified parser; BOTH force sums and their cross
+ difference must satisfy fixed0.723 for last300. Failure is a nonzero CI result,
+ not masked. Full raw rows and summary are uploaded even on failure.
+- This probe has free rotational hinges; angular limits, motors, self-contact and
+ sleep optimization remain unbuilt. All rows explicitly awake/sleep_implemented
+ false. No fake sleep observation or accepted stance; no Hopper/TwinRoller run.
+- Local review45 Python tests/lint/format/shell/diff pass; new Godot execution is
+ pending. Existing237 component/381 math/128 analytic floors are unchanged.
+ Tuning/derivation and exact AAB/APK preset guards are unchanged.
+- F22/F25/F26 remain OPEN until actual execution and force balance; all runtime
+ FA-3/4/5/6/AC/A9 gates stay NOT RUN. Complete-creature attempts0. No M2/camera/
+ captures/retuning. Next M1: inspect every raw Slug tick and report findings before
+ any FA-5 band or two-foot stance work.

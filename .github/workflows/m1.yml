@@ -98,3 +98,29 @@ jobs:
           path: ${{ runner.temp }}/m1-owner-geometry.json
           if-no-files-found: warn
           retention-days: 7
+
+      - name: Hinged Slug600 load diagnostic (NOT FA acceptance)
+        shell: bash
+        run: |
+          set +e
+          M1_LOAD_REPORT_DIR="$RUNNER_TEMP/m1-load" tests/run_m1_load_probe.sh > "$RUNNER_TEMP/m1-load-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-load-console.log" "$status" <<'PYLOG'
+          import re, sys
+          for line in open(sys.argv[1]).read().splitlines():
+              if re.search(r"SCRIPT ERROR|ERROR:|FAIL|Parse Error|M1 load-path components:|M1 isolated gravity|M1 Slug trace:|M1 Slug force window:|M1 Slug errors:|M1 Slug grip toggle", line):
+                  level = "notice" if sys.argv[2] == "0" else "error"
+                  print(f"::{level} title=M1 Slug load diagnostic only::" + line.replace("%", "%25").replace("\r", "%0D"))
+          PYLOG
+          exit "$status"
+      - name: Preserve full raw Slug diagnostic including failures
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: m1-slug-load-diagnostic-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-load/
+            ${{ runner.temp }}/m1-load-console.log
+          if-no-files-found: warn
+          retention-days: 7
