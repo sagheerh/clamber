@@ -293,3 +293,10 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
   obtain real foot-load/stance traces for FA-5. Only after FA-5: FA-3/static600,
   AC-201 settle+sleep≤4s, AC-202 stretch, AC-204 soak, and motors/tutorial FA-4/6.
   FA-6 actual10-run count10/10 or≤4/10 => STOP/report logs/outcomes; never retune.
+
+
+- Part3a CI40676292165: accepted381 math checks passed; new component script
+  correctly FAILED before execution on nonexistent `ERR_OUT_OF_RANGE` enum.
+  Replaced with Godot's `ERR_PARAMETER_RANGE_ERROR`; no physical value/assertion
+  changed. Geometry step skipped in that run, not passed. Unit failure is not a
+  complete-creature determinism attempt. Re-run pending.

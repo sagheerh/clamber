@@ -81,7 +81,7 @@ static func _response(
 		or body.rest_length > tuning.physics_limb_lengths_wu[-one]
 		or extent > body.rest_length + tuning.physics_limb_reset_residual_wu
 	):
-		return ERR_OUT_OF_RANGE
+		return ERR_PARAMETER_RANGE_ERROR
 	var intervals := maxi(one, ceili(extent / terrain.cell_size()))
 	var threshold := maxf(
 		tuning.physics_grip_normal_force_floor,
@@ -157,7 +157,7 @@ static func _response(
 				> tuning.physics_max_projection_wu_tick * tuning.physics_max_projection_wu_tick
 			)
 		):
-			return ERR_OUT_OF_RANGE
+			return ERR_PARAMETER_RANGE_ERROR
 	return OK if body.is_valid() else ERR_INVALID_DATA
 
 

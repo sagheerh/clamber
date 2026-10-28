@@ -292,7 +292,7 @@ func _rejection_and_restore() -> void:
 	_place(foot, -0.75, 1.0, -1.0)
 	before = foot.snapshot()
 	_check(
-		_resolve(foot, grid, 1.55) == ERR_OUT_OF_RANGE and foot.snapshot() == before,
+		_resolve(foot, grid, 1.55) == ERR_PARAMETER_RANGE_ERROR and foot.snapshot() == before,
 		"excessive projection reported, no silent respawn"
 	)
 	_place(foot, 0.0, 1.0, -1.0)
