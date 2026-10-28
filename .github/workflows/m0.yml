@@ -75,7 +75,9 @@ jobs:
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" \
             "platform-tools" "platforms;android-36" "build-tools;36.1.0" "ndk;29.0.14206865"
       - name: Export debug AAB
-        run: tests/build_android.sh
+        run: |
+          mkdir -p exports
+          tests/build_android.sh 2>&1 | tee exports/android-ci.log
       - name: Inspect AAB and APK alignment
         shell: bash
         run: |
@@ -106,10 +108,13 @@ jobs:
         shell: bash
         run: |
           python3 - <<'PYANDROID'
+          import re
           from pathlib import Path
-          path = Path("exports/android-export.log")
+          path = Path("exports/android-ci.log")
           if path.exists():
-              for line in path.read_text(errors="replace").splitlines()[-35:]:
+              lines = re.sub(r"\x1b\[[0-9;]*m", "", path.read_text(errors="replace")).splitlines()
+              selected = [line for line in lines if re.search(r"ERROR|Error|failed|FAILURE|Exception|Expected|SDK|jdk|keystore", line)]
+              for line in (selected + lines[-15:])[-40:]:
                   print("::error title=M0 Android export::" + line.replace("%", "%25").replace("\r", "%0D"))
           PYANDROID
       - uses: actions/upload-artifact@v4

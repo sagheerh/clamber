@@ -28,6 +28,6 @@ for key, env in [("export/android/android_sdk_path", "ANDROID_HOME"),
         text += "\n" + line + "\n"
 path.write_text(text)
 PYSETTINGS
-"$GODOT" --headless --install-android-build-template --export-debug Android exports/clamber-debug.aab 2>&1 | tee exports/android-export.log
+"$GODOT" --headless --verbose --editor --install-android-build-template --export-debug Android exports/clamber-debug.aab 2>&1 | tee exports/android-export.log
 test -s exports/clamber-debug.aab
 sha256sum exports/clamber-debug.aab | tee exports/aab-sha256.txt
