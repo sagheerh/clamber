@@ -42,3 +42,80 @@ jobs:
                       print("::notice title=M0 headless result::" + line)
           PYLOG
           exit "$status"
+  android:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install exact editor and Android source template
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          templates="Godot_v${GODOT_VERSION}_export_templates.tpz"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/$templates" -o "$templates"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          grep -F " $templates" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          template_dir="$HOME/.local/share/godot/export_templates/4.7.2.stable"
+          mkdir -p "$template_dir"
+          unzip -j -q "$templates" templates/android_source.zip -d "$template_dir"
+          rm "$templates"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+          echo "JAVA_HOME=$JAVA_HOME_17_X64" >> "$GITHUB_ENV"
+      - name: Install template-matching SDK packages
+        shell: bash
+        run: |
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" \
+            "platform-tools" "platforms;android-36" "build-tools;36.1.0" "ndk;29.0.14206865"
+      - name: Export debug AAB
+        run: tests/build_android.sh
+      - name: Inspect AAB and APK alignment
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 \
+            https://github.com/google/bundletool/releases/download/1.18.3/bundletool-all-1.18.3.jar \
+            -o "$RUNNER_TEMP/bundletool.jar"
+          echo "a099cfa1543f55593bc2ed16a70a7c67fe54b1747bb7301f37fdfd6d91028e29  $RUNNER_TEMP/bundletool.jar" | sha256sum --check --strict
+          java -jar "$RUNNER_TEMP/bundletool.jar" validate --bundle=exports/clamber-debug.aab
+          java -jar "$RUNNER_TEMP/bundletool.jar" dump manifest --bundle=exports/clamber-debug.aab > exports/AndroidManifest.xml
+          java -jar "$RUNNER_TEMP/bundletool.jar" dump config --bundle=exports/clamber-debug.aab > exports/bundle-config.txt
+          # Use a fresh disposable CI debug key, never a production identity.
+          keytool -genkeypair -keystore "$RUNNER_TEMP/install-debug.keystore" -storepass android \
+            -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 30 \
+            -dname "CN=CLAMBER CI debug"
+          java -jar "$RUNNER_TEMP/bundletool.jar" build-apks --bundle=exports/clamber-debug.aab \
+            --output="$RUNNER_TEMP/clamber.apks" --mode=universal \
+            --ks="$RUNNER_TEMP/install-debug.keystore" --ks-pass=pass:android \
+            --ks-key-alias=androiddebugkey --key-pass=pass:android
+          unzip -p "$RUNNER_TEMP/clamber.apks" universal.apk > exports/clamber-debug-universal.apk
+          "$ANDROID_HOME/build-tools/36.1.0/zipalign" -c -P 16 -v 4 exports/clamber-debug-universal.apk > exports/zipalign.txt
+          python3 tests/inspect_android.py \
+            exports/clamber-debug.aab exports/clamber-debug-universal.apk \
+            exports/AndroidManifest.xml exports/bundle-config.txt | tee exports/android-inspection.txt
+          echo "::notice title=M0 Android build::Debug AAB exported; bundle validated; arm64/minSdk26/targetSdk36/portrait/native 16KB and APK zip alignment checked. Physical installation and frame timing NOT measured."
+      - name: Publish Android failure diagnostics
+        if: failure()
+        shell: bash
+        run: |
+          python3 - <<'PYANDROID'
+          from pathlib import Path
+          path = Path("exports/android-export.log")
+          if path.exists():
+              for line in path.read_text(errors="replace").splitlines()[-35:]:
+                  print("::error title=M0 Android export::" + line.replace("%", "%25").replace("\r", "%0D"))
+          PYANDROID
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: m0-android-debug
+          path: exports/
+          if-no-files-found: warn
+          retention-days: 7

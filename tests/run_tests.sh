@@ -2,6 +2,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 python3 tests/test_static.py
+python3 tests/test_android_inspection.py
 GODOT="${GODOT:-godot}"
 if ! command -v "$GODOT" >/dev/null 2>&1; then
   echo "ERROR: Godot 4.7.2-stable required. Set GODOT=/absolute/path/to/godot." >&2

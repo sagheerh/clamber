@@ -47,7 +47,9 @@ func _test_tuning() -> void:
 			_check(TUNING.get(property.name) != null, "tuning value: " + property.name)
 	_check(count >= 40, "at least 40 exported tuning constants")
 	_check(TUNING.physics_tick_hz == 60, "fixed 60 Hz")
-	print("M0 diagnostic dt: loaded=%.20f expected=%.20f" % [TUNING.physics_fixed_dt_s, 1.0 / 60.0])
+	print(
+		"M0: diagnostic dt: loaded=%.20f expected=%.20f" % [TUNING.physics_fixed_dt_s, 1.0 / 60.0]
+	)
 	_check(TUNING.physics_fixed_dt_s == 1.0 / 60.0, "fixed step")
 	_check(TUNING.physics_gravity_wu_s2 == -28.0, "GDD gravity unchanged")
 	_check(TUNING.motors_gain_default == 0.70, "default motor strength unchanged")
@@ -102,7 +104,17 @@ func _test_saves() -> void:
 	_check(store.save(path, first) == OK, "first atomic save")
 	_check(store.save(path, second) == OK, "second atomic save")
 	var actual := store.load_data(path, defaults)
-	print("M0 diagnostic save: actual=%s expected=%s schema_types=%s/%s" % [var_to_str(actual), var_to_str(second), typeof(actual.get("schema")), typeof(second.schema)])
+	print(
+		(
+			"M0: diagnostic save: actual=%s expected=%s schema_types=%s/%s"
+			% [
+				var_to_str(actual),
+				var_to_str(second),
+				typeof(actual.get("schema")),
+				typeof(second.schema)
+			]
+		)
+	)
 	_check(actual == second, "primary beats backup")
 	_check(not FileAccess.file_exists(path + ".tmp"), "tmp consumed on rename")
 	_check(store.load_data(path + ".bak", defaults) == first, "backup is previous successful save")
