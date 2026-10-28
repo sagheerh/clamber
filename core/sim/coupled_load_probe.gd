@@ -210,6 +210,7 @@ func _velocity_contacts(
 			# Thus batch is the sole coupled door and cannot see partially updated N.
 			var state := body.snapshot()
 			state.grounded = before.bodies[index].grounded
+			state.gripping = before.bodies[index].gripping
 			if body.restore(state) != OK:
 				return {"status": ERR_INVALID_DATA}
 			var normal := _terrain.sample(body.a.x, body.a.y)

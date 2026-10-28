@@ -44,7 +44,7 @@ func _unequal_height() -> void:
 	var low := model.create_bodies(0.0, 0.33)[2]
 	var high := model.create_bodies(2.0, 0.53)[2]
 	var pair: Array[CapsuleBody] = [high, low]
-	var lowest: Array[bool] = [false, true]
+	var lowest: Array[bool] = CoupledLoadProbe.lowest_mask(pair, TUNING)
 	var friction: Array[float] = [TUNING.physics_grip_friction, TUNING.physics_grip_friction]
 	var bounce: Array[float] = [TUNING.physics_foot_restitution, TUNING.physics_foot_restitution]
 	_check(

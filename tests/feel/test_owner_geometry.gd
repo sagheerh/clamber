@@ -168,7 +168,10 @@ func _initialize() -> void:
 	for id in _report.analytic:
 		print("M1 geometry %s: %s" % [id, _report.analytic[id].status])
 	print(
-		"M1 feel runtime: FA-3/4/5/6 NOT RUN (no coupled contacts/motors/static-scene/tutorial evidence)"
+		(
+			"M1 feel runtime: FA-3/4/5/6 NOT RUN "
+			+ "(no accepted full-creature stance/motor/static/tutorial evidence)"
+		)
 	)
 	quit(0 if _failures == 0 else 1)
 

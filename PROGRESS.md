@@ -448,3 +448,31 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
 - Unequal-height fixture strengthened to two actually post-resolve grounded feet
  on separate elevations, then read-only/reversed eligibility. Load-path component
  floor78->80. Next M1: inspect raw support routing finding; no gate/tuning changes.
+
+
+### R9 support routing isolated @d5ef49a (CI40690630151)
+
+- All600 rows completed again;80 load-path unit checks passed,381 math/237 contact/
+ 128 analytic checks passed; static45 Python tests passed. Force criterion remains
+ RED, intentionally unwaived. Isolated reaction8.40000000000000036N; no2x defect.
+- Last300 applied range[9.6775186630127,9.677518663012702]N;
+ reaction[9.695448846059604,9.695448846059607]N;
+ positional cleanup[4.134452379266757,4.134452379267277] force-equivalent N, NOT load.
+ Max cross discrepancy0.017930183046905412N passes0.723; both foot sums miss43.4
+ by about33.7N, so the overall criterion FAILS. No averaging/window clipping.
+- Tick599: previousN1, foot grounded=true,lowest=true,gripping=false;
+ hinge impulseY=-0.021291977716878335Ns, gravity impulseY=-0.14Ns.
+ The HEAD and MOTOR are ALSO grounded, measured reactions19.98947352225558N and
+ 13.911184476038581N. All-terrain reaction is43.59610684435376..43.59610684435377N.
+ Thus the independent channels agree on the foot's underload: other capsules
+ carry the rest. It is not evidence that the foot supports the creature.
+- Tick0 previousN0, no grip; no grip toggles anywhere. Every row awake with
+ sleep_implemented=false. No false settled/sleep/stance or FA-5 acceptance claim.
+- Preserved the prototype's original free rotational hinges/axes/radii/materials
+ instead of changing pose/ratio or hiding other contacts to force a stand. Full
+ angular/attachment constraints remain to be implemented under existing GDD
+ values; the current limited probe cannot be treated as a finished creature Sim.
+- Matrix evidence now acknowledges this FAILED preflight while FA-3/4/5/6 remain
+ exactly NOT RUN. Next M1: complete missing angular/attachment constraints and
+ rerun this unchanged Slug diagnostic before any band or two-foot stance.
+ Complete-creature determinism attempts remain0; no retune/M2/camera/captures.
