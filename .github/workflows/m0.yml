@@ -1,4 +1,4 @@
-name: M0 headless gates
+name: M0 regression gates
 on: [push, pull_request, workflow_dispatch]
 permissions:
   contents: read
@@ -41,6 +41,9 @@ jobs:
                   if line.startswith("M0:"):
                       print("::notice title=M0 headless result::" + line)
           PYLOG
+          if [ "$status" -eq 0 ]; then
+            python3 scripts/check_m0_regression.py "$RUNNER_TEMP/m0-headless.log"
+          fi
           exit "$status"
   android:
     runs-on: ubuntu-24.04
@@ -118,7 +121,7 @@ jobs:
               for line in (selected + lines[-15:])[-40:]:
                   print("::error title=M0 Android export::" + line.replace("%", "%25").replace("\r", "%0D"))
           PYANDROID
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         if: always()
         with:
           name: m0-android-debug

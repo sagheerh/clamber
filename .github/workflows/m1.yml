@@ -1,0 +1,15 @@
+name: M1 review scaffold (not runtime acceptance)
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  review-static:
+    name: M1 invariant/static subset (NOT replay or soak)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - name: Review checks and scanner falsification fixtures
+        run: scripts/review_checks.sh
+      - name: Record scope of evidence
+        run: echo '::notice title=M1 scaffold only::Static subset passed. Replay, baseline, bit-flip, soak, performance and captures NOT RUN. Full external pack absent.'

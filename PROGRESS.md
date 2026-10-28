@@ -84,3 +84,14 @@ thresholds remain unresolved and must not be invented. No later gate is waived.
 determinism/feel harness.** M1 is ready, not complete. Excludes S03 climb,
 pause/fall/build screens. Real-engine M1 CI evidence and baseline are not yet
 available; the M0 CI suite is not evidence of M1 determinism/performance.
+
+### M1 active-branch kickoff / R3 scaffold fixes
+
+Work now uses `arena/4cd0a587-clamber` (active), not the earlier PR #2 head branch.
+M0 approval/closeout is untouched. The earlier M1 matrix is restored and reconciled
+with supplied A9.1–A9.7, A8 475-engine/488-total regression floors, full invariant
+sweep, five-fakes and A12 evidence requirements. A separate M1 static CI job and
+`scripts/review_checks.sh` are added; their green status is NOT runtime evidence.
+Full review-pack text is still absent; the source document is explicitly partial.
+Owner selected independent work while missing radii/head properties/grip threshold
+are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
