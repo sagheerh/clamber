@@ -60,8 +60,9 @@ def check_manifest(text):
         raise ValueError('targetSdk must be 36')
     orientations = [node.attrib.get(ANDROID + 'screenOrientation')
                     for node in manifest.iter('activity')]
-    if 'portrait' not in orientations:
-        raise ValueError('Portrait activity missing')
+    # bundletool may print Android enum values numerically instead of symbolically.
+    if not any(value in ('portrait', '1', '0x1', '0x00000001') for value in orientations):
+        raise ValueError(f'Portrait activity missing (orientations={orientations})')
     permissions = [node.attrib.get(ANDROID + 'name')
                    for node in manifest.findall('uses-permission')]
     if any(name in permissions for name in [

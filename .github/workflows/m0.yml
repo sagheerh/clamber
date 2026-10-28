@@ -75,6 +75,7 @@ jobs:
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" \
             "platform-tools" "platforms;android-36" "build-tools;36.1.0" "ndk;29.0.14206865"
       - name: Export debug AAB
+        id: export_android
         run: |
           mkdir -p exports
           tests/build_android.sh 2>&1 | tee exports/android-ci.log
@@ -104,7 +105,7 @@ jobs:
             exports/AndroidManifest.xml exports/bundle-config.txt | tee exports/android-inspection.txt
           echo "::notice title=M0 Android build::Debug AAB exported; bundle validated; arm64/minSdk26/targetSdk36/portrait/native 16KB and APK zip alignment checked. Physical installation and frame timing NOT measured."
       - name: Publish Android failure diagnostics
-        if: failure()
+        if: failure() && steps.export_android.conclusion == 'failure'
         shell: bash
         run: |
           python3 - <<'PYANDROID'

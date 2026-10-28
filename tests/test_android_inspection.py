@@ -46,6 +46,8 @@ class AndroidInspectorTests(unittest.TestCase):
 
     def test_manifest(self):
         self.assertEqual(check_manifest(MANIFEST)['target_sdk'], 36)
+        for enum in ['1', '0x1', '0x00000001']:
+            self.assertEqual(check_manifest(MANIFEST.replace('portrait', enum))['orientation'], 'portrait')
         for invalid in [MANIFEST.replace('"26"', '"24"'),
                         MANIFEST.replace('"36"', '"35"'),
                         MANIFEST.replace('portrait', 'landscape'),
