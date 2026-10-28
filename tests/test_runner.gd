@@ -4,6 +4,7 @@ const Store = preload("res://core/data/save_store.gd")
 const SafeArea = preload("res://ui/components/safe_area.gd")
 const TUNING = preload("res://core/tuning.tres")
 const ROOT := "user://m0_test_saves"
+const FLOAT64_EPSILON := 2.220446049250313e-16
 var _failures := 0
 var _checks := 0
 
@@ -47,10 +48,13 @@ func _test_tuning() -> void:
 			_check(TUNING.get(property.name) != null, "tuning value: " + property.name)
 	_check(count >= 40, "at least 40 exported tuning constants")
 	_check(TUNING.physics_tick_hz == 60, "fixed 60 Hz")
-	print(
-		"M0: diagnostic dt: loaded=%.20f expected=%.20f" % [TUNING.physics_fixed_dt_s, 1.0 / 60.0]
+	# The text Resource parser rounds this decimal two ULPs below GDScript's division.
+	# Permit only representation-level error, not a different simulation frequency.
+	var expected_dt := 1.0 / float(TUNING.physics_tick_hz)
+	_check(
+		absf(TUNING.physics_fixed_dt_s - expected_dt) <= FLOAT64_EPSILON * expected_dt * 4.0,
+		"fixed step within float64 text-parser precision"
 	)
-	_check(TUNING.physics_fixed_dt_s == 1.0 / 60.0, "fixed step")
 	_check(TUNING.physics_gravity_wu_s2 == -28.0, "GDD gravity unchanged")
 	_check(TUNING.motors_gain_default == 0.70, "default motor strength unchanged")
 	_check(TUNING.economy_offline_default, "offline default")
@@ -99,57 +103,52 @@ func _test_saves() -> void:
 	var defaults := {"schema": 3, "creatures": []}
 	var first := {"schema": 3, "creatures": ["previous save"]}
 	var second := {"schema": 3, "creatures": ["latest save"]}
-	_check(store.load_data(path, defaults) == defaults, "fresh install defaults")
+	_check(_same_json(store.load_data(path, defaults), defaults), "fresh install defaults")
 	_check(events.is_empty(), "fresh install is not corruption")
 	_check(store.save(path, first) == OK, "first atomic save")
 	_check(store.save(path, second) == OK, "second atomic save")
-	var actual := store.load_data(path, defaults)
-	print(
-		(
-			"M0: diagnostic save: actual=%s expected=%s schema_types=%s/%s"
-			% [
-				var_to_str(actual),
-				var_to_str(second),
-				typeof(actual.get("schema")),
-				typeof(second.schema)
-			]
-		)
-	)
-	_check(actual == second, "primary beats backup")
+	_check(_same_json(store.load_data(path, defaults), second), "primary beats backup")
 	_check(not FileAccess.file_exists(path + ".tmp"), "tmp consumed on rename")
-	_check(store.load_data(path + ".bak", defaults) == first, "backup is previous successful save")
+	_check(
+		_same_json(store.load_data(path + ".bak", defaults), first),
+		"backup is previous successful save"
+	)
 	_write_raw(path, "garbage")
 	_check(
-		store.load_data(path, defaults) == first, "garbage primary recovers backup (AC-501/T-15)"
+		_same_json(store.load_data(path, defaults), first),
+		"garbage primary recovers backup (AC-501/T-15)"
 	)
 	_check(events.back() == [path, ".bak"], "backup recovery signal")
 	_check(store.save(path, second) == OK, "save after corruption succeeds")
 	_check(
-		store.load_data(path + ".bak", defaults) == first,
+		_same_json(store.load_data(path + ".bak", defaults), first),
 		"save after corruption preserves good backup"
 	)
 	_write_raw(path, "garbage")
 	_write_raw(path + ".bak", "also garbage")
 	var loaded := store.load_data(path, defaults)
-	_check(loaded == defaults, "both corrupt and no tmp -> defaults")
+	_check(_same_json(loaded, defaults), "both corrupt and no tmp -> defaults")
 	_check(events.back() == [path, "defaults"], "non-fatal default recovery signal")
 	loaded.creatures.append("not shared")
 	_check(defaults.creatures.is_empty(), "defaults deep copied")
 	_write_raw(path + ".tmp", JSON.stringify(second))
-	_check(store.load_data(path, defaults) == second, "interrupted write recovers tmp")
+	_check(_same_json(store.load_data(path, defaults), second), "interrupted write recovers tmp")
 	_check(events.back() == [path, ".tmp"], "tmp recovery signal")
 	_write_raw(path + ".bak", JSON.stringify(first))
-	_check(store.load_data(path, defaults) == first, "backup has priority over tmp")
+	_check(_same_json(store.load_data(path, defaults), first), "backup has priority over tmp")
 	_write_raw(path, JSON.stringify(second))
 	_write_raw(path + ".bak.tmp", "partial backup staging")
 	_check(
-		store.load_data(path, defaults) == second,
+		_same_json(store.load_data(path, defaults), second),
 		"interrupted backup staging leaves primary intact"
 	)
 	# Valid JSON is not enough: reject wrong root, missing/future/fractional schema.
 	for invalid in ["[]", "null", "{}", '{"schema":4}', '{"schema":3.5}', '{"schema":"3"}']:
 		_write_raw(path, invalid)
-		_check(store.load_data(path, defaults) == first, "invalid schema/root recovers: " + invalid)
+		_check(
+			_same_json(store.load_data(path, defaults), first),
+			"invalid schema/root recovers: " + invalid
+		)
 	_check(store.save(path, {"creatures": []}) == ERR_INVALID_DATA, "invalid writes rejected")
 	_check(not errors.is_empty(), "write failure signalled")
 	_write_raw(ROOT.path_join("blocked"), "this is a file, not a directory")
@@ -160,7 +159,7 @@ func _test_saves() -> void:
 	_write_raw(path, "bad")
 	_write_raw(path + ".bak", "bad")
 	_write_raw(path + ".tmp", "bad")
-	_check(store.load_data(path, defaults) == defaults, "all three invalid -> defaults")
+	_check(_same_json(store.load_data(path, defaults), defaults), "all three invalid -> defaults")
 	_cleanup()
 
 
@@ -262,3 +261,7 @@ func _test_platform_stubs() -> void:
 	_check(
 		callbacks == [false, false, false, false, false], "stubs complete without granting anything"
 	)
+
+
+func _same_json(actual: Dictionary, expected: Dictionary) -> bool:
+	return JSON.parse_string(JSON.stringify(actual)) == JSON.parse_string(JSON.stringify(expected))
