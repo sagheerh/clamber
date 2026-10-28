@@ -20,7 +20,7 @@ python3 - "$logs/math.log" "$logs/integration.log" <<'PYRESULT'
 import re, sys
 counts = []
 for path, marker, floor in [(sys.argv[1], 'M1 math foundations', 82),
-                            (sys.argv[2], 'M1 integration primitives', 1)]:
+                            (sys.argv[2], 'M1 integration primitives', 292)]:
     matches = re.findall(r'^' + marker + r': (\d+) checks, 0 failures$', open(path).read(), re.M)
     if len(matches) != 1 or int(matches[0]) < floor:
         raise SystemExit('ERROR: missing/failed/below-floor primitive suite: ' + marker)

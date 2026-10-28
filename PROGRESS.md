@@ -186,3 +186,21 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
   No tuning values, M0 tests, accepted point/link math or scanner restrictions changed.
 - Next: **M1** owner review/input before dependent work. M1-B01 remains owner-supplied;
   no radius/head mass-length/grip value invented. No M2/camera. All runtime NOT RUN.
+
+### M1 integration measured evidence — synthetic primitives only
+
+- Source `f6b3756f36f683ea5ce6c0fa21b5c167c4598fc8`: exact Godot4.7.2
+  [M1 CI40639068153](https://github.com/sagheerh/clamber/actions/runs/40639068153)
+  reports **374 checks, 0 failures: 82 point/link +292 integration/clock**.
+  All six R5 primitive evidence categories execute; no skipped/invented baseline.
+- [M0/Android CI40639067949](https://github.com/sagheerh/clamber/actions/runs/40639067949)
+  is green. Actual unchanged M0 suite now reports **476 engine checks, 0 failures**:
+  its recursive per-script compile assertion picks up the new accumulator script
+  (`tests/test_runner.gd:31–37`). With original13 Python checks this is489;
+  the original475-engine/488-combined floors and all M0 tests remain unchanged.
+- New integration completion/count floor is pinned to the measured292 checks;
+  original82 point/link floor remains. This prevents a later primitive count drop.
+- This is NOT M1 acceptance: contacts/presets/AC-201/202/204, A9.4/.5/.7,
+  §10.6, tick cost and captures remain NOT RUN. Determinism attempts:0.
+- Next: **M1** owner review of this independent increment and owner M1-B01 input
+  before dependent creature work. No M2/camera or invented physical values.

@@ -49,8 +49,8 @@ Provenance: `docs/CLAMBER_REVIEW_AGENT.provenance.md`. **M1-B02 RESOLVED
 | INV-08 | Nothing blocks first flag; E2/manual run | NOT RUN | First-flag loop not implemented |
 | INV-09 | Offline game, platform stubs; E1/E4 airplane-mode run | NOT RUN | No M1 runtime/device evidence |
 | INV-10 | Cosmetics cannot alter physics; E2 diff of both paths | NOT RUN | Full M1 code-path review outstanding |
-| M0 regression | Preserve original 475 engine checks and all existing tests; separate M0 regression workflow | PASS (regression only) | CI40631790078: 475 engine +13 Python |
-| A8 test-count floor | At least 475 engine +13 original Python checks =488; no count reduction without a reviewed DECISIONS.md explanation | PASS (count floor only) | CI40631790078; scripts/check_m0_regression.py |
+| M0 regression | Preserve original 475 engine checks and all existing tests; separate M0 regression workflow | PASS (regression only) | CI40639067949: 476 engine +13 Python; original475 checks/floor unchanged |
+| A8 test-count floor | At least 475 engine +13 original Python checks =488; no count reduction without a reviewed DECISIONS.md explanation | PASS (count floor only) | CI40639067949; scripts/check_m0_regression.py unchanged (475/488 floors) |
 | A8 replay baseline | M1+ replay matches a genuinely generated committed baseline; unexplained changes fail CI | NOT RUN | No M1 baseline exists |
 | A5.6 / A10 five-fakes | Hunt all five: hollow test, ticked box, weakened gate, stub that passes, borrowed artifact; cite locations/evidence for each | NOT RUN | Full definitions vendored; procedure not yet executed |
 | A12 verdict/review | Produce .review/m1_verdict.md and .json plus formal PR review before signoff | NOT RUN | No verdict or approval claimed |
@@ -155,3 +155,9 @@ non-finite/overflow rejection, atomic tick/frame/restore and exact checkpoint
 continuation. These are synthetic primitive fixtures, not A9 runtime acceptance.
 The public Sim stays a stub. All runtime rows above remain NOT RUN; no contacts,
 radii, head/grip values, presets, baseline, bit-flip, tick timing or captures.
+
+Integration source f6b3756: pinned Godot4.7.2 CI40639068153 records374 primitive
+checks (82+292), zero failures. M0/Android CI40639067949 records476 engine checks
+and13 original Python; the unchanged per-script compile check adds one for the
+accumulator file. Original475/488 floors are unchanged. These are unit/regression
+results only; all runtime acceptance rows remain NOT RUN.
