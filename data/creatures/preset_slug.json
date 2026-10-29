@@ -18,7 +18,7 @@
     {
       "kind": "foot",
       "parent": 1,
-      "axis": "RIGHT",
+      "axis": "DOWN",
       "channel": "",
       "length_index": 0
     }

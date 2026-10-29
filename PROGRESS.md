@@ -8,34 +8,25 @@ Session date: 2026-10-28. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R13 / sample-response and grounding observations only (2026-10-29)
+### Current R14 / owner A+A1 approved; pose-only measurement first
 
-- Owner CLOSES F38, accepts F40. Three starts share the observed nonzero
-  equilibrium, not a global-attractor proof. Intra-step pixel excursions are
-  NOT rendered/captured buzz. No rest/model decision or new experiment there.
-- F39 is a **reviewer correction**, not an agent error: reviewer explicitly
-  withdraws position-injection/friction-blindness attribution. Integrated retained
-  velocity explains net COM drift; equal-opposite inverse-mass internal rows
-  redistribute endpoints but cancel in COM. Soak extrapolation arithmetic stands.
-- F41 observer is now opt-in: every actual candidate/active response carries
-  body/pass/index/u, raw endpoint XY velocities, sample tangents/retained target,
-  signed impulses, inverse masses, normal and separately named positional cleanup.
-  Reports count actual candidates/active samples, and re-evaluate each earlier
-  sample at body-end (no one-sample assumption). Independent raw checks plus
-  thirteen new synthetic controls; 91 Python tests pass locally. Engine results below.
-- Test-only cloned Tuning --static-slip=.15|1.5, same600/6/.33/zero initial motion.
-  Resource remains.15; both traces retained. Compare full-run/steady branch
-  activation and COM drift. NOT a friction fix or adopted threshold.
-- F42 raw per-tick grounded/prior/new/lifted body sets plus all per-sample
-  impulses retained. No definition of sleep-breaking contact or sleep eligibility.
-  Owner asleep answer must clarify how to interpret persistent support contacts.
-- Instrumented/uninstrumented full physical snapshots checked every tick in the
-  harness; results below. Not creature determinism acceptance.
-- Next M1: owner F30 AND asleep/F42 answers -> authorized
-  pose with hard F36 assertion -> FA-5 band. Re-measure F41 after approved pose,
-  compare motor-belly.095WU to foot-pad.05WU support. Preflight stays F30 RED;
-  FA-3/4/5/6/all coupled runtime gates NOT RUN, determinism attempts0; no retune,
-  epsilon, damping, adopted iterations, radius/limit/model change, M2 or captures.
+- Owner decisions are final: M1-D12 records A/A1 and positional sleep/dwell plus
+  transition-only F42. No longer waiting for owner pose/asleep choices.
+- F41b answered in chat BEFORE source edits: current extent ceil crosses cell.25
+  after first-pass position cleanup, foot3->2. Candidate/active counts at fixed
+  current/previous positions are velocity-invariant; indirect integration path
+  remains, not a direct motion-magnitude sample-count rule.
+- Pose commit changes only foot axes in3 catalog JSONs; exactly TwinRoller foot5
+  is an exempt retained head-attached non-support stub. Hard F36 catalog assertion
+  now enabled, original synthetic bad-pose detector preserved. Hopper two-foot
+  branch is future FA-5 fixture, never TwinRoller stub.
+- Unchanged paired Slug600/.33/6/.15/zero-motion and everytick supports/F41 events
+  implemented; pinned engine pending. Do not claim genuine support from authored
+  bottoms. No sleep/tuning/solver change in this pose increment.
+- Next M1: measure pose FIRST (stop/re-derive on owner F41 trap), then separate
+  sleep commit (.001 displacement/30ticks, zero endpoints, input wake, exact
+  restore replay), then motors/limits/self-contact -> FA-5 Hopper/all3 FA-3/4 ->
+  public Sim LAST. All runtime FA-3/4/5/6 NOT RUN; determinism0; no retune/M2/captures.
 
 ### Exists
 

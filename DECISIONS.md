@@ -660,3 +660,40 @@ support contact evidence is NOT a sleep-breaking interpretation. Thirteen new
 synthetic controls,91 Python total; all34 previously accepted parser/control
 methods and accepted F31 analyzer function source-identical. No tuning/physics
 fix or pending owner decision is silently adopted. Runtime gates remain NOT RUN.
+
+
+## M1-D12 — Owner R14 final A/A1 pose, positional sleep and transition-only contacts
+
+Owner-authored approvals (2026-10-29), implement IN ORDER, not agent reinterpretation:
+1. F41b answered before source edits: candidate intervals=ceil(current extent/cell),
+   not rest length; first-pass positional cleanup changes foot extent across.25WU.
+   Tick599 foot pass0 intervals2/candidates3/active3, pass1 intervals1/2/2;
+   final extent.248830517515599WU. Both counts invariant to endpoint velocities
+   with fixed current/previous positions+terrain; velocities indirectly affect
+   future geometry through integration. No direct velocity-dependent sample count.
+2. A: change ONLY foot axis to DOWN in all3 catalog JSONs. A1: preserve TwinRoller
+   foot5 (parent0) explicitly as non-support stub; exemption list EXACTLY that foot.
+   F36 hard catalog bottom assertion in SAME pose commit; original two-sided
+   synthetic bad-pose control retained on its original horizontal-foot fixture.
+   Paired pre/post Slug600 uses same.33/6/.15/zero-motion, no sleep/retune. Raw
+   everytick supports and F41 samples retained, report measured grip, not "fixed".
+   Hopper (feet5/7) supplies future two-foot grip branch, NOT TwinRoller stub.
+3. Sleep: owner constants sleep_still_displacement_wu=.001, sleep_dwell_ticks=30.
+   Maximum per-body per-tick COM displacement strictly below.001 for30 consecutive
+   ticks -> park, zero all endpoint velocities, sleep_state asleep. Input fully
+   re-arms, record wake tick. Snapshot all dwell/wake state; restore replay exact.
+   Sleep parks the plateau, DOES NOT FIX it: play may retain endpoint speed≈.202
+   WU/s (30px/s at150px/WU), feel risk for motor stage, not a fix authorization.
+4. F42: sleep-breaking means body ungrounded->grounded WHILE ASLEEP. Persistent
+   support impulses are not violations. No impulse threshold/second constant.
+5. Then motors/angular limits/self-contact; Hopper two-foot FA-5 and all3 FA-3/4;
+   public Sim wiring LAST. FA-3/4/5/6 NOT RUN until genuine gate traces exist;
+   complete-creature determinism attempts0. No M2/camera/screens/captures.
+
+R14 confirms F41 sequential overlap mechanism and closes static-slip hypothesis:
+keep.15 resource,1.5 diagnostic only. Re-measure AFTER A, never tune toward smaller
+creep. Identical old drift with DIFFERENT contact geometry -> STOP and re-derive;
+unchanged drift/contact mechanism elsewhere -> report for later owner decision.
+No damping/radius/mass/grip/gate/limit constant edits, no new epsilon/hysteresis/
+decay/grace/contact fix; only TWO approved sleep tuning additions at sleep stage.
+Pose measurement pending pinned engine in this commit, no physical success claim.

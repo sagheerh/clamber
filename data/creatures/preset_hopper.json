@@ -39,7 +39,7 @@
     {
       "kind": "foot",
       "parent": 3,
-      "axis": "RIGHT",
+      "axis": "DOWN",
       "channel": "",
       "length_index": 0
     },
@@ -53,7 +53,7 @@
     {
       "kind": "foot",
       "parent": 6,
-      "axis": "LEFT",
+      "axis": "DOWN",
       "channel": "",
       "length_index": 0
     }

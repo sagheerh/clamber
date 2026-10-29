@@ -237,3 +237,29 @@ jobs:
             ${{ runner.temp }}/m1-slip-console.log
           if-no-files-found: warn
           retention-days: 7
+
+      - name: R14 owner A/A1 exact pre/post600 (NO sleep or retune)
+        if: always()
+        shell: bash
+        run: |
+          set +e
+          M1_POSE_REPORT_DIR="$RUNNER_TEMP/m1-pose" bash tests/run_m1_pose_probe.sh > "$RUNNER_TEMP/m1-pose-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-pose-console.log" "$status" <<'PYLOG'
+          import sys
+          for line in open(sys.argv[1]).read().splitlines():
+              if line.startswith('M1 pose') or 'ERROR' in line:
+                  level = 'notice' if sys.argv[2] == '0' else 'error'
+                  print(f'::{level} title=M1 R14 A/A1 pose only::'+line.replace('%','%25').replace('\r','%0D'))
+          PYLOG
+          exit "$status"
+      - name: Preserve both pose traces and everytick actual supports
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: m1-r14-pose-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-pose/
+            ${{ runner.temp }}/m1-pose-console.log
+          retention-days: 7

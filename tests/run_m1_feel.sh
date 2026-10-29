@@ -34,6 +34,10 @@ for preset in report['authored_preset_bottoms']:
     assert [(r['non_foot'], r['foot']) for r in flags] == [(r['non_foot'], r['foot']) for r in expected_flags]
     assert all(math.isclose(a['gap_wu'], b['gap_wu'], rel_tol=0, abs_tol=1e-12)
                for a, b in zip(flags, expected_flags))
+    exemptions = {'TwinRoller': [5]}.get(preset['preset'], [])
+    assert preset['non_support_stub_exemptions'] == exemptions
+    assert not [f for f in flags if f['foot'] not in exemptions], 'F36 support-foot pose assertion'
+    assert preset['support_violations'] == []
 assert report['checks'] >= 131, 'Owner geometry count floor regressed'
 assert all(row['status'] == 'PASS (analytic only)' for row in report['analytic'].values())
 assert all(row['status'] == 'NOT RUN' and row['observations'] is None for row in report['runtime'])

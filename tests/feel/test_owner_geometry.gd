@@ -2,6 +2,8 @@ extends SceneTree
 ## Real analytic geometry assertions; NOT contact/gait/sleep/soak evidence.
 const TUNING = preload("res://core/tuning.tres")
 const Harness = preload("res://tests/feel/harness.gd")
+# Owner R14 Decision1 A1: head-attached non-support stub, retained unchanged topology.
+const NON_SUPPORT_FEET = {"TwinRoller": [5]}
 const KINDS = ["limb", "passive", "motor", "foot", "head"]
 var _checks := 0
 var _failures := 0
@@ -129,7 +131,12 @@ func _initialize() -> void:
 				plan.success_count == null,
 				"tutorial success count is unknown, not zero or invented"
 			)
-	var synthetic := CreaturePresets.load_model("Slug", TUNING).create_bodies(0.0, 0.0)
+	# Preserve the accepted two-sided control on its ORIGINAL horizontal-foot geometry.
+	var legacy := CreaturePresets.load_model("Slug", TUNING).definition()
+	legacy.parts[2].axis = "RIGHT"
+	var fixture := CreatureModel.new()
+	_check(fixture.configure(legacy, TUNING) == OK, "original F36 synthetic fixture configures")
+	var synthetic := fixture.create_bodies(0.0, 0.0)
 	# Isolated test pose: move only the motor, never production axes/radii.
 	synthetic[1].a.y += 0.1
 	synthetic[1].b.y += 0.1
@@ -147,7 +154,7 @@ func _initialize() -> void:
 			and bad[0].foot == 2
 			and absf(bad[0].gap_wu - 0.045) < 1e-12
 		),
-		"synthetic deliberately lowered motor MUST flag; hard production assertion awaits pose decision"
+		"synthetic deliberately lowered motor MUST flag; production assertion enabled R14"
 	)
 	var bottoms := _preset_bottoms()
 	_check(bottoms.size() == 3, "non-vacuous authored bottom audit for all presets")
@@ -238,7 +245,21 @@ func _preset_bottoms() -> Array:
 			return []
 		var parts := _bottom_parts(model.create_bodies(0.0, 0.0))
 		var flags := _bottom_flags(parts)
-		var row := {"preset": name, "parts": parts, "non_foot_below_foot": flags}
+		var exemptions: Array = NON_SUPPORT_FEET.get(name, [])
+		var violations := flags.filter(func(flag): return flag.foot not in exemptions)
+		_check(violations.is_empty(), "F36 hard authored support-foot bottom assertion " + name)
+		if name == "TwinRoller":
+			_check(
+				exemptions == [5] and model.definition().parts[5].parent == 0,
+				"A1 exemption exactly head-attached TwinRoller foot5, not reparented/deleted"
+			)
+		var row := {
+			"preset": name,
+			"parts": parts,
+			"non_foot_below_foot": flags,
+			"non_support_stub_exemptions": exemptions,
+			"support_violations": violations
+		}
 		rows.append(row)
 		print("M1 preset bottoms: " + JSON.stringify(row, "", true, true))
 	return rows

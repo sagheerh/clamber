@@ -40,7 +40,7 @@ func _hinge_impulse() -> void:
 
 
 func _unequal_height() -> void:
-	var model := CreaturePresets.load_model("Slug", TUNING)
+	var model := _pre_pose_model(TUNING)
 	var low := model.create_bodies(0.0, 0.33)[2]
 	var high := model.create_bodies(2.0, 0.53)[2]
 	var pair: Array[CapsuleBody] = [high, low]
@@ -100,7 +100,7 @@ func _floor() -> SdfGrid:
 
 
 func _gravity_reaction() -> void:
-	var model := CreaturePresets.load_model("Slug", TUNING)
+	var model := _pre_pose_model(TUNING)
 	var foot := model.create_bodies(0.0, 0.33)[2]
 	var parts: Array[CapsuleBody] = [foot]
 	var dt := 1.0 / TUNING.physics_tick_hz
@@ -166,6 +166,8 @@ func _slug() -> void:
 	var tuning: Tuning = config.tuning
 	var spawn_y: float = config.spawn_y
 	var model := CreaturePresets.load_model("Slug", tuning)
+	if "--pre-pose" in OS.get_cmdline_user_args():
+		model = _pre_pose_model(tuning)
 	var probe := CoupledLoadProbe.new()
 	probe.collect_contact_samples = true
 	# Explicit uniform diagnostic material; NOT a new non-foot production default.
@@ -214,6 +216,7 @@ func _slug() -> void:
 			return
 		row["observer_on_off_physical_state_equal"] = true
 		row["diagnostic_spawn_y_wu"] = spawn_y
+		row["diagnostic_pose"] = "before" if "--pre-pose" in OS.get_cmdline_user_args() else "after"
 		var text := JSON.stringify(row, "", true, true)
 		print("M1 Slug tick: " + text)
 		if file != null:
@@ -237,3 +240,12 @@ func _slug() -> void:
 		)
 	)
 	quit(0 if count == 600 else 1)
+
+
+func _pre_pose_model(tuning: Tuning) -> CreatureModel:
+	# TEST ONLY: exact pre-A Slug geometry for accepted isolated fixtures and paired600.
+	# Never a production catalog fallback or a qualifying-load injection.
+	var definition := CreaturePresets.load_model("Slug", tuning).definition()
+	definition.parts[2].axis = "RIGHT"
+	var model := CreatureModel.new()
+	return model if model.configure(definition, tuning) == OK else null
