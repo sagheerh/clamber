@@ -1366,3 +1366,41 @@ runtime jobs remain manual-only, NOT passed/waived/closed; static checks stay
 active. Subsequent closeout commits [skip ci], new cell requires explicit marker
 or authorized manual dispatch, never auto repeats on PR or ordinary docs push.
 No source/resource change or additional diagnostic arm results from this fix.
+
+
+### R22 measured closeout — baseline-return branch; STOP, owner handoff
+
+Sourceeea4e52 /M140880532917 /job123470523762 SUCCESS. EXACTLY ONE new arm:
+gain0+upper90, default bound6/all else fixed. Drift.08403595917824255 vs existing
+free-hinge.08403595917823123, difference1.1324274851176597e−14px/s. Thrust
+.00001772186894237695 impulse/tick /.0010633121365426171N. All6000 requested/
+applied drive EXACT0, all positional/velocity limit engagement0, all block
+impulse0 and all angular phase endpoint/projection changes0. Drive-time error,
+actual correction rad and endpoint WU columns separately0. Complete F56 passed
+per-tick/window; full book in `.review/m1_r22_inert_evidence.json`, literal still
+false/distinct complete authorization unchanged. Inertness measured, not assumed.
+Baseline-return branch supported; no inert-row solver/plumbing defect exposed by
+THIS fixture. Either active angular path separately amplified creep in prior
+cells; neither individually necessary for that amplification. Jointly off returns
+to baseline. No further causal ordering mechanism asserted. Historic2.95 minimum
+applied to active configurations ONLY; not mere angular-row presence, since inert
+row now below it. Owner F67 drive-is-brake mechanism remains WITHDRAWN.
+
+STOP after this cell, no sweep/arm/solver investigation/retune/hold implementation
+run.180 static controls +load80/0; other runtime jobs skipped, not passed/waived/
+closed; prior F47/public evidence retained. Denied dispatch never created a run;
+one push marker executed cell once, PR cell skipped. Nextcommit [skip ci] to
+prevent any repeat. Core/GD harness byte-identical63cb024, tuning/creatures
+byte-identical74c629e; default40/SHA unchanged after90 process exited and rechecked
+in nextcommit. No90 default ever committed. No baseline/Phase3/A/residual change.
+
+F68 OWNER finding for current measured fixture/defaults shifts M1 from torque/band
+knob hunting to owner station-keeping decision. Original AC201 zero-net-motion AND
+sleep≤4s remains normative/NOT RUN; not reinterpreted/waived. D08 owner options
+widening measured insufficient, pose/mass redesign UNMEASURED (not bounded by
+wide90's3%/25%), intended stop plus reviewer-recommended station-keeping and
+owner-authored duration/net-displacement and sleep redesign only if owner chooses.
+No duration/hold/threshold/hysteresis/damping/geometry change adopted. D06/D07
+queued.8/18 movement0, ten runtime gates NOT RUN/unmoved/FA5 unchanged. Accepted
+determinism attempt1 same-build observation/cross-arch0 retained, no new attempt.
+NEXT single milestone ownerD08 decision/handoff only. No further experiment.

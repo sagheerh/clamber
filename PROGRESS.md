@@ -8,37 +8,81 @@ Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R22 — exactly one missing cell authorized; result PENDING
+### Current R22 — missing cell returns to baseline; experiments STOPPED
 
-R22 reviewer source read via git show ONLY (not copied/merged). Both R21 arms
-accepted; owner's drive-as-brake MECHANISM withdrawn (F67); no seventh lever
-hypothesis. F61: nonzero late-window arms remain constraint-limited, including
-bound1 requested−21 /bound.006817925509442767 (3080.1157876576485x),300/300.
-Torque clamp still acts UPSTREAM on request; gain0 explicitly switches drive off;
-no claim coefficients never affect request/startup or no possible linear regime
-for arbitrary inputs. Drive-time error, actual per-pass angular correction rad,
-endpoint displacement WU retained as three permanent SEPARATE columns.
+Source **eea4e52**, [M140880532917](https://github.com/sagheerh/clamber/actions/runs/40880532917),
+job123470523762 SUCCESS. Reviewer source read via git show ONLY, never copied/
+merged. Exactly ONE new arm: gain0+upper90/default bound6, all6000 raw ticks,
+late300 ticks5700–5999. Full facts `.review/m1_r22_inert_evidence.json`.
 
-Run ONLY gain0+upper90,6000ticks/default bound6/everything else unchanged. Existing
-flags compose on a process-local duplicate; committed resource40 unchanged.
-A dedicated r22_only manual CI dispatch skips ALL other runtime jobs; [skip ci]
-commits prevent automatic push/PR sweep reruns. Existing tests/failures are NOT
-waived/passed/closed by skipped jobs; full176 previous controls preserved plus4
-new reporter/protocol controls. No physics changes. Single cell report contains
-drift/thrust/fullF56/three limit measures and audited inertness premise. No new
-approximate-drift epsilon. STOP after result regardless of branch; no sweeps.
+| Single gain0 + wide90 arm | Measured |
+|---|---:|
+| Drift px/s |.08403595917824255|
+| Existing free-hinge baseline px/s (NOT rerun/regenerated) |.08403595917823123|
+| Difference px/s |1.1324274851176597e−14|
+| Rectified friction impulse/tick |.00001772186894237695|
+| Mean thrust N |.0010633121365426171|
+| Drive-time max band violation rad |0|
+| Actual summed angular correction rad, last300 |0|
+| Angular-phase endpoint displacement WU, last300 |0|
+| Limit engaged last300 / all6000 |0 /0|
+| Requested / applied drive ALL6000 |EXACT0 /EXACT0|
+| Limit-block impulse ALL6000 |EXACT0|
+| Measured bound / applied mean / sat ticks |.04442255333602155 /0 /0of300|
+| mean_clamped_total_torque |0|
 
-F68 recorded as OWNER structural finding for tested released-input actuated fixture
-at defaults: measured creep contradicts desired zero-input settle/sleep≤4s, not
-merely a band choice. Formal AC201 still NOT RUN; no universal proof over untested
-poses/masses/bands or acceptance rewrite inferred. D08 now station-keeping/design
-choice; D06/D07 queued. Reviewer recommendation intended stop + owner-authored
-net-displacement duration + re-scoped sleep + station-keeping requirement recorded
-for OWNER decision only. No duration/threshold/hold mechanic invented/adopted.
-Pose/mass intervention NOT measured: wide-stop's3% delivery/25% drift changes do
-not mathematically bound arbitrary pose/mass designs. Historical2.95 minimum is
-only among four measured active configurations, not a universal angular-row floor.
-A/residual withdrawn/obsolete; no baseline regeneration/Phase3;8/18 movement0.
+Three columns stay permanently separate: drive-time error rad, actual per-pass
+correction rad, original endpoint-phase displacement WU. Also audited all6000:
+no positional or velocity engagement, all projection endpoints unchanged, exact
+binary64 predicates agree,0 decimal disagreements. Inertness verified rather
+than inferred from flags. Observer on/off physical snapshots equal every tick.
+Baseline-return branch supported; no inert-row solver/plumbing defect exposed
+in this fixture. Operationally either angular path alone amplified creep in prior
+cells; jointly off returns to baseline. Do NOT restore a scalar brake mechanism
+or a universal35x floor: inert row's mere presence does NOT impose that floor.
+No fitted replacement source, new causal ordering claim or further experiment.
+
+Complete F56 PASS; per-tick/window raw contact/damping/clamp/internal guards
+unchanged1e−12. Window sums mass*WU/s:
+
+| Axis | Δp | Contact | Damping | Gravity | Complete residual |
+|---|---:|---:|---:|---:|---:|
+|x|−7.697835424647081e−18|.005316560682713085|−.005316560682713103|0|1.6263032587282567e−18|
+|y|0|217.98051714817854|−.9805171481785386|−217.00000000000003|3.880229471064922e−14|
+
+Clamp/internal_drive0 in both axes; internal_velocity x8.023096076392733e−18,
+y−6.827871601444713e−15 (unchanged bookkeeping tolerance, NOT exact zero claim).
+Literal contact-only F56 for THIS cell still false x−.005316560682713093 /
+y−217.98051714817854, not silently redefined. Original R18 record/default exit1
+unchanged; distinct R19 complete authorization applies, not a remedy waiver.
+
+180 Python controls PASS locally/CI; load80 checks0fail in one cell. Manual
+Actions dispatch was deniedHTTP403 BEFORE any run, so one explicit push marker
+triggered this cell. PR cell SKIPPED, legacy runtime jobs manual-only/SKIPPED:
+no old arms rerun; not passed/waived/closed. Prior public/complete-F56/F47 evidence
+retained, no new determinism attempt or acceptance claim. Raw artifact12900316209,
+21060464B/SHAcbad831725ce1a51c0bcbaf22650a14a3ca31c17e5175219c514ffe30358de2c;
+complete compact annotations/API metadata inspected, NOT raw ZIP.
+
+40 resourceSHA3a32dd3d2d719ed28220ed531fee05c8d2a799140d3f06e3aeed4d28d6e6f60c
+unchanged throughout/nextcommit;90 ONLY exited process-local duplicate. Resource/
+creature bytes identical74c629e; core +GD harness identical63cb024. No tuning,
+solver/telemetry changes, baseline regeneration, A/residual, Phase3 or new arms.
+F67 drive-is-brake mechanism withdrawn by OWNER, measurements retained. F61
+nonzero late drives constrained incl3080x bound1; gain0 switches off, upstream
+request clamp still acts, no universal claim about untested linear regimes.
+
+F68 recorded as OWNER structural finding for current measured fixture/defaults:
+creep contradicts settle/sleep≤4s, not just a band defect. AC201 ORIGINAL predicate
+unchanged/formal gate NOT RUN; no proof over all poses/masses/bands. D08 now owner
+station-keeping/design decision: widen measured insufficient; pose/mass change
+UNMEASURED (wide90's3%/25% is not an upper bound on arbitrary redesign); intended
+stop/re-scoped sleep/net-displacement interval needs OWNER-authored numbers.
+Reviewer recommends intended stop plus explicit station-keeping/hold requirement,
+recorded only for OWNER decision. No recommendation or acceptance rewrite adopted.
+D06 tutorial/D07 device queued.8/18 movement0/ten rows NOT RUN, FA5 untouched,
+attempt1 same-build success/cross-arch0; RNG not consumed. STOP NOW; next single
+milestone OWNER D08 decision/handoff only, no further sweep or implementation.
 
 ### Historical R21 — BOTH predictions falsified; no remedy, runtime8/18 unchanged
 

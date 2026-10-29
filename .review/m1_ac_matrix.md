@@ -1,6 +1,27 @@
 # M1 acceptance matrix — scoped measured evidence, NOT milestone approval
 
-## Current R21 — BOTH owner predictions falsified; 8/18 unchanged
+## Current R22 — baseline returned; unconditional STOP / 8of18 unchanged
+
+Sourceeea4e52 /M140880532917 /job123470523762 SUCCESS; exactly gain0+upper90,
+6000ticks, other defaults fixed. Drift.08403595917824255 vs old free-hinge
+.08403595917823123 (delta1.1324274851176597e−14px/s); thrust impulse/tick
+.00001772186894237695 /force.0010633121365426171N. Drive-time violation0rad,
+actual angular correction0rad, original endpoint displacement0WU, separate.
+ALL6000 requested/applied drive/limit-block EXACT0 and positional/velocity limit
+engagement0. CompleteF56PASS/unchanged guards; full book/evidence
+`.review/m1_r22_inert_evidence.json`. No inert-row defect exposed by this fixture.
+No new arms after this; ownerD08 handoff, not a new lever hypothesis.
+F67 brake mechanism withdrawn/universal35x floor unsupported by inert cell.
+F68 OWNER structural finding for current defaults, original AC201 predicate still
+unchanged/NOT RUN; no bound on untested pose/mass redesign. D08 intended stop+
+station-keeping recommendation only, requires owner design/numbers; no change.
+180 Python controls PASS, load80/0. Old runtime jobs SKIPPED NOT WAIVED/PASSED,
+existing F47 still open; public not rerun.40 default/hash/creatures unchanged
+vs74c629e, GD/core unchanged63cb024;90 exited duplicate only/nextcommit verified.
+A/residual withdrawn/obsolete, no baseline regeneration/Phase3.8/18 movement0,
+ten NOT RUN rows/FA5 untouched; attempt1 same-build success/cross-arch0 retained.
+
+## Historical R21 — BOTH owner predictions falsified; 8/18 unchanged
 
 Measured48d54df, M140877081798 /limit123458547461. Complete18000 raw ticks,
 last300 each5700–5999. See PROGRESS and `.review/m1_r21_limit_evidence.json`.
