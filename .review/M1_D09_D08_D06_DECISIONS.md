@@ -90,3 +90,19 @@ Reference-device tick cost needs the phone. It stays queued until the owner runs
 5. **Phase 5** — §10.6, invariants, A5/A10/A12, `m1_verdict`, merge.
 
 **Standing prohibitions unchanged:** no velocity epsilon, no widened tolerance, no synthetic qualifying loads, no silent AC-201 rewrite, no waiver, no M2, no camera, no captures before Phase 4. Every number above that is not derived from an existing constant is marked as a proposal requiring measurement.
+
+---
+
+## Addendum (R24) — FA-6 variance pre-registration
+
+The D06 fixture is deterministic by construction: one seed, one input script, one outcome, ten identical runs. FA-6's "10 runs, 6–8 successes" is therefore only meaningful if the ten runs **legitimately differ**, and the source of the difference must be written down **before** the test, not chosen after seeing results.
+
+**Decided: the variance source is player timing, not the solver.**
+
+- Ten runs, **one seed**, **one spawn**, **one geometry**, identical physics.
+- The only difference between runs is the **tick at which the L press begins**, drawn from a fixed, published list of ten tick offsets spanning the plausible human range (for a 240-tick script, offsets of 0, 4, 8, 12, 16, 20, 24, 28, 32, 36 ticks — i.e. 0–600 ms of timing slop in steps of 67 ms). The list is fixed and recorded before the run.
+- This models the thing FA-6 is actually trying to measure — whether a real player's timing can succeed — instead of injecting noise into the physics or fabricating variation, either of which would make the number meaningless.
+- Any other variance source (spawn offsets, pose jitter, random seeds) must be proposed **before** a run and justified; none is authorised now.
+- FA-6's number stays the owner's: **6–8 of 10**. 10/10 is a copycat, ≤4/10 is frustrating.
+
+Reason this matters: without a pre-registered variance source, FA-6 can be made to pass or fail at will by choosing the input list after the fact, which would make it the only gate in M1 that reports an opinion instead of a measurement.
