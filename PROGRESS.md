@@ -8,32 +8,34 @@ Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R26 — BRACE REJECTED / LAST BOUNDED D1+D2 + F77 / 8of18
+### Current R26 — COMPLETE / BRACE REMOVED / OPTION2 / 8of18
 
-Owner Option3, readonly reviewer1df02f5 §10. Brace implementation/state/snapshots/
-restore/hash/presentation/tests removed in one source commit; four P-B defaults
-unchanged (30/10/.5443327361211717/12), friction.9 untouched. Historical brace
-F56 column retained; rejection12.61773 vs8.55015px/s (+47.6%), end-release
-+.224943 -> -.061297WU. No brace or new lurch trial; idle travel never input credit.
-Preregistered `.review/m1_r26_diagnostic_plan.md`: D1 four friction duplicates
-.9/.3/1.8/3.6 released, drift+thrust; D2 Hopper7200 baseline/ONE extra-distance
-arm, exact phases and literal-limb .05 unchanged; no diagnostic adoption.
-F77 parallel authored stance/drop/ledge/midair, frozen-N/load/normal/grip audit,
-unconditional termination/status/tick and independent events, no syntheticloads.
-New P-B-without-brace baseline/provenance + same-source strict replay required.
-Source114265e / CI40901902007: D1 complete four6000tick cells, drift8.55015/
-9.39342/8.48216/8.48216px/s, thrust.108186/.118855/.107325/.107325N. NOT
-proportional; coefficient clamp recorded. D1 no located correctness-shaped cause
-=> binding **Option2**. OWNER authors AC201 number, unchanged AC202 honestfailure.
-D2 diagnostic7200complete; paired baseline7067/status30/failingtick7067; no
-full7200baseline claim. FA5 raw archived; reporter non-foot missing-gripping-field
-bug repaired ARCHIVEONLY, no physical rerun. D2 partial-baseline reporter also
-repaired ARCHIVEONLY, no data/tolerance change. Baseline generator+same-source
-strict publicPASS9053+308+1446; generated actualbytes nowcommitted/provenance.
-Archive-only audit and normal committed-baseline checks pending; core/data EXACT
-114265e, no additional diagnostic arms. Evidence `.review/m1_r26_diagnostic_evidence.json`.
-NO further measurement/sweeps/.05 widening/new slip/stiffness/damping/epsilon;
-no waiver/M2/camera/captures. Matrix remains8/18; old F47 red not waived.
+Source114265e / CI40901902007: atomic brace removal, four P-B defaults retained.
+D1 four6000-tick friction duplicates.9/.3/1.8/3.6: drift8.55015/9.39342/8.48216/
+8.48216px/s; thrust.108186/.118855/.107325/.107325N. NOT proportional; dynamic
+clamp/static override recorded, no located correctness-shaped cause => **Option2**.
+D2 diagnostic7200, completed literal-limb max**.051910617942553194WU>.05**;
+normal baseline7067observed, max**.05334550000967464WU>.05**, then tick7067
+step_failure/status30/control30. No full7200baseline claim. Final distance restores
+length to roundoff BEFORE contact; contact cleanup reintroduces failure; angular
+phase equals prior hinge maximum. Diagnostic NOTadopted, no extra after-contact arm.
+FA5 F77 original fourfixtures2412ticks completed, all4branches/law reconstructed;
+airborne236foot/pass observations,6episodes; at/above27foot/pass,8episodes;
+twofoot9pair/pass,3episodes; episodes brief2–4ticks, NOTsustained grip evidence.
+Ledge departure83, no syntheticloads. Termination alwayslogged. Source reporter
+schema/incomplete-baseline bugs repaired **ARCHIVEONLY**, job123551531542 SUCCESS,
+0newphysicalruns/rawhashesmatched. No diagnostic rerun after source.
+Generated P-BWITHOUTbrace baseline committedddefbba, ownDECISIONSprovenance;
+fileSHA2779456f6a35338a97666bcec813608ae5bda83c612ec1d5b6560df62590f679
+byteequaloriginalgeneration. SAMEsource publicPASS, committedpush+PR strictpublic
+PASS9053+308+1446, fullpush/PRsummaryidentical.201PythoncontrolsCI, M0516/0+
+Androidpush+PRSUCCESS; overallM1stillRED onlyunchangedF47/nonwaived.
+Report `.review/m1_r26_diagnostic_report.md`; fullprecision/evidenceJSON adjacent.
+No moremeasurement/sweep/brace/lurch, no new friction/slip/stiffness/damping,
+no epsilon/.05 widening/mass/weight/waiver/M2/camera/captures. Core/dataunchanged
+since114265e. Owner authors AC201 displacement/time number; originalcriterion
+NOTrewritten, AC202honestFAIL. Nextsinglemilestone M1ownerOption2acceptancedecision.
+HistoricalbraceF56columnretained/unchanged; matrix8/18, crossarchattempts0.
 
 ### Historical R25 — P-B ADOPTED / BRACE ACCEPTANCE FAILED / STOP / 8of18
 

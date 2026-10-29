@@ -5,7 +5,7 @@ import hashlib
 import json
 import unittest
 from pathlib import Path
-from r26_report import Events, complete, completed_flags, length_errors, retention, terrain_sample
+from r26_report import Events, complete, completed_flags, length_errors, require_target, retention, terrain_sample
 
 
 class R26Controls(unittest.TestCase):
@@ -89,6 +89,13 @@ class R26Controls(unittest.TestCase):
             completed_flags({'grounded': True, 'gripping': False}, True, True, True)
         with self.assertRaises(ValueError):
             completed_flags({'grounded': False}, True, False, False)
+
+    def test_edited_termination_target_cannot_qualify_shortened_fixture(self):
+        require_target({'target_ticks': 7200}, 7200)
+        with self.assertRaises(ValueError):
+            require_target({'target_ticks': 7067}, 7200)
+        with self.assertRaises(ValueError):
+            require_target({'target_ticks': 1}, 600)
 
     def test_jobs_independent_and_push_once_only(self):
         s = Path('.github/workflows/m1.yml').read_text().split('  r26-diagnostics:', 1)[1].split('  r26-baseline:', 1)[0]

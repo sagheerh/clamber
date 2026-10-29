@@ -37,6 +37,10 @@ def complete(end, count):
             and end['ticks'] == count == end['target_ticks'])
 
 
+def require_target(end, target):
+    require(end['target_ticks'] == target, 'Termination target differs from preregistered fixture')
+
+
 def retention(event, expected_mu, *, may_grip=None):
     """Independent clamp/static-override audit, including effective intervention."""
     require(event['material_friction'] == expected_mu == event['sample_friction'],
@@ -114,12 +118,13 @@ def worst(values):
     return {'all': max(values), 'limb': max(v for v in values if v[2] == 'limb')}
 
 
-def d2(root, engine):
+def d2(root, engine, derived=None):
     arms = {}
     for arm in ('baseline', 'final_distance'):
+        require_target(engine[arm], 7200)
         maxima = {}
         count = awake = 0
-        output = (root/f'{arm}-phase-maxima.jsonl').open('w')
+        output = ((derived if derived is not None else root)/f'{arm}-phase-maxima.jsonl').open('w')
         for r in rows(root/f'{arm}.jsonl'):
             require(r['tick'] == count and r['input_mask'] == (count//60)%4, 'Wrong ordering script')
             require(r['diagnostic_final_distance_pass'] == (arm == 'final_distance'), 'Wrong diagnostic arm')
@@ -156,8 +161,8 @@ def d2(root, engine):
         require(count == engine[arm]['ticks'], f'{arm}: raw rows disagree with termination report')
         arms[arm] = dict(ticks=count, completed=complete(engine[arm], count), awake_ticks=awake, parked_ticks=count-awake,
                          maxima=maxima, termination=engine[arm],
-                         true_limb_passed=maxima['completed/limb']['error_wu'] <= .05,
-                         all_parts_passed=maxima['completed/all']['error_wu'] <= .05)
+                         true_limb_passed=complete(engine[arm], count) and maxima['completed/limb']['error_wu'] <= .05,
+                         all_parts_passed=complete(engine[arm], count) and maxima['completed/all']['error_wu'] <= .05)
     return {'diagnostic_only': True, 'preset': 'Hopper', 'arms': arms,
             'phase_semantics': 'after_iteration_distance is the last existing distance block BEFORE hinge/angular/self-contact. after_diagnostic_final_distance is ONE added traversal AFTER all position iterations, BEFORE velocity/contact cleanup. Completed-tick true limbs determine the unchanged .05 criterion. No pass is moved after contact cleanup.',
             'ordering_candidate_meets_limb_criterion': arms['final_distance']['completed'] and arms['final_distance']['true_limb_passed'],
@@ -293,6 +298,7 @@ def fa5(root, engine):
     totals = Counter()
     for spec in plan['cases']:
         name = spec['id']
+        require_target(engine[name], spec['ticks'])
         count = 0
         previous = []
         episodes = Events()

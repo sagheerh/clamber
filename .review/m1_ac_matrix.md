@@ -1,31 +1,33 @@
 # M1 acceptance matrix — scoped measured evidence, NOT milestone approval
 
-## Current R26 — BRACE REJECTED / LAST BOUNDED D1+D2 + F77 / 8of18
+## Current R26 — COMPLETE / BRACE REMOVED / OPTION2 / 8of18
 
-Owner Option3, readonly reviewer1df02f5 §10. Brace implementation/state/snapshots/
-restore/hash/presentation/tests removed in one source commit; four P-B defaults
-unchanged (30/10/.5443327361211717/12), friction.9 untouched. Historical brace
-F56 column retained; rejection12.61773 vs8.55015px/s (+47.6%), end-release
-+.224943 -> -.061297WU. No brace or new lurch trial; idle travel never input credit.
-Preregistered `.review/m1_r26_diagnostic_plan.md`: D1 four friction duplicates
-.9/.3/1.8/3.6 released, drift+thrust; D2 Hopper7200 baseline/ONE extra-distance
-arm, exact phases and literal-limb .05 unchanged; no diagnostic adoption.
-F77 parallel authored stance/drop/ledge/midair, frozen-N/load/normal/grip audit,
-unconditional termination/status/tick and independent events, no syntheticloads.
-New P-B-without-brace baseline/provenance + same-source strict replay required.
-Source114265e / CI40901902007: D1 complete four6000tick cells, drift8.55015/
-9.39342/8.48216/8.48216px/s, thrust.108186/.118855/.107325/.107325N. NOT
-proportional; coefficient clamp recorded. D1 no located correctness-shaped cause
-=> binding **Option2**. OWNER authors AC201 number, unchanged AC202 honestfailure.
-D2 diagnostic7200complete; paired baseline7067/status30/failingtick7067; no
-full7200baseline claim. FA5 raw archived; reporter non-foot missing-gripping-field
-bug repaired ARCHIVEONLY, no physical rerun. D2 partial-baseline reporter also
-repaired ARCHIVEONLY, no data/tolerance change. Baseline generator+same-source
-strict publicPASS9053+308+1446; generated actualbytes nowcommitted/provenance.
-Archive-only audit and normal committed-baseline checks pending; core/data EXACT
-114265e, no additional diagnostic arms. Evidence `.review/m1_r26_diagnostic_evidence.json`.
-NO further measurement/sweeps/.05 widening/new slip/stiffness/damping/epsilon;
-no waiver/M2/camera/captures. Matrix remains8/18; old F47 red not waived.
+Source114265e / CI40901902007: atomic brace removal, four P-B defaults retained.
+D1 four6000-tick friction duplicates.9/.3/1.8/3.6: drift8.55015/9.39342/8.48216/
+8.48216px/s; thrust.108186/.118855/.107325/.107325N. NOT proportional; dynamic
+clamp/static override recorded, no located correctness-shaped cause => **Option2**.
+D2 diagnostic7200, completed literal-limb max**.051910617942553194WU>.05**;
+normal baseline7067observed, max**.05334550000967464WU>.05**, then tick7067
+step_failure/status30/control30. No full7200baseline claim. Final distance restores
+length to roundoff BEFORE contact; contact cleanup reintroduces failure; angular
+phase equals prior hinge maximum. Diagnostic NOTadopted, no extra after-contact arm.
+FA5 F77 original fourfixtures2412ticks completed, all4branches/law reconstructed;
+airborne236foot/pass observations,6episodes; at/above27foot/pass,8episodes;
+twofoot9pair/pass,3episodes; episodes brief2–4ticks, NOTsustained grip evidence.
+Ledge departure83, no syntheticloads. Termination alwayslogged. Source reporter
+schema/incomplete-baseline bugs repaired **ARCHIVEONLY**, job123551531542 SUCCESS,
+0newphysicalruns/rawhashesmatched. No diagnostic rerun after source.
+Generated P-BWITHOUTbrace baseline committedddefbba, ownDECISIONSprovenance;
+fileSHA2779456f6a35338a97666bcec813608ae5bda83c612ec1d5b6560df62590f679
+byteequaloriginalgeneration. SAMEsource publicPASS, committedpush+PR strictpublic
+PASS9053+308+1446, fullpush/PRsummaryidentical.201PythoncontrolsCI, M0516/0+
+Androidpush+PRSUCCESS; overallM1stillRED onlyunchangedF47/nonwaived.
+Report `.review/m1_r26_diagnostic_report.md`; fullprecision/evidenceJSON adjacent.
+No moremeasurement/sweep/brace/lurch, no new friction/slip/stiffness/damping,
+no epsilon/.05 widening/mass/weight/waiver/M2/camera/captures. Core/dataunchanged
+since114265e. Owner authors AC201 displacement/time number; originalcriterion
+NOTrewritten, AC202honestFAIL. Nextsinglemilestone M1ownerOption2acceptancedecision.
+HistoricalbraceF56columnretained/unchanged; matrix8/18, crossarchattempts0.
 
 ## Historical R25 — P-B ADOPTED / BRACE ACCEPTANCE FAILED / STOP / 8of18
 
@@ -54,6 +56,9 @@ slip/sleep/mass/weight/tolerance changes/waiver/M2/camera/captures. D07/B04queue
 The guarded legacy table below retains its locked NOT RUN status tokens for these
 unaccepted gates; this must NOT be read as no attempt. R25 measured failures and
 incomplete coverage are explicitly cited in the evidence cells and current report.
+R26 F77 fixture/law coverage is now established on all four authored fixtures;
+its execution/results are cited below without changing locked qualification
+tokens or the owner-directed8/18 count. NOT RUN is not a claim of never attempted.
 No acceptance credit/scanner vocabulary/criterion is changed to disguise failure.
 
 ## Historical R24 — final round COMPLETE / STOP FOR OWNER P-A/P-B / 8of18
@@ -294,8 +299,8 @@ Provenance: `docs/CLAMBER_REVIEW_AGENT.provenance.md`. **M1-B02 RESOLVED
 | A9.1 / A9.6 static restrictions | Recursive core/sim, core/run, core/tower scans for RNG/clock/frame sources, raw delta callbacks and solver transcendentals; scan scripts AND scene node types | STATIC CHECK ONLY | scripts/review_checks.sh; no runtime proof |
 | A9.2 accumulator | Fixed 1/60, outer accumulator, no raw frame delta in solver, catch-up/drop as GDD §4.2 | PASS (measured runtime) | CI40818428101 .review/m1_r17_phase2_evidence.json#row2 |
 | A9.3 injected RNG | Preserve seed parameter in Sim.setup and explicitly inject seeded xoshiro128**; stub signature alone is insufficient | PASS (measured runtime) | CI40818428101 .review/m1_r17_phase2_evidence.json#row3 |
-| AC-201 | No-input trace shows settling AND sleep within ≤4 s; record sleep tick and velocities using tuning thresholds | NOT RUN | R25 EXECUTED/FAILED: CI40895082337 .review/m1_r25_adoption_evidence.json; no actual sleep600public/6000idle ticks, ONdrift12.61773; no acceptance credit |
-| AC-202 | Maximum absolute limb-length error ≤0.05 WU over a two-minute run; assert and log measured maximum | NOT RUN | R25 EXECUTED/FAILED: CI40895082337 plus archiveCI40896828176 .review/m1_r25_archive_evidence.json;7200ticks each3presets, literalHopperlimb6error.09979>.05 |
+| AC-201 | No-input trace shows settling AND sleep within ≤4 s; record sleep tick and velocities using tuning thresholds | NOT RUN | R26 measured original-criterion failure: CI40901902007 .review/m1_r26_diagnostic_report.md; unbraced P-B8.55015px/s, public600no sleep/maxdwell1; Option2 OWNERauthorsnumber, no silent rewrite |
+| AC-202 | Maximum absolute limb-length error ≤0.05 WU over a two-minute run; assert and log measured maximum | NOT RUN | R26 CI40901902007 plus archiveCI40903408711 .review/m1_r26_archive_evidence.json: diagnostic7200limb3max.051910617942553194>.05; normal7067observedmax.05334550000967464>.05 then step_failure30@7067; diagnostic not adopted, no full7200normalclaim |
 | AC-204 | 200-run soak; zero NaN/∞, log all runs/seeds and failures; do not silently heal/discard non-finite events from the record | NOT RUN | None |
 | Three presets / §16.1 | Three authored presets, identical recorded L/R pattern, three different motions; 10 s capture for EACH, plus shared input/seed and trace references | NOT RUN | Presets implemented; divergence/captures still not executed |
 | Tick cost / §10.4 | Measured solver tick ≤3.0 ms at 30 bodies; record actual constraint count (GDD budget:120), hardware/build and timing method; measure/report per-tick+per-frame snapshot mode versus any frame-only candidate without weakening atomicity | NOT RUN | No timing measurement; CI timing alone is not reference-device evidence |
@@ -309,7 +314,7 @@ Provenance: `docs/CLAMBER_REVIEW_AGENT.provenance.md`. **M1-B02 RESOLVED
 | FA-2 | Every shipped limb length has aspect ratio3:1..12:1; analytic geometry only | PASS (analytic only) | CI40677962012; $RUNNER_TEMP/m1-owner-geometry.json |
 | FA-3 | All three real presets:600 static ticks, zero sleep-breaking contacts; contact trace and actual observations | NOT RUN | R13 F38 owner-CLOSED; F41/F42 telemetry measured; F42 transition-only definition owner-approved R14; F40 motor intra-step0.94..1.53 reference px at150px/WU and60Hz, rendered observation absent; F39 soak extrapolation below; no all-preset static scene |
 | FA-4 | R14 all three presets settle/sleep within4s and L-hold lurch approximately one body length; record distances/input | NOT RUN | R14 owner positional .001WU/30ticks and transition-only F42 approved; component tested, all-preset lurch/sleep gate unexecuted; no motor/tutorial trace |
-| FA-5 | Owner R8/F24: foot load below max(5N,40percent of expected share W/N_previous_grounded) slips; at/above grips with grounded/lowest eligibility; frozen previous-tick N; N0 disables grip; two-foot stance and airborne traces required | NOT RUN | R25 EXECUTED/INCOMPLETE: CI40895082337 .review/m1_r25_adoption_evidence.json; actualHopper7067ticks, below/above/twofootobserved, airborne0/missingcoverage, NOT qualified |
+| FA-5 | Owner R8/F24: foot load below max(5N,40percent of expected share W/N_previous_grounded) slips; at/above grips with grounded/lowest eligibility; frozen previous-tick N; N0 disables grip; two-foot stance and airborne traces required | NOT RUN | R26 F77 EXECUTED: CI40901902007 plus archiveCI40903408711 .review/m1_r26_archive_evidence.json; fourfixtures2412ticks/all4branches/law reconstructed, airborne236footpass/6episodes, above27/8episodes, twofoot9/3episodes; brief2–4ticks not sustained grip, qualification token locked as directed |
 | FA-6 | Ten scripted tutorial runs, actual per-run outcomes and input log; target6..8 successes, stop on10 or at most4 | NOT RUN | Actual success_count unknown; no tutorial scenario |
 | FA-7 | Head visual-radius dominance in all three presets; analytic only, not rendered silhouette proof | PASS (analytic only) | CI40677962012; $RUNNER_TEMP/m1-owner-geometry.json |
 

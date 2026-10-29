@@ -1850,3 +1850,74 @@ has NOT been silently rewritten. AC202 remains honest measured failure, .05
 unchanged. D2 and repaired FA5 ARCHIVE-ONLY interpretation are being completed;
 D2 diagnostic itself finished7200; baseline terminated7067/status30 at tick7067,
 so no full7200baseline claim. No physics rerun to repair reporting/fixture gaps.
+
+## M1-R26-F76-F77 — final ORIGINAL archive interpretation; Option2 binding
+
+Source114265e physics ran ONCE; archive job123551531542 inCI40903408711 SUCCESS,
+no editor/solver/physical rerun, all original rawtrace hashes checked. The two
+source reporter errors are disclosed: FA5 non-foot schema has no gripping field;
+D2 rejected incomplete baseline before reporting the completed diagnostic. Only
+postprocessing was repaired. No raw load/geometry/threshold/constant was edited.
+
+F76: existing final distance block restores literal limbs to1.7763568394002505e-15;
+final hinge/angle/self phases reach.014927052436045196 in baseline. Hinge and
+angular maxima coincide: rigid angular rotation is NOT the source of this
+threshold violation. Later contact cleanup raises completed literal-limb3 to
+**.05334550000967464@tick12**. Baseline completed7067 before both observed/control
+returnstatus30 at tick7067, reasonstep_failure. Its exact failing callsite is
+not logged; do not infer a proven boundary cause or claim7200baselinecompletion.
+ONE extra-distance diagnostic completed**7200**, immediate limb error
+1.7763568394002505e-15 but after-contact/completed limb3
+**.051910617942553194@tick11>.05**. A final projection before contacts is not a
+sufficient ordering fix. No after-contact arm, adoption, widened.05 or remeasure.
+D1 alone already selectsOption2; D2 does not supply the missing sufficient fix.
+
+Separate D2 trace provenance (NONDEFAULT diagnostic, NOT production baselines),
+both source114265e/CI40901902007, seed305419896, authoredHopper/block60input:
+- Normal order baseline7067 rawSHA256
+  414449d35c3549a16a5221091be9f1d67bb074651b2f5d1535f29c1bd3e6b1c0.
+- Added ONE final-distance traversal diagnostic7200 rawSHA256
+  d4fc09e6b28e4c054a1ca6d885505c0516e844dd1b3b1835ff2a2d4f4bf30fab.
+Neither trace is silently promoted to a newly generated production baseline.
+The separate M1-R26-BASELINE regeneration/provenance above remains authoritative.
+
+F77 fixture/law audit: stance600/drop600/ledge1200/midair12 all completed,
+status0/control0/reasoncompleted/failingticknull; all four branches present,
+N0 disabled separately. Natural ledge departuretick83. Airborne236foot/pass
+observations/6episodes, at-or-above27foot/pass observations/**8per-foot episodes**,
+twofoot9pair/pass observations/**3pair episodes**; below4731/11non-grip episodes;
+N0disabled14/7non-grip episodes. Events collapse all candidate samples and both
+passes within each tick; ticks can contain different branches across passes.
+At/above durations3,2,2/3,4/3,2,2ticks; pair durations2/3/2. These are disjoint
+operational episodes, not independent random trials (ledge startup repeats
+stance), and NOT evidence of robust sustained grip. N2threshold18.871999999999996N
+for all true-grip observations; N1threshold37.74399999999999N observed without
+true grip. Full per-case N/threshold/load ranges and capsule counts retained.
+Loads reconstructed from real gravity/hinge/self-contact + independently rebuilt
+SDF normals; no synthetic qualifying loads, pose/velocity/support injection or
+new eligibility predicate. Short12tick midair does not pretend to have a300tick
+F56window. Longer fixture windows retain original complete momentum guards.
+
+Generated brace-free baseline byteequaloriginal generator; fileSHA256
+2779456f6a35338a97666bcec813608ae5bda83c612ec1d5b6560df62590f679.
+Committedddefbba normal strictpublic PUSH123551532000/PR123551591430 bothSUCCESS,
+9053+308+1446checks,0failures. FullPUSH/PRsummariesidentical. Source comparison
+changes ONLY an obsolete human-readable brace scope label, no physical/hash/
+clock metric.201PythoncontrolsCI; M0516/0+AndroidPUSH/PRSUCCESS. M1stillred only
+unchangedF47/HingedSlug600, no waiver. Core/data/tuning unchanged since114265e.
+
+F75 qualification: owner's transmitted-load rectification chain is retained as
+mechanism-of-record, NOT a proven universal law relating drift to scalar motor
+amplitude. Oldk10/20/40 meanabs applied angular IMPULSE actually DECREASES
+.04796602541507495/.0458210036063169/.044435404255268936 while drift INCREASES
+8.55015/11.47924/12.91042px/s. Do not mislabel impulse as torque or erase this
+countertrend. D1's coefficient response does not establish a located upstream
+correctness fix; clamp/static-override caveats are explicit in the report.
+
+**FINAL hard stop:** Option2. OWNER authors AC201 displacement/time criterion;
+engineer leaves oldcriterion unchanged. AC202 honestFAIL with measuredmaximum.
+No further measurement/sweeps/brace/lurch trials or diagnostic adoption. Matrix
+8/18, same-buildattempt1 remains observation, crossarchitecture0. No mass/weight,
+epsilon/slip/stiffness/damping/.05 changes, waiver/M2/camera/captures. Last
+publication step only persists BOTH already-derived per-tick phase-maxima files
+from ORIGINAL rawbytes in the audit artifact; no new physical run.

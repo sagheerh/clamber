@@ -50,7 +50,7 @@ def audit(root, out):
             assert result['D1']['verification_passed'] and result['D1']['measurement_complete']
         else:
             engine = json.loads((folder/'engine.json').read_text())
-            result[mode.upper() if mode == 'd2' else 'FA5'] = (d2 if mode == 'd2' else fa5)(folder, engine)
+            result[mode.upper() if mode == 'd2' else 'FA5'] = d2(folder, engine, out) if mode == 'd2' else fa5(folder, engine)
     actual = unique(root, 'r26-baseline/public_sim_baseline.json')
     result['generated_baseline_byte_equal_committed'] = actual.read_bytes() == Path('tests/fixtures/public_sim_baseline.json').read_bytes()
     assert result['generated_baseline_byte_equal_committed']
