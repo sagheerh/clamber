@@ -1167,3 +1167,39 @@ not a relaxed criterion. q mean in this sweep is NOT captured q_settled. Runtime
 8/18 unchanged, attempt1 same-build success retained, cross-arch0. Current158
 Python controls/public full summary exact Phase2/strict baseline preserved.
 Next owner review of failed motor-source premise; no unrequested diagnostic.
+
+
+## R20 — F60 R19 inference WITHDRAWN; F61 record-only; A WITHDRAWN; F63 teeth
+
+Reviewer R20 read with git show FETCH_HEAD ONLY; not copied/merged. Owner withdraws
+A (F62) and the earlier interpretation of motor2400/0 as spring-source falsification.
+R19 numerical observations stay, but intervention is VOID/uninformative if applied
+impulses are unchanged under saturation. Removing a torque component does not
+necessarily remove the delivered impulse. Keep mean_clamped_total_torque forever.
+F61 record-only: nominal inverse inertia sum about134.9992, bound about.0444447
+angular impulse (mass*WU^2/s), deliverable torque about2.667 vs1260 authored
+(.21percent). Global6rad/s relative-speed cap/inertia controls saturated strength,
+not the authored torque knobs in THAT regime; no numeric correction adopted.
+F62 spring-only unsaturated residual about.001111rad/.064deg is an arithmetic
+screen, not proof including damping/absolute-speed caps. Record owner's withdrawn
+A; no implementation, settled-pose calibration, baseline regeneration or Phase3.
+
+F63 standing rule: every intervention reports requested impulse/bound/actually
+applied impulse plus saturated_ticks/300, with constraint and absolute-body-speed
+clamps separately reconstructed from RAW PRE-DRIVE endpoints/inverse masses.
+Do not use authored rest lengths where actual extents differ. Extra impulse
+return fields / body ids are observation-only; original physical arithmetic/order
+unchanged, full public baseline must still match. Pose interventions also publish
+per-tick endpoint trajectory deltas against reference; retain full difference file.
+No inference from mean torque or mean impulse alone; per-tick applied teeth needed.
+
+ORDER: reference + historical motor0 VOID record remeasured with F63 metadata,
+then gain0 with ALL other values/damping unchanged, full F56 for EVERY arm.
+Assert requested0 and MEASURE applied0 (including possible absolute-speed clamp
+correction); never infer zero delivery just from gain. If true zero drive does not
+collapse drift to free-hinge .08403595917823123px/s, STOP BEFORE bound sweep or A.
+If it does, diagnostic bound6 vs1 at original gain/stiffness, full F56, report raw
+ratios without inventing an approx4x tolerance; adopt no values. Only if those two
+leave the saturation claim open may the owner's optional .5deg-residual falsifier
+be considered. No A remedy is authorized. Current8/18 unchanged, attempts1 same-
+build success/cross-arch0, F55/56/57/58/59 preserved; FA-5 untouched.

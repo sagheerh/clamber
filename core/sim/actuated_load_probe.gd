@@ -91,6 +91,8 @@ func _begin_tick() -> Error:
 		)
 		if event.is_empty():
 			return ERR_INVALID_DATA
+		event["parent_part"] = bodies.find(_joints[index].parent_body)
+		event["child_part"] = bodies.find(_joints[index].child_body)
 		_drive_events.append(event)
 	return OK
 

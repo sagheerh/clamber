@@ -552,8 +552,8 @@ jobs:
             ${{ runner.temp }}/m1-external-console.log
           retention-days: 7
 
-  motor-source-falsification:
-    name: R19 motor2400 vs0 source falsification (STOP on failure)
+  saturation-source-diagnostic:
+    name: R20 gain0 then bound saturation diagnostic (STOP on failure)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     env:
@@ -572,18 +572,18 @@ jobs:
           grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
           unzip -q "$archive" -d "$RUNNER_TEMP/godot"
           echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
-      - name: Motor2400 vs0 unchanged damping, drift AND rectified thrust
+      - name: F63 delivered impulses, gain0 drift and complete F56 per arm
         shell: bash
         run: |
           set +e
-          M1_MOTOR_REPORT_DIR="$RUNNER_TEMP/m1-motor" bash tests/run_m1_motor.sh > "$RUNNER_TEMP/m1-motor-console.log" 2>&1
+          M1_SATURATION_REPORT_DIR="$RUNNER_TEMP/m1-saturation" bash tests/run_m1_saturation.sh > "$RUNNER_TEMP/m1-saturation-console.log" 2>&1
           status=$?
           set -e
-          python3 - "$RUNNER_TEMP/m1-motor-console.log" "$status" <<'PYLOG'
+          python3 - "$RUNNER_TEMP/m1-saturation-console.log" "$status" <<'PYLOG'
           import sys
           messages=[];current=''
           for line in open(sys.argv[1]).read().splitlines():
-              if line.startswith(('M1 R18','M1 R19')) or 'ERROR' in line or 'FAIL' in line or 'ValueError' in line:
+              if line.startswith('M1 R20') or 'ERROR' in line or 'FAIL' in line or 'ValueError' in line:
                   for offset in range(0,len(line),3500):
                       chunk=line[offset:offset+3500]
                       if len(current)+len(chunk)+1>3500:
@@ -594,14 +594,14 @@ jobs:
           for message in messages:
               level='notice' if sys.argv[2]=='0' else 'error'
               escaped=message.replace('%','%25').replace('\r','%0D').replace('\n','%0A')
-              print(f'::{level} title=M1 R19 motor falsification::'+escaped)
+              print(f'::{level} title=M1 R20 saturation diagnostic::'+escaped)
           PYLOG
           exit "$status"
       - uses: actions/upload-artifact@v5
         if: always()
         with:
-          name: m1-r19-motor-${{ github.run_id }}
+          name: m1-r20-saturation-${{ github.run_id }}
           path: |
-            ${{ runner.temp }}/m1-motor/
-            ${{ runner.temp }}/m1-motor-console.log
+            ${{ runner.temp }}/m1-saturation/
+            ${{ runner.temp }}/m1-saturation-console.log
           retention-days: 7

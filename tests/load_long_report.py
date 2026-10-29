@@ -11,7 +11,8 @@ from load_convergence_report import drift_summary
 from load_phase_report import phase_magnitudes
 
 
-def verify_all(rows, *, zero_motor_stiffness=False):
+def verify_all(rows, *, zero_motor_stiffness=False, zero_motor_gain=False):
+    if zero_motor_stiffness and zero_motor_gain:raise ValueError('No combined diagnostic intervention authorized')
     if len(rows) != 6000 or [r['tick'] for r in rows] != list(range(6000)):
         raise ValueError('Need complete ordered6000; partial is NOT convergence evidence')
     lift = rows[0].get('diagnostic_spawn_lift_wu', 0.)
@@ -36,6 +37,11 @@ def verify_all(rows, *, zero_motor_stiffness=False):
                 and len(r['drive_events']) == 1
                 and r['drive_events'][0]['kind'] == 'motor'
                 and r['drive_events'][0]['spring_torque'] == 0.)
+        if zero_motor_gain:
+            valid_return = (not valid_return and r['diagnostic_actuated'] and r['motor_gain'] == 0.
+                and len(r['drive_events']) == 1 and r['drive_events'][0]['kind'] == 'motor'
+                and r['drive_events'][0]['target'] == 0. and r['drive_events'][0]['torque'] == 0.
+                and r['drive_events'][0]['requested_impulse'] == 0.)
         if r['status'] != 0 or not r['observer_on_off_physical_state_equal'] or r['input_mask'] != 0 or not valid_return:
             raise ValueError('Incomplete/altered/ nonzero-input long observation')
         bodies = r['feet'] + r['other_bodies']

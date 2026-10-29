@@ -1,6 +1,16 @@
 # M1 acceptance matrix — scoped measured evidence, NOT milestone approval
 
-## Current R19 — 8/18 unchanged; motor0 thrust persists, STOP before A
+## Current R20 — 8/18 unchanged; R19 inference withdrawn, F63 measurement pending
+
+Owner F60 marks R19 stiffness-only intervention VOID under saturation, not a
+spring-source falsification; historical observations remain. F61 motor authoring
+under the cap is record-only; no tuning change. Owner F62 WITHDRAWS A, not a new
+calibration authorization. F63 requires requested/bound/applied/saturation and
+per-tick trajectory differences. Gain0/F56 first; STOP before bound6/1 if zero
+drive does not collapse drift. Measurement PENDING. Baseline/accepted eight rows
+unchanged; no Phase3. Standing full momentum/internal guards retained.
+
+## Historical R19 — 8/18 unchanged; inference WITHDRAWN by R20
 
 Measured CI40864407948 @217eda1: actual motor2400/0, damping unchanged(.02/55).
 Drift3.9345242550809765/3.9345242550808814px/s; rectified friction impulse/tick

@@ -139,6 +139,10 @@ func _diagnostic_config() -> Dictionary:
 		tuning.physics_passive_stiffness = 0.0
 	if "--motor-spring-off" in OS.get_cmdline_user_args():
 		tuning.motors_joint_stiffness = 0.0
+	if "--motor-gain-zero" in OS.get_cmdline_user_args():
+		tuning.motors_gain_default = 0.0
+	if "--angular-bound-one" in OS.get_cmdline_user_args():
+		tuning.physics_max_constraint_angular_impulse_rad_s = 1.0
 	var spawn_y := 0.33
 	var ticks := 600
 	var lift := 0.0
@@ -263,8 +267,13 @@ func _slug() -> void:
 		)
 		row["diagnostic_actuated"] = actuated
 		row["diagnostic_requested_ticks"] = config.ticks
-		row["diagnostic_spring_return_live"] = actuated and tuning.motors_joint_stiffness != 0.0
+		row["diagnostic_spring_return_live"] = (
+			actuated and tuning.motors_joint_stiffness != 0.0 and tuning.motors_gain_default != 0.0
+		)
 		row["diagnostic_linear_damping"] = tuning.physics_linear_damping
+		row["diagnostic_angular_impulse_limit_rad_s"] = (
+			tuning.physics_max_constraint_angular_impulse_rad_s
+		)
 		row["diagnostic_motor_damping"] = tuning.motors_joint_damping
 		row["diagnostic_passive_stiffness"] = tuning.physics_passive_stiffness
 		row["diagnostic_motor_stiffness"] = tuning.motors_joint_stiffness

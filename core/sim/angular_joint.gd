@@ -86,11 +86,23 @@ func apply_impulse(requested: float) -> Dictionary:
 	if minimum <= maximum:
 		j = clampf(j, minimum, maximum)
 		j = clampf(j, -bound - impulse, bound - impulse)
+	var before_impulse := impulse
 	impulse += j
 	PlanarBasis.spin(parent_body, -j * value.parent.inverse_inertia)
 	PlanarBasis.spin(child_body, j * value.child.inverse_inertia)
 	return {
 		"impulse": j,
+		# F63 observation ONLY: retain the requested and actually delivered drive.
+		"requested_impulse": requested,
+		"impulse_bound": bound,
+		"impulse_before": before_impulse,
+		"impulse_after": impulse,
+		"parent_inverse_inertia": value.parent.inverse_inertia,
+		"child_inverse_inertia": value.child.inverse_inertia,
+		"parent_omega": value.parent.omega,
+		"child_omega": value.child.omega,
+		"speed_minimum_impulse": minimum,
+		"speed_maximum_impulse": maximum,
 		"relative_speed_change": j * value.weight,
 		"tick_net_relative_speed_change": impulse * value.weight
 	}

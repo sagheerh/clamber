@@ -8,7 +8,20 @@ Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R19 — motor0 thrust unchanged; STOP before A and Phase3
+### Current R20 — R19 inference withdrawn; delivered-impulse diagnostics pending
+
+F60 owner correction accepted: prior motor-stiffness arm is VOID/uninformative,
+NOT spring-source falsification under identical saturated applied impulses.
+Historical numerical observations retained below, inference superseded. F61
+motor strength under the global cap is RECORD ONLY, no values changed. F62 owner
+WITHDRAWS A; do not implement it. F63 adds raw requested/bound/applied and
+saturated_ticks/300 for each arm plus per-tick trajectory comparisons. Angular
+impulse audit includes both cumulative constraint cap and absolute-speed clamp.
+Ordered gain0 and F56 first; STOP before bound6/1 if zero-drive drift does not
+collapse. Measurement PENDING, no numerical outcome claimed. Runtime8/18 and
+attempt1 same-build success retained, no baseline regeneration/Phase3.
+
+### Historical R19 — motor0 thrust unchanged; inference WITHDRAWN by R20
 
 Source **217eda1**, [M1 CI40864407948](https://github.com/sagheerh/clamber/actions/runs/40864407948),
 motor falsification job123415407058. Read reviewer R19 using git show ONLY; no

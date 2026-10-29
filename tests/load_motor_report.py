@@ -87,10 +87,13 @@ def report(root):
         arm['joints']=joint_summary(rows)
         arms[name]=arm
         print('M1 R19 motor arm: '+json.dumps({'arm':name,**arm},separators=(',',':')))
-    gate=sweep_gate(arms['motor2400'],arms['motor0'])
+    historical_gate=sweep_gate(arms['motor2400'],arms['motor0'])
+    gate={'continuation_authorized':False,
+        'outcome':'R20 F60: R19 spring-source inference WITHDRAWN; intervention VOID under saturation, not falsifying',
+        'historical_R19_predicate':historical_gate}
     result={'scope':'R19 ordered diagnostic, NOT runtime acceptance/remedy',
         'arms':arms,'gate':gate,'runtime_rows_passed':8,'runtime_rows_total':18,
-        'A':'NOT RUN until motor-source falsification supports it',
+        'A':'WITHDRAWN by owner R20 F62; NOT RUN',
         'F55':'.15WU/s =22.5px/s; COM drift alone is not a leak',
         'F58':'Signed rectified friction thrust balanced by unchanged2percent linear damping; compare thrust, not just speed',
         'F59':'Owner interpretation: rocking walking limit cycle, not stationary equilibrium. AC-201 requires zero-input zero-net-motion AND original sleep within4s; no relaxation.',
