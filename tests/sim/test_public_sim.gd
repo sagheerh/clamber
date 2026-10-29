@@ -11,6 +11,7 @@ var _folder := ""
 var _baseline: Array = []
 var _baseline_bytes: Array = []
 var _streams: Array = []
+var _baseline_int_hashes: Array = []
 var _report: Dictionary = {"determinism_attempt": 1, "runtime_gates": {}, "attempt_started": false}
 
 
@@ -107,7 +108,8 @@ func _rng_controls() -> void:
 	for index in range(100):
 		var output := a.next_u32()
 		_check(output == b.next_u32(), "same seed exact stream")
-		different = different or output != c.next_u32()
+		var other := c.next_u32()
+		different = different or output != other
 	_check(different, "different seed different stream")
 	var first := _rig()
 	var second := _rig()
@@ -127,6 +129,7 @@ func _replays() -> void:
 	var digest_tables: Array = []
 	var finals: Array = []
 	var results: Array = []
+	var public_hashes: Array = []
 	for run_index in range(3):
 		var sim := _rig()
 		var hashes: Array = []
@@ -141,9 +144,11 @@ func _replays() -> void:
 			stream.append_array(bytes)
 			hashes.append(sim.state_digest())
 			if run_index == 0:
+				_baseline_int_hashes.append(sim.state_hash())
 				_baseline.append(state)
 				_baseline_bytes.append(bytes)
 			else:
+				_check(sim.state_hash() == _baseline_int_hashes[tick], "public state_hash exact x3")
 				_check(
 					bytes == _baseline_bytes[tick],
 					"full tick stream byte-identical replay%d tick%d" % [run_index, tick]
@@ -151,6 +156,7 @@ func _replays() -> void:
 		_check(sim.result() != null, "physics result exists, no manufactured gameplay score")
 		results.append(sim.result().snapshot())
 		finals.append(sim.state_digest())
+		public_hashes.append(sim.state_hash())
 		digest_tables.append(hashes)
 		_streams.append(stream)
 		var file := FileAccess.open(
@@ -165,6 +171,7 @@ func _replays() -> void:
 		"ENTIRE tick streams byte equal x3"
 	)
 	_report["replay_final_digests"] = finals
+	_report["replay_final_public_state_hashes"] = public_hashes
 	_report["replay_result"] = results[0]
 	_report["per_tick_digests"] = digest_tables[0]
 	_report["replay_full_stream_bytes"] = _streams[0].size()
@@ -181,6 +188,7 @@ func _replays() -> void:
 				changed.get_render_state() != _baseline[0].accumulator.solver.rig.physical.bodies
 			)
 	var digest := changed.state_digest()
+	_check(changed.state_hash() != public_hashes[0], "public state_hash falsification differs too")
 	_check(first_physical_differed, "bitflip changes actual bodies, not just held-input metadata")
 	_check(digest != finals[0], "MANDATORY falsification different final hash; equal FAILS")
 	_report["falsification"] = {

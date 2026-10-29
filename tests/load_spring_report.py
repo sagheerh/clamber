@@ -7,6 +7,9 @@ import sys
 from load_long_report import verify_all, summarize_baseline
 from load_convergence_report import drift_summary
 from load_phase_report import phase_magnitudes
+from load_legal_report import validate_counts
+from load_convergence_report import com_values
+from collections import defaultdict
 
 
 def joint_summary(rows):
@@ -28,6 +31,30 @@ def joint_summary(rows):
     return result
 
 
+
+def count_buckets(rows):
+    """Per-body AND whole-creature count signatures; no epsilon/causal upgrade."""
+    regimes=validate_counts(rows)
+    whole=defaultdict(list)
+    per_body=defaultdict(list)
+    for row,regime in zip(rows[-300:],regimes[-300:],strict=True):
+        dx,_=com_values(row)
+        signature=tuple((p,v,*regime[p,v]) for p,v in sorted(regime))
+        whole[signature].append(dx)
+        for part in sorted({p for p,v in regime}):
+            body_sig=tuple((v,*regime[p,v]) for p,v in sorted(regime) if p==part)
+            per_body[(part,body_sig)].append(dx)
+    def stats(values):
+        return {'ticks':len(values),'mean_com_dx_wu_tick':math.fsum(values)/len(values),
+            'mean_drift_px_s':math.fsum(values)/len(values)*9000,
+            'min_com_dx_wu_tick':min(values),'max_com_dx_wu_tick':max(values),
+            'exactly_constant_within_bucket':min(values)==max(values)}
+    return {'key_fields':['part','velocity_pass','intervals','candidate_count','active_count'],
+        'whole_creature':[{'key':[list(t) for t in key],**stats(values)} for key,values in sorted(whole.items())],
+        'per_body':[{'part':part,'key':[list(t) for t in key],**stats(values)} for (part,key),values in sorted(per_body.items())],
+        'interpretation':'Observed association only. No sampling change, no epsilon, no pose-causal claim or automatic F41 closure.'}
+
+
 def report(root):
     result={'scope':'F48 diagnostic, pre-drive signed torque contributions before total clamp; NOT equilibrium/acceptance', 'arms':{}}
     for name in ('baseline-after','current-before','current-after','zero-before','zero-after'):
@@ -41,10 +68,13 @@ def report(root):
         else:
             verify_all(rows)
             item={'drift':drift_summary(rows), 'joints':joint_summary(rows), 'raw_phases':phase_magnitudes(rows)}
+        if not name.startswith('zero'):
+            item['F41_count_buckets']=count_buckets(rows)
+            print('M1 R17 F41 buckets: '+json.dumps({'arm':name,'whole_creature':item['F41_count_buckets']['whole_creature']},separators=(',',':')))
         item['passive_stiffness']=rows[0]['diagnostic_passive_stiffness']
         item['motor_stiffness']=rows[0]['diagnostic_motor_stiffness']
         result['arms'][name]=item
-        print('M1 R17 spring: '+json.dumps({'arm':name, **item},separators=(',',':')))
+        print('M1 R17 spring: '+json.dumps({'arm':name, **{k:v for k,v in item.items() if k!='F41_count_buckets'}},separators=(',',':')))
     result['interpretation']='Intervention changes ONLY passive stiffness. Slug has one MOTOR joint, zero passive joints. Spring-return-live remains true with passive stiffness zero; no motor stiffness intervention was authorized. Do not claim passive spring mechanism proven.'
     (root/'spring-report.json').write_text(json.dumps(result,indent=2)+'\n')
     print('M1 R17 spring interpretation: '+result['interpretation'])

@@ -12,7 +12,7 @@ jobs:
       - name: Review checks and scanner falsification fixtures
         run: scripts/review_checks.sh
       - name: Record scope of evidence
-        run: echo '::notice title=M1 scaffold only::Static subset passed. Replay, baseline, bit-flip, soak, performance and captures NOT RUN. Full owner-supplied review pack vendored unchanged; full semantic sweep/five-fakes/A12 review still pending.'
+        run: echo '::notice title=M1 scaffold only::Static subset only. Runtime results belong exclusively to the public Sim job and measured matrix evidence. Soak, performance, captures, full semantic sweep/five-fakes/A12 remain pending.'
   math-foundations:
     name: M1 point/link unit tests (NOT creature determinism)
     runs-on: ubuntu-24.04
@@ -449,13 +449,23 @@ jobs:
           set -e
           python3 - "$RUNNER_TEMP/m1-public-console.log" "$status" <<'PYLOG'
           import sys
-          for line in open(sys.argv[1]).read().splitlines():
-              if line.startswith('M1 public') or 'ERROR' in line or 'FAIL' in line or 'ValueError' in line:
-                  level='notice' if sys.argv[2]=='0' else 'error'
-                  # Summary is bounded; full per-tick table and raw bytes in artifact.
-                  for offset in range(0,len(line),3500):
-                      chunk=line[offset:offset+3500].replace('%','%25').replace('\r','%0D')
-                      print(f'::{level} title=M1 public Sim measured::'+chunk)
+          lines=open(sys.argv[1]).read().splitlines()
+          # Put measurements first; retain every raw line in uploaded artifact.
+          selected=[l for l in lines if l.startswith('M1 public')]
+          selected += [l for l in lines if ('ERROR' in l or 'FAIL' in l or 'ValueError' in l) and not l.startswith('M1 public')][:4]
+          messages=[];current=''
+          for line in selected:
+              for offset in range(0,len(line),3500):
+                  chunk=line[offset:offset+3500]
+                  if len(current)+len(chunk)+1>3500:
+                      messages.append(current);current=''
+                  current+=('\n' if current else '')+chunk
+          if current:messages.append(current)
+          assert len(messages)<=10, 'public diagnostic annotation budget exceeded'
+          for message in messages:
+              level='notice' if sys.argv[2]=='0' else 'error'
+              escaped=message.replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print(f'::{level} title=M1 public Sim measured::'+escaped)
           PYLOG
           exit "$status"
       - uses: actions/upload-artifact@v5

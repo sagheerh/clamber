@@ -23,6 +23,16 @@ PYREPORT
   exit "$status"
 fi
 if grep -Eq 'SCRIPT ERROR:|ERROR:|FAIL|Parse Error:|Failed to load script' "$folder/public.log"; then cat "$folder/public.log"; exit 1; fi
+python3 - "$folder" <<'PYREPLAY'
+import hashlib,json,sys
+from pathlib import Path
+folder=Path(sys.argv[1]);r=json.loads((folder/'public-sim-report.json').read_text())
+r.pop('per_tick_digests',None)
+streams=[(folder/f'replay-{i}.bin').read_bytes() for i in range(3)]
+assert streams[0] and all(b==streams[0] for b in streams), 'raw replay byte comparison failed'
+r['independent_full_stream_sha256']=hashlib.sha256(streams[0]).hexdigest()
+print('M1 public replay measurement: '+json.dumps(r,separators=(',',':')))
+PYREPLAY
 for hz in 30 144; do
   set +e
   "$GODOT" --headless --fixed-fps "$hz" --script res://tests/sim/test_public_delivery.gd -- "--report-dir=$folder" "--expected-fps=$hz" > "$folder/delivery-$hz.log" 2>&1

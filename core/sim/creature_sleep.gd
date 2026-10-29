@@ -65,6 +65,13 @@ func restore(state: Dictionary) -> Error:
 		or not (net is float or net is int)
 		or not is_finite(float(net))
 		or net < TUNING.physics_zero
+		or (
+			state.still_ticks > TUNING.physics_zero
+			and (
+				net >= _tuning.sleep_still_displacement_wu
+				or distance >= _tuning.sleep_still_displacement_wu
+			)
+		)
 	):
 		return ERR_INVALID_DATA
 	for body in start:

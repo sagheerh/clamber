@@ -60,6 +60,7 @@ func restore(state: Dictionary) -> Error:
 		sleep.last_sleep_tick >= physical.ticks
 		or sleep.last_wake_tick >= physical.ticks
 		or (sleep.asleep and not _parked_velocities(physical.bodies))
+		or not _origin_matches(state.sleep.dwell_start, physical.bodies)
 	):
 		return ERR_INVALID_DATA
 	var status := _probe.restore(physical)
@@ -192,3 +193,18 @@ func constraint_snapshot() -> Dictionary:
 
 func restore_constraints(state: Dictionary) -> Error:
 	return _probe.restore_constraints(state)
+
+
+func _origin_matches(origin: Array, bodies: Array) -> bool:
+	# Same ordered creature, not another body set. No added numeric threshold.
+	if origin.is_empty():
+		return true
+	if origin.size() != bodies.size():
+		return false
+	for index in range(origin.size()):
+		if not bodies[index] is Dictionary:
+			return false
+		for key in ["kind", "mass", "radius", "length"]:
+			if origin[index][key] != bodies[index].get(key):
+				return false
+	return true

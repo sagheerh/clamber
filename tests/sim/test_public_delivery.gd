@@ -1,3 +1,5 @@
+# gdlint: disable=max-line-length
+# Evidence scope narrative remains a single artifact string.
 extends "res://tests/sim/test_public_sim.gd"
 ## Actual engine frame callbacks under --fixed-fps30/144, fixed solver60.
 var _sim: Sim
@@ -32,7 +34,10 @@ func _process(frame_seconds: float) -> bool:
 		_finish()
 		return true
 	if response.ticks >= TICKS:
-		_check(response.ticks == TICKS and _tick_hashes.size() == TICKS, "equal simulated ticks")
+		_check(
+			response.ticks == TICKS and _tick_hashes.size() == TICKS,
+			"equal simulated ticks: actual%d recorded%d" % [response.ticks, _tick_hashes.size()]
+		)
 		_finish()
 		return true
 	return false
@@ -57,6 +62,13 @@ func _finish() -> void:
 		"scope":
 		"actual SceneTree frame callbacks, --fixed-fps, same600 released-input fixed ticks; clock outside tick hash"
 	}
+	var compact := report.duplicate(true)
+	compact.erase("frame_seconds")
+	compact.erase("tick_hashes")
+	compact["actual_tick_count"] = _tick_hashes.size()
+	compact["first_frame_seconds"] = _frames[0]
+	compact["last_frame_seconds"] = _frames[-1]
+	print("M1 public delivery: " + JSON.stringify(compact, "", true, true))
 	var output := FileAccess.open(
 		_folder.path_join("delivery-%d.json" % _expected_fps), FileAccess.WRITE
 	)
