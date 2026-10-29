@@ -14,7 +14,8 @@ static func resolve(
 	material_friction: float,
 	restitution: float,
 	grounded_feet_previous: int,
-	tuning: Tuning
+	tuning: Tuning,
+	observer: Callable = Callable()
 ) -> Error:
 	if body == null or not body.is_valid() or terrain == null or tuning == null:
 		return ERR_INVALID_DATA
@@ -63,7 +64,8 @@ static func resolve(
 		material_friction,
 		restitution,
 		grounded_feet_previous,
-		tuning
+		tuning,
+		observer
 	)
 	return status if status != OK else body.restore(work.snapshot())
 
@@ -76,7 +78,8 @@ static func _response(
 	friction: float,
 	restitution: float,
 	grounded_feet_previous: int,
-	tuning: Tuning
+	tuning: Tuning,
+	observer: Callable = Callable()
 ) -> Error:
 	var zero := TUNING.physics_zero
 	var one := TUNING.physics_one
@@ -134,7 +137,13 @@ static func _response(
 		)
 		if sample.is_empty():
 			return ERR_INVALID_DATA
+		var observation := {}
+		if observer.is_valid():
+			observation = _observation(body, u, index, intervals, sample)
 		if sample.distance > body.radius + tuning.physics_contact_slop_wu:
+			if not observation.is_empty():
+				observation.active = false
+				observer.call(observation)
 			continue
 		body.grounded = true
 		var nx: float = sample.nx
@@ -168,6 +177,22 @@ static func _response(
 		body.a.velocity_y += body.a.inverse_mass * v * (ny * bounce + nx * tangential)
 		body.b.velocity_x += body.b.inverse_mass * u * (nx * bounce - ny * tangential)
 		body.b.velocity_y += body.b.inverse_mass * u * (ny * bounce + nx * tangential)
+		if not observation.is_empty():
+			observation.active = true
+			observation.retained = retained
+			observation.static_branch = absf(tangent) < tuning.physics_static_slip_wu_s
+			observation.positional_cleanup_n = correction / (dt * dt)
+			observation.normal_impulse_ns = bounce
+			observation.tangential_impulse_ns = tangential
+			observation.avx_after = body.a.velocity_x
+			observation.avy_after = body.a.velocity_y
+			observation.bvx_after = body.b.velocity_x
+			observation.bvy_after = body.b.velocity_y
+			observation.tangent_after = (
+				-(body.a.velocity_x * v + body.b.velocity_x * u) * ny
+				+ (body.a.velocity_y * v + body.b.velocity_y * u) * nx
+			)
+			observer.call(observation)
 	body.measured_reaction_n = impulse
 	body.positional_cleanup_n = positional
 	for entry in [[body.a, original_a], [body.b, original_b]]:
@@ -236,7 +261,8 @@ static func resolve_tick(
 	lowest: Array[bool],
 	friction: Array[float],
 	restitution: Array[float],
-	tuning: Tuning
+	tuning: Tuning,
+	observer: Callable = Callable()
 ) -> Error:
 	# No cached N state: derive from complete previous-tick snapshots BEFORE resolving.
 	if (
@@ -263,6 +289,9 @@ static func resolve_tick(
 			return ERR_INVALID_DATA
 		work.append(candidate)
 	for index in range(work.size()):
+		var recorder := Callable()
+		if observer.is_valid():
+			recorder = observer.bind(index)
 		var status := resolve(
 			work[index],
 			terrain,
@@ -271,7 +300,8 @@ static func resolve_tick(
 			friction[index],
 			restitution[index],
 			count,
-			tuning
+			tuning,
+			recorder
 		)
 		if status != OK:
 			return status
@@ -281,3 +311,39 @@ static func resolve_tick(
 		if status != OK:
 			return status
 	return OK
+
+
+## Detached scalar observation only; never passed back into constraint math.
+static func _observation(
+	body: CapsuleBody, u: float, index: int, intervals: int, sample: Dictionary
+) -> Dictionary:
+	var v := TUNING.physics_one - u
+	var tangent: float = (
+		-(body.a.velocity_x * v + body.b.velocity_x * u) * sample.ny
+		+ (body.a.velocity_y * v + body.b.velocity_y * u) * sample.nx
+	)
+	return {
+		"inverse_mass_a": body.a.inverse_mass,
+		"inverse_mass_b": body.b.inverse_mass,
+		"positional_cleanup_n": float(TUNING.physics_zero),
+		"sample_index": index,
+		"intervals": intervals,
+		"u": u,
+		"nx": sample.nx,
+		"ny": sample.ny,
+		"distance_wu": sample.distance,
+		"avx_before": body.a.velocity_x,
+		"avy_before": body.a.velocity_y,
+		"bvx_before": body.b.velocity_x,
+		"bvy_before": body.b.velocity_y,
+		"avx_after": body.a.velocity_x,
+		"avy_after": body.a.velocity_y,
+		"bvx_after": body.b.velocity_x,
+		"bvy_after": body.b.velocity_y,
+		"tangent_before": tangent,
+		"tangent_after": tangent,
+		"retained": null,
+		"static_branch": false,
+		"normal_impulse_ns": float(TUNING.physics_zero),
+		"tangential_impulse_ns": float(TUNING.physics_zero),
+	}

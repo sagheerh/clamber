@@ -8,6 +8,7 @@ python3 scripts/review_static.py
 python3 tests/test_review_checks.py
 python3 tests/test_owner_geometry_source.py
 python3 tests/test_load_trace.py
+python3 tests/test_contact_trace.py
 python3 tests/test_static.py
 python3 tests/test_android_inspection.py
 echo 'PASS: review_checks.sh static checks completed.'

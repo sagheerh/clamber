@@ -71,8 +71,8 @@ Provenance: `docs/CLAMBER_REVIEW_AGENT.provenance.md`. **M1-B02 RESOLVED
 | §10.6 repeatability | Fixed scenario 10000 ticks, 100 local repeats; recorded 60 s cross-architecture/device replay and 200-run soak tracked separately | NOT RUN | No device/architecture evidence; no M0 waiver carries forward |
 | FA-1 | Collision diameter at least15px and head30px at width-derived150px/WU; analytic only, not camera/device evidence | PASS (analytic only) | CI40677962012; $RUNNER_TEMP/m1-owner-geometry.json |
 | FA-2 | Every shipped limb length has aspect ratio3:1..12:1; analytic geometry only | PASS (analytic only) | CI40677962012; $RUNNER_TEMP/m1-owner-geometry.json |
-| FA-3 | All three real presets:600 static ticks, zero sleep-breaking contacts; contact trace and actual observations | NOT RUN | R12 F38 live model equilibrium; F40 motor intra-step0.94..1.53 reference px at150px/WU and60Hz, rendered observation absent; F39 soak extrapolation below; no all-preset static scene |
-| FA-4 | Slug settles/sleeps within4s and L-hold lurches approximately one body length; record distances/input | NOT RUN | R12 asleep definition is a separate pending owner decision from F30 pose; no predicate chosen; no motor/tutorial trace |
+| FA-3 | All three real presets:600 static ticks, zero sleep-breaking contacts; contact trace and actual observations | NOT RUN | R13 F38 owner-CLOSED; F41/F42 contact telemetry pending, sleep-breaking definition owner-pending; F40 motor intra-step0.94..1.53 reference px at150px/WU and60Hz, rendered observation absent; F39 soak extrapolation below; no all-preset static scene |
+| FA-4 | Slug settles/sleeps within4s and L-hold lurches approximately one body length; record distances/input | NOT RUN | R13 asleep/F42 persistent-support interpretation separate owner decision from F30 pose; no predicate chosen; no motor/tutorial trace |
 | FA-5 | Owner R8/F24: foot load below max(5N,40percent of expected share W/N_previous_grounded) slips; at/above grips with grounded/lowest eligibility; frozen previous-tick N; N0 disables grip; two-foot stance and airborne traces required | NOT RUN | R11 engineering probe: last300 grip0/300, foot support share about22.2393percent; F30 pose pending; no accepted band or stance trace |
 | FA-6 | Ten scripted tutorial runs, actual per-run outcomes and input log; target6..8 successes, stop on10 or at most4 | NOT RUN | Actual success_count unknown; no tutorial scenario |
 | FA-7 | Head visual-radius dominance in all three presets; analytic only, not rendered silhouette proof | PASS (analytic only) | CI40677962012; $RUNNER_TEMP/m1-owner-geometry.json |
@@ -284,3 +284,18 @@ retained start vx; distance/hinge net COM contributions are float noise, contact
 Per-endpoint completed-velocity mismatch is not proof of a net position pump or
 friction irrelevance. Real drift exposure remains a forward SOAK finding. No fix,
 pose branch, model choice or runtime acceptance upgrade. FA-3/4/5/6 NOT RUN.
+
+
+R13 D11: F38 owner-CLOSED, F40 accepted (internal proxy, no rendered observation).
+F39 reviewer explicitly retracts position-injection/friction-blindness attribution:
+REVIEWER CORRECTION, not an agent error. Integrated retained vx accounts for COM
+translation; internal rows redistribute endpoints with zero net COM correction.
+Extrapolation arithmetic above remains; no actual soak or FA-3 blocker added.
+F41 per-candidate/active sample telemetry, actual body/pass counts, earlier-sample
+body-end re-evaluation and .15vs1.5 diagnostic only; engine/results pending.
+F42 raw grounded/prior/new/lifted sets and per-contact impulses; do NOT define
+sleep-breaking or sleep eligibility. Owner asleep clarification pending.
+Observer on/off full physical state equality is diagnostics, not creature
+determinism acceptance. F31 independent controls preserved, baseline F30 RED.
+Owner F30+asleep/F42 -> authorized pose+hard F36 assertion -> FA-5 band; re-measure
+F41 after approved pose and compare. FA-3/4/5/6 NOT RUN; determinism attempts0.

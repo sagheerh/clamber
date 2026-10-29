@@ -188,6 +188,11 @@ if __name__ == '__main__':
     _, profile = motion_profile(rows, close)
     Path(sys.argv[2]).with_name('slug-motion-profile.jsonl').write_text(
         ''.join(json.dumps(r, sort_keys=True) + '\n' for r in profile))
+    from load_contact_report import save
+    contacts = save(Path(sys.argv[2]).parent, rows)
+    print('M1 Slug contact verification: ' + json.dumps({k: contacts[k] for k in
+        ('sample_events', 'observer_on_off_equal_ticks', 'steady_ticks_with_any_active_sample',
+         'steady_new_grounded_transition_count', 'steady_grounded_sets', 'sleep_breaking_interpretation')}))
     good = summary['force_window_within_owner_tolerance']
     print('M1 Slug force window (ALL grounded): ' + ('WITHIN TOLERANCE' if good else 'FINDING (outside fixed tolerance)'))
     for label, key in [('errors', 'max_absolute_errors_n'), ('ranges', 'steady_ranges_n'),

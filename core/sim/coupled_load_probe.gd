@@ -4,6 +4,8 @@ extends RefCounted
 ## Awake integration throughout: sleep optimization is explicitly not implemented.
 const TUNING = preload("res://core/tuning.tres")
 var bodies: Array[CapsuleBody] = []
+## Diagnostic switch ONLY; observer-off/on physical states are compared by harness.
+var collect_contact_samples: bool = false
 var _links: Array[DistanceConstraint] = []
 var _hinges: Array[CoincidentHinge] = []
 var _parents: Array[int] = []
@@ -161,8 +163,9 @@ func _step(before: Dictionary) -> Dictionary:
 	var projected := _predict_and_project(dt, budget, positions)
 	if projected != OK:
 		return {"status": projected}
+	var contact_samples: Array = []
 	var response := _velocity_contacts(
-		before, dt, hinge_x, hinge_y, reaction, cleanup, budget, positions
+		before, dt, hinge_x, hinge_y, reaction, cleanup, budget, positions, contact_samples
 	)
 	if response.status != OK:
 		return response
@@ -170,7 +173,9 @@ func _step(before: Dictionary) -> Dictionary:
 		bodies[index].measured_reaction_n = reaction[index]
 		bodies[index].positional_cleanup_n = cleanup[index]
 	_ticks += TUNING.physics_one
-	return _trace(previous_count, response.lowest, hinge_y, before, budget, positions)
+	return _trace(
+		previous_count, response.lowest, hinge_y, before, budget, positions, contact_samples
+	)
 
 
 func _predict_and_project(dt: float, budget: Dictionary, positions: Array) -> Error:
@@ -220,7 +225,8 @@ func _velocity_contacts(
 	reaction: Array[float],
 	cleanup: Array[float],
 	budget: Dictionary,
-	positions: Array
+	positions: Array,
+	contact_samples: Array
 ) -> Dictionary:
 	var lowest: Array[bool] = []
 	# Position corrections do NOT become velocity impulses or qualifying loads.
@@ -263,8 +269,11 @@ func _velocity_contacts(
 		lowest = lowest_mask(bodies, _tuning)
 		var before_contact := _momentum_y()
 		var before_contact_positions := _positions()
+		var recorder := Callable()
+		if collect_contact_samples:
+			recorder = _record_contact.bind(velocity_pass, contact_samples)
 		var status := CapsuleContact.resolve_tick(
-			bodies, _terrain, _mass, lowest, _friction, _restitution, _tuning
+			bodies, _terrain, _mass, lowest, _friction, _restitution, _tuning, recorder
 		)
 		if status != OK:
 			return {"status": status}
@@ -333,7 +342,8 @@ func _trace(
 	hinge_y: Array[float],
 	before: Dictionary,
 	budget: Dictionary,
-	positions: Array
+	positions: Array,
+	contact_samples: Array
 ) -> Dictionary:
 	var feet: Array = []
 	var other_bodies: Array = []
@@ -345,6 +355,7 @@ func _trace(
 		var body := bodies[index]
 		var geometry := _body_geometry(body, before.bodies[index])
 		geometry.position_delta_wu = positions[index]
+		geometry.grounded_previous = before.bodies[index].grounded
 		if body.kind != "foot":
 			other += body.measured_reaction_n
 			other_bodies.append(
@@ -414,7 +425,20 @@ func _trace(
 		)
 		/ budget.dt_s
 	)
+	var grounded: Array = []
+	var previous_grounded: Array = []
+	for index in range(bodies.size()):
+		if bodies[index].grounded:
+			grounded.append(index)
+		if before.bodies[index].grounded:
+			previous_grounded.append(index)
 	return {
+		"contact_samples": contact_samples,
+		"grounded_parts": grounded,
+		"previous_grounded_parts": previous_grounded,
+		"new_grounded_parts": grounded.filter(func(part): return part not in previous_grounded),
+		"lifted_parts": previous_grounded.filter(func(part): return part not in grounded),
+		"diagnostic_static_slip_wu_s": _tuning.physics_static_slip_wu_s,
 		"status": OK,
 		"tick": _ticks - TUNING.physics_one,
 		"previous_grounded_feet": previous_count,
@@ -502,3 +526,9 @@ func _book_positions(before: Array, ledger: Array, phase: String) -> void:
 	for index in range(bodies.size()):
 		for coordinate in range(before[index].size()):
 			ledger[index][phase][coordinate] += after[index][coordinate] - before[index][coordinate]
+
+
+func _record_contact(event: Dictionary, part: int, velocity_pass: int, output: Array) -> void:
+	event.part = part
+	event.velocity_pass = velocity_pass
+	output.append(event)

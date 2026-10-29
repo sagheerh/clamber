@@ -8,30 +8,34 @@ Session date: 2026-10-28. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R12 / spawn-sensitivity only
+### Current R13 / sample-response and grounding observations only (2026-10-29)
 
-- F36/F37 owner-CLOSED; instrumentation accepted. Preserve F31 verification,
-  shared two-sided bad-pose control and grip-fraction/support-share reporting.
-  F36 hard production assertion still belongs in the authorized pose commit.
-- F38 reclassifies F35: more iterations converge faster toward a NONZERO model
-  equilibrium (P_inf≈.1634223589Ns), not toward rest. NOT awaiting more iterations.
-  Only new experiment: unchanged600 at y=.33/.53/.73, configured6 iterations,
-  zero initial motion; report final300 P ranges without choosing asleep/model.
-  Pinned @8463240: all3 final300 P ranges are identical; mean
-  .16342237029480583Ns, COM vy≈.1054337873WU/s. No behavior change.
-- F30 pose and FA-4 asleep definition are SEPARATE pending owner decisions.
-  Positional stillness / new owner-authored velocity threshold / model change
-  are options, NOT approvals. No velocity epsilon/damping/radius/pose change.
-- F39 late X drift horizon values are analytic extrapolations, NOT executed soak:
-  600=.004305WU,3600=.025831WU,10000=.071752WU,18000=.129153WU. Ordering-bias
-  causality is a hypothesis; per-endpoint completed-v mismatch alone cannot
-  establish net COM injection. Existing phase/start-v data are cross-checked in
-  this same experiment, no extra physical experiment or fix.
-- F40 motor intra-step excursions=.94..1.53 reference pixels at150px/WU,60Hz.
-  Tracked beside FA-3; rendered buzz is NOT observed and captures remain NOT RUN.
-- Next M1: spawn result -> owner F30 AND asleep definition -> authorized pose
-  with hard F36 assertion -> only then FA-5 band. FA-3/4/5/6/all coupled runtime
-  gates NOT RUN; complete-creature determinism attempts0; no retune/M2/captures.
+- Owner CLOSES F38, accepts F40. Three starts share the observed nonzero
+  equilibrium, not a global-attractor proof. Intra-step pixel excursions are
+  NOT rendered/captured buzz. No rest/model decision or new experiment there.
+- F39 is a **reviewer correction**, not an agent error: reviewer explicitly
+  withdraws position-injection/friction-blindness attribution. Integrated retained
+  velocity explains net COM drift; equal-opposite inverse-mass internal rows
+  redistribute endpoints but cancel in COM. Soak extrapolation arithmetic stands.
+- F41 observer is now opt-in: every actual candidate/active response carries
+  body/pass/index/u, raw endpoint XY velocities, sample tangents/retained target,
+  signed impulses, inverse masses, normal and separately named positional cleanup.
+  Reports count actual candidates/active samples, and re-evaluate each earlier
+  sample at body-end (no one-sample assumption). Independent raw checks plus
+  eleven new synthetic controls; 89 Python tests pass locally. Engine pending.
+- Test-only cloned Tuning --static-slip=.15|1.5, same600/6/.33/zero initial motion.
+  Resource remains.15; both traces retained. Compare full-run/steady branch
+  activation and COM drift. NOT a friction fix or adopted threshold.
+- F42 raw per-tick grounded/prior/new/lifted body sets plus all per-sample
+  impulses retained. No definition of sleep-breaking contact or sleep eligibility.
+  Owner asleep answer must clarify how to interpret persistent support contacts.
+- Instrumented/uninstrumented full physical snapshots checked every tick in the
+  harness; outcome pending pinned engine. Not creature determinism acceptance.
+- Next M1: measure R13 ONLY, then owner F30 AND asleep/F42 answers -> authorized
+  pose with hard F36 assertion -> FA-5 band. Re-measure F41 after approved pose,
+  compare motor-belly.095WU to foot-pad.05WU support. Preflight stays F30 RED;
+  FA-3/4/5/6/all coupled runtime gates NOT RUN, determinism attempts0; no retune,
+  epsilon, damping, adopted iterations, radius/limit/model change, M2 or captures.
 
 ### Exists
 

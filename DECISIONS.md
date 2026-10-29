@@ -580,3 +580,46 @@ accounts for net COM translation, while internal rows redistribute per-point
 positions. Friction irrelevance/position-order injection are NOT proven. This is
 analysis of the same existing trace, not an extra experiment or fix. Real creep
 and all requested soak extrapolations stand; none is an executed soak gate.
+
+
+## M1-D11 — R13 reviewer correction; F41/F42 read-only diagnostics
+
+Owner R13 closes F38 and accepts F40. Keep the shared observed nonzero equilibrium
+for the three starts, not a global-attractor proof, and internal phase amplitude,
+not rendered buzz. No additional iteration/spawn experiment or model/rest choice.
+
+F39 **REVIEWER CORRECTION (not an agent error)**: reviewer explicitly withdraws
+its prior position-injection/friction-blindness attribution after independent
+mass-weighted COM recomputation. Actual translation is integrated from retained
+velocity; inverse-mass-balanced distance/hinge rows cancel in COM while moving
+individual endpoints. Do not defend the withdrawn claim. Earlier soak arithmetic
+is unchanged and is neither an executed soak nor a current FA-3 blocker.
+
+F41 MAJOR: instrument actual CapsuleContact._response candidates and responses,
+not a presumed single contact. Opt-in detached scalar callback only; arithmetic,
+operation order, iterations, body geometry, tuning resource and clamp unchanged.
+Log tick/body/pass/sample-index/u, interpolated tangent before/after and retained,
+endpoint XY velocities, normal/signed tangential impulse, inverse masses, normal
+and separate positional cleanup. Count actual active samples for every body/pass;
+re-evaluate earlier sampled tangents using body-end velocities and report residual
+body/creature COM vx. Independent parser recomputes endpoint/impulse identities,
+checks sequential continuity/final physical state, sums impulse vs F31 force, and
+checks raw grounded sets/transitions. Preserve the old independent F31 controls.
+
+Authorize isolated cloned Tuning .15vs1.5 slip diagnostics, fixed600/6/.33 and
+zero initial motion ONLY. Original resource stays.15. Report full-run/steady
+branch activation and COM drift; never adopt the sweep value or a friction fix.
+Per-tick observer-on/off full physical snapshot equality is noninterference
+coverage, NOT complete-creature determinism acceptance. Pinned engine pending
+at this implementation commit; local89 synthetic/static Python checks pass.
+
+F42 MINOR: log every tick's grounded set, new-grounded/lifted transitions and
+per-contact impulses. Do NOT equate persistent grounded contacts with either
+sleep-breaking or sleep-eligible. That clarification belongs with the owner's
+separate FA-4 asleep decision. No acceptance criterion or sleep model changes.
+
+Order remains owner F30 pose AND asleep/F42 -> authorized pose+hard F36 assertion
+-> FA-5 band. Re-run F41 after approved pose (motor-belly.095WU support becomes
+foot-pad.05WU support) and compare explicitly. No angular-limit/epsilon/damping/
+retune/model/sampling fix, M2 or captures. Baseline F30 remains RED until genuine
+foot support path. FA-3/4/5/6/all coupled runtime gates NOT RUN; determinism0.

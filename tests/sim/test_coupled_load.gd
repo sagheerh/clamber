@@ -132,7 +132,7 @@ func _gravity_reaction() -> void:
 	)
 
 
-func _slug() -> void:
+func _diagnostic_config() -> Dictionary:
 	# Isolated diagnostic override ONLY; no resource or adopted/default value changes.
 	var tuning: Tuning = TUNING.duplicate(true)
 	var spawn_y := 0.33
@@ -141,18 +141,33 @@ func _slug() -> void:
 			var value := arg.trim_prefix("--iterations=")
 			if not value.is_valid_int() or value.to_int() <= 0:
 				push_error("invalid diagnostic position iterations")
-				quit(1)
-				return
+				return {}
 			tuning.physics_position_iterations = value.to_int()
+		if arg.begins_with("--static-slip="):
+			var value := arg.trim_prefix("--static-slip=")
+			if not value.is_valid_float() or float(value) not in [0.15, 1.5]:
+				push_error("invalid R13 diagnostic static slip")
+				return {}
+			tuning.physics_static_slip_wu_s = float(value)
 		if arg.begins_with("--spawn-y="):
 			var value := arg.trim_prefix("--spawn-y=")
 			if not value.is_valid_float() or float(value) not in [0.33, 0.53, 0.73]:
 				push_error("invalid R12 diagnostic spawn height")
-				quit(1)
-				return
+				return {}
 			spawn_y = float(value)
+	return {"tuning": tuning, "spawn_y": spawn_y}
+
+
+func _slug() -> void:
+	var config := _diagnostic_config()
+	if config.is_empty():
+		quit(1)
+		return
+	var tuning: Tuning = config.tuning
+	var spawn_y: float = config.spawn_y
 	var model := CreaturePresets.load_model("Slug", tuning)
 	var probe := CoupledLoadProbe.new()
+	probe.collect_contact_samples = true
 	# Explicit uniform diagnostic material; NOT a new non-foot production default.
 	var friction: Array[float] = [
 		TUNING.physics_grip_friction, TUNING.physics_grip_friction, TUNING.physics_grip_friction
@@ -164,6 +179,12 @@ func _slug() -> void:
 	]
 	if probe.setup(model, _floor(), 0.0, spawn_y, friction, bounce, tuning) != OK:
 		push_error("probe setup failed")
+		quit(1)
+		return
+	var reference := CoupledLoadProbe.new()
+	reference.collect_contact_samples = false
+	if reference.setup(model, _floor(), 0.0, spawn_y, friction, bounce, tuning) != OK:
+		push_error("observer-off reference setup failed")
 		quit(1)
 		return
 	var trace_path := ""
@@ -183,6 +204,12 @@ func _slug() -> void:
 		if row.status != OK:
 			push_error("coupled probe aborted at tick%d status%s" % [tick, row.status])
 			break
+		var unobserved := reference.step()
+		if unobserved.status != OK or probe.snapshot() != reference.snapshot():
+			push_error("observer changed physical state at tick%d" % tick)
+			quit(1)
+			return
+		row["observer_on_off_physical_state_equal"] = true
 		row["diagnostic_spawn_y_wu"] = spawn_y
 		var text := JSON.stringify(row, "", true, true)
 		print("M1 Slug tick: " + text)
@@ -197,6 +224,12 @@ func _slug() -> void:
 				"M1 Slug trace: %d rows; diagnostic only; "
 				+ "sleep/angular limits/motors/self-contact NOT implemented"
 			)
+			% count
+		)
+	)
+	print(
+		(
+			"M1 contact observer equivalence: %d ticks bit-identical physical snapshots (on/off)"
 			% count
 		)
 	)

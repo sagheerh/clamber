@@ -181,7 +181,7 @@ jobs:
           retention-days: 7
 
       - name: R12 three spawn heights at unchanged configured iterations (NOT rest acceptance)
-        if: always()
+        if: ${{ always() && github.event_name == 'workflow_dispatch' }}
         shell: bash
         run: |
           set +e
@@ -199,12 +199,41 @@ jobs:
           PYLOG
           exit "$status"
       - name: Preserve all three spawn traces and motion profiles
-        if: always()
+        if: ${{ always() && github.event_name == 'workflow_dispatch' }}
         uses: actions/upload-artifact@v5
         with:
           name: m1-r12-spawn-probe-${{ github.run_id }}
           path: |
             ${{ runner.temp }}/m1-spawn/
             ${{ runner.temp }}/m1-spawn-console.log
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: R13 contact samples and static-slip sensitivity (NOT adoption or sleep interpretation)
+        if: always()
+        shell: bash
+        run: |
+          set +e
+          M1_SLIP_REPORT_DIR="$RUNNER_TEMP/m1-slip" bash tests/run_m1_slip_probe.sh > "$RUNNER_TEMP/m1-slip-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-slip-console.log" "$status" <<'PYLOG'
+          import sys
+          with open(sys.argv[1]) as file:
+              for line in file.read().splitlines():
+                  if line.startswith('M1 slip') or 'ERROR' in line:
+                      level = 'notice' if sys.argv[2] == '0' else 'error'
+                      escaped = line.replace('%', '%25').replace('\r', '%0D')
+                      print(f'::{level} title=M1 R13 contact observation ONLY::' + escaped)
+          PYLOG
+          exit "$status"
+      - name: Preserve both threshold traces and all contact/grounding events
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: m1-r13-contact-probe-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-slip/
+            ${{ runner.temp }}/m1-slip-console.log
           if-no-files-found: warn
           retention-days: 7
