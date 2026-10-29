@@ -102,8 +102,16 @@ was characterization only; no change to15°/600 acceptance window.
   source. Initial adoption CI static stopped188 controls/failure: archived
   `git show fb890fd` assertions need history absent from default shallow checkout.
   Regression-only static checkout now fetch-depth0; no assertion relaxation.
-- CI evidence-commit outcome recorded separately below when available. Do not
-  mislabel an initial source-CI failure as green.
+- Final code head9784b5f, [CI40971243040](https://github.com/sagheerh/clamber/actions/runs/40971243040):
+  staticjob123788231404 **226/0, success**, including literal closedpin control.
+  Reverted publicstep123788231768 **9053/0**, delivery30 **308/0**,144 **1446/0**,
+  old generatedbaseline MATCHED; jobRED only from artifactquota. Finaldigest
+  `4ec66a1f719135112c28f4e6678d87f4e3c04221d5236816ec02788faa0a6aaa`;
+  stream `cf98342cf54a06180a68223fb9aa0cb217209b2adb77c544293348e896e29190`.
+  This is reverted-build regression, **not adoption D2 or another determinism attempt**.
+  M0 [CI40971242996](https://github.com/sagheerh/clamber/actions/runs/40971242996),
+  headlessjob123788230935 **516/0, success**. Mathjob123788231589 primitive381/0,
+  contact237/0 stepsPASS, jobREDfromquota beforeF47. No all-CI-green claim.
 - Tuning diff versusfb890fd **empty**. Current entire productioncore diff
   **empty** after full revert. No preset/save/M0 expectation edits. Changed files
   are harness/report/plan/baseline tooling, diagnostic input-log collection,
@@ -113,7 +121,7 @@ was characterization only; no change to15°/600 acceptance window.
   preparatorycommit8bcb481; unchanged command, raw-artifact definition and
   `::error` annotation. Expected-red until M1.1, never FA/idle acceptance.
   Before: historical job123763105825 failure/F47. After: sourcejob123784170278
-  failure from **artifact quota before F47**, F47 skipped. Therefore D8's
+  failure from **artifact quota before F47**, F47 skipped; final9784b5f job123788231589 likewiseREDfromquota/F47skipped. Therefore D8's
   after-diagnostic result is **NOT RUN**, not PASS; no CI-green claim.
 - Historical R27/accepted200-run soak not rerun; FA3 **vacuous/uncredited**
   (0sleep/0wake), no carried narrow PASS. Same-build determinism attempt1 only,
@@ -139,6 +147,9 @@ was characterization only; no change to15°/600 acceptance window.
 6. Device performance/60fps/reference tick cost/cross-architecture determinism:
    **NOT RUN — outside authorized R28 scope**, no device/build evidence for such
    claims. M2 remains blocked by owner review/failures/amendment.
+
+DraftPR3 updated; protected59421-character historical tail SHA256
+`23f409294933ddd4638139254f41cc5bee6c70a35f28cea6509f9d0c199d76be` unchanged.
 
 ## What this session did NOT do
 

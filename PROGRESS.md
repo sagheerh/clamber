@@ -2041,3 +2041,14 @@ AC201a's intentional measuredFAIL remains in evidence, not rerun or hidden.
 PR3 stilldraft/open, updatedcurrentR27intro; protected59421char tail EXACT
 SHA23f409294933ddd4638139254f41cc5bee6c70a35f28cea6509f9d0c199d76be.
 Final follow-up records verification only; no product/code/tuning/baseline edit.
+
+
+R28 final regression closure (no new R28 arm): code9784b5f, M1CI40971243040:
+static123788231404success226/0; revertedpublic123788231768teststepPASS9053/0,
+delivery308/0+1446/0, oldbaselineMATCHED, jobREDartifactquota only (not D2).
+M0CI40971242996headless123788230935success516/0; expectationsunchanged.
+Math123788231589381/0+237/0stepsPASS but jobREDquota beforeF47; diagnosticNOTRUN.
+AllnewR28jobs closedliteral446d870 and skipped; historicalR27/soak not rerun.
+PR3stilldraft/protectedtail59421chars SHA23f409294933ddd4638139254f41cc5bee6c70a35f28cea6509f9d0c199d76be unchanged.
+No productionphysicschange remains; rawartifactdelivery and allCIgreen blocked
+byquota. Stop/waitowner. Do not retryphysicalmeasurements to repair artifacts.
