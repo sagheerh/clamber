@@ -27,7 +27,7 @@ def raw_frame(body):
         'omega':(x*(body['start_bvy']-body['start_avy'])-y*(body['start_bvx']-body['start_avx']))/squared}
 
 
-def audit_drive(row):
+def audit_drive(row, *, motor_damping=MOTOR_DAMPING, max_torque=TORQUE, allow_input=False):
     """Reconstruct BOTH clamps from actual pre-drive endpoint geometry/velocities.
     Nominal preset inertia is not substituted for the evolving body extent.
     """
@@ -41,8 +41,8 @@ def audit_drive(row):
     bound=row['diagnostic_angular_impulse_limit_rad_s']/weight
     omega=child['omega']-parent['omega']
     stiffness=row['diagnostic_motor_stiffness'];gain=row['motor_gain']
-    spring=stiffness*(e['target']-e['q']);damping=-MOTOR_DAMPING*omega
-    torque=clamp(spring+damping,-TORQUE*gain,TORQUE*gain)
+    spring=stiffness*(e['target']-e['q']);damping=-motor_damping*omega
+    torque=clamp(spring+damping,-max_torque*gain,max_torque*gain)
     requested=torque/HZ
     minimum=max((parent['omega']-LIMIT)/parent['inverse_inertia'],(-LIMIT-child['omega'])/child['inverse_inertia'])
     maximum=min((parent['omega']+LIMIT)/parent['inverse_inertia'],(LIMIT-child['omega'])/child['inverse_inertia'])
@@ -60,7 +60,10 @@ def audit_drive(row):
         'spring_torque':spring,'damping_torque':damping,'torque':torque,
         'requested_impulse':requested,'impulse':applied,'impulse_after':before+applied,
         'relative_speed_change':applied*weight,'tick_net_relative_speed_change':(before+applied)*weight}
-    if e['target']!=0.:raise ValueError('R20 zero-input diagnostics retain original target0')
+    if allow_input:
+        target=-resource('motors_contraction_deg')*math.pi/180*gain if row['input_mask'] & 1 else 0.
+        if not close(e['target'],target):raise ValueError('D09 proposed pulse target mismatch')
+    elif e['target']!=0.:raise ValueError('R20 zero-input diagnostics retain original target0')
     if not all(math.isfinite(e[k]) and close(e[k],v) for k,v in expected.items()):
         raise ValueError('F63 raw requested/bound/applied drive audit fails')
     return {'requested':requested,'bound':bound,'applied':e['impulse'],

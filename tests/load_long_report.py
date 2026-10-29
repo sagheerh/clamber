@@ -11,7 +11,7 @@ from load_convergence_report import drift_summary
 from load_phase_report import phase_magnitudes
 
 
-def verify_all(rows, *, zero_motor_stiffness=False, zero_motor_gain=False):
+def verify_all(rows, *, zero_motor_stiffness=False, zero_motor_gain=False, d09_lurch=False):
     if zero_motor_stiffness and zero_motor_gain:raise ValueError('No combined diagnostic intervention authorized')
     if len(rows) != 6000 or [r['tick'] for r in rows] != list(range(6000)):
         raise ValueError('Need complete ordered6000; partial is NOT convergence evidence')
@@ -42,7 +42,8 @@ def verify_all(rows, *, zero_motor_stiffness=False, zero_motor_gain=False):
                 and len(r['drive_events']) == 1 and r['drive_events'][0]['kind'] == 'motor'
                 and r['drive_events'][0]['target'] == 0. and r['drive_events'][0]['torque'] == 0.
                 and r['drive_events'][0]['requested_impulse'] == 0.)
-        if r['status'] != 0 or not r['observer_on_off_physical_state_equal'] or r['input_mask'] != 0 or not valid_return:
+        expected_input = 1 if d09_lurch and 5700 <= r['tick'] < 5760 else 0
+        if r['status'] != 0 or not r['observer_on_off_physical_state_equal'] or r['input_mask'] != expected_input or not valid_return:
             raise ValueError('Incomplete/altered/ nonzero-input long observation')
         bodies = r['feet'] + r['other_bodies']
         grounded = sorted(b['part'] for b in bodies if b['grounded'])

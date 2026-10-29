@@ -1458,3 +1458,46 @@ with D09 increment AFTER authorization, separate evidence/configuration/commit
 provenance; not a present instruction to start. D06/D07 queued, no M0 waiver
 carried forward. A/residual obsolete/withdrawn, no baseline/Phase3 changes.
 NEXT single milestone WAIT for owner D09 AND D08. No additional implementation.
+
+
+## Delegated owner D09/D08/D06 — accepted; proposal study, NOT adoption
+
+User explicitly confirms owner delegation; read origin/arena/5b72e4ab-clamber
+M1_D09_D08_D06_DECISIONS via git show ONLY, never copied/merged. D09 proportional
+muscle/re-scaled, not bang-bang documentation. D08 physical hold first, visible
+release-hold fallback ONLY after approved adoption and full4-cell remeasure still
+above derived.3px/s; no freeze now. D06 author provisional minimal fixture now,
+subject to B04, FA6 target6–8of10 unchanged. D07 owner phone queued/M0ONLY waiver.
+
+Non-adopted proposals registered before measurement: cap30 for ALL (no further
+raise), torque12 ALL, k10/20/40 (quarter/half/whole owner's EXAMPLE40). All numbers
+are proposals, not claimed derived feel constants. Isolated tuning.tres override
+resources only; core tuning SHA/defaults untouched. Damping c=2sqrt(kIeff),
+Ieff=1/(inverseIp+inverseIc), evaluated actual authored endpoint geometry, raw
+independently audited; publish loaded damping ratio. Continuous linear critical
+coefficient need not be stable/critical in nonlinear discrete constrained plant.
+Fixed60Hz unchanged. Plan `.review/m1_d09_study_plan.md`, at least3 triples,
+four cells plus proposed lurch1s held L/4s release after95s awake settling each.
+No formal FA4 credit for proposed pulse. Full per-arm F56/F63/limit/WU audits,
+exact pose settlement or null/transient range; no residual calibration/A revival.
+
+Owner holding criterion max |requested|/bound<=.5 AND unclipped upstream motor
+request at working/settled pose. Actual saturation/holding residual/pose/drift/
+lurch required; no nice first result adoption. Derived D08 line .001/30*60*150=.3
+px/s is necessary, not sufficient: exact F52 body per-tick AND anchored dwell-net
+must fire within4s; strict comparison unchanged. Awake observer eligibility not
+actual sleep. Margin below.3 treated as feel risk if close, not comfortable pass.
+STOP after study before adoption. On approval adopt, regenerate baseline with
+provenance/re-measure4arms; old R23 describes OLD parameterisation, preserved.
+If pose cannot hold sane residual report/return to owner, do NOT raise bound again.
+
+D06 authored provisional proposal JSON: one floor, one ledge, one spawn marker,
+one identical script/ten attempts via existing owner tuning targets. No generation/
+difficulty curve/product level design or captures. Layout/success proposal NOT
+measured/qualifying until Phase4; re-lay/re-run if B04 resolves differently. With
+identical state/inputs deterministic solver gives identical outcomes; no invented
+noise/seed variation to manufacture6–8 successes. FA6 NOT RUN. AC202/FA5 parallel
+authorized but not started here, evidence would be separated. Runtime8/18 movement0.
+Public replay/clock rerun on first study commit to reproduce OLD baseline, not
+regenerate/adopt example. Actual first adopted solver change must rerun again with
+provenance. No silent AC201 rewrite/epsilon/hold/waiver/M2/camera/captures.

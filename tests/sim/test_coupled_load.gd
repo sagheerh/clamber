@@ -1,3 +1,5 @@
+# gdlint: disable=max-returns
+# Explicit CLI rejection guards keep unauthorized study settings out.
 extends SceneTree
 ## Runs engineering diagnostics only; NOT FA-3/5, public Sim or determinism evidence.
 const TUNING = preload("res://core/tuning.tres")
@@ -135,6 +137,19 @@ func _gravity_reaction() -> void:
 func _diagnostic_config() -> Dictionary:
 	# Isolated diagnostic override ONLY; no resource or adopted/default value changes.
 	var tuning: Tuning = TUNING.duplicate(true)
+	var study := ""
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--d09-candidate="):
+			study = arg.trim_prefix("--d09-candidate=")
+			if study not in ["c10", "c20", "c40"]:
+				push_error("unauthorized D09 proposal")
+				return {}
+			var proposal: Tuning = load("res://tests/fixtures/d09/" + study + "/tuning.tres")
+			tuning.physics_max_constraint_angular_impulse_rad_s = (
+				proposal.physics_max_constraint_angular_impulse_rad_s
+			)
+			tuning.motors_joint_stiffness = proposal.motors_joint_stiffness
+			tuning.motors_max_torque = proposal.motors_max_torque
 	if "--passive-spring-off" in OS.get_cmdline_user_args():
 		tuning.physics_passive_stiffness = 0.0
 	if "--motor-spring-off" in OS.get_cmdline_user_args():
@@ -183,7 +198,7 @@ func _diagnostic_config() -> Dictionary:
 				push_error("invalid R12 diagnostic spawn height")
 				return {}
 			spawn_y = float(value)
-	return {"tuning": tuning, "spawn_y": spawn_y, "ticks": ticks, "lift": lift}
+	return {"tuning": tuning, "spawn_y": spawn_y, "ticks": ticks, "lift": lift, "study": study}
 
 
 func _slug() -> void:
@@ -196,6 +211,18 @@ func _slug() -> void:
 	var model := CreaturePresets.load_model("Slug", tuning)
 	if "--pre-pose" in OS.get_cmdline_user_args():
 		model = _pre_pose_model(tuning)
+	var damping_weight := 0.0
+	if not config.study.is_empty():
+		var authored := model.create_bodies(0.0, 0.0)
+		var parent := PlanarBasis.frame(authored[0])
+		var child := PlanarBasis.frame(authored[1])
+		if parent.is_empty() or child.is_empty():
+			push_error("D09 damping inertia invalid")
+			quit(1)
+			return
+		damping_weight = parent.inverse_inertia + child.inverse_inertia
+		# Relative-angle linearization: Ieff=1/weight; ccrit=2*sqrt(k*Ieff).
+		tuning.motors_joint_damping = 2.0 * sqrt(tuning.motors_joint_stiffness / damping_weight)
 	var authored_bottom := INF
 	for body in model.create_bodies(0.0, 0.0):
 		authored_bottom = minf(authored_bottom, minf(body.a.y, body.b.y) - body.radius)
@@ -239,12 +266,16 @@ func _slug() -> void:
 			return
 	var count := 0
 	for tick in range(config.ticks):
-		var row := (probe as ActuatedLoadProbe).advance(0) if actuated else probe.step()
+		var mask := 0
+		# PROPOSED diagnostic pulse: after5700 released ticks, hold L for1s, release4s.
+		if "--d09-lurch" in OS.get_cmdline_user_args() and tick >= 5700 and tick < 5760:
+			mask = tuning.motors_input_left_mask
+		var row := (probe as ActuatedLoadProbe).advance(mask) if actuated else probe.step()
 		if row.status != OK:
 			push_error("coupled probe aborted at tick%d status%s" % [tick, row.status])
 			break
 		var unobserved := (
-			(reference as ActuatedLoadProbe).advance(0) if actuated else reference.step()
+			(reference as ActuatedLoadProbe).advance(mask) if actuated else reference.step()
 		)
 		if (
 			unobserved.status != OK
@@ -278,6 +309,10 @@ func _slug() -> void:
 		)
 		row["diagnostic_motor_limit_min_deg"] = tuning.motors_limit_min_deg
 		row["diagnostic_motor_limit_max_deg"] = tuning.motors_limit_max_deg
+		row["diagnostic_d09_candidate"] = config.study
+		row["diagnostic_d09_lurch"] = "--d09-lurch" in OS.get_cmdline_user_args()
+		row["diagnostic_d09_authored_weight"] = damping_weight
+		row["diagnostic_motor_max_torque"] = tuning.motors_max_torque
 		row["diagnostic_motor_damping"] = tuning.motors_joint_damping
 		row["diagnostic_passive_stiffness"] = tuning.physics_passive_stiffness
 		row["diagnostic_motor_stiffness"] = tuning.motors_joint_stiffness

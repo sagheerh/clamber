@@ -8,7 +8,27 @@ Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R23 — causal investigation CLOSED; WAIT for owner D09 AND D08
+### Current D09 — delegated decisions accepted; three-proposal study PENDING
+
+D09 PROPORTIONAL MUSCLE, D08 PHYSICAL HOLD FIRST/fallback only after adoption+
+remeasurement, D06 AUTHOR PROVISIONAL MINIMAL FIXTURE are owner decisions under
+explicit delegation. Read source via git show origin/arena/5b72e4ab-clamber only,
+not copied/merged. Decision wait lifted; choices NOT reopened. D07 phone queued.
+Plan registered `.review/m1_d09_study_plan.md` before measurement: triples
+(30,10,12)/(30,20,12)/(30,40,12), all PROPOSALS not adopted. Critical damping
+2*sqrt(k/weight_authored), independently raw-audited and loaded zeta reported;
+continuous critical damping is not assumed discretely stable at60Hz.
+Four cells6000 ticks each +one PROPOSED lurch protocol per candidate. No new
+coefficient in core defaults; total mass/weight untouched. STOP before adoption,
+no further bound increase. Settled pose nullable; don't turn transient means
+into equilibrium. D08 .3px/s derived necessary line, F52 firing<=4s authoritative,
+no mean-drift-only pass; no hold added. D06 provisional fixture authored underB04,
+NOT FA6 run/qualification; deterministic identical-run constraint noted honestly.
+Public replay/clock scheduled now to REPRODUCE existing committed baseline; no
+baseline regeneration at study stage. Old R23 parameterisation retained as history.
+No parallel AC202/FA5 run now;8/18 movement0/FA5 unchanged. Results PENDING.
+
+### Historical R23 — causal investigation CLOSED; WAIT for owner D09 AND D08
 
 R23 review ofd76b88e and owner decision sheet read ONLY with git show from
 arena/5b72e4ab-clamber; neither copied/merged into this tree. The decision sheet

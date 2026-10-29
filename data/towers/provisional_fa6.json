@@ -1,0 +1,13 @@
+{
+  "id": "M1-D06-provisional",
+  "status": "PROVISIONAL TEST GEOMETRY PROPOSAL, NOT PRODUCT CONTENT OR FA6 EVIDENCE",
+  "subject_to": "M1-B04: 7.2 WU width versus 8.0 WU height; re-lay and rerun if resolved differently",
+  "coordinates": "WU, x right, y up; all layout numbers below are unmeasured proposals",
+  "extent_wu": [7.2, 8.0],
+  "floor_rectangle_wu": [0.0, -0.25, 7.2, 0.25],
+  "ledge_rectangle_wu": [3.5, 1.0, 2.0, 0.25],
+  "spawn_pad": {"rectangle_wu": [0.75, 0.0, 1.0, 0.25], "role": "non-solid marker, not a second ledge", "spawn_x_wu": 1.25, "spawn_y": "derive from actual authored lowest surface +0.01 WU floor clearance"},
+  "script": {"status": "PROPOSED, identical per run, NOT executed", "segments": [{"held": "L", "ticks": 60}, {"held": "released", "ticks": 240}], "runs_resource": "feel_tutorial_runs", "successes_min_resource": "feel_tutorial_successes_min", "successes_max_resource": "feel_tutorial_successes_max", "success_proposal": "all creature endpoints reach above ledge top by final tick; unmeasured; not adopted as a qualifying success predicate"},
+  "determinism_note": "Exact same state/seed/input in deterministic solver yields identical outcomes; do not add noise or vary runs to force6-8. Phase4 must report this constraint, never fabricate variability.",
+  "out_of_scope": ["generation", "difficulty curve", "product level design", "captures before Phase4"]
+}

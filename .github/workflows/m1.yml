@@ -677,3 +677,54 @@ jobs:
             ${{ runner.temp }}/m1-inert/
             ${{ runner.temp }}/m1-inert-console.log
           retention-days: 7
+
+  d09-proposal-study:
+    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[D09-study]') }}
+    name: D09 three non-adopted proportional proposals (STOP before adoption)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: D09 proposed triples, four cells and diagnostic pulse; no adoption
+        shell: bash
+        run: |
+          set +e
+          M1_D09_REPORT_DIR="$RUNNER_TEMP/m1-d09" bash tests/run_m1_d09.sh > "$RUNNER_TEMP/m1-d09-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-d09-console.log" "$status" <<'PYLOG'
+          import sys
+          selected=[line for line in open(sys.argv[1]).read().splitlines() if line.startswith('M1 D09') or 'ERROR' in line or 'FAIL' in line or 'ValueError' in line]
+          text='\n'.join(selected)
+          messages=[text[i:i+3500] for i in range(0,len(text),3500)]
+          assert len(messages)<=10, 'D09 compact annotation budget exceeded; raw artifact retained'
+          for message in messages:
+              level='notice' if sys.argv[2]=='0' else 'error'
+              escaped=message.replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print(f'::{level} title=M1 D09 non-adopted parametric study::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-d09-proposals-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-d09/
+            ${{ runner.temp }}/m1-d09-console.log
+          retention-days: 7
