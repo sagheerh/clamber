@@ -8,7 +8,39 @@ Session date: 2026-10-28. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R14 / ordered steps1–3 implemented and measured; M1 still incomplete
+### Current R15 / actuator component increment awaiting pinned-engine validation
+
+- Binding order: motors L/R contraction + angular limits + self-contact FIRST;
+  same increment derived legal BOTH-arm600 + required main-trace per-body/pass
+  intervals/candidate/active counts, then F41 comparison. Public Sim/F45/replay
+  NEXT, then Hopper four-branch FA-5/all-preset FA-3/4; finally AC-201/202/204,
+  A9/§10.6/tick cost/captures. No M2/camera/captures now, no retune or sampling fix.
+- F30-authored CLOSED — the audit proves foot pads at -0.205 (Slug, TwinRoller 4) and -0.235 (Hopper) below the lowest non-foot body, with exactly one documented exemption.
+- F30-runtime BLOCKED — not by the pose but by missing actuators. The hinges rotate freely, so the foot swings up and the head and motor bellies still rest on the ground: 17 active samples and all three bodies grounded after the fix, with the foot carrying 22.24 percent of support. With no angular limit and no motor torque, the lowest-energy configuration of a limp chain is everything on the ground. The pose cannot constrain attitude.
+- Above is the owner's R15 baseline verdict, NOT a claim new actuator traces pass.
+  First shipped-preset grip: tick19, exactly one tick, toggles[19,20], steady
+  fraction0: path existence only.
+- New source: algebraic binary64 CORDIC table, spring/return motor, asymmetric
+  motor/symmetric passive angular rows, D10 filtered center-sphere self response,
+  separate awake ActuatedLoadProbe. Historical free-hinge trajectory retained.
+  No foot/root angular limits invented. No new damping, epsilon, load injection,
+  resource-value or accepted math/analyzer/control changes. Existing endpoint
+  linear damping remains; existing motor c55 is used as specified. Unused global
+  angular damping is not silently activated/reinterpreted by this increment.
+- New fixture derives root from actual authored capsule minimum +.01WU. All four
+  legal cases (old/new pose × baseline/actuated) retain required MAIN counts and
+  raw candidate observations. Historical .33 pair explicitly over-penetrating.
+  F41 rejudgment PENDING these traces/count regimes, not a failed pose fix or
+  landing-depth causal explanation. Pinned-engine run NOT YET executed.
+- Public Sim remains stub; F45 documentation/replay is the next ordered stage,
+  not an approval blocker. All coupled runtime acceptance remains NOT RUN;
+  complete-creature determinism attempts0. Accepted sleep remains unchanged.
+
+### Historical R14 / superseded interpretation and order (preserved evidence)
+
+R15 supersedes the F41 causal interpretation and public-Sim-LAST ordering below.
+The .33 runs are historical **over-penetrating spawn** evidence only.
+
 
 - F41b answered BEFORE source edits: foot current extent ceil crosses cell.25
   after first-pass positional cleanup; candidate/active count3->2, velocity-

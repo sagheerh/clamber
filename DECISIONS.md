@@ -739,3 +739,49 @@ Only two owner sleep fields added; previous400 resource entries unchanged. Scope
 next remains motors/angular limits/self-contact -> actual Hopper two-foot FA-5
 and all3 FA-3/4 -> public Sim last. No pending owner decision invented, no retune,
 no plateau fix claim. Sleep parks the plateau;≈.202WU/s awake shimmer risk remains.
+
+
+## M1-R15 — Owner verdict/order, F43 legal clearance and F44 count confounding
+
+Owner accepts F41b, A/A1 and sleep; no new owner decision required. Binding order
+supersedes R14: motors L/R contraction/angular limits/self-contact FIRST, same
+increment legal BOTH-arm rerun + required main-trace per-body/pass intervals,
+candidate count and active count, then F41 rejudgment; public Sim/F45/replay;
+Hopper all four FA-5 branches and all presets FA-3/4; then AC-201/202/204, A9,
+§10.6, tick cost and captures. No captures/M2/camera before that ordered stage.
+
+F30-authored CLOSED — the audit proves foot pads at -0.205 (Slug, TwinRoller 4) and -0.235 (Hopper) below the lowest non-foot body, with exactly one documented exemption.
+
+F30-runtime BLOCKED — not by the pose but by missing actuators. The hinges rotate freely, so the foot swings up and the head and motor bellies still rest on the ground: 17 active samples and all three bodies grounded after the fix, with the foot carrying 22.24 percent of support. With no angular limit and no motor torque, the lowest-energy configuration of a limp chain is everything on the ground. The pose cannot constrain attitude.
+
+These are the owner-supplied baseline statuses. Actuator source is not itself
+closure evidence. Historical shipped-preset first grip tick19 is exactly one tick,
+toggles[19,20], steady fraction0: PATH EXISTENCE ONLY.
+
+F43: derive the root from actual authored capsule surfaces, lowest surface+.01WU
+above floor. Preserve .33 explicitly as historical over-penetrating spawn. F44:
+foot length=.25/cell=.25 sits on the ceil knife edge, 3→2 candidates after projection.
+Do NOT fix sampling/constants. Required main600 counts are checked against every
+raw candidate; report both arms side by side. Mismatching count regimes confound
+pose comparisons. F41 rejudgment is pending legal/count evidence. Landing depth is
+owner-disfavored, not established causation; P barely changed/F38 height insensitivity.
+
+Implementation increment uses existing spring k2400/c55, gain/torque/limits and
+per-tick relative-angular-impulse cap6. Limits follow drive, with position row and
+outward velocity block sharing the same signed net impulse budget across passes.
+Inverse inertia is derived from the existing two endpoint masses (m/2 at each),
+not a fabricated solid-rod mass distribution. Passive k900 return/±110° and motor
+−140°/+40° are relative to authored rest. No angular limit on root/head or feet.
+D10 pairs come from model.collision_pairs() once at setup; center spheres have
+existing part radii, existing contact slop and normal-only response (no invented
+self-friction). Self impulses are separately retained, never mislabeled hinge or
+terrain support; positional cleanup still never qualifies grip.
+
+The accepted baseline has no-op composition hooks; accepted analyzer/control
+sources stay unchanged. For actuated engineering reports, raw angular/self
+position phases first close independently, then a disclosed lossless internal-
+phase adapter permits reuse of the accepted verifier. Original raw traces stay
+unmodified. No resource retune, sampling/velocity epsilon/hysteresis or global
+angular damping activation. This is NOT complete-creature determinism (attempts0).
+F45 will document old .05/.6 sleep fields superseded (no unauthorized deletion)
+when public Sim is wired, citing F38's velocity plateau. Accepted sleep unchanged.

@@ -168,7 +168,14 @@ func _slug() -> void:
 	var model := CreaturePresets.load_model("Slug", tuning)
 	if "--pre-pose" in OS.get_cmdline_user_args():
 		model = _pre_pose_model(tuning)
-	var probe := CoupledLoadProbe.new()
+	var authored_bottom := INF
+	for body in model.create_bodies(0.0, 0.0):
+		authored_bottom = minf(authored_bottom, minf(body.a.y, body.b.y) - body.radius)
+	var legal := "--legal-spawn" in OS.get_cmdline_user_args()
+	if legal:
+		spawn_y = .01 - authored_bottom
+	var actuated := "--actuated" in OS.get_cmdline_user_args()
+	var probe: CoupledLoadProbe = ActuatedLoadProbe.new() if actuated else CoupledLoadProbe.new()
 	probe.collect_contact_samples = true
 	# Explicit uniform diagnostic material; NOT a new non-foot production default.
 	var friction: Array[float] = [
@@ -183,7 +190,9 @@ func _slug() -> void:
 		push_error("probe setup failed")
 		quit(1)
 		return
-	var reference := CoupledLoadProbe.new()
+	var reference: CoupledLoadProbe = (
+		ActuatedLoadProbe.new() if actuated else CoupledLoadProbe.new()
+	)
 	reference.collect_contact_samples = false
 	if reference.setup(model, _floor(), 0.0, spawn_y, friction, bounce, tuning) != OK:
 		push_error("observer-off reference setup failed")
@@ -202,11 +211,13 @@ func _slug() -> void:
 			return
 	var count := 0
 	for tick in range(600):
-		var row := probe.step()
+		var row := (probe as ActuatedLoadProbe).advance(0) if actuated else probe.step()
 		if row.status != OK:
 			push_error("coupled probe aborted at tick%d status%s" % [tick, row.status])
 			break
-		var unobserved := reference.step()
+		var unobserved := (
+			(reference as ActuatedLoadProbe).advance(0) if actuated else reference.step()
+		)
 		if (
 			unobserved.status != OK
 			or var_to_bytes(probe.snapshot()) != var_to_bytes(reference.snapshot())
@@ -216,6 +227,18 @@ func _slug() -> void:
 			return
 		row["observer_on_off_physical_state_equal"] = true
 		row["diagnostic_spawn_y_wu"] = spawn_y
+		row["diagnostic_authored_bottom_wu"] = authored_bottom
+		row["diagnostic_lowest_initial_surface_wu"] = authored_bottom + spawn_y
+		row["diagnostic_spawn_kind"] = (
+			"derived legal +.01WU"
+			if legal
+			else (
+				"over-penetrating spawn"
+				if authored_bottom + spawn_y < 0.0
+				else "historical explicit root"
+			)
+		)
+		row["diagnostic_actuated"] = actuated
 		row["diagnostic_pose"] = "before" if "--pre-pose" in OS.get_cmdline_user_args() else "after"
 		var text := JSON.stringify(row, "", true, true)
 		print("M1 Slug tick: " + text)
@@ -228,7 +251,7 @@ func _slug() -> void:
 		(
 			(
 				"M1 Slug trace: %d rows; diagnostic only; "
-				+ "sleep/angular limits/motors/self-contact NOT implemented"
+				+ "sleep NOT implemented; actuator selection recorded per row"
 			)
 			% count
 		)

@@ -289,3 +289,31 @@ jobs:
             ${{ runner.temp }}/m1-sleep/
             ${{ runner.temp }}/m1-sleep-console.log
           retention-days: 7
+
+      - name: R15 mechanics components and derived legal paired600 with main-trace counts
+        if: always()
+        shell: bash
+        run: |
+          set +e
+          M1_MECHANICS_REPORT_DIR="$RUNNER_TEMP/m1-mechanics" bash tests/run_m1_mechanics.sh > "$RUNNER_TEMP/m1-mechanics-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-mechanics-console.log" "$status" <<'PYLOG'
+          import sys
+          for line in open(sys.argv[1]).read().splitlines():
+              if line.startswith(('M1 legal', 'M1 R15 mechanics')) or 'ERROR' in line or 'FAIL' in line:
+                  for start in range(0, len(line), 3500):
+                      level = 'notice' if sys.argv[2] == '0' else 'error'
+                      chunk = line[start:start+3500].replace('%','%25').replace('\r','%0D')
+                      print(f'::{level} title=M1 R15 mechanics engineering ONLY::'+chunk)
+          PYLOG
+          exit "$status"
+      - name: Preserve R15 components and four legal main600 traces
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: m1-r15-mechanics-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-mechanics/
+            ${{ runner.temp }}/m1-mechanics-console.log
+          retention-days: 7

@@ -8,7 +8,7 @@ from load_contact_report import save
 
 
 def compare(root):
-    result = {'scope': 'R14 A/A1 pose ONLY; no sleep/motors/limits/self-contact', 'cases': {}}
+    result = {'scope': 'R14 A/A1 pose ONLY; no sleep/motors/limits/self-contact', 'cases': {}, 'spawn_status': 'HISTORICAL over-penetrating spawn; NOT the R15 legal comparison'}
     for pose in ('before','after'):
         folder = Path(root)/pose
         try:
@@ -37,7 +37,7 @@ def compare(root):
     if all(c['status']=='OBSERVED' for c in result['cases'].values()):
         a,b=[result['cases'][p]['contacts'] for p in ('before','after')]
         dx0,dx1=[c['steady_mean_com_dx_wu_tick'] for c in (a,b)]
-        result['F41']={'before_dx_wu_tick':dx0,'after_dx_wu_tick':dx1,
+        result['F41']={'interpretation': 'HISTORICAL only; R15 F43/F44 supersede pose-causal rejudgment', 'before_dx_wu_tick':dx0,'after_dx_wu_tick':dx1,
                        'absolute_drift_smaller':abs(dx1)<abs(dx0),
                        'difference_wu_tick':dx1-dx0,
                        'grounded_sets_changed':a['steady_grounded_sets']!=b['steady_grounded_sets'],

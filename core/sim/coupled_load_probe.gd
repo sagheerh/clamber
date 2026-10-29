@@ -1,3 +1,5 @@
+# gdlint: disable=max-returns
+# Transactional velocity-pass exits retain the original error propagation.
 class_name CoupledLoadProbe
 extends RefCounted
 ## Engineering load-path probe, NOT public Sim, angular-limit/motor/self-contact solver.
@@ -15,6 +17,7 @@ var _tuning: Tuning
 var _friction: Array[float] = []
 var _restitution: Array[float] = []
 var _ticks: int = TUNING.physics_zero
+var _contact_counts: Array = []
 
 
 func setup(
@@ -149,10 +152,14 @@ func _step(before: Dictionary) -> Dictionary:
 		"internal_impulse_y_ns": float(TUNING.physics_zero),
 		"contact_velocity_impulse_y_ns": float(TUNING.physics_zero),
 	}
+	_contact_counts = []
+	var started := _begin_tick()
+	if started != OK:
+		return {"status": started}
 	var positions: Array = []
 	for body in bodies:
 		var phases := {}
-		for phase in ["integration", "distance", "hinge", "contact"]:
+		for phase in position_phases():
 			phases[phase] = [
 				float(TUNING.physics_zero),
 				float(TUNING.physics_zero),
@@ -214,6 +221,9 @@ func _predict_and_project(dt: float, budget: Dictionary, positions: Array) -> Er
 			if hinge.project_position() != OK:
 				return ERR_INVALID_DATA
 		_book_positions(before_hinge, positions, "hinge")
+		var extra := _extra_positions(positions)
+		if extra != OK:
+			return extra
 	return OK
 
 
@@ -248,6 +258,8 @@ func _velocity_contacts(
 			hinge_y[index] += impulse.y
 			hinge_x[parent] -= impulse.x
 			hinge_y[parent] -= impulse.y
+		if _extra_velocities() != OK:
+			return {"status": ERR_INVALID_DATA}
 		budget.internal_impulse_y_ns += _momentum_y() - before_internal
 		for index in range(bodies.size()):
 			var body := bodies[index]
@@ -261,17 +273,18 @@ func _velocity_contacts(
 			var normal := _terrain.sample(body.a.x, body.a.y)
 			if normal.is_empty():
 				return {"status": ERR_INVALID_DATA}
-			var external_x: float = hinge_x[index]
-			var external_y: float = body.mass * _tuning.physics_gravity_wu_s2 * dt + hinge_y[index]
+			var extra := _body_impulse(index)
+			var external_x: float = hinge_x[index] + extra.x
+			var external_y: float = (
+				body.mass * _tuning.physics_gravity_wu_s2 * dt + hinge_y[index] + extra.y
+			)
 			body.applied_load_n = maxf(
 				TUNING.physics_zero, -(external_x * normal.nx + external_y * normal.ny) / dt
 			)
 		lowest = lowest_mask(bodies, _tuning)
 		var before_contact := _momentum_y()
 		var before_contact_positions := _positions()
-		var recorder := Callable()
-		if collect_contact_samples:
-			recorder = _record_contact.bind(velocity_pass, contact_samples)
+		var recorder := _record_contact.bind(velocity_pass, contact_samples)
 		var status := CapsuleContact.resolve_tick(
 			bodies, _terrain, _mass, lowest, _friction, _restitution, _tuning, recorder
 		)
@@ -279,6 +292,10 @@ func _velocity_contacts(
 			return {"status": status}
 		_book_positions(before_contact_positions, positions, "contact")
 		budget.contact_velocity_impulse_y_ns += _momentum_y() - before_contact
+		var before_clamp := _momentum_y()
+		if _finish_velocities() != OK:
+			return {"status": ERR_INVALID_DATA}
+		budget.clamp_impulse_y_ns += _momentum_y() - before_clamp
 		for index in range(bodies.size()):
 			reaction[index] += bodies[index].measured_reaction_n
 			cleanup[index] += bodies[index].positional_cleanup_n
@@ -434,6 +451,7 @@ func _trace(
 			previous_grounded.append(index)
 	return {
 		"contact_samples": contact_samples,
+		"contact_counts": _contact_counts,
 		"grounded_parts": grounded,
 		"previous_grounded_parts": previous_grounded,
 		"new_grounded_parts": grounded.filter(func(part): return part not in previous_grounded),
@@ -531,4 +549,47 @@ func _book_positions(before: Array, ledger: Array, phase: String) -> void:
 func _record_contact(event: Dictionary, part: int, velocity_pass: int, output: Array) -> void:
 	event.part = part
 	event.velocity_pass = velocity_pass
-	output.append(event)
+	if collect_contact_samples:
+		output.append(event)
+	if (
+		_contact_counts.is_empty()
+		or _contact_counts.back().part != part
+		or _contact_counts.back().velocity_pass != velocity_pass
+	):
+		_contact_counts.append(
+			{
+				"part": part,
+				"velocity_pass": velocity_pass,
+				"intervals": event.intervals,
+				"candidate_count": TUNING.physics_zero,
+				"active_count": TUNING.physics_zero
+			}
+		)
+	_contact_counts.back().candidate_count += TUNING.physics_one
+	if event.active:
+		_contact_counts.back().active_count += TUNING.physics_one
+
+
+# No-op extension points preserve the accepted historical free-hinge trajectory.
+func position_phases() -> Array:
+	return ["integration", "distance", "hinge", "contact"]
+
+
+func _begin_tick() -> Error:
+	return OK
+
+
+func _extra_positions(_positions_ledger: Array) -> Error:
+	return OK
+
+
+func _extra_velocities() -> Error:
+	return OK
+
+
+func _body_impulse(_index: int) -> Dictionary:
+	return {"x": float(TUNING.physics_zero), "y": float(TUNING.physics_zero)}
+
+
+func _finish_velocities() -> Error:
+	return OK
