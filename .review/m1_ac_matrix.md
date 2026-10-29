@@ -338,3 +338,29 @@ ungrounded->grounded while asleep wakes, no impulse threshold. NOT all-presets
 FA-3/4 or complete-creature determinism.96 Python and381/237/136/80 other checks
 pass; actual gates still NOT RUN. Next motors/limits/self-contact, then Hopper
 FA-5/all3 FA-3/4, public Sim last. Owner decisions no longer pending.
+
+
+R15 SUPERSEDES the historical order/pose-causal interpretations above. Exact
+F30-authored CLOSED / F30-runtime BLOCKED owner baseline wording is recorded in
+PROGRESS/DECISIONS, not retroactively upgraded by actuator source. Historical .33
+is over-penetrating spawn; first shipped-preset grip19/one tick/toggles[19,20],
+steady0 remains PATH EXISTENCE ONLY. F43 legal four600 and F44 required MAIN
+interval/candidate/active counts executed @35df327 / CI40810406262 SUCCESS.
+921 mechanics/105 Python/381 math/237 contact/136 analytic/80 load/3659 sleep pass.
+Legal roots .405/.6100000000000001 give lowest surfaces+.010000000000000009WU.
+Baseline steady counts match (head3/3,motor3/3,foot3/2 active), legal residual dx
+-7.1751877234127456e-6 ->+9.337328797581247e-6. Actuated dx .0003903690062867916
+->.000437169361675691; counts differ (foot pass0 candidates3->2, motor pass0
+active2 on33->50 ticks). F41 OPEN, not pose-causal/landing-depth proof or a fix.
+Both-arm per-body/pass (I,C,A) histograms/raw ticks are in artifact12869408995 and
+PROGRESS. Angular/self raw position phases independently close before disclosed
+legacy-verifier phase adapter. Accepted analyze/40-control source unchanged.
+Next public Sim/F45 superseded sleep docs/replay -> Hopper FA-5 ALL4 branches /
+all3 FA-3/4 -> AC-201/202/204,A9,10.6,tickcost/captures. No retune/sampling fix/
+M2/camera/captures now. FA-3/4/5/6/all coupled runtime acceptance NOT RUN;
+complete-creature determinism attempts0, accepted sleep unchanged.
+
+R15 follow-up548b5c8 / CI40810712083 SUCCESS:106 Python /931 mechanics,
+unchanged four legal600. Fake legal metadata rejected against actual START
+capsules; composed D10 hooks exercised without terrain/support injection.
+Public Sim/F45/replay is NEXT, not implemented by these engineering components.

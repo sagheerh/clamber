@@ -2,13 +2,13 @@
 
 ## Current milestone: M0 — APPROVED / COMPLETE (owner override); M1 — IN PROGRESS / production definitions and contact components, coupled gates NOT RUN
 
-Session date: 2026-10-28. Normative inputs: `docs/GDD.md` and
+Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 `docs/ui/CLAMBER_UI.jpeg`. M0 is accepted by the GDD owner under M0-D07, dated 2026-10-28. Verdict:
 **APPROVE — HUMAN OVERRIDE**. Missing device evidence and measured FPS/P95 are
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R15 / actuator component increment awaiting pinned-engine validation
+### Current R15 / actuator engineering increment measured; public Sim NEXT
 
 - Binding order: motors L/R contraction + angular limits + self-contact FIRST;
   same increment derived legal BOTH-arm600 + required main-trace per-body/pass
@@ -30,11 +30,64 @@ scaffold/PR; no M1 implementation or gate completion is claimed by this closeout
 - New fixture derives root from actual authored capsule minimum +.01WU. All four
   legal cases (old/new pose × baseline/actuated) retain required MAIN counts and
   raw candidate observations. Historical .33 pair explicitly over-penetrating.
-  F41 rejudgment PENDING these traces/count regimes, not a failed pose fix or
-  landing-depth causal explanation. Pinned-engine run NOT YET executed.
+  F43/F44 legal/count plumbing executed: see measured evidence below. F41 remains
+  OPEN: legal baseline still drifts; actuated pose-causal comparison is confounded
+  by differing counts. NOT a failed pose fix or landing-depth causal explanation.
 - Public Sim remains stub; F45 documentation/replay is the next ordered stage,
   not an approval blocker. All coupled runtime acceptance remains NOT RUN;
   complete-creature determinism attempts0. Accepted sleep remains unchanged.
+
+### R15 measured engineering evidence (35df327; strengthened548b5c8 also GREEN)
+
+- Pinned Godot4.7.2 M1 CI40810406262 SUCCESS:105 Python controls,381 math,
+  237 contact,136 analytic,80 load,3659 sleep,921 new mechanics checks. Initial
+  engine compiler failures (global wrap-name collision/test Variant inference)
+  were corrected in0cf1215/35df327, not hidden as unavailable or passing runs.
+- All FOUR legal main600 traces OBSERVED, EVERY tick observer-on/off serialized
+  physical state equal; required counts independently agree with all raw samples;
+  F31/motion/contact verifiers pass. Actuated raw angular/self position phases
+  retained, independently closed, then explicitly folded only for legacy verifier.
+- Actual authored minimum before=-.395, after=-.6000000000000001WU, derived roots
+  .405/.6100000000000001: BOTH initial lowest surfaces=.010000000000000009WU.
+  Historical root.33 remains over-penetrating: actual deepest surfaces -.065/-.270,
+  not a new legal fixture. No physical resource/sampling/threshold changed.
+- Legal baseline last300 mean COM dx before=-7.1751877234127456e-6,
+  after=+9.337328797581247e-6WU/tick; difference=1.6512516520993993e-5.
+  Count tuple=(intervals,candidates,active), passes0/1: BOTH arms head(2,3,3)/
+  (2,3,3), motor(2,3,3)/(2,3,3), foot(2,3,3)/(1,2,2), all300 ticks. Thus legal
+  steady baseline counts match and residual drift persists, essentially the same
+  late results as historical.33. No landing-depth causal claim.
+- Legal actuated last300 mean dx before=.0003903690062867916,
+  after=.000437169361675691WU/tick; difference=4.6800355388899406e-5. These are
+  observed larger drifts, NOT a causal pose verdict: last300 count regimes DIFFER.
+  Side by side (before -> after), tuple=(intervals,candidates,active):
+  - Head passes0/1: (2,3,1)×300/(2,3,1)×300 -> same.
+  - Motor pass0: (2,3,1)×267+(2,3,2)×33 -> (2,3,1)×250+(2,3,2)×50.
+  - Motor pass1: (2,3,1)×300 -> same.
+  - Foot pass0: (2,3,3)×300 -> (1,2,2)×300.
+  - Foot pass1: (1,2,2)×300 -> same.
+  Raw per-tick counts plus ALL600/last300 histograms retained in artifact; no
+  candidate-regime repair, rounding, epsilon, hysteresis or sampling retune.
+- All3 bodies still grounded late in all four cases. Baseline foot support share
+  .2223925379546886 ->.22240637932820798; actuated .3057010100863977 ->
+  .27408929671045956. Late grip fraction0 everywhere. Legal baseline after has5
+  grip ticks/toggles[4,9]; legal actuated after4/toggles[4,7,10,11]; both before0.
+  These separate fixture results do NOT replace the historical shipped-preset
+  milestone tick19/exactly1tick/toggles[19,20], which remains path existence only.
+- Artifact12869408995 (8,025,846 bytes), SHA256
+  eec39d97e8ced394b44d8c152c6f88c5edf923f694d79e66abd192aa82390f43,
+  contains full four raw600 traces/components/import/observer reports. This is
+  awake engineering evidence, NOT public Sim/FA/complete-creature determinism.
+- Follow-up548b5c8 / CI40810712083 SUCCESS:106 Python /931 mechanics checks.
+  New F43 fake-legal-metadata control verifies actual START endpoints/radii,
+  not merely reported clearance. Composed D10 overlap control invokes the actual
+  pair-list hooks and independently conserves momentum; self response cannot
+  pretend terrain support/grip. All four legal600 results repeat exactly.
+  Artifact12870690195 SHA256
+  589532d5add86e978cbd90273a4966b04534af19e7c46850a40bb96d18999ddd.
+- Next ordered M1 stage is public Sim + explicit F45 superseded legacy-sleep
+  documentation + replay; no approval blocker. Then Hopper FA-5 all4 branches /
+  all-preset FA-3/4; final acceptance/tick cost/captures still NOT RUN. Attempts0.
 
 ### Historical R14 / superseded interpretation and order (preserved evidence)
 

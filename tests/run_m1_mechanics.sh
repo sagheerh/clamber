@@ -18,6 +18,11 @@ if grep -Eq 'SCRIPT ERROR:|ERROR:|FAIL|Parse Error:|Failed to load script' "$fol
    ! grep -Eq '^M1 R15 mechanics components: [0-9]+ checks, 0 failures$' "$folder/components.log"; then
   exit 1
 fi
+python3 - "$folder/components.log" <<'PYCOUNT'
+import re, sys
+counts = re.findall(r'^M1 R15 mechanics components: (\d+) checks, 0 failures$', open(sys.argv[1]).read(), re.M)
+assert len(counts) == 1 and int(counts[0]) >= 931, 'missing/below-floor mechanics completion'
+PYCOUNT
 for mechanics in baseline actuated; do
   for pose in before after; do
     case_folder="$folder/$mechanics-$pose"

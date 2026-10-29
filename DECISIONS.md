@@ -785,3 +785,40 @@ unmodified. No resource retune, sampling/velocity epsilon/hysteresis or global
 angular damping activation. This is NOT complete-creature determinism (attempts0).
 F45 will document old .05/.6 sleep fields superseded (no unauthorized deletion)
 when public Sim is wired, citing F38's velocity plateau. Accepted sleep unchanged.
+
+
+### R15 legal/count remeasurement @35df327 / CI40810406262 SUCCESS
+
+Four legal600 traces completed with observer-on/off physical equality and all
+required counts independently matched to raw events. Actual roots .405 before /
+.6100000000000001 after, lowest capsule+.010000000000000009 both. Historical.33
+actual deepest surfaces -.065/-.270 remain explicitly over-penetrating evidence.
+No sampling/contact/tuning change. New mechanics921 checks PASS; old suites pass.
+
+Baseline last300 tuples(I,C,A) identical BOTH arms: head2/3/3 both passes, motor
+2/3/3 both passes, foot2/3/3 pass0 and1/2/2 pass1. Legal mean dx before
+-7.1751877234127456e-6 ->+9.337328797581247e-6WU/tick, difference
+1.6512516520993993e-5. Thus F41 residual persists with legal matching steady counts,
+not proof illegal landing depth caused it, not a failed authored-pose fix.
+
+Actuated last300 dx .0003903690062867916 ->.000437169361675691,
+difference4.6800355388899406e-5WU/tick. Count regimes DIFFER: head2/3/1 both passes
+both arms; motor pass0(2/3/1)267+(2/3/2)33 before ->250+50 after, pass1(2/3/1)300
+both; foot pass0(2/3/3)300 ->(1/2/2)300, pass1(1/2/2)300 both. Larger observed drift
+is recorded, but pose-causal interpretation is NOT established under F44. F41
+stays OPEN, no downgrade/repair/retune. Full600 histograms/raw counts retained.
+All3 bodies grounded late, steady grip0 all4 cases. Actuated support share
+.3057010100863977 ->.27408929671045956; no sole-foot/sustained-grip acceptance.
+
+R15 machinery source does not retroactively close the owner's F30-runtime status
+or mark any FA gate run. Next is public Sim/F45/replay BEFORE Hopper FA-5/all-preset
+FA-3/4, per owner order. Component engineering replay only; determinism attempts0.
+
+
+R15 strengthened controls @548b5c8 / CI40810712083 SUCCESS:106 Python and931
+mechanics checks; four legal600 summaries repeat unchanged. F43 validator now
+rederives clearance from raw START endpoints/radii, rejects fake legal metadata;
+actual composed D10 overlap/impulse hooks independently tested (no terrain call or
+qualifying load injection). Main-count/phase falsification controls remain; old
+accepted analyzer/control suites unchanged. New runner completion floor931.
+No production mechanics change or retune in this control-only follow-up.
