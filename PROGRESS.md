@@ -30,7 +30,25 @@ scaffold/PR; no M1 implementation or gate completion is claimed by this closeout
   convergence evidence. F41 stays OPEN. No physics/tuning/damping/sampling/
   velocity epsilon/hysteresis/load injection/M2/camera/captures authorized.
 - Public Sim still stub. FA-3/4/5/6/all coupled runtime gates NOT RUN;
-  complete-creature determinism attempts0. Next immediate step F48 measurement.
+  complete-creature determinism attempts0. F48 source/controls ready; pinned-engine6000 measurement pending.
+
+### R16 F48 measurement increment (pending pinned engine)
+
+- Extend ONLY diagnostic duration to6000; held input remains0 and live spring
+  return explicitly labelled. Both legal actuated arms run6000 with EVERY raw
+  tick/contact/count and observer-on/off physical equality, original600 prefix
+  accepted verifier and independent full6000 momentum/position/contact checks.
+- Convergence reported at600/3000/6000: monotone transient, oscillating transient,
+  or exact constant/repeating last300 COM(dx,vx) pattern (at least2 cycles).
+  NO velocity epsilon/band. If no exact observed settlement by6000, settled value
+  stays null; a bounded last300 mean is NOT promoted to equilibrium. Tiny float
+  fluctuations remain visible; lack of exact pattern is not proof of divergence.
+- New own-line zero-input drift includes WU/tick, WU/s and150px/WU px/s plus raw
+  speed/drift ranges. Actuated F41 pair interpretation DEFERRED unless both
+  windows settle. Existing R15 component diagnostic prints the same line too.
+- This always-run measurement retains evidence AFTER the RED support gate; the
+  failed gate still makes CI RED, never continue-on-error or a status bypass.
+- F49/F50 and public Sim/F45 remain subsequent ordered increments, not claimed.
 
 ### Historical R15 — component success, NOT M1 sustained-support acceptance
 

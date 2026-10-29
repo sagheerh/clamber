@@ -136,7 +136,14 @@ func _diagnostic_config() -> Dictionary:
 	# Isolated diagnostic override ONLY; no resource or adopted/default value changes.
 	var tuning: Tuning = TUNING.duplicate(true)
 	var spawn_y := 0.33
+	var ticks := 600
 	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--ticks="):
+			var value := arg.trim_prefix("--ticks=")
+			if not value.is_valid_int() or value.to_int() not in [600, 3000, 6000]:
+				push_error("invalid R16 diagnostic duration")
+				return {}
+			ticks = value.to_int()
 		if arg.begins_with("--iterations="):
 			var value := arg.trim_prefix("--iterations=")
 			if not value.is_valid_int() or value.to_int() <= 0:
@@ -155,7 +162,7 @@ func _diagnostic_config() -> Dictionary:
 				push_error("invalid R12 diagnostic spawn height")
 				return {}
 			spawn_y = float(value)
-	return {"tuning": tuning, "spawn_y": spawn_y}
+	return {"tuning": tuning, "spawn_y": spawn_y, "ticks": ticks}
 
 
 func _slug() -> void:
@@ -210,7 +217,7 @@ func _slug() -> void:
 			quit(1)
 			return
 	var count := 0
-	for tick in range(600):
+	for tick in range(config.ticks):
 		var row := (probe as ActuatedLoadProbe).advance(0) if actuated else probe.step()
 		if row.status != OK:
 			push_error("coupled probe aborted at tick%d status%s" % [tick, row.status])
@@ -239,6 +246,8 @@ func _slug() -> void:
 			)
 		)
 		row["diagnostic_actuated"] = actuated
+		row["diagnostic_requested_ticks"] = config.ticks
+		row["diagnostic_spring_return_live"] = actuated
 		row["diagnostic_pose"] = "before" if "--pre-pose" in OS.get_cmdline_user_args() else "after"
 		var text := JSON.stringify(row, "", true, true)
 		print("M1 Slug tick: " + text)
@@ -262,7 +271,7 @@ func _slug() -> void:
 			% count
 		)
 	)
-	quit(0 if count == 600 else 1)
+	quit(0 if count == config.ticks else 1)
 
 
 func _pre_pose_model(tuning: Tuning) -> CreatureModel:

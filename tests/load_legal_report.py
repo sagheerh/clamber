@@ -8,6 +8,7 @@ from pathlib import Path
 import sys
 from load_trace_report import analyze
 from load_contact_report import inspect
+from load_convergence_report import drift_summary
 
 
 def validate_counts(rows):
@@ -109,6 +110,8 @@ def compare(root):
                 if not a['momentum_ledger_verified'] or not a['motion']['position_ledger_and_speed_identities_verified']:
                     raise ValueError('Accepted independent physical verifiers failed')
                 result['cases'][name] = {'status': 'OBSERVED', 'rows': 600,
+                    'zero_input_drift': drift_summary(rows),
+                    'sustained_support_gate': a['sustained_support_gate'],
                     'spawn_root_y_wu': rows[0]['diagnostic_spawn_y_wu'],
                     'lowest_initial_surface_wu': rows[0]['diagnostic_lowest_initial_surface_wu'],
                     'counts': count_summary(regimes[name]),
@@ -131,10 +134,15 @@ def compare(root):
             result['F41'][mechanics] = {'status': 'BLOCKED: incomplete legal/count evidence'}
             continue
         matching = regimes[names[0]][300:] == regimes[names[1]][300:]
+        if mechanics == 'actuated' and not all(c['zero_input_drift']['convergence']['settled'] for c in cases):
+            result['F41'][mechanics] = {'status': 'DEFERRED: nonsettled live-spring zero-input windows',
+                'last300_count_regimes_identical': matching, 'settled_comparison': None,
+                'landing_depth_causal_claim': False}
+            continue
         a, b = [c['last300_com_dx_wu_tick'] for c in cases]
         result['F41'][mechanics] = {'before_dx_wu_tick': a, 'after_dx_wu_tick': b, 'difference_wu_tick': b-a,
             'last300_count_regimes_identical': matching,
-            'pose_causal_interpretation': 'NOT ESTABLISHED; geometry/count confounding' if not matching else 'NOT ESTABLISHED; observational pair, not causal proof',
+            'pose_causal_interpretation': 'NOT ESTABLISHED; nonsettled transient/geometry/count confounding' if not matching else 'NOT ESTABLISHED; observational pair, not causal proof',
             'absolute_drift_smaller_observed_only': abs(b) < abs(a),
             'landing_depth_causal_claim': False}
     return result
@@ -145,5 +153,7 @@ if __name__ == '__main__':
     Path(sys.argv[1], 'legal-comparison.json').write_text(json.dumps(r, indent=2) + '\n')
     for name, c in r['cases'].items():
         print('M1 legal ' + name + ': ' + json.dumps(c, sort_keys=True))
+        if c['status'] == 'OBSERVED':
+            print('M1 legal zero-input drift ' + name + ': ' + json.dumps(c['zero_input_drift'], sort_keys=True))
     print('M1 legal F41: ' + json.dumps(r['F41'], sort_keys=True))
     raise SystemExit(0 if all(c['status'] == 'OBSERVED' for c in r['cases'].values()) else 1)

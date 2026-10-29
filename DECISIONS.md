@@ -851,3 +851,15 @@ sampling change/injected qualifying loads/M2/camera/captures. Only the two alrea
 landed sleep additions are authorized. Zero input is NOT unpowered: always-on
 spring return remains live. Do not interpret R15's evolving last300 as equilibrium.
 F41 stays OPEN; no premature closure from F50. FA-3/4/5/6/all runtime gates NOT RUN.
+
+
+R16 F48 diagnostic extension (not physics): both actuated arms6000 ticks at mask0.
+Zero-input own-line drift explicitly means live spring return, not unpowered.
+Report600/3000/6000 windows; exact constant/repeating last300 COM(dx,vx) with>=2
+observed cycles is the deliberately strict settlement criterion, no velocity
+band/epsilon. Otherwise classify monotone/oscillating TRANSIENT and leave settled
+value null, without interpreting a mean as equilibrium or absence as divergence.
+All raw6000 observations retained, observer equivalence and raw continuation
+F31/phase/count/contact impulse identities checked. Accepted first600 math is
+unchanged beyond authorized F47; accepted40-control file untouched. Actuated F41
+pair interpretation DEFERRED until settled. F47 remains mandatory RED exit.

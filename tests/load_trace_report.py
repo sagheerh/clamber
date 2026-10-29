@@ -244,6 +244,8 @@ if __name__ == '__main__':
     for body in motion['bodies']:
         print('M1 Slug motion part: ' + json.dumps(body, sort_keys=True))
     print('M1 Slug motion summary: ' + json.dumps({k: v for k, v in motion.items() if k != 'bodies'}, sort_keys=True))
+    from load_convergence_report import drift_summary
+    print('M1 Slug zero-input drift: ' + json.dumps(drift_summary(rows), sort_keys=True))
     print('M1 Slug engagement: ' + summary['grip_engagement'])
     print('M1 Slug sustained-support gate: ' + json.dumps(summary['sustained_support_gate'], sort_keys=True))
     print('M1 Slug peaks: applied=' + str(summary['peak_foot_applied_n']) +
