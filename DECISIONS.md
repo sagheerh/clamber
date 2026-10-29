@@ -1933,3 +1933,72 @@ Normal public123556709294/123556743027SUCCESS with FULLsummaryEXACT baselinecomm
 202PythoncontrolsPUSH/PRSUCCESS. M0push40904855470/PR40904864938 headless516/0+
 AndroidSUCCESS. OnlyunchangedF47/HingedSlug600 remainsred; no bypass. Finalcloseout
 is evidence/docs ONLY, core/dataunchanged114265e. Option2/hardSTOP unchanged.
+
+## M1-R27 — Option2 authored split and located AC202 injector
+
+2026-10-30. Owner instruction and readonly reviewer57ed0986999aba69f6e6296d7c131db3d894d307
+`.review/M1_R27_OPTION2_DECISION.md` read in full, NEVER copied/merged. Brace
+removal accepted; resource byte-identical ae7c3ee with P-B four defaults intact.
+D1 accepted and CLOSED, no further drift experiment.1.8/3.6 same clamped operator;
+.9→.3 increases drift9.9%, no coefficient-based correctness-shaped fix. Owner
+mechanism-of-record locates drift rectification broadly in normal-impulse/
+position-correction path, NOT a located drift patch. Preserve numeric precision:
+.107325..118855N is ~±5.1% about midpoint (~10.7% max/min spread), not5% total.
+
+F76 angular-order hypothesis FALSIFIED. CONTACT POSITION CORRECTION after the
+projection loop injects length violations after final/angular/appended-distance
+projection; current code runs contacts AFTER the loop, not after each individual
+iteration. Landing clustering is explained by impact corrections being largest.
+Arm labels remain exact: baseline angular.014927052436045196; R26diagnostic
+angular.015140751632692628; after diagnostic distance1.776e-15, after contact/
+completed.051910617942553194. No mixed-arm table or fabricated literal zeros.
+
+FA5 upgraded **PASS**, owner-reviewed ORIGINAL R26 CI40904855466/audit123556709209,
+`.review/m1_r26_archive_evidence.json#FA5`. All four fixtures complete/missingcoverage
+empty/no injection.236foot/pass airborne observations =96ledge+92drop+48midair,
+not236allfromledge or236capsule samples. Natural ledge departure83 established.
+Standing event definition: maximal consecutive ticks per foot/branch, collapsing
+both velocity passes/allcapsule samples; two-foot pair own key. Episodes2–4ticks:
+policy coverage, not sustained-grip characterisation (belongs to FA3/feel work).
+
+Owner AC201 split, BEFORE new outcome, not engineer tolerance editing:
+- **AC201a Stability**:10s/600zero-input ticks fromspawn; no completed tick with
+  allparts airborne; head-centre→foot-centroid attitude max change≤15degrees.
+- **AC201b Parked**:same10s, netmass-weightedCOMdisplacement≤1bodylength=.90WU=
+  135px. Derivation: onebodylength largest displacement reading as settling not
+  travelling, rather than relocation beyond footprint on7.2WUchunk. Owner's
+  steady reference85.5px=.570WU=.633BL gives1.58xmargin. Disclose that.5BLwould
+  fail reference and creep>13.5px/s flips steady gate. Measure ACTUAL fromspawn
+  (including transient/vertical displacement), do not replace with steady×10s;
+  disclose any difference and actual margin, not force result to85.5px.
+- **AC201s Sleep**:UNMODIFIEDF52 within10s, **FAILED**, named M1.1contact-model
+  carry-over. Original GDDsettleANDsleepwithin4s text retained with decisionpointer.
+  No sleep threshold/predicate/epsilon change. No hidden waiver or clause deletion.
+
+Exactly ONE new AC202 correctness arm (different gate from CLOSEDdrift): SAME
+appended distance traversal moved AFTER BOTH contactpasses, once at end, same
+rows/code/compliance/multipliers, no reset/iteration/velocity/tolerance change.
+All3presets7200ticks, report completed-tick max. Allarticulated motor/passive/limb
+segments qualify; literal-kind limbs, feet, head separately; no empty Slug limb
+set vacuous pass. Candidateflag defaultsfalse pending adoption/report; no silent
+productionbaseline switch. Candidate traces separate provenance. Wider TEST
+plane domain±64 preregistered before results to avoid known R26±12 truncation;
+analytical plane/cell/material/bodygeometry/constants unchanged. No after-outcome
+widening. If allmax≤.05 report correctnesspatch for adoption; else honestFAILnumber
+and M1.1carry-over, no secondarm/retune. Ordinary public baseline must stillmatch.
+
+Also author/run FA3all3×600static zero-input scenes with actual F42 contact-wake
+logging and sleepopportunities (zero events !=rest/sustainedsleep). AC204200seeded
+numerical runs of actual public-used SleepingLoadProbe/Actuated composition,
+7200ticks each, nearestadjacentAC202120s horizon,20shards×10. Preregistered±64
+TESTfloor, rawseed/input/state hashes, per-tick finite scan/state/constraint/return
+observations, unconditionaltermination. Nonzero solverstatus alwaysfailedrun,
+even finite rollback; no hidden discardedfailure/retry. No determinismclaim.
+Full pre-outcome contract `tests/fixtures/r27_plan.json`/`.review/m1_r27_plan.md`.
+
+Expectation to carry: **M1 will reach18/18 MEASURED and will not reach18/18 passing
+in this milestone**, since FA4lurch and AC201ssleep depend on contactrectifier.
+Do not describe16/18 as M1complete without that sentence, measured verdicts and
+named scoped follow-ups. M2 staysblocked until failures resolved or owner amends
+GDD. No cameras/captures/extra work now. No D1/brace/knob/slip/stiffness/damping/
+torque/tolerance/epsilon change. Same-buildattempt1 stands; crossarchitecture0.

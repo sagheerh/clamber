@@ -8,7 +8,23 @@ Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R26 — COMPLETE / BRACE REMOVED / OPTION2 / 8of18
+### Current R27 — Option2 authored / FA5 accepted / bounded tests in progress
+
+Read reviewer57ed098 readonly, no files copied. AC201 split a/b/s with GDD4s
+wording preserved; AC201sFAILED/M1.1, unmodifiedF52. Owner-authored a:10s no
+all-airborne tick/head-foot attitude≤15deg; b:netCOM≤.90WU/135px, disclosemargin,
+.5BL failurealternative/13.5px-s boundary. No result assumed before measurement.
+FA5 ownerupgraded PASS for natural policy coverage,8episodes/3pairs transient
+2–4ticks, standing per-foot/branch tick-event definition; no sustained-grip claim.
+One AC202 candidate SAME distancepass moved AFTER contact cleanup, all3×7200,
+no constant/iteration changes, productionflagoff pendingadoption. AC204200×7200
+seeded numerical soak and FA3all3×600 static scene preregistered, now unblocked.
+Plan `.review/m1_r27_plan.md`; inputs `tests/fixtures/r27_plan.json`.
+Drift CLOSED: no D1/brace/sweep/new slip/stiffness/damping/torque/epsilon/tolerance.
+Expectation: **M1 will reach18/18 MEASURED, not18/18 passing**. Sleep+lurch depend
+on contactrectifier;16/18 cannot be described as unqualified M1complete. M2blocked.
+
+### Historical R26 — COMPLETE / BRACE REMOVED / OPTION2 / 8of18
 
 Source114265e / CI40901902007: atomic brace removal, four P-B defaults retained.
 D1 four6000-tick friction duplicates.9/.3/1.8/3.6: drift8.55015/9.39342/8.48216/

@@ -999,3 +999,155 @@ jobs:
           name: m1-r26-archive-audit-${{ github.run_id }}
           path: ${{ runner.temp }}/r26-audit/
           retention-days: 7
+
+  r27-scenes:
+    needs: [public-sim]
+    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[R27-once]') }}
+    name: R27 authored stability, ONE AC202 candidate, static600
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        mode: [ac201, ac202, fa3]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Execute preregistered fixture ONCE, no tuning or retry
+        shell: bash
+        run: |
+          set +e
+          M1_R27_REPORT_DIR="$RUNNER_TEMP/r27-${{ matrix.mode }}" bash tests/run_m1_r27.sh '${{ matrix.mode }}' '-1' > "$RUNNER_TEMP/r27-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/r27-console.log" "$status" <<'PYLOG'
+          import sys
+          lines=[l for l in open(sys.argv[1]).read().splitlines() if l.startswith('M1 R27 report:') or 'ERROR' in l or 'ValueError' in l or 'AssertionError' in l]
+          text='\n'.join(lines)
+          if len(text)>35000:
+              text=text[:17000]+'\nANNOTATION abbreviated ONLY; complete report and all failures remain in uploaded artifact\n'+text[-17000:]
+          for i in range(0,len(text),3500):
+              escaped=text[i:i+3500].replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              level='notice' if sys.argv[2]=='0' else 'error'
+              print(f'::{level} title=M1 R27 evidence::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r27-${{ matrix.mode }}-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/r27-${{ matrix.mode }}/
+            ${{ runner.temp }}/r27-console.log
+          retention-days: 7
+
+  r27-soak:
+    needs: [public-sim]
+    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[R27-once]') }}
+    name: R27 AC204 numerical soak 200 runs (10 per batch)
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        batch: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Execute preregistered fixture ONCE, no tuning or retry
+        shell: bash
+        run: |
+          set +e
+          M1_R27_REPORT_DIR="$RUNNER_TEMP/r27-soak-${{ matrix.batch }}" bash tests/run_m1_r27.sh 'soak' '${{ matrix.batch }}' > "$RUNNER_TEMP/r27-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/r27-console.log" "$status" <<'PYLOG'
+          import sys
+          lines=[l for l in open(sys.argv[1]).read().splitlines() if l.startswith('M1 R27 report:') or 'ERROR' in l or 'ValueError' in l or 'AssertionError' in l]
+          text='\n'.join(lines)
+          if len(text)>35000:
+              text=text[:17000]+'\nANNOTATION abbreviated ONLY; complete report and all failures remain in uploaded artifact\n'+text[-17000:]
+          for i in range(0,len(text),3500):
+              escaped=text[i:i+3500].replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              level='notice' if sys.argv[2]=='0' else 'error'
+              print(f'::{level} title=M1 R27 evidence::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r27-soak-${{ matrix.batch }}-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/r27-soak-${{ matrix.batch }}/
+            ${{ runner.temp }}/r27-console.log
+          retention-days: 7
+
+  r27-soak-summary:
+    needs: [r27-soak]
+    if: ${{ always() && github.event_name == 'push' && contains(github.event.head_commit.message, '[R27-once]') }}
+    name: R27 AC204 ALL 200-run verdict (no missing runs laundered)
+    permissions:
+      contents: read
+      actions: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v5
+        with:
+          pattern: m1-r27-soak-*-${{ github.run_id }}
+          path: ${{ runner.temp }}/r27-soak-archives
+      - name: Require all20batches and200unique completed runs
+        shell: bash
+        run: |
+          set +e
+          python3 tests/r27_report.py aggregate "$RUNNER_TEMP/r27-soak-archives" > "$RUNNER_TEMP/r27-soak-summary.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/r27-soak-summary.log" "$status" <<'PYLOG'
+          import sys
+          text=open(sys.argv[1]).read()
+          if len(text)>35000:
+              text=text[:17000]+'\nANNOTATION abbreviated ONLY; full failure list in aggregate artifact\n'+text[-17000:]
+          for i in range(0,len(text),3500):
+              escaped=text[i:i+3500].replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              level='notice' if sys.argv[2]=='0' else 'error'
+              print(f'::{level} title=M1 R27 soak TOTAL::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r27-soak-TOTAL-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/r27-soak-archives/aggregate.json
+            ${{ runner.temp }}/r27-soak-summary.log
+          retention-days: 7

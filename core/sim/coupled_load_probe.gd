@@ -253,15 +253,6 @@ func _predict_and_project(dt: float, budget: Dictionary, positions: Array) -> Er
 		var extra := _extra_positions(positions)
 		if extra != OK:
 			return extra
-	# LAST authorised diagnostic: ONE additional traversal, identical rows,
-	# compliance, multipliers and project() implementation; no velocity edit.
-	if diagnostic_final_distance_pass:
-		var before_final := _positions()
-		for link in _links:
-			if link.project(_tuning) != OK:
-				return ERR_INVALID_DATA
-		_book_positions(before_final, positions, "distance")
-		_record_length_phase("after_diagnostic_final_distance")
 	return OK
 
 
@@ -365,6 +356,16 @@ func _velocity_contacts(
 		for index in range(bodies.size()):
 			reaction[index] += bodies[index].measured_reaction_n
 			cleanup[index] += bodies[index].positional_cleanup_n
+	# R27 ONE authorised candidate: SAME final traversal, moved AFTER all contacts.
+	# Identical rows,
+	# compliance, multipliers and project() implementation; no velocity edit.
+	if diagnostic_final_distance_pass:
+		var before_final := _positions()
+		for link in _links:
+			if link.project(_tuning) != OK:
+				return {"status": ERR_INVALID_DATA}
+		_book_positions(before_final, positions, "distance")
+		_record_length_phase("after_diagnostic_final_distance")
 	return {"status": OK, "lowest": lowest}
 
 

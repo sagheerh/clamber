@@ -25,6 +25,7 @@ python3 tests/test_r22_inert.py
 python3 tests/test_d09_study.py
 python3 tests/test_r24_round.py
 python3 tests/test_r26_diagnostics.py
+python3 tests/test_r27.py
 python3 tests/test_static.py
 python3 tests/test_android_inspection.py
 echo 'PASS: review_checks.sh static checks completed.'

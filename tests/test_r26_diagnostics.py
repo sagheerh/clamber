@@ -23,7 +23,7 @@ class R26Controls(unittest.TestCase):
         s = Path('core/sim/coupled_load_probe.gd').read_text()
         self.assertIn('collect_length_phases: bool = false', s)
         self.assertIn('diagnostic_final_distance_pass: bool = false', s)
-        added = s.split('if diagnostic_final_distance_pass:', 1)[1].split('return OK', 1)[0]
+        added = s.split('if diagnostic_final_distance_pass:', 1)[1].split('_record_length_phase("after_diagnostic_final_distance")', 1)[0]
         self.assertIn('for link in _links:', added)
         self.assertIn('link.project(_tuning)', added)
         self.assertNotIn('reset_multiplier', added)
