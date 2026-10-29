@@ -19,6 +19,52 @@ class R27Controls(unittest.TestCase):
             header=s.split('  '+name+':',1)[1].split('    name:',1)[0]
             self.assertIn('always()',header)
             self.assertIn("needs.public-sim-runtime.result == 'success'",header)
+    def test_published_measured_outcomes_cannot_be_relabelled_as_expected_pass(self):
+        e=json.loads(Path('.review/m1_r27_evidence.json').read_text())
+        a=e['AC201']
+        self.assertTrue(a['completed'])
+        self.assertFalse(a['AC201a']['passed'])
+        self.assertGreater(a['AC201a']['max_attitude_change_degrees'],15.)
+        self.assertTrue(a['AC201b']['passed'])
+        self.assertLessEqual(a['AC201b']['net_com_displacement_wu'],.90)
+        self.assertFalse(a['AC201s']['passed'])
+        self.assertEqual(a['AC201s']['sleeping_ticks'],0)
+        self.assertFalse(e['production_default_candidate'])
+        self.assertTrue(e['public']['full_summary_exact_final_R26'])
+    def test_original_plan_and_candidate_bytes_pinned_after_outcomes(self):
+        e=json.loads(Path('.review/m1_r27_evidence.json').read_text())
+        for field,path in [('tuning_sha256','core/tuning.tres'),('plan_sha256','tests/fixtures/r27_plan.json'),('candidate_source_core_sha256','core/sim/coupled_load_probe.gd'),('baseline_file_sha256','tests/fixtures/public_sim_baseline.json')]:
+            self.assertEqual(hashlib.sha256(Path(path).read_bytes()).hexdigest(),e[field])
+    def test_static_policy_not_misrepresented_as_sustained_sleep(self):
+        e=json.loads(Path('.review/m1_r27_evidence.json').read_text())
+        self.assertTrue(e['FA3']['passed'])
+        for p in e['FA3']['presets'].values():
+            self.assertEqual(p['ticks'],600)
+            self.assertEqual(p['sleep_breaking_contacts'],0)
+            self.assertEqual(p['sleeping_ticks'],0)
+        c=e['AC202']
+        self.assertTrue(c['passed'])
+        self.assertEqual(set(c['presets']),{'Slug','Hopper','TwinRoller'})
+        for p in c['presets'].values():
+            self.assertEqual(p['ticks'],7200)
+            self.assertLessEqual(p['maxima']['articulated_limb']['error_wu'],.05)
+    def test_soak_evidence_requires_all200_and_all20_shards(self):
+        e=json.loads(Path('.review/m1_r27_evidence.json').read_text())
+        a=e['AC204_aggregate']
+        self.assertTrue(a['verification_passed'] and a['passed'])
+        self.assertEqual(a['runs_logged'],200)
+        self.assertEqual(a['runs_completed'],200)
+        self.assertEqual(a['ticks_completed'],1440000)
+        self.assertEqual(a['failed_runs'],[])
+        batches=e['AC204']['completed_batches']
+        self.assertEqual([b['batch'] for b in batches],list(range(20)))
+        self.assertTrue(all(b['passed'] and b['runs_completed']==10 for b in batches))
+    def test_closed_physical_jobs_cannot_be_retriggered_by_future_marker(self):
+        source=json.loads(Path('.review/m1_r27_evidence.json').read_text())['source_head']
+        s=Path('.github/workflows/m1.yml').read_text()
+        for name in ('r27-scenes','r27-soak','r27-soak-summary'):
+            header=s.split('  '+name+':',1)[1].split('    name:',1)[0]
+            self.assertIn("github.sha == '"+source+"'",header)
     def test_pb_bytes_not_changed(self):
         self.assertEqual(hashlib.sha256(Path('core/tuning.tres').read_bytes()).hexdigest(),PLAN['production_tuning_sha256'])
     def test_original_gdd_preserved_and_sleep_named_failed(self):
@@ -30,7 +76,7 @@ class R27Controls(unittest.TestCase):
         text=Path('.review/m1_ac_matrix.md').read_text()
         self.assertEqual(validate_matrix(text),[])
         for gate,(status,reference) in R27_VERDICTS.items():
-            wrong=text.replace(reference,reference.replace('40904855466','40631790078'))
+            wrong=text.replace(reference,re.sub(r'CI\d+', 'CI40631790078', reference))
             self.assertTrue(validate_matrix(wrong))
         self.assertTrue(validate_matrix(text.replace('NOT RUN | Actual success_count unknown','PASS (measured policy coverage) | Actual success_count unknown')))
     def test_one_pass_moved_outside_contact_loop(self):

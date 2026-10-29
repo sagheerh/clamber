@@ -1,22 +1,44 @@
 # M1 acceptance matrix — scoped measured evidence, NOT milestone approval
 
-## Current R27 — owner-authored Option2 / FA5 accepted / tests preregistered
+## Current R27 measured record — stability FAIL, parked PASS, candidate for adoption
 
-Readonly reviewer57ed098: brace removal accepted, four P-B bytes unchanged.
-D1 CLOSED/no rerun: coefficient clamp/inverse low-coefficient response; owner
-normal/position-path interpretation, no located correctness-shaped drift fix.
-F76 injector is CONTACT POSITION CORRECTION after projection loop; no reproject.
-One post-contact distance-only candidate/all3×7200 now authorised, defaultoff
-pending adoption. AC201a/b600ticks/10s and unmodifiedF52 clause named AC201s
-FAILED/M1.1. FA5 policy coverage accepted from ORIGINAL R26 archive, transient
-2–4tick episodes; event definition standing. Runtime acceptance count9/18 now
-(including newly owner-accepted FA5), AC201a/b not credited before measurement.
-AC204200runs×7200 and FA3all3×600 registered before outcomes, no new drift arm.
-**Expectation: M1 will reach18/18 MEASURED, not18/18 passing.** FA4 lurch and
-AC201s sleep depend on contact rectifier/M1.1.16/18 is NOT unqualified M1
-complete; every row needs evidence/failing follow-up. M2 blocked. No sweeps,
-brace, new knob/slip/stiffness/damping/torque/tolerance/epsilon. Scope/definitions:
-`.review/m1_r27_plan.md`, `tests/fixtures/r27_plan.json`, DECISIONS M1-R27.
+Source `2cf2c9376556feca5698ba176c63514f37284bed`, CI40960697692. Readonly
+owner reviewer57ed098 read, NEVER copied. Full outputs/artifact digests:
+`.review/m1_r27_evidence.json`, `.review/m1_r27_report.md`.
+
+- AC201a **FAIL**35.34385590667538deg>15deg fromspawn; zero all-airborne ticks.
+  Expected a/b stability pass was FALSIFIED, no endpoint/startup exclusion/retune.
+- AC201b **PASS**actualnetCOM.6460243614279206WU=96.9036542141881px≤135px,
+  .7178048460BL,1.393136xmargin. Owner85.5px/1.58x was steadyreference, NOTactual.
+  .5BL fails;13.5px/s is disclosed steady extrapolation boundary, not a newknob.
+- AC201s **FAILED**F52 neverfired,0sleepingticks; M1.1contact-model carry-over.
+  Original GDDsettleANDsleep≤4s preserved, not met. a-failure needs M1.1posture
+  investigation/ownerreview, cause not isolated; not another drift diagnosis.
+- AC202 **PASS candidate ONLY**,7200ticks/all3/status0. ArticulatedlimbmaxWU:
+  Slug4.996003610813204e-16,Hopper1.8318679906315083e-15,Twin1.7763568394002505e-15.
+  Hopperliteral-limbmax1.8318679906315083e-15; no literal-kindlimbs inSlug/Twin.
+  DefaultflagOFF; report correctnesspatch FORADOPTION, no productionbaseline change.
+- FA3 **PASS staticwake-policy ONLY**,600ticks/all3,0sleep-breaking contacts;
+  sleepingopportunities0all3. Not resting/sustainedsleep/grip acceptance.
+- FA5 **PASS owner-reviewed original R26 archive**, no newphysicalrun,2–4tick
+  transientpolicycoverage caveat and standing per-foot/branch tick-event definition.
+- **AC204 PASS:** all200/200 runs,1,440,000/1,440,000ticks,20/20batches, no failed/nonfinite run, aggregateuniqueIDs verified.
+
+Ledger at this snapshot: 13/18 qualifiedmeasuredslots;
+12 measuredpassslots INCLUDE the unadoptedcandidate;
+11 production-operational passes excludeit. AC201a+b parentisFAILED;
+passingb alone adds no extra18-slot credit. Sleep failure separatelyvisible.
+Historical8passes plusFA5/FA3, not the expectedAC201a+b+FA5 route. No acceptance
+credit from harness existence, pendingsoak, absent literal-limbset or vacuousrest.
+
+**Expectation: M1 will reach18/18 MEASURED, not18/18passing.** Not reached now.
+FA4lurch/AC201ssleep depend oncontactrectifier/M1.1; actual201astability nowalso
+FAILED. Owner16/18prediction is NOT claimed as a measuredclosing result. M2blocked.
+D1/drift CLOSED, no brace/sweeps/knobs/slip/stiffness/damping/torque/epsilon/tolerance.
+Ordinary public9053+308+1446/0 and FULLsummaryEXACT finalR26; tuning and baseline
+bytes unchanged. Initial workflow key/skip-propagation fixes launched ZERO R27
+engines on79c9ce2/823d1a5; first and ONLY physicalsource2cf2c93. R26closedstudies
+allSKIPPED. No M2/camera/feel/lurch/crossarchitecture work; attempt1samebuild stands.
 
 ## Historical R26 — COMPLETE / BRACE REMOVED / OPTION2 / 8of18
 
@@ -321,12 +343,12 @@ Provenance: `docs/CLAMBER_REVIEW_AGENT.provenance.md`. **M1-B02 RESOLVED
 | A9.1 / A9.6 static restrictions | Recursive core/sim, core/run, core/tower scans for RNG/clock/frame sources, raw delta callbacks and solver transcendentals; scan scripts AND scene node types | STATIC CHECK ONLY | scripts/review_checks.sh; no runtime proof |
 | A9.2 accumulator | Fixed 1/60, outer accumulator, no raw frame delta in solver, catch-up/drop as GDD §4.2 | PASS (measured runtime) | CI40818428101 .review/m1_r17_phase2_evidence.json#row2 |
 | A9.3 injected RNG | Preserve seed parameter in Sim.setup and explicitly inject seeded xoshiro128**; stub signature alone is insufficient | PASS (measured runtime) | CI40818428101 .review/m1_r17_phase2_evidence.json#row3 |
-| AC-201 | R27 operational composite requires AC201a+b; AC201s failure stays named, original GDD4s clause preserved | NOT RUN | Owner R27 57ed098, DECISIONS M1-R27; a/b measurement pending, no silent sleep waiver |
-| AC-201a | Stability:600zero-input ticks from spawn, no all-parts-airborne tick, max spawn-relative head-to-foot angle≤15degrees | NOT RUN | Preregistered tests/fixtures/r27_plan.json; actual trace pending |
-| AC-201b | Parked: same600ticks, net2D COM displacement≤1BL=.90WU=135px; report1.58x ownerreference/.5BL alternative/13.5px-s flip | NOT RUN | Owner-authored threshold before outcome; measured from-spawn result pending |
-| AC-201s | Unmodified F52 must fire within10s; original GDDsettle ANDsleepwithin4s remains unmet, named M1.1 contact-model carry-over | FAILED (M1.1 carry-over) | CI40904855466 .review/m1_r26_diagnostic_evidence.json#public_summary; owner R27 57ed098 |
-| AC-202 | Maximum absolute limb-length error ≤0.05 WU over a two-minute run; assert and log measured maximum | NOT RUN | R26 CI40901902007 plus archiveCI40903408711 .review/m1_r26_archive_evidence.json: diagnostic7200limb3max.051910617942553194>.05; normal7067observedmax.05334550000967464>.05 then step_failure30@7067; diagnostic not adopted, no full7200normalclaim |
-| AC-204 | 200-run soak; zero NaN/∞, log all runs/seeds and failures; do not silently heal/discard non-finite events from the record | NOT RUN | None |
+| AC-201 | R27 operational composite requires AC201a+b; AC201s failure stays named, original GDD4s clause preserved | FAILED (a stability; s carried) | CI40960697692 .review/m1_r27_evidence.json#AC201 |
+| AC-201a | Stability:600zero-input ticks from spawn, no all-parts-airborne tick, max spawn-relative head-to-foot angle≤15degrees | FAILED (35.344deg exceeds15deg) | CI40960697692 .review/m1_r27_evidence.json#AC201 |
+| AC-201b | Parked: same600ticks, net2D COM displacement≤1BL=.90WU=135px; report1.58x ownerreference/.5BL alternative/13.5px-s flip | PASS (measured10s COM) | CI40960697692 .review/m1_r27_evidence.json#AC201 |
+| AC-201s | Unmodified F52 must fire within10s; original GDDsettle ANDsleepwithin4s remains unmet, named M1.1 contact-model carry-over | FAILED (M1.1 carry-over) | CI40960697692 .review/m1_r27_evidence.json#AC201 |
+| AC-202 | Maximum absolute limb-length error ≤0.05 WU over a two-minute run; assert and log measured maximum | PASS (candidate only; unadopted) | CI40960697692 .review/m1_r27_evidence.json#AC202 |
+| AC-204 | 200-run soak; zero NaN/∞, log all runs/seeds and failures; do not silently heal/discard non-finite events from the record | PASS (200-run numerical soak) | CI40960697692 .review/m1_r27_evidence.json#AC204_aggregate |
 | Three presets / §16.1 | Three authored presets, identical recorded L/R pattern, three different motions; 10 s capture for EACH, plus shared input/seed and trace references | NOT RUN | Presets implemented; divergence/captures still not executed |
 | Tick cost / §10.4 | Measured solver tick ≤3.0 ms at 30 bodies; record actual constraint count (GDD budget:120), hardware/build and timing method; measure/report per-tick+per-frame snapshot mode versus any frame-only candidate without weakening atomicity | NOT RUN | No timing measurement; CI timing alone is not reference-device evidence |
 | A9.4 replay ×3 | Same initial state/seed/tuning and tick-indexed input log replayed three times; exact matching state hashes and result fields | PASS (measured runtime) | CI40818428101 .review/m1_r17_phase2_evidence.json#row9 |
@@ -337,7 +359,7 @@ Provenance: `docs/CLAMBER_REVIEW_AGENT.provenance.md`. **M1-B02 RESOLVED
 | §10.6 repeatability | Fixed scenario 10000 ticks, 100 local repeats; recorded 60 s cross-architecture/device replay and 200-run soak tracked separately | NOT RUN | No device/architecture evidence; no M0 waiver carries forward |
 | FA-1 | Collision diameter at least15px and head30px at width-derived150px/WU; analytic only, not camera/device evidence | PASS (analytic only) | CI40677962012; $RUNNER_TEMP/m1-owner-geometry.json |
 | FA-2 | Every shipped limb length has aspect ratio3:1..12:1; analytic geometry only | PASS (analytic only) | CI40677962012; $RUNNER_TEMP/m1-owner-geometry.json |
-| FA-3 | All three real presets:600 static ticks, zero sleep-breaking contacts; contact trace and actual observations | NOT RUN | R13 F38 owner-CLOSED; F41/F42 telemetry measured; F42 transition-only definition owner-approved R14; F40 motor intra-step0.94..1.53 reference px at150px/WU and60Hz, rendered observation absent; F39 soak extrapolation below; no all-preset static scene |
+| FA-3 | All three real presets:600 static ticks, zero sleep-breaking contacts; contact trace and actual observations | PASS (static wake-policy only) | CI40960697692 .review/m1_r27_evidence.json#FA3 |
 | FA-4 | R14 all three presets settle/sleep within4s and L-hold lurch approximately one body length; record distances/input | NOT RUN | R14 owner positional .001WU/30ticks and transition-only F42 approved; component tested, all-preset lurch/sleep gate unexecuted; no motor/tutorial trace |
 | FA-5 | Frozen-N/gravity+joint-load grounded/lowest grip law: below, at/above, two-foot, airborne; maximal consecutive ticks per foot/branch collapse all samples/passes; transient2–4ticks policy coverage not sustained grip | PASS (measured policy coverage) | CI40904855466 .review/m1_r26_archive_evidence.json#FA5; owner R27 57ed098 |
 | FA-6 | Ten scripted tutorial runs, actual per-run outcomes and input log; target6..8 successes, stop on10 or at most4 | NOT RUN | Actual success_count unknown; no tutorial scenario |

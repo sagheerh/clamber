@@ -2002,3 +2002,28 @@ Do not describe16/18 as M1complete without that sentence, measured verdicts and
 named scoped follow-ups. M2 staysblocked until failures resolved or owner amends
 GDD. No cameras/captures/extra work now. No D1/brace/knob/slip/stiffness/damping/
 torque/tolerance/epsilon change. Same-buildattempt1 stands; crossarchitecture0.
+
+### M1-R27 measured outcome (source2cf2c93)
+
+CI40960697692/AC201123752641212 completed600/status0: stabilityFAIL35.34385590667538
+>15degrees, despite no allairborne ticks. ParkedPASSactualnorm.6460243614279206WU=
+96.9036542141881px,1.39313631766256xmargin (not85.5px/1.58x steadyreference).
+UnmodifiedF52neverfires/0sleepingticks; namedFAILED/M1.1, original4sGDDuntouched.
+Expecteda/bPASS is now FALSIFIED. No startup exclusion/vector redefinition/threshold
+change. Name a-follow-up M1.1posture investigation/ownerreview; do NOT claim its
+cause has been isolated or reopen drift. A passingb doesnot make compositea+bPASS.
+
+AC202job123752641306 all3×7200/status0: completedlimbmaxWU4.996003610813204e-16,
+1.8318679906315083e-15,1.7763568394002505e-15. LiteralHopperpart6/tick5739 same
+1.8318679906315083e-15; Slug/Twin literal-kindlimbsetabsent, not0. Correctness
+orderingpatch reported FORADOPTION, remainsdefaultOFF/unadopted. No baseline
+regenerated. WiderTESTdomain preregisteredbefore measurement, not productgeometry.
+FA3job123752641208 all3×600/status0,0actualsleep-breakingcontacts, sleepingticks0:
+PASS wake-policy ONLY, not sustainedrest/grip. FA5PASS adoptedORIGINALR26, no rerun.
+
+**AC204 PASS:** all200/200 runs,1,440,000/1,440,000ticks,20/20batches, no failed/nonfinite run, aggregateuniqueIDs verified.
+
+See `.review/m1_r27_report.md`/`.review/m1_r27_evidence.json` actual scoped ledger.
+M1 WILL reach18/18 MEASURED, not18/18passing; not complete now. New201aFAIL is
+additional to named sleep/lurch concerns. No claimed16/18outcome/two-only-failures
+projection; M2blocked until failuresresolved/ownerGDDamendment. No other work.

@@ -8,21 +8,45 @@ Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R27 — Option2 authored / FA5 accepted / bounded tests in progress
+### Current R27 measured record — stability FAIL, parked PASS, candidate for adoption
 
-Read reviewer57ed098 readonly, no files copied. AC201 split a/b/s with GDD4s
-wording preserved; AC201sFAILED/M1.1, unmodifiedF52. Owner-authored a:10s no
-all-airborne tick/head-foot attitude≤15deg; b:netCOM≤.90WU/135px, disclosemargin,
-.5BL failurealternative/13.5px-s boundary. No result assumed before measurement.
-FA5 ownerupgraded PASS for natural policy coverage,8episodes/3pairs transient
-2–4ticks, standing per-foot/branch tick-event definition; no sustained-grip claim.
-One AC202 candidate SAME distancepass moved AFTER contact cleanup, all3×7200,
-no constant/iteration changes, productionflagoff pendingadoption. AC204200×7200
-seeded numerical soak and FA3all3×600 static scene preregistered, now unblocked.
-Plan `.review/m1_r27_plan.md`; inputs `tests/fixtures/r27_plan.json`.
-Drift CLOSED: no D1/brace/sweep/new slip/stiffness/damping/torque/epsilon/tolerance.
-Expectation: **M1 will reach18/18 MEASURED, not18/18 passing**. Sleep+lurch depend
-on contactrectifier;16/18 cannot be described as unqualified M1complete. M2blocked.
+Source `2cf2c9376556feca5698ba176c63514f37284bed`, CI40960697692. Readonly
+owner reviewer57ed098 read, NEVER copied. Full outputs/artifact digests:
+`.review/m1_r27_evidence.json`, `.review/m1_r27_report.md`.
+
+- AC201a **FAIL**35.34385590667538deg>15deg fromspawn; zero all-airborne ticks.
+  Expected a/b stability pass was FALSIFIED, no endpoint/startup exclusion/retune.
+- AC201b **PASS**actualnetCOM.6460243614279206WU=96.9036542141881px≤135px,
+  .7178048460BL,1.393136xmargin. Owner85.5px/1.58x was steadyreference, NOTactual.
+  .5BL fails;13.5px/s is disclosed steady extrapolation boundary, not a newknob.
+- AC201s **FAILED**F52 neverfired,0sleepingticks; M1.1contact-model carry-over.
+  Original GDDsettleANDsleep≤4s preserved, not met. a-failure needs M1.1posture
+  investigation/ownerreview, cause not isolated; not another drift diagnosis.
+- AC202 **PASS candidate ONLY**,7200ticks/all3/status0. ArticulatedlimbmaxWU:
+  Slug4.996003610813204e-16,Hopper1.8318679906315083e-15,Twin1.7763568394002505e-15.
+  Hopperliteral-limbmax1.8318679906315083e-15; no literal-kindlimbs inSlug/Twin.
+  DefaultflagOFF; report correctnesspatch FORADOPTION, no productionbaseline change.
+- FA3 **PASS staticwake-policy ONLY**,600ticks/all3,0sleep-breaking contacts;
+  sleepingopportunities0all3. Not resting/sustainedsleep/grip acceptance.
+- FA5 **PASS owner-reviewed original R26 archive**, no newphysicalrun,2–4tick
+  transientpolicycoverage caveat and standing per-foot/branch tick-event definition.
+- **AC204 PASS:** all200/200 runs,1,440,000/1,440,000ticks,20/20batches, no failed/nonfinite run, aggregateuniqueIDs verified.
+
+Ledger at this snapshot: 13/18 qualifiedmeasuredslots;
+12 measuredpassslots INCLUDE the unadoptedcandidate;
+11 production-operational passes excludeit. AC201a+b parentisFAILED;
+passingb alone adds no extra18-slot credit. Sleep failure separatelyvisible.
+Historical8passes plusFA5/FA3, not the expectedAC201a+b+FA5 route. No acceptance
+credit from harness existence, pendingsoak, absent literal-limbset or vacuousrest.
+
+**Expectation: M1 will reach18/18 MEASURED, not18/18passing.** Not reached now.
+FA4lurch/AC201ssleep depend oncontactrectifier/M1.1; actual201astability nowalso
+FAILED. Owner16/18prediction is NOT claimed as a measuredclosing result. M2blocked.
+D1/drift CLOSED, no brace/sweeps/knobs/slip/stiffness/damping/torque/epsilon/tolerance.
+Ordinary public9053+308+1446/0 and FULLsummaryEXACT finalR26; tuning and baseline
+bytes unchanged. Initial workflow key/skip-propagation fixes launched ZERO R27
+engines on79c9ce2/823d1a5; first and ONLY physicalsource2cf2c93. R26closedstudies
+allSKIPPED. No M2/camera/feel/lurch/crossarchitecture work; attempt1samebuild stands.
 
 ### Historical R26 — COMPLETE / BRACE REMOVED / OPTION2 / 8of18
 

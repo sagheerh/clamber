@@ -37,10 +37,17 @@ RUNTIME_MEASURED = {'Engine / architecture': 'CI40818428101 .review/m1_r17_phase
  'A9.7 mandatory falsification': 'CI40818428101 .review/m1_r17_phase2_evidence.json#row12',
  'A9.7 baseline / CI regression': 'CI40818428101 .review/m1_r17_phase2_evidence.json#row13',
  'A8 replay baseline': 'CI40818428101 .review/m1_r17_phase2_evidence.json#row13'}
-# R27 OWNER-reviewed exact triples, not a vocabulary-based blanket allowance.
-R27_VERDICTS = {
-    'FA-5': ('PASS (measured policy coverage)', 'CI40904855466 .review/m1_r26_archive_evidence.json#FA5; owner R27 57ed098'),
-    'AC-201s': ('FAILED (M1.1 carry-over)', 'CI40904855466 .review/m1_r26_diagnostic_evidence.json#public_summary; owner R27 57ed098')}
+# R27 owner-authorised measured scopes: exact gate/status/citation triples only.
+R27_VERDICTS = {'AC-201': ('FAILED (a stability; s carried)', 'CI40960697692 .review/m1_r27_evidence.json#AC201'),
+ 'AC-201a': ('FAILED (35.344deg exceeds15deg)', 'CI40960697692 .review/m1_r27_evidence.json#AC201'),
+ 'AC-201b': ('PASS (measured10s COM)', 'CI40960697692 .review/m1_r27_evidence.json#AC201'),
+ 'AC-201s': ('FAILED (M1.1 carry-over)', 'CI40960697692 .review/m1_r27_evidence.json#AC201'),
+ 'AC-202': ('PASS (candidate only; unadopted)', 'CI40960697692 .review/m1_r27_evidence.json#AC202'),
+ 'FA-3': ('PASS (static wake-policy only)', 'CI40960697692 .review/m1_r27_evidence.json#FA3'),
+ 'FA-5': ('PASS (measured policy coverage)',
+          'CI40904855466 .review/m1_r26_archive_evidence.json#FA5; owner R27 57ed098'),
+ 'AC-204': ('PASS (200-run numerical soak)',
+            'CI40960697692 .review/m1_r27_evidence.json#AC204_aggregate')}
 
 EXCEPTIONS = {'M0 regression': 'PASS (regression only)',
               'A8 test-count floor': 'PASS (count floor only)'}
