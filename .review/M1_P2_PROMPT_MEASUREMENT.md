@@ -143,11 +143,13 @@ input), or report honestly that the ten runs are **identical by construction** a
   `github.event_name == 'push' && github.sha == github.event.after && contains(head_commit_message, '[R29-once]')`.
   Keep the **literal measured sha** in the closing record and in the evidence JSON.
 - **One invocation per arm.** Historical `[R1x–R27-once]` jobs stay pinned and un-run.
-- **Artifact quota is exhausted** (1144 artifacts, 22.9 GB, private repo, 500 MB free). Consequences you must
-  not paper over: any upload failure **skips every later step in that job**, which is how R11–R15 silently
-  stopped running. So: prefer **committed repo evidence**; if you upload, upload last and never place an
-  upload before a measurement step.
-- Do **not** delete historical artifacts yourself — that is an owner action.
+- **Artifact quota is exhausted** (1144 artifacts, 22.9 GB, private repo, 500 MB free). The owner approved a
+  bulk clear but **the API refuses to delete (403, no artifact-delete scope)**, so **assume uploads keep
+  failing this session** and design every deliverable to survive that. Consequences you must not paper over:
+  any upload failure **skips every later step in that job**, which is how R11–R15 silently stopped running.
+  So: prefer **committed repo evidence**; if you upload, upload **last** and never place an upload before a
+  measurement step.
+- Do **not** attempt to delete historical artifacts yourself — it is 403 and it is an owner action.
 - Doc-only commits `[skip ci]`.
 
 ---
@@ -168,7 +170,8 @@ summary (expected: docs, tests, workflows, fixtures only).
 - [ ] D3 100 × 10 000 identical hashes, log committed.
 - [ ] D4 settle/sleep/lurch numbers; 1.00 BL question surfaced, not decided.
 - [ ] D5 ten outcomes + explicit variance source (or honest "insensitive" finding).
-- [ ] D6 push-trigger restored; one invocation per arm; no upload before a measurement.
+- [ ] D6 push-trigger restored; one invocation per arm; no upload before a measurement. If uploads still fail,
+      record it as a **known infrastructure exception** — do not claim green, do not rerun the arm.
 - [ ] D7 green; `core/` diff empty.
 - [ ] `.review/m1_r29_measurement_evidence.json` + `.review/m1_r29_measurement_report.md` committed, one entry
       per gate with `{gate, metric, value, threshold, verdict, artifact, not_measured, blocker}`.

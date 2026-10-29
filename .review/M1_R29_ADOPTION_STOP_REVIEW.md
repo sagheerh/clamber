@@ -134,6 +134,14 @@ Consequences, each verified:
 
 **Fix:** free the storage (delete stale artifacts) or raise it. Retention is not the problem; volume is.
 
+**Attempted 2026-10-30, blocked:** the owner authorised a bulk delete keeping only `m1-r27*` (25 artifacts,
+53 MB). The API call `DELETE /repos/…/actions/artifacts/<id>` returns **403 "Resource not accessible by
+integration"** — the connected token has no artifact-delete scope, so **no deletion was performed** and this
+is an **owner action in the GitHub UI**. Cheapest path: *Settings → Actions → General → Artifact and log
+retention → 1 day* (existing older artifacts are then cleaned up), and/or delete the M0 runs, which alone
+hold **201 artifacts / 10.9 GB**. GitHub recalculates usage every 6–12 hours, so CI may stay red for hours
+after the clear.
+
 ---
 
 ## 6. Ledger — corrected, including one of my own arithmetic slips
