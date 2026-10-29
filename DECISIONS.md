@@ -1057,3 +1057,33 @@ still correctly514 (before those classes). All current phase-specific counts now
 explicit. Final public summary/hashes EXACTLY equal e1934ed; source140Python and
 current144Python differ ONLY by four additional scoped matrix controls. Added
 actual unittest count annotation so CI exposes the current total explicitly.
+
+## R18 — accepted Phases1/2 retained; F56 before the approved A direction
+
+Read reviewer-owned M1_R18_PUBLIC_SIM_REVIEW.md using git show FETCH_HEAD ONLY;
+no reviewer artifact copied/merged. Owner accepts Phases1/2, closes F52/F53/F54,
+verifies8/18. Prior passive900/0 sweep was OWNER's wrong-knob instruction, no-op
+on Slug's motor2400; not proof of causality. M1-D05 option A is OWNER-approved
+DIRECTION (settled-pose motor target); B/C rejected. But F56 must FIRST pass,
+then the correct motor2400/0 sweep with damping unchanged must be MEASURED before
+ANY remedy/calibration. Neither new constant nor retune authorized.
+F56 literal requested identity is delta COM momentum == ground normal+friction.
+Existing solver ALSO has explicit external linear damping and gravity. Measure
+literal sides/residual WITHOUT subtracting/relabeling those terms. Separately
+publish full Newton balance and contact-attributed delta with every omitted term
+visible, using the EXISTING ledger precision1e-12. An internally closing full
+ledger is NOT silently substituted for a failing literal prerequisite. Non-rounding
+literal residual means STOP, no A or sweep until the prerequisite is resolved.
+Observation-only x momentum phase columns + drive COM totals parallel existing y
+ledger, unchanged solver operation order/physical arithmetic. Snapshots/hash/
+baseline unaffected; existing raw/F31/count/contact proofs still mandatory.
+F55 report-only .15WU/s=22.5px/s: baseline .08403595917823123 (0.373493percent),
+before3.5133210565803203 (15.614760percent), after3.9345242550809765
+(17.486774percent) of that allowance. This is a COM-drift unit comparison, NOT
+proof each instantaneous contact sample lies in a static branch; no defect/leak
+is inferred merely from these values. No change to static slip or sampling.
+F57: injected seeded stream exists and survives snapshot/restore/hash/replay;
+NO physics path consumes RNG. Standalone canonical vector tests do NOT mean
+physics randomness exercised. Accepted A9.3 has this precise injection scope.
+Runtime8/18 and determinism attempt1 retained. AC-201 and other ten runtime
+rows remain NOT RUN; no acceptance claim from this prerequisite harness.

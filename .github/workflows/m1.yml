@@ -497,3 +497,57 @@ jobs:
             ${{ runner.temp }}/m1-public/
             ${{ runner.temp }}/m1-public-console.log
           retention-days: 7
+
+  external-momentum-prerequisite:
+    name: R18 F56 literal external-contact prerequisite (STOP on failure)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: F56 unchanged actuated-after6000 last300 momentum identity
+        shell: bash
+        run: |
+          set +e
+          M1_EXTERNAL_REPORT_DIR="$RUNNER_TEMP/m1-external" bash tests/run_m1_external.sh > "$RUNNER_TEMP/m1-external-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-external-console.log" "$status" <<'PYLOG'
+          import sys
+          messages=[];current=''
+          for line in open(sys.argv[1]).read().splitlines():
+              if line.startswith('M1 R18') or 'ERROR' in line or 'FAIL' in line or 'ValueError' in line:
+                  for offset in range(0,len(line),3500):
+                      chunk=line[offset:offset+3500]
+                      if len(current)+len(chunk)+1>3500:
+                          messages.append(current);current=''
+                      current+=('\n' if current else '')+chunk
+          if current:messages.append(current)
+          assert len(messages)<=10, 'F56 annotation budget exceeded; full raw artifact retained'
+          for message in messages:
+              level='notice' if sys.argv[2]=='0' else 'error'
+              escaped=message.replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print(f'::{level} title=M1 R18 F56 prerequisite::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r18-external-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-external/
+            ${{ runner.temp }}/m1-external-console.log
+          retention-days: 7

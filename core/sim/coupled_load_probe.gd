@@ -146,6 +146,14 @@ func _step(before: Dictionary) -> Dictionary:
 	var budget := {
 		"dt_s": dt,
 		"momentum_before_y_ns": _momentum_y(),
+		"momentum_before_x_ns": _momentum_x(),
+		"drive_internal_impulse_x_ns": float(TUNING.physics_zero),
+		"drive_internal_impulse_y_ns": float(TUNING.physics_zero),
+		"damping_impulse_x_ns": float(TUNING.physics_zero),
+		"gravity_impulse_x_ns": float(TUNING.physics_zero),
+		"clamp_impulse_x_ns": float(TUNING.physics_zero),
+		"internal_impulse_x_ns": float(TUNING.physics_zero),
+		"contact_velocity_impulse_x_ns": float(TUNING.physics_zero),
 		"damping_impulse_y_ns": float(TUNING.physics_zero),
 		"gravity_impulse_y_ns": float(TUNING.physics_zero),
 		"clamp_impulse_y_ns": float(TUNING.physics_zero),
@@ -156,6 +164,9 @@ func _step(before: Dictionary) -> Dictionary:
 	var started := _begin_tick()
 	if started != OK:
 		return {"status": started}
+	# R18 observation only: read COM change from the existing pre-integration drive.
+	budget.drive_internal_impulse_x_ns = _momentum_x() - budget.momentum_before_x_ns
+	budget.drive_internal_impulse_y_ns = _momentum_y() - budget.momentum_before_y_ns
 	var positions: Array = []
 	for body in bodies:
 		var phases := {}
@@ -197,13 +208,17 @@ func _predict_and_project(dt: float, budget: Dictionary, positions: Array) -> Er
 			var before_damping: float = point.velocity_y
 			var damped: float = point.velocity_y * retention
 			budget.damping_impulse_y_ns += mass * (damped - before_damping)
+			var before_damping_x: float = point.velocity_x
 			point.velocity_x *= retention
+			budget.damping_impulse_x_ns += mass * (point.velocity_x - before_damping_x)
 			point.velocity_y = damped + _tuning.physics_gravity_wu_s2 * dt
 			budget.gravity_impulse_y_ns += mass * _tuning.physics_gravity_wu_s2 * dt
 			var before_clamp: float = point.velocity_y
+			var before_clamp_x: float = point.velocity_x
 			if not _clamp_velocity(point):
 				return ERR_INVALID_DATA
 			budget.clamp_impulse_y_ns += mass * (point.velocity_y - before_clamp)
+			budget.clamp_impulse_x_ns += mass * (point.velocity_x - before_clamp_x)
 			point.x += point.velocity_x * dt
 			point.y += point.velocity_y * dt
 	_book_positions(before_integration, positions, "integration")
@@ -242,6 +257,7 @@ func _velocity_contacts(
 	# Position corrections do NOT become velocity impulses or qualifying loads.
 	for velocity_pass in range(_tuning.physics_velocity_passes):
 		var before_internal := _momentum_y()
+		var before_internal_x := _momentum_x()
 		for link in _links:
 			if not _rigid_velocity(link):
 				return {"status": ERR_INVALID_DATA}
@@ -261,6 +277,7 @@ func _velocity_contacts(
 		if _extra_velocities() != OK:
 			return {"status": ERR_INVALID_DATA}
 		budget.internal_impulse_y_ns += _momentum_y() - before_internal
+		budget.internal_impulse_x_ns += _momentum_x() - before_internal_x
 		for index in range(bodies.size()):
 			var body := bodies[index]
 			# Reconstruct ONLY previous post-resolve flags for each internal pass.
@@ -283,6 +300,7 @@ func _velocity_contacts(
 			)
 		lowest = lowest_mask(bodies, _tuning)
 		var before_contact := _momentum_y()
+		var before_contact_x := _momentum_x()
 		var before_contact_positions := _positions()
 		var recorder := _record_contact.bind(velocity_pass, contact_samples)
 		var status := CapsuleContact.resolve_tick(
@@ -292,10 +310,13 @@ func _velocity_contacts(
 			return {"status": status}
 		_book_positions(before_contact_positions, positions, "contact")
 		budget.contact_velocity_impulse_y_ns += _momentum_y() - before_contact
+		budget.contact_velocity_impulse_x_ns += _momentum_x() - before_contact_x
 		var before_clamp := _momentum_y()
+		var before_clamp_x := _momentum_x()
 		if _finish_velocities() != OK:
 			return {"status": ERR_INVALID_DATA}
 		budget.clamp_impulse_y_ns += _momentum_y() - before_clamp
+		budget.clamp_impulse_x_ns += _momentum_x() - before_clamp_x
 		for index in range(bodies.size()):
 			reaction[index] += bodies[index].measured_reaction_n
 			cleanup[index] += bodies[index].positional_cleanup_n
@@ -419,6 +440,8 @@ func _trace(
 		measured += body.measured_reaction_n
 		positional += body.positional_cleanup_n
 	var weight := _mass * absf(_tuning.physics_gravity_wu_s2)
+	budget.momentum_after_x_ns = _momentum_x()
+	budget.momentum_change_x_ns = budget.momentum_after_x_ns - budget.momentum_before_x_ns
 	budget.momentum_after_y_ns = _momentum_y()
 	budget.momentum_change_y_ns = budget.momentum_after_y_ns - budget.momentum_before_y_ns
 	budget.contact_reported_impulse_y_ns = (measured + other) * budget.dt_s
@@ -475,6 +498,14 @@ func _trace(
 		"sleep_state": "awake",
 		"sleep_implemented": false
 	}
+
+
+func _momentum_x() -> float:
+	var momentum: float = TUNING.physics_zero
+	for body in bodies:
+		for point in [body.a, body.b]:
+			momentum += point.velocity_x / point.inverse_mass
+	return momentum
 
 
 func _momentum_y() -> float:
