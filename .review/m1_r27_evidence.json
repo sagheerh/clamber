@@ -1118,8 +1118,59 @@
         "conclusion": "skipped"
       }
     ],
-    "overall_source_m1": "failure: mandatory F47 and measured AC201a; no bypass"
+    "overall_source_m1": "failure: mandatory F47 and measured AC201a; no bypass",
+    "publication": {
+      "head": "93c17d662ccf7b09c55731b690039555ef41edbf",
+      "m1_push_run": 40963825251,
+      "m1_pr_run": 40963830891,
+      "static_push_job": 123763106199,
+      "static_pr_job": 123763125400,
+      "controls": 218,
+      "public_push_job": 123763106589,
+      "public_pr_job": 123763125623,
+      "public_full_summaries_exact_measured_source_and_final_R26": true,
+      "m0_push_run": 40963825268,
+      "m0_pr_run": 40963830921,
+      "m0_push_conclusion": "success",
+      "m0_pr_conclusion": "success",
+      "m0_push_jobs": [
+        {
+          "databaseId": 123763105850,
+          "name": "android",
+          "conclusion": "success"
+        },
+        {
+          "databaseId": 123763106263,
+          "name": "headless",
+          "conclusion": "success"
+        }
+      ],
+      "m0_pr_jobs": [
+        {
+          "databaseId": 123763125117,
+          "name": "headless",
+          "conclusion": "success"
+        },
+        {
+          "databaseId": 123763125347,
+          "name": "android",
+          "conclusion": "success"
+        }
+      ],
+      "all_R27_and_R26_physical_jobs_skipped": true,
+      "only_failed_step": "Hinged Slug600 load diagnostic (NOT FA acceptance), historical mandatoryF47; no bypass"
+    }
   },
   "physical_study_closed": true,
-  "physical_study_guard": "Future workflow invocations pinned to completed source2cf2c93; no further R27 physical reruns authorised."
+  "physical_study_guard": "Future workflow invocations pinned to completed source2cf2c93; no further R27 physical reruns authorised.",
+  "pr_publication": {
+    "pr": 3,
+    "draft": true,
+    "state": "open",
+    "body_characters": 63945,
+    "protected_tail_characters": 59421,
+    "protected_tail_sha256": "23f409294933ddd4638139254f41cc5bee6c70a35f28cea6509f9d0c199d76be",
+    "full_body_exact_requested_update": true,
+    "update_transport": "gh REST PATCH; gh pr edit failed deprecated projectCards GraphQL lookup before edit"
+  }
 }

@@ -169,3 +169,14 @@ attempt1 stands; cross-architecture attempts remain0.
 **Next, M1 only:** owner review of the reported AC-202 adoption candidate and
 the newly failed AC-201a clause. No new physical studies, camera, captures,
 feel work or M2 changes were undertaken in R27.
+
+### R27 publication verification — no physical rerun
+
+Publication93c17d6: M1push40963825251 / PR40963830891 static218controlsPASS;
+publicjobs123763106589 /123763125623 PASS, FULLsummaries EXACT measured2cf2c93
+and finaltestedR26. M0push40963825268 / PR40963830921 headless516/0+AndroidPASS.
+R26/R27 physicaljobs allSKIPPED; onlyfailedstep unchanged mandatoryF47. Source
+AC201a's intentional measuredFAIL remains in evidence, not rerun or hidden.
+PR3 stilldraft/open, updatedcurrentR27intro; protected59421char tail EXACT
+SHA23f409294933ddd4638139254f41cc5bee6c70a35f28cea6509f9d0c199d76be.
+Final follow-up records verification only; no product/code/tuning/baseline edit.
