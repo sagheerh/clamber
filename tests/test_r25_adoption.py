@@ -39,14 +39,16 @@ class AdoptionControls(unittest.TestCase):
         self.assertNotIn('stiffness',s)
         self.assertNotIn('velocity_x =',s)
     def test_old_resource_only_four_approved_changes(self):
-        import subprocess
+        import hashlib
         current=Path('core/tuning.tres').read_text()
-        old=subprocess.check_output(['git','show','fc33aaa:core/tuning.tres'],text=True)
+        old=current
         changes={'physics_max_constraint_angular_impulse_rad_s':('6.0','30.0'),
             'motors_joint_stiffness':('2400.0','10.0'),'motors_joint_damping':('55.0','0.5443327361211717'),
             'motors_max_torque':('1800.0','12.0')}
-        for key,(before,after) in changes.items():old=old.replace(f'{key} = {before}',f'{key} = {after}')
-        self.assertEqual(old,current)
+        for key,(before,after) in changes.items():
+            self.assertIn(f'{key} = {after}',old)
+            old=old.replace(f'{key} = {after}',f'{key} = {before}')
+        self.assertEqual(hashlib.sha256(old.encode()).hexdigest(),'3a32dd3d2d719ed28220ed531fee05c8d2a799140d3f06e3aeed4d28d6e6f60c')
     def test_brace_state_validation_is_explicit(self):
         s=Path('core/sim/angular_joint.gd').read_text()
         for code in ['data.get("brace_active") is bool','is_finite(float(data.brace_q))','absf(data.brace_q) <= PI']:

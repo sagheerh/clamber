@@ -8,26 +8,29 @@ Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R25 — P-B DECIDED; adoption/brace + independent gates PENDING
+### Current R25 — P-B ADOPTED / BRACE ACCEPTANCE FAILED / STOP / 8of18
 
-OwnerR25 DECISION read via gitshow reviewer9957260 ONLY, nevercopied/merged.
-Adoptk10/c.5443327361211717/bound30/cap12 plus bilateral relative-release-angle
-brace; NOstrengthknob/worldpin/velocityzeroing. One adoptioncommit, no other
-physics changes. Stateflag+angle snapshot/hash/atomicrestore; publicpresentation
-flag documented/Phase4distinctcue deferred, not claimedrendered. Cost/risk:
-bracefailure leaves8.55 vsold3.93; actualF52within4s required/no diagnosticmean
-substitution. Source/provenance/registeredarms `.review/m1_r25_adoption_plan.md`.
-Mechanismofrecordsteady treadmill: constant completedvx~machineprecision with
-~.11rad intratickqchurn; F72samplingerrorwithdrawn/F71asymptoteunsupported/F73
-notradeoffk10winsboth. F65closedrescale. Slip/sleep/mass/gainrange unchanged.
-SEPARATE AC202public3presets7200each and natural-loadHopperFA5startinparallelCI,
-no brace-successdependency/no missingbranchcredit. Sevenfixedbrace/lurcharms,
-F74gains.7/1 x1s/5s boundedceiling, no post-resultdurationsearch. STOPonowner
-conditions/no retune; resultsPENDING. Explicitbaselinegeneration+strictpublic
-rerunONadoptionsourcecommit then commitgeneratedbytes/no furtherphysicsedit.
-Matrix8/18movement0 pendingreview; AC201/202/FA5NOTPASS untilvalidCI. D07phone/
-B04queued/noM2/camera/captures/waiver. Actualpubliclastreproduced8110688, which
-cannotcovernewadoption. Review/historyretainedbelow.
+Adoption8d73597 sourceCI40895082337, ownerR25decision (readreview9957260only).
+BraceONdrift12.617730602141002px/s and ACTUALF52nosleep600public/6000idlerows:
+STOPconditionsmet, NOretune. OFFexact8.550150769956836 reproduced. ONheldlurch
+.140096WU vsOFF.140760WU, ONend-release-.061297WU: also weakenslurch/backslides.
+F74 ONgains.7/1 x1s/5s allshort; bestONheld.26910BL/end.13690BL, sampledceiling
+NOTglobalunlimitedholdbound. No contraction/gainrange widening.42,480rawticks,
+42,322awakeF56verified/158explicitparkedrows, all7F56PASS/observerequal,724controls.
+MaxpertickF56residual1.5543e-15/braceinternal7.7716e-16; measuredroundoffretained,
+no fakezeros/addedtolerance. Baselinegenerated/provenance and strictpublicrerun
+ONSAMEadoptioncommit9057+308+1446PASS, generatedbytescommittedfollow-up/no coreedit.
+IndependentAC2027200ticksall3/allsegmentfootmax.09437/.19992/.09966>.05FAILED;
+limb-onlymaxpendingarchiveaudit. FA5Hopper7067/7200/below+above+twofootobserved,
+airbornecoverage0=>NOTPASS, abortcauseNOTLOGGED. Separatejobs/no bracedependency.
+SourceCIstaticFAIL184(shallowgit-history assumption); goldenhash test-onlyfix,
+local198PASS. HistoricalF47red/notwaived, M0516+Androidpush+PRPASS. Evidence/report
+`.review/m1_r25_adoption_evidence.json`/`m1_r25_adoption_report.md`. Archive-only
+follow-upauditpending, NO newphysicsmeasurements/corechangesafter8d73597.
+Matrix8/18movement0 retained/no gatecredit; STOPforNEWownercontactmodelreview
+or owner-authoredAC201number/specdecision. Bracedesignedstateflag/anglehashed/
+restored, Phase4distinctpresentationdeferred/notrendered. No syntheticloads,
+slip/sleep/mass/weight/tolerance changes/waiver/M2/camera/captures. D07/B04queued.
 
 ### Historical R24 — final round COMPLETE / STOP FOR OWNER P-A/P-B / 8of18
 

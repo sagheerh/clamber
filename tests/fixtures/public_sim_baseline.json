@@ -6,13 +6,13 @@
     "spawn": "actual authored lowest surface at +.01WU; uniform diagnostic material",
     "ticks": 600
   },
-  "tuning_sha256": "3a32dd3d2d719ed28220ed531fee05c8d2a799140d3f06e3aeed4d28d6e6f60c",
-  "final_digest": "d735ea5f596f9a7b9bdfea0acee9b666a4e364e670f21dba9556985b7bfd19c8",
-  "full_stream_sha256": "05c27f020015dab2fc15ccad5cc963e5d064a8ed3247490a54e8f8ed57de1518",
-  "per_tick_digest_table_sha256": "f9b6fdce63b77143a7187cde3760d023716f066d8f0a54ab93b36dcee737483f",
-  "decision_id": "M1-R17-P2-BASELINE",
-  "source_ci_run": 40818199967,
-  "source_head": "af6a6c9b81b4c926d4f1123c04d465856f5ff7c2",
-  "source_job": 123264184894,
-  "provenance": "Actual pinned-engine triple raw streams, SHA256 independently computed in CI. Source job RED on frame protocol precision check; replay measurements PASS. Baseline only becomes acceptance after matching committed rerun."
+  "tuning_sha256": "5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666",
+  "final_digest": "a30a132f739e97ce3b4f73ca1716fb7359e0ae22b460378d8396b01da773fb71",
+  "full_stream_sha256": "a2929a0c590f68cbe795ab03b2027cb94a9990fef69732236865f1fb30d3e557",
+  "per_tick_digest_table_sha256": "f2c680300abdc6e2937a493aa344e1404dece005397cd8a99a6c17a52bd4f239",
+  "decision_id": "M1-R25-BASELINE",
+  "source_head": "8d73597f0ce4c118ad0602816b51770d8292611f",
+  "source_ci_run": 40895082337,
+  "source_job": "r25-baseline",
+  "provenance": "Owner R25 authorised regeneration on adoption source. Triple streams independently byte-equal; 30/144 clock streams equal. Normal public job reruns same commit against this explicit baseline overlay; generated baseline then committed without physics changes."
 }
