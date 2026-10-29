@@ -189,7 +189,7 @@ func _self_collision() -> void:
 		absf((a.mass * (a.a.x + a.b.x) + b.mass * (b.a.x + b.b.x)) / 2.0 - center_before) < 1e-14,
 		"self position conserves mass center"
 	)
-	var px := _momentum(a)[0] + _momentum(b)[0]
+	var px: float = _momentum(a)[0] + _momentum(b)[0]
 	var impulse := SelfContact.project_velocity(a, b, TUNING)
 	_check(
 		impulse.normal_impulse > 0.0 and absf(_momentum(a)[0] + _momentum(b)[0] - px) < 1e-14,
