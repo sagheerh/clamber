@@ -170,6 +170,25 @@ gate: do not change 15°, the 10 s window, or the AC-201a verdict.**
 - Upload raw logs and JSON as artifacts; annotate the console log the way the existing R27 job does.
 - Doc-only commits: `[skip ci]`.
 
+### D8 — the standing red X on the PR (assigned here because it blocks "CI green")
+Every real-code push makes the **M1** workflow red, and it has been red on `2cf2c93` and `93c17d6` for the
+same reason: job `math-foundations` → **step 9, "Hinged Slug600 load diagnostic (NOT FA acceptance)"**.
+Every later historical job is then skipped. That step is a **historical F47 diagnostic, not an M1
+acceptance gate** — but a red X on the PR is currently indistinguishable from a real gate failure.
+
+Fix it **without weakening anything**:
+1. Keep the diagnostic running and keep its raw output artifact and its `::error` annotation.
+2. Mark **only that step** `continue-on-error: true`, so the job's conclusion reflects the acceptance
+   steps. Do **not** touch any `review_checks.sh` assertion, any acceptance step, or any threshold.
+3. Add a `DECISIONS.md` line: the F47 Slug600 load diagnostic is **expected-red until M1.1's contact
+   rectifier lands**; it was never an acceptance gate; its failure is retained and visible.
+4. Report the change in the session report with the before/after job conclusions, so nobody can read the
+   new green as "the diagnostic passes".
+
+If you believe quarantining it would misrepresent the record, **do not do it — say so and leave it red**;
+the verdict then carries "CI: one known-red diagnostic, not a gate" and P3's done-criteria changes. Decide,
+state the decision, and move on. Do not spend more than one commit on this.
+
 ---
 
 ## 7. Definition of done (self-check before you report)
@@ -185,7 +204,9 @@ gate: do not change 15°, the 10 s window, or the AC-201a verdict.**
 - [ ] 3600-tick characterisation: °/s, time-to-90°, monotone-vs-bounded.
 - [ ] ≥ 218 Python controls pass; M0 516/0 unchanged.
 - [ ] `.review/m1_r28_adoption_evidence.json` + `.review/m1_r28_adoption_report.md` committed.
-- [ ] CI green on the adoption commit and on the evidence commit.
+- [ ] D8 decided and recorded (quarantined with the diagnostic still visible, or left red with the reason).
+- [ ] CI green on the acceptance steps of the adoption commit and of the evidence commit (D8's known-red
+      diagnostic, if you left it red, named in the report as the only exception).
 
 ---
 

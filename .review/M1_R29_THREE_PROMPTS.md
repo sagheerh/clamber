@@ -214,3 +214,36 @@ Do not fill a gap with a claim.
 **Expected close:** **16 of 18 passing** (11 now + presets/captures + §10.6 + FA-6 + tick cost on CI
 hardware), **AC-201 and FA-4 failing with named causes**, **FA-3 uncredited**, **D07 open on the owner's
 phone**. That is a complete, honest M1.
+
+---
+
+## ADDENDUM (2026-10-30, after a full GitHub re-check) — two gaps found in this plan, now assigned
+
+### A1 — CI is red on every real-code push, and nothing owned it → moved into **P1 as D8**
+The **M1** workflow fails on `2cf2c93` and `93c17d6` at job `math-foundations` → step 9
+**"Hinged Slug600 load diagnostic (NOT FA acceptance)"**, and every later historical job is skipped.
+The PR head `fb890fd` carries `[skip ci]`, so the PR currently shows **no checks at all**.
+That step is a historical F47 diagnostic, **not** an M1 acceptance gate — but a red X is
+indistinguishable from a gate failure. P1-D8 assigns the decision (quarantine the step with its artifact
+and annotation retained, or leave it red and say so) and forbids touching any acceptance assertion.
+
+### A2 — the repo's own matrix has **41 rows**, not 18 → the denominator must be declared (P3)
+`fb890fd`'s `.review/m1_ac_matrix.md` tracks 41 rows: **19 PASS, 3 FAILED, 1 STATIC-check-only, 18 NOT RUN**.
+Of the 18 NOT RUN, only **five** are the runtime gates this plan measures (presets/captures, tick cost,
+§10.6, FA-4, FA-6). The remaining ones are:
+- **INV-01 … INV-10** (eleven rows including the parent "full PART B sweep"), all `NOT RUN`;
+- **A5.6 / A10 five-fakes**, `NOT RUN` → P3-D5;
+- **A12 verdict/review**, `NOT RUN` → P3-D2.
+
+The vendored review pack's PART B **M1** checklist contains only **INV-01** of those; the full INV sweep is a
+**standing per-milestone** section, not an M1 gate. So "what remains" is ambiguous until the denominator is
+declared. **P3 therefore adds D2b:**
+
+> **D2b — declare the denominator, once, in writing.** M1's signable set = the **18 runtime slots** +
+> **A12** + **A5.6/A10**. Close the INV sweep at the strongest level M1 honestly supports: E1/E2 evidence
+> for **INV-01, INV-02, INV-03, INV-04, INV-05, INV-06, INV-07, INV-10** (static scan + code review), and
+> **INV-08 / INV-09 recorded NOT APPLICABLE to M1** — there is no flag flow to block and no platform code to
+> put in airplane mode — with the owner notified. **Not-applicable is not a pass**; never write it as one.
+> The verdict states which denominator it signs.
+
+Everything else in the three prompts stands unchanged.
