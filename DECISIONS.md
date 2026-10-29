@@ -1020,7 +1020,7 @@ A mislabeled60FPS frame fixture under expected30 remains a mandatory rejection.
 ## R17 Phase2 measured — eight of eighteen, not M1 completion
 
 CI40818428101 @e1934ed: public job123264928010 SUCCESS; M0 CI40818428107 SUCCESS
-514/0+Android. Overall M1 RED ONLY original required F47. Independent raw stream,
+516/0+Android. Overall M1 RED ONLY original required F47. Independent raw stream,
 per-tick hashes/results x3 and real body-changing tick0 LEFT bit falsification
 verified. Attempt1 SUCCESS as a SAME-BUILD observation; no cross-architecture,
 all-preset, soak or feel acceptance implied. Full measured metadata/18row ledger:
@@ -1029,7 +1029,7 @@ all-preset, soak or feel acceptance implied. Full measured metadata/18row ledger
 Actual frame callback streams first600 identical, full extra ticks/startup clocks
 retained. Public9053/0, frame30 308/0, frame144 1446/0. Source Python140; four new
 matrix-scope adversarial controls make144 local, awaiting exact-head CI. Other
-components931/4897/381/237/136/80, M0 514. Phase1 had131Python,0/18,attempts0;
+components931/4897/381/237/136/80, M0 516 (original514 +2 automatic script compile checks). Phase1 had131Python,0/18,attempts0;
 Phase2 now8/18,attempt1. No test-family count is a gate or determinism substitute.
 Owner authorizes measured row upgrades; F15 guard now permits ONLY exact
 (gate, PASS(measured runtime), CI+artifact-row) triples for1/2/3/9/10/11/12/13,
@@ -1046,3 +1046,14 @@ motor return observed, but requested passive900/0 intervention has no passive
 Slug joint to change. M1-D05 motor-return direction question sent; NO remedy
 adopted, no stronger diagnostic stiffness intervention invented. Phase3 settle/
 lurch blocked on that owner product choice; Phase2 required no wait and is done.
+
+
+R17 final count audit @7d54449 / CI40819056901 + M0 CI40819056867: public,
+spring/convergence/static jobs SUCCESS; M1 RED ONLY F47, M0 **516/0**, Android
+PASS. Corrected Phase2 carry-forward514 before closeout: unchanged M0 test runner
+recursively adds one compile assertion per script, and CreatureTickSolver plus
+Xoshiro128StarStar add TWO. Original514 preserved, not reduced/replaced. Phase1
+still correctly514 (before those classes). All current phase-specific counts now
+explicit. Final public summary/hashes EXACTLY equal e1934ed; source140Python and
+current144Python differ ONLY by four additional scoped matrix controls. Added
+actual unittest count annotation so CI exposes the current total explicitly.

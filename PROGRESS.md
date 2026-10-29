@@ -53,7 +53,7 @@ no zero-input motor return? NO remedy selected/adopted; Phase2 independent and
 explicitly authorized immediately after question. Phase3 settle/lurch awaits owner.
 
 **Phase2** runtime source commit e1934ed / CI40818428101, public job123264928010
-SUCCESS; same-head M0 CI40818428107 SUCCESS514/0+Android. Overall M1 RED ONLY F47.
+SUCCESS; same-head M0 CI40818428107 SUCCESS516/0+Android. Overall M1 RED ONLY F47.
 Public Sim now composes actual actuated solver + F52 sleep, original accumulator
 (max3, dropped excess, fixed1/60), one injected xoshiro128**, explicit terrain/
 materials. Original public M0 signatures retained; failure signal/status, no
@@ -88,7 +88,7 @@ rows1 engine/architecture,2 accumulator,3 RNG,9 replayx3,10 stall,11 frame deliv
 NOT RUN: AC-201/202/204; all-preset divergence/captures; tickcost; cross-architecture
 repeatability; FA-3/4/5/6. Full INV/five-fakes/A12 still pending. Source Python140;
 FOUR new exact-scope matrix controls make144 locally; final-head CI must repeat.
-Component counts unchanged931/4897/381/237/136/80 and M0 514/0. Guard extends F15
+Component counts unchanged931/4897/381/237/136/80 and M0 516/0 (original514 +2 automatic core-script compile checks). Guard extends F15
 ONLY exact measured gate/status/CI+row citations; original controls and NOT RUN
 floor12 remain. Supporting A8 baseline alias is NOT a ninth runtime row.
 

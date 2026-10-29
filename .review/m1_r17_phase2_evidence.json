@@ -148,7 +148,7 @@
     "public_sim": 9053,
     "delivery_30": 308,
     "delivery_144": 1446,
-    "m0": 514
+    "m0": 516
   },
   "public_summary": {
     "attempt_started": true,
@@ -621,5 +621,6 @@
       "size_in_bytes": 15772,
       "digest": "sha256:e6c3dbfa7f4bd21cb5bb60d09d4910a31d7b8366965ca3152c39212af0817184"
     }
-  ]
+  ],
+  "m0_count_note": "Original514 checks retained; original per-script compile enumeration adds2 for CreatureTickSolver and Xoshiro128StarStar. M0 tests unmodified."
 }

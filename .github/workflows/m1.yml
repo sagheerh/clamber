@@ -10,7 +10,18 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Review checks and scanner falsification fixtures
-        run: scripts/review_checks.sh
+        shell: bash
+        run: |
+          set +e
+          scripts/review_checks.sh 2>&1 | tee "$RUNNER_TEMP/m1-static.log"
+          status=${PIPESTATUS[0]}
+          set -e
+          python3 - "$RUNNER_TEMP/m1-static.log" <<'PYCOUNT'
+          import re,sys
+          counts=re.findall(r'^Ran (\d+) tests? in ',open(sys.argv[1]).read(),re.M)
+          print('::notice title=M1 actual Python controls::'+str(sum(map(int,counts)))+' unittest controls executed; failures still propagate via runner status')
+          PYCOUNT
+          exit "$status"
       - name: Record scope of evidence
         run: echo '::notice title=M1 scaffold only::Static subset only. Runtime results belong exclusively to the public Sim job and measured matrix evidence. Soak, performance, captures, full semantic sweep/five-fakes/A12 remain pending.'
   math-foundations:
