@@ -11,7 +11,7 @@ from load_convergence_report import drift_summary
 from load_phase_report import phase_magnitudes
 
 
-def verify_all(rows):
+def verify_all(rows, *, zero_motor_stiffness=False):
     if len(rows) != 6000 or [r['tick'] for r in rows] != list(range(6000)):
         raise ValueError('Need complete ordered6000; partial is NOT convergence evidence')
     lift = rows[0].get('diagnostic_spawn_lift_wu', 0.)
@@ -27,7 +27,16 @@ def verify_all(rows):
         raise ValueError('Accepted prefix verifier failed')
     previous = []
     for r in rows:
-        if r['status'] != 0 or not r['observer_on_off_physical_state_equal'] or r['input_mask'] != 0 or not r['diagnostic_spring_return_live']:
+        # Original live-return requirement remains the default. R19 authorizes only
+        # the separately labelled zero-MOTOR arm, not arbitrary unpowered data.
+        valid_return = r['diagnostic_spring_return_live']
+        if zero_motor_stiffness:
+            valid_return = (not valid_return and r['diagnostic_actuated']
+                and r['diagnostic_motor_stiffness'] == 0.
+                and len(r['drive_events']) == 1
+                and r['drive_events'][0]['kind'] == 'motor'
+                and r['drive_events'][0]['spring_torque'] == 0.)
+        if r['status'] != 0 or not r['observer_on_off_physical_state_equal'] or r['input_mask'] != 0 or not valid_return:
             raise ValueError('Incomplete/altered/ nonzero-input long observation')
         bodies = r['feet'] + r['other_bodies']
         grounded = sorted(b['part'] for b in bodies if b['grounded'])

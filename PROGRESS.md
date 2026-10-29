@@ -8,7 +8,22 @@ Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R18 — F56 literal prerequisite FAIL; STOP before sweep/A/Phase3
+### Current R19 — F56 complete form accepted; motor-source measurement pending
+
+Owner closes F56 on complete external balance and owns the mis-specification.
+Original literal definition/result/predicate/exit1 preserved; named R19 complete
+mode is now explicitly owner-authorized. Internal per-tick/window, resource-derived
+damping and raw contact/endpoint guards retained. Read reviewer R19 using git show
+ONLY; no reviewer artifact copied/merged. Diagnostic motor2400/0 with damping
+untouched implemented, actual measurement PENDING. Six new reporter controls;
+local158Python controls pass. No A/calibration/physical remedy or baseline change.
+Runtime8/18 unchanged; attempt1 accepted success retained, Phase3 NOT ENTERED.
+F55/F58/F59 story, exact success references and conditional calibration protocol
+are recorded together in DECISIONS; no convergence epsilon/design gate relaxation.
+Next single milestone: measure motor2400/0 drift AND rectified thrust; STOP if
+motor0 does not collapse thrust. No downstream implementation before evidence.
+
+### Historical R18 — F56 literal prerequisite FAIL; STOP before sweep/A/Phase3
 
 Measured source **832fa3d**, [M1 CI40820719982](https://github.com/sagheerh/clamber/actions/runs/40820719982).
 F56 job123272312328 reconstructs raw endpoint momentum/contact events from the

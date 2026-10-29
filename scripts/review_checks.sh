@@ -18,6 +18,7 @@ python3 tests/test_r17_spring.py
 python3 tests/test_r17_public.py
 python3 tests/test_r17_matrix.py
 python3 tests/test_r18_external.py
+python3 tests/test_r19_motor.py
 python3 tests/test_static.py
 python3 tests/test_android_inspection.py
 echo 'PASS: review_checks.sh static checks completed.'

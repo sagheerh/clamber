@@ -88,7 +88,18 @@ def external_identity(rows):
     return result
 
 
-def report(folder):
+def r19_complete_prerequisite(identity):
+    """Owner R19 explicitly closes F56 on complete form; literal record untouched.
+
+    external_identity has ALREADY aborted on per-tick/window internal leakage,
+    forged contacts/damping and incomplete balance; never a residual allowance.
+    """
+    return {'owner_decision':'R19 F56 CLOSED on complete external balance',
+        'literal_record_retained':True,
+        'complete_external_prerequisite_passed':identity['internal_rows_and_complete_ledger_verified']}
+
+
+def report(folder, *, r19_complete=False):
     rows=[json.loads(s) for s in (folder/'actuated-after-6000.jsonl').read_text().splitlines()]
     verify_all(rows)
     identity=external_identity(rows)
@@ -101,12 +112,21 @@ def report(folder):
             'motor_stiffness_zero_sweep':'NOT RUN until F56 requested identity passes',
             'A_calibration':'NOT SELECTED/APPLIED until prerequisite passes',
             'AC201':'NOT RUN; no acceptance upgrade','baseline':'UNCHANGED; no physics remedy applied'}
+    if r19_complete:
+        result['r19_authorized_prerequisite']=r19_complete_prerequisite(identity)
     (folder/'external-report.json').write_text(json.dumps(result,indent=2)+'\n')
     print('M1 R18 F56: '+json.dumps(identity,separators=(',',':')))
     print('M1 R18 mechanism: '+json.dumps(mechanism,separators=(',',':')))
+    if r19_complete:
+        print('M1 R19 F56 authorized: '+json.dumps(result['r19_authorized_prerequisite'],separators=(',',':')))
     return result
 
 
 if __name__=='__main__':
-    r=report(Path(sys.argv[1]))
-    if not r['identity']['remedy_authorized_by_requested_gate']:raise SystemExit(1)
+    if len(sys.argv) not in (2,3) or (len(sys.argv)==3 and sys.argv[2]!='--r19-complete'):
+        raise SystemExit('Usage: load_external_report.py FOLDER [--r19-complete]')
+    authorized=len(sys.argv)==3
+    r=report(Path(sys.argv[1]),r19_complete=authorized)
+    passed=(r['r19_authorized_prerequisite']['complete_external_prerequisite_passed'] if authorized
+            else r['identity']['remedy_authorized_by_requested_gate'])
+    if not passed:raise SystemExit(1)

@@ -12,4 +12,4 @@ set +e
 status=$?
 set -e
 if [[ "$status" != 0 ]] || grep -Eq 'SCRIPT ERROR:|ERROR:|FAIL|Parse Error:|Failed to load script' "$folder/probe.log" || ! grep -Eq '^M1 load-path components: 80 checks, 0 failures$' "$folder/probe.log"; then tail -45 "$folder/probe.log"; exit 1; fi
-python3 tests/load_external_report.py "$folder"
+python3 tests/load_external_report.py "$folder" "$@"

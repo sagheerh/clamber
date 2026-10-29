@@ -1105,3 +1105,40 @@ forces is required before continuation. No tuning/baseline/physical changes.
 Runtime remains8/18, accepted attempt1 SUCCESS; current public summary EXACTLY
 matches9a/sourcee193 strict baseline. PROGRESS/evidence ledger record exact sides,
 CI/artifacts/counts and failed local ZIP retrieval honestly.
+
+
+## R19 — owner resolves F56; motor-source falsification FIRST (no remedy yet)
+
+Read reviewer-owned M1_R19_MOMENTUM_IDENTITY_REVIEW.md with git show FETCH_HEAD;
+no reviewer artifact copied/merged. Owner explicitly owns the omitted damping/
+gravity and closes F56 on the COMPLETE external balance. Preserve original
+literal definition, numbers, failed predicate and exit1 behaviour as history;
+R19 complete authorization is a separate named decision, not an overwrite.
+All per-tick AND window internal-zero/damping/contact/raw-endpoint guards retained.
+
+F55/F58/F59 mechanism story: authored static-slip allowance .15WU/s=22.5px/s;
+existing walking arm .0008297296048130507 mass*WU/s/tick rectified friction,
+.04978377628878304N (about .115percent body weight), balanced by unchanged .02
+linear damping. Mean completed COM vx .02676547112300171WU/s (4.014820668px/s)
+is NOT the positional net-drift3.934524255px/s; publish both, do not conflate.
+Owner interprets the observed6-tick count recurrence/positive vx as a translating
+rocking limit cycle, not a stationary equilibrium. Retain measured settled=false/
+settled_mean=null and raw binary64 recurrence errors; no epsilon/exact recurrence
+claim invented. For live spring AC-201 requires zero-input zero-net-motion as a
+design property AND the existing settle/sleep-within4s gate; no relaxation.
+F57 unchanged: RNG stored/restored/hashed, NOT consumed by physics.
+
+ORDER: diagnostic motor stiffness2400 vs0, damping untouched, both drift and
+signed rectified friction thrust/tick; no sum(abs) loophole. Use owner's explicit
+1.74e-05 thrust reference as a conservative continuation screen, not a new
+physical threshold or invented collapse ratio. If motor0 does not reach it,
+STOP/report, no A/calibration/baseline regeneration/Phase3. Report drift against
+.08403595917823123 reference separately. If supported, A captures ONCE at setup
+with motor target tracking actual q EVERY zero-input tick (zero spring torque),
+not spring-loaded target0. Settle protocol must use justified existing criteria,
+record ticks/per-joint q, snapshot/hash target; remeasure awake post-A q rather
+than prove stability by parking. Compare thrust<=1.74e-05 and drift vs.084 plus
+fixed-point q honestly. Offset reduction alone not whole cause, never retune.
+Legitimate A baseline regeneration requires raw generated provenance/strict CI.
+Then Phase3 AC-201/202 and FA-3/4/5, no other gates silently upgraded. Current8/18;
+no A/Phase3 implementation before motor falsification is actually measured.
