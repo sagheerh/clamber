@@ -1671,5 +1671,46 @@
     },
     "M1_overall": "FAIL only unchanged Hinged Slug600/F47 step, NOT WAIVED"
   },
-  "postprocess_publication": "Re-publish ORIGINAL archive-only interpretation with both per-tick phase-maxima files persisted in audit artifact. No Godot/solver/physical rerun. Explicit target-forgery validator added;202 local Python controls expected."
+  "postprocess_publication": {
+    "head": "559e929",
+    "push_run": 40904855466,
+    "pr_run": 40904864867,
+    "archive_job": 123556709209,
+    "archive_conclusion": "success,0newphysicalruns,exact first-audit results",
+    "artifact": {
+      "id": 12910322894,
+      "node_id": "MDg6QXJ0aWZhY3QxMjkxMDMyMjg5NA==",
+      "name": "m1-r26-archive-audit-40904855466",
+      "size_in_bytes": 1419652,
+      "url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12910322894",
+      "archive_download_url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12910322894/zip",
+      "expired": false,
+      "digest": "sha256:f58510b89dacd00645eb76016f11b3a4f9bdd38869f0959aca2a7670eddb2148",
+      "created_at": "2026-10-29T15:46:27Z",
+      "updated_at": "2026-10-29T15:46:27Z",
+      "expires_at": "2026-11-05T15:46:25Z",
+      "workflow_run": {
+        "id": 40904855466,
+        "repository_id": 1436504043,
+        "head_repository_id": 1436504043,
+        "head_branch": "arena/4cd0a587-clamber",
+        "head_sha": "559e929eaebf9eb87ec38a85a75d212e43012530"
+      }
+    },
+    "derived_per_tick_reports": [
+      "baseline-phase-maxima.jsonl:7067raw-completed ticks",
+      "final_distance-phase-maxima.jsonl:7200ticks"
+    ],
+    "public_push_job": 123556709294,
+    "public_pr_job": 123556743027,
+    "public_results": "SUCCESS,fullsummaryEXACT baselinecommit push+PR",
+    "static_push_job": 123556708934,
+    "static_pr_job": 123556743003,
+    "static_results": "202controlsSUCCESS",
+    "M0_push": 40904855470,
+    "M0_pr": 40904864938,
+    "M0_results": "516/0+AndroidPUSH/PRSUCCESS",
+    "M1_overall": "FAIL onlyunchangedF47,notwaived",
+    "core_data_identical_since": "114265e"
+  }
 }

@@ -1921,3 +1921,15 @@ No further measurement/sweeps/brace/lurch trials or diagnostic adoption. Matrix
 epsilon/slip/stiffness/damping/.05 changes, waiver/M2/camera/captures. Last
 publication step only persists BOTH already-derived per-tick phase-maxima files
 from ORIGINAL rawbytes in the audit artifact; no new physical run.
+
+
+## M1-R26-PUBLICATION — original per-tick reports persisted; final checks
+
+Publication559e929, CI40904855466/PUSH and40904864867/PR. Original-only audit
+123556709209SUCCESS/0newphysicalruns, result EXACT firstaudit. Artifact12910322894
+contains baseline-phase-maxima.jsonl7067 and final_distance-phase-maxima.jsonl7200,
+full audit/event timestamps; digestsha256:f58510b89dacd00645eb76016f11b3a4f9bdd38869f0959aca2a7670eddb2148. No new physical arm.
+Normal public123556709294/123556743027SUCCESS with FULLsummaryEXACT baselinecommit,
+202PythoncontrolsPUSH/PRSUCCESS. M0push40904855470/PR40904864938 headless516/0+
+AndroidSUCCESS. OnlyunchangedF47/HingedSlug600 remainsred; no bypass. Finalcloseout
+is evidence/docs ONLY, core/dataunchanged114265e. Option2/hardSTOP unchanged.

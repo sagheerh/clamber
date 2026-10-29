@@ -203,7 +203,8 @@ change would require another separately identified regeneration.
 Commands/results:
 
 - `scripts/review_checks.sh`: source200 controls; parser fix201 in push+PR;
-  final report-publication hardening adds the explicit target-forgery control.
+  final report-publication hardening adds the explicit target-forgery control,
+  **202 controls pass in publication push+PR**.
 - `gdlint` / `gdformat --check` on changed GDScript, Python compile, workflow YAML
   parse, `git diff --check`: passed locally.
 - `tests/run_m1_r26.sh d1`: source job123546155730 SUCCESS, exactly four cells.
@@ -231,3 +232,16 @@ AC-202's measured failure in that owner conversation. Engineer has neither
 invented an acceptance number nor changed the existing criterion.
 
 **Next single milestone: M1 — owner-authored Option2 acceptance decision.**
+
+### Final publication verification (no new physical diagnostic)
+
+Publication source559e929, pushCI40904855466 / PRCI40904864867:
+archive-only job123556709209 **SUCCESS**; result fields EXACT first audit.
+Audit artifact12910322894 (1419652bytes; digest `sha256:f58510b89dacd00645eb76016f11b3a4f9bdd38869f0959aca2a7670eddb2148`) includes BOTH derived
+`baseline-phase-maxima.jsonl` (7067ticks) and `final_distance-phase-maxima.jsonl`
+(7200ticks), plus full event timestamps/auditJSON. These are computed from
+unchanged original raw traces; no new engine/solver/physical diagnostic.
+Normal public123556709294push/123556743027PR **SUCCESS**, full summaries EXACT
+baselinecommit.202PythoncontrolsPUSH+PR **SUCCESS**. M0push40904855470/
+PR40904864938 headless516/0+Android **SUCCESS**. OverallM1 red ONLY unchangedF47.
+Final closeout edits evidence/docs ONLY; core/data/physics unchanged since114265e.

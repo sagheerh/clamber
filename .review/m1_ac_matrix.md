@@ -28,6 +28,10 @@ no epsilon/.05 widening/mass/weight/waiver/M2/camera/captures. Core/dataunchange
 since114265e. Owner authors AC201 displacement/time number; originalcriterion
 NOTrewritten, AC202honestFAIL. Nextsinglemilestone M1ownerOption2acceptancedecision.
 HistoricalbraceF56columnretained/unchanged; matrix8/18, crossarchattempts0.
+Final publication559e929 push40904855466/PR40904864867:202controls/publicSUCCESS;
+originalarchive123556709209SUCCESS/0newphysical, BOTH per-tickphase reports
+persisted in artifact12910322894; evidence EXACT firstaudit. M0push40904855470/
+PR40904864938 headless516/0+AndroidSUCCESS; onlyunchangedF47 remainsred.
 
 ## Historical R25 — P-B ADOPTED / BRACE ACCEPTANCE FAILED / STOP / 8of18
 
