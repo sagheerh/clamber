@@ -310,3 +310,9 @@ F42 late grounded[0,1,2], all300 ticks have active/support contacts, zero new
 body-grounding transitions. Raw impulses/sets retained; no sleep interpretation.
 No resource/default/solver fix. Re-measure after owner-authorized pose; FA-3/4/5/6
 remain NOT RUN; determinism0. Full source/artifact details: PROGRESS/M1-D11.
+
+R13 strict follow-up @5c1bffe / CI40802791884: observer on/off serialized physical
+snapshots identical EVERY600 ticks/case;91 Python/381 math/237 contact/131 analytic/
+80 load components pass. Both diagnostics OBSERVED, baseline F30-only RED.
+F42 new body-grounding only at0 motor/foot and7 head, no lifted events across600;
+persistent support not classified for sleep. No criteria/default/physics changes.

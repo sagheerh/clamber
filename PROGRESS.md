@@ -848,3 +848,39 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
   -> FA-5 band. Re-measure F41 after pose and compare. No resource edit, retune,
   epsilon, damping, iterations adoption, geometry/limits, M2/captures. FA-3/4/5/6
   and all coupled runtime gates NOT RUN; creature determinism attempts0.
+
+
+### R13 strict-observer follow-up @5c1bffe / CI40802791884
+
+- Strict var_to_bytes full physical snapshot equality passes EVERY600 ticks per
+  threshold case (and baseline). It compares serialized state, not approximate
+  float equality. This is observer noninterference ONLY, not a determinism gate.
+- All91 Python checks pass (19/5/40/13/6/8), targeted formatter/full GDScript
+  linter/shell syntax/diff checks pass. Pinned381/237/131/80 components pass;
+  both threshold cases OBSERVED with the exact same measured ranges/counts as
+  above. Baseline remains RED solely for F30; observer step succeeds. F31 analyzer
+  function unchanged and all34 accepted parser/control methods source-identical.
+- New independent checks reconstruct active-vs-skipped from sampled distance,
+  normal length, endpoint inverse masses, per-sample positional cleanup and all
+  impulse responses/continuity. F31/motion verification failure is rejected,
+  never silently converted into an OBSERVED diagnostic case. No resource edits.
+- Full600 grounded transitions, BOTH cases: tick0 new[1,2] (motor,foot), tick7
+  new[0] (head), no lifted transitions. Last300 grounded[0,1,2], no new/lifted,
+  yet17 active sample responses/tick. At599 normal impulses per sample for pass0:
+  head[.105563333819726,.15133106814863925,.07626349006922774],
+  motor[.0956523645662548,.0901259481497068,.046074761884681424],
+  foot[.05752437215064493,.06907111040760779,.034995331542740704]Ns.
+  Pass1 all8 normal impulses0 but signed tangential impulses persist. Raw signed
+  per-contact impulses (both passes), flags and all600 sets remain in artifacts;
+  no sleep-breaking/eligibility filter chosen or criterion rewritten.
+- Updated artifact12866996647,3407167bytes,SHA256
+  48b3687555a2351eaecb7e4add55062ebcb3606a406710c782548b805a72346e;
+  baseline12866274067,2483260bytes,SHA256
+  aacd23d958f06e19b3772dde30352017cd6fad2c69fbb65816f080062463907a.
+  API annotations/metadata inspected; raw ZIP not downloaded locally. M0 run
+  40802791874 headless506/0 PASS; Android result recorded in final CI/PR status.
+- R11 iteration and R12 spawn drivers/controls retained, workflow_dispatch runs
+  them; routine CI now runs the requested R13 observer comparison. No runtime
+  acceptance upgrade: owner pose+asleep/F42 still precede authorized pose+F36
+  assertion and FA-5 band, F41 must be re-measured after pose. FA-3/4/5/6 and all
+  coupled runtime gates NOT RUN; complete-creature determinism attempts0.

@@ -646,5 +646,17 @@ contacts and nonzero support impulses on all300 ticks. Raw all600 per-contact
 impulses and grounded/new/lifted sets retained without classifying sleep-breaking
 or sleep eligibility. Owner asleep answer must clarify persistent support contacts.
 No FA-3 acceptance rewrite. Observer equivalence is not creature determinism;
-byte-serialized snapshot strengthening is pending CI at this follow-up commit.
+byte-serialized snapshot strengthening PASS @5c1bffe / CI40802791884 on every600 ticks per case.
 F30+asleep/F42 remain owner-blocked; FA-3/4/5/6/all coupled runtime gates NOT RUN.
+
+
+D11 strict follow-up @5c1bffe / CI40802791884: independent active/skipped geometry,
+normal/mass/cleanup and signed endpoint response identities all verify; both
+threshold probes OBSERVED, baseline F30-only RED. Raw F42 transition sets in both
+cases: motor/foot newly grounded at0, head at7, no lifted events across600. Final
+sample normal impulses are retained per contact: nine positive in first pass,
+eight zero in second pass, with signed tangential impulses in both. Persistent
+support contact evidence is NOT a sleep-breaking interpretation. Thirteen new
+synthetic controls,91 Python total; all34 previously accepted parser/control
+methods and accepted F31 analyzer function source-identical. No tuning/physics
+fix or pending owner decision is silently adopted. Runtime gates remain NOT RUN.
