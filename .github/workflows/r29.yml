@@ -1,0 +1,36 @@
+name: R29 zero-physics measurements
+on: [push]
+permissions:
+  contents: write
+jobs:
+  measurements:
+    if: ${{ github.event_name == 'push' && github.sha == github.event.after && contains(github.event.head_commit.message, '[R29-once]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    env:
+      GODOT_VERSION: 4.7.2-stable
+      R29_SOURCE_SHA: ${{ github.sha }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: arena/4cd0a587-clamber
+          fetch-depth: 0
+      - name: Verify immutable launch source
+        run: test "$(git rev-parse HEAD)" = "$R29_SOURCE_SHA"
+      - name: Install checksum-pinned engine
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Verify six facts then D0 then D1-D5 then D7 exactly once
+        run: bash tests/run_m1_r29.sh
+      - name: Persist repo evidence even after measurement failure; no artifact uploads
+        if: always()
+        run: python3 tests/r29_publish.py
