@@ -32,6 +32,27 @@ scaffold/PR; no M1 implementation or gate completion is claimed by this closeout
 - Public Sim still stub. FA-3/4/5/6/all coupled runtime gates NOT RUN;
   complete-creature determinism attempts0. F48 source/controls ready; pinned-engine6000 measurement pending.
 
+### R16 F48 executed @f6b852a / CI40812720624 — M1 correctly RED
+
+- Gate step FAILS as intended; all original math/contact/geometry/load components,
+  sleep3659/mechanics931 and static controls pass. BOTH actuated6000 arms complete
+  with full raw F31/position/count/contact checks and observer equivalence.
+  Final before support fraction0, max single-foot share .3138574119247297, gatefalse.
+- Exact settlement was NOT established in the available before-arm summary:
+  settled value null, not a fabricated equilibrium. Full6000 artifacts retained.
+  GitHub check annotation cap50 hid later own-line windows from this job's API;
+  move subsequent measurement to a separate pinned observation job, preserving
+  the original failing gate and raw artifacts. No gate bypass.
+- F49 adds observation-only raw limit-block and individual self impulse events,
+  before/net snapshots retained, no force/order/value changes. Summary separately
+  reports angular/self max absolute per-tick phase coordinate and event impulse
+  maxima BEFORE the accepted lossless phase adapter; cancellations stay visible.
+- F50 repeats post-pose .6100000000000001 and .81 (legal+.01/+.21) for BOTH baseline
+  600 and actuated6000, alongside the original pre-pose actuated6000. Derived from
+  authored geometry plus explicitly requested fixture lift. No tuning addition.
+- Current follow-up pending engine. Step4 public Sim/F45/replay is NEXT only after
+  these measurements; all coupled runtime gates NOT RUN, determinism0.
+
 ### R16 F48 measurement increment (pending pinned engine)
 
 - Extend ONLY diagnostic duration to6000; held input remains0 and live spring

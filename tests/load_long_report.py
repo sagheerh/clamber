@@ -8,12 +8,15 @@ from load_trace_report import analyze, close, body_momentum, sustained_support, 
 from load_legal_report import validate_counts, validate_spawn, accepted_view, count_summary
 from load_contact_report import inspect
 from load_convergence_report import drift_summary
+from load_phase_report import phase_magnitudes
 
 
 def verify_all(rows):
     if len(rows) != 6000 or [r['tick'] for r in rows] != list(range(6000)):
         raise ValueError('Need complete ordered6000; partial is NOT convergence evidence')
-    validate_spawn(rows)
+    lift = rows[0].get('diagnostic_spawn_lift_wu', 0.)
+    if lift not in (0., .2): raise ValueError('Unauthorized diagnostic lift')
+    validate_spawn(rows, clearance=.01+lift)
     counts = validate_counts(rows)
     # Preserve accepted first600 verifier. Long continuation independently checks
     # raw endpoints, ALL phase columns, real contact impulses and full F31 identities.
@@ -69,13 +72,14 @@ def verify_all(rows):
 
 
 def summarize(rows):
+    phases = phase_magnitudes(rows)
     counts = verify_all(rows)
     windows = {}
     for end in (600,3000,6000):
         d = drift_summary(rows[:end])
         windows[str(end)] = d
     return {'scope':'awake ZERO INPUT, LIVE spring return; component observation NOT public Sim/FA/determinism',
-            'rows':len(rows), 'spawn_root_y_wu':rows[0]['diagnostic_spawn_y_wu'],
+            'rows':len(rows), 'raw_phase_magnitudes':phases, 'spawn_root_y_wu':rows[0]['diagnostic_spawn_y_wu'],
             'full_raw_F31_position_counts_contact_impulses_verified':True,
             'windows_ending_at_ticks_exclusive':windows,
             'last300_counts':count_summary(counts[-300:]),
@@ -84,18 +88,61 @@ def summarize(rows):
             'F41':'OPEN; do not interpret nonsettled actuator drift as equilibrium'}
 
 
+def summarize_baseline(rows):
+    if len(rows)!=600: raise ValueError('Need complete baseline600')
+    lift=rows[0].get('diagnostic_spawn_lift_wu',0.)
+    if lift not in (0.,.2): raise ValueError('Unauthorized baseline lift')
+    validate_spawn(rows,clearance=.01+lift)
+    counts=validate_counts(rows)
+    a=analyze(rows);inspect(rows)
+    if not a['momentum_ledger_verified'] or not a['motion']['position_ledger_and_speed_identities_verified']:
+        raise ValueError('Baseline raw identities fail')
+    return {'scope':'F50 post-pose free-hinge baseline, ZERO INPUT', 'rows':600,
+        'spawn_root_y_wu':rows[0]['diagnostic_spawn_y_wu'],
+        'zero_input_drift':drift_summary(rows),'sustained_support_gate':a['sustained_support_gate'],
+        'last300_counts':count_summary(counts[-300:])}
+
+
+def spawn_comparison(cases, counts, mechanics):
+    names=[mechanics+'-after',mechanics+'-after-raised']
+    if not all(cases[n]['status']=='OBSERVED' for n in names):
+        return {'status':'NOT COMPLETED'}
+    a,b=[cases[n].get('zero_input_drift',cases[n].get('windows_ending_at_ticks_exclusive',{}).get('6000')) for n in names]
+    settled=all(d['convergence']['settled'] for d in (a,b))
+    return {'scope':'SAME post-pose; derived+.01 vs +.21 legal clearance; no closure',
+        'roots_wu':[cases[n]['spawn_root_y_wu'] for n in names],
+        'observed_window_mean_dx_wu_tick':[d['mean_com_dx_wu_tick'] for d in (a,b)],
+        'observed_vx_ranges_wu_s':[d['convergence']['last300_vx_range_wu_s'] for d in (a,b)],
+        'bit_identical_window_means':a['mean_com_dx_wu_tick']==b['mean_com_dx_wu_tick'],
+        'vx_observed_envelopes_overlap':max(d['convergence']['last300_vx_range_wu_s'][0] for d in (a,b)) <= min(d['convergence']['last300_vx_range_wu_s'][1] for d in (a,b)),
+        'last300_per_tick_count_regimes_identical':counts[names[0]]==counts[names[1]],
+        'both_windows_settled':settled,
+        'settled_difference_wu_tick':b['convergence']['settled_mean_dx_wu_tick']-a['convergence']['settled_mean_dx_wu_tick'] if settled else None,
+        'interpretation':'REPORT ONLY; F41 OPEN' if settled else 'DEFERRED: nonsettled; these are transient means, not equilibria',
+        'F41_closed':False}
+
+
 if __name__=='__main__':
-    root = Path(sys.argv[1]); result = {}
-    for name in ('actuated-before','actuated-after'):
+    root = Path(sys.argv[1]); result = {}; counts={}
+    for name in ('actuated-before','actuated-after','actuated-after-raised','baseline-after','baseline-after-raised'):
         try:
             folder=root/name
             if (folder/'engine-status.txt').read_text().strip() != '0': raise ValueError('Engine incomplete')
-            rows=[json.loads(s) for s in (folder/'slug-6000.jsonl').read_text().splitlines()]
-            result[name]={'status':'OBSERVED', **summarize(rows)}
+            duration=6000 if name.startswith('actuated') else 600
+            rows=[json.loads(s) for s in (folder/f'slug-{duration}.jsonl').read_text().splitlines()]
+            expected_lift=.2 if name.endswith('raised') else 0.
+            if any(r.get('diagnostic_spawn_lift_wu')!=expected_lift or r['diagnostic_pose']!=('before' if name=='actuated-before' else 'after') or r['diagnostic_actuated']!=(duration==6000) for r in rows):
+                raise ValueError('Wrong pose/mechanics/spawn arm')
+            result[name]={'status':'OBSERVED', **(summarize(rows) if duration==6000 else summarize_baseline(rows))}
+            counts[name]=[r['contact_counts'] for r in rows[-300:]]
         except (OSError,ValueError,KeyError,TypeError) as e:
             result[name]={'status':'NOT COMPLETED','finding':str(e)}
         print('M1 convergence '+name+': '+json.dumps({k:v for k,v in result[name].items() if k != 'windows_ending_at_ticks_exclusive'},sort_keys=True))
         for window,d in result[name].get('windows_ending_at_ticks_exclusive',{}).items():
             print('M1 zero-input drift '+name+' through'+window+': '+json.dumps(d,sort_keys=True))
-    (root/'convergence-report.json').write_text(json.dumps(result,indent=2)+'\n')
+        if 'zero_input_drift' in result[name]:
+            print('M1 zero-input drift '+name+': '+json.dumps(result[name]['zero_input_drift'],sort_keys=True))
+    spawn={m:spawn_comparison(result,counts,m) for m in ('baseline','actuated')}
+    print('M1 F50 spawn comparison: '+json.dumps(spawn,sort_keys=True))
+    (root/'convergence-report.json').write_text(json.dumps({'cases':result,'F50':spawn},indent=2)+'\n')
     raise SystemExit(0 if all(c['status']=='OBSERVED' for c in result.values()) else 1)

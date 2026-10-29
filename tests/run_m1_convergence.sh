@@ -8,12 +8,16 @@ folder="${M1_CONVERGENCE_REPORT_DIR:-$(mktemp -d)}"
 mkdir -p "$folder"
 "$GODOT" --headless --editor --import > "$folder/import.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/import.log"; then cat "$folder/import.log"; exit 1; fi
-for pose in before after; do
-  case_folder="$folder/actuated-$pose"; mkdir -p "$case_folder"
-  flags=(--legal-spawn --actuated --ticks=6000)
-  if [[ "$pose" == before ]]; then flags+=(--pre-pose); fi
+for name in actuated-before actuated-after actuated-after-raised baseline-after baseline-after-raised; do
+  case_folder="$folder/$name"; mkdir -p "$case_folder"
+  ticks=600
+  flags=(--legal-spawn)
+  if [[ "$name" == actuated-* ]]; then ticks=6000; flags+=(--actuated); fi
+  flags+=("--ticks=$ticks")
+  if [[ "$name" == actuated-before ]]; then flags+=(--pre-pose); fi
+  if [[ "$name" == *-raised ]]; then flags+=(--spawn-lift=0.2); fi
   set +e
-  "$GODOT" --headless --script res://tests/sim/test_coupled_load.gd -- "--trace=$case_folder/slug-6000.jsonl" "${flags[@]}" > "$case_folder/probe.log" 2>&1
+  "$GODOT" --headless --script res://tests/sim/test_coupled_load.gd -- "--trace=$case_folder/slug-$ticks.jsonl" "${flags[@]}" > "$case_folder/probe.log" 2>&1
   status=$?
   set -e
   if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$case_folder/probe.log" ||

@@ -137,7 +137,18 @@ func _diagnostic_config() -> Dictionary:
 	var tuning: Tuning = TUNING.duplicate(true)
 	var spawn_y := 0.33
 	var ticks := 600
+	var lift := 0.0
 	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--spawn-lift="):
+			var value := arg.trim_prefix("--spawn-lift=")
+			if (
+				not value.is_valid_float()
+				or float(value) not in [0.0, .20]
+				or "--legal-spawn" not in OS.get_cmdline_user_args()
+			):
+				push_error("invalid R16 legal-spawn lift")
+				return {}
+			lift = float(value)
 		if arg.begins_with("--ticks="):
 			var value := arg.trim_prefix("--ticks=")
 			if not value.is_valid_int() or value.to_int() not in [600, 3000, 6000]:
@@ -162,7 +173,7 @@ func _diagnostic_config() -> Dictionary:
 				push_error("invalid R12 diagnostic spawn height")
 				return {}
 			spawn_y = float(value)
-	return {"tuning": tuning, "spawn_y": spawn_y, "ticks": ticks}
+	return {"tuning": tuning, "spawn_y": spawn_y, "ticks": ticks, "lift": lift}
 
 
 func _slug() -> void:
@@ -180,7 +191,7 @@ func _slug() -> void:
 		authored_bottom = minf(authored_bottom, minf(body.a.y, body.b.y) - body.radius)
 	var legal := "--legal-spawn" in OS.get_cmdline_user_args()
 	if legal:
-		spawn_y = .01 - authored_bottom
+		spawn_y = .01 - authored_bottom + float(config.lift)
 	var actuated := "--actuated" in OS.get_cmdline_user_args()
 	var probe: CoupledLoadProbe = ActuatedLoadProbe.new() if actuated else CoupledLoadProbe.new()
 	probe.collect_contact_samples = true
@@ -234,10 +245,11 @@ func _slug() -> void:
 			return
 		row["observer_on_off_physical_state_equal"] = true
 		row["diagnostic_spawn_y_wu"] = spawn_y
+		row["diagnostic_spawn_lift_wu"] = config.lift
 		row["diagnostic_authored_bottom_wu"] = authored_bottom
 		row["diagnostic_lowest_initial_surface_wu"] = authored_bottom + spawn_y
 		row["diagnostic_spawn_kind"] = (
-			"derived legal +.01WU"
+			("derived legal +.01WU" if config.lift == 0.0 else "derived legal +.21WU (+.20 lift)")
 			if legal
 			else (
 				"over-penetrating spawn"

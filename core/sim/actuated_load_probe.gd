@@ -6,6 +6,8 @@ var _channels: Array[String] = []
 var _pairs: Array = []
 var _self_impulses: Array = []
 var _drive_events: Array = []
+var _limit_events: Array = []
+var _self_events: Array = []
 var _input_mask: int = TUNING.physics_zero
 
 
@@ -76,6 +78,8 @@ func position_phases() -> Array:
 
 func _begin_tick() -> Error:
 	_drive_events = []
+	_limit_events = []
+	_self_events = []
 	_self_impulses = []
 	for body in bodies:
 		_self_impulses.append({"x": float(TUNING.physics_zero), "y": float(TUNING.physics_zero)})
@@ -111,15 +115,26 @@ func _extra_positions(positions_ledger: Array) -> Error:
 
 
 func _extra_velocities() -> Error:
-	for joint in _joints:
+	for index in range(_joints.size()):
+		var joint := _joints[index]
+		var before := joint.impulse
 		if joint.block_velocity() != OK:
 			return ERR_INVALID_DATA
+		_limit_events.append(
+			{
+				"joint": index,
+				"impulse_before": before,
+				"impulse_after": joint.impulse,
+				"impulse": joint.impulse - before
+			}
+		)
 	for pair in _pairs:
 		var first: int = pair[TUNING.physics_zero]
 		var second: int = pair[TUNING.physics_one]
 		var event := SelfContact.project_velocity(bodies[first], bodies[second], _tuning)
 		if event.is_empty():
 			return ERR_INVALID_DATA
+		_self_events.append(event.merged({"first": first, "second": second}))
 		_self_impulses[first].x -= event.x
 		_self_impulses[first].y -= event.y
 		_self_impulses[second].x += event.x
@@ -139,6 +154,8 @@ func _step(before: Dictionary) -> Dictionary:
 	result.input_mask = _input_mask
 	result.motor_gain = _tuning.motors_gain_default
 	result.drive_events = _drive_events
+	result.angular_limit_events = _limit_events
+	result.self_contact_events = _self_events
 	result.angular_joints = []
 	for joint in _joints:
 		result.angular_joints.append(joint.state().merged(joint.snapshot()))

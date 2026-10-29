@@ -863,3 +863,22 @@ All raw6000 observations retained, observer equivalence and raw continuation
 F31/phase/count/contact impulse identities checked. Accepted first600 math is
 unchanged beyond authorized F47; accepted40-control file untouched. Actuated F41
 pair interpretation DEFERRED until settled. F47 remains mandatory RED exit.
+
+
+R16 F48 executed @f6b852a / CI40812720624: M1 RED only at sustained-support gate;
+both6000 arms OBSERVED with full continuation identities and observer equivalence.
+Before settled value null, support fraction0/max share.3138574119247297/gatefalse.
+No equilibrium inferred. Check annotations capped50, hiding later windows from API;
+subsequent observation moved to its own checksum-pinned CI job (original gate still
+fails overall, no bypass). Raw artifacts retain ALL observations, not only notices.
+
+R16 F49 observation-only limit-block/self-contact event logs retain actual impulse
+changes and individual collision vectors so opposite impulses cannot cancel out
+of max reports. Separate angular/self max absolute net per-tick phase coordinate
+WU, angular drive/block event max (mass*WU^2/s), self event magnitude(N*s), and
+net impulse maxima computed BEFORE folding; adapter still refuses unclosed raw
+ledger and keeps source unmodified. No physical behavior/order/value change.
+R16 F50 post-pose root derived+.01/.21 (about.610/.810) BOTH baseline600 and
+actuated6000; original pre-pose actuated6000 retained. Same pose, only authorized
++.20 fixture lift; no tuning field/retune. Validate ACTUAL raw initial surfaces.
+Nonsettled window means are facts only, settled comparison null; F41 stays OPEN.

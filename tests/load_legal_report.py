@@ -9,6 +9,7 @@ import sys
 from load_trace_report import analyze
 from load_contact_report import inspect
 from load_convergence_report import drift_summary
+from load_phase_report import phase_magnitudes
 
 
 def validate_counts(rows):
@@ -38,12 +39,12 @@ def validate_counts(rows):
     return regimes
 
 
-def validate_spawn(rows):
+def validate_spawn(rows, clearance=.01):
     first = rows[0]
     bodies = first['feet'] + first['other_bodies']
     actual = min(min(b['start_ay'], b['start_by']) - b['radius_wu'] for b in bodies)
     root = next(b for b in bodies if b['part'] == 0)['start_ay']
-    if not math.isfinite(actual) or abs(actual - .01) > 1e-15 or abs(root - first['diagnostic_spawn_y_wu']) > 1e-15:
+    if not math.isfinite(actual) or abs(actual - clearance) > 1e-15 or abs(root - first['diagnostic_spawn_y_wu']) > 1e-15:
         raise ValueError('Claimed legal spawn disagrees with actual initial capsule geometry')
     if abs(actual - first['diagnostic_lowest_initial_surface_wu']) > 1e-15 or abs(actual-root-first['diagnostic_authored_bottom_wu']) > 1e-15:
         raise ValueError('Claimed authored bottom disagrees with initial endpoints/radii')
@@ -57,7 +58,7 @@ def count_summary(regimes):
         raise ValueError('No count evidence')
     return {f'part{p}/pass{v}': {
         label: {','.join(map(str, k)): n for k, n in sorted(Counter(r[p, v] for r in selected).items())}
-        for label, selected in [('all600', regimes), ('last300', regimes[-300:])]
+        for label, selected in [(f'all{len(regimes)}', regimes), ('last300', regimes[-300:])]
     } for p, v in sorted(regimes[0])}
 
 
@@ -105,6 +106,7 @@ def compare(root):
                         raise ValueError('Legal pair metadata mismatch')
                 validate_spawn(rows)
                 regimes[name] = validate_counts(rows)
+                phases = phase_magnitudes(rows) if mechanics=='actuated' else 'not actuated'
                 adapted = accepted_view(rows)
                 a, c = analyze(adapted), inspect(adapted)[0]
                 if not a['momentum_ledger_verified'] or not a['motion']['position_ledger_and_speed_identities_verified']:
@@ -123,7 +125,8 @@ def compare(root):
                     'last300_grip_fraction': a['motion']['steady_grip_fraction'],
                     'last300_foot_support_share': a['motion']['steady_foot_support_share_mean'],
                     'momentum_and_position_verifiers': True,
-                    'internal_position_phase_adapter': mechanics == 'actuated'}
+                    'internal_position_phase_adapter': mechanics == 'actuated',
+                    'raw_phase_magnitudes': phases}
             except (OSError, ValueError, KeyError, TypeError) as e:
                 result['cases'][name] = {'status': 'NOT COMPLETED', 'finding': str(e)}
     result['F41'] = {}

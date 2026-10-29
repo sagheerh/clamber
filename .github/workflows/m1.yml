@@ -318,7 +318,27 @@ jobs:
             ${{ runner.temp }}/m1-mechanics-console.log
           retention-days: 7
 
-      - name: R16 F48 live-spring zero-input convergence (support gate remains RED)
+  convergence-observation:
+    name: R16 zero-input convergence observation (NOT runtime acceptance)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: R16 F48/F49/F50 live-spring convergence and legal spawn observation
         if: always()
         shell: bash
         run: |
@@ -329,14 +349,14 @@ jobs:
           python3 - "$RUNNER_TEMP/m1-convergence-console.log" "$status" <<'PYLOG'
           import sys
           for line in open(sys.argv[1]).read().splitlines():
-              if line.startswith(('M1 convergence','M1 zero-input drift')) or 'ERROR' in line or 'FAIL' in line:
+              if line.startswith(('M1 convergence','M1 zero-input drift','M1 F50')) or 'ERROR' in line or 'FAIL' in line:
                   for start in range(0,len(line),3500):
                       level='notice' if sys.argv[2]=='0' else 'error'
                       text=line[start:start+3500].replace('%','%25').replace('\r','%0D')
                       print(f'::{level} title=M1 R16 convergence ONLY::'+text)
           PYLOG
           exit "$status"
-      - name: Preserve R16 full6000 raw zero-input traces and convergence evidence
+      - name: Preserve R16 full raw zero-input traces, pre-fold phases and spawn evidence
         if: always()
         uses: actions/upload-artifact@v5
         with:
