@@ -186,6 +186,16 @@ func _diagnostic_config() -> Dictionary:
 				push_error("invalid diagnostic position iterations")
 				return {}
 			tuning.physics_position_iterations = value.to_int()
+		if arg.begins_with("--r24-static-slip="):
+			var value := arg.trim_prefix("--r24-static-slip=")
+			if (
+				not value.is_valid_float()
+				or float(value) not in [0.15, 0.015, 0.0015]
+				or study != "c40"
+			):
+				push_error("invalid R24 c40-only static-slip diagnostic")
+				return {}
+			tuning.physics_static_slip_wu_s = float(value)
 		if arg.begins_with("--static-slip="):
 			var value := arg.trim_prefix("--static-slip=")
 			if not value.is_valid_float() or float(value) not in [0.15, 1.5]:

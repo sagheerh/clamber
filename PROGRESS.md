@@ -8,7 +8,29 @@ Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current D09 — three proposals measured; STOP BEFORE ADOPTION
+### Current R24 — one final A/B round + C archive audit PENDING
+
+R24 review and decision addendum read via git show reviewer branch ONLY, neither
+copied/merged. D09 study ACCEPTED, no adoption. F65 CLOSED by measured powered
+candidate RE-SCALE (legal q12.787/5.154/1.840deg); committed defaults remain OLD.
+Three A cells: c40 slip.15/.015/.0015, all other candidate settings fixed; one B
+committed-default lurch using SAME95sreleased/1sL/4srelease proposal. FullF56 each.
+C reprocesses original D09 archive12901654637, no repeat of3poweredk arms: publish
+completed COMvx ranges, drive-q per-tick range/change, plus within-tick sampled q
+range/driveomega to prevent stroboscopic samples being mistaken for frozen joint.
+Preregistered `.review/m1_r24_round_plan.md`. No extra tests/parameters afterwards.
+Then owner chooses EXACTLY P-A(saturated+visiblebrace) or P-B(c10+visiblebrace).
+Brace authorised in principle, deliberately NOT implemented before package choice.
+Snapshot/restore/explicit internal momentum ledger/no manufactured support required.
+F71 fit is extrapolation not measured kInfinity; F72 frozen-within-tick claim not
+inferred from drive means; F73 observedk↑drift↑ and lurch↓, not better drift.
+FA6 variance now pre-registered fixed offsets0,4,..36, one seed/spawn/geometry,
+no other variance, no FA6 run or post-result offset selection. Existing proposed
+60tick pulse/fixed300tick horizon retained; only onset changes. D07 queued.
+8/18 movement0/FA5 untouched/AC202notrun. One round then STOP, no adoption/hold/
+AC201 rewrite/baseline regeneration/M2/camera/captures/waivers. Results PENDING.
+
+### Historical D09 — three proposals measured; STOP BEFORE ADOPTION
 
 Delegated decisions ACCEPTED, not re-litigated: D09 proportional muscle, D08
 physical hold first/fallback after adoption+remeasure, D06 provisional fixture now.

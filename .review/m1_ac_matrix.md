@@ -1,6 +1,19 @@
 # M1 acceptance matrix — scoped measured evidence, NOT milestone approval
 
-## Current D09 — three-proposal study COMPLETE / STOP BEFORE ADOPTION / 8of18
+## Current R24 — final round registered/PENDING; 8of18 unchanged
+
+D09 accepted. F65 CLOSED by measured candidate re-scale, not adopted/defaultfixed.
+ONLY A3c40slips.15/.015/.0015 + B1committeddefaultsameproposedlurch/fullF56;
+C archived3poweredtraces, no repeatedkstudy. Per-tickq CSV plus COMvxrange and
+within-tick phases/omega distinguish sampled driftphaseconstancy from frozenjoint.
+Plan `.review/m1_r24_round_plan.md`. No results yet. F71fitunmeasuredasymptote;
+F73k↑actuallydrift↑,lurch↓. D08physicalstationkeepingpremisefalsified/fallback
+braceauthorised but deliberately deferred pending ownerP-A/P-B afterthisround.
+P-Asaturated+brace / P-Bc10+brace+baselineprovenance, neitheradopted. Onsetsfixed
+0,4,..36, onespawn/seed/geometry/physics/nootherFA6variance; noFA6run. No brace,
+AC201rewrite, newgatecredit, defaults, mass/weight, M2/camera/captures.8/18movement0.
+
+## Historical D09 — three-proposal study COMPLETE / STOP BEFORE ADOPTION / 8of18
 
 Delegated D09proportional/D08physical-first/D06provisionalauthor accepted; no
 relitigation. Source573a1fb /M140885113085 /study123486613471 SUCCESS,15runs90krawticks,

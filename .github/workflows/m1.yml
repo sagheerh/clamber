@@ -728,3 +728,64 @@ jobs:
             ${{ runner.temp }}/m1-d09/
             ${{ runner.temp }}/m1-d09-console.log
           retention-days: 7
+
+  r24-final-round:
+    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[R24-round]') }}
+    name: R24 final A/B round + C archive audit (STOP for package)
+    permissions:
+      contents: read
+      actions: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Retrieve accepted D09 archive for C (NO remeasurement)
+        uses: actions/download-artifact@v5
+        with:
+          name: m1-d09-proposals-40885113085
+          run-id: 40885113085
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: ${{ runner.temp }}/r24-old
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: R24 three slip cells and default lurch; no adoption
+        shell: bash
+        run: |
+          set +e
+          M1_R24_REPORT_DIR="$RUNNER_TEMP/m1-r24" M1_R24_OLD_DIR="$RUNNER_TEMP/r24-old" bash tests/run_m1_r24.sh > "$RUNNER_TEMP/m1-r24-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-r24-console.log" "$status" <<'PYLOG'
+          import sys
+          selected=[line for line in open(sys.argv[1]).read().splitlines() if line.startswith('M1 R24') or 'ERROR' in line or 'FAIL' in line or 'ValueError' in line]
+          text='\n'.join(selected)
+          messages=[text[i:i+3500] for i in range(0,len(text),3500)]
+          assert len(messages)<=10, 'R24 compact annotation budget exceeded; raw artifact retained'
+          for message in messages:
+              level='notice' if sys.argv[2]=='0' else 'error'
+              escaped=message.replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print(f'::{level} title=M1 R24 final time-boxed round::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r24-round-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-r24/
+            ${{ runner.temp }}/m1-r24-console.log
+          retention-days: 7

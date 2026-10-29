@@ -54,7 +54,7 @@ def f52_eligibility(rows):
         'derived_drift_line_px_s':threshold/dwell*resource('physics_tick_hz')*resource('feel_readability_px_per_wu')}
 
 
-def validate_arm(rows,name,cell):
+def validate_arm(rows,name,cell, *, static_slip=None):
     p=proposal(name);zero=cell in ('stop_only','inert');wide=cell in ('drive_only','inert')
     base=rows[0];bodies={b['part']:b for b in base['feet']+base['other_bodies']}
     weight=sum(raw_frame(bodies[i])['inverse_inertia'] for i in (0,1))
@@ -67,7 +67,7 @@ def validate_arm(rows,name,cell):
         'diagnostic_motor_limit_min_deg':resource('motors_limit_min_deg'),
         'diagnostic_motor_limit_max_deg':90. if wide else resource('motors_limit_max_deg'),
         'diagnostic_linear_damping':resource('physics_linear_damping'),
-        'diagnostic_static_slip_wu_s':resource('physics_static_slip_wu_s'),
+        'diagnostic_static_slip_wu_s':resource('physics_static_slip_wu_s') if static_slip is None else static_slip,
         'diagnostic_passive_stiffness':resource('physics_passive_stiffness'),
         'diagnostic_pose':'after','diagnostic_spawn_lift_wu':0.}
     if any(any(r.get(k)!=v for k,v in expected.items()) or

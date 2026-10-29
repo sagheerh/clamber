@@ -1548,3 +1548,49 @@ D08margin/fallback decision perdelegatedrule, not before. R23 2x2 OLD parameteri
 retained ashistory. Core/TUNING/creaturebytes unchanged; mass/weightuntouched,
 40default intact.8/18movement0/FA5untouched, AC202notrun, no Phase3/A/residual/M2.
 NEXT singlemilestone ownerreviewD09study BEFORE adoption, STOP experiments now.
+
+
+## R24 — accepted D09 study; one final measurement round, then package decision
+
+Read M1_R24_D09_STUDY_REVIEW and owner-decisions addendum by git show reviewer
+origin/arena/5b72e4ab-clamber ONLY; no copy/merge. Study accepted, still no adoption.
+F65 CLOSED BY RE-SCALE for measured POWERED candidate configurations, attributable
+to real headroom/legal pose rather than tuning accident. Core committed default
+remains historical8.27deg paststop because candidates not adopted. No runtime row
+credit/FA5 change. F65 all6000 zero engagement/projection/block to independently check
+in C against archived raw rows and original summaries, not inferred from means.
+
+Authorize ONLY A:c40 static-slip.15/.015/.0015 process duplicates, B:committed
+default bound6/k2400/gain.7/damping55/torque1800 lurch SAME95sreleased/1sL/4srelease,
+6000ticks each/fullF56. Report bodylength from actual sum of3initial capsule axes,
+not an invented AABB dimension. C reads OLD15run archive12901654637, no repeat3k
+measurements: COMcompleted vx ranges, per-tick driveq CSV and intertick changes,
+within-tick sampled q spread reconstructed afterintegration +original phaseevents,
+plus driveomega. No new physics telemetry needed/no threshold/force changes.
+
+F71 A-B/k records empirical fit of finite3points, not validated rigid-jointlimit,
+not universal proof no motor parameter works. F72 static drive-phase samples do
+not prove zero motion within fixedtick; sampled phases/omega make that auditable,
+no new causal model asserted. Reviewer.010impulse/5% fork40 conflicts with actual
+D09 totalrequested/applied.0444354/bound.1886402≈23.56%; retain measured fulltorque
+(spring+damping) not spring-only conflation. F73 tablek↑drift8.55->12.91 WORSE and
+lurch.14076->.02660 smaller; wording stifferbetterdrift is sign-inverted. Both
+metrics favour softer among these3; formalFA4NOTRUN and no universal tradeoff theorem.
+Owner D09 physical-stationkeeping premise withdrawn, defined visiblebrace fallback
+authorised but explicitly unspent until round returns. TWO packages pending:
+P-A committed saturatedmotor+visiblebrace; P-Bc10linear+visiblebrace/baseline
+provenance/regeneration/lurch rederive. Do not choose/adopt/implement now.
+Futurebrace must be visible designed state, input release/unrelease, snapshot/
+restore audited and explicit internal hold momentum sumzero in completeF56.
+No external support or load fudging authorised. No such mechanic implemented here.
+
+FA6 addendum DECIDED legitimate variance: player timing ONLY, published onsets
+[0,4,8,12,16,20,24,28,32,36]ticks, before anyFA6run. One seed305419896 (existing
+public fixture seed), spawn/geometry/physics fixed; no jitter/noise/seed variation.
+Provisional pulse60ticks and fixed300tick horizon from original60+240 proposal
+retained; released until onset, L60ticks, release to same endtick. Geometry/success
+proposal still underB04/NOTmeasured; 10runs/6–8target unchanged. No FA6 executed.
+No post-result list tuning. D07phone queued; M0waiver does notcarry. AC202/FA5
+parallel if this last round extends, not started in this one bounded increment.
+STOP afterA/B/C for owner package choice;8/18 movement0, tenNOTRUN, no Phase3/A/
+residual/M2/camera/captures/tolerance/epsilon/mass/weight changes.
