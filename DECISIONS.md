@@ -1016,3 +1016,33 @@ to Sim. All startup/transient durations, pending/drop and full extra ticks are
 retained. This is report-only nominal-FPS identification, NOT a solver tolerance,
 velocity epsilon, changed sampling or weakened normative acceptance condition.
 A mislabeled60FPS frame fixture under expected30 remains a mandatory rejection.
+
+## R17 Phase2 measured — eight of eighteen, not M1 completion
+
+CI40818428101 @e1934ed: public job123264928010 SUCCESS; M0 CI40818428107 SUCCESS
+514/0+Android. Overall M1 RED ONLY original required F47. Independent raw stream,
+per-tick hashes/results x3 and real body-changing tick0 LEFT bit falsification
+verified. Attempt1 SUCCESS as a SAME-BUILD observation; no cross-architecture,
+all-preset, soak or feel acceptance implied. Full measured metadata/18row ledger:
+.review/m1_r17_phase2_evidence.json; raw public artifact12873442495 SHA256
+0adba3ab612a4d8e5a31c750b50a6afbabcbda2ea1e3e738a3f8b13ded7b1f9e.
+Actual frame callback streams first600 identical, full extra ticks/startup clocks
+retained. Public9053/0, frame30 308/0, frame144 1446/0. Source Python140; four new
+matrix-scope adversarial controls make144 local, awaiting exact-head CI. Other
+components931/4897/381/237/136/80, M0 514. Phase1 had131Python,0/18,attempts0;
+Phase2 now8/18,attempt1. No test-family count is a gate or determinism substitute.
+Owner authorizes measured row upgrades; F15 guard now permits ONLY exact
+(gate, PASS(measured runtime), CI+artifact-row) triples for1/2/3/9/10/11/12/13,
+plus supporting A8 baseline alias (NOT9/18). Borrowed-row citations, old real run,
+unrun creature gates and generic PASS still rejected. Original tests/floor12 and
+FA-3/4/5/6 NOT RUN protection unchanged. All ten remaining runtime rows explicitly
+NOT RUN with reasons; no 200run/7200tick/capture/perf/repeatability fabrication.
+F41 full-body and per-body/pass count buckets measured, artifact12873517463.
+Main A buckets vary substantially INSIDE a single signature; all exact-constant
+flags false. Baseline identical counts retain different observed pose drifts.
+F41 OPEN, not sampling-artifact closure or pose-causal claim. F50 spawn confound
+retired per owner; F47/F49/F50/F51 CLOSED and FA-5 untouched. Permanent pre-clamp
+motor return observed, but requested passive900/0 intervention has no passive
+Slug joint to change. M1-D05 motor-return direction question sent; NO remedy
+adopted, no stronger diagnostic stiffness intervention invented. Phase3 settle/
+lurch blocked on that owner product choice; Phase2 required no wait and is done.

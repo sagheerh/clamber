@@ -1,6 +1,23 @@
-# M1 acceptance matrix — scaffold, NOT approval evidence
+# M1 acceptance matrix — scoped measured evidence, NOT milestone approval
 
-**Status: independent math unit tests PASS; all M1 creature runtime acceptance gates NOT RUN.**
+## Current R17 — 8/18 runtime rows measured; M1 remains RED
+
+Phase1 CI40816607995: F52/F53/F54 and diagnostic sweep measured, 0/18;
+Phase2 CI40818428101 at commit e1934ed (same-head M0 CI40818428107):
+rows1,2,3,9,10,11,12,13 measured, exact scoped citations below. Ledger:
+`.review/m1_r17_phase2_evidence.json`; both reports are OUR CI observations,
+not copied reviewer work orders. Attempt1 SUCCESS: same-build complete Slug x3
+full-byte/hash/result equality, documented single-bit physical falsification.
+No cross-architecture/feel acceptance inferred. Overall M1 RED only F47; no bypass.
+Other10 runtime rows NOT RUN. Public Sim/F45 now implemented; historical stub/
+zero-attempt statements below are superseded. Full INV/five-fakes/A12 still pending.
+F47/F49/F50/F51 remain CLOSED; FA-5 unchanged. F41 bucket condition unsatisfied:
+within-bucket drift is variable, so no sampling-artifact or pose-causal closure.
+Owner motor-return decision pending; no remedy/retune. See PROGRESS for exact
+counts, drift/torque tables and retained historical owner F30 wording.
+
+
+**Status: independent math units PASS; R17 runtime rows8/18 measured. Remaining10 runtime rows NOT RUN.**
 
 M0 was landed separately in PR [#1](https://github.com/sagheerh/clamber/pull/1),
 merge commit `c641990be2d77c57c223bc7cbc54d0097c3d8816`. Its closeout is approved
@@ -43,7 +60,7 @@ Provenance: `docs/CLAMBER_REVIEW_AGENT.provenance.md`. **M1-B02 RESOLVED
 | INV-02 | Only two-bit gameplay mask; E2 router read and InputEvent grep outside ui | NOT RUN | Gameplay router not implemented |
 | INV-03 | No global/unseeded RNG in sim/run/tower; E1 | NOT RUN | scripts/review_static.py subset only; full implementation review outstanding |
 | INV-04 | No solver transcendentals; E1 | NOT RUN | scripts/review_static.py subset only; full implementation review outstanding |
-| INV-05 / A9.2 | Fixed 1/60 via accumulator, no raw frame delta; E2 | NOT RUN | Point/link clock primitive only; tests/sim/test_integration.gd; full Sim runtime review not executed |
+| INV-05 / A9.2 | Fixed 1/60 via accumulator, no raw frame delta; E2 | NOT RUN | Public accumulator/runtime measured in R17; full semantic INV review still outstanding |
 | INV-06 | Tuning resource owns all core numbers; E1 plus spot-read | NOT RUN | scripts/review_static.py subset only; full implementation review outstanding |
 | INV-07 | No screens beyond S00–S16 or monetised gameplay; E1/E2 | NOT RUN | Full M1 scope review outstanding |
 | INV-08 | Nothing blocks first flag; E2/manual run | NOT RUN | First-flag loop not implemented |
@@ -51,23 +68,23 @@ Provenance: `docs/CLAMBER_REVIEW_AGENT.provenance.md`. **M1-B02 RESOLVED
 | INV-10 | Cosmetics cannot alter physics; E2 diff of both paths | NOT RUN | Full M1 code-path review outstanding |
 | M0 regression | Preserve original 475 engine checks and all existing tests; separate M0 regression workflow | PASS (regression only) | CI40639067949: 476 engine +13 Python; original475 checks preserved; floor now476 (F16) |
 | A8 test-count floor | At least 476 engine +13 original Python checks =489; no count reduction without a reviewed DECISIONS.md explanation | PASS (count floor only) | CI40639067949; scripts/check_m0_regression.py; F16 raises floors to476/489 |
-| A8 replay baseline | M1+ replay matches a genuinely generated committed baseline; unexplained changes fail CI | NOT RUN | No M1 baseline exists |
+| A8 replay baseline | M1+ replay matches a genuinely generated committed baseline; unexplained changes fail CI | PASS (measured runtime) | CI40818428101 .review/m1_r17_phase2_evidence.json#row13 |
 | A5.6 / A10 five-fakes | Hunt all five: hollow test, ticked box, weakened gate, stub that passes, borrowed artifact; cite locations/evidence for each | NOT RUN | Full definitions vendored; procedure not yet executed |
 | A12 verdict/review | Produce .review/m1_verdict.md and .json plus formal PR review before signoff | NOT RUN | No verdict or approval claimed |
-| Engine / architecture | Real Godot4.7.2 import, M0 regression suite unchanged, core remains headless; static scans enforce RNG/math/node/input restrictions | NOT RUN for M1 | None; M0-only results are not M1 proof |
+| Engine / architecture | Real Godot4.7.2 import, M0 regression suite unchanged, core remains headless; static scans enforce RNG/math/node/input restrictions | PASS (measured runtime) | CI40818428101 .review/m1_r17_phase2_evidence.json#row1 |
 | A9.1 / A9.6 static restrictions | Recursive core/sim, core/run, core/tower scans for RNG/clock/frame sources, raw delta callbacks and solver transcendentals; scan scripts AND scene node types | STATIC CHECK ONLY | scripts/review_checks.sh; no runtime proof |
-| A9.2 accumulator | Fixed 1/60, outer accumulator, no raw frame delta in solver, catch-up/drop as GDD §4.2 | NOT RUN | Point/link clock primitive only; tests/sim/test_integration.gd; full Sim runtime review not executed |
-| A9.3 injected RNG | Preserve seed parameter in Sim.setup and explicitly inject seeded xoshiro128**; stub signature alone is insufficient | NOT RUN | Sim remains a stub |
+| A9.2 accumulator | Fixed 1/60, outer accumulator, no raw frame delta in solver, catch-up/drop as GDD §4.2 | PASS (measured runtime) | CI40818428101 .review/m1_r17_phase2_evidence.json#row2 |
+| A9.3 injected RNG | Preserve seed parameter in Sim.setup and explicitly inject seeded xoshiro128**; stub signature alone is insufficient | PASS (measured runtime) | CI40818428101 .review/m1_r17_phase2_evidence.json#row3 |
 | AC-201 | No-input trace shows settling AND sleep within ≤4 s; record sleep tick and velocities using tuning thresholds | NOT RUN | None |
 | AC-202 | Maximum absolute limb-length error ≤0.05 WU over a two-minute run; assert and log measured maximum | NOT RUN | None |
 | AC-204 | 200-run soak; zero NaN/∞, log all runs/seeds and failures; do not silently heal/discard non-finite events from the record | NOT RUN | None |
-| Three presets / §16.1 | Three authored presets, identical recorded L/R pattern, three different motions; 10 s capture for EACH, plus shared input/seed and trace references | NOT RUN | No presets or captures implemented |
+| Three presets / §16.1 | Three authored presets, identical recorded L/R pattern, three different motions; 10 s capture for EACH, plus shared input/seed and trace references | NOT RUN | Presets implemented; divergence/captures still not executed |
 | Tick cost / §10.4 | Measured solver tick ≤3.0 ms at 30 bodies; record actual constraint count (GDD budget:120), hardware/build and timing method; measure/report per-tick+per-frame snapshot mode versus any frame-only candidate without weakening atomicity | NOT RUN | No timing measurement; CI timing alone is not reference-device evidence |
-| A9.4 replay ×3 | Same initial state/seed/tuning and tick-indexed input log replayed three times; exact matching state hashes and result fields | NOT RUN | No M1 baseline/hash |
-| A9.4 two-second stall | Inject a two-second frame stall into the accumulator; log catch-up/drop behavior and compare at equal simulated tick counts with identical tick-indexed inputs | NOT RUN | None |
-| A9.5 two frame conditions | Vary frame DELIVERY with --fixed-fps 30/144 if supported, otherwise windowed vs headless, never solver tick_hz (fixed60); record exact commands and support probe; compare identical simulated tick counts/input stream, not equal wall duration after dropped steps | NOT RUN | Conditions/protocol must be recorded before execution |
-| A9.7 mandatory falsification | Flip exactly one documented input bit at one documented tick; demonstrate a DIFFERENT hash from the unmodified baseline; fail if equal | NOT RUN | None |
-| A9.7 baseline / CI regression | Generate baseline with real engine, commit fixture identity/hash/tuning fingerprint; CI must reject unexplained hash changes and require a linked DECISIONS.md explanation for an intentional change | NOT RUN | Baseline deliberately absent, not zero or invented |
+| A9.4 replay ×3 | Same initial state/seed/tuning and tick-indexed input log replayed three times; exact matching state hashes and result fields | PASS (measured runtime) | CI40818428101 .review/m1_r17_phase2_evidence.json#row9 |
+| A9.4 two-second stall | Inject a two-second frame stall into the accumulator; log catch-up/drop behavior and compare at equal simulated tick counts with identical tick-indexed inputs | PASS (measured runtime) | CI40818428101 .review/m1_r17_phase2_evidence.json#row10 |
+| A9.5 two frame conditions | Vary frame DELIVERY with --fixed-fps 30/144 if supported, otherwise windowed vs headless, never solver tick_hz (fixed60); record exact commands and support probe; compare identical simulated tick counts/input stream, not equal wall duration after dropped steps | PASS (measured runtime) | CI40818428101 .review/m1_r17_phase2_evidence.json#row11 |
+| A9.7 mandatory falsification | Flip exactly one documented input bit at one documented tick; demonstrate a DIFFERENT hash from the unmodified baseline; fail if equal | PASS (measured runtime) | CI40818428101 .review/m1_r17_phase2_evidence.json#row12 |
+| A9.7 baseline / CI regression | Generate baseline with real engine, commit fixture identity/hash/tuning fingerprint; CI must reject unexplained hash changes and require a linked DECISIONS.md explanation for an intentional change | PASS (measured runtime) | CI40818428101 .review/m1_r17_phase2_evidence.json#row13 |
 | §10.6 repeatability | Fixed scenario 10000 ticks, 100 local repeats; recorded 60 s cross-architecture/device replay and 200-run soak tracked separately | NOT RUN | No device/architecture evidence; no M0 waiver carries forward |
 | FA-1 | Collision diameter at least15px and head30px at width-derived150px/WU; analytic only, not camera/device evidence | PASS (analytic only) | CI40677962012; $RUNNER_TEMP/m1-owner-geometry.json |
 | FA-2 | Every shipped limb length has aspect ratio3:1..12:1; analytic geometry only | PASS (analytic only) | CI40677962012; $RUNNER_TEMP/m1-owner-geometry.json |

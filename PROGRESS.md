@@ -1,6 +1,6 @@
 # CLAMBER progress
 
-## Current milestone: M0 — APPROVED / COMPLETE (owner override); M1 — IN PROGRESS / production definitions and contact components, coupled gates NOT RUN
+## Current milestone: M0 — APPROVED / COMPLETE (owner override); M1 — IN PROGRESS / 8 of 18 runtime gates measured; creature feel gates NOT RUN
 
 Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 `docs/ui/CLAMBER_UI.jpeg`. M0 is accepted by the GDD owner under M0-D07, dated 2026-10-28. Verdict:
@@ -8,7 +8,117 @@ Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R16 — components accepted; M1 sustained-support gate RED
+### Current R17 — Phases1/2 measured; 8/18 runtime rows, M1 still RED
+
+Reviewer branch completion plan/read-only R17 review were read with git show;
+neither reviewer artifact was copied, committed, merged or rebased. Work order
+is NOT evidence. F47/F49/F50/F51 remain CLOSED; FA-5 unchanged; F50 retires the
+landing/spawn confound. No physics/tuning/damping/sampling/remedy change.
+
+**Phase1** commit2ddfe25 / CI40816607995 / M0 CI40816607997:
+0/18 runtime rows, complete-creature attempts0. F52 BOTH per-tick AND net per-body
+COM from the saved start-of-dwell snapshot must remain strictly below SAME.001WU
+for30 ticks. Any failure/input resets origin+count; origin deep snapshot/restored.
+
+| F52 translated fixture | per-tick WU | net30 WU | old sleep tick | fixed sleep tick |
+|---|---|---|---|---|
+| settled | 9.337328797581247e-6 | .0002801198639274374 | 29 | 29 |
+| slow slide | .0005 | .015 | 29 | none in600 |
+
+Ticks are zero-based. Actual free-hinge sleep events remain61/210/390, wakes180/360;
+partial-dwell/asleep restore continuations still exact. At Phase1 ONLY free-hinge
+composition used sleep; Phase2 makes F52 reachable with motors/live spring.
+Phase1 counts131Python/931mechanics/4897sleep/381math/237contact/136analytic/80load;
+M0 514/0+Android. Source evidence `.review/m1_r17_phase1_evidence.json`.
+F53 renamed dvx_direction_reversals (NOT positive-vx sign changes). F54 preserves
+zero self-contact maxima and explicitly calls them UNIT-ONLY, not scale validation.
+
+**F48 diagnostic** last300 of6000, per-joint pre-drive signed contributions BEFORE
+net torque clamp; torque unit mass*WU^2/s^2. Slug has exactly one L MOTOR joint.
+
+| pose / passive stiffness | drift px/s@150 | mean abs(q) rad | spring mean | damping mean |
+|---|---|---|---|---|
+| before /900 | 3.5133210565803203 | .8428560852916004 | -2022.854604699841 | -141.2507297496081 |
+| before /0 | 3.5133210565803203 | .8428560852916004 | -2022.854604699841 | -141.2507297496081 |
+| after /900 | 3.9345242550809765 | .8425338732724178 | -2022.0812958538024 | -108.72746136803043 |
+| after /0 | 3.9345242550809765 | .8425338732724178 | -2022.0812958538024 | -108.72746136803043 |
+| free-hinge after | .08403595917823123 | n/a | n/a | n/a |
+
+Both actuated arms STILL have spring_return_live=true: passive stiffness900->0
+changes NO Slug joint (there are zero passive joints); motor return uses2400.
+Mean clamped drive torque is -1260 in all four actuated arms. Sweep does NOT prove
+passive spring causality or remove the motor return. Equilibrium remains unset.
+M1-D05 QUESTION SENT with numbers: settled-pose motor return, weaker return, or
+no zero-input motor return? NO remedy selected/adopted; Phase2 independent and
+explicitly authorized immediately after question. Phase3 settle/lurch awaits owner.
+
+**Phase2** runtime source commit e1934ed / CI40818428101, public job123264928010
+SUCCESS; same-head M0 CI40818428107 SUCCESS514/0+Android. Overall M1 RED ONLY F47.
+Public Sim now composes actual actuated solver + F52 sleep, original accumulator
+(max3, dropped excess, fixed1/60), one injected xoshiro128**, explicit terrain/
+materials. Original public M0 signatures retained; failure signal/status, no
+silent healing. Complete clock/creature/contacts/constraints/motors/sleep origin/
+RNG snapshots and atomic detached restore. F45 .05/.6 legacy fields documented
+UNUSED/SUPERSEDED, not deleted or retuned. No UI/platform/engine clock dependency.
+
+Determinism **attempt1 SUCCESS**, same-build complete Slug (NOT all presets or
+cross-architecture acceptance): three600tick full streams31,131,584bytes EACH,
+byte-identical at every tick, public integer final hash3535650661 x3, SHA256
+`d735ea5f596f9a7b9bdfea0acee9b666a4e364e670f21dba9556985b7bfd19c8`.
+Tick0 ONLY LEFT bit1 flipped0->1 changes actual bodies and final SHA256 to
+`0f0f93a619d86a62f7485f3cbfcc2e0d7d19c1a76a609ab1e8e81c5a009fcf99`.
+No nondeterminism failure recorded; earlier frame support/endpoint protocol errors
+are retained, NOT hidden or relabelled creature-replay failures. Public assertions
+9053/0, actual30FPS308/0 and144FPS1446/0. Baseline generated from pinned CI,
+committed, then STRICTLY matched; linked DECISIONS hashes required for any update.
+
+Two-second stall:3 steps,1.95s dropped,0 pending; same complete solver at tick3.
+Actual --fixed-fps30/144 callbacks, physics stays60:301/1439 frames,601/600 actual
+ticks; compare SAME first600 physical+RNG tick bytes, retain601st tick/full clock.
+Actual startup/transient frames retained, never overwritten by nominal dt.
+Modal seconds .03333333333333333/.006944444444444445; nominal FPS identity uses
+rounded reciprocal only for capability REPORT, never modifies delivered duration.
+Complete-Sim hash includes delivery clock, so frame/stall comparisons explicitly
+compare full solver+RNG streams and separately retain distinct pending/drop clocks.
+F52 public live-spring zero-input600 stays awake, max dwell2 (not an FA-4 run).
+
+**Runtime status8/18** (source ledger `.review/m1_r17_phase2_evidence.json`):
+rows1 engine/architecture,2 accumulator,3 RNG,9 replayx3,10 stall,11 frame delivery,
+12 physical single-bit falsification,13 baseline regression measured. Other10
+NOT RUN: AC-201/202/204; all-preset divergence/captures; tickcost; cross-architecture
+repeatability; FA-3/4/5/6. Full INV/five-fakes/A12 still pending. Source Python140;
+FOUR new exact-scope matrix controls make144 locally; final-head CI must repeat.
+Component counts unchanged931/4897/381/237/136/80 and M0 514/0. Guard extends F15
+ONLY exact measured gate/status/CI+row citations; original controls and NOT RUN
+floor12 remain. Supporting A8 baseline alias is NOT a ninth runtime row.
+
+**F41 count buckets** last300, with full per-body/pass(I,C,A) signatures retained
+in the ledger/raw artifact. In actuated A/B, head both passes(2,3,1), motor pass1
+(2,3,1); motor pass0 A=(2,3,1), B=(2,3,2). Foot before:pass0(2,3,3),pass1(1,2,2);
+foot after:both passes(1,2,2). Baselines have identical complete count signatures
+(head/motor both(2,3,3), foot pass0(2,3,3),pass1(1,2,2)).
+
+| pose / bucket | ticks | mean COMdx WU/tick | mean px/s |
+|---|---|---|---|
+| before actuated A |267| .0003942677977332723 |3.5484101795994505|
+| before actuated B |33| .00035882423912808966 |3.229418152152807|
+| after actuated A |250| .0004503289211869022 |4.05296029068212|
+| after actuated B |50| .0003713715641194736 |3.3423440770752624|
+| before baseline |300| -7.1751877234127456e-6 |-.06457668951071471|
+| after baseline |300| 9.337328797581247e-6 |.08403595917823123|
+
+Dominant A bucket is NOT constant: before dx range[.000335495161399483,
+.0006785071366395335], after[.0003625309958852366,.0007047542330999346].
+All exactly_constant_within_bucket flags false. F41 stays OPEN; count buckets do
+not isolate sampling as sole mechanism; no forced pose-causal claim. Spawn confound
+remains retired, not reopened. Per-body buckets remain in spring-report.json.
+
+Artifacts CI40818428101: public12873442495 (8,523,538bytes), full spring+bucket raw
+12873517463 (109,653,804bytes); checksums/metadata in committed Phase2 ledger.
+No raw/binary artifacts in Git. No captures/M2/camera/waivers or tuning changes.
+Next SINGLE milestone: Phase3 creature acceptance after owner motor-return choice.
+
+### Historical R16 — superseded by current R17 status above
 
 - Mechanics **931** checks, Python106 and M0 **514/0** are the accepted R15
   component counts. The preliminary921 subset is historical, NOT the current

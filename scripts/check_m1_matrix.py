@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Enforce the current M1 runtime-claim freeze, not runtime acceptance itself."""
+"""Enforce scoped measured-runtime claims; the guard itself is not evidence."""
 import hashlib
 import re
 import sys
@@ -26,6 +26,17 @@ ANALYTIC_CITATION = re.compile(
 # Success scopes are exact gate/status/citation triples, never vocabulary guesses.
 PENDING_STATUSES = {'NOT RUN', 'NOT RUN for M1', 'STATIC CHECK ONLY'}
 HEADER = ['Gate / source', 'Required acceptance evidence', 'Status', 'Evidence reference']
+# R17 owner authorizes measured runtime upgrades ONLY for these exact gate/status/citation triples.
+RUNTIME_MEASURED_STATUS = "PASS (measured runtime)"
+RUNTIME_MEASURED = {'Engine / architecture': 'CI40818428101 .review/m1_r17_phase2_evidence.json#row1',
+ 'A9.2 accumulator': 'CI40818428101 .review/m1_r17_phase2_evidence.json#row2',
+ 'A9.3 injected RNG': 'CI40818428101 .review/m1_r17_phase2_evidence.json#row3',
+ 'A9.4 replay ×3': 'CI40818428101 .review/m1_r17_phase2_evidence.json#row9',
+ 'A9.4 two-second stall': 'CI40818428101 .review/m1_r17_phase2_evidence.json#row10',
+ 'A9.5 two frame conditions': 'CI40818428101 .review/m1_r17_phase2_evidence.json#row11',
+ 'A9.7 mandatory falsification': 'CI40818428101 .review/m1_r17_phase2_evidence.json#row12',
+ 'A9.7 baseline / CI regression': 'CI40818428101 .review/m1_r17_phase2_evidence.json#row13',
+ 'A8 replay baseline': 'CI40818428101 .review/m1_r17_phase2_evidence.json#row13'}
 EXCEPTIONS = {'M0 regression': 'PASS (regression only)',
               'A8 test-count floor': 'PASS (count floor only)'}
 
@@ -60,7 +71,9 @@ def validate_matrix(text):
         success = SUCCESS.search(' '.join(cells))
         prefix = f'line {number} ({gate})'
         analytic = gate in ANALYTIC_GATES and status == ANALYTIC_STATUS
-        if status not in PENDING_STATUSES and status != EXCEPTIONS.get(gate) and not analytic:
+        measured = (gate in RUNTIME_MEASURED and status == RUNTIME_MEASURED_STATUS
+                    and evidence == plain(RUNTIME_MEASURED[gate]))
+        if status not in PENDING_STATUSES and status != EXCEPTIONS.get(gate) and not analytic and not measured:
             errors.append(f'{prefix}: status not allowlisted: {status!r}')
         if status in EXCEPTIONS.values() and (status != EXCEPTIONS.get(gate) or not CITATION.search(evidence)):
             errors.append(f'{prefix}: scoped status requires its exact gate and run/commit evidence')
@@ -70,12 +83,12 @@ def validate_matrix(text):
             errors.append(f'{prefix}: analytic-only status needs CI run or geometry report path')
         if success and (not evidence or re.match(r'^None\b', evidence, re.I)):
             errors.append(f'{prefix}: success token with empty/None evidence')
-        if RUNTIME.search(gate) and success:
+        if RUNTIME.search(gate) and success and not measured:
             errors.append(f'{prefix}: runtime acceptance success claim forbidden; keep NOT RUN')
         if success:
             expected = EXCEPTIONS.get(gate)
             if not ((expected and status == expected and CITATION.search(evidence)) or
-                    (analytic and ANALYTIC_CITATION.search(evidence))):
+                    (analytic and ANALYTIC_CITATION.search(evidence)) or measured):
                 errors.append(f'{prefix}: success requires a scoped regression/count-floor status and run/commit evidence')
     if not rows:
         errors.append('acceptance table missing or empty')
@@ -110,7 +123,7 @@ def main():
         print('FAIL M1 matrix/pack: ' + error, file=sys.stderr)
     if errors:
         return 1
-    print('PASS: M1 claim-freeze matrix guard; owner pack SHA-256 / 379 lines verified.')
+    print('PASS: M1 scoped-evidence matrix guard; owner pack SHA-256 / 379 lines verified.')
     return 0
 
 
