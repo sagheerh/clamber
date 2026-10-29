@@ -3,7 +3,7 @@ extends RefCounted
 ## Engineering composition, NOT public Sim. Awake CoupledLoadProbe remains unchanged.
 ## Sleeping rows never pretend parked/stale forces are a fresh awake force budget.
 const TUNING = preload("res://core/tuning.tres")
-var _probe := CoupledLoadProbe.new()
+var _probe: CoupledLoadProbe = CoupledLoadProbe.new()
 var _sleep := CreatureSleep.new()
 var _terrain: SdfGrid
 var _mass: float
@@ -19,9 +19,10 @@ func setup(
 	y: float,
 	friction: Array[float],
 	restitution: Array[float],
-	tuning: Tuning
+	tuning: Tuning,
+	actuated: bool = false
 ) -> Error:
-	var probe := CoupledLoadProbe.new()
+	var probe: CoupledLoadProbe = ActuatedLoadProbe.new() if actuated else CoupledLoadProbe.new()
 	var sleep := CreatureSleep.new()
 	if (
 		probe.setup(model, terrain, x, y, friction, restitution, tuning) != OK
@@ -112,7 +113,11 @@ func _advance(before: Dictionary, input_mask: int) -> Dictionary:
 				return {"status": ERR_INVALID_DATA}
 			_sleep.max_body_com_displacement_wu = TUNING.physics_zero
 			return _row(tick, input_mask, wake_reason, new_grounded)
-	var trace := _probe.step()
+	var trace := (
+		(_probe as ActuatedLoadProbe).advance(input_mask)
+		if _probe is ActuatedLoadProbe
+		else _probe.step()
+	)
 	if trace.status != OK:
 		return trace
 	var after := _probe.snapshot()
@@ -179,3 +184,11 @@ func _parked_velocities(states: Array) -> bool:
 			):
 				return false
 	return true
+
+
+func constraint_snapshot() -> Dictionary:
+	return _probe.constraint_snapshot()
+
+
+func restore_constraints(state: Dictionary) -> Error:
+	return _probe.restore_constraints(state)

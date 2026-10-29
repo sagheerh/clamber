@@ -421,3 +421,18 @@ Head mass is derived (2.2 ×0.35 =0.77), never an independently authored mass.
 Visual fields are art-only, never physics inputs. FA readability scale150px/WU
 is not a camera choice; M1-B04 remains unresolved. Existing foot bias1.4 and static
 slip0.15 are unchanged. Any retuning requires owner approval with measurements.
+
+
+### F45 — superseded legacy sleep constants (owner F38/R14/R17)
+
+`physics_sleep_velocity_wu_s` (0.05) and `physics_sleep_grounded_s` (0.6) are
+legacy, UNUSED and SUPERSEDED for creature sleep. Kept for resource compatibility;
+not deleted, retuned, or an alternate runtime predicate. F38 showed a positional
+fixed point is not velocity rest. The owner-authorized additions are solely
+`sleep_still_displacement_wu` (.001WU) and `sleep_dwell_ticks` (30). F52 now applies
+the SAME displacement threshold per tick AND from the start-of-dwell body COM
+snapshot; either failure/input resets the dwell. Maximum PER BODY, not aggregate
+COM cancellation. Net dwell origin is part of snapshots/replay. No velocity
+epsilon, grounding predicate, hysteresis or added constant. Public Sim composes
+this with real motors and the unchanged live zero-input spring; sleeping is not
+proof that the spring-driven walking mechanism is fixed.

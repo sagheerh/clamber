@@ -939,3 +939,40 @@ actual arm, not by passive override alone. MotorDrive decomposition observes the
 same pre-drive q/omega; signed contributions before clamp, no operation-order or
 physics change. Await measured evidence before mechanism/remedy question.
 No runtime acceptance measured here; 0/18, complete-creature attempts0.
+
+## M1-R17-P2 — public Sim composition, preserving M0 signatures
+
+Owner explicitly authorizes Phase2 immediately after Phase1 question, independent
+of remedy answer. No spring/geometry/physics remedy adopted. Public setup retains
+(creature,tower,seed,tuning) and original void step/restore signatures; explicit
+last_status and failed signal expose failures; advance_frame returns status.
+CreatureTickSolver implements the existing PointLinkSolver accumulator interface
+using REAL ActuatedLoadProbe+CreatureSleep. Parent primitive integration is never
+called; original accumulator and math tests unchanged. FixedStepAccumulator drives
+ALL public ticks at1/60, held L/R bits applied before every catch-up step. Max3,
+all excess dropped. Signals publish only after frame commit; rollback errors
+propagate. Snapshot identity includes immutable creature/tower/physics settings;
+clock, solver bodies/endpoints, contact flags/load channels, XPBD multipliers,
+contact counts, joint rest/limits/impulses, held input, F52 dwell origin and RNG
+are serialized. Detached candidate reconstruction makes restore atomic.
+Seed reaches ONLY the owned xoshiro128** instance. Canonical 32-bit transition
+constants are algorithm identities derived from existing integer identities, not
+new physical knobs/tuning. Deterministic int64 seed expansion uses low/high words
+and their complements (zero state impossible); independent canonical vector test.
+No random consumers/physics perturbations invented where none are required.
+F45 documents legacy .05/.6 as unused and superseded, citing owner F38. No deletion
+or retune. result() now reports ONLY physics observations, not fabricated score,
+flags, tutorial or gameplay outcome. state_hash preserves int interface; SHA256
+state_digest accompanies every replay tick. Full snapshots include delivery clock;
+frame/stall comparisons use full solver+RNG streams at equal simulated ticks and
+retain/report distinct pending/dropped clocks rather than hiding their difference.
+Attempt1 fixture: Slug, actual legal+.01 spawn, explicit uniform diagnostic .9/.02
+material (NOT a new production default), seed305419896, 600ticks. Released first60,
+alternating L/R60tick blocks thereafter. Three runs compare FULL tick bytes,
+SHA256 and result fields. Falsification flips ONLY LEFT bit1 at tick0 (0->1),
+checks actual body motion changes AND different final digest; equality is RED.
+A9.5 separate protocol: actual SceneTree callbacks under --fixed-fps30/144, same
+600 RELEASED-input ticks with live spring; every delivered frame duration logged,
+solver remains60. Baseline intentionally missing initially; candidate generated
+ONLY from pinned CI, missing baseline makes public job RED until committed/rerun.
+All feel/creature runtime gates remain NOT RUN; no acceptance upgrade before CI.

@@ -593,3 +593,58 @@ func _body_impulse(_index: int) -> Dictionary:
 
 func _finish_velocities() -> Error:
 	return OK
+
+
+# Public-Sim adapter serialization only. No integration/projection changes.
+func constraint_snapshot() -> Dictionary:
+	var links: Array = []
+	for link in _links:
+		links.append(link.snapshot())
+	return {"links": links, "contact_counts": _contact_counts.duplicate(true)}
+
+
+func restore_constraints(state: Dictionary) -> Error:
+	if not state.get("links") is Array or state.links.size() != _links.size():
+		return ERR_INVALID_DATA
+	if not state.get("contact_counts") is Array:
+		return ERR_INVALID_DATA
+	for index in range(_links.size()):
+		var data: Variant = state.links[index]
+		if (
+			not data is Dictionary
+			or data.get("rest_length") != _links[index].rest_length
+			or data.get("compliance") != _links[index].compliance
+		):
+			return ERR_INVALID_DATA
+		var shadow := DistanceConstraint.new()
+		if (
+			(
+				shadow.setup(
+					_links[index].body_a,
+					_links[index].body_b,
+					_links[index].rest_length,
+					_links[index].compliance
+				)
+				!= OK
+			)
+			or shadow.restore(data) != OK
+		):
+			return ERR_INVALID_DATA
+	for row in state.contact_counts:
+		if not row is Dictionary:
+			return ERR_INVALID_DATA
+		for key in ["part", "velocity_pass", "intervals", "candidate_count", "active_count"]:
+			if not row.get(key) is int or row[key] < TUNING.physics_zero:
+				return ERR_INVALID_DATA
+		if (
+			row.part >= bodies.size()
+			or row.velocity_pass >= _tuning.physics_velocity_passes
+			or row.active_count > row.candidate_count
+		):
+			return ERR_INVALID_DATA
+	for index in range(_links.size()):
+		var status := _links[index].restore(state.links[index])
+		if status != OK:
+			return status
+	_contact_counts = state.contact_counts.duplicate(true)
+	return OK

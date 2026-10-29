@@ -84,3 +84,7 @@ func sample(x: float, y: float) -> Dictionary:
 		return {}
 	var length := sqrt(squared)
 	return {"distance": distance, "nx": dx / length, "ny": dy / length, "friction": _friction}
+
+
+func snapshot() -> Dictionary:
+	return {"rows": _rows.duplicate(true), "x": _x, "y": _y, "cell": _cell, "friction": _friction}
