@@ -1740,3 +1740,10 @@ runtime jobs remain manual-only, NOT passed/waived/closed; static checks stay
 active. Subsequent closeout commits [skip ci], new cell requires explicit marker
 or authorized manual dispatch, never auto repeats on PR or ordinary docs push.
 No source/resource change or additional diagnostic arm results from this fix.
+
+R22 closeout CI preservation: component/public regression jobs are automatic again
+for future ordinary changes; they were skipped on the one-cell marker run and
+are NOT rerun by this [skip ci] closeout. Historical convergence/spring/F56-reference/
+R21 experiment jobs remain manual-only so STOP does not silently launch old sweeps.
+Original test code/floors/F47 failure and public baseline remain intact; scheduling
+is not a waiver. No additional runtime invocation/arm after the R22 result.

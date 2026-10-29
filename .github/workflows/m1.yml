@@ -34,7 +34,7 @@ jobs:
       - name: Record scope of evidence
         run: echo '::notice title=M1 scaffold only::Static subset only. Runtime results belong exclusively to the public Sim job and measured matrix evidence. Soak, performance, captures, full semantic sweep/five-fakes/A12 remain pending.'
   math-foundations:
-    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.r22_only }}
+    if: ${{ !inputs.r22_only && !(github.event_name == 'push' && contains(github.event.head_commit.message, '[R22-once]')) }}
     name: M1 point/link unit tests (NOT creature determinism)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -454,7 +454,7 @@ jobs:
           retention-days: 7
 
   public-sim-runtime:
-    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.r22_only }}
+    if: ${{ !inputs.r22_only && !(github.event_name == 'push' && contains(github.event.head_commit.message, '[R22-once]')) }}
     name: M1 public Sim replay attempt1 and clock gates
     runs-on: ubuntu-24.04
     timeout-minutes: 15

@@ -1404,3 +1404,10 @@ No duration/hold/threshold/hysteresis/damping/geometry change adopted. D06/D07
 queued.8/18 movement0, ten runtime gates NOT RUN/unmoved/FA5 unchanged. Accepted
 determinism attempt1 same-build observation/cross-arch0 retained, no new attempt.
 NEXT single milestone ownerD08 decision/handoff only. No further experiment.
+
+R22 closeout CI preservation: component/public regression jobs are automatic again
+for future ordinary changes; they were skipped on the one-cell marker run and
+are NOT rerun by this [skip ci] closeout. Historical convergence/spring/F56-reference/
+R21 experiment jobs remain manual-only so STOP does not silently launch old sweeps.
+Original test code/floors/F47 failure and public baseline remain intact; scheduling
+is not a waiver. No additional runtime invocation/arm after the R22 result.
