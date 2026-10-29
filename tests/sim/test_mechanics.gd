@@ -11,6 +11,7 @@ func _initialize() -> void:
 	_limits()
 	_self_collision()
 	_composition()
+	_pair_composition()
 	print("M1 R15 mechanics components: %d checks, %d failures" % [_checks, _failures])
 	quit(0 if _failures == 0 else 1)
 
@@ -278,4 +279,66 @@ func _composition() -> void:
 	_check(
 		restored.advance(4).status != OK and before == var_to_bytes(restored.snapshot()),
 		"bad input leaves state unchanged"
+	)
+
+
+func _pair_composition() -> void:
+	# Isolated composition control: scatter all bodies except ONE real D10 pair.
+	# No terrain resolve/qualifying load is called or injected by this fixture.
+	var probe := _probe("Hopper")
+	var pairs := CreaturePresets.load_model("Hopper", TUNING).collision_pairs()
+	_check(not pairs.is_empty(), "real filtered self-pair fixture exists")
+	var ledger: Array = []
+	for index in range(probe.bodies.size()):
+		var body := probe.bodies[index]
+		var cx := (body.a.x + body.b.x) / 2.0
+		for point in [body.a, body.b]:
+			point.x += 10.0 * index - cx
+		var phases := {}
+		for phase in probe.position_phases():
+			phases[phase] = [0.0, 0.0, 0.0, 0.0]
+		ledger.append(phases)
+	var first: int = pairs[0][0]
+	var second: int = pairs[0][1]
+	var a := probe.bodies[first]
+	var b := probe.bodies[second]
+	var move_x := (a.a.x + a.b.x - b.a.x - b.b.x) / 2.0
+	var move_y := (a.a.y + a.b.y - b.a.y - b.b.y) / 2.0
+	for point in [b.a, b.b]:
+		point.x += move_x
+		point.y += move_y
+	_check(probe._extra_positions(ledger) == OK, "actual composition invokes self projection")
+	var geometry := SelfContact.geometry(a, b)
+	_check(
+		absf(geometry.distance - (a.radius + b.radius - .02)) < 1e-12,
+		"actual D10 overlap resolved, not a bypassed primitive"
+	)
+	_check(
+		ledger[first].self_contact != [0.0, 0.0, 0.0, 0.0],
+		"self position phase separately observable"
+	)
+	for point in [b.a, b.b]:
+		point.velocity_x = -geometry.nx
+		point.velocity_y = -geometry.ny
+	probe._self_impulses = []
+	for body in probe.bodies:
+		probe._self_impulses.append({"x": 0.0, "y": 0.0})
+	var px: float = _momentum(a)[0] + _momentum(b)[0]
+	var py: float = _momentum(a)[1] + _momentum(b)[1]
+	_check(probe._extra_velocities() == OK, "actual composition invokes self velocity response")
+	var j := probe._body_impulse(second)
+	_check(
+		j.x * geometry.nx + j.y * geometry.ny > 0.0,
+		"real self reaction retained separately from hinge/terrain"
+	)
+	_check(
+		(
+			absf(_momentum(a)[0] + _momentum(b)[0] - px) < 1e-12
+			and absf(_momentum(a)[1] + _momentum(b)[1] - py) < 1e-12
+		),
+		"composed self reaction conserves momentum"
+	)
+	_check(
+		not a.grounded and not b.grounded and not a.gripping and not b.gripping,
+		"self overlap never becomes fake terrain support/grip"
 	)

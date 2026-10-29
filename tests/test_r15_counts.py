@@ -3,7 +3,7 @@
 from copy import deepcopy
 import unittest
 from test_contact_trace import contact_fixture
-from load_legal_report import validate_counts, accepted_view, compare
+from load_legal_report import validate_counts, validate_spawn, accepted_view, compare
 
 
 def fixture():
@@ -57,6 +57,22 @@ class R15Counts(unittest.TestCase):
         self.assertEqual(set(adapted[0]['feet'][0]['position_delta_wu']), {'integration', 'distance', 'hinge', 'contact'})
         r[0]['feet'][0]['position_delta_wu']['angular'][0] = .01
         with self.assertRaises(ValueError): accepted_view(r)
+
+    def test_legal_spawn_claim_checked_against_actual_start_endpoints(self):
+        r = fixture()
+        bs = r[0]['feet'] + r[0]['other_bodies']
+        minimum = min(min(b['start_ay'], b['start_by'])-b['radius_wu'] for b in bs)
+        root = next(b for b in bs if b['part'] == 0)['start_ay']
+        for b in bs:
+            b['start_ay'] += .01-minimum
+            b['start_by'] += .01-minimum
+        r[0].update(diagnostic_spawn_y_wu=root+.01-minimum,
+                    diagnostic_authored_bottom_wu=minimum-root,
+                    diagnostic_lowest_initial_surface_wu=.01)
+        validate_spawn(r)
+        # All three metadata claims still look legal, but the actual foot is not.
+        r[0]['feet'][0]['start_by'] -= 1.0
+        with self.assertRaises(ValueError): validate_spawn(r)
 
     def test_missing_legal_evidence_not_a_measured_comparison(self):
         import tempfile

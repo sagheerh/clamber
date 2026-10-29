@@ -37,6 +37,20 @@ def validate_counts(rows):
     return regimes
 
 
+def validate_spawn(rows):
+    first = rows[0]
+    bodies = first['feet'] + first['other_bodies']
+    actual = min(min(b['start_ay'], b['start_by']) - b['radius_wu'] for b in bodies)
+    root = next(b for b in bodies if b['part'] == 0)['start_ay']
+    if not math.isfinite(actual) or abs(actual - .01) > 1e-15 or abs(root - first['diagnostic_spawn_y_wu']) > 1e-15:
+        raise ValueError('Claimed legal spawn disagrees with actual initial capsule geometry')
+    if abs(actual - first['diagnostic_lowest_initial_surface_wu']) > 1e-15 or abs(actual-root-first['diagnostic_authored_bottom_wu']) > 1e-15:
+        raise ValueError('Claimed authored bottom disagrees with initial endpoints/radii')
+    for r in rows:
+        if any(r[k] != first[k] for k in ('diagnostic_spawn_y_wu', 'diagnostic_authored_bottom_wu', 'diagnostic_lowest_initial_surface_wu')):
+            raise ValueError('Spawn metadata changed during the run')
+
+
 def count_summary(regimes):
     if not regimes:
         raise ValueError('No count evidence')
@@ -88,6 +102,7 @@ def compare(root):
                         abs(r['diagnostic_spawn_y_wu'] + r['diagnostic_authored_bottom_wu'] - .01) > 1e-15 or
                         r['diagnostic_position_iterations'] != 6 or r['diagnostic_static_slip_wu_s'] != .15 or r['sleep_implemented']):
                         raise ValueError('Legal pair metadata mismatch')
+                validate_spawn(rows)
                 regimes[name] = validate_counts(rows)
                 adapted = accepted_view(rows)
                 a, c = analyze(adapted), inspect(adapted)[0]
