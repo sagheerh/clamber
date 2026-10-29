@@ -8,7 +8,39 @@ Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R21 — BOTH predictions falsified; no remedy, runtime8/18 unchanged
+### Current R22 — exactly one missing cell authorized; result PENDING
+
+R22 reviewer source read via git show ONLY (not copied/merged). Both R21 arms
+accepted; owner's drive-as-brake MECHANISM withdrawn (F67); no seventh lever
+hypothesis. F61: nonzero late-window arms remain constraint-limited, including
+bound1 requested−21 /bound.006817925509442767 (3080.1157876576485x),300/300.
+Torque clamp still acts UPSTREAM on request; gain0 explicitly switches drive off;
+no claim coefficients never affect request/startup or no possible linear regime
+for arbitrary inputs. Drive-time error, actual per-pass angular correction rad,
+endpoint displacement WU retained as three permanent SEPARATE columns.
+
+Run ONLY gain0+upper90,6000ticks/default bound6/everything else unchanged. Existing
+flags compose on a process-local duplicate; committed resource40 unchanged.
+A dedicated r22_only manual CI dispatch skips ALL other runtime jobs; [skip ci]
+commits prevent automatic push/PR sweep reruns. Existing tests/failures are NOT
+waived/passed/closed by skipped jobs; full176 previous controls preserved plus4
+new reporter/protocol controls. No physics changes. Single cell report contains
+drift/thrust/fullF56/three limit measures and audited inertness premise. No new
+approximate-drift epsilon. STOP after result regardless of branch; no sweeps.
+
+F68 recorded as OWNER structural finding for tested released-input actuated fixture
+at defaults: measured creep contradicts desired zero-input settle/sleep≤4s, not
+merely a band choice. Formal AC201 still NOT RUN; no universal proof over untested
+poses/masses/bands or acceptance rewrite inferred. D08 now station-keeping/design
+choice; D06/D07 queued. Reviewer recommendation intended stop + owner-authored
+net-displacement duration + re-scoped sleep + station-keeping requirement recorded
+for OWNER decision only. No duration/threshold/hold mechanic invented/adopted.
+Pose/mass intervention NOT measured: wide-stop's3% delivery/25% drift changes do
+not mathematically bound arbitrary pose/mass designs. Historical2.95 minimum is
+only among four measured active configurations, not a universal angular-row floor.
+A/residual withdrawn/obsolete; no baseline regeneration/Phase3;8/18 movement0.
+
+### Historical R21 — BOTH predictions falsified; no remedy, runtime8/18 unchanged
 
 Measured source **48d54df**, [M140877081798](https://github.com/sagheerh/clamber/actions/runs/40877081798),
 limit job123458547461. Reviewer read via git show ONLY. Full evidence/complete

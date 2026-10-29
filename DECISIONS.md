@@ -1315,3 +1315,46 @@ F65 ownerD08 remains open, no assertion legal authored q0 unreachable; F66 measu
 bounds supersede nominal, F61 record-only, owner R20 propulsion claim withdrawn,
 R19 late stiffness0 remains VOID, A WITHDRAWN/residual OBSOLETE. Queue D08/D06/D07
 for owner; these decisions did not block diagnostics. No choice/remedy inferred.
+
+
+## R22 — one missing factorial cell, then unconditional STOP
+
+Read reviewer arena/5b72e4ab-clamber M1_R22_NO_SINGLE_LEVER_REVIEW via git show ONLY;
+never copy/merge reviewer artifact. Owner accepts both R21 arms/withheld failed
+report/binary64 re-audit and withdraws drive-is-a-brake as a mechanism (F67).
+Keep numeric correlations only; non-monotone results do not isolate causal phase
+ordering or a universal35x floor. Three permanent columns: drive-time violation
+rad; actual per-pass/summed angular correction rad; original endpoint ledger WU.
+The erroneous.1444rad-per-pass claim is OWNER/reviewer's, now withdrawn: mean
+versus max and distributed versus repeated correction were both confused.
+
+F61 strengthened by bound1,−21/.006817925509442767≈3080.1157876576485,300/300:
+constraint cap sets final delivery in MEASURED nonzero late windows. Torque/gain
+clamp still sets request−21; gain0 switches it off. Original124/6000 stiffness0
+startup changes persist in record. Do not infer parameter irrelevance for all
+inputs/startup or impossible linear regime universally; NO constants changed.
+
+Authorize exactly gain0+upper90, fresh defaults otherwise,6000 ticks with fullF56
+and binary64/raw limit audits.90 exists only in process-local Tuning duplicate;
+40 resource/creature bytes checked vs74c629e before/after and nextcommit. No baseline
+rerun, other arms, free-hinge regeneration or subsequent sweeps. Manual r22_only
+CI mode skips other runtime jobs (not passed/waived/closed); commits use [skip ci]
+so automatic push/PR cannot silently rerun historical sweeps. Static controls run
+locally and in dedicated dispatch; original tests remain intact. STOP after report
+regardless of result. Inertness MUST be measured, not assumed from flags: zero
+requested/applied all6000 AND zero positional/velocity engagement/block impulse.
+If premise fails, do not mislabel that as inert-row-without-impulse solver defect.
+No invented approximate-baseline tolerance or solver epsilon.
+
+F68 OWNER structural finding for current measured actuated fixture/defaults:
+zero-input creep contradicts settle/sleep≤4s, wider90 insufficient (2.9500),
+nonzero late drives saturated. Formal AC201 gate remains NOT RUN/no upgrade;
+not a proof over every untested band/pose/mass. D08 owner options now include
+station-keeping: widening measured insufficient; pose/mass change unmeasured
+(authorability question, not bounded by wide90's3%/25% response); intended stop
+requires OWNER duration/net-displacement and revised sleep design if chosen.
+Reviewer recommends third option plus explicit station-keeping requirement/hold
+on release, recorded ONLY for owner decision. No acceptance reinterpretation,
+duration, sleep re-scope, hold, hysteresis or tuning adopted. D06 tutorial and
+D07 device tickcost queued. A/residual WITHDRAWN/OBSOLETE; no baseline/Phase3;
+8/18 movement0/FA5 unchanged. Only authorized next action is single missing cell.

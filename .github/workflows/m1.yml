@@ -1,5 +1,14 @@
 name: M1 independent foundations (not runtime acceptance)
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      r22_only:
+        description: 'R22 authorized single missing cell; skip historical runtime arms (not passed/waived)'
+        required: false
+        default: false
+        type: boolean
 permissions:
   contents: read
 jobs:
@@ -25,6 +34,7 @@ jobs:
       - name: Record scope of evidence
         run: echo '::notice title=M1 scaffold only::Static subset only. Runtime results belong exclusively to the public Sim job and measured matrix evidence. Soak, performance, captures, full semantic sweep/five-fakes/A12 remain pending.'
   math-foundations:
+    if: ${{ !inputs.r22_only }}
     name: M1 point/link unit tests (NOT creature determinism)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -330,6 +340,7 @@ jobs:
           retention-days: 7
 
   convergence-observation:
+    if: ${{ !inputs.r22_only }}
     name: R16 zero-input convergence observation (NOT runtime acceptance)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -388,6 +399,7 @@ jobs:
           retention-days: 7
 
   spring-observation:
+    if: ${{ !inputs.r22_only }}
     name: R17 spring mechanism diagnostic (NOT runtime acceptance)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -442,6 +454,7 @@ jobs:
           retention-days: 7
 
   public-sim-runtime:
+    if: ${{ !inputs.r22_only }}
     name: M1 public Sim replay attempt1 and clock gates
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -499,6 +512,7 @@ jobs:
           retention-days: 7
 
   external-momentum-prerequisite:
+    if: ${{ !inputs.r22_only }}
     name: R19 F56 complete external prerequisite (literal record retained)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -553,6 +567,7 @@ jobs:
           retention-days: 7
 
   limit-source-diagnostic:
+    if: ${{ !inputs.r22_only }}
     name: R21 wide stop then bound diagnostic (NOT runtime acceptance)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -604,4 +619,61 @@ jobs:
           path: |
             ${{ runner.temp }}/m1-limit/
             ${{ runner.temp }}/m1-limit-console.log
+          retention-days: 7
+
+  inert-source-diagnostic:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.r22_only }}
+    name: R22 single gain0 + wide90 cell (MANDATORY STOP)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: R22 single cell, full F56 and three separate limit columns
+        shell: bash
+        run: |
+          set +e
+          M1_INERT_REPORT_DIR="$RUNNER_TEMP/m1-inert" bash tests/run_m1_inert.sh > "$RUNNER_TEMP/m1-inert-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-inert-console.log" "$status" <<'PYLOG'
+          import sys
+          messages=[];current=''
+          for line in open(sys.argv[1]).read().splitlines():
+              if line.startswith('M1 R22') or 'ERROR' in line or 'FAIL' in line or 'ValueError' in line:
+                  for offset in range(0,len(line),3500):
+                      chunk=line[offset:offset+3500]
+                      if len(current)+len(chunk)+1>3500:
+                          messages.append(current);current=''
+                      current+=('\n' if current else '')+chunk
+          if current:messages.append(current)
+          assert len(messages)<=10, 'F56 annotation budget exceeded; full raw artifact retained'
+          for message in messages:
+              level='notice' if sys.argv[2]=='0' else 'error'
+              escaped=message.replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print(f'::{level} title=M1 R22 single inert-cell diagnostic::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r22-inert-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-inert/
+            ${{ runner.temp }}/m1-inert-console.log
           retention-days: 7
