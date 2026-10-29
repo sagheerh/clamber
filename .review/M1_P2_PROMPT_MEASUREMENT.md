@@ -15,6 +15,10 @@
 4. **One CI invocation per arm**, push-triggered (see D6), pinned to the head being measured.
 5. **Numbers, not narrative.** A gate that fails with a real number is a success for this session.
 
+**Execution order — do not improvise it:** **§9 (D6 launch path) FIRST**, because at `4796ec6` every R28 job
+is `workflow_dispatch`-gated and dispatch returns **403** here, so nothing can run until the push trigger is
+restored. Then **§3 (D0 control arm)**, then D1–D5, then D7. One CI invocation per arm.
+
 ---
 
 ## 1. Verify first, then trust
