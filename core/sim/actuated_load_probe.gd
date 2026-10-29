@@ -1,9 +1,6 @@
 class_name ActuatedLoadProbe
 extends CoupledLoadProbe
 ## R15 awake mechanics composition, NOT public Sim or completed runtime gates.
-## Configuration identity for the explicitly authorised brace-off control only.
-## Production/public Sim always uses true; no tuning resource/feel knob.
-var brace_enabled: bool = true
 var _joints: Array[AngularJoint] = []
 var _channels: Array[String] = []
 var _pairs: Array = []
@@ -12,9 +9,6 @@ var _drive_events: Array = []
 var _limit_events: Array = []
 var _position_events: Array = []
 var _self_events: Array = []
-var _brace_events: Array = []
-var _brace_x: float = TUNING.physics_zero
-var _brace_y: float = TUNING.physics_zero
 var _input_mask: int = TUNING.physics_zero
 
 
@@ -56,7 +50,6 @@ func advance(input_mask: int) -> Dictionary:
 
 func snapshot() -> Dictionary:
 	var result := super.snapshot()
-	result.brace_enabled = brace_enabled
 	result.angular_joints = []
 	for joint in _joints:
 		result.angular_joints.append(joint.snapshot())
@@ -64,15 +57,12 @@ func snapshot() -> Dictionary:
 
 
 func restore(state: Dictionary) -> Error:
-	if not state.get("brace_enabled") is bool or state.brace_enabled != brace_enabled:
-		return ERR_INVALID_DATA
 	if not state.get("angular_joints") is Array or state.angular_joints.size() != _joints.size():
 		return ERR_INVALID_DATA
 	for index in range(_joints.size()):
 		if (
 			not state.angular_joints[index] is Dictionary
 			or not _joints[index].valid_snapshot(state.angular_joints[index])
-			or (not brace_enabled and state.angular_joints[index].brace_active)
 		):
 			return ERR_INVALID_DATA
 	var status := super.restore(state)
@@ -80,8 +70,6 @@ func restore(state: Dictionary) -> Error:
 		return status
 	for index in range(_joints.size()):
 		_joints[index].impulse = state.angular_joints[index].impulse
-		_joints[index].brace_active = state.angular_joints[index].brace_active
-		_joints[index].brace_q = state.angular_joints[index].brace_q
 	return OK
 
 
@@ -91,9 +79,6 @@ func position_phases() -> Array:
 
 func _begin_tick() -> Error:
 	_drive_events = []
-	_brace_events = []
-	_brace_x = TUNING.physics_zero
-	_brace_y = TUNING.physics_zero
 	_limit_events = []
 	_position_events = []
 	_self_events = []
@@ -103,12 +88,6 @@ func _begin_tick() -> Error:
 	for joint in _joints:
 		joint.reset_tick()
 	for index in range(_joints.size()):
-		if _joints[index].update_brace(_input_mask, brace_enabled) != OK:
-			return ERR_INVALID_DATA
-		if _joints[index].brace_active:
-			if _hold(index, "before_integration") != OK:
-				return ERR_INVALID_DATA
-			continue
 		var event := MotorDrive.drive(
 			_joints[index], _input_mask, _channels[index], _tuning.motors_gain_default, _tuning
 		)
@@ -136,14 +115,7 @@ func _extra_positions(positions_ledger: Array) -> Error:
 			"q_rad": value.q,
 			"lower_rad": joint.lower,
 			"upper_rad": joint.upper,
-			"error_rad":
-			(
-				PlanarBasis.wrap_angle(value.q - joint.brace_q)
-				if joint.brace_active
-				else value.q - clampf(value.q, joint.lower, joint.upper)
-			),
-			"brace_active": joint.brace_active,
-			"brace_q": joint.brace_q,
+			"error_rad": value.q - clampf(value.q, joint.lower, joint.upper),
 			"parent_before": _point_positions(joint.parent_body),
 			"child_before": _point_positions(joint.child_body),
 		}
@@ -153,6 +125,7 @@ func _extra_positions(positions_ledger: Array) -> Error:
 		event["child_after"] = _point_positions(joint.child_body)
 		_position_events.append(event)
 	_book_positions(before, positions_ledger, "angular")
+	_record_length_phase("after_final_angular")
 	before = _positions()
 	for pair in _pairs:
 		if (
@@ -163,16 +136,13 @@ func _extra_positions(positions_ledger: Array) -> Error:
 		):
 			return ERR_INVALID_DATA
 	_book_positions(before, positions_ledger, "self_contact")
+	_record_length_phase("after_final_self_contact")
 	return OK
 
 
 func _extra_velocities() -> Error:
 	for index in range(_joints.size()):
 		var joint := _joints[index]
-		if joint.brace_active:
-			if _hold(index, "velocity") != OK:
-				return ERR_INVALID_DATA
-			continue
 		var before := joint.impulse
 		var value := joint.state()
 		if value.is_empty():
@@ -235,12 +205,6 @@ func _step(before: Dictionary) -> Dictionary:
 	result.input_mask = _input_mask
 	result.motor_gain = _tuning.motors_gain_default
 	result.drive_events = _drive_events
-	result.brace_enabled = brace_enabled
-	result.brace_events = _brace_events
-	# SUBSET of drive_internal (before integration) / internal (velocity passes).
-	# Measured from endpoints, never zeroed or counted again in full F56.
-	result.momentum_budget.brace_internal_impulse_x_ns = _brace_x
-	result.momentum_budget.brace_internal_impulse_y_ns = _brace_y
 	result.angular_limit_events = _limit_events
 	result.angular_position_events = _position_events
 	result.self_contact_events = _self_events
@@ -272,31 +236,3 @@ func _point_positions(body: CapsuleBody) -> Array:
 
 func _point_velocities(body: CapsuleBody) -> Array:
 	return [body.a.velocity_x, body.a.velocity_y, body.b.velocity_x, body.b.velocity_y]
-
-
-func _hold(index: int, stage: String) -> Error:
-	var joint := _joints[index]
-	var before_x := _momentum_x()
-	var before_y := _momentum_y()
-	var event := {
-		"joint": index,
-		"stage": stage,
-		"parent_part": bodies.find(joint.parent_body),
-		"child_part": bodies.find(joint.child_body),
-		"parent_positions": _point_positions(joint.parent_body),
-		"child_positions": _point_positions(joint.child_body),
-		"parent_before": _point_velocities(joint.parent_body),
-		"child_before": _point_velocities(joint.child_body)
-	}
-	var response := joint.hold_velocity()
-	if response.is_empty():
-		return ERR_INVALID_DATA
-	event.merge(response)
-	event.parent_after = _point_velocities(joint.parent_body)
-	event.child_after = _point_velocities(joint.child_body)
-	event.internal_x_ns = _momentum_x() - before_x
-	event.internal_y_ns = _momentum_y() - before_y
-	_brace_x += event.internal_x_ns
-	_brace_y += event.internal_y_ns
-	_brace_events.append(event)
-	return OK

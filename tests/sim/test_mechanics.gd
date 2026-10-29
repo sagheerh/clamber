@@ -227,7 +227,6 @@ func _probe(name: String) -> ActuatedLoadProbe:
 		friction.append(TUNING.physics_grip_friction)
 		bounce.append(TUNING.physics_foot_restitution)
 	var probe := ActuatedLoadProbe.new()
-	probe.brace_enabled = false  # Preserve original awake engineering motor controls.
 	_check(
 		probe.setup(model, _floor(), 0.0, 6.0, friction, bounce, TUNING) == OK,
 		"awake composition setup"

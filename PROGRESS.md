@@ -8,7 +8,25 @@ Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R25 — P-B ADOPTED / BRACE ACCEPTANCE FAILED / STOP / 8of18
+### Current R26 — BRACE REJECTED / LAST BOUNDED D1+D2 + F77 / 8of18
+
+Owner Option3, readonly reviewer1df02f5 §10. Brace implementation/state/snapshots/
+restore/hash/presentation/tests removed in one source commit; four P-B defaults
+unchanged (30/10/.5443327361211717/12), friction.9 untouched. Historical brace
+F56 column retained; rejection12.61773 vs8.55015px/s (+47.6%), end-release
++.224943 -> -.061297WU. No brace or new lurch trial; idle travel never input credit.
+Preregistered `.review/m1_r26_diagnostic_plan.md`: D1 four friction duplicates
+.9/.3/1.8/3.6 released, drift+thrust; D2 Hopper7200 baseline/ONE extra-distance
+arm, exact phases and literal-limb .05 unchanged; no diagnostic adoption.
+F77 parallel authored stance/drop/ledge/midair, frozen-N/load/normal/grip audit,
+unconditional termination/status/tick and independent events, no syntheticloads.
+New P-B-without-brace baseline/provenance + same-source strict replay required.
+Measurements PENDING. BOTH located causes => one subsequent fixed increment;
+EITHER inconclusive => Option2, OWNER authors AC201 number, AC202 honest failure.
+NO further measurement/sweeps/.05 widening/new slip/stiffness/damping/epsilon;
+no waiver/M2/camera/captures. Matrix remains8/18; old F47 red not waived.
+
+### Historical R25 — P-B ADOPTED / BRACE ACCEPTANCE FAILED / STOP / 8of18
 
 Adoption8d73597 sourceCI40895082337, ownerR25decision (readreview9957260only).
 BraceONdrift12.617730602141002px/s and ACTUALF52nosleep600public/6000idlerows:

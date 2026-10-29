@@ -140,9 +140,13 @@ static func _response(
 		var observation := {}
 		if observer.is_valid():
 			observation = _observation(body, u, index, intervals, sample)
+			observation.may_grip = may_grip
+			observation.material_friction = friction
+			observation.sample_friction = sample.friction
 		if sample.distance > body.radius + tuning.physics_contact_slop_wu:
 			if not observation.is_empty():
 				observation.active = false
+				observation.gripping_after = body.gripping
 				observer.call(observation)
 			continue
 		body.grounded = true
@@ -179,6 +183,7 @@ static func _response(
 		body.b.velocity_y += body.b.inverse_mass * u * (ny * bounce + nx * tangential)
 		if not observation.is_empty():
 			observation.active = true
+			observation.gripping_after = body.gripping
 			observation.retained = retained
 			observation.static_branch = absf(tangent) < tuning.physics_static_slip_wu_s
 			observation.positional_cleanup_n = correction / (dt * dt)

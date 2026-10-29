@@ -91,7 +91,6 @@ func _fa5() -> void:
 	var probe := ActuatedLoadProbe.new()
 	var twin := ActuatedLoadProbe.new()
 	for p in [probe, twin]:
-		p.brace_enabled = false  # Awake grip evidence independent of the brace/sleep gate.
 		assert(
 			(
 				p.setup(

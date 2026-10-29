@@ -454,8 +454,8 @@ jobs:
           retention-days: 7
 
   public-sim-runtime:
-    needs: [r25-baseline]
-    if: ${{ always() && (needs.r25-baseline.result == 'success' || needs.r25-baseline.result == 'skipped') && !inputs.r22_only && !(github.event_name == 'push' && contains(github.event.head_commit.message, '[R22-once]')) }}
+    needs: [r26-baseline]
+    if: ${{ always() && (needs.r26-baseline.result == 'success' || needs.r26-baseline.result == 'skipped') && !inputs.r22_only && !(github.event_name == 'push' && contains(github.event.head_commit.message, '[R22-once]')) }}
     name: M1 public Sim replay attempt1 and clock gates
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -463,19 +463,19 @@ jobs:
       GODOT_VERSION: 4.7.2-stable
     steps:
       - uses: actions/checkout@v5
-      - name: Download explicitly authorised R25 generated baseline (same source)
-        if: ${{ needs.r25-baseline.result == 'success' }}
+      - name: Download explicitly authorised R26 generated baseline (same source)
+        if: ${{ needs.r26-baseline.result == 'success' }}
         uses: actions/download-artifact@v5
         with:
-          name: m1-r25-baseline-${{ github.run_id }}
-          path: ${{ runner.temp }}/r25-generated
+          name: m1-r26-baseline-${{ github.run_id }}
+          path: ${{ runner.temp }}/r26-generated
       - name: Apply declared baseline/provenance overlay ONLY, never solver edits
-        if: ${{ needs.r25-baseline.result == 'success' }}
+        if: ${{ needs.r26-baseline.result == 'success' }}
         shell: bash
         run: |
           set -euo pipefail
-          cp "$RUNNER_TEMP/r25-generated/r25-baseline/public_sim_baseline.json" tests/fixtures/public_sim_baseline.json
-          cat "$RUNNER_TEMP/r25-generated/r25-baseline/provenance.md" >> DECISIONS.md
+          cp "$RUNNER_TEMP/r26-generated/r26-baseline/public_sim_baseline.json" tests/fixtures/public_sim_baseline.json
+          cat "$RUNNER_TEMP/r26-generated/r26-baseline/provenance.md" >> DECISIONS.md
           git diff --name-only
           test "$(git diff --name-only | wc -l)" -eq 2
       - name: Install checksum-verified pinned editor
@@ -806,61 +806,13 @@ jobs:
             ${{ runner.temp }}/m1-r24-console.log
           retention-days: 7
 
-  r25-brace:
-    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[R25-adopt]') }}
-    name: R25 adopted brace/F52/F56 and F74 bounded dial check
-    runs-on: ubuntu-24.04
-    timeout-minutes: 30
-    env:
-      GODOT_VERSION: 4.7.2-stable
-    steps:
-      - uses: actions/checkout@v5
-      - name: Install checksum-verified pinned editor
-        shell: bash
-        run: |
-          set -euo pipefail
-          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
-          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
-          cd "$RUNNER_TEMP"
-          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
-          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
-          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
-          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
-          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
-      - name: Measure once; no retuning or gate bypass
-        shell: bash
-        run: |
-          set +e
-          M1_R25_REPORT_DIR="$RUNNER_TEMP/r25-brace" bash tests/run_m1_r25.sh 'brace' > "$RUNNER_TEMP/r25-console.log" 2>&1
-          status=$?
-          set -e
-          python3 - "$RUNNER_TEMP/r25-console.log" "$status" <<'PYLOG'
-          import sys
-          lines=[l for l in open(sys.argv[1]).read().splitlines() if l.startswith('M1 R25') or 'ERROR' in l or 'FAIL' in l or 'ValueError' in l or 'AssertionError' in l]
-          text='\n'.join(lines)
-          assert len(text)<=35000, 'compact annotation budget; raw remains in artifact'
-          for i in range(0,len(text),3500):
-              level='notice' if sys.argv[2]=='0' else 'error'
-              escaped=text[i:i+3500].replace('%','%25').replace('\r','%0D').replace('\n','%0A')
-              print(f'::{level} title=M1 R25 evidence::'+escaped)
-          PYLOG
-          exit "$status"
-      - uses: actions/upload-artifact@v5
-        if: always()
-        with:
-          name: m1-r25-brace-${{ github.run_id }}
-          path: |
-            ${{ runner.temp }}/r25-brace/
-            ${{ runner.temp }}/r25-console.log
-          retention-days: 7
-
-  r25-independent:
-    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[R25-adopt]') }}
-    name: R25 independent AC202 and FA5 (no brace dependency)
+  r26-diagnostics:
+    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[R26-once]') }}
+    name: R26 LAST D1 D2 and independent F77 (one invocation per mode)
     strategy:
       fail-fast: false
       matrix:
-        mode: [ac202, fa5]
+        mode: [d1, d2, fa5]
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:
@@ -883,32 +835,32 @@ jobs:
         shell: bash
         run: |
           set +e
-          M1_R25_REPORT_DIR="$RUNNER_TEMP/r25-${{ matrix.mode }}" bash tests/run_m1_r25.sh '${{ matrix.mode }}' > "$RUNNER_TEMP/r25-console.log" 2>&1
+          M1_R26_REPORT_DIR="$RUNNER_TEMP/r26-${{ matrix.mode }}" bash tests/run_m1_r26.sh '${{ matrix.mode }}' > "$RUNNER_TEMP/r26-console.log" 2>&1
           status=$?
           set -e
-          python3 - "$RUNNER_TEMP/r25-console.log" "$status" <<'PYLOG'
+          python3 - "$RUNNER_TEMP/r26-console.log" "$status" <<'PYLOG'
           import sys
-          lines=[l for l in open(sys.argv[1]).read().splitlines() if l.startswith('M1 R25') or 'ERROR' in l or 'FAIL' in l or 'ValueError' in l or 'AssertionError' in l]
+          lines=[l for l in open(sys.argv[1]).read().splitlines() if l.startswith('M1 R26') or 'ERROR' in l or 'FAIL' in l or 'ValueError' in l or 'AssertionError' in l]
           text='\n'.join(lines)
           assert len(text)<=35000, 'compact annotation budget; raw remains in artifact'
           for i in range(0,len(text),3500):
               level='notice' if sys.argv[2]=='0' else 'error'
               escaped=text[i:i+3500].replace('%','%25').replace('\r','%0D').replace('\n','%0A')
-              print(f'::{level} title=M1 R25 evidence::'+escaped)
+              print(f'::{level} title=M1 R26 evidence::'+escaped)
           PYLOG
           exit "$status"
       - uses: actions/upload-artifact@v5
         if: always()
         with:
-          name: m1-r25-${{ matrix.mode }}-${{ github.run_id }}
+          name: m1-r26-${{ matrix.mode }}-${{ github.run_id }}
           path: |
-            ${{ runner.temp }}/r25-${{ matrix.mode }}/
-            ${{ runner.temp }}/r25-console.log
+            ${{ runner.temp }}/r26-${{ matrix.mode }}/
+            ${{ runner.temp }}/r26-console.log
           retention-days: 7
 
-  r25-baseline:
-    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[R25-adopt]') }}
-    name: R25 OWNER-authorised baseline generation on adoption source
+  r26-baseline:
+    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[R26-once]') }}
+    name: R26 OWNER-authorised baseline generation after brace removal
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:
@@ -931,32 +883,32 @@ jobs:
         shell: bash
         run: |
           set +e
-          M1_PUBLIC_REPORT_DIR="$RUNNER_TEMP/r25-baseline-raw" bash tests/run_m1_public.sh > "$RUNNER_TEMP/r25-console.log" 2>&1
+          M1_PUBLIC_REPORT_DIR="$RUNNER_TEMP/r26-baseline-raw" bash tests/run_m1_public.sh > "$RUNNER_TEMP/r26-console.log" 2>&1
           status=$?
           set -e
           # A mismatch is expected ONLY in this explicit owner-authorised generator.
           test "$status" -ne 0
-          python3 tests/r25_regenerate_baseline.py "$RUNNER_TEMP/r25-baseline-raw" "$RUNNER_TEMP/r25-baseline" >> "$RUNNER_TEMP/r25-console.log" 2>&1
+          python3 tests/r26_regenerate_baseline.py "$RUNNER_TEMP/r26-baseline-raw" "$RUNNER_TEMP/r26-baseline" >> "$RUNNER_TEMP/r26-console.log" 2>&1
           status=$?
-          python3 - "$RUNNER_TEMP/r25-console.log" "$status" <<'PYLOG'
+          python3 - "$RUNNER_TEMP/r26-console.log" "$status" <<'PYLOG'
           import sys
-          lines=[l for l in open(sys.argv[1]).read().splitlines() if l.startswith('M1 R25') or 'ERROR' in l or 'FAIL' in l or 'ValueError' in l or 'AssertionError' in l]
+          lines=[l for l in open(sys.argv[1]).read().splitlines() if l.startswith('M1 R26') or 'ERROR' in l or 'FAIL' in l or 'ValueError' in l or 'AssertionError' in l]
           text='\n'.join(lines)
           assert len(text)<=35000, 'compact annotation budget; raw remains in artifact'
           for i in range(0,len(text),3500):
               level='notice' if sys.argv[2]=='0' else 'error'
               escaped=text[i:i+3500].replace('%','%25').replace('\r','%0D').replace('\n','%0A')
-              print(f'::{level} title=M1 R25 evidence::'+escaped)
+              print(f'::{level} title=M1 R26 evidence::'+escaped)
           PYLOG
           exit "$status"
       - uses: actions/upload-artifact@v5
         if: always()
         with:
-          name: m1-r25-baseline-${{ github.run_id }}
+          name: m1-r26-baseline-${{ github.run_id }}
           path: |
-            ${{ runner.temp }}/r25-baseline/
-            ${{ runner.temp }}/r25-baseline-raw/
-            ${{ runner.temp }}/r25-console.log
+            ${{ runner.temp }}/r26-baseline/
+            ${{ runner.temp }}/r26-baseline-raw/
+            ${{ runner.temp }}/r26-console.log
           retention-days: 7
 
   r25-archive-audit:

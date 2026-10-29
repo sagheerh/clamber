@@ -8,6 +8,12 @@ const TUNING = preload("res://core/tuning.tres")
 var bodies: Array[CapsuleBody] = []
 ## Diagnostic switch ONLY; observer-off/on physical states are compared by harness.
 var collect_contact_samples: bool = false
+## R26 detached phase observation and explicitly DIAGNOSTIC ordering arm only.
+## Both default off; neither is a tuning/adoption change or snapshot state.
+var collect_length_phases: bool = false
+var diagnostic_final_distance_pass: bool = false
+var length_phases: Dictionary = {}
+var length_phase_tick: int = -TUNING.physics_one
 var _links: Array[DistanceConstraint] = []
 var _hinges: Array[CoincidentHinge] = []
 var _parents: Array[int] = []
@@ -199,6 +205,9 @@ func _step(before: Dictionary) -> Dictionary:
 
 
 func _predict_and_project(dt: float, budget: Dictionary, positions: Array) -> Error:
+	if collect_length_phases:
+		length_phases = {}
+		length_phase_tick = _ticks
 	var before_integration := _positions()
 	var retention := TUNING.physics_one - _tuning.physics_linear_damping
 	for body in bodies:
@@ -224,6 +233,7 @@ func _predict_and_project(dt: float, budget: Dictionary, positions: Array) -> Er
 			point.x += point.velocity_x * dt
 			point.y += point.velocity_y * dt
 	_book_positions(before_integration, positions, "integration")
+	_record_length_phase("after_integration")
 	for link in _links:
 		link.reset_multiplier()
 	for iteration in range(_tuning.physics_position_iterations):
@@ -233,14 +243,25 @@ func _predict_and_project(dt: float, budget: Dictionary, positions: Array) -> Er
 				if link.project(_tuning) != OK:
 					return ERR_INVALID_DATA
 		_book_positions(before_distance, positions, "distance")
+		_record_length_phase("after_iteration_distance")
 		var before_hinge := _positions()
 		for hinge in _hinges:
 			if hinge.project_position() != OK:
 				return ERR_INVALID_DATA
 		_book_positions(before_hinge, positions, "hinge")
+		_record_length_phase("after_final_hinge")
 		var extra := _extra_positions(positions)
 		if extra != OK:
 			return extra
+	# LAST authorised diagnostic: ONE additional traversal, identical rows,
+	# compliance, multipliers and project() implementation; no velocity edit.
+	if diagnostic_final_distance_pass:
+		var before_final := _positions()
+		for link in _links:
+			if link.project(_tuning) != OK:
+				return ERR_INVALID_DATA
+		_book_positions(before_final, positions, "distance")
+		_record_length_phase("after_diagnostic_final_distance")
 	return OK
 
 
@@ -311,6 +332,9 @@ func _velocity_contacts(
 					{
 						"part": index,
 						"bottom_wu": minf(body.a.y, body.b.y) - body.radius,
+						"a": [body.a.x, body.a.y],
+						"b": [body.b.x, body.b.y],
+						"normal": _terrain.sample(body.a.x, body.a.y),
 						"applied_load_n": body.applied_load_n,
 						"hinge_x_ns": hinge_x[index],
 						"hinge_y_ns": hinge_y[index],
@@ -329,6 +353,7 @@ func _velocity_contacts(
 		if status != OK:
 			return {"status": status}
 		_book_positions(before_contact_positions, positions, "contact")
+		_record_length_phase("after_contact_pass_%d" % velocity_pass)
 		budget.contact_velocity_impulse_y_ns += _momentum_y() - before_contact
 		budget.contact_velocity_impulse_x_ns += _momentum_x() - before_contact_x
 		var before_clamp := _momentum_y()
@@ -552,6 +577,9 @@ func _body_geometry(body: CapsuleBody, start: Dictionary) -> Dictionary:
 		"bvx": body.b.velocity_x,
 		"bvy": body.b.velocity_y,
 		"bottom_wu": minf(body.a.y, body.b.y) - body.radius,
+		"a": [body.a.x, body.a.y],
+		"b": [body.b.x, body.b.y],
+		"normal": _terrain.sample(body.a.x, body.a.y),
 		"speed_a_wu_s":
 		sqrt(body.a.velocity_x * body.a.velocity_x + body.a.velocity_y * body.a.velocity_y),
 		"speed_b_wu_s":
@@ -700,3 +728,25 @@ func restore_constraints(state: Dictionary) -> Error:
 			return status
 	_contact_counts = state.contact_counts.duplicate(true)
 	return OK
+
+
+func _record_length_phase(phase: String) -> void:
+	if not collect_length_phases:
+		return
+	var rows: Array = []
+	for index in range(_links.size()):
+		var link := _links[index]
+		var dx := link.body_b.x - link.body_a.x
+		var dy := link.body_b.y - link.body_a.y
+		rows.append(
+			{
+				"part": index,
+				"kind": bodies[index].kind,
+				"a": [link.body_a.x, link.body_a.y],
+				"b": [link.body_b.x, link.body_b.y],
+				"rest_length": link.rest_length,
+				"error_wu": absf(sqrt(dx * dx + dy * dy) - link.rest_length)
+			}
+		)
+	# Iteration hooks overwrite, intentionally retaining the FINAL iteration.
+	length_phases[phase] = rows

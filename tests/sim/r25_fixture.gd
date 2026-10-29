@@ -4,15 +4,15 @@ extends RefCounted
 const TUNING = preload("res://core/tuning.tres")
 
 
-static func floor_grid() -> SdfGrid:
+static func floor_grid(tuning: Tuning = TUNING) -> SdfGrid:
 	var rows: Array = []
 	for iy in range(49):
 		var row := PackedFloat64Array()
 		for ix in range(97):
-			row.append(-4.0 + iy * TUNING.physics_sdf_cell_wu)
+			row.append(-4.0 + iy * tuning.physics_sdf_cell_wu)
 		rows.append(row)
 	var grid := SdfGrid.new()
-	assert(grid.configure(rows, -12.0, -4.0, TUNING.physics_grip_friction, TUNING) == OK)
+	assert(grid.configure(rows, -12.0, -4.0, tuning.physics_grip_friction, tuning) == OK)
 	return grid
 
 
@@ -23,10 +23,12 @@ static func spawn_y(model: CreatureModel) -> float:
 	return .01 - bottom
 
 
-static func materials(model: CreatureModel, bounce: bool = false) -> Array[float]:
+static func materials(
+	model: CreatureModel, bounce: bool = false, tuning: Tuning = TUNING
+) -> Array[float]:
 	var values: Array[float] = []
 	for part in model.definition().parts:
-		values.append(TUNING.physics_foot_restitution if bounce else TUNING.physics_grip_friction)
+		values.append(tuning.physics_foot_restitution if bounce else tuning.physics_grip_friction)
 	return values
 
 

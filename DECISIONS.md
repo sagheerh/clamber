@@ -1754,3 +1754,55 @@ fix. HistoricalF47stepstillRED/nonwaived. Core/data/tuning/sleepunchangedsince
 8d73597; no physics adjustments afterSTOP. Matrix8/18/no newacceptancecredit.
 STOPforNEWownercontactmodelreview or owner-authoredAC201number/specdecision;
 F74sampledshortfall and independentAC202/FA5failuresremainvisible, no improvisation.
+
+## M1-R26 — OWNER DECISION: brace rejection; LAST bounded diagnostics
+
+2026-10-29. Readonly reviewer1df02f5 §10 records owner-selected Option3.
+No reviewer file copied/merged. R25 adoption is accepted at byte level, but the
+brace mechanic is **built, measured, REJECTED** and removed atomically (code,
+state/target, snapshot/hash/restore, presentation getter/flag and brace tests).
+Keep four P-B lines bound30/k10/c.5443327361211717/cap12; no old3.93px/s reversion.
+ONdrift12.617730602141002 vs OFF8.550150769956836px/s (**+47.6%**);
+end-release+.2249433803374048 -> -.06129663822438047WU. No new brace/lurch trial.
+Historical R25 F56 brace-internal column stays: <=7.8e-16 while mechanic useless.
+P-B live gain remains permanent: requested/bound worst~.245,0/300 saturated;
+legal12.8° travel versus old8.5° beyond+40° stop. F74 is only a sampled ceiling
+over .7/1gain×1s/5s; until creep is fixed no lurch measurement is trustworthy,
+and idle translation is never input credit.
+
+**F75 mechanism-of-record (owner):** sustained internal load is rectified by
+contact/friction into translation proportional to transmitted joint load,
+independent of static-slip allowance; locking relative rotation increases load
+transmission/creep47.6%. Five sweeps exhausted motor/limit/slip knobs. The motion
+is a steady treadmill, not a limit cycle/frozen joint. F72 withdrawn, F71
+asymptote unsupported, F73 k10 wins both. This records the owner's mechanism
+interpretation, NOT a newly established universal scalar proportionality law:
+mean absolute MOTOR drive torque alone is not total transmitted joint load,
+and the prior k sweep must not be falsely described as showing torque grows
+monotonically with k. D1 locates the carrier or explicitly remains inconclusive.
+
+Authorised scope is `.review/m1_r26_diagnostic_plan.md`, preregistered before
+measurement: D1 coefficient.9/.3/1.8/3.6 process-local duplicates at P-B released
+input, report drift+thrust, adopt nothing; D2 raw phase-error instrumentation and
+ONE identical distance-only final traversal diagnostic duplicate,7200 ticks,
+unchanged .05WU literal-limb criterion. Separate hinge/angular/self/contact
+phases are necessary to test F76, not assume its attribution. Normal order and
+constants remain unchanged. F77 parallel independent authored airborne/drop/
+ledge/midair fixtures, unconditional termination/tick/status and independent
+branch events with frozen N/40% threshold distribution; no synthetic loads.
+Prior FA5 truncation was a fixture defect, not an established physics failure.
+
+Hard fork **without further measurement**: BOTH diagnostics locate correctness-
+shaped causes => one later fixed increment implements both and reruns AC201+202.
+EITHER inconclusive => Option2 accepts creep, OWNER authors AC201 number, AC202
+is honestly failing with measured maximum. No engineer-authored AC201 rewrite,
+.05 widening, new knobs, mass/weight/epsilon changes, waiver, M2/camera/captures.
+Matrix8/18; determinism attempt1 remains same-build only, cross-architecture0.
+
+Current committed baseline before this change is P-B WITH brace (R25 generated
+provenance). Removing brace changes physics AND serialization: new R26 generated
+baseline requires its own provenance line, same-source strict rerun, then
+committed-byte strict rerun. Generator is separately scoped to R26/old R25 hash;
+normal baseline checker is unchanged. D2 nondefault diagnostic is not adopted
+as a production baseline; its paired trace hashes/ordering identity are separate.
+Results and generated hashes PENDING; no qualifying measurements claimed yet.

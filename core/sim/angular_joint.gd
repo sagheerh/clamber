@@ -9,10 +9,6 @@ var rest_angle: float
 var lower: float
 var upper: float
 var impulse: float = TUNING.physics_zero
-## R25 designed joint brace. Relative target, NEVER a world position or strength.
-## Presentation consumes brace_active; distinct planted joint cue in Phase4.
-var brace_active: bool = false
-var brace_q: float = TUNING.physics_zero
 var _tuning: Tuning
 
 
@@ -116,11 +112,7 @@ func project_position() -> Error:
 	var value := state()
 	if value.is_empty():
 		return ERR_INVALID_DATA
-	var error: float = (
-		PlanarBasis.wrap_angle(value.q - brace_q)
-		if brace_active
-		else value.q - clampf(value.q, lower, upper)
-	)
+	var error: float = value.q - clampf(value.q, lower, upper)
 	if error == TUNING.physics_zero:
 		return OK
 	if PlanarBasis.turn(parent_body, error * value.parent.inverse_inertia / value.weight) != OK:
@@ -140,61 +132,13 @@ func block_velocity() -> Error:
 	return OK
 
 
-func update_brace(input_mask: int, enabled: bool) -> Error:
-	if not enabled or input_mask != TUNING.motors_input_released_mask:
-		brace_active = false
-		brace_q = TUNING.physics_zero
-		return OK
-	if not brace_active:
-		var value := state()
-		if value.is_empty():
-			return ERR_INVALID_DATA
-		brace_q = value.q
-		brace_active = true
-	return OK
-
-
-func hold_velocity() -> Dictionary:
-	var value := state()
-	if not brace_active or value.is_empty():
-		return {}
-	# Unbounded bilateral row, not apply_impulse's motor clamp, spring or a knob.
-	# Each spin is an equal/opposite endpoint couple: ZERO net linear impulse.
-	var j: float = -value.omega / value.weight
-	if not is_finite(j):
-		return {}
-	PlanarBasis.spin(parent_body, -j * value.parent.inverse_inertia)
-	PlanarBasis.spin(child_body, j * value.child.inverse_inertia)
-	return {
-		"impulse": j,
-		"q": value.q,
-		"omega": value.omega,
-		"weight": value.weight,
-		"parent_inverse_inertia": value.parent.inverse_inertia,
-		"child_inverse_inertia": value.child.inverse_inertia,
-		"target": brace_q
-	}
-
-
 func snapshot() -> Dictionary:
-	return {
-		"rest_angle": rest_angle,
-		"lower": lower,
-		"upper": upper,
-		"impulse": impulse,
-		"brace_active": brace_active,
-		"brace_q": brace_q
-	}
+	return {"rest_angle": rest_angle, "lower": lower, "upper": upper, "impulse": impulse}
 
 
 func valid_snapshot(data: Dictionary) -> bool:
 	return (
-		data.get("brace_active") is bool
-		and (data.get("brace_q") is float or data.get("brace_q") is int)
-		and is_finite(float(data.brace_q))
-		and absf(data.brace_q) <= PI
-		and (data.brace_active or data.brace_q == TUNING.physics_zero)
-		and data.get("rest_angle") == rest_angle
+		data.get("rest_angle") == rest_angle
 		and data.get("lower") == lower
 		and data.get("upper") == upper
 		and (data.get("impulse") is float or data.get("impulse") is int)

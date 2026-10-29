@@ -98,11 +98,6 @@ func get_render_state() -> Array:
 	return _solver.snapshot().rig.physical.bodies if _solver != null else []
 
 
-func get_brace_state() -> Array:
-	# Phase4 presentation: distinct planted joint cue; never inferred from sleep.
-	return _solver.snapshot().rig.physical.angular_joints if _solver != null else []
-
-
 func snapshot() -> Dictionary:
 	if _clock == null:
 		return {}
