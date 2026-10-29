@@ -1,0 +1,18 @@
+{
+  "fixture": {
+    "input": "0..59 released; alternating L/R per60 ticks thereafter",
+    "name": "Slug public Sim legal floor",
+    "seed": 305419896,
+    "spawn": "actual authored lowest surface at +.01WU; uniform diagnostic material",
+    "ticks": 600
+  },
+  "tuning_sha256": "3a32dd3d2d719ed28220ed531fee05c8d2a799140d3f06e3aeed4d28d6e6f60c",
+  "final_digest": "d735ea5f596f9a7b9bdfea0acee9b666a4e364e670f21dba9556985b7bfd19c8",
+  "full_stream_sha256": "05c27f020015dab2fc15ccad5cc963e5d064a8ed3247490a54e8f8ed57de1518",
+  "per_tick_digest_table_sha256": "f9b6fdce63b77143a7187cde3760d023716f066d8f0a54ab93b36dcee737483f",
+  "decision_id": "M1-R17-P2-BASELINE",
+  "source_ci_run": 40818199967,
+  "source_head": "af6a6c9b81b4c926d4f1123c04d465856f5ff7c2",
+  "source_job": 123264184894,
+  "provenance": "Actual pinned-engine triple raw streams, SHA256 independently computed in CI. Source job RED on frame protocol precision check; replay measurements PASS. Baseline only becomes acceptance after matching committed rerun."
+}

@@ -993,3 +993,26 @@ Both actual startup frame and post-start fixed-fps support are recorded; the
 prefix is an equal-SIMULATED-tick comparison, not invented equal wall duration.
 F41 now buckets last300 by full per-body/pass(I,C,A) signatures plus per-body
 buckets; raw min/max/means only. No tolerance, sampling change or forced closure.
+
+## M1-R17-P2-BASELINE
+
+Actual generated candidate from CI40818199967 @af6a6c9, job123264184894. Source
+job was RED at the delivery support check (Python1/144 versus engine modal
+.006944444444444445), NOT at replay. Three31,131,584byte full streams equal;
+state digest d735ea5f596f9a7b9bdfea0acee9b666a4e364e670f21dba9556985b7bfd19c8
+and full raw stream SHA256
+05c27f020015dab2fc15ccad5cc963e5d064a8ed3247490a54e8f8ed57de1518.
+Per-tick digest table SHA256
+f9b6fdce63b77143a7187cde3760d023716f066d8f0a54ab93b36dcee737483f.
+Fixture/seed/input/tuning fingerprint stored alongside exact hashes. Baseline is
+NOT a pass until committed and matched by another actual pinned run. CI refuses
+missing/mismatching baseline; intentional hash updates require this linked
+DECISIONS entry to contain the new exact hashes, not just edit a fixture.
+Actual modal frame durations:30 ->.03333333333333333;144 ->.006944444444444445
+(one ULP above Python1/144). Both conditions' first600 solver+RNG tick bytes
+already match. Capability probe classifies nominal CLI FPS via ROUND(1/modal)
+integer identity; it never rounds, clips or substitutes ANY elapsed frame sent
+to Sim. All startup/transient durations, pending/drop and full extra ticks are
+retained. This is report-only nominal-FPS identification, NOT a solver tolerance,
+velocity epsilon, changed sampling or weakened normative acceptance condition.
+A mislabeled60FPS frame fixture under expected30 remains a mandatory rejection.

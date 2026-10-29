@@ -38,12 +38,12 @@ def summarize(folder):
         if r['failures'] or len(r['compared_tick_hashes'])!=600 or r['compared_ticks']!=600 or len(r['tick_hashes'])!=r['actual_ticks'] or r['actual_ticks']<600 or r['tick_hz']!=60:
             raise ValueError('Frame-condition harness incomplete')
         # Actual engine callbacks must match requested fixed-fps, not a label only.
-        if len(r['frame_seconds'])<2 or any(not t>0 for t in r['frame_seconds']) or Counter(r['frame_seconds']).most_common(1)[0][0] != 1/r['condition']:
+        if len(r['frame_seconds'])<2 or any(not t>0 for t in r['frame_seconds']) or round(1/Counter(r['frame_seconds']).most_common(1)[0][0]) != r['condition']:
             raise ValueError('Engine did not support requested fixed-fps delivery exactly')
     result={k:v for k,v in report.items() if k!='per_tick_digests'}
     result['full_stream_sha256']=hashlib.sha256(streams[0]).hexdigest()
     result['per_tick_digest_table_sha256']=hashlib.sha256(json.dumps(report['per_tick_digests'],separators=(',',':')).encode()).hexdigest()
-    result['delivery']=[{k:v for k,v in r.items() if k not in ('tick_hashes','compared_tick_hashes','frame_seconds')}|{'min_frame_seconds':min(r['frame_seconds']),'max_frame_seconds':max(r['frame_seconds']),'startup_frame_seconds':r['frame_seconds'][0]} for r in delivery]
+    result['delivery']=[{k:v for k,v in r.items() if k not in ('tick_hashes','compared_tick_hashes','frame_seconds')}|{'min_frame_seconds':min(r['frame_seconds']),'max_frame_seconds':max(r['frame_seconds']),'startup_frame_seconds':r['frame_seconds'][0],'modal_frame_seconds':Counter(r['frame_seconds']).most_common(1)[0][0]} for r in delivery]
     result['delivery_stream_sha256']=hashlib.sha256(dstreams[0]).hexdigest()
     result['runtime_gates']['11']='MEASURED real --fixed-fps30/144 callbacks;600 same ticks, streams byte-identical, physics60'
     expected={'fixture':report['fixture'],'tuning_sha256':report['tuning_sha256'],

@@ -38,6 +38,13 @@ class PublicRuntimeControls(unittest.TestCase):
     def test_frame_label_without_actual_delivery_rejected(self):
         p=self.root/'delivery-30.json';r=json.loads(p.read_text());r['frame_seconds']=[.025,1/60,1/60];p.write_text(json.dumps(r))
         with self.assertRaisesRegex(ValueError,'fixed-fps'):self.run_report()
+    def test_actual_144_binary64_modal_duration_keeps_raw_elapsed(self):
+        # Pinned engine observed this exact value, one ULP above Python1/144.
+        p=self.root/'delivery-144.json';r=json.loads(p.read_text())
+        r['frame_seconds']=[.008333333333333333,.006944444444444445,.006944444444444445]
+        p.write_text(json.dumps(r))
+        with self.assertRaisesRegex(ValueError,'Baseline absent'):self.run_report()
+        self.assertEqual(json.loads(p.read_text())['frame_seconds'],r['frame_seconds'])
     def test_frame_stream_disagreement_rejected(self):
         (self.root/'delivery-144-compared.bin').write_bytes(b'wrong frame stream')
         with self.assertRaisesRegex(ValueError,'frame-delivered'):self.run_report()
