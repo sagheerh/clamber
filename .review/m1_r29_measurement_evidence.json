@@ -1,0 +1,137 @@
+{
+  "source_commit_sha": "819cefc4ce9b66e6f8725d1ed24694e85e8f5154",
+  "source_ci_run": "40974609556",
+  "session_start_head": "4796ec632637053214b1463f44120eb54cd17d72",
+  "start_facts": {
+    "tuning_sha256": "5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666",
+    "core_diff_fb890fd": "EMPTY",
+    "controls": 226,
+    "control_failures": 0,
+    "M0": 516,
+    "M0_failures": 0,
+    "engine": "4.7.2.stable.official.ed1daf0bf",
+    "engine_checksum": "SHA512-SUMS release manifest verified in CI"
+  },
+  "gates": [
+    {
+      "gate": "D0/Hopper",
+      "metric": "completed post-pass maximum capsule surface penetration WU; same R28 sampling",
+      "value": {
+        "limit": 0.02,
+        "max_penetration_wu": 0.020000000000000823,
+        "ticks": 7200,
+        "worst": {
+          "center": [
+            -0.10488806458051068,
+            0.07999999999999961
+          ],
+          "distance_wu": 0.07999999999999918,
+          "kind": "head",
+          "normal": [
+            0.0,
+            1.0
+          ],
+          "part": 0,
+          "penetration_wu": 0.020000000000000823,
+          "radius_wu": 0.1,
+          "surface": [
+            -0.10488806458051068,
+            -0.020000000000000392
+          ],
+          "tick": 33,
+          "u": 0.0
+        },
+        "adopted_R28_max_wu": 0.0933999293597247,
+        "ratio_control_to_adopted": 0.2141329242656268,
+        "attribution": ">=.02; similarity must be evaluated from reported pair/ratio, not a new threshold"
+      },
+      "threshold": 0.02,
+      "verdict": "FAIL",
+      "artifact": "tests/fixtures/m1_r29_raw/D0-Hopper.jsonl.gz",
+      "not_measured": false,
+      "blocker": null
+    },
+    {
+      "gate": "D0/Slug",
+      "metric": "completed post-pass maximum capsule surface penetration WU; same R28 sampling",
+      "value": {
+        "limit": 0.02,
+        "max_penetration_wu": 0.020000000000000823,
+        "ticks": 7200,
+        "worst": {
+          "center": [
+            0.007428429654144887,
+            0.07999999999999959
+          ],
+          "distance_wu": 0.07999999999999918,
+          "kind": "head",
+          "normal": [
+            0.0,
+            1.0
+          ],
+          "part": 0,
+          "penetration_wu": 0.020000000000000823,
+          "radius_wu": 0.1,
+          "surface": [
+            0.007428429654144887,
+            -0.02000000000000042
+          ],
+          "tick": 22,
+          "u": 0.0
+        },
+        "adopted_R28_max_wu": 0.07028201067739755,
+        "ratio_control_to_adopted": 0.2845678404364825,
+        "attribution": ">=.02; similarity must be evaluated from reported pair/ratio, not a new threshold"
+      },
+      "threshold": 0.02,
+      "verdict": "FAIL",
+      "artifact": "tests/fixtures/m1_r29_raw/D0-Slug.jsonl.gz",
+      "not_measured": false,
+      "blocker": null
+    },
+    {
+      "gate": "D0/TwinRoller",
+      "metric": "completed post-pass maximum capsule surface penetration WU; same R28 sampling",
+      "value": {
+        "limit": 0.02,
+        "max_penetration_wu": 0.020000000000000823,
+        "ticks": 7200,
+        "worst": {
+          "center": [
+            0.012723169654139301,
+            0.07999999999999961
+          ],
+          "distance_wu": 0.07999999999999918,
+          "kind": "head",
+          "normal": [
+            0.0,
+            1.0
+          ],
+          "part": 0,
+          "penetration_wu": 0.020000000000000823,
+          "radius_wu": 0.1,
+          "surface": [
+            0.012723169654139301,
+            -0.020000000000000392
+          ],
+          "tick": 15,
+          "u": 0.0
+        },
+        "adopted_R28_max_wu": 0.05075245867956493,
+        "ratio_control_to_adopted": 0.3940695785060293,
+        "attribution": ">=.02; similarity must be evaluated from reported pair/ratio, not a new threshold"
+      },
+      "threshold": 0.02,
+      "verdict": "FAIL",
+      "artifact": "tests/fixtures/m1_r29_raw/D0-TwinRoller.jsonl.gz",
+      "not_measured": false,
+      "blocker": null
+    }
+  ],
+  "attribution_rule": {
+    ">=.02 at similar magnitude": "penetration is PRE-EXISTING; the reprojection is not demonstrated to cause it; F79 stands as its own defect",
+    "<=.005": "the reprojection causes it; AC-202 as adopted is dead",
+    "in between": "partially causative; report both numbers, conclude nothing stronger"
+  },
+  "AC202_owner_disposition": "FAILED for M1; no readoption; reevaluate inside M1.1 after contact rectifier fix, independent of D0 result"
+}
