@@ -898,3 +898,23 @@ assert<=10, no silent result loss. Raw count-period and repeat-lag differences
 are observation ONLY, not a settlement tolerance or acceptance criterion.
 Every diagnostic entry point now has an own zero-input drift line, including
 historical pose/slip/spawn; spring live status explicit. No equilibrium claim.
+
+
+R16 complete visibility @a6c33f8 / CI40813617730: all5 cases/17 report lines
+retained in9 annotations. Observation job/static128/931 mechanics PASS; overall
+M1 RED ONLY F47 support door, no bypass; original40 controls/tuning unchanged.
+F50 .610/.810 post-pose final-window means: actuator through6000
+.0004371693616756641/.00043716936167566446WU/tick (gap3.7947076036992655e-19);
+baseline through600 9.337328797581247e-6/9.337328797582121e-6 (gap8.74138e-19).
+Both observed vx envelopes overlap. Baseline counts match; actuator counts have
+same6-tick pattern but different per-tick phase. This+.20 spawn change shows
+binary64-scale mean differences; no premature F41 closure/landing-artefact claim
+or nonsettled pose interpretation. Count periods9/6/6 with repeat-lag max vx
+3.92048e-16/3.60822e-16/4.54498e-16 are raw recurrence observations, NOT an added
+settlement tolerance. Settled values/comparisons remain null.
+ZERO INPUT still LIVE RETURN: final3003.51332105658/3.93452425508/3.93452425508px/s
+for pre/post/raised actuator; baseline post.0840359591782px/s at both spawns.
+Full raw19200ticks artifact12871566645 SHA256
+fb50e8157cb349b27da42de1d9a460dfd91701a92ba5e22fbc46a74ad7f7273e.
+Only R16 ordered steps1–3 done; public Sim/F45/replay NEXT, not a new approval
+blocker and not claimed done. All coupled runtime acceptance NOT RUN; determinism0.

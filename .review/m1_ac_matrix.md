@@ -375,3 +375,16 @@ requested metrics and R15 review missed landing-impact gate flip. F48 zero input
 has LIVE spring return, last300 transient is NOT an equilibrium. Order now
 F47/F51 -> F48 convergence -> F49/F50 -> public Sim/F45/replay -> remaining gates.
 No retune/physics change/captures; coupled gates NOT RUN; determinism attempts0.
+
+R16 steps1–3 executed @a6c33f8 / CI40813617730: M1 RED ONLY mandatory F47
+sustained-support door; static128/931mechanics/3659sleep/381math/237contact/
+136analytic/80load PASS; observation job PASS with19200 raw ticks. Zero-input
+LIVE spring return through6000: pre/post/raised final-window drift3.51332105658/
+3.93452425508/3.93452425508px/s; NOT settled equilibrium. Count recurrence9/6/6,
+repeat-lag vx differences~4e-16, no added tolerance/acceptance. F49 separate raw
+angular/self position+impulse maxima measured before unchanged lossless adapter.
+F50 post-pose.610/.810 mean differences actuator3.7947e-19WU/tick, baseline
+8.7414e-19; vx envelopes overlap. F41 OPEN, no premature pose/landing closure.
+Full metrics/phase/count details PROGRESS/DECISIONS, artifact12871566645. Current
+mechanics count931 (F51). Next public Sim/F45/replay is NOT built. FA-3/4/5/6 and
+all coupled runtime gates NOT RUN; complete-creature determinism attempts0.

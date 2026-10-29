@@ -30,7 +30,7 @@ scaffold/PR; no M1 implementation or gate completion is claimed by this closeout
   convergence evidence. F41 stays OPEN. No physics/tuning/damping/sampling/
   velocity epsilon/hysteresis/load injection/M2/camera/captures authorized.
 - Public Sim still stub. FA-3/4/5/6/all coupled runtime gates NOT RUN;
-  complete-creature determinism attempts0. F48 source/controls ready; pinned-engine6000 measurement pending.
+  complete-creature determinism attempts0. R16 steps1–3 implemented/measured; public Sim/F45/replay NEXT.
 
 ### R16 F48 executed @f6b852a / CI40812720624 — M1 correctly RED
 
@@ -50,10 +50,10 @@ scaffold/PR; no M1 implementation or gate completion is claimed by this closeout
 - F50 repeats post-pose .6100000000000001 and .81 (legal+.01/+.21) for BOTH baseline
   600 and actuated6000, alongside the original pre-pose actuated6000. Derived from
   authored geometry plus explicitly requested fixture lift. No tuning addition.
-- Current follow-up pending engine. Step4 public Sim/F45/replay is NEXT only after
+- Follow-up measured below. Step4 public Sim/F45/replay is NEXT after
   these measurements; all coupled runtime gates NOT RUN, determinism0.
 
-### R16 F48 measurement increment (pending pinned engine)
+### R16 F48 measurement design (executed; results below)
 
 - Extend ONLY diagnostic duration to6000; held input remains0 and live spring
   return explicitly labelled. Both legal actuated arms run6000 with EVERY raw
@@ -1183,3 +1183,44 @@ retain NOT RUN, with reasons updated to acknowledge existing components.
   to expose both complete6000/raised/baseline F50 summaries. No physics change.
 - Next single M1 stage after this evidence: public Sim/F45/replay, NOT implemented
   this increment. All coupled runtime gates NOT RUN, determinism attempts0.
+
+
+### R16 final measurement @a6c33f8 / CI40813617730 — expected M1 RED
+
+- All5 cases and ALL17 report lines visible:9 bounded annotations including runner
+  warning; no silent cap loss. Observation job SUCCESS; static128 Python PASS,
+  mechanics931/sleep3659/math381/contact237/analytic136/load80 PASS. The ONLY
+  failing step is unchanged-force + new F47 sustained-support Slug diagnostic.
+  That is the required honest RED, not “M1 green” or a bypass. FA-5 untouched.
+- F50 same post-pose roots .6100000000000001/.81, actual legal+.01/+.21:
+  - Actuated final300 through6000: .0004371693616756641 /
+    .00043716936167566446WU/tick (difference3.7947076036992655e-19).
+    vx envelopes [.022195775258306853,.04314821835302906] /
+    [.022195775258306908,.04314821835302908], overlap. Per-tick count phases
+    differ; histograms match (6-tick count recurrence), no pose-causal upgrade.
+  - Baseline final300 through600: 9.337328797581247e-6 /
+    9.337328797582121e-6WU/tick (difference8.74138001566438e-19).
+    vx envelopes [.0005716731916895587,.0005716731916896063] /
+    [.0005716731916895565,.0005716731916896077], overlap, count regimes identical.
+  - These finite-window results show only binary64-scale mean differences with
+    the requested+.20 spawn change. Reported, NOT closed as a landing artefact
+    or a settled pose-causal finding. F41 stays OPEN; settled comparisons null.
+- Raw recurrence diagnostics through6000: pre-pose count period9, post-pose and
+  raised period6. Repeat-lag max COM-vx differences3.920475055707584e-16 /
+  3.608224830031759e-16 /4.544975507059235e-16WU/s; corresponding max dx
+  8.939246912142984e-16 /8.881784197001252e-16 /8.480629393181616e-16WU/tick.
+  This exposes a recurrent oscillation rather than hiding it behind a range.
+  NO tolerance/pass criterion inferred; exact settlement still unestablished.
+- ZERO-INPUT DRIFT, LIVE SPRING RETURN: final300 actuated pre/post/raised
+  3.5133210565803203 /3.9345242550809765 /3.93452425508098px/s at150px/WU,
+  net WU/s .023422140377202135 /.026230161700539843 /.026230161700539868.
+  Post-pose baseline .08403595917823123 /.0840359591782391px/s at the2spawns.
+  Nonsettled WINDOW MEANS, NOT equilibrium; no correction/retune applied.
+- New controls128 Python, original40-control file/accepted mechanics/tuning bytes
+  unchanged. Runtime-only code change is angular/self telemetry, not forces.
+- Full19200 raw ticks in artifact12871566645 (81,813,276B), SHA256
+  fb50e8157cb349b27da42de1d9a460dfd91701a92ba5e22fbc46a74ad7f7273e.
+- Completed ordered R16 steps1–3 only. Public Sim remains STUB; F45 superseded
+  legacy-sleep docs and public replay NOT yet wired. No new owner decision needed.
+  NEXT single milestone M1: public Sim + F45/replay, then the ordered runtime
+  acceptance stage. FA-3/4/5/6/all coupled runtime gates NOT RUN, determinism0.
