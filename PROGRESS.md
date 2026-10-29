@@ -982,3 +982,21 @@ metadata so published reports no longer claim pose/asleep decisions are pending
 or that the separate sleep component is absent. Awake diagnostic behavior is
 unchanged. New source/provenance control brings Python total97. Pending feel plans
 retain NOT RUN, with reasons updated to acknowledge existing components.
+
+
+### R14 final code validation @d4c260e
+
+- M1 CI40805642120 GREEN:97 Python,381 math/237 contact/136 analytic/80 load,
+  plus3659 sleep components pass. Pre/post600 result repeats exactly;1091 restored
+  continuations identical with sleep[61,210,390]/wake[180,360]. All40 original/R12
+  load-control file bytes and accepted F31 analyze function remain unchanged.
+- M0 CI40805642118 GREEN:510 headless checks/0 failures and Android export/
+  alignment PASS. No performance/device or full-M1 waiver/gate inference.
+- Final pose artifact12868411026,3985484bytes,SHA256
+  d32688683bbbe33a71ea61ba0074be0f3881bb7e91540646b0d71df3b3199477;
+  sleep12868520505,5667bytes,SHA256
+  23d0b2c0d05cd0ed40182481cb7105d59e80b761f636e65d7178fd83e6425312.
+  API annotations/metadata inspected, raw ZIP not locally downloaded.
+- Active matrix evidence now reflects approved A/A1 rather than a pending owner
+  pose choice; FA-4 scope explicitly all3 presets per R14. All full runtime gate
+  statuses stay NOT RUN. Steps1–3 implemented; steps4–6 remain next, not complete.
