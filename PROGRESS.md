@@ -8,20 +8,89 @@ Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R19 — F56 complete form accepted; motor-source measurement pending
+### Current R19 — motor0 thrust unchanged; STOP before A and Phase3
 
-Owner closes F56 on complete external balance and owns the mis-specification.
-Original literal definition/result/predicate/exit1 preserved; named R19 complete
-mode is now explicitly owner-authorized. Internal per-tick/window, resource-derived
-damping and raw contact/endpoint guards retained. Read reviewer R19 using git show
-ONLY; no reviewer artifact copied/merged. Diagnostic motor2400/0 with damping
-untouched implemented, actual measurement PENDING. Six new reporter controls;
-local158Python controls pass. No A/calibration/physical remedy or baseline change.
-Runtime8/18 unchanged; attempt1 accepted success retained, Phase3 NOT ENTERED.
-F55/F58/F59 story, exact success references and conditional calibration protocol
-are recorded together in DECISIONS; no convergence epsilon/design gate relaxation.
-Next single milestone: measure motor2400/0 drift AND rectified thrust; STOP if
-motor0 does not collapse thrust. No downstream implementation before evidence.
+Source **217eda1**, [M1 CI40864407948](https://github.com/sagheerh/clamber/actions/runs/40864407948),
+motor falsification job123415407058. Read reviewer R19 using git show ONLY; no
+reviewer artifact copied/merged. Owner closes F56 on complete external balance
+and owns omitted gravity/damping. Explicit `--r19-complete` authorizes THAT form;
+original literal definition/numbers/failed predicate/default exit1 retained,
+not overwritten. Full F56 job123415406812 now SUCCESS, literal identity EXACTLY
+equals prior R18 record, per-tick/window internal-zero/damping/contact guards kept.
+
+**Ordered motor-source falsification:** unchanged actuated legal after-pose,
+6000 ticks/arm; actual last300 ticks5700–5999. Resource/default stiffness2400,
+duplicate diagnostic tuning0 ONLY. Linear damping.02, motor damping55, passive
+stiffness900, geometry/material/solver sampling unchanged. Observer on/off
+physical snapshots identical for all6000/arm; all raw F31 checks retained.
+
+| measured last300 | motor2400 | motor0 |
+|---|---:|---:|
+| net positional drift px/s@150 | 3.9345242550809765 | 3.9345242550808814 |
+| signed rectified friction impulse/tick mass*WU/s | .0008297296048130507 | .0008297296048130529 |
+| mean completed COM vx WU/s | .02676547112300171 | .02676547112300171 |
+| mean completed COM vx px/s | 4.014820668450256 | 4.014820668450256 |
+| mean spring torque (before clamp) | -2022.0812958538024 | 0 |
+| mean damping torque (before clamp) | -108.72746136803043 | -108.72746136803042 |
+| mean clamped total drive torque | -1260 | -108.72746136803042 |
+| mean abs(q) rad, NOT captured q_settled | .8425338732724178 | .8425338732724177 |
+| full window momentum residual x | -6.453171330633722e-16 | -2.914335439641036e-16 |
+| full window momentum residual y | 3.544387006115812e-14 | 3.1780134079895106e-14 |
+
+**Motor0/live absolute thrust ratio1.0000000000000027; NO COLLAPSE.** Spring
+torque is verified zero on EVERY motor0 tick, not just its average; intervention
+is real (total drive torque changes), unlike the earlier passive no-op. Thrust
+is about47.7 times owner's1.74e-05 reference in BOTH arms. STOP does not depend
+on an arbitrary collapse ratio/boundary: removing spring stiffness changes
+neither measured thrust nor drift beyond roundoff. Spring stiffness alone is
+not the source/removal mechanism supported by this experiment. Remaining damping,
+angular constraints/contact dynamics stay active; no unmeasured cause assigned.
+No A calibration, fixed-point capture, snapshot/hash/baseline change or Phase3.
+
+**F55/F58/F59 mechanism story together:**
+- F55: .15WU/s ×150 =22.5px/s allowance. Free-hinge .08403595917823123px/s
+  (.373493percent); actuated before3.5133210565803203 (15.614760percent), after
+  3.9345242550809765 (17.486774percent). Drift magnitude alone is NOT a leak.
+- F58: signed thrust .0008297296048130507/tick ×60 =.04978377628878304N,
+  .11470916195572128percent of43.4N. Divide by .02×1.55 to predict completed
+  COM vx .026765471123001636WU/s, error -7.28583859910259e-17. Motor0 preserves
+  that force-balance story but falsifies removal of spring stiffness as the
+  proposed way to collapse it. Damping is UNCHANGED. Completed velocity4.01482
+  px/s differs from net positional drift3.93452px/s: publish both, not interchangeable.
+  Normal support43.15669199578477N, deficiency.2433080042152298N < original.723N
+  ALL-grounded allowance; no foot-only generalization/gate change.
+- F59: observed positive-vx rocking walker, not stationary equilibrium. Both
+  have6-tick count recurrence; binary64 repeat differences retained, not called
+  exactly repeating physical states. Keep measured settled=false/settled_mean=null.
+  For a live spring AC-201 is zero-input zero-net-motion as a design property,
+  AND original settle/sleep-within4s; do not relax it or wait for a convergence
+  classifier to turn a translating cycle into rest.
+F57 unchanged: RNG injected/snapshot/restored/hashed, NOT consumed by physics.
+
+Regression @217eda1: static158Python; public9053/0, frame30 308/0 and frame144
+1446/0. FULL public summary EXACTLY equals accepted Phase2 ledger/sourcee193:
+three31,131,584-byte streams, all hashes/bit flip/stall/startup601 vs600 retained,
+strict committed baseline MATCH. Attempt1 same-build SUCCESS retained;
+cross-architecture attempts0. Components931mechanics/4897sleep/381math/237contact/
+136analytic/80load. M1 RED: existing mandatory F47 plus new motor-source
+falsification; other FIVE jobs succeed (including corrected F56).
+[M0 CI40864408031](https://github.com/sagheerh/clamber/actions/runs/40864408031)
+PASS516/0 + Android export/alignment; original514 plus two automatic script
+compile checks, not improved M0 functional coverage. No device timing measured.
+
+Raw motor artifact12892823108,54,619,368B,
+`sha256:d156dc87d03abbd65cd19fb2c1ca5f196715a4f785104e5700e493e01b464fee`.
+Full raw two-arm traces/logs/report retained in CI. Complete compact annotations
+and artifact metadata retrieved; no local ZIP inspection claimed. Source/full
+numbers/public summary/artifacts: `.review/m1_r19_motor_evidence.json`.
+
+**Runtime8/18, movement0.** Remaining10 unchanged/NOT RUN: AC-201/202/204,
+presets/captures, tickcost, §10.6, FA-3/4/5/6. FA-5 untouched, accepted F52/53/54
+not reopened. A target-tracking/zero-spring capture direction retained
+conditionally, but calibration ticks/q_settled/awake fixed-point proof/after-A
+drift/thrust and AC-201 sleep tick **NOT RUN**, not invented from motor0 q mean.
+No baseline regeneration. **Next single milestone M1:** owner review of failed
+motor-source falsification before authorizing any revised diagnostic/remedy.
 
 ### Historical R18 — F56 literal prerequisite FAIL; STOP before sweep/A/Phase3
 

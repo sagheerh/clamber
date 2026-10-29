@@ -1,6 +1,26 @@
 # M1 acceptance matrix — scoped measured evidence, NOT milestone approval
 
-## Current R18 — 8/18 unchanged; literal F56 FAIL, STOP
+## Current R19 — 8/18 unchanged; motor0 thrust persists, STOP before A
+
+Measured CI40864407948 @217eda1: actual motor2400/0, damping unchanged(.02/55).
+Drift3.9345242550809765/3.9345242550808814px/s; rectified friction impulse/tick
+.0008297296048130507/.0008297296048130529, zero/live1.0000000000000027. Motor0
+spring torque zero EVERY tick, total drive changes; thrust does NOT collapse.
+STOP per owner ORDER1: A calibration/fixed-point proof/baseline regeneration and
+Phase3/AC-201 NOT RUN. No further source attributed from this falsification.
+F56 CLOSED by OWNER on complete form: explicit R19 authorization, original
+literal definition/predicate/exit1 preserved; internal-zero/raw/damping/contact
+guards unchanged. F55/F58/F59 adjacent story in PROGRESS: small rectified thrust,
+unchanged2percent damping, translating rocking cycle, not stationary equilibrium.
+AC-201 requires zero-input zero-net-motion AND original sleep-within4s, no relaxation.
+158Python/public9053+308+1446/components retained; public summary EXACT Phase2,
+strict committed baseline MATCH. M0 CI40864408031 PASS516/0+Android. M1 RED for
+existing F47 plus motor-source falsification; corrected F56 job SUCCESS.
+Movement0, accepted attempt1 SUCCESS; remaining10 unchanged/NOT RUN. FA-5 untouched.
+Ledger `.review/m1_r19_motor_evidence.json`; no acceptance-table/status edits.
+Next owner review of failed spring-source premise before any revised diagnostic.
+
+## Historical R18 — 8/18 unchanged; literal F56 FAIL, STOP
 
 CI40820719982 @832fa3d: requested last300 lateral momentum/contact-only identity
 fails: -4.163336342344337e-16 vs .24891888144391522, residual

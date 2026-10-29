@@ -1142,3 +1142,28 @@ fixed-point q honestly. Offset reduction alone not whole cause, never retune.
 Legitimate A baseline regeneration requires raw generated provenance/strict CI.
 Then Phase3 AC-201/202 and FA-3/4/5, no other gates silently upgraded. Current8/18;
 no A/Phase3 implementation before motor falsification is actually measured.
+
+
+R19 measured STOP @217eda1 / CI40864407948, motor job123415407058:
+motor2400 drift3.9345242550809765px/s, rectified friction
+.0008297296048130507 mass*WU/s/tick; motor0 drift3.9345242550808814,
+thrust.0008297296048130529. Zero/live thrust ratio1.0000000000000027. Damping
+.02/55 untouched; motor0 spring torque verified0 every tick, mean total drive
+changes -1260 -> -108.72746136803042. Both complete F56 balances close within
+existing1e-12; normal43.15669199578477N vs43.4, deficiency.2433080042152298N
+inside ALL-grounded.723 allowance. This is an ACTUAL motor intervention and NO
+thrust collapse, not a passive-joint no-op or ledger leak. F58's terminal mean
+velocity prediction holds in both; eliminating spring stiffness alone is NOT
+supported as the mechanism/removal of thrust. No remaining cause inferred from
+persistence with damping/limits/constraints/contact still active.
+
+Per owner ORDER1 STOP: A calibration/target-tracking settle/fixed-point proof,
+post-A measurements, baseline regeneration and Phase3/AC-201/202/FA-3/4/5 NOT RUN.
+Conditional A direction not revoked; cannot apply it against falsified prerequisite.
+No new stiffness/damping/geometry/slip/sampling values adopted; no velocity
+threshold/epsilon/hysteresis/waiver. F55/F58/F59 now adjacent in PROGRESS; F59
+AC-201 zero-input zero-net-motion design reading retained with original4s sleep,
+not a relaxed criterion. q mean in this sweep is NOT captured q_settled. Runtime
+8/18 unchanged, attempt1 same-build success retained, cross-arch0. Current158
+Python controls/public full summary exact Phase2/strict baseline preserved.
+Next owner review of failed motor-source premise; no unrequested diagnostic.
