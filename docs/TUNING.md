@@ -22,7 +22,9 @@ geometry/grip and analytic feel-check inputs; these are not measured feel eviden
 | Physics | `physics_max_angular_velocity_rad_s` | §4.2 | `24.0` |
 | Physics | `physics_contact_slop_wu` | §4.2 | `0.02` |
 | Physics | `physics_sleep_velocity_wu_s` | §4.2 | `0.05` |
-| Physics | `physics_sleep_grounded_s` | §4.2 | `0.6` |
+| Physics | `physics_sleep_grounded_s` | §4.2 (legacy, not R14 predicate) | `0.6` |
+| Physics | `sleep_still_displacement_wu` | owner R14 Decision2 / M1-D12 | `0.001` |
+| Physics | `sleep_dwell_ticks` | owner R14 Decision2 / M1-D12 | `30` |
 | Physics | `physics_max_children` | §3.1–3.5 | `2` |
 | Physics | `physics_min_motors` | §3.1–3.5 | `1` |
 | Physics | `physics_min_feet` | §3.1–3.5 | `1` |

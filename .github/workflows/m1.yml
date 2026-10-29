@@ -263,3 +263,29 @@ jobs:
             ${{ runner.temp }}/m1-pose/
             ${{ runner.temp }}/m1-pose-console.log
           retention-days: 7
+
+      - name: R14 positional sleep and exact restored continuation (NOT creature determinism)
+        if: always()
+        shell: bash
+        run: |
+          set +e
+          M1_SLEEP_REPORT_DIR="$RUNNER_TEMP/m1-sleep" bash tests/run_m1_sleep.sh > "$RUNNER_TEMP/m1-sleep-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-sleep-console.log" "$status" <<'PYLOG'
+          import sys
+          for line in open(sys.argv[1]).read().splitlines():
+              if line.startswith('M1 sleep') or 'ERROR' in line or 'FAIL' in line:
+                  level = 'notice' if sys.argv[2] == '0' else 'error'
+                  print(f'::{level} title=M1 R14 sleep COMPONENT::'+line.replace('%','%25').replace('\r','%0D'))
+          PYLOG
+          exit "$status"
+      - name: Preserve sleep ticks and restored-replay evidence
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: m1-r14-sleep-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-sleep/
+            ${{ runner.temp }}/m1-sleep-console.log
+          retention-days: 7

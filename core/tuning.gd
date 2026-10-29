@@ -31,6 +31,10 @@ extends Resource
 @export var physics_sleep_velocity_wu_s: float
 ## GDD §4.2
 @export var physics_sleep_grounded_s: float
+## Owner R14 Decision2 / M1-D12: positional sleep, NOT a plateau fix.
+@export var sleep_still_displacement_wu: float
+## Owner R14 Decision2 / M1-D12: consecutive fixed ticks, no wall clock.
+@export var sleep_dwell_ticks: int
 ## GDD §3.1–3.5
 @export var physics_max_children: int
 ## GDD §3.1–3.5

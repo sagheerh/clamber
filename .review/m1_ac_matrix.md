@@ -316,3 +316,17 @@ snapshots identical EVERY600 ticks/case;91 Python/381 math/237 contact/131 analy
 80 load components pass. Both diagnostics OBSERVED, baseline F30-only RED.
 F42 new body-grounding only at0 motor/foot and7 head, no lifted events across600;
 persistent support not classified for sleep. No criteria/default/physics changes.
+
+
+R14 OWNER final approvals: D12 A/A1 applied @126dc80. Hard F36 catalog assertion
+passes, exact TwinRoller foot5 parent0 non-support exemption. Hopper is future
+TWO-foot FA-5 branch fixture. Original bad-pose synthetic control retained.
+Paired unchanged Slug600: grip0->1 tick(at19), late grip0 both; all3 grounded and
+17 active responses persist, mean dx -7.175187723414263e-6 ->+9.337328797577746e-6
+WU/tick. Unexpected larger/reversed drift, not predicted sole-foot support nor
+F41 downgrade. Both literal all-grounded force windows/F31 identities pass.
+Owner positional sleep=.001WU/30 ticks and F42 transition-only reading approved;
+implementation component/restore replay pending pinned engine, no acceptance
+upgrade. Sleep parks plateau, does not fix ~.202WU/s awake endpoint shimmer.
+Next motors/limits/self-contact -> Hopper two-foot FA-5/all3 FA-3/4 -> public Sim.
+FA-3/4/5/6 stay NOT RUN; complete-creature determinism0; no retune or captures.

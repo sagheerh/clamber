@@ -697,3 +697,31 @@ unchanged drift/contact mechanism elsewhere -> report for later owner decision.
 No damping/radius/mass/grip/gate/limit constant edits, no new epsilon/hysteresis/
 decay/grace/contact fix; only TWO approved sleep tuning additions at sleep stage.
 Pose measurement pending pinned engine in this commit, no physical success claim.
+
+
+D12 pose evidence @126dc80 / CI40804352094: authored audit passes but dynamic
+sole-foot expectation is NOT observed. Before grip0/600, after1/600 at19, late
+fraction0 both. Late all3 grounded/17 responses unchanged; dx -7.175187723414263e-6
+->+9.337328797577746e-6WU/tick (larger magnitude, reversed). This fourth outcome
+is neither pose-artefact downgrade nor identical-drift/different-geometry trap.
+Retain F41; do not tune. Root spawn remains.33, so new authored foot pad initially
+at-.27WU, not a clear pad-on-floor spawn; free-hinge solver still has no angular
+limits. Report raw supports and avoid claiming maintained posture from authored
+axis alone. Next approved step is sleep, not a contact/pose/spawn retune.
+
+D12 sleep commit: adds ONLY the two exact owner constants, source-commented and
+inventoried. Snapshot-only positional CreatureSleep + engineering SleepingLoadProbe
+composition, existing always-awake diagnostic untouched. On sleep, park and zero
+all endpoint velocities; input re-arms, records actual asleep->awake tick. F42
+new grounding WHILE asleep wakes with NO impulse threshold; persistent contacts
+are not violations. Existing contact resolver runs on detached clones for parked
+contact observation only; no mutation/qualifying-load injection into real bodies.
+Restore includes dwell/sleep/wake state; component+real-probe replay tests compare
+full serialized continuation from partial-dwell/asleep checkpoints. NOT full
+creature determinism/FA acceptance. Engine results pending in this code commit.
+
+Explicit owner requirement: sleep parks the plateau, it does NOT fix it. During
+play max endpoint speed≈.202WU/s=30px/s at150px/WU remains a shimmer/feel risk for
+motor work, not now. No epsilon/hysteresis/decay/grace/contact fix. Motors/limits/
+self-contact NEXT, then FA-5 Hopper and all3 FA-3/4, public Sim last; gates NOT RUN,
+complete-creature determinism attempts0, no M2/camera/screens/captures.

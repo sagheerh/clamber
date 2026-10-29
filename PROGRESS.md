@@ -33,7 +33,7 @@ scaffold/PR; no M1 implementation or gate completion is claimed by this closeout
 - Pinned Godot4.7.2-stable project: Mobile renderer, 1080×2340, portrait,
   canvas_items/keep, 60 Hz, pixel snapping, MSAA off, ETC2/ASTC import enabled.
 - Engineering-only navy boot surface with safe-area container and lifecycle hooks.
-- `core/tuning.gd` / `.tres`: **400 exported fields** (376 original +24 owner M1-D04), seven original groups,
+- `core/tuning.gd` / `.tres`: **402 exported fields** (376 original +24 owner M1-D04 +2 owner R14 Decision2), seven original groups,
   `docs/TUNING.md` source map. No core numeric literals; no feel/economy changes.
 - Atomic JSON SaveStore: flushed tmp, previous validated backup, atomic replacement;
   primary → backup → tmp → defaults recovery; checked errors and recovery signals.
@@ -875,3 +875,60 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
   acceptance upgrade: owner pose+asleep/F42 still precede authorized pose+F36
   assertion and FA-5 band, F41 must be re-measured after pose. FA-3/4/5/6 and all
   coupled runtime gates NOT RUN; complete-creature determinism attempts0.
+
+
+### R14 pose measured @126dc80 / CI40804352094 — prediction NOT observed
+
+- Hard authored F36 audit PASS, exact exemption TwinRoller foot5 parent0 retained;
+  original horizontal-foot two-sided synthetic bad-pose control still fires.
+  JSON diff ONLY five foot axis fields (Slug2,Hopper5/7,TwinRoller4/5 ->DOWN).
+- Paired unchanged Slug600/.33/6/.15/zero-motion, sleep DISABLED, real physics:
+  before grip0/600; after1/600 (tick19), loaded grip1 tick; last300 grip0 BOTH.
+  After last300 foot share.22240637932820798 vs before.2223925379546886.
+  Path existence now demonstrated once, NOT sustained support or FA-5 acceptance.
+- Before all-grounded reaction43.59610684435376..377N, after
+  43.596103429635704..571N; literal43.4+/-.723 every last300 passes BOTH.
+  Foot applied before[9.6775186630127,9.677518663012702], after
+  [9.678122826771673,9.678122826771675]N; foot measured before
+  [9.695448846059604,9.695448846059607], after
+  [9.696051516603347,9.69605151660335]N. Both F31/motion independent identities
+  verify; everytick raw supports retained, no clipping or supplied load.
+- F41 unexpected FOURTH outcome: last300 still grounded[0,1,2] with same active
+  counts head3/3,motor3/3,foot3/2 =17/tick. No predicted collapse to sole foot.
+  Mean actual COM dx changes -7.175187723414263e-6 ->+9.337328797577746e-6
+  WU/tick: reverses direction and grows, NOT smaller, NOT identical old drift with
+  different geometry. Retain F41; no pose-artefact downgrade or sampling fix.
+  Post completed COM vx range[.0005716731916895578,.0005716731916896102]WU/s.
+- This is the CURRENT free-hinge solver with UNCHANGED root spawn.33: after A,
+  authored pad starts at-.27WU (previously-.02), not placed on a clear foot-only
+  stance. No silent spawn correction. Authored bottoms do not prove dynamically
+  maintained pose; angular limits/motors/self-contact are still absent. Do not
+  claim why all transient/contact differences occur without further evidence.
+- Pose CI now green on original existence criterion, not a strengthened stance
+  acceptance:381 math/237 contact/136 analytic/80 load components PASS, all600
+  both cases OBSERVED. FA-3/4/5/6/all full runtime gates NOT RUN; determinism0.
+
+### R14 sleep component implementation — pinned engine pending
+
+- EXACTLY two owner R14 Decision2 additions: sleep_still_displacement_wu=.001,
+  sleep_dwell_ticks=30. Every previous tuning-resource byte unchanged after
+  removing these two lines; source-lock tests cover this and axis-only catalogs.
+- CreatureSleep reads only supplied physical snapshots, maximum per-body COM
+  displacement strictly below.001 for30 consecutive fixed ticks. No grounding or
+  velocity epsilon predicate, no hysteresis/decay/grace/impulse threshold.
+- SleepingLoadProbe composes the existing awake probe; diagnostic600 stays awake
+  and unchanged. Sleep zeroes EVERY endpoint velocity and parks physical state.
+  Any input fully re-arms; asleep ungrounded->grounded wakes (F42), persistent
+  support does not. Contact query runs EXISTING resolver on detached clones,
+  never injecting loads or moving/impulsing parked production bodies.
+- Snapshot contains physical endpoints/tick plus sleep flag/dwell/displacement/
+  last sleep/wake ticks. Atomic restore;600-step real engineering Slug tests
+  partial-dwell and asleep checkpoints, exact byte-state continuation and wake
+  ticks, boundary/reset controls, persistent/new-contact controls and zeroing.
+  Engine pending: no fabricated tick/success counts; this is NOT creature
+  determinism, all-presets FA-3 or motor-lurch FA-4. Public Sim remains untouched.
+- SLEEP PARKS THE PLATEAU, DOES NOT FIX IT. Awake endpoint speed remains about
+  .202WU/s (30px/s at150px/WU); feel shimmer risk for motor stage, not addressed now.
+- Next M1 after sleep evidence: motors/angular limits/self-contact, then Hopper
+  two-foot FA-5 and all3 FA-3/4, public Sim LAST. No tuning changes beyond the two
+  owner constants, no retune/M2/screens/camera/captures. Determinism attempts0.
