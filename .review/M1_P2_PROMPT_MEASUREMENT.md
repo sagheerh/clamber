@@ -66,7 +66,10 @@ side-by-side against the R28 adopted numbers above.
 | in between | **partially causative**; report both numbers, conclude nothing stronger |
 
 **Do not** follow this with an adoption attempt, a fix, a clamp, a slop change, or a retry for a better
-number. D0 is one arm. Its result is input for the owner, not an authorisation.
+number. D0 is one arm. **Owner decision (2026-10-30): AC-202 stays FAILED for M1 and is not re-adopted in
+this milestone** — the projection is re-evaluated inside M1.1 *after* the contact-rectifier fix, because
+that fix changes the path the projection compensates for. D0's only job is to tell M1.1 whether penetration
+is a second, independent defect in the same pass.
 
 ---
 

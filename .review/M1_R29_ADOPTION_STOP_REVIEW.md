@@ -181,6 +181,12 @@ that worked at `446d870`, keep the literal source pin in the closing record, and
 
 ## 8. Directives
 
+0. **OWNER DECISION (2026-10-30) — AC-202 stays FAILED for M1; no re-adoption attempt inside M1.**
+   Rationale, recorded so nobody reopens it by accident: the rectifier fix (M1.1) changes the very contact
+   path a post-contact projection compensates for, so adopting the workaround first would risk locking in a
+   solution to a defect that is about to be removed. AC-201a, AC-201s, AC-202 and FA-4 are **one** M1.1
+   cause; the projection is re-evaluated **after** that fix, not before. The D0 control arm still runs —
+   its purpose is to tell M1.1 whether penetration is a second, independent defect in the same pass.
 1. **Adoption stays reverted.** AC-202 is `FAILED` in production; AC-201 and AC-202 are **one** M1.1 cause.
 2. **P2 runs the penetration control arm first**; no conclusion about cause is written before it lands.
 3. **P2 changes no physics.** Measurement, captures, timing, determinism step 1, FA-4, FA-6 only.
