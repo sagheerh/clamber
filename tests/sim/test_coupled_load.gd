@@ -135,6 +135,8 @@ func _gravity_reaction() -> void:
 func _diagnostic_config() -> Dictionary:
 	# Isolated diagnostic override ONLY; no resource or adopted/default value changes.
 	var tuning: Tuning = TUNING.duplicate(true)
+	if "--passive-spring-off" in OS.get_cmdline_user_args():
+		tuning.physics_passive_stiffness = 0.0
 	var spawn_y := 0.33
 	var ticks := 600
 	var lift := 0.0
@@ -260,6 +262,8 @@ func _slug() -> void:
 		row["diagnostic_actuated"] = actuated
 		row["diagnostic_requested_ticks"] = config.ticks
 		row["diagnostic_spring_return_live"] = actuated
+		row["diagnostic_passive_stiffness"] = tuning.physics_passive_stiffness
+		row["diagnostic_motor_stiffness"] = tuning.motors_joint_stiffness
 		row["diagnostic_pose"] = "before" if "--pre-pose" in OS.get_cmdline_user_args() else "after"
 		var text := JSON.stringify(row, "", true, true)
 		print("M1 Slug tick: " + text)

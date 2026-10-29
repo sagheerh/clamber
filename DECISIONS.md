@@ -918,3 +918,24 @@ Full raw19200ticks artifact12871566645 SHA256
 fb50e8157cb349b27da42de1d9a460dfd91701a92ba5e22fbc46a74ad7f7273e.
 Only R16 ordered steps1–3 done; public Sim/F45/replay NEXT, not a new approval
 blocker and not claimed done. All coupled runtime acceptance NOT RUN; determinism0.
+
+## R17 Phase1 — F52 dwell window, F53/F54; F48 diagnostic authorization
+
+Read reviewer-owned completion plan and R17 review via FETCH_HEAD only; neither
+artifact copied/merged. Owner supersedes R16 order: F52 per-tick AND net per-body
+COM displacement from the start-of-dwell snapshot, BOTH strictly below the SAME
+.001WU for 30 ticks. Any failure/input resets dwell and origin. Origin snapshots
+are future state, deep-copied/restored atomically. No threshold/physics retune.
+Required translated .0005WU/tick falsification: old reference sleeps at29, new
+predicate must never sleep; settled .000009337328797581247 fixture still sleeps.
+Sleep remains composed ONLY with free-hinge engineering rig at this increment;
+actuated public Sim not yet wired, so CI cannot yet manufacture FA-4 success.
+F47/F49/F50/F51 CLOSED, FA-5 unchanged; F50 retires landing-spawn confound.
+F53 reports dvx_direction_reversals, not positive-vx sign changes. F54 retains
+raw zero Slug self-contact maxima: path exercised ONLY by units, not at scale.
+F48 sweep ONLY physics_passive_stiffness900 vs0 as DIAGNOSTIC override. Slug has
+one motor joint (stiffness2400), NO passive joint. Report live spring status by
+actual arm, not by passive override alone. MotorDrive decomposition observes the
+same pre-drive q/omega; signed contributions before clamp, no operation-order or
+physics change. Await measured evidence before mechanism/remedy question.
+No runtime acceptance measured here; 0/18, complete-creature attempts0.

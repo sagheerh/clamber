@@ -44,5 +44,26 @@ static func drive(
 	var response := joint.apply_impulse(torque / tuning.physics_tick_hz)
 	if response.is_empty():
 		return {}
-	response.merge({"q": value.q, "target": target, "omega": value.omega, "torque": torque})
+	response.merge(
+		{
+			"q": value.q,
+			"target": target,
+			"omega": value.omega,
+			"torque": torque,
+			"spring_torque":
+			(
+				tuning.motors_joint_stiffness * (target - value.q)
+				if joint.child_body.kind == "motor"
+				else -tuning.physics_passive_stiffness * value.q
+			),
+			"damping_torque":
+			(
+				-tuning.motors_joint_damping * value.omega
+				if joint.child_body.kind == "motor"
+				else float(TUNING.physics_zero)
+			),
+			"kind": joint.child_body.kind,
+			"channel": channel
+		}
+	)
 	return response

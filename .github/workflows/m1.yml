@@ -375,3 +375,47 @@ jobs:
             ${{ runner.temp }}/m1-convergence/
             ${{ runner.temp }}/m1-convergence-console.log
           retention-days: 7
+
+  spring-observation:
+    name: R17 spring mechanism diagnostic (NOT runtime acceptance)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: R17 authorized passive stiffness sweep ONLY
+        shell: bash
+        run: |
+          set +e
+          M1_SPRING_REPORT_DIR="$RUNNER_TEMP/m1-spring" bash tests/run_m1_spring.sh > "$RUNNER_TEMP/m1-spring-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-spring-console.log" "$status" <<'PYLOG'
+          import sys
+          for line in open(sys.argv[1]).read().splitlines():
+              if line.startswith('M1 R17') or 'ERROR' in line or 'FAIL' in line:
+                  level='notice' if sys.argv[2]=='0' else 'error'
+                  print(f'::{level} title=M1 R17 diagnostic ONLY::'+line.replace('%','%25').replace('\r','%0D'))
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r17-spring-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-spring/
+            ${{ runner.temp }}/m1-spring-console.log
+          retention-days: 7

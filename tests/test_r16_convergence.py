@@ -20,7 +20,7 @@ class ConvergenceControls(unittest.TestCase):
     def test_changing_oscillation_is_not_settled_by_bounded_range(self):
         c = classify([(i/100000, (-1)**i/(i+1)) for i in range(600)])
         self.assertEqual(c['classification'], 'oscillating transient')
-        self.assertGreater(c['vx_change_sign_reversals'], 0)
+        self.assertGreater(c['dvx_direction_reversals'], 0)
         self.assertFalse(c['settled'])
 
     def test_exact_period_reports_nonzero_settled_mean(self):

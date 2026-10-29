@@ -31,5 +31,6 @@ def phase_magnitudes(rows):
                         'max_abs_impulse':max(drive+limits,default=0.),
                         'max_abs_tick_net_impulse':max(net,default=0.)},
             'self_contact': {'max_abs_position_delta_wu':max(position['self_contact'],default=0.),
+                             'scale_validation': 'ZERO Slug self-contact impulses: path exercised ONLY by unit tests; scale validation requires an eligible self-hit preset with nonzero impulse' if not any(contacts) else 'nonzero events observed; not acceptance',
                              'impulse_unit':'N*s', 'max_impulse_magnitude':max(contacts,default=0.),
                              'max_body_net_impulse_magnitude':max(net_self,default=0.)}}

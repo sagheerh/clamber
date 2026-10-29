@@ -27,7 +27,7 @@ def classify(values):
             'settlement_criterion': 'last300 COM(dx,vx) exactly constant/repeating >=2 cycles; NO velocity epsilon; absence is not proof of divergence',
             'vx_increases': sum(d > 0 for d in changes), 'vx_decreases': sum(d < 0 for d in changes),
             'vx_unchanged': sum(d == 0 for d in changes),
-            'vx_change_sign_reversals': sum(a*b < 0 for a, b in zip([d for d in changes if d != 0], [d for d in changes if d != 0][1:])),
+            'dvx_direction_reversals': sum(a*b < 0 for a, b in zip([d for d in changes if d != 0], [d for d in changes if d != 0][1:])),
             'last300_vx_range_wu_s': [min(speeds), max(speeds)],
             'last300_dx_range_wu_tick': [min(v[0] for v in tail), max(v[0] for v in tail)],
             'settled_mean_dx_wu_tick': math.fsum(v[0] for v in tail) / 300 if period else None,
@@ -42,7 +42,7 @@ def drift_summary(rows):
     tail = values[-300:]
     dx = math.fsum(v[0] for v in tail) / 300
     vx = math.fsum(v[1] for v in tail) / 300
-    active = rows[0].get('diagnostic_actuated', False)
+    active = rows[0].get('diagnostic_spring_return_live', rows[0].get('diagnostic_actuated', False))
     recurrence = {'count_pattern_period_ticks': None, 'repeat_lag_dx_max_difference_wu_tick': None,
                   'repeat_lag_vx_max_difference_wu_s': None,
                   'meaning': 'observed recurrence differences ONLY; no settlement tolerance/pass criterion'}

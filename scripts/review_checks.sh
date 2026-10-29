@@ -14,6 +14,7 @@ python3 tests/test_r15_counts.py
 python3 tests/test_r16_gate.py
 python3 tests/test_r16_convergence.py
 python3 tests/test_r16_phase_spawn.py
+python3 tests/test_r17_spring.py
 python3 tests/test_static.py
 python3 tests/test_android_inspection.py
 echo 'PASS: review_checks.sh static checks completed.'

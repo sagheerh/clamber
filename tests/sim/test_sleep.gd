@@ -11,6 +11,7 @@ var _report := {
 
 func _initialize() -> void:
 	_predicate()
+	_slide_controls()
 	_replay()
 	for arg in OS.get_cmdline_user_args():
 		if arg.begins_with("--report="):
@@ -251,3 +252,65 @@ func _replay() -> void:
 			)
 		)
 	)
+
+
+# F52 uses explicit fixture translations, not injected contact loads or solver tuning.
+func _slide_controls() -> void:
+	_report["F52"] = []
+	for speed in [9.337328797581247e-6, 5.0e-4]:
+		var rule := CreatureSleep.new()
+		_check(rule.configure(TUNING) == OK, "F52 configure")
+		var initial := _bodies()
+		var legacy_ticks := 0
+		var legacy_sleep_tick := -1
+		var sleep_tick := -1
+		for tick in range(600):
+			var before := initial.duplicate(true)
+			var after := initial.duplicate(true)
+			for index in range(initial.size()):
+				for end in ["a", "b"]:
+					before[index][end].x += speed * tick
+					after[index][end].x += speed * (tick + 1)
+			# Independent old predicate reference; records falsification before fix.
+			var legacy_max := 0.0
+			for index in range(initial.size()):
+				var dx: float = (
+					(
+						(after[index].a.x + after[index].b.x)
+						- (before[index].a.x + before[index].b.x)
+					)
+					/ 2.0
+				)
+				legacy_max = maxf(legacy_max, absf(dx))
+			legacy_ticks = (
+				legacy_ticks + 1 if legacy_max < TUNING.sleep_still_displacement_wu else 0
+			)
+			if legacy_ticks == TUNING.sleep_dwell_ticks:
+				legacy_sleep_tick = tick
+			if not rule.asleep:
+				_check(rule.observe(before, after, 0, tick) == OK, "F52 observation valid")
+				if rule.asleep:
+					sleep_tick = tick
+			if speed == 5.0e-4:
+				_check(not rule.asleep, "F52 slow slide NEVER sleeps, per-tick below threshold")
+		_check(legacy_sleep_tick == 29, "F52 old per-tick-only predicate sleeps at29")
+		_check(sleep_tick == (29 if speed != 5.0e-4 else -1), "F52 settled sleeps; slide rejected")
+		var stable := var_to_bytes(rule.snapshot())
+		var invalid := rule.snapshot()
+		invalid.dwell_start = [{}]
+		_check(
+			rule.restore(invalid) != OK and var_to_bytes(rule.snapshot()) == stable,
+			"F52 corrupt dwell origin rejected atomically"
+		)
+		var item := {
+			"fixture_wu_tick": speed,
+			"before_sleep_tick": legacy_sleep_tick,
+			"after_sleep_tick": sleep_tick,
+			"per_tick_wu": speed,
+			"net_30_ticks_wu": speed * 30,
+			"threshold_wu": TUNING.sleep_still_displacement_wu,
+			"observed_ticks": 600,
+			"scope": "translated body fixture, not FA acceptance"
+		}
+		_report.F52.append(item)
+		print("M1 sleep F52: " + JSON.stringify(item, "", true, true))
