@@ -69,11 +69,11 @@ func _motors() -> void:
 				absf(value.target - target) < 1e-15, "L/R masks are independent; both means both"
 			)
 			_check(
-				absf(value.torque - clampf(2400.0 * target, -1260.0, 1260.0)) < 1e-12,
+				absf(value.torque - clampf(10.0 * target, -8.4, 8.4)) < 1e-12,
 				"independent prescribed spring and gain torque clamp"
 			)
 			_check(
-				absf(value.tick_net_relative_speed_change) <= 6.0 + 1e-14,
+				absf(value.tick_net_relative_speed_change) <= 30.0 + 1e-14,
 				"per-constraint tick angular budget"
 			)
 			var parent := PlanarBasis.frame(joint.parent_body)
@@ -103,7 +103,9 @@ func _motors() -> void:
 	var damped := _joint()
 	PlanarBasis.spin(damped.child_body, 1.0)
 	value = MotorDrive.drive(damped, 0, "L", .7, TUNING)
-	_check(absf(value.torque + 55.0) < 1e-12, "existing c55 damper independent of spring")
+	_check(
+		absf(value.torque + 0.5443327361211717) < 1e-12, "R25 derived damper independent of spring"
+	)
 	var passive := _joint("passive")
 	PlanarBasis.turn(passive.child_body, .01)
 	value = MotorDrive.drive(passive, 0, "", .7, TUNING)
@@ -148,7 +150,7 @@ func _limits() -> void:
 	fast.block_velocity()
 	fast.block_velocity()
 	_check(
-		absf(fast.impulse * fast.state().weight) <= 6.0 + 1e-14,
+		absf(fast.impulse * fast.state().weight) <= 30.0 + 1e-14,
 		"two passes cannot spend clamp twice"
 	)
 	var root := AngularJoint.new()
@@ -225,6 +227,7 @@ func _probe(name: String) -> ActuatedLoadProbe:
 		friction.append(TUNING.physics_grip_friction)
 		bounce.append(TUNING.physics_foot_restitution)
 	var probe := ActuatedLoadProbe.new()
+	probe.brace_enabled = false  # Preserve original awake engineering motor controls.
 	_check(
 		probe.setup(model, _floor(), 0.0, 6.0, friction, bounce, TUNING) == OK,
 		"awake composition setup"

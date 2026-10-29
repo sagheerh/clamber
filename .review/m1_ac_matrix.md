@@ -1,6 +1,27 @@
 # M1 acceptance matrix — scoped measured evidence, NOT milestone approval
 
-## Current R24 — final round COMPLETE / STOP FOR OWNER P-A/P-B / 8of18
+## Current R25 — P-B DECIDED; adoption/brace + independent gates PENDING
+
+OwnerR25 DECISION read via gitshow reviewer9957260 ONLY, nevercopied/merged.
+Adoptk10/c.5443327361211717/bound30/cap12 plus bilateral relative-release-angle
+brace; NOstrengthknob/worldpin/velocityzeroing. One adoptioncommit, no other
+physics changes. Stateflag+angle snapshot/hash/atomicrestore; publicpresentation
+flag documented/Phase4distinctcue deferred, not claimedrendered. Cost/risk:
+bracefailure leaves8.55 vsold3.93; actualF52within4s required/no diagnosticmean
+substitution. Source/provenance/registeredarms `.review/m1_r25_adoption_plan.md`.
+Mechanismofrecordsteady treadmill: constant completedvx~machineprecision with
+~.11rad intratickqchurn; F72samplingerrorwithdrawn/F71asymptoteunsupported/F73
+notradeoffk10winsboth. F65closedrescale. Slip/sleep/mass/gainrange unchanged.
+SEPARATE AC202public3presets7200each and natural-loadHopperFA5startinparallelCI,
+no brace-successdependency/no missingbranchcredit. Sevenfixedbrace/lurcharms,
+F74gains.7/1 x1s/5s boundedceiling, no post-resultdurationsearch. STOPonowner
+conditions/no retune; resultsPENDING. Explicitbaselinegeneration+strictpublic
+rerunONadoptionsourcecommit then commitgeneratedbytes/no furtherphysicsedit.
+Matrix8/18movement0 pendingreview; AC201/202/FA5NOTPASS untilvalidCI. D07phone/
+B04queued/noM2/camera/captures/waiver. Actualpubliclastreproduced8110688, which
+cannotcovernewadoption. Review/historyretainedbelow.
+
+## Historical R24 — final round COMPLETE / STOP FOR OWNER P-A/P-B / 8of18
 
 Source8110688 /push40890281324 /round123504891124 SUCCESS; exactlyA3+B1/24krawticks.
 COLDarchive12901654637 read only (no3k/15armrepeat). Fullprecision/report:

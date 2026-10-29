@@ -18,7 +18,7 @@ class StudyControls(unittest.TestCase):
         for k,w in [(0,1),(1,0),(-1,1),(math.inf,1)]:
             with self.assertRaises(ValueError):damping_from_weight(k,w)
     def test_old_audit_stays_strict_and_candidate_requires_measured_coefficients(self):
-        r=fixture();audit_drive(r)
+        r=fixture();audit_drive(r,motor_damping=55.,max_torque=1800.)
         with self.assertRaises(ValueError):audit_drive(r,motor_damping=1.,max_torque=12.)
     def test_f52_keeps_net_dwell_not_mean_drift(self):
         def rows(dx):

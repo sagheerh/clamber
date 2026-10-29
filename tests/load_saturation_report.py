@@ -77,9 +77,9 @@ def stats(values):
         'min':min(values),'max':max(values)}
 
 
-def strength(rows):
+def strength(rows, *, motor_damping=MOTOR_DAMPING, max_torque=TORQUE):
     # Audit every tick before summarizing last300, not just the mean.
-    all_ticks=[audit_drive(r) for r in rows];tail=all_ticks[-300:]
+    all_ticks=[audit_drive(r,motor_damping=motor_damping,max_torque=max_torque) for r in rows];tail=all_ticks[-300:]
     return {'unit':'angular impulse mass*WU^2/s; bound*weight is relative rad/s increment',
         **{k:stats([a[k] for a in tail]) for k in ('requested','bound','applied','requested_over_bound')},
         'saturated_ticks':sum(a['saturated'] for a in tail),'window_ticks':300,

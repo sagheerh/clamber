@@ -36,6 +36,6 @@ class InertControls(unittest.TestCase):
         self.assertNotIn('run_arm',s);self.assertNotIn('--angular-bound-one',s)
     def test_committed40_stays40(self):
         self.assertEqual(resource('motors_limit_max_deg'),40.)
-        self.assertEqual(resource('physics_max_constraint_angular_impulse_rad_s'),6.)
+        self.assertEqual(resource('physics_max_constraint_angular_impulse_rad_s'),30.) # R25 approved adoption; band40 unchanged
 
 if __name__=='__main__':unittest.main(verbosity=2)

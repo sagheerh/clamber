@@ -42,8 +42,8 @@ class M0StaticTests(unittest.TestCase):
         # Normative GDD values, independent of the generated inventory.
         for key, expected in {
             'physics_gravity_wu_s2': '-28.0', 'physics_tick_hz': '60',
-            'motors_contraction_deg': '62.0', 'motors_joint_stiffness': '2400.0',
-            'motors_joint_damping': '55.0', 'motors_max_torque': '1800.0',
+            'motors_contraction_deg': '62.0', 'motors_joint_stiffness': '10.0',
+            'motors_joint_damping': '0.5443327361211717', 'motors_max_torque': '12.0',
             'fall_checkpoint_drop_wu': '5.0', 'score_fall_penalty': '150',
             'score_second_penalty': '10', 'score_coin_pickup_value': '50',
             'economy_starting_coins': '0', 'generator_baked_days': '90',

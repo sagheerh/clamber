@@ -65,7 +65,7 @@ geometry/grip and analytic feel-check inputs; these are not measured feel eviden
 | Physics | `physics_sdf_cell_wu` | §4.4–4.5 | `0.25` |
 | Physics | `physics_static_slip_wu_s` | §4.4–4.5 | `0.15` |
 | Physics | `physics_foot_grip_bias` | §4.4–4.5 | `1.4` |
-| Physics | `physics_max_constraint_angular_impulse_rad_s` | §4.4–4.5 | `6.0` |
+| Physics | `physics_max_constraint_angular_impulse_rad_s` | R25 owner override (DECISIONS M1-R25); §4.4–4.5 | `30.0` |
 | Physics | `physics_distance_solves_per_iteration` | §4.4–4.5 | `2` |
 | Physics | `physics_limb_reset_residual_wu` | §4.4–4.5 | `0.25` |
 | Physics | `physics_max_projection_wu_tick` | §4.4–4.5 | `0.4` |
@@ -168,9 +168,9 @@ geometry/grip and analytic feel-check inputs; these are not measured feel eviden
 | Physics | `physics_codec_mutation_cases` | §10.6; §13.1 validation budgets | `10000` |
 | Physics | `physics_process_kill_trials` | §10.6; §13.1 validation budgets | `30` |
 | Motors | `motors_contraction_deg` | §3.2; §3.4 | `62.0` |
-| Motors | `motors_joint_stiffness` | §3.2; §3.4 | `2400.0` |
-| Motors | `motors_joint_damping` | §3.2; §3.4 | `55.0` |
-| Motors | `motors_max_torque` | §3.2; §3.4 | `1800.0` |
+| Motors | `motors_joint_stiffness` | R25 owner override (DECISIONS M1-R25); §3.2; §3.4 | `10.0` |
+| Motors | `motors_joint_damping` | R25 owner override (DECISIONS M1-R25); §3.2; §3.4 | `0.5443327361211717` |
+| Motors | `motors_max_torque` | R25 owner override (DECISIONS M1-R25); §3.2; §3.4 | `12.0` |
 | Motors | `motors_limit_min_deg` | §3.2; §3.4 | `-140.0` |
 | Motors | `motors_limit_max_deg` | §3.2; §3.4 | `40.0` |
 | Motors | `motors_gain_min` | §3.2; §3.4 | `0.0` |

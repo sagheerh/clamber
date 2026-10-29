@@ -15,6 +15,13 @@ ROOT=Path(__file__).resolve().parents[1]
 class R14OwnerTests(unittest.TestCase):
     def test_only_two_owner_tuning_additions_no_old_resource_change(self):
         raw=(ROOT/'core/tuning.tres').read_bytes()
+        # Undo ONLY the four R25 owner-approved replacements before checking the
+        # immutable R14 golden bytes; every other old field remains locked.
+        for adopted,old in [(b'physics_max_constraint_angular_impulse_rad_s = 30.0',b'physics_max_constraint_angular_impulse_rad_s = 6.0'),
+            (b'motors_joint_stiffness = 10.0',b'motors_joint_stiffness = 2400.0'),
+            (b'motors_joint_damping = 0.5443327361211717',b'motors_joint_damping = 55.0'),
+            (b'motors_max_torque = 12.0',b'motors_max_torque = 1800.0')]:
+            self.assertIn(adopted,raw);raw=raw.replace(adopted,old)
         original=b''.join(line for line in raw.splitlines(keepends=True) if not line.startswith((b'sleep_still_displacement_wu =',b'sleep_dwell_ticks =')))
         self.assertEqual(hashlib.sha256(original).hexdigest(),'1da7a06bea943e947f5229e3335573f8e32b567c530b4425f72c5028f84dc490')
         self.assertIn(b'sleep_still_displacement_wu = 0.001\n',raw)

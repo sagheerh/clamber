@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
 """F63 reporter controls ONLY, no synthetic runtime qualifying loads."""
 from copy import deepcopy
+from functools import partial
 import unittest
-from load_saturation_report import audit_drive, strength, compare, zero_gate, clamp, HZ, LIMIT, TORQUE
+from load_saturation_report import audit_drive as _audit_drive, strength as _strength, compare, zero_gate, clamp, HZ, LIMIT
+# Preserve original saturated F63 controls after R25 adoption; explicit OLD law.
+TORQUE=1800.
+audit_drive=partial(_audit_drive,motor_damping=55.,max_torque=TORQUE)
+strength=partial(_strength,motor_damping=55.,max_torque=TORQUE)
 from load_trace_report import IDENTITY_EPS
 
 

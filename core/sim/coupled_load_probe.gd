@@ -18,6 +18,7 @@ var _friction: Array[float] = []
 var _restitution: Array[float] = []
 var _ticks: int = TUNING.physics_zero
 var _contact_counts: Array = []
+var _contact_batches: Array = []
 
 
 func setup(
@@ -161,6 +162,7 @@ func _step(before: Dictionary) -> Dictionary:
 		"contact_velocity_impulse_y_ns": float(TUNING.physics_zero),
 	}
 	_contact_counts = []
+	_contact_batches = []
 	var started := _begin_tick()
 	if started != OK:
 		return {"status": started}
@@ -299,6 +301,24 @@ func _velocity_contacts(
 				TUNING.physics_zero, -(external_x * normal.nx + external_y * normal.ny) / dt
 			)
 		lowest = lowest_mask(bodies, _tuning)
+		# Detached observation ONLY; no values fed into physics. FA5 independently
+		# reconstructs frozen N, geometry eligibility and real hinge/load provenance.
+		if collect_contact_samples:
+			var parts: Array = []
+			for index in range(bodies.size()):
+				var body := bodies[index]
+				parts.append(
+					{
+						"part": index,
+						"bottom_wu": minf(body.a.y, body.b.y) - body.radius,
+						"applied_load_n": body.applied_load_n,
+						"hinge_x_ns": hinge_x[index],
+						"hinge_y_ns": hinge_y[index],
+						"extra": _body_impulse(index).duplicate(true),
+						"lowest": lowest[index]
+					}
+				)
+			_contact_batches.append({"velocity_pass": velocity_pass, "parts": parts})
 		var before_contact := _momentum_y()
 		var before_contact_x := _momentum_x()
 		var before_contact_positions := _positions()
@@ -475,6 +495,7 @@ func _trace(
 	return {
 		"contact_samples": contact_samples,
 		"contact_counts": _contact_counts,
+		"contact_batches": _contact_batches,
 		"grounded_parts": grounded,
 		"previous_grounded_parts": previous_grounded,
 		"new_grounded_parts": grounded.filter(func(part): return part not in previous_grounded),

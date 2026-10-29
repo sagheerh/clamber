@@ -1622,3 +1622,85 @@ baselineprovenance/lurchrederive. No furtherphysics trials/contact sweeps; no
 packagechoice/brace/adoption yet. PreregisteredFA6offsets fixed/noFA6run. Future
 visiblebrace must snapshot/restore/explicit internalnetzero ledger/fullF56 and
 never manufactures support/fudgesloads. AC201strictunchanged/noM2/camera/captures.
+
+## M1-R25 — OWNER DECISION: P-B adoption + relative-joint brace
+
+Decision source: GDD owner/user's explicit R25 instruction (DECISION, not proposal),
+reviewer origin/arena/5b72e4ab-clamber at9957260, read
+`.review/M1_R25_PACKAGE_DECISION.md` by git show ONLY; never copied/merged.
+Adopt k10/bound30/cap12 with derived c.5443327361211717 in ONE adoption commit.
+First adopted motor re-scale of this study, not another process-local candidate.
+Honest cost: changed committed physics => regenerate public baseline with exact
+provenance and rerun public replay/clock ON the solver-changing source commit.
+If brace fails, adopted idle drift is8.550150769956836 rather than old3.9345242551.
+Do not hide that risk or dependency of AC201 on a designed hold mechanic.
+
+Derivation: equal endpoint masses m/2 => I=m*extent²/4. Actual authored Slug head
+m=.35*2.2=.77, extent.35 => Ip=.02358125; motor m=.30*1.6=.48, extent.30 =>
+Ic=.0108. 1/Ip+1/Ic=134.99916561141055 (use actual authored binary64 frames;
+no rounded inertia substituted). Ieff=1/(1/Ip+1/Ic), c=2sqrt(k*Ieff), giving
+.5443327361211717 at k10. Resource stores FULL derived value, not rounded.544333.
+Cap30 replaces6, torque12 replaces1800, stiffness10 replaces2400, damping replaces55.
+Gain.7/range0..1/contraction62, slip.15, sleep.001/30, masses/weight/bands unchanged.
+Continuous authored critical damping is NOT a claim of loaded discrete criticality.
+
+Reasons: k10 wins observed drift AND lurch among10/20/40; live gain dial/headroom
+(maxrequest/bound.245, no holding300clipping), legal12.7866deg pose, end-release
+lurch.2518BL vscommitted.1457BL. Rejected P-A has dead saturateddial/illegalpose;
+k20/k40 worse on both measured metrics; morestiffness is NOT a stationkeepingfix.
+A slip hypothesis falsified/nonmonotone; no extrapolated.00349target authorised.
+F71 finite3point trend only/asymptoteunsupported. F72 frozenjoint WITHDRAWN byowner
+as samplingerror. F73 opposite-direction tradeoff WITHDRAWN. F65 CLOSEDbyrescale.
+
+Mechanism statement of record (owner R25): **steady treadmill**, not a frozenjoint
+or between-tick oscillatory limit cycle. Late completed COMvx spreads (k10,k20,k40)
+7.7e-16/3.5e-15/4.6e-15WU/s over300ticks, while sampled relativeq churn~.11rad/tick
+and driveomega1.19..1.27rad/s returns to same drivephase. Contact/friction solve
+rectifies this churn into steady translation. Scope measured loaded cases, not a
+universal no-motor theorem/infinite-stiffness proof. R24publicjob actually DID run
+on8110688 (also573a1fb); stale wording 'not since d76b88e' corrected as provenance,
+but neither earlier run covers THIS adoption, so fresh adopted-source rerun required.
+
+Brace specification: on zero input (including spawn), capture relativeq once;
+replace angular row by bilateral positional error(q-releaseq) and exact velocity
+block J=-omega/(Ip^-1+Ic^-1). ANY input instantly disables and fully rearms it,
+including other channel; no delay/hysteresis/strength constant/cap/spring. Equal/
+opposite endpoint couples on each body, zero internal net linear impulse by
+construction. Raw observed roundoff is retained, not replaced by manufacturedzero;
+existing1e-12 bookkeeping only. No world height/anchor/support force. Position
+turns conserve eachbodyCOM; no new qualifying loads. Gravity/contact remainexternal.
+Reject worldpin (airborne manufacturedsupport), velocityzeroing (silentfakeAC201),
+morestiffness (measuredworsedrift). Sleep parks ONLY after ORIGINALF52 fires;
+brace is idempotent across sleep and releases on input wake. No CreatureSleep edits.
+
+State: per joint bool brace_active + necessary release-angle scalar brace_q;
+flag alone cannot encode arbitrary releaseangle. Both in snapshot/statehash/atomic
+restore, strict boolean/finiteangle [-PI,PI], inactive canonicalq0, no missingfield
+accepted. brace_enabled is explicit diagnostic config identity for authorisedoff
+arm; publicalwaysON, not tuning. Public get_brace_state exposes detachedjointflags.
+VISIBLE contract: distinct planted joint cue consuming brace_active, distinguishable
+from asleep; Phase4 renderer/captures deferred as owner authorised, NOT claimed
+rendered in this headless increment. Never infer presentation from velocities.
+
+Registration: `.review/m1_r25_adoption_plan.md`. IdleON/OFF, lurchOFF/ON .7/1s,
+ON1.0/1s, ON.7/5s, ON1.0/5s. Same95sreleased and4srelease; hold durations fixed
+BEFORE outcomes, not widened to hitgate. F74 sampled maximum only, not global
+maximum over unbounded holdtime; longer motion includes passive translation.
+ActualpublicSim F52/600tick trace separate from forcebudget traces. Allsleepenabled
+arms publish awakepreparkingF56 plus explicitpark transitions; parkedrows NEVER
+invent fresh forces. Internal brace contribution is observed SUBSET of existing
+internal/drive, not double counted. LiteralF56false/default exit1 not rewritten.
+
+STOP after registered measurements ifONdrift>.3, actualunmodifiedF52not<240ticks,
+OFFdriftnotEXACT8.550150769956836, nonconserving/newknob; no retune/retry/epsilon/
+threshold/slip change. Lurch weakness/F74shortfall published, no contraction/gain
+range widening. Remaining alternatives require NEWowner contactmodel/specdecision.
+
+AC202andFA5 START in parallel jobs, no needs dependency onbrace/baseline success.
+AC202public3presets7200ticks each/allsegments, UNMODIFIED.05WU. FA5authoredHopper
+awakebraceOFF7200ticks fixed released/L/R/both60tickblocks. Flat existingfloor,
+no new stance geometry or syntheticload/flag/pose; actualhinge+gravity+self loads,
+frozen priorN, thresholdmax(5,.4W/N), N0disable. Allfourbranches+twofootstance
+must be observed; missingcoverage fails honestly/no geometryposthoc adjustment.
+No gate credit before measuredCI; matrix8/18 retained for review this increment.
+NoM2/camera/captures/waiver/mass/weight changes. D07phone/B04layout remainqueued.

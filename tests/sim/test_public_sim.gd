@@ -275,7 +275,19 @@ func _restore_controls() -> void:
 				"public restored continuation exact"
 			)
 	var sim := _rig()
-	for field in ["rng", "clock", "body", "motor", "sleep", "constraint", "identity"]:
+	for field in [
+		"rng",
+		"clock",
+		"body",
+		"motor",
+		"sleep",
+		"constraint",
+		"identity",
+		"brace_bool",
+		"brace_angle",
+		"brace_missing",
+		"brace_inactive_target"
+	]:
 		var before := sim.snapshot()
 		var bad := before.duplicate(true)
 		match field:
@@ -293,6 +305,15 @@ func _restore_controls() -> void:
 				bad.accumulator.solver.constraints.links[0].multiplier = INF
 			"identity":
 				bad.identity.tower.x += 1.0
+			"brace_bool":
+				bad.accumulator.solver.rig.physical.angular_joints[0].brace_active = 1
+			"brace_angle":
+				bad.accumulator.solver.rig.physical.angular_joints[0].brace_q = INF
+			"brace_missing":
+				bad.accumulator.solver.rig.physical.angular_joints[0].erase("brace_q")
+			"brace_inactive_target":
+				bad.accumulator.solver.rig.physical.angular_joints[0].brace_active = false
+				bad.accumulator.solver.rig.physical.angular_joints[0].brace_q = .1
 		sim.restore(bad)
 		_check(
 			sim.last_status != OK and sim.snapshot() == before,
@@ -319,11 +340,14 @@ func _zero_input_live_sleep() -> void:
 		var sleep: Dictionary = sim.snapshot().accumulator.solver.rig.sleep
 		any_sleep = any_sleep or sleep.asleep
 		max_dwell = maxi(max_dwell, sleep.still_ticks)
-	_check(not any_sleep, "F52 reachable motors+spring do NOT park walking Slug")
+	_check(
+		any_sleep == (max_dwell == TUNING.sleep_dwell_ticks),
+		"R25 actual sleep state agrees with unmodified F52 dwell (not a drift gate)"
+	)
 	_report["live_spring_sleep"] = {
 		"ticks": 600,
 		"any_sleep": any_sleep,
 		"max_dwell_ticks": max_dwell,
 		"scope":
-		"F52 reachability observation, NOT AC-201/FA-4 acceptance; drift remedy pending owner"
+		"R25 actual F52 observation with adopted joint brace; deadline/drift in separate adoption gate"
 	}

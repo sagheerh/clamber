@@ -242,6 +242,8 @@ func _slug() -> void:
 	var actuated := "--actuated" in OS.get_cmdline_user_args()
 	var probe: CoupledLoadProbe = ActuatedLoadProbe.new() if actuated else CoupledLoadProbe.new()
 	probe.collect_contact_samples = true
+	if actuated:
+		(probe as ActuatedLoadProbe).brace_enabled = false
 	# Explicit uniform diagnostic material; NOT a new non-foot production default.
 	var friction: Array[float] = [
 		TUNING.physics_grip_friction, TUNING.physics_grip_friction, TUNING.physics_grip_friction
@@ -259,6 +261,8 @@ func _slug() -> void:
 		ActuatedLoadProbe.new() if actuated else CoupledLoadProbe.new()
 	)
 	reference.collect_contact_samples = false
+	if actuated:
+		(reference as ActuatedLoadProbe).brace_enabled = false
 	if reference.setup(model, _floor(), 0.0, spawn_y, friction, bounce, tuning) != OK:
 		push_error("observer-off reference setup failed")
 		quit(1)

@@ -20,10 +20,13 @@ func setup(
 	friction: Array[float],
 	restitution: Array[float],
 	tuning: Tuning,
-	actuated: bool = false
+	actuated: bool = false,
+	brace_enabled: bool = true
 ) -> Error:
 	var probe: CoupledLoadProbe = ActuatedLoadProbe.new() if actuated else CoupledLoadProbe.new()
 	var sleep := CreatureSleep.new()
+	if actuated:
+		(probe as ActuatedLoadProbe).brace_enabled = brace_enabled
 	if (
 		probe.setup(model, terrain, x, y, friction, restitution, tuning) != OK
 		or sleep.configure(tuning) != OK

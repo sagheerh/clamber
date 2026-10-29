@@ -28,9 +28,9 @@ class RoundControls(unittest.TestCase):
         self.assertIn('for name in A-0.15 A-0.015 A-0.0015 B',s)
         self.assertEqual(s.count('--script res://tests/sim/test_coupled_load.gd'),1)
         self.assertNotIn('run_m1_d09.sh',s)
-    def test_defaults_not_retuned(self):
+    def test_r25_only_owner_authorised_defaults_adopted(self):
         s=Path('core/tuning.tres').read_text()
-        for line in ['physics_static_slip_wu_s = 0.15','motors_joint_stiffness = 2400.0','physics_max_constraint_angular_impulse_rad_s = 6.0']:
+        for line in ['physics_static_slip_wu_s = 0.15','motors_joint_stiffness = 10.0','physics_max_constraint_angular_impulse_rad_s = 30.0']:
             self.assertIn(line,s)
 
 if __name__=='__main__':unittest.main(verbosity=2)
