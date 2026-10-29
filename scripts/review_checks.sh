@@ -11,6 +11,7 @@ python3 tests/test_load_trace.py
 python3 tests/test_contact_trace.py
 python3 tests/test_r14_owner.py
 python3 tests/test_r15_counts.py
+python3 tests/test_r16_gate.py
 python3 tests/test_static.py
 python3 tests/test_android_inspection.py
 echo 'PASS: review_checks.sh static checks completed.'

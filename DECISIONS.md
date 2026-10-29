@@ -822,3 +822,32 @@ actual composed D10 overlap/impulse hooks independently tested (no terrain call 
 qualifying load injection). Main-count/phase falsification controls remain; old
 accepted analyzer/control suites unchanged. New runner completion floor931.
 No production mechanics change or retune in this control-only follow-up.
+
+
+## M1-R16 — accepted mechanics components, honest RED sustained-support gate
+
+Owner accepts motors/asymmetric limits/velocity blocking/D10/CORDIC/F43/count and
+spawn falsification controls, unchanged c641990 coefficients. Current mechanics
+count is931, NOT preliminary921; Python106 and M0 514/0 reproduced. Components
+are not coupled runtime acceptance or complete-creature determinism (attempts0).
+
+F47: owner acknowledges F37 requested metrics but not their use in the gate, and
+R15 “M1 green” did not check the impact-only flip. This is the OWNER'S reviewer
+correction, recorded from R16; do not attribute a causal/acceptance claim to tests.
+Exact replacement chosen: in last300 ticks, grip fraction>0 AND at least one
+SAME-TICK grounded gripping positive-reaction single foot contributes strictly
+>0.50 of ALL grounded velocity-level reaction. No aggregate-feet majority or
+majority at a different time/foot; no positional cleanup. No new physical constant.
+This is the F30 diagnostic door, NOT FA-5. Existing CI exit remains nonzero on
+failure, with no bypass or weakening of force/F31/motion checks. Current data RED.
+Eight new adversarial Python controls include actual CLI impact-only exit1;
+accepted40-control file unchanged. No physics/tuning change.
+
+ORDER: F47/F51 first; F48 convergence and own zero-input drift line; F49 separate
+pre-fold angular/self position and impulse maxima, F50 post-pose .610/.810 legal
+spawn comparison; public Sim/F45/replay; then FA-5(all4), all3 FA-3/4,
+AC201/202/204,A9,10.6,tickcost/captures. No retune/epsilon/hysteresis/damping or
+sampling change/injected qualifying loads/M2/camera/captures. Only the two already
+landed sleep additions are authorized. Zero input is NOT unpowered: always-on
+spring return remains live. Do not interpret R15's evolving last300 as equilibrium.
+F41 stays OPEN; no premature closure from F50. FA-3/4/5/6/all runtime gates NOT RUN.

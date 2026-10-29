@@ -28,6 +28,30 @@ def body_momentum(bodies, start=False):
     return result
 
 
+def sustained_support(rows):
+    """R16/F47 diagnostic gate, NOT FA-5. No physics/tuning change.
+
+    Last300 must contain a grounded, gripping foot with positive velocity-level
+    reaction supplying STRICTLY more than half ALL grounded reaction at that
+    SAME tick. Landing-only grip, split support and positional cleanup cannot pass.
+    """
+    window = rows[-300:]
+    majority_ticks = []
+    shares = []
+    for r in window:
+        total = math.fsum(b['measured_reaction_n'] for b in r['feet'] + r['other_bodies'] if b['grounded'])
+        candidates = [(f, f['measured_reaction_n'] / total) for f in r['feet'] if f['grounded']] if total > 0 else []
+        shares.extend(share for _, share in candidates)
+        if any(f['gripping'] and f['measured_reaction_n'] > 0 and share > .50 for f, share in candidates):
+            majority_ticks.append(r['tick'])
+    fraction = sum(any(f['gripping'] for f in r['feet']) for r in window) / len(window)
+    return {'definition': 'last300 grip fraction>0 AND same-tick grounded gripping positive-reaction single-foot share>0.50',
+            'window_ticks': [window[0]['tick'], window[-1]['tick']],
+            'grip_fraction': fraction, 'max_single_foot_grounded_support_share': max(shares, default=0.0),
+            'loaded_majority_grip_ticks': majority_ticks,
+            'passed': fraction > 0 and bool(majority_ticks)}
+
+
 def analyze(rows):
     if len(rows) != 600:
         raise ValueError(f'Expected all 600 raw rows, got {len(rows)}')
@@ -136,6 +160,7 @@ def analyze(rows):
                       abs(r['bias_error_n']) <= IDENTITY_EPS and
                       abs(r['internal_impulse_y_ns']) <= IDENTITY_EPS for r in ledgers)
     motion, _ = motion_profile(rows, close)
+    support_gate = sustained_support(rows)
     iterations = {r['diagnostic_position_iterations'] for r in rows}
     if len(iterations) != 1 or next(iter(iterations)) <= 0:
         raise ValueError('Mixed/invalid diagnostic iteration count')
@@ -160,7 +185,8 @@ def analyze(rows):
         'bias_equation': 'R-W=(dP_y-J_damping-J_clamp-J_internal)/dt; gravity=-W*dt; no force correction',
         'grip_engaged_ticks': engaged,
         'grip_engagement': 'grip engaged' if engaged else 'grip never engaged',
-        'foot_load_path_exercised': bool(loaded_grip),
+        'foot_load_path_exercised': support_gate['passed'],
+        'sustained_support_gate': support_gate,
         'loaded_grip_ticks': loaded_grip,
         'grip_toggle_ticks': toggles,
         'steady_ranges_n': {
@@ -182,7 +208,7 @@ def analyze(rows):
 
 
 def diagnostic_summary(rows):
-    # Preserve the accepted F31 analyzer verbatim; version runtime provenance only.
+    # F31 math/ledger is unchanged; R16/F47 explicitly replaces the load-path gate.
     summary = analyze(rows)
     summary['owner_decisions'] = 'R14 A/A1 pose and positional sleep/F42 APPROVED'
     summary['limitations'] = [
@@ -219,9 +245,10 @@ if __name__ == '__main__':
         print('M1 Slug motion part: ' + json.dumps(body, sort_keys=True))
     print('M1 Slug motion summary: ' + json.dumps({k: v for k, v in motion.items() if k != 'bodies'}, sort_keys=True))
     print('M1 Slug engagement: ' + summary['grip_engagement'])
+    print('M1 Slug sustained-support gate: ' + json.dumps(summary['sustained_support_gate'], sort_keys=True))
     print('M1 Slug peaks: applied=' + str(summary['peak_foot_applied_n']) +
           'N measured=' + str(summary['peak_foot_measured_n']) + 'N (all600), steady measured=' + str(summary['steady_peak_foot_measured_n']) +
           'N; N1 gate=17.36N')
     if not summary['foot_load_path_exercised']:
-        print('M1 Slug F30 BLOCKED: authored R14 A/A1 applied, but genuine foot load path not exercised')
+        print('M1 Slug F30 BLOCKED: authored R14 A/A1 applied, but sustained majority foot support not exercised (R16/F47)')
     raise SystemExit(0 if good and summary['momentum_ledger_verified'] and motion['position_ledger_and_speed_identities_verified'] and summary['foot_load_path_exercised'] else 1)

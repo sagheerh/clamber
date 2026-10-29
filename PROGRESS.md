@@ -8,7 +8,36 @@ Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R15 / actuator engineering increment measured; public Sim NEXT
+### Current R16 — components accepted; M1 sustained-support gate RED
+
+- Mechanics **931** checks, Python106 and M0 **514/0** are the accepted R15
+  component counts. The preliminary921 subset is historical, NOT the current
+  mechanics total (F51 correction). Components are not coupled acceptance.
+- F47 gate replaced: last300 grip fraction>0 AND a grounded, gripping foot with
+  positive velocity-level reaction must provide strictly>50% of ALL grounded
+  reaction on the SAME tick. Aggregate feet, another foot/tick's share, landing
+  impact alone, zero reaction and positional cleanup cannot pass. FA-5 untouched.
+  Existing force/momentum/position checks and CI nonzero exit remain mandatory;
+  no bypass/continue-on-error. Current real data must keep M1 RED.
+- Owner acknowledges F37 previously requested fraction/share metrics, not a gate
+  using them, and R15 “M1 green” missed the landing-impact cause; attribution is
+  OWNER REVIEWER correction, not a claim of sustained support by the mechanics.
+- Binding order now F47/F51 -> F48 convergence/zero-input drift -> F49 separate
+  angular/self magnitudes + F50 post-pose .610/.810 -> public Sim/F45/replay ->
+  FA-5 four branches, all3 FA-3/4, AC201/202/204,A9,10.6,tickcost/captures.
+- Awake zero input is NOT unpowered: spring return is LIVE. R15 actuated last300
+  is a transient, NOT an equilibrium; drift interpretation suspended until
+  convergence evidence. F41 stays OPEN. No physics/tuning/damping/sampling/
+  velocity epsilon/hysteresis/load injection/M2/camera/captures authorized.
+- Public Sim still stub. FA-3/4/5/6/all coupled runtime gates NOT RUN;
+  complete-creature determinism attempts0. Next immediate step F48 measurement.
+
+### Historical R15 — component success, NOT M1 sustained-support acceptance
+
+R16 supersedes “GREEN” below: component execution succeeded, but the old gate
+passed on landing impact. Current M1 gate is RED until sustained majority support.
+
+### R15 / actuator engineering increment measured (historical order)
 
 - Binding order: motors L/R contraction + angular limits + self-contact FIRST;
   same increment derived legal BOTH-arm600 + required main-trace per-body/pass

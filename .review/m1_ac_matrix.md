@@ -364,3 +364,14 @@ R15 follow-up548b5c8 / CI40810712083 SUCCESS:106 Python /931 mechanics,
 unchanged four legal600. Fake legal metadata rejected against actual START
 capsules; composed D10 hooks exercised without terrain/support injection.
 Public Sim/F45/replay is NEXT, not implemented by these engineering components.
+
+
+R16 SUPERSEDES prior “M1 green” language: mechanics931/Python106/M0 514/0 were
+component successes. F47 now requires last300 grip fraction>0 AND same-tick
+single grounded gripping positive-reaction foot share>0.50 of ALL grounded
+reaction. Current M1 diagnostic RED, no CI bypass; FA-5 unchanged. F51 current
+mechanics count931 (preliminary921 is historical). Owner acknowledges F37 only
+requested metrics and R15 review missed landing-impact gate flip. F48 zero input
+has LIVE spring return, last300 transient is NOT an equilibrium. Order now
+F47/F51 -> F48 convergence -> F49/F50 -> public Sim/F45/replay -> remaining gates.
+No retune/physics change/captures; coupled gates NOT RUN; determinism attempts0.
