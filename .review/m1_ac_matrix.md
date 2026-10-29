@@ -1,6 +1,25 @@
 # M1 acceptance matrix — scoped measured evidence, NOT milestone approval
 
-## Current R22 — baseline returned; unconditional STOP / 8of18 unchanged
+## Current R23 — causal closure / WAIT D09 AND D08 / 8of18 unchanged
+
+R23 review and owner OPTIONS sheet read via git show only, neither copied/merged.
+Inert cell accepted; no inert-row defect; investigation CLOSED, no further arms.
+F69 observed amplification: drive-only2.95, stop-only5.39, combined3.93, inert.08404.
+Each sufficient/neither necessary; partial cancellation versus stop-only, NOT
+combined below both (2.95<3.93<5.39). No universal torque-sweep theorem/new arm.
+F70 inert drive q≈89.558deg,≈.442deg inside90 (latewindow). Narrower85/89 excludes
+that posture and is not equivalent; exact drift there UNMEASURED/no repeat allowed.
+F58 predicts completed velocity, positional drift≈2% lower; distinct quantities.
+Public replay/clock DID NOT RUN ond76b88e; last measured63cb024. Must rerun on FIRST
+solver change, reproduce baseline or authorized regeneration with provenance.
+Docs-only closeout no runtime rerun; skipped means unpassed/not waived.
+Owner D09=bang-bang/proportional AND D08=hold/accept-creep/other STILL PENDING.
+WAIT, no experiments/tuning/hold/AC201 rewrite/baseline regeneration/Phase3.
+After answers D09 increment->D08 increment->Phase3; AC202/FA5 may parallel D09
+with SEPARATE evidence after authorization, NOT started now.8/18 movement0,
+ten NOT RUN rows/FA5 untouched, attempt1 same-build/cross-arch0 unchanged.
+
+## Historical R22 — baseline returned; unconditional STOP / 8of18 unchanged
 
 Sourceeea4e52 /M140880532917 /job123470523762 SUCCESS; exactly gain0+upper90,
 6000ticks, other defaults fixed. Drift.08403595917824255 vs old free-hinge

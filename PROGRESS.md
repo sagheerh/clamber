@@ -8,7 +8,62 @@ Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R22 — missing cell returns to baseline; experiments STOPPED
+### Current R23 — causal investigation CLOSED; WAIT for owner D09 AND D08
+
+R23 review ofd76b88e and owner decision sheet read ONLY with git show from
+arena/5b72e4ab-clamber; neither copied/merged into this tree. The decision sheet
+contains OPTIONS/RECOMMENDATIONS, NOT owner answers. No choice inferred.
+
+Inert cell ACCEPTED: .08403595917824255px/s vs free-hinge.08403595917823123,
+difference1.1324274851176597e−14px/s; all6000 requested/applied drive EXACT0,
+no engagement/projection/block impulse, three separate columns0, completeF56PASS.
+Source facts remain `.review/m1_r22_inert_evidence.json`; no measurement rerun.
+No inert-row defect; baseline-return branch supported. Investigation CLOSED.
+
+F69 OWNER finding: two mechanisms, each independently sufficient for amplification
+above the free-hinge floor in the measured fixture, neither individually necessary:
+drive-only2.950043883090746, stop-only5.387448117922983, both3.9345242550809765.
+Non-additive interaction/partial cancellation relative to STOP-ONLY; arithmetic is
+2.95 <3.93 <5.39, NOT combined less than both single-mechanism cases. Architectural
+choice, not further coefficient hunting. Owner's no-torque-knob conclusion recorded
+for these measured saturated configurations; not a proof over every untested
+coefficient/pose/mass, nor a preselected D09 or D08 answer.
+
+F70 permanent caveat: inert drive-time q range1.563079699374753–1.5630796993747635
+rad ≈89.558degrees, only≈.442degrees inside upper90 (late300 window). Released,
+unpowered loaded sag≈89.6degrees from authored rest in THIS fixture. Narrowing
+to85/89 excludes that measured posture, changes engagement/inertness premise, and
+is NOT an equivalent repeat. Exact drift at those untested bands is UNMEASURED;
+reviewer's≈3px/s counterfactual is not cited as a run. No narrower-band test.
+Drive-time error rad / actual angular correction rad / endpoint displacement WU
+remain permanent separate columns. F58 correction attributed to OWNER/reviewer:
+identity predicts mean COMPLETED velocity (<1% agreement in review), not positional
+drift. Reference4.014820668450256px/s completed versus3.9345242550809765 positional,
+about2% gap; two claims, not one. Existing accounting/raw books unchanged.
+
+Public-Sim replay/clock job DID NOT RUN on d76b88e (nor on this documentation-only
+closeout). Last measured public replay is63cb024 /CI40878101597, also accepted on
+74c629e. Skipped jobs unpassed, not waived. FIRST SOLVER-CHANGING COMMIT MUST rerun
+public-Sim replay AND clock jobs: reproduce committed baseline or, only when owner
+has authorized changed physics, regenerate with provenance. No skip-ci solver
+change, no unsupported up-to-date replay claim. This closeout docs ONLY [skip ci]
+prevents any further arms. Solver/tuning/creature bytes unchanged; default40.
+
+WAIT for BOTH explicit owner answers: D09=bang-bang OR proportional;
+D08=hold OR accept-creep OR other AS OWNER WRITES IT. Until then no experiments,
+tuning, hold implementation, AC201 reinterpretation, baseline regeneration or
+runtime gates, including no AC202/FA5 start now. After answers ONLY: (1)D09 increment
+(document effective motor authority/retire misleading strength labels, OR owner-
+authorized proportional re-scale inside measured bound with baseline provenance/
+regeneration and allfour arms remeasured); (2)D08 increment; (3)Phase3 AC201/202,
+FA3/4/5. AC202/FA5 MAY run in parallel WITH the authorized D09 increment after
+answers, with evidence separated by workstream/commit/configuration, never mixed.
+No instruction in the reviewer recommendation substitutes for owner authorization.
+D06/D07 queued; A/residual withdrawn/obsolete; no Phase3/baseline changes.
+8/18 movement0, ten NOT RUN/unmoved, FA5 untouched; attempt1 same-build observation/
+cross-arch0 retained. NEXT single milestone: WAIT for owner D09 AND D08 answers.
+
+### Historical R22 — missing cell returns to baseline; experiments STOPPED
 
 Source **eea4e52**, [M140880532917](https://github.com/sagheerh/clamber/actions/runs/40880532917),
 job123470523762 SUCCESS. Reviewer source read via git show ONLY, never copied/

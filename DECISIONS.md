@@ -1411,3 +1411,50 @@ are NOT rerun by this [skip ci] closeout. Historical convergence/spring/F56-refe
 R21 experiment jobs remain manual-only so STOP does not silently launch old sweeps.
 Original test code/floors/F47 failure and public baseline remain intact; scheduling
 is not a waiver. No additional runtime invocation/arm after the R22 result.
+
+
+## R23 — investigation CLOSED; owner D09/D08 PENDING, no further work authorized
+
+Read ONLY reviewer branch arena/5b72e4ab-clamber R23 causal-closure review and
+M1_D08_OWNER_DECISION sheet through git show. Neither file copied/merged. The
+sheet is a recommendation/options list, NOT answers from owner. Inert cell accepted,
+no defect: .08403595917824255 vs.08403595917823123px/s, delta1.1324274851176597e−14;
+ALL6000 requested/applied0, no limit engagement/projection/block, three columns0,
+completeF56PASS. R22 source evidence unchanged. No arms/solver investigations remain.
+
+F69 recorded as OWNER architectural finding for measured fixture: active drive
+alone2.950043883090746, stop path alone5.387448117922983, both3.9345242550809765,
+jointly off.08403595917824255. Each path independently sufficient for observed
+amplification, neither individually necessary. Non-additive/partial cancellation
+relative to stop-only, NOT less than both:2.95 <3.93 <5.39. No scalar-knob search
+resumed. No universal mathematical proof about all possible coefficients inferred
+from finite measured saturated arms; proportional D09 remains an OWNER design fork.
+F70 measured late-window drive q1.563079699374753–1.5630796993747635rad≈89.558deg,
+only≈.442deg headroom under90. Unpowered loaded sag≈89.6deg from authored rest.
+85/89 band would exclude measured posture/invalidate inert-premise equivalence;
+no such test or≈3px/s result measured. Record reviewer narrower-band prediction
+as counterfactual ONLY, not evidence. No new experiment. Drive-time error, actual
+correction rad, endpoint displacement WU remain permanently distinct.
+
+OWNER/reviewer corrects R22 F58 under1percent language: identity predicts mean
+completed velocity, not positional net drift. Reference completed4.014820668450256
+vspositional3.9345242550809765px/s,≈2percent difference. Keep two claims distinct;
+full existing contact/damping/gravity/internal books and F56 predicates untouched.
+
+Public Sim replay/clock DID NOT RUN on d76b88e. Last measured63cb024 /40878101597
+(and accepted74c629e); solver-neutral skipped jobs accepted unpassed/not waived.
+FIRST SOLVER-CHANGING COMMIT MUST rerun public replay/clock, reproduce baseline or
+regenerate ONLY with owner authorization/provenance. Do not carry old replay over
+as new evidence. Current documentation-only closeout [skip ci], no runtime run.
+
+WAIT for BOTH explicit answers: D09=bang-bang OR proportional; D08=hold OR
+accept-creep OR other exactly as OWNER writes it. No recommended choice adopted.
+Until answers: no experiments, tuning, hold, AC201 rewrite, baseline regeneration,
+Phase3 or any runtime gate start.8/18 movement0/FA5 untouched. After answers:
+1.D09 increment (document effective motor strength/caps vs authority OR authorized
+proportional re-scale with baseline regeneration/provenance/allfour arms measured);
+2.D08 increment;3.Phase3 AC201/AC202/FA3/FA4/FA5. AC202/FA5 may start in parallel
+with D09 increment AFTER authorization, separate evidence/configuration/commit
+provenance; not a present instruction to start. D06/D07 queued, no M0 waiver
+carried forward. A/residual obsolete/withdrawn, no baseline/Phase3 changes.
+NEXT single milestone WAIT for owner D09 AND D08. No additional implementation.
