@@ -1,6 +1,23 @@
 # M1 acceptance matrix — scoped measured evidence, NOT milestone approval
 
-## Current R27 measured record — stability FAIL, parked PASS, candidate for adoption
+## Current R28 — adoption REVERTED: penetration hard stop
+
+Measured source446d870 / CI40970023755. All3×7200 complete. PenetrationWU
+Slug.07028201067739755/Hopper.0933999293597247/Twin.05075245867956493 >=.02:
+FAILED adoption condition; full commit reverted75fd3e7, productioncore byteequal
+sessionstartfb890fd. Limb maxima roundoff do NOT override penetrationFAIL.
+New baseline/replay, idle600 and characterisation3600 NOT RUN: hardstop, dependent
+jobs skipped. Do not substitute R15/other windows or extrapolate R27reference.
+FA3 now explicitlyVACUOUS/UNCREDITED per owner; old R27policy pass historicalonly.
+No tuning/preset/save/M0expectation changed; no R27/soak rerun, no P2/P3/M1.1fix.
+Artifact upload blocked by storagequota; numeric checkannotations survive, raw
+JSONfiles not uploaded. Evidence/report `.review/m1_r28_adoption_{evidence.json,report.md}`.
+F47only quarantined (expected-rednotacceptance), but jobstillREDfromquota BEFORE
+F47, so no green/diagnosticPASS claim. Wait owner; M1notcomplete/M2blocked.
+
+## Historical R27 (owner R28 supersedes vacuous FA3 credit)
+
+### R27 measured record — stability FAIL, parked PASS, candidate for adoption
 
 Source `2cf2c9376556feca5698ba176c63514f37284bed`, CI40960697692. Readonly
 owner reviewer57ed098 read, NEVER copied. Full outputs/artifact digests:
@@ -347,7 +364,7 @@ Provenance: `docs/CLAMBER_REVIEW_AGENT.provenance.md`. **M1-B02 RESOLVED
 | AC-201a | Stability:600zero-input ticks from spawn, no all-parts-airborne tick, max spawn-relative head-to-foot angle≤15degrees | FAILED (35.344deg exceeds15deg) | CI40960697692 .review/m1_r27_evidence.json#AC201 |
 | AC-201b | Parked: same600ticks, net2D COM displacement≤1BL=.90WU=135px; report1.58x ownerreference/.5BL alternative/13.5px-s flip | PASS (measured10s COM) | CI40960697692 .review/m1_r27_evidence.json#AC201 |
 | AC-201s | Unmodified F52 must fire within10s; original GDDsettle ANDsleepwithin4s remains unmet, named M1.1 contact-model carry-over | FAILED (M1.1 carry-over) | CI40960697692 .review/m1_r27_evidence.json#AC201 |
-| AC-202 | Maximum absolute limb-length error ≤0.05 WU over a two-minute run; assert and log measured maximum | PASS (candidate only; unadopted) | CI40960697692 .review/m1_r27_evidence.json#AC202 |
+| AC-202 | Maximum absolute limb-length error ≤0.05 WU over a two-minute run; assert and log measured maximum | FAILED (R28 penetration; reverted) | CI40970023755 .review/m1_r28_adoption_evidence.json#measurements |
 | AC-204 | 200-run soak; zero NaN/∞, log all runs/seeds and failures; do not silently heal/discard non-finite events from the record | PASS (200-run numerical soak) | CI40960697692 .review/m1_r27_evidence.json#AC204_aggregate |
 | Three presets / §16.1 | Three authored presets, identical recorded L/R pattern, three different motions; 10 s capture for EACH, plus shared input/seed and trace references | NOT RUN | Presets implemented; divergence/captures still not executed |
 | Tick cost / §10.4 | Measured solver tick ≤3.0 ms at 30 bodies; record actual constraint count (GDD budget:120), hardware/build and timing method; measure/report per-tick+per-frame snapshot mode versus any frame-only candidate without weakening atomicity | NOT RUN | No timing measurement; CI timing alone is not reference-device evidence |
@@ -359,7 +376,7 @@ Provenance: `docs/CLAMBER_REVIEW_AGENT.provenance.md`. **M1-B02 RESOLVED
 | §10.6 repeatability | Fixed scenario 10000 ticks, 100 local repeats; recorded 60 s cross-architecture/device replay and 200-run soak tracked separately | NOT RUN | No device/architecture evidence; no M0 waiver carries forward |
 | FA-1 | Collision diameter at least15px and head30px at width-derived150px/WU; analytic only, not camera/device evidence | PASS (analytic only) | CI40677962012; $RUNNER_TEMP/m1-owner-geometry.json |
 | FA-2 | Every shipped limb length has aspect ratio3:1..12:1; analytic geometry only | PASS (analytic only) | CI40677962012; $RUNNER_TEMP/m1-owner-geometry.json |
-| FA-3 | All three real presets:600 static ticks, zero sleep-breaking contacts; contact trace and actual observations | PASS (static wake-policy only) | CI40960697692 .review/m1_r27_evidence.json#FA3 |
+| FA-3 | All three real presets:600 static ticks, zero sleep-breaking contacts; contact trace and actual observations | NOT RUN | Owner R28: vacuous/uncredited,0 wakes with0 sleepingticks; no rest/sustainedgrip acceptance |
 | FA-4 | R14 all three presets settle/sleep within4s and L-hold lurch approximately one body length; record distances/input | NOT RUN | R14 owner positional .001WU/30ticks and transition-only F42 approved; component tested, all-preset lurch/sleep gate unexecuted; no motor/tutorial trace |
 | FA-5 | Frozen-N/gravity+joint-load grounded/lowest grip law: below, at/above, two-foot, airborne; maximal consecutive ticks per foot/branch collapse all samples/passes; transient2–4ticks policy coverage not sustained grip | PASS (measured policy coverage) | CI40904855466 .review/m1_r26_archive_evidence.json#FA5; owner R27 57ed098 |
 | FA-6 | Ten scripted tutorial runs, actual per-run outcomes and input log; target6..8 successes, stop on10 or at most4 | NOT RUN | Actual success_count unknown; no tutorial scenario |

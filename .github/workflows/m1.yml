@@ -23,6 +23,8 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
       - name: Review checks and scanner falsification fixtures
         shell: bash
         run: |
@@ -1173,7 +1175,7 @@ jobs:
           retention-days: 7
 
   r28-measure:
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
+    if: ${{ github.sha == '446d870da5c02ecfc295a19d7f35a8436b3b7fa7' && github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
     name: R28 adoption-measure (one invocation; exact source pin)
     runs-on: ubuntu-24.04
     timeout-minutes: 30
@@ -1222,7 +1224,7 @@ jobs:
 
   r28-idle:
     needs: [r28-measure]
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
+    if: ${{ github.sha == '446d870da5c02ecfc295a19d7f35a8436b3b7fa7' && github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
     name: R28 idle-family (one invocation; exact source pin)
     runs-on: ubuntu-24.04
     timeout-minutes: 30
@@ -1271,7 +1273,7 @@ jobs:
 
   r28-characterisation:
     needs: [r28-idle]
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
+    if: ${{ github.sha == '446d870da5c02ecfc295a19d7f35a8436b3b7fa7' && github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
     name: R28 ac201a-characterisation (one invocation; exact source pin)
     runs-on: ubuntu-24.04
     timeout-minutes: 30
@@ -1320,7 +1322,7 @@ jobs:
 
   r28-baseline:
     needs: [r28-measure]
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
+    if: ${{ github.sha == '446d870da5c02ecfc295a19d7f35a8436b3b7fa7' && github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
     name: R28 generate actual baseline ONLY after penetration PASS
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -1372,7 +1374,7 @@ jobs:
           retention-days: 7
 
   r28-m0:
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
+    if: ${{ github.sha == '446d870da5c02ecfc295a19d7f35a8436b3b7fa7' && github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
     name: R28 unchanged M0 headless516
     runs-on: ubuntu-24.04
     timeout-minutes: 10

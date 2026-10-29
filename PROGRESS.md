@@ -8,7 +8,24 @@ Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R27 measured record — stability FAIL, parked PASS, candidate for adoption
+### Current R28 — adoption attempted, FAILED penetration, REVERTED
+
+Measured446d870/CI40970023755:7200ticks/all3 complete; maxpenetrationWU
+Slug.07028201067739755, Hopper.0933999293597247,Twin.05075245867956493.
+All >=.02; hardstop, full adoption commit reverted75fd3e7. Current production
+core/tuning byteequalfb890fd. Completedlimb errors roundoff do not authorise
+adoption. Baseline-generation/replay, idle600 and characterisation3600 NOT RUN:
+penetration stop, no substitution/referenceextrapolation. Await owner, no P2/P3.
+FA3VACUOUS/UNCREDITED per owner, supersedes old policy-only creditedcount below.
+GitHub artifactquota blocks rawuploads; numeric reports/rawfilehashes in check
+annotations preserved. SourceCIstatic188thenfails shallow archivalgitobject;
+regression-only fullhistory checkout preserves allassertions. M0source516/0.
+F47only quarantined unchangedcommand/error/artifact; sourcejobREDfromquotabefore
+F47, not diagnosticPASS or CIgreen. No tuning/slop/epsilon/iteration/retune/sweep/
+brace change; no R27/soak rerun; no M1complete/device/determinism claim.
+See `.review/m1_r28_adoption_report.md` and evidenceJSON for exactstop/blockers.
+
+### Historical R27 measured record — stability FAIL, parked PASS, candidate for adoption
 
 Source `2cf2c9376556feca5698ba176c63514f37284bed`, CI40960697692. Readonly
 owner reviewer57ed098 read, NEVER copied. Full outputs/artifact digests:

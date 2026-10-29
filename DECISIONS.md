@@ -2062,3 +2062,31 @@ snapshot into it, resolves shadows, returns groundedbools only. Parked live pose
 restores unchanged positions from before.physical. No live projection in thatpath,
 no change authorised/needed. Production path Sim→CreatureTickSolver→SleepingLoadProbe
 →ActuatedLoadProbe.advance/step→CoupledLoadProbe._step verified in source.
+
+
+## M1-R28-STOP — measured penetration FAIL; full adoption revert
+
+Source446d870da5c02ecfc295a19d7f35a8436b3b7fa7, oneCI40970023755/job123784170344.
+All3presets7200/status0. Max surface penetrationWU Slug.07028201067739755 (foot2,
+tick6),Hopper.0933999293597247 (foot5,tick7),Twin.05075245867956493 (motor1,tick2162;
+footmax.048174420428044054). Each >=.02, strictownerstop. Full adoption commit
+reverted via git revert75fd3e7ff9f1e370831386f700757f8f26cacf3d; core/tuning restored
+byteequalfb890fd. Completedlimbmax4.996003610813204e-16/1.8318679906315083e-15/
+1.7763568394002505e-15 does not bypass failedpenetration condition. No clamp,
+slop/tolerance/epsilon/window/iteration/tuning change, no secondarm. Wait owner.
+D2newbaseline/publicreplay,D5idlefamily,D6characterisation NOT RUN duehardstop;
+dependentjobs skipped. R15routine CI output is NOT substituted for requestedarms.
+No soak rerun; no new determinismclaim, samebuildattempt1/crossarch0unchanged.
+
+Artifactstoragequota rejected uploads: full rawJSON not available; numeric
+report and rawfileSHA256 survive in GitHub checkannotations, retained in evidence.
+Do not delete historicalartifacts or rerunphysics to work aroundquota. Dispatch
+and repositoryvariables APIs403 before anyrun; source amended beforemeasure,
+then singleimmutablepush run446d870. Original0fe33d2 launchedZERO R28engines.
+CIstatic stopped188controls duearchivalgitshowfb890fd with shallowcheckout;
+fetch-depth0 correction for staticjob only, no assertions/expectations removed.
+D8quarantine remainssolecontinue-on-error step, prepcommit8bcb481, no lateredit.
+Source mathjob123784170278REDfromartifactquota beforeF47, diagnosticSKIPPED;
+no claim diagnosticpasses/newgreen. Rawartifactdelivery/CIgreen blocked byquota.
+FA3vacuous/UNCREDITED supersedes historicalR27policy-only creditedrow/count;
+originalrawreport left intact. No P2/P3, no M1.1rectifier attempt, no M1complete.
