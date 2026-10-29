@@ -142,3 +142,27 @@ Either way, **AC-202 and FA-5's fixture gaps (F77) are independent of this choic
 4. **Do not** re-run the brace, touch the motor/limit/slip values, or widen anything. Matrix stays **8/18**.
 
 **Acceptance 8/18. Determinism attempt 1 stands as a same-build observation; cross-architecture attempts 0.**
+
+---
+
+## 10. Owner decision taken (post-review): **Option 3 — bounded diagnostic, then decide**
+
+The owner selected the bounded path. Recorded here as the binding instruction, so the scope cannot drift.
+
+**This is the last increment this phenomenon receives.** Two diagnostics, both cheap, both pre-registered; then a decision is taken *whatever the result*, on the evidence in hand.
+
+**D1 — friction proportionality (diagnostic duplicates, defaults untouched).** At the adopted P-B physics, idle zero-input, sweep the floor friction coefficient `physics_grip_friction` `0.9 → 0.3 / 0.9 / 1.8 / 3.6`. Report drift and thrust for each.
+- If drift scales roughly with the coefficient, the tangential impulse is being produced *by the friction solve itself* — F75 confirmed at the mechanism level, and the fix has a location.
+- If drift is flat in the coefficient, friction magnitude is not the carrier and the rectifier is upstream (normal impulse accumulation or the position-projection path), which is a different and larger fix.
+- Do **not** adopt any value. The committed 0.9 stays.
+
+**D2 — F76 phase ordering.** Per tick, report the worst distance-row length error measured (a) after the final angular projection and (b) after the final distance pass; then one diagnostic arm with a **distance-only final pass** added (same code, same tolerance, no constant changed) and report whether the 7200-tick maximum falls below 0.05 WU.
+- If (a) ≫ (b) and the extra pass collapses the error, AC-202's failure is an **ordering defect** with a correctness fix.
+- If the error is unchanged, AC-202 is a structural solver limitation and joins AC-201 in the owner conversation.
+
+**Then the decision, with no further measurement:**
+- If D1 **and** D2 both show a located, correctness-shaped cause → one fixed increment to implement both, then AC-201 + AC-202 re-run.
+- If **either** is inconclusive → take Option 2: accept the creep, the owner authors AC-201's number, and AC-202 is reported honestly as failing with its measured maximum.
+- Under no circumstances: no further knob sweeps, no re-running the brace, no widening 0.05, no new slip/stiffness/damping values, no epsilon.
+
+**In parallel, unconditionally:** revert the brace; author FA-5's airborne fixture and log `termination_reason`; keep the matrix at 8/18 until a gate actually passes.
