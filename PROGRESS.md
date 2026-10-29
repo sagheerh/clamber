@@ -1,6 +1,6 @@
 # CLAMBER progress
 
-## Current milestone: M0 — APPROVED / COMPLETE (owner override); M1 — IN PROGRESS / 8 of 18 runtime gates measured; creature feel gates NOT RUN
+## Current milestone: M0 — APPROVED / COMPLETE (owner override); M1 — IN PROGRESS / 8 of 18 runtime gates with accepted evidence; creature feel acceptance incomplete
 
 Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 `docs/ui/CLAMBER_UI.jpeg`. M0 is accepted by the GDD owner under M0-D07, dated 2026-10-28. Verdict:
@@ -21,12 +21,12 @@ MaxpertickF56residual1.5543e-15/braceinternal7.7716e-16; measuredroundoffretaine
 no fakezeros/addedtolerance. Baselinegenerated/provenance and strictpublicrerun
 ONSAMEadoptioncommit9057+308+1446PASS, generatedbytescommittedfollow-up/no coreedit.
 IndependentAC2027200ticksall3/allsegmentfootmax.09437/.19992/.09966>.05FAILED;
-limb-onlymaxpendingarchiveaudit. FA5Hopper7067/7200/below+above+twofootobserved,
+limb/motor/passivemax.06736/.10902/.07264>.05 too; actualAC202FAIL. FA5Hopper7067/7200/below+above+twofootobserved,
 airbornecoverage0=>NOTPASS, abortcauseNOTLOGGED. Separatejobs/no bracedependency.
 SourceCIstaticFAIL184(shallowgit-history assumption); goldenhash test-onlyfix,
 local198PASS. HistoricalF47red/notwaived, M0516+Androidpush+PRPASS. Evidence/report
 `.review/m1_r25_adoption_evidence.json`/`m1_r25_adoption_report.md`. Archive-only
-follow-upauditpending, NO newphysicsmeasurements/corechangesafter8d73597.
+auditSUCCESS123528127119,0newphysics; c169ded normalpublicpush+PRnewbaselineMATCHED/198controlsPASS.
 Matrix8/18movement0 retained/no gatecredit; STOPforNEWownercontactmodelreview
 or owner-authoredAC201number/specdecision. Bracedesignedstateflag/anglehashed/
 restored, Phase4distinctpresentationdeferred/notrendered. No syntheticloads,

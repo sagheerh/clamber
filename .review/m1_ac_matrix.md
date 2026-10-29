@@ -13,16 +13,21 @@ MaxpertickF56residual1.5543e-15/braceinternal7.7716e-16; measuredroundoffretaine
 no fakezeros/addedtolerance. Baselinegenerated/provenance and strictpublicrerun
 ONSAMEadoptioncommit9057+308+1446PASS, generatedbytescommittedfollow-up/no coreedit.
 IndependentAC2027200ticksall3/allsegmentfootmax.09437/.19992/.09966>.05FAILED;
-limb-onlymaxpendingarchiveaudit. FA5Hopper7067/7200/below+above+twofootobserved,
+limb/motor/passivemax.06736/.10902/.07264>.05 too; actualAC202FAIL. FA5Hopper7067/7200/below+above+twofootobserved,
 airbornecoverage0=>NOTPASS, abortcauseNOTLOGGED. Separatejobs/no bracedependency.
 SourceCIstaticFAIL184(shallowgit-history assumption); goldenhash test-onlyfix,
 local198PASS. HistoricalF47red/notwaived, M0516+Androidpush+PRPASS. Evidence/report
 `.review/m1_r25_adoption_evidence.json`/`m1_r25_adoption_report.md`. Archive-only
-follow-upauditpending, NO newphysicsmeasurements/corechangesafter8d73597.
+auditSUCCESS123528127119,0newphysics; c169ded normalpublicpush+PRnewbaselineMATCHED/198controlsPASS.
 Matrix8/18movement0 retained/no gatecredit; STOPforNEWownercontactmodelreview
 or owner-authoredAC201number/specdecision. Bracedesignedstateflag/anglehashed/
 restored, Phase4distinctpresentationdeferred/notrendered. No syntheticloads,
 slip/sleep/mass/weight/tolerance changes/waiver/M2/camera/captures. D07/B04queued.
+
+The guarded legacy table below retains its locked NOT RUN status tokens for these
+unaccepted gates; this must NOT be read as no attempt. R25 measured failures and
+incomplete coverage are explicitly cited in the evidence cells and current report.
+No acceptance credit/scanner vocabulary/criterion is changed to disguise failure.
 
 ## Historical R24 — final round COMPLETE / STOP FOR OWNER P-A/P-B / 8of18
 
@@ -262,8 +267,8 @@ Provenance: `docs/CLAMBER_REVIEW_AGENT.provenance.md`. **M1-B02 RESOLVED
 | A9.1 / A9.6 static restrictions | Recursive core/sim, core/run, core/tower scans for RNG/clock/frame sources, raw delta callbacks and solver transcendentals; scan scripts AND scene node types | STATIC CHECK ONLY | scripts/review_checks.sh; no runtime proof |
 | A9.2 accumulator | Fixed 1/60, outer accumulator, no raw frame delta in solver, catch-up/drop as GDD §4.2 | PASS (measured runtime) | CI40818428101 .review/m1_r17_phase2_evidence.json#row2 |
 | A9.3 injected RNG | Preserve seed parameter in Sim.setup and explicitly inject seeded xoshiro128**; stub signature alone is insufficient | PASS (measured runtime) | CI40818428101 .review/m1_r17_phase2_evidence.json#row3 |
-| AC-201 | No-input trace shows settling AND sleep within ≤4 s; record sleep tick and velocities using tuning thresholds | NOT RUN | None |
-| AC-202 | Maximum absolute limb-length error ≤0.05 WU over a two-minute run; assert and log measured maximum | NOT RUN | None |
+| AC-201 | No-input trace shows settling AND sleep within ≤4 s; record sleep tick and velocities using tuning thresholds | NOT RUN | R25 EXECUTED/FAILED: CI40895082337 .review/m1_r25_adoption_evidence.json; no actual sleep600public/6000idle ticks, ONdrift12.61773; no acceptance credit |
+| AC-202 | Maximum absolute limb-length error ≤0.05 WU over a two-minute run; assert and log measured maximum | NOT RUN | R25 EXECUTED/FAILED: CI40895082337 plus archiveCI40896828176 .review/m1_r25_archive_evidence.json;7200ticks each3presets, literalHopperlimb6error.09979>.05 |
 | AC-204 | 200-run soak; zero NaN/∞, log all runs/seeds and failures; do not silently heal/discard non-finite events from the record | NOT RUN | None |
 | Three presets / §16.1 | Three authored presets, identical recorded L/R pattern, three different motions; 10 s capture for EACH, plus shared input/seed and trace references | NOT RUN | Presets implemented; divergence/captures still not executed |
 | Tick cost / §10.4 | Measured solver tick ≤3.0 ms at 30 bodies; record actual constraint count (GDD budget:120), hardware/build and timing method; measure/report per-tick+per-frame snapshot mode versus any frame-only candidate without weakening atomicity | NOT RUN | No timing measurement; CI timing alone is not reference-device evidence |
@@ -277,7 +282,7 @@ Provenance: `docs/CLAMBER_REVIEW_AGENT.provenance.md`. **M1-B02 RESOLVED
 | FA-2 | Every shipped limb length has aspect ratio3:1..12:1; analytic geometry only | PASS (analytic only) | CI40677962012; $RUNNER_TEMP/m1-owner-geometry.json |
 | FA-3 | All three real presets:600 static ticks, zero sleep-breaking contacts; contact trace and actual observations | NOT RUN | R13 F38 owner-CLOSED; F41/F42 telemetry measured; F42 transition-only definition owner-approved R14; F40 motor intra-step0.94..1.53 reference px at150px/WU and60Hz, rendered observation absent; F39 soak extrapolation below; no all-preset static scene |
 | FA-4 | R14 all three presets settle/sleep within4s and L-hold lurch approximately one body length; record distances/input | NOT RUN | R14 owner positional .001WU/30ticks and transition-only F42 approved; component tested, all-preset lurch/sleep gate unexecuted; no motor/tutorial trace |
-| FA-5 | Owner R8/F24: foot load below max(5N,40percent of expected share W/N_previous_grounded) slips; at/above grips with grounded/lowest eligibility; frozen previous-tick N; N0 disables grip; two-foot stance and airborne traces required | NOT RUN | R14 A/A1 applied: grip1/600 at19, last300 grip0, foot share22.2406percent; no sustained stance or accepted band; two-foot Hopper test remains NOT RUN |
+| FA-5 | Owner R8/F24: foot load below max(5N,40percent of expected share W/N_previous_grounded) slips; at/above grips with grounded/lowest eligibility; frozen previous-tick N; N0 disables grip; two-foot stance and airborne traces required | NOT RUN | R25 EXECUTED/INCOMPLETE: CI40895082337 .review/m1_r25_adoption_evidence.json; actualHopper7067ticks, below/above/twofootobserved, airborne0/missingcoverage, NOT qualified |
 | FA-6 | Ten scripted tutorial runs, actual per-run outcomes and input log; target6..8 successes, stop on10 or at most4 | NOT RUN | Actual success_count unknown; no tutorial scenario |
 | FA-7 | Head visual-radius dominance in all three presets; analytic only, not rendered silhouette proof | PASS (analytic only) | CI40677962012; $RUNNER_TEMP/m1-owner-geometry.json |
 

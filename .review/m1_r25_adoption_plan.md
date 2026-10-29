@@ -57,3 +57,13 @@ generatedbaseline/entry verbatim, no furtherphysicschange; normal strictpublic
 job then verifies committedbaseline again. InitialPR mayredoldbaseline until
 closeout, never called deterministicfailure ifstreams themselvesequal.
 Matrix8/18 pending measuredreview; no silentAC201 rewrite/gatecredit/waiver.
+
+
+## Execution disposition — CLOSED / STOP
+
+Adopted/executed ONCE at8d73597/run40895082337. BraceSTOPconditionsmet, all7F56
+PASS/observerequal/724controls. IndependentAC202measuredFAIL/FA5incomplete. No
+physics fixes afterfailure. c169ded commitsactualgeneratedbaseline/testsfix,
+strictpublicpush+PRmatches. Archive-onlyaudit123528127119SUCCESS (noGodot),
+per-kindmaxima/lastbounds/publicphysicalagreement/generatedbyteequality recorded.
+See report/evidence. No new arm authorised; ownernewscope/specdecision required.

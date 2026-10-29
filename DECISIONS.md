@@ -1735,3 +1735,22 @@ Postmortem `[R25-audit]` job reads original3traceartifacts+baseline only, noGodo
 computes per-kindAC202maxima/FA5lastbounds/public-to-force-trace agreement. This
 is reporting, not a new physicaltrial. Matrix8/18 unchanged; STOPforNEWowner
 contactmodelreview or ownerauthoredAC201number/specdecision. No unilateralwaiver.
+
+
+### R25 archived-data closeout — no new physics, core frozen at8d73597
+
+Archiveaudit40896828176/job123528127119SUCCESS,0newphysicsruns. AC202motor/passive/
+limbmax Slug.06735552288921903/Hopper.1090211629000053/Twin.07263504920267333WU,
+all>.05 evenexcludingfeet. Hopperliteral limb6.09978856801616326 at13, so true
+limbfailure, notfoot-onlysurrogate. FA5lastx[-11.998676101856619,-11.215033260486496],
+nearfixtureleftbound-12; actualabortstatusnotlogged, probableboundaryescapeNOT
+assertedascause. No extra replay/step/floor expansion. Airbornecoverage0; all
+observedgripsmatchedlaw, absenceofcoverage/truncationNOTairbornefalsegrip proof.
+Publicidle600physicalstatesmatchforcearm600exactly, actualF52neverfires. Committed
+baselinebyteequalgeneratorfileSHA3d2f95e2187b2f90961d31a525eaa9d79ccb4296dec4fb766c6754f4043f185f.
+Normalstrictpublicc169ded PUSH+PRjobs123528127573/123528164326 PASS and FULLsummary
+EXACTadoption-sourcepublic.198PythoncontrolsPUSH+PRPASS aftertestonlyshallowhistory
+fix. HistoricalF47stepstillRED/nonwaived. Core/data/tuning/sleepunchangedsince
+8d73597; no physics adjustments afterSTOP. Matrix8/18/no newacceptancecredit.
+STOPforNEWownercontactmodelreview or owner-authoredAC201number/specdecision;
+F74sampledshortfall and independentAC202/FA5failuresremainvisible, no improvisation.

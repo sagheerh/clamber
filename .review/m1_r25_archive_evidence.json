@@ -1,0 +1,205 @@
+{
+  "source_head": "8d73597f0ce4c118ad0602816b51770d8292611f",
+  "source_run": 40895082337,
+  "new_physics_runs": 0,
+  "AC202": {
+    "Slug": {
+      "ticks": 7200,
+      "by_kind": {
+        "head": {
+          "max_error_wu": 0.021824347380989206,
+          "at": [
+            180,
+            0
+          ]
+        },
+        "motor": {
+          "max_error_wu": 0.06735552288921903,
+          "at": [
+            81,
+            1
+          ]
+        },
+        "foot": {
+          "max_error_wu": 0.09437461522175528,
+          "at": [
+            6,
+            2
+          ]
+        }
+      },
+      "limb_motor_passive_max_wu": 0.06735552288921903,
+      "limb_motor_passive_criterion_met": false,
+      "all_segment_criterion_met": false
+    },
+    "Hopper": {
+      "ticks": 7200,
+      "by_kind": {
+        "head": {
+          "max_error_wu": 0.012021187208262729,
+          "at": [
+            64,
+            0
+          ]
+        },
+        "motor": {
+          "max_error_wu": 0.1090211629000053,
+          "at": [
+            28,
+            4
+          ]
+        },
+        "passive": {
+          "max_error_wu": 0.07581624961617467,
+          "at": [
+            65,
+            2
+          ]
+        },
+        "limb": {
+          "max_error_wu": 0.09978856801616326,
+          "at": [
+            13,
+            6
+          ]
+        },
+        "foot": {
+          "max_error_wu": 0.199917694835798,
+          "at": [
+            9,
+            7
+          ]
+        }
+      },
+      "limb_motor_passive_max_wu": 0.1090211629000053,
+      "limb_motor_passive_criterion_met": false,
+      "all_segment_criterion_met": false
+    },
+    "TwinRoller": {
+      "ticks": 7200,
+      "by_kind": {
+        "head": {
+          "max_error_wu": 0.029350917127110854,
+          "at": [
+            14,
+            0
+          ]
+        },
+        "motor": {
+          "max_error_wu": 0.07263504920267333,
+          "at": [
+            650,
+            1
+          ]
+        },
+        "passive": {
+          "max_error_wu": 0.044345258978976565,
+          "at": [
+            887,
+            2
+          ]
+        },
+        "foot": {
+          "max_error_wu": 0.09966156857329556,
+          "at": [
+            6,
+            4
+          ]
+        }
+      },
+      "limb_motor_passive_max_wu": 0.07263504920267333,
+      "limb_motor_passive_criterion_met": false,
+      "all_segment_criterion_met": false
+    }
+  },
+  "FA5": {
+    "rows": 7067,
+    "last_tick": 7066,
+    "last_endpoint_x_range": [
+      -11.998676101856619,
+      -11.215033260486496
+    ],
+    "last_endpoint_y_range": [
+      0.030000000000000093,
+      0.375246999395938
+    ],
+    "fixture_bounds": {
+      "x": [
+        -12.0,
+        12.0
+      ],
+      "y": [
+        -4.0,
+        8.0
+      ]
+    },
+    "termination_reason": "NOT LOGGED: harness breaks on bad status or observer mismatch. Last completed row only; no new step/replay to infer cause.",
+    "report": {
+      "gate": "FA5",
+      "ticks": 7067,
+      "max_previous_grounded_feet": 2,
+      "branch_counts": {
+        "below": 15317,
+        "at_or_above": 7,
+        "two_foot_grip": 2,
+        "airborne": 0,
+        "N0_no_grip": 4
+      },
+      "examples": {
+        "N0_no_grip": {
+          "tick": 0,
+          "pass": 0,
+          "part": 5,
+          "N": 0,
+          "threshold": null,
+          "actual_load": 8.4,
+          "lowest": true,
+          "grounded": true,
+          "expected_grip": false
+        },
+        "below": {
+          "tick": 1,
+          "pass": 0,
+          "part": 5,
+          "N": 2,
+          "threshold": 18.871999999999996,
+          "actual_load": 9.5875248,
+          "lowest": true,
+          "grounded": true,
+          "expected_grip": false
+        },
+        "at_or_above": {
+          "tick": 5,
+          "pass": 1,
+          "part": 7,
+          "N": 2,
+          "threshold": 18.871999999999996,
+          "actual_load": 19.47748602476598,
+          "lowest": true,
+          "grounded": true,
+          "expected_grip": true
+        },
+        "two_foot_grip": {
+          "tick": 6,
+          "pass": 1,
+          "parts": [
+            5,
+            7
+          ],
+          "N": 2
+        }
+      },
+      "missing_coverage": [
+        "airborne"
+      ],
+      "passed": false,
+      "scope": "actual authoredHopper/braceoff/natural hinge+gravity+selfcontact loads; no synthetic qualifying loads or pose edits; missingbranches are NOTPASS"
+    }
+  },
+  "public_idle_equals_force_trace_physical_first600": {
+    "ticks": 600,
+    "equal": true
+  },
+  "committed_baseline_byte_equal_generated": true,
+  "generated_baseline_file_sha256": "3d2f95e2187b2f90961d31a525eaa9d79ccb4296dec4fb766c6754f4043f185f"
+}
