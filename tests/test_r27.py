@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Static/forgery controls, NOT numerical runtime/feel acceptance evidence."""
-import hashlib,json,math,sys,tempfile,unittest
+import hashlib,json,math,re,sys,tempfile,unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 from check_m1_matrix import validate_matrix,R27_VERDICTS
@@ -8,6 +8,11 @@ from r27_report import PLAN,angle_degrees,completed,com,aggregate
 
 
 class R27Controls(unittest.TestCase):
+    def test_workflow_dependencies_exist(self):
+        s=Path('.github/workflows/m1.yml').read_text()
+        jobs=set(re.findall(r'^  ([a-z0-9-]+):$',s,re.M))
+        for block in re.findall(r'^    needs: \[([^\]]+)\]',s,re.M):
+            for name in block.split(','):self.assertIn(name.strip(),jobs)
     def test_pb_bytes_not_changed(self):
         self.assertEqual(hashlib.sha256(Path('core/tuning.tres').read_bytes()).hexdigest(),PLAN['production_tuning_sha256'])
     def test_original_gdd_preserved_and_sleep_named_failed(self):
