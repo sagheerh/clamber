@@ -8,30 +8,83 @@ Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R21 — two limit/drive-cap diagnostics pending; no remedy
+### Current R21 — BOTH predictions falsified; no remedy, runtime8/18 unchanged
 
-Owner accepts real gain0 and withdraws R20 drive-propulsor prediction. F61 stays
-record-only, F66 measured bounds supersede nominal. A and residual check withdrawn/
-obsolete. Read reviewer via git show only. F64 necessary-stop mechanism remains
-a prediction until upper90 and bound1 arms are measured, in that order. Actual
-per-projection angular error/rotation and velocity-stop predicate instrumentation
-added observationally; WU phase ledger is NOT radians. Defaults remain40 even
-while diagnostic duplicate uses90; next arm freshly40, hashes checked between.
-D08/D06/D07 queued, not diagnostic blockers. Actual results PENDING, runtime8/18
-unchanged, no baseline regeneration or Phase3. See DECISIONS for q0 legality,
-zero-input target0 versus held target, and per-stage measurement definitions.
+Measured source **48d54df**, [M140877081798](https://github.com/sagheerh/clamber/actions/runs/40877081798),
+limit job123458547461. Reviewer read via git show ONLY. Full evidence/complete
+F56 books: `.review/m1_r21_limit_evidence.json`. All6000 per arm preserved, last300
+5700–5999 reported; no baseline regeneration, retune, A/residual or Phase3.
 
-R21 first source0943087 / M140875933008: wide90 eliminates all stop effects
-all6000 yet drift2.950043883090746, not owner.08-.5. F64 necessary-stop prediction
-falsified; NOT permission for a new causal story/remedy. Referenceper-pass angular
-correction sums.07042523254053407rad/tick, max pre-position error.06331083047340813,
-not drive-time max.1500058532205718rad. Bound1 raw trace generated but report
-failed its EXACT boundary predicate audit; no bound1 result quoted yet. Adding
-raw IEEE754 binary64 predicate words (not an epsilon or trusted boolean) to
-distinguish decimal-rounding ambiguity from an actual audit defect. Need rerun.
-Original40 resourceSHA remains3a32dd3d2d719ed28220ed531fee05c8d2a799140d3f06e3aeed4d28d6e6f60c,
-reverified nextcommit;90 was ONLY a now-exited duplicate. M040875932974 SUCCESS516
-and Android, five other M1 jobs success except unchanged F47 components.
+| Late300 quantity | reference40 / bound6 | wide90 / bound6 | restored40 / bound1 |
+|---|---:|---:|---:|
+| Drift px/s |3.9345242550809765|2.950043883090746|3.5208063727143637|
+| Requested mean angular impulse |−21|−21|−21|
+| Measured bound / abs applied mean |.04119350481568311|.0424424871905789|.006817925509442767|
+| Saturated ticks/300 |300|300|300|
+| Positional / velocity limit ticks/300 |300 /300|0 /0|300 /300|
+| Max drive-time band error rad |.1500058532205718|0|.1703507114114703|
+| Max actual pre-projection error rad |.06331083047340813|0|.18088463121580023|
+| Sum requested abs angular correction rad |21.12756976216022|0|71.1119478417996|
+| Same rad per tick, all6 passes summed |.07042523254053407|0|.23703982613933203|
+| Observed abs angular rotation rad |21.127569762160093|0|71.11194784179956|
+| Angular-phase net endpoint magnitude sum WU (Euclidean/end) |6.637221585009945|0|22.080763658493435|
+| Angular-phase net L1 endpoint-coordinate sum WU |8.83565758768492|0|29.13103935554537|
+| Max abs limit-block impulse |.00010279054374075919|0|.000621232531100805|
+| mean_clamped_total_torque |−1260|−1260|−1260|
+| Complete F56 residual x |−6.453171330633722e−16|2.636779683484747e−16|1.1622647289044608e−16|
+| Complete F56 residual y |3.544387006115812e−14|3.1009916856561404e−14|4.0023540037736893e−14|
+
+**F64 necessary-stop prediction FALSIFIED:** wide90 eliminates ALL6000 positional
+and velocity limit engagement, all block impulse EXACT0, all angular phase endpoint
+changes and corrections EXACT0; drift remains2.9500, not owner.08–.5/free-hinge
+.08403595917823123. Limits affect result, but are NOT necessary for this motion.
+Do not infer a replacement source from these two separate removals. Drive-time
+q/error is not each iteration's error: reference actual pre-projection max.06331
+rad and summed correction.0704252rad/tick, not.1444rad per pass. WU ledger is NOT
+radians. All endpoint projection deltas independently agree with that ledger.
+
+**Bound-sign prediction INVERTED:** weakening bound lowers drift3.9345->3.5208,
+not toward gain0's5.3874. Delivered mean ratio.16550972149490567, not assumed1/6;
+wide90 ratio1.0303198861200147 because actual extents differ. All three saturated
+300/300/body-speed-limited0/300. Mean requested/bound509.7898575451301 /
+494.78875517194655 /3080.1157876576485. This global cap also caps limit rows;
+report comparison, not an invented drive-only causal isolation or fitted story.
+Raw per-tick differences: wide5978/6000 (first22), bound15998/6000 (first2) applied
+changes>existing1e−12 precision; late300/300 each. Late max endpoint position/
+velocity deltas vsreference .6584274093417979WU/.5239526882687735WU/s wide and
+.2893301216031765WU/.4970773351685527WU/s bound1. Not fulltrace identity.
+
+First source0943087 produced both traces but rejected bound1 reporting on a
+boundary-predicate mismatch. Rerun48d54df records exact IEEE754 binary64 q/limits/
+omega:39 late300 and1746 all6000 decimal-vs-binary predicate disagreements in
+bound1, zero in reference/wide. Exact decoded predicate matches actual bool;
+independent raw geometry/velocity audits retained, no epsilon/physics change.
+Complete F56 EACH arm passed, per-tick/window internals within unchanged1e−12,
+resource damping/raw-contact/clamp guards retained. Full books emitted in compact
+annotations. Original F56 literal FULL record EXACT R18, still false/defaultexit1;
+separate R19 complete authorization NOT redefinition. Bound1 window Δp_x is
+.00009481202500825903, nonzero; don't impose reference F59 on it.
+
+Default40/SHA3a32dd3d2d719ed28220ed531fee05c8d2a799140d3f06e3aeed4d28d6e6f60c
+unchanged THROUGHOUT and rechecked nextcommit. Wide90 only process-local duplicate
+exited; bound1 fresh40. No tuning adopted. F65/D08 is band-versus-loaded-pose/
+authoring question; authored q0 legal, observed loaded rocking q>40 not proof
+q0 unreachable or stationary equilibrium. Target0 for released input, not held
+−62degrees×.7. F66 actual measured bounds supersede nominal arithmetic. F61 stays
+record-only; owner R20 propulsion claim withdrawn; R19 late stiffness0 VOID.
+A WITHDRAWN/residual OBSOLETE; no Phase3/baseline regeneration.
+
+Source regression:176 Python PASS;931 mechanics/4897 sleep/381 math/237 contact/
+136 analytic/80 load; public9053+308+1446 PASS and FULL summary EXACT accepted
+Phase2. M040877081778 SUCCESS516(514+2auto compile)/Android. M1five SUCCESS,
+unchanged F47 components FAIL plus R21 both owner predictions FAIL honestly.
+Raw artifact12898288698 /119472146B/SHA779908f38d1546178d32e137ab004b5848b0a7b0cf0965a433ee9fa86ba71d28;
+API metadata/complete annotations inspected, NOT raw ZIP. Eight accepted rows
+unchanged; ten NOT RUN/unmoved: AC201/202/204, presets/captures, tickcost,§10.6,
+FA3/4/5/6. Attempt1 same-build success/cross-arch0; RNG not consumed. INV/five-fakes/
+A12 pending, FA5 unchanged/F41 count buckets open. D08/D06/D07 queued, never blocked
+these completed diagnostics. NEXT single milestone: owner R21 evidence review /
+D08 direction before an adopted remedy or further experiments; no inferred choice.
 
 ### Historical R20 — exact zero drive still walks; inference withdrawn by owner R21
 

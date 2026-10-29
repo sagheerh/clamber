@@ -1280,3 +1280,38 @@ replaces a relational stop decision, no new epsilon, no physics change. Nextcomm
 rechecks default40/SHA unchanged. Publish Euclidean endpoint-phase magnitude in
 WU as well as labelled L1 sum; neither is angular radians. Rerun both arms ordered
 with complete F56 emitted into bounded annotations; no new remedy authorized.
+
+
+### R21 measured closeout — two falsified predictions, no adopted remedy
+
+Source48d54df /M140877081798, full facts `.review/m1_r21_limit_evidence.json`.
+Both ordered arms complete with unchanged F56/independent drive/geometry/phase
+and exact binary64 predicate audits. Wide90 ALL6000 stop/positional correction/
+block impulses EXACT0 yet drift2.950043883090746: F64 necessary-stop mechanism
+falsified (not.08-.5; reference3.9345242550809765). Bound1 at fresh40 delivers
+.16550972149490567x reference; drift FALLS3.5208063727143637: supplied sign
+prediction inverted. Do not fit a new propulsion story. Global bound changes
+both drive and limit caps, so do not call it an isolated drive-only intervention.
+Mean actual pre-position correction over all6 passes .07042523254053407rad/tick
+reference /0wide /.23703982613933203bound1. Drive-time q/error cannot substitute
+for actual per-pass q/error. Euclidean endpoint magnitude WU from original phase
+ledger6.637221585009945 /0 /22.080763658493435 per last300; separately verified
+rad sums21.12756976216022 /0 /71.1119478417996. Neither measure is net COM energy
+injection or a feel acceptance criterion. Bound1 nonzero window momentum change
+must not be equated to reference's zero-window-momentum-change translating cycle. No solver constants adopted.
+
+Binary64 q/lower/upper/omega independently reconstructed, decoded predicate EXACT
+matches engine bool. Bound1 has39 late300 /1746 all6000 decimal-vs-binary decision
+differences; no epsilon/threshold replaces relational predicate. First source094
+bound1 report failure was a telemetry audit issue, not determinism attempt/finding.
+Default40 and original resourceSHA unchanged throughout, and rechecked in this
+nextcommit;90 exists only as reproducible per-process duplicate diagnostic.
+Full original F56 literal EXACT R18/false/defaultexit1 and separate authorized
+complete predicate EACH arm preserved. Full public summary EXACT acceptedPhase2.
+176 Python controls, original component counts, M0516(514+2auto compile)/Android
+PASS; overall M1 remains red at existing F47 and two wrong diagnostic predictions.
+8/18 movement0, ten NOT RUN rows/FA5 unchanged, no baseline regeneration/Phase3.
+F65 ownerD08 remains open, no assertion legal authored q0 unreachable; F66 measured
+bounds supersede nominal, F61 record-only, owner R20 propulsion claim withdrawn,
+R19 late stiffness0 remains VOID, A WITHDRAWN/residual OBSOLETE. Queue D08/D06/D07
+for owner; these decisions did not block diagnostics. No choice/remedy inferred.

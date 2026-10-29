@@ -1,13 +1,25 @@
 # M1 acceptance matrix — scoped measured evidence, NOT milestone approval
 
-## Current R21 — 8/18 unchanged; two limit diagnostics pending
+## Current R21 — BOTH owner predictions falsified; 8/18 unchanged
 
-Owner accepts gain0/F56, withdraws R20 propulsor prediction. F64 mechanism to be
-tested by upper90 then bound1 at restored40. F63 teeth, per-pass stop/error audit,
-WU phase ledger and separate radians published; no units/causality assumption.
-D08/D06/D07 queued, not diagnostic blockers. Default40 resource stays unchanged,
-no feel choice, A withdrawn, residual test obsolete, no baseline/Phase3 update.
-Measurement PENDING. Exact accepted eight table rows/citations unchanged below.
+Measured48d54df, M140877081798 /limit123458547461. Complete18000 raw ticks,
+last300 each5700–5999. See PROGRESS and `.review/m1_r21_limit_evidence.json`.
+Wide90 stop engagement/projection/block impulse ALL6000 EXACT0, yet drift
+2.950043883090746 not.08–.5: F64 necessary-stop mechanism falsified. Bound1 fresh40
+reduces delivered impulse to.16550972149490567x reference, but drift FALLS
+3.9345242550809765->3.5208063727143637: owner sign prediction inverted. No fitted
+replacement mechanism; no tuning choice. F65/D08 owner question; authored q0
+inside band, loaded rocking pose beyond40 not itself proof q0 illegal/unreachable.
+Actual correction radians measured per pass; WU phase ledger separate/verified.
+F66 measured bounds .0411935/.0424425/.00681793, F63 saturated300/300 EACH.
+Complete F56 all arms PASS; original literal record EXACT R18/false/defaultexit1.
+Exact binary64 predicate resolves bound1 boundary audit without epsilon/physics
+change. Public FULL summary EXACT acceptedPhase2;176 Python PASS, M0516/Android
+PASS, existing F47 plus wrong R21 predictions FAIL (NOT overall all-green).
+40 default/hash unchanged and rechecked nextcommit,90 ONLY exited duplicate.
+A WITHDRAWN/residual OBSOLETE, no baseline regeneration/Phase3. D08/D06/D07 queued,
+not diagnostic blockers. Ten runtime rows below NOT RUN/unmoved; no acceptance
+upgrade, FA5 untouched, attempt1 same-build success/cross-arch0, RNG not consumed.
 
 ## Historical R20 — 8/18 unchanged; owner R21 withdraws causal prediction
 
