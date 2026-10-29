@@ -976,3 +976,20 @@ A9.5 separate protocol: actual SceneTree callbacks under --fixed-fps30/144, same
 solver remains60. Baseline intentionally missing initially; candidate generated
 ONLY from pinned CI, missing baseline makes public job RED until committed/rerun.
 All feel/creature runtime gates remain NOT RUN; no acceptance upgrade before CI.
+
+R17 Phase2 executed attempt1 @0443138 / CI40817804303: full THREE600tick public
+streams byte-identical (31,131,584bytes each), integer hashes3535650661 and SHA256
+d735ea5f596f9a7b9bdfea0acee9b666a4e364e670f21dba9556985b7bfd19c8.
+Exactly tick0 LEFT0->1 changed ACTUAL bodies and final SHA256 to
+0f0f93a619d86a62f7485f3cbfcc2e0d7d19c1a76a609ab1e8e81c5a009fcf99.
+9053 engine assertions0failures incl restore/rollback, chunk/stall, live-spring
+sleep reachability:600ticks, never asleep, max dwell2. Attempt1 SUCCESS as a
+same-build observation, not automatic acceptance. Frame harness SEPARATELY failed:
+actual Godot startup frame.025s, then fixed-fps30 frames1/30; last frame601ticks.
+Correct equal-count comparison uses first600 physical+RNG ticks; retain FULL601
+stream, all elapsed frames and final pending/drop clocks as evidence. No clipping
+of forces/observations, no solver/frame clock modification, no changed sampling.
+Both actual startup frame and post-start fixed-fps support are recorded; the
+prefix is an equal-SIMULATED-tick comparison, not invented equal wall duration.
+F41 now buckets last300 by full per-body/pass(I,C,A) signatures plus per-body
+buckets; raw min/max/means only. No tolerance, sampling change or forced closure.

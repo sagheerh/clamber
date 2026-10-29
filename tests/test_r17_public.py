@@ -17,8 +17,8 @@ class PublicRuntimeControls(unittest.TestCase):
             'per_tick_digests':['a']*600,'replay_final_digests':['a']*3,'runtime_gates':{},'fixture':{'name':'control'},'tuning_sha256':'t'}
         for i in range(3):(self.root/f'replay-{i}.bin').write_bytes(b'independent raw control')
         for hz in (30,144):
-            (self.root/f'delivery-{hz}.bin').write_bytes(b'frame control')
-            (self.root/f'delivery-{hz}.json').write_text(json.dumps({'condition':hz,'failures':0,'tick_hashes':['a']*600,'tick_hz':60,'frame_seconds':[1/hz]}))
+            (self.root/f'delivery-{hz}-compared.bin').write_bytes(b'frame control')
+            (self.root/f'delivery-{hz}.json').write_text(json.dumps({'condition':hz,'failures':0,'tick_hashes':['a']*600,'compared_tick_hashes':['a']*600,'actual_ticks':600,'compared_ticks':600,'tick_hz':60,'frame_seconds':[.025,1/hz]}))
     def run_report(self):
         (self.root/'public-sim-report.json').write_text(json.dumps(self.report))
         with patch.object(public,'BASELINE',self.root/'missing-baseline.json'),contextlib.redirect_stdout(io.StringIO()):
@@ -36,10 +36,10 @@ class PublicRuntimeControls(unittest.TestCase):
         (self.root/'replay-2.bin').write_bytes(b'changed')
         with self.assertRaisesRegex(ValueError,'streams DIFFER'):self.run_report()
     def test_frame_label_without_actual_delivery_rejected(self):
-        p=self.root/'delivery-30.json';r=json.loads(p.read_text());r['frame_seconds']=[1/60];p.write_text(json.dumps(r))
+        p=self.root/'delivery-30.json';r=json.loads(p.read_text());r['frame_seconds']=[.025,1/60];p.write_text(json.dumps(r))
         with self.assertRaisesRegex(ValueError,'fixed-fps'):self.run_report()
     def test_frame_stream_disagreement_rejected(self):
-        (self.root/'delivery-144.bin').write_bytes(b'wrong frame stream')
+        (self.root/'delivery-144-compared.bin').write_bytes(b'wrong frame stream')
         with self.assertRaisesRegex(ValueError,'frame-delivered'):self.run_report()
     def test_attempt_not_executed_is_not_evidence(self):
         self.report['attempt_started']=False

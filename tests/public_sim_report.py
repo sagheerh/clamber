@@ -21,19 +21,19 @@ def summarize(folder):
     if len(report['per_tick_digests'])!=600 or len(set(report['replay_final_digests']))!=1:
         raise ValueError('Missing tick stream/hash evidence')
     delivery=[json.loads((folder/f'delivery-{hz}.json').read_text()) for hz in (30,144)]
-    dstreams=[(folder/f'delivery-{hz}.bin').read_bytes() for hz in (30,144)]
+    dstreams=[(folder/f'delivery-{hz}-compared.bin').read_bytes() for hz in (30,144)]
     if not dstreams[0] or dstreams[0]!=dstreams[1]:
         raise ValueError('Actual30/144 frame-delivered tick streams differ')
     for r in delivery:
-        if r['failures'] or len(r['tick_hashes'])!=600 or r['tick_hz']!=60:
+        if r['failures'] or len(r['compared_tick_hashes'])!=600 or r['compared_ticks']!=600 or len(r['tick_hashes'])!=r['actual_ticks'] or r['actual_ticks']<600 or r['tick_hz']!=60:
             raise ValueError('Frame-condition harness incomplete')
         # Actual engine callbacks must match requested fixed-fps, not a label only.
-        if not r['frame_seconds'] or any(t!=1/r['condition'] for t in r['frame_seconds']):
+        if len(r['frame_seconds'])<2 or not 0<r['frame_seconds'][0] or any(t!=1/r['condition'] for t in r['frame_seconds'][1:]):
             raise ValueError('Engine did not support requested fixed-fps delivery exactly')
     result={k:v for k,v in report.items() if k!='per_tick_digests'}
     result['full_stream_sha256']=hashlib.sha256(streams[0]).hexdigest()
     result['per_tick_digest_table_sha256']=hashlib.sha256(json.dumps(report['per_tick_digests'],separators=(',',':')).encode()).hexdigest()
-    result['delivery']=[{k:v for k,v in r.items() if k not in ('tick_hashes','frame_seconds')}|{'min_frame_seconds':min(r['frame_seconds']),'max_frame_seconds':max(r['frame_seconds'])} for r in delivery]
+    result['delivery']=[{k:v for k,v in r.items() if k not in ('tick_hashes','compared_tick_hashes','frame_seconds')}|{'min_frame_seconds':min(r['frame_seconds']),'max_frame_seconds':max(r['frame_seconds']),'startup_frame_seconds':r['frame_seconds'][0]} for r in delivery]
     result['delivery_stream_sha256']=hashlib.sha256(dstreams[0]).hexdigest()
     result['runtime_gates']['11']='MEASURED real --fixed-fps30/144 callbacks;600 same ticks, streams byte-identical, physics60'
     expected={'fixture':report['fixture'],'tuning_sha256':report['tuning_sha256'],

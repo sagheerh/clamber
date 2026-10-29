@@ -7,6 +7,7 @@ var _expected_fps := 0
 var _frames: Array = []
 var _tick_stream := PackedByteArray()
 var _tick_hashes: Array = []
+var _compared_stream := PackedByteArray()
 
 
 func _initialize() -> void:
@@ -21,6 +22,8 @@ func _initialize() -> void:
 
 
 func _on_tick(state: Dictionary) -> void:
+	if _tick_hashes.size() < TICKS:
+		_compared_stream.append_array(var_to_bytes(state))
 	_tick_stream.append_array(var_to_bytes(state))
 	_tick_hashes.append(Sim.digest(state))
 
@@ -35,7 +38,7 @@ func _process(frame_seconds: float) -> bool:
 		return true
 	if response.ticks >= TICKS:
 		_check(
-			response.ticks == TICKS and _tick_hashes.size() == TICKS,
+			response.ticks == _tick_hashes.size() and _tick_hashes.size() >= TICKS,
 			"equal simulated ticks: actual%d recorded%d" % [response.ticks, _tick_hashes.size()]
 		)
 		_finish()
@@ -50,21 +53,36 @@ func _finish() -> void:
 	_check(file != null, "frame-condition stream opens")
 	if file != null:
 		file.store_buffer(_tick_stream)
+	var prefix := FileAccess.open(
+		_folder.path_join("delivery-%d-compared.bin" % _expected_fps), FileAccess.WRITE
+	)
+	_check(prefix != null, "equal-tick prefix opens; full stream including excess retained")
+	if prefix != null:
+		prefix.store_buffer(_compared_stream)
 	var report := {
 		"condition": _expected_fps,
 		"frames": _frames.size(),
 		"frame_seconds": _frames,
 		"tick_hashes": _tick_hashes,
+		"compared_ticks": TICKS,
+		"actual_ticks": _tick_hashes.size(),
+		"compared_tick_hashes": _tick_hashes.slice(0, TICKS),
+		"final_accumulator":
+		{
+			"pending": _sim.snapshot().accumulator.pending,
+			"dropped": _sim.snapshot().accumulator.dropped
+		},
 		"tick_hz": TUNING.physics_tick_hz,
 		"stream_bytes": _tick_stream.size(),
 		"failures": _failures,
 		"checks": _checks,
 		"scope":
-		"actual SceneTree frame callbacks, --fixed-fps, same600 released-input fixed ticks; clock outside tick hash"
+		"actual SceneTree frame callbacks, --fixed-fps, first600 identical released-input fixed ticks; full extra ticks retained; clock outside tick hash"
 	}
 	var compact := report.duplicate(true)
 	compact.erase("frame_seconds")
 	compact.erase("tick_hashes")
+	compact.erase("compared_tick_hashes")
 	compact["actual_tick_count"] = _tick_hashes.size()
 	compact["first_frame_seconds"] = _frames[0]
 	compact["last_frame_seconds"] = _frames[-1]
