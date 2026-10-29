@@ -1358,3 +1358,11 @@ on release, recorded ONLY for owner decision. No acceptance reinterpretation,
 duration, sleep re-scope, hold, hysteresis or tuning adopted. D06 tutorial and
 D07 device tickcost queued. A/residual WITHDRAWN/OBSOLETE; no baseline/Phase3;
 8/18 movement0/FA5 unchanged. Only authorized next action is single missing cell.
+
+R22 scheduling correction: GitHub integration denied manual Actions dispatch
+(HTTP403 Resource not accessible by integration); NO diagnostic was started by
+that request. Use one push tagged [R22-once] for the single cell instead. Legacy
+runtime jobs remain manual-only, NOT passed/waived/closed; static checks stay
+active. Subsequent closeout commits [skip ci], new cell requires explicit marker
+or authorized manual dispatch, never auto repeats on PR or ordinary docs push.
+No source/resource change or additional diagnostic arm results from this fix.

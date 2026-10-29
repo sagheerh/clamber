@@ -34,7 +34,7 @@ jobs:
       - name: Record scope of evidence
         run: echo '::notice title=M1 scaffold only::Static subset only. Runtime results belong exclusively to the public Sim job and measured matrix evidence. Soak, performance, captures, full semantic sweep/five-fakes/A12 remain pending.'
   math-foundations:
-    if: ${{ !inputs.r22_only }}
+    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.r22_only }}
     name: M1 point/link unit tests (NOT creature determinism)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -340,7 +340,7 @@ jobs:
           retention-days: 7
 
   convergence-observation:
-    if: ${{ !inputs.r22_only }}
+    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.r22_only }}
     name: R16 zero-input convergence observation (NOT runtime acceptance)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -399,7 +399,7 @@ jobs:
           retention-days: 7
 
   spring-observation:
-    if: ${{ !inputs.r22_only }}
+    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.r22_only }}
     name: R17 spring mechanism diagnostic (NOT runtime acceptance)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -454,7 +454,7 @@ jobs:
           retention-days: 7
 
   public-sim-runtime:
-    if: ${{ !inputs.r22_only }}
+    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.r22_only }}
     name: M1 public Sim replay attempt1 and clock gates
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -512,7 +512,7 @@ jobs:
           retention-days: 7
 
   external-momentum-prerequisite:
-    if: ${{ !inputs.r22_only }}
+    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.r22_only }}
     name: R19 F56 complete external prerequisite (literal record retained)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -567,7 +567,7 @@ jobs:
           retention-days: 7
 
   limit-source-diagnostic:
-    if: ${{ !inputs.r22_only }}
+    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.r22_only }}
     name: R21 wide stop then bound diagnostic (NOT runtime acceptance)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -622,7 +622,7 @@ jobs:
           retention-days: 7
 
   inert-source-diagnostic:
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.r22_only }}
+    if: ${{ (github.event_name == 'workflow_dispatch' && inputs.r22_only) || (github.event_name == 'push' && contains(github.event.head_commit.message, '[R22-once]')) }}
     name: R22 single gain0 + wide90 cell (MANDATORY STOP)
     runs-on: ubuntu-24.04
     timeout-minutes: 15

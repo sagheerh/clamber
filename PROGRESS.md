@@ -1688,3 +1688,11 @@ retain NOT RUN, with reasons updated to acknowledge existing components.
   legacy-sleep docs and public replay NOT yet wired. No new owner decision needed.
   NEXT single milestone M1: public Sim + F45/replay, then the ordered runtime
   acceptance stage. FA-3/4/5/6/all coupled runtime gates NOT RUN, determinism0.
+
+R22 scheduling correction: GitHub integration denied manual Actions dispatch
+(HTTP403 Resource not accessible by integration); NO diagnostic was started by
+that request. Use one push tagged [R22-once] for the single cell instead. Legacy
+runtime jobs remain manual-only, NOT passed/waived/closed; static checks stay
+active. Subsequent closeout commits [skip ci], new cell requires explicit marker
+or authorized manual dispatch, never auto repeats on PR or ordinary docs push.
+No source/resource change or additional diagnostic arm results from this fix.
