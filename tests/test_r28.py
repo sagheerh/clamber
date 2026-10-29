@@ -37,6 +37,7 @@ class R28Controls(unittest.TestCase):
         for name in ('r28-measure','r28-baseline','r28-idle','r28-characterisation','r28-m0'):
             header=s.split('  '+name+':',1)[1].split('    name:',1)[0]
             self.assertIn('github.sha == inputs.r28_source_sha',header)
+            self.assertIn("github.sha == '446d870da5c02ecfc295a19d7f35a8436b3b7fa7'",header)
         self.assertIn('needs: [r28-measure]',s.split('  r28-baseline:',1)[1])
         self.assertIn('needs: [r28-measure]',s.split('  r28-idle:',1)[1])
         self.assertIn('needs: [r28-idle]',s.split('  r28-characterisation:',1)[1])

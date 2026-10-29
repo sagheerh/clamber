@@ -223,7 +223,12 @@
     "M0_checks": 516,
     "M0_failures": 0,
     "tuning_diff": "EMPTY",
-    "production_core_diff_after_revert": "EMPTY"
+    "production_core_diff_after_revert": "EMPTY",
+    "literal_source_pin_enforced_by_control": true,
+    "current_FA3": "NOT RUN; vacuous/uncredited; removed FA3 pass exception from matrixguard",
+    "current_AC202": "FAILED (R28 penetration; reverted); exact scoped matrixguard citation",
+    "local_after_revert_controls": 226,
+    "local_after_revert_failures": 0
   },
   "D8": {
     "decision": "quarantine only F47 step with continue-on-error:true, commit8bcb481; thresholds/assertions/command/errorannotation/artifactdefinition unchanged",
