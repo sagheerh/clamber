@@ -1501,3 +1501,50 @@ authorized but not started here, evidence would be separated. Runtime8/18 moveme
 Public replay/clock rerun on first study commit to reproduce OLD baseline, not
 regenerate/adopt example. Actual first adopted solver change must rerun again with
 provenance. No silent AC201 rewrite/epsilon/hold/waiver/M2/camera/captures.
+
+
+### D09 study measured closeout — authorable headroom observed, station-keeping NOT achieved
+
+Source573a1fb /M140885113085 /job123486613471 SUCCESS. Full fifteen audited
+runs/90krawticks `.review/m1_d09_study_evidence.json`, non-adopted plan unchanged.
+PROPOSED (cap,k,torque)=(30,10,12)/(30,20,12)/(30,40,12); cap ceiling NOT raised.
+Derived c=2sqrt(kIeff) authoredactual inertia yields.5443327361211717 /
+.7698027378662161 /1.0886654722423434. Fixed continuous linearization, loaded
+zeta at measured mean bounds1.066/1.079/1.085, NOT globally critical discrete plant.
+Working angular residuals.22316866039209582 /.08996254195334404 /.032108711886440405
+rad (12.787/5.154/1.840deg); exact settled pose NULL all3, no fitted equilibrium.
+Holding300 maxabs requested/bound.245244 /.240241 /.235556 (<owner.5), constraint/
+upstream torque/body speed clipping0 each. Linear headroom COMPONENT observed;
+formal settled-holding criterion not qualified without established settlement.
+
+Both/drive-only drift8.550150769956836 /11.479241947750111 /12.910423565431365px/s;
+stop-only5.374919874839947 all3, inert.08403595917824255 all3. Thus NOT D08 physical
+station-keeping: all powered both above derived.3 and no F52 eligibility all6000
+fromspawn. No candidate adopted, no nice first result selected. STOP; no more
+triples/bound increase/hold until review. Better angle/residual/headroom does not
+constitute an AC201 pass. Exact per-body F52 remains authoritative, not mean drift.
+Proposed95sreleased/1sL/4srelease response measured held dx.14075959883633615 /
+.0922175655125983 /.02659880134783954WU, postrelease first F52 eligibility82/66/64
+ticks (awake observer no parking/formal sleep/FA4 credit). Full response in evidence.
+All15 fullF56 pass, maxwindowabsresidual4.565792188770956e−14, oldliteral record/
+default exit1 preserved, distinct R19 complete predicate. All observer on/off
+physical states equal6000each; permanent rad/rad/WU limit columns retained.
+
+Public replay/clock PUSH+PR rerun573a1fb SUCCESS, FULL summary EXACT oldcommitted
+baseline; reproduced, NOT regenerated. Sourcecontrol physics/defaultsunchanged;
+first future adoptedsolver change still must rerun/regeneratewithprovenance.
+185Python/load80each PASS; M0516(514+2auto compile)/AndroidPASS. F47 remains RED,
+legacy sweeps skipped/not waived. Sourceartifact12901654637/398343994B/SHA
+3b82aac1ee32484c89e85503a7b4c86b0518a58ed72f87ddcee5ee57341443d5, compact books+
+metadata inspected NOTrawZIP. Closeoutskipci no additional runtime experiment.
+
+D06 provisional fixture AUTHORED underB04, layout/script/success proposals NOT
+measured/FA6 qualification; deterministic identical initial states/inputs cannot
+produce differing outcomes—do not add artificial noise to force6–8. No product
+geometry/generation/difficultycurve/captures. D07 phonequeued. Ownerdecisions
+remain accepted, no relitigation; waiting STUDY APPROVAL, not choice of bang-bang.
+On approval adopt selected parameters, baseline provenance/full4cellremeasure then
+D08margin/fallback decision perdelegatedrule, not before. R23 2x2 OLD parameterisation
+retained ashistory. Core/TUNING/creaturebytes unchanged; mass/weightuntouched,
+40default intact.8/18movement0/FA5untouched, AC202notrun, no Phase3/A/residual/M2.
+NEXT singlemilestone ownerreviewD09study BEFORE adoption, STOP experiments now.

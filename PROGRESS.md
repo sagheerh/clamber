@@ -8,25 +8,92 @@ Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current D09 — delegated decisions accepted; three-proposal study PENDING
+### Current D09 — three proposals measured; STOP BEFORE ADOPTION
 
-D09 PROPORTIONAL MUSCLE, D08 PHYSICAL HOLD FIRST/fallback only after adoption+
-remeasurement, D06 AUTHOR PROVISIONAL MINIMAL FIXTURE are owner decisions under
-explicit delegation. Read source via git show origin/arena/5b72e4ab-clamber only,
-not copied/merged. Decision wait lifted; choices NOT reopened. D07 phone queued.
-Plan registered `.review/m1_d09_study_plan.md` before measurement: triples
-(30,10,12)/(30,20,12)/(30,40,12), all PROPOSALS not adopted. Critical damping
-2*sqrt(k/weight_authored), independently raw-audited and loaded zeta reported;
-continuous critical damping is not assumed discretely stable at60Hz.
-Four cells6000 ticks each +one PROPOSED lurch protocol per candidate. No new
-coefficient in core defaults; total mass/weight untouched. STOP before adoption,
-no further bound increase. Settled pose nullable; don't turn transient means
-into equilibrium. D08 .3px/s derived necessary line, F52 firing<=4s authoritative,
-no mean-drift-only pass; no hold added. D06 provisional fixture authored underB04,
-NOT FA6 run/qualification; deterministic identical-run constraint noted honestly.
-Public replay/clock scheduled now to REPRODUCE existing committed baseline; no
-baseline regeneration at study stage. Old R23 parameterisation retained as history.
-No parallel AC202/FA5 run now;8/18 movement0/FA5 unchanged. Results PENDING.
+Delegated decisions ACCEPTED, not re-litigated: D09 proportional muscle, D08
+physical hold first/fallback after adoption+remeasure, D06 provisional fixture now.
+Source573a1fb /[study CI40885113085](https://github.com/sagheerh/clamber/actions/runs/40885113085),
+job123486613471 SUCCESS, NOT an adoption/feel pass. Full evidence including ALL15
+compact per-arm books `.review/m1_d09_study_evidence.json`.90000 raw awake ticks
+preserved (15x6000); observer on/off snapshots bit-equal every tick. Plan registered
+before results `.review/m1_d09_study_plan.md`. No new search after these3 triples.
+
+| PROPOSAL (cap,k,maxTorque) | (30,10,12) | (30,20,12) | (30,40,12) |
+|---|---:|---:|---:|
+| Derived authored critical c |.5443327361211717|.7698027378662161|1.0886654722423434|
+| Working q/residual mean rad, both |.22316866039209582|.08996254195334404|.032108711886440405|
+| Same degrees |12.78662236005547|5.1544739681952185|1.839693676694575|
+| Settled pose |null|null|null|
+| Requested /applied mean impulse, both |−.04796602541507495|−.0458210036063169|−.044435404255268936|
+| Measured bound mean, both |.19558495337204906|.19072949096919847|.18864020539110127|
+| MAX abs requested/bound over holding300 |.24524394432241023|.24024079010266033|.23555638186010233|
+| Constraint /upstream torque /body-speed clip ticks, holding300 |0/0/0|0/0/0|0/0/0|
+| Both drift px/s |8.550150769956836|11.479241947750111|12.910423565431365|
+| Stop-only drift px/s |5.374919874839947|5.374919874839947|5.374919874839947|
+| Drive-only drift px/s |8.550150769956836|11.479241947750111|12.910423565431365|
+| Inert drift px/s |.08403595917824255|.08403595917824255|.08403595917824255|
+| .3−abs(drift) margin, both px/s |−8.250150769956836|−11.179241947750111|−12.610423565431365|
+| First F52 eligible from spawn, both |NONE/all6000|NONE/all6000|NONE/all6000|
+
+Headroom COMPONENT observed on all300 both/drive-only samples (<=.5), no motor
+or constraint clipping. NOT a qualified settled-holding pass: exact settled pose
+not established; null is honest, late q ranges in evidence, no fitted equilibrium
+or tolerance. F52 is counterfactual observer on AWAKE trace, not parking/AC201.
+Improved angular residual/linear headroom did NOT yield station-keeping. All both
+runs exceed derived.3px/s and never eligible F52, so no D08 pass/comfortable margin.
+No choice among these proposals adopted. Do NOT raise bound beyond proposed30.
+
+Damping derived, not guessed: I=m*extent²/4 for endpoint-mass capsules;
+Ieff=1/(inverseIp+inverseIc); ccrit=2sqrt(kIeff)=2sqrt(k/weight). Evaluated authored
+actual geometry, independently checked from first raw endpoints/masses; FIXED
+coefficient, not adaptive. Loaded zeta evaluated at mean measured bound is
+1.0659267588569554/1.0794093119953925/1.0853703537887764, not exactly1. Continuous
+linear critical damping does not guarantee nonlinear/discrete critical response.
+Fixed60Hz, all mass/weight/gravity/damping/sampling/geometry defaults untouched.
+
+Proposed lurch protocol, NOT FA4:95s released,1s held L,4s released. Per candidate
+held COM displacement(dx,dy) WU (.14075959883633615,−.03773132734892369),
+(.0922175655125983,−.027562900329371712),(.02659880134783954,−.02425724510597177).
+By end of release net dx.226660160625884 /.17072013762592775 /.10107116872395494WU.
+Peak abs q while held1.3206488294384926 /1.1023759695753468 /.9638602332030473rad.
+Mixed pulse/release300 torque cap clipping3/7/9ticks, constraint clip0 each;
+mean_clamped_total_torque retained in each raw summary joints. First post-release
+F52 eligibility after82/66/64 ticks (awake observer ONLY, not actual sleep/pass).
+No new pulse success threshold/bodylength pass invented. Script is a PROPOSAL.
+
+Full F56 EACH of15 runs PASS; all per-tick/window internal/damping/contact/clamp
+raw guards preserved at1e−12. Largest abs window residual4.565792188770956e−14.
+Complete vector sums per arm in evidence with explicit column order, full books/
+per-tick reference comparisons in artifact. Literal F56 NOT redefined; original
+R18 false/default exit1 record and distinct R19 complete authorization preserved.
+Three permanent limit columns: both/drive-only/inert late300 all0 drive-time
+violation rad /actual correction rad /angular-phase endpoint WU; stop-only each
+has max drive violation.15296479246883943rad /sum correction52.738773834409294rad /
+endpoint magnitude16.485775953383605WU, engaged300/300. Different units retained.
+
+PUBLIC replay/clock RERUN on573a1fb, push and PR SUCCESS:FULL summary EXACT old
+committed Phase2 baseline,9053+308+1446 checks. Baseline REPRODUCED, NOT regenerated;
+first future adopted solver change must rerun and regenerate with provenance.
+185 Python PASS, load80/0 eachrun; M0push40885113136/PR40885121681 headless+Android
+SUCCESS516(514+2auto compile). Existing F47 component job remains FAIL; historical
+sweeps skipped/not waived. D09 artifact12901654637 /398343994B/SHA
+3b82aac1ee32484c89e85503a7b4c86b0518a58ed72f87ddcee5ee57341443d5. All compact
+annotations/axis books/API metadata inspected, NOT raw ZIP. Closeout [skip ci]
+prevents any repeat; source results authoritative, not claimed remeasured at head.
+
+Core default SHA3a32dd3d2d719ed28220ed531fee05c8d2a799140d3f06e3aeed4d28d6e6f60c
+unchanged; core/creatures byte-identicald582a30. Candidate tuning.tres resources
+are diagnostic proposals applied only to process-local copies;90 exits per wide
+arm, default40 remains. Old R23 2x2 retained as OLD parameterisation/history.
+D06 authored data/towers/provisional_fa6.json: floor/oneledge/spawnmarker/script,
+PROVISIONAL layout/success proposal underB04, NOT product content/FA6 run. Existing
+10run/6–8 targets unchanged. Exact identical state/input deterministic runs yield
+identical outcomes; no invented noise/seed variation to manufacture6–8. Phase4
+execution contract must respect that, no fake qualification. D07 phone queued.
+No hold/freeze now: approval/adoption/provenance+fullremeasure precedes defined
+fallback. No AC202/FA5 parallel run here;8/18 movement0, ten gates NOT RUN/FA5
+untouched, A/residual obsolete, Phase3 not entered, no M2/camera/captures/waiver.
+NEXT single milestone: owner review of measured D09 proposals BEFORE adoption.
 
 ### Historical R23 — causal investigation CLOSED; WAIT for owner D09 AND D08
 

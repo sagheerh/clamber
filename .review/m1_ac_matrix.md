@@ -1,6 +1,27 @@
 # M1 acceptance matrix — scoped measured evidence, NOT milestone approval
 
-## Current R23 — causal closure / WAIT D09 AND D08 / 8of18 unchanged
+## Current D09 — three-proposal study COMPLETE / STOP BEFORE ADOPTION / 8of18
+
+Delegated D09proportional/D08physical-first/D06provisionalauthor accepted; no
+relitigation. Source573a1fb /M140885113085 /study123486613471 SUCCESS,15runs90krawticks,
+fullfacts `.review/m1_d09_study_evidence.json`. Proposedtriples30/10/12,30/20/12,
+30/40/12; critical c2sqrt(kIeff)=.54433/.76980/1.08867 fromauthoredactualinertia,
+loadedzeta not1; no dtchange. Working residual.22317/.08996/.03211rad, settledpose
+NULL. All300 holding samples maxabsrequest/bound.24524/.24024/.23556,0constraint/
+torque clipping. Headroomcomponent achieved, NOT formal settledhold qualification.
+Both drift8.55015/11.47924/12.91042; stoponly5.37492 all3; driveonlysameasboth;
+inert.084036 all3. Powered stationkeepingFAIL .3line/no F52 eligibilityfromspawn,
+not AC201 formal gate. Lurch proposed1sL/4srelease measured, no FA4 credit.
+All15F56PASS, maxabswindowresid4.5658e−14, oldliteral unchanged. Rad/rad/WUcolumns
+separate. Public replay/clock rerun PUSH+PR FULLsummaryEXACToldbaseline, reproduced
+NOTregenerated.185Python/load80each/M0516+AndroidPASS, existingF47FAIL notwaived.
+D06fixtureAUTHOREDprovisionalB04, NOTFA6run; deterministicidenticalrunconstraint
+recorded/nofakevariability. No core/default/creaturemass/weightchanges/adoption/
+releasehold. R23OLDparameterisation preserved. STOPforstudyapproval BEFOREadoption,
+thenbaselineprovenance/4cellremeasure/D08check perownerorder.8/18movement0, tenNOTRUN,
+FA5untouched, AC202notrun, A/residualobsolete, Phase3notentered/D07phonequeued.
+
+## Historical R23 — causal closure / WAIT D09 AND D08 / 8of18 unchanged
 
 R23 review and owner OPTIONS sheet read via git show only, neither copied/merged.
 Inert cell accepted; no inert-row defect; investigation CLOSED, no further arms.

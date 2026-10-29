@@ -1,0 +1,1691 @@
+{
+  "source_head": "573a1fb7aa43059b4c51f995a4fe3d5998b0ace1",
+  "m1_push_run": 40885113085,
+  "m1_pr_run": 40885121735,
+  "study_job": 123486613471,
+  "study_conclusion": "success: integrity study complete, NOT adoption or feel acceptance",
+  "arms": {
+    "c10": {
+      "both": {
+        "candidate": "c10",
+        "cell": "both",
+        "derived_motor_damping": 0.5443327361211717,
+        "settled_pose": null,
+        "working_pose_q_rad": {
+          "mean": 0.22316866039209582,
+          "mean_abs": 0.22316866039209582,
+          "min": 0.22316866039209327,
+          "max": 0.22316866039210037
+        },
+        "holding_residual_q_minus_target_rad": {
+          "mean": 0.22316866039209582,
+          "mean_abs": 0.22316866039209582,
+          "min": 0.22316866039209327,
+          "max": 0.22316866039210037
+        },
+        "strength": {
+          "requested": {
+            "mean": -0.04796602541507495,
+            "mean_abs": 0.04796602541507495,
+            "min": -0.04796602541507584,
+            "max": -0.047966025415074436
+          },
+          "bound": {
+            "mean": 0.19558495337204906,
+            "mean_abs": 0.19558495337204906,
+            "min": 0.1955849533720484,
+            "max": 0.19558495337204973
+          },
+          "applied": {
+            "mean": -0.04796602541507495,
+            "mean_abs": 0.04796602541507495,
+            "min": -0.04796602541507584,
+            "max": -0.047966025415074436
+          },
+          "requested_over_bound": {
+            "mean": 0.24524394432240484,
+            "mean_abs": 0.24524394432240484,
+            "min": 0.24524394432240204,
+            "max": 0.24524394432241023
+          },
+          "saturated_ticks": 0,
+          "window_ticks": 300,
+          "body_speed_limited_ticks": 0,
+          "upstream_torque_clipped_ticks": 0,
+          "holding_headroom_observed_all300": true,
+          "all6000_requested_exact_zero": false,
+          "all6000_applied_exact_zero": false
+        },
+        "F56_residual_x_y": [
+          1.0269562977782698e-15,
+          4.374278717023117e-14
+        ],
+        "drift_px_s": 8.550150769956836,
+        "mean_thrust_force_n": 0.10818558117092802,
+        "D08_drift_margin_px_s": -8.250150769956836,
+        "limit_columns": {
+          "limit_engaged_ticks": 0,
+          "max_drive_time_violation_rad": 0.0,
+          "requested_abs_projection_rad_sum": 0.0,
+          "angular_phase_endpoint_magnitude_wu_sum": 0.0
+        },
+        "F56_axis_sums": {
+          "x": [
+            1.1102230246251565e-16,
+            0.0,
+            0.5409279058546401,
+            -0.5409279058546393,
+            0.0,
+            0.0,
+            -7.355227538141662e-16,
+            -9.575673587391975e-16,
+            1.0269562977782698e-15
+          ],
+          "y": [
+            -6.661338147750939e-16,
+            216.1494307379424,
+            0.0,
+            0.8505692620576025,
+            -217.00000000000003,
+            0.0,
+            -5.551115123125783e-16,
+            -1.3766765505351941e-14,
+            4.374278717023117e-14
+          ]
+        },
+        "F52": {
+          "first_eligible_tick": null,
+          "eligible_within4s": false,
+          "scope": "counterfactual F52 eligibility on AWAKE trace, NO parking; NOT AC201",
+          "derived_drift_line_px_s": 0.3
+        }
+      },
+      "stop_only": {
+        "candidate": "c10",
+        "cell": "stop_only",
+        "derived_motor_damping": 0.5443327361211717,
+        "settled_pose": null,
+        "working_pose_q_rad": {
+          "mean": 0.8451789486806671,
+          "mean_abs": 0.8451789486806671,
+          "min": 0.8408440277655707,
+          "max": 0.8510964932665712
+        },
+        "holding_residual_q_minus_target_rad": {
+          "mean": 0.8451789486806671,
+          "mean_abs": 0.8451789486806671,
+          "min": 0.8408440277655707,
+          "max": 0.8510964932665712
+        },
+        "strength": {
+          "requested": {
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "min": -0.0,
+            "max": -0.0
+          },
+          "bound": {
+            "mean": 0.2062601162734761,
+            "mean_abs": 0.2062601162734761,
+            "min": 0.20578576730756556,
+            "max": 0.20654657332430224
+          },
+          "applied": {
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "requested_over_bound": {
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "saturated_ticks": 0,
+          "window_ticks": 300,
+          "body_speed_limited_ticks": 0,
+          "upstream_torque_clipped_ticks": 300,
+          "holding_headroom_observed_all300": false,
+          "all6000_requested_exact_zero": true,
+          "all6000_applied_exact_zero": true
+        },
+        "F56_residual_x_y": [
+          1.3530843112619095e-16,
+          3.116951141635127e-14
+        ],
+        "drift_px_s": 5.374919874839947,
+        "mean_thrust_force_n": 0.07275297084929805,
+        "D08_drift_margin_px_s": -5.0749198748399476,
+        "limit_columns": {
+          "limit_engaged_ticks": 300,
+          "max_drive_time_violation_rad": 0.15296479246883943,
+          "requested_abs_projection_rad_sum": 52.738773834409294,
+          "angular_phase_endpoint_magnitude_wu_sum": 16.485775953383605
+        },
+        "F56_axis_sums": {
+          "x": [
+            0.02371890298110304,
+            0.0,
+            0.36376485424649024,
+            -0.34004595126538717,
+            0.0,
+            0.0,
+            0.0,
+            -1.700029006457271e-16,
+            1.3530843112619095e-16
+          ],
+          "y": [
+            0.10980700975595128,
+            215.78814670562753,
+            0.0,
+            1.3216603041284203,
+            -217.00000000000003,
+            0.0,
+            0.0,
+            2.7200464103316335e-15,
+            3.116951141635127e-14
+          ]
+        },
+        "F52": {
+          "first_eligible_tick": null,
+          "eligible_within4s": false,
+          "scope": "counterfactual F52 eligibility on AWAKE trace, NO parking; NOT AC201",
+          "derived_drift_line_px_s": 0.3
+        }
+      },
+      "drive_only": {
+        "candidate": "c10",
+        "cell": "drive_only",
+        "derived_motor_damping": 0.5443327361211717,
+        "settled_pose": null,
+        "working_pose_q_rad": {
+          "mean": 0.22316866039209582,
+          "mean_abs": 0.22316866039209582,
+          "min": 0.22316866039209327,
+          "max": 0.22316866039210037
+        },
+        "holding_residual_q_minus_target_rad": {
+          "mean": 0.22316866039209582,
+          "mean_abs": 0.22316866039209582,
+          "min": 0.22316866039209327,
+          "max": 0.22316866039210037
+        },
+        "strength": {
+          "requested": {
+            "mean": -0.04796602541507495,
+            "mean_abs": 0.04796602541507495,
+            "min": -0.04796602541507584,
+            "max": -0.047966025415074436
+          },
+          "bound": {
+            "mean": 0.19558495337204906,
+            "mean_abs": 0.19558495337204906,
+            "min": 0.1955849533720484,
+            "max": 0.19558495337204973
+          },
+          "applied": {
+            "mean": -0.04796602541507495,
+            "mean_abs": 0.04796602541507495,
+            "min": -0.04796602541507584,
+            "max": -0.047966025415074436
+          },
+          "requested_over_bound": {
+            "mean": 0.24524394432240484,
+            "mean_abs": 0.24524394432240484,
+            "min": 0.24524394432240204,
+            "max": 0.24524394432241023
+          },
+          "saturated_ticks": 0,
+          "window_ticks": 300,
+          "body_speed_limited_ticks": 0,
+          "upstream_torque_clipped_ticks": 0,
+          "holding_headroom_observed_all300": true,
+          "all6000_requested_exact_zero": false,
+          "all6000_applied_exact_zero": false
+        },
+        "F56_residual_x_y": [
+          1.0269562977782698e-15,
+          4.374278717023117e-14
+        ],
+        "drift_px_s": 8.550150769956836,
+        "mean_thrust_force_n": 0.10818558117092802,
+        "D08_drift_margin_px_s": -8.250150769956836,
+        "limit_columns": {
+          "limit_engaged_ticks": 0,
+          "max_drive_time_violation_rad": 0.0,
+          "requested_abs_projection_rad_sum": 0.0,
+          "angular_phase_endpoint_magnitude_wu_sum": 0.0
+        },
+        "F56_axis_sums": {
+          "x": [
+            1.1102230246251565e-16,
+            0.0,
+            0.5409279058546401,
+            -0.5409279058546393,
+            0.0,
+            0.0,
+            -7.355227538141662e-16,
+            -9.575673587391975e-16,
+            1.0269562977782698e-15
+          ],
+          "y": [
+            -6.661338147750939e-16,
+            216.1494307379424,
+            0.0,
+            0.8505692620576025,
+            -217.00000000000003,
+            0.0,
+            -5.551115123125783e-16,
+            -1.3766765505351941e-14,
+            4.374278717023117e-14
+          ]
+        },
+        "F52": {
+          "first_eligible_tick": null,
+          "eligible_within4s": false,
+          "scope": "counterfactual F52 eligibility on AWAKE trace, NO parking; NOT AC201",
+          "derived_drift_line_px_s": 0.3
+        }
+      },
+      "inert": {
+        "candidate": "c10",
+        "cell": "inert",
+        "derived_motor_damping": 0.5443327361211717,
+        "settled_pose": null,
+        "working_pose_q_rad": {
+          "mean": 1.5630796993747584,
+          "mean_abs": 1.5630796993747584,
+          "min": 1.563079699374753,
+          "max": 1.5630796993747635
+        },
+        "holding_residual_q_minus_target_rad": {
+          "mean": 1.5630796993747584,
+          "mean_abs": 1.5630796993747584,
+          "min": 1.563079699374753,
+          "max": 1.5630796993747635
+        },
+        "strength": {
+          "requested": {
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "min": -0.0,
+            "max": -0.0
+          },
+          "bound": {
+            "mean": 0.22211276668010774,
+            "mean_abs": 0.22211276668010774,
+            "min": 0.22211276668010765,
+            "max": 0.22211276668010785
+          },
+          "applied": {
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "requested_over_bound": {
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "saturated_ticks": 0,
+          "window_ticks": 300,
+          "body_speed_limited_ticks": 0,
+          "upstream_torque_clipped_ticks": 300,
+          "holding_headroom_observed_all300": false,
+          "all6000_requested_exact_zero": true,
+          "all6000_applied_exact_zero": true
+        },
+        "F56_residual_x_y": [
+          1.6263032587282567e-18,
+          3.880229471064922e-14
+        ],
+        "drift_px_s": 0.08403595917824255,
+        "mean_thrust_force_n": 0.0010633121365426171,
+        "D08_drift_margin_px_s": 0.21596404082175744,
+        "limit_columns": {
+          "limit_engaged_ticks": 0,
+          "max_drive_time_violation_rad": 0.0,
+          "requested_abs_projection_rad_sum": 0.0,
+          "angular_phase_endpoint_magnitude_wu_sum": 0.0
+        },
+        "F56_axis_sums": {
+          "x": [
+            -7.697835424647081e-18,
+            0.0,
+            0.005316560682713085,
+            -0.005316560682713103,
+            0.0,
+            0.0,
+            0.0,
+            8.023096076392733e-18,
+            1.6263032587282567e-18
+          ],
+          "y": [
+            0.0,
+            217.98051714817854,
+            0.0,
+            -0.9805171481785386,
+            -217.00000000000003,
+            0.0,
+            0.0,
+            -6.827871601444713e-15,
+            3.880229471064922e-14
+          ]
+        },
+        "F52": {
+          "first_eligible_tick": 59,
+          "eligible_within4s": true,
+          "scope": "counterfactual F52 eligibility on AWAKE trace, NO parking; NOT AC201",
+          "derived_drift_line_px_s": 0.3
+        }
+      },
+      "lurch": {
+        "candidate": "c10",
+        "cell": "lurch",
+        "derived_motor_damping": 0.5443327361211717,
+        "settled_pose": null,
+        "working_pose_q_rad": {
+          "mean": -0.18453866639559802,
+          "mean_abs": 0.21733806797827393,
+          "min": -1.3206488294384926,
+          "max": 0.2231686603920937
+        },
+        "holding_residual_q_minus_target_rad": {
+          "mean": -0.033044087322490284,
+          "mean_abs": 0.1106013373853732,
+          "min": -1.102980965180391,
+          "max": 0.9806415557576323
+        },
+        "strength": {
+          "requested": {
+            "mean": 0.005405993714301151,
+            "mean_abs": 0.015128070480590668,
+            "min": -0.13999999999999999,
+            "max": 0.13999999999999999
+          },
+          "bound": {
+            "mean": 0.21198065228703564,
+            "mean_abs": 0.21198065228703564,
+            "min": 0.1529468203887786,
+            "max": 0.22144658611620702
+          },
+          "applied": {
+            "mean": 0.005405993714301151,
+            "mean_abs": 0.015128070480590668,
+            "min": -0.13999999999999999,
+            "max": 0.13999999999999999
+          },
+          "requested_over_bound": {
+            "mean": 0.075417168148144,
+            "mean_abs": 0.075417168148144,
+            "min": 0.00010621623236277529,
+            "max": 0.7281578745029046
+          },
+          "saturated_ticks": 0,
+          "window_ticks": 300,
+          "body_speed_limited_ticks": 0,
+          "upstream_torque_clipped_ticks": 3,
+          "holding_headroom_observed_all300": false,
+          "all6000_requested_exact_zero": false,
+          "all6000_applied_exact_zero": false
+        },
+        "F56_residual_x_y": [
+          -6.106226635438361e-16,
+          3.277933480205775e-14
+        ],
+        "lurch": {
+          "PROPOSED_protocol": "released0..5699; L held5700..5759 (1s); released5760..5999 (4s); NOT FA4",
+          "com_displacement_held_wu": [
+            0.14075959883633615,
+            -0.03773132734892369
+          ],
+          "com_displacement_end_of_release_wu": [
+            0.226660160625884,
+            0.009753987896040373
+          ],
+          "max_abs_q_during_hold_rad": 1.3206488294384926,
+          "max_abs_drive_impulse_during_hold": 0.13999999999999999
+        },
+        "limit_columns": {
+          "limit_engaged_ticks": 0,
+          "max_drive_time_violation_rad": 0.0,
+          "requested_abs_projection_rad_sum": 0.0,
+          "angular_phase_endpoint_magnitude_wu_sum": 0.0
+        },
+        "F56_axis_sums": {
+          "x": [
+            -0.08914285240076505,
+            0.0,
+            0.3410488810320503,
+            -0.43019173343281525,
+            0.0,
+            0.0,
+            4.664779847118883e-16,
+            6.545870616381233e-17,
+            -6.106226635438361e-16
+          ],
+          "y": [
+            0.06452672688311521,
+            216.64968610888607,
+            0.0,
+            0.4148406179970359,
+            -217.00000000000003,
+            0.0,
+            6.418476861114186e-16,
+            1.6978606021123e-15,
+            3.277933480205775e-14
+          ]
+        },
+        "F52": {
+          "first_eligible_tick": 5841,
+          "eligible_within4s": false,
+          "scope": "counterfactual F52 eligibility on AWAKE trace, NO parking; NOT AC201",
+          "derived_drift_line_px_s": 0.3
+        }
+      }
+    },
+    "c20": {
+      "both": {
+        "candidate": "c20",
+        "cell": "both",
+        "derived_motor_damping": 0.7698027378662161,
+        "settled_pose": null,
+        "working_pose_q_rad": {
+          "mean": 0.08996254195334404,
+          "mean_abs": 0.08996254195334404,
+          "min": 0.08996254195333808,
+          "max": 0.08996254195335229
+        },
+        "holding_residual_q_minus_target_rad": {
+          "mean": 0.08996254195334404,
+          "mean_abs": 0.08996254195334404,
+          "min": 0.08996254195333808,
+          "max": 0.08996254195335229
+        },
+        "strength": {
+          "requested": {
+            "mean": -0.0458210036063169,
+            "mean_abs": 0.0458210036063169,
+            "min": -0.045821003606318654,
+            "max": -0.04582100360631515
+          },
+          "bound": {
+            "mean": 0.19072949096919847,
+            "mean_abs": 0.19072949096919847,
+            "min": 0.19072949096919734,
+            "max": 0.19072949096920017
+          },
+          "applied": {
+            "mean": -0.0458210036063169,
+            "mean_abs": 0.0458210036063169,
+            "min": -0.045821003606318654,
+            "max": -0.04582100360631515
+          },
+          "requested_over_bound": {
+            "mean": 0.24024079010265217,
+            "mean_abs": 0.24024079010265217,
+            "min": 0.24024079010264315,
+            "max": 0.24024079010266033
+          },
+          "saturated_ticks": 0,
+          "window_ticks": 300,
+          "body_speed_limited_ticks": 0,
+          "upstream_torque_clipped_ticks": 0,
+          "holding_headroom_observed_all300": true,
+          "all6000_requested_exact_zero": false,
+          "all6000_applied_exact_zero": false
+        },
+        "F56_residual_x_y": [
+          4.579669976578771e-16,
+          4.565792188770956e-14
+        ],
+        "drift_px_s": 11.479241947750111,
+        "mean_thrust_force_n": 0.1452475511755873,
+        "D08_drift_margin_px_s": -11.17924194775011,
+        "limit_columns": {
+          "limit_engaged_ticks": 0,
+          "max_drive_time_violation_rad": 0.0,
+          "requested_abs_projection_rad_sum": 0.0,
+          "angular_phase_endpoint_magnitude_wu_sum": 0.0
+        },
+        "F56_axis_sums": {
+          "x": [
+            -4.468647674116255e-15,
+            0.0,
+            0.7262377558779365,
+            -0.726237755877941,
+            0.0,
+            0.0,
+            4.996003610813204e-16,
+            -8.743006318923108e-16,
+            4.579669976578771e-16
+          ],
+          "y": [
+            1.4627188349436437e-14,
+            215.8765993288198,
+            0.0,
+            1.123400671180214,
+            -217.00000000000003,
+            0.0,
+            3.608224830031759e-16,
+            -1.0297318553398327e-14,
+            4.565792188770956e-14
+          ]
+        },
+        "F52": {
+          "first_eligible_tick": null,
+          "eligible_within4s": false,
+          "scope": "counterfactual F52 eligibility on AWAKE trace, NO parking; NOT AC201",
+          "derived_drift_line_px_s": 0.3
+        }
+      },
+      "stop_only": {
+        "candidate": "c20",
+        "cell": "stop_only",
+        "derived_motor_damping": 0.7698027378662161,
+        "settled_pose": null,
+        "working_pose_q_rad": {
+          "mean": 0.8451789486806671,
+          "mean_abs": 0.8451789486806671,
+          "min": 0.8408440277655707,
+          "max": 0.8510964932665712
+        },
+        "holding_residual_q_minus_target_rad": {
+          "mean": 0.8451789486806671,
+          "mean_abs": 0.8451789486806671,
+          "min": 0.8408440277655707,
+          "max": 0.8510964932665712
+        },
+        "strength": {
+          "requested": {
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "min": -0.0,
+            "max": -0.0
+          },
+          "bound": {
+            "mean": 0.2062601162734761,
+            "mean_abs": 0.2062601162734761,
+            "min": 0.20578576730756556,
+            "max": 0.20654657332430224
+          },
+          "applied": {
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "requested_over_bound": {
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "saturated_ticks": 0,
+          "window_ticks": 300,
+          "body_speed_limited_ticks": 0,
+          "upstream_torque_clipped_ticks": 300,
+          "holding_headroom_observed_all300": false,
+          "all6000_requested_exact_zero": true,
+          "all6000_applied_exact_zero": true
+        },
+        "F56_residual_x_y": [
+          1.3530843112619095e-16,
+          3.116951141635127e-14
+        ],
+        "drift_px_s": 5.374919874839947,
+        "mean_thrust_force_n": 0.07275297084929805,
+        "D08_drift_margin_px_s": -5.0749198748399476,
+        "limit_columns": {
+          "limit_engaged_ticks": 300,
+          "max_drive_time_violation_rad": 0.15296479246883943,
+          "requested_abs_projection_rad_sum": 52.738773834409294,
+          "angular_phase_endpoint_magnitude_wu_sum": 16.485775953383605
+        },
+        "F56_axis_sums": {
+          "x": [
+            0.02371890298110304,
+            0.0,
+            0.36376485424649024,
+            -0.34004595126538717,
+            0.0,
+            0.0,
+            0.0,
+            -1.700029006457271e-16,
+            1.3530843112619095e-16
+          ],
+          "y": [
+            0.10980700975595128,
+            215.78814670562753,
+            0.0,
+            1.3216603041284203,
+            -217.00000000000003,
+            0.0,
+            0.0,
+            2.7200464103316335e-15,
+            3.116951141635127e-14
+          ]
+        },
+        "F52": {
+          "first_eligible_tick": null,
+          "eligible_within4s": false,
+          "scope": "counterfactual F52 eligibility on AWAKE trace, NO parking; NOT AC201",
+          "derived_drift_line_px_s": 0.3
+        }
+      },
+      "drive_only": {
+        "candidate": "c20",
+        "cell": "drive_only",
+        "derived_motor_damping": 0.7698027378662161,
+        "settled_pose": null,
+        "working_pose_q_rad": {
+          "mean": 0.08996254195334404,
+          "mean_abs": 0.08996254195334404,
+          "min": 0.08996254195333808,
+          "max": 0.08996254195335229
+        },
+        "holding_residual_q_minus_target_rad": {
+          "mean": 0.08996254195334404,
+          "mean_abs": 0.08996254195334404,
+          "min": 0.08996254195333808,
+          "max": 0.08996254195335229
+        },
+        "strength": {
+          "requested": {
+            "mean": -0.0458210036063169,
+            "mean_abs": 0.0458210036063169,
+            "min": -0.045821003606318654,
+            "max": -0.04582100360631515
+          },
+          "bound": {
+            "mean": 0.19072949096919847,
+            "mean_abs": 0.19072949096919847,
+            "min": 0.19072949096919734,
+            "max": 0.19072949096920017
+          },
+          "applied": {
+            "mean": -0.0458210036063169,
+            "mean_abs": 0.0458210036063169,
+            "min": -0.045821003606318654,
+            "max": -0.04582100360631515
+          },
+          "requested_over_bound": {
+            "mean": 0.24024079010265217,
+            "mean_abs": 0.24024079010265217,
+            "min": 0.24024079010264315,
+            "max": 0.24024079010266033
+          },
+          "saturated_ticks": 0,
+          "window_ticks": 300,
+          "body_speed_limited_ticks": 0,
+          "upstream_torque_clipped_ticks": 0,
+          "holding_headroom_observed_all300": true,
+          "all6000_requested_exact_zero": false,
+          "all6000_applied_exact_zero": false
+        },
+        "F56_residual_x_y": [
+          4.579669976578771e-16,
+          4.565792188770956e-14
+        ],
+        "drift_px_s": 11.479241947750111,
+        "mean_thrust_force_n": 0.1452475511755873,
+        "D08_drift_margin_px_s": -11.17924194775011,
+        "limit_columns": {
+          "limit_engaged_ticks": 0,
+          "max_drive_time_violation_rad": 0.0,
+          "requested_abs_projection_rad_sum": 0.0,
+          "angular_phase_endpoint_magnitude_wu_sum": 0.0
+        },
+        "F56_axis_sums": {
+          "x": [
+            -4.468647674116255e-15,
+            0.0,
+            0.7262377558779365,
+            -0.726237755877941,
+            0.0,
+            0.0,
+            4.996003610813204e-16,
+            -8.743006318923108e-16,
+            4.579669976578771e-16
+          ],
+          "y": [
+            1.4627188349436437e-14,
+            215.8765993288198,
+            0.0,
+            1.123400671180214,
+            -217.00000000000003,
+            0.0,
+            3.608224830031759e-16,
+            -1.0297318553398327e-14,
+            4.565792188770956e-14
+          ]
+        },
+        "F52": {
+          "first_eligible_tick": null,
+          "eligible_within4s": false,
+          "scope": "counterfactual F52 eligibility on AWAKE trace, NO parking; NOT AC201",
+          "derived_drift_line_px_s": 0.3
+        }
+      },
+      "inert": {
+        "candidate": "c20",
+        "cell": "inert",
+        "derived_motor_damping": 0.7698027378662161,
+        "settled_pose": null,
+        "working_pose_q_rad": {
+          "mean": 1.5630796993747584,
+          "mean_abs": 1.5630796993747584,
+          "min": 1.563079699374753,
+          "max": 1.5630796993747635
+        },
+        "holding_residual_q_minus_target_rad": {
+          "mean": 1.5630796993747584,
+          "mean_abs": 1.5630796993747584,
+          "min": 1.563079699374753,
+          "max": 1.5630796993747635
+        },
+        "strength": {
+          "requested": {
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "min": -0.0,
+            "max": -0.0
+          },
+          "bound": {
+            "mean": 0.22211276668010774,
+            "mean_abs": 0.22211276668010774,
+            "min": 0.22211276668010765,
+            "max": 0.22211276668010785
+          },
+          "applied": {
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "requested_over_bound": {
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "saturated_ticks": 0,
+          "window_ticks": 300,
+          "body_speed_limited_ticks": 0,
+          "upstream_torque_clipped_ticks": 300,
+          "holding_headroom_observed_all300": false,
+          "all6000_requested_exact_zero": true,
+          "all6000_applied_exact_zero": true
+        },
+        "F56_residual_x_y": [
+          1.6263032587282567e-18,
+          3.880229471064922e-14
+        ],
+        "drift_px_s": 0.08403595917824255,
+        "mean_thrust_force_n": 0.0010633121365426171,
+        "D08_drift_margin_px_s": 0.21596404082175744,
+        "limit_columns": {
+          "limit_engaged_ticks": 0,
+          "max_drive_time_violation_rad": 0.0,
+          "requested_abs_projection_rad_sum": 0.0,
+          "angular_phase_endpoint_magnitude_wu_sum": 0.0
+        },
+        "F56_axis_sums": {
+          "x": [
+            -7.697835424647081e-18,
+            0.0,
+            0.005316560682713085,
+            -0.005316560682713103,
+            0.0,
+            0.0,
+            0.0,
+            8.023096076392733e-18,
+            1.6263032587282567e-18
+          ],
+          "y": [
+            0.0,
+            217.98051714817854,
+            0.0,
+            -0.9805171481785386,
+            -217.00000000000003,
+            0.0,
+            0.0,
+            -6.827871601444713e-15,
+            3.880229471064922e-14
+          ]
+        },
+        "F52": {
+          "first_eligible_tick": 59,
+          "eligible_within4s": true,
+          "scope": "counterfactual F52 eligibility on AWAKE trace, NO parking; NOT AC201",
+          "derived_drift_line_px_s": 0.3
+        }
+      },
+      "lurch": {
+        "candidate": "c20",
+        "cell": "lurch",
+        "derived_motor_damping": 0.7698027378662161,
+        "settled_pose": null,
+        "working_pose_q_rad": {
+          "mean": -0.1745176540441158,
+          "mean_abs": 0.19444963076040986,
+          "min": -1.1023759695753468,
+          "max": 0.0921989296928567
+        },
+        "holding_residual_q_minus_target_rad": {
+          "mean": -0.023023074971008074,
+          "mean_abs": 0.06821096357762263,
+          "min": -0.9035013137930836,
+          "max": 0.8474354373188812
+        },
+        "strength": {
+          "requested": {
+            "mean": 0.007283201793648706,
+            "mean_abs": 0.0162054221620041,
+            "min": -0.13999999999999999,
+            "max": 0.13999999999999999
+          },
+          "bound": {
+            "mean": 0.21107708430230226,
+            "mean_abs": 0.21107708430230226,
+            "min": 0.14650334223360892,
+            "max": 0.22151369411119437
+          },
+          "applied": {
+            "mean": 0.007283201793648706,
+            "mean_abs": 0.0162054221620041,
+            "min": -0.13999999999999999,
+            "max": 0.13999999999999999
+          },
+          "requested_over_bound": {
+            "mean": 0.08450267040699076,
+            "mean_abs": 0.08450267040699076,
+            "min": 0.00010093892115813049,
+            "max": 0.7579745968275953
+          },
+          "saturated_ticks": 0,
+          "window_ticks": 300,
+          "body_speed_limited_ticks": 0,
+          "upstream_torque_clipped_ticks": 7,
+          "holding_headroom_observed_all300": false,
+          "all6000_requested_exact_zero": false,
+          "all6000_applied_exact_zero": false
+        },
+        "F56_residual_x_y": [
+          -7.077671781985373e-16,
+          3.774758283725532e-14
+        ],
+        "lurch": {
+          "PROPOSED_protocol": "released0..5699; L held5700..5759 (1s); released5760..5999 (4s); NOT FA4",
+          "com_displacement_held_wu": [
+            0.0922175655125983,
+            -0.027562900329371712
+          ],
+          "com_displacement_end_of_release_wu": [
+            0.17072013762592775,
+            0.00490043178446517
+          ],
+          "max_abs_q_during_hold_rad": 1.1023759695753468,
+          "max_abs_drive_impulse_during_hold": 0.13999999999999999
+        },
+        "limit_columns": {
+          "limit_engaged_ticks": 0,
+          "max_drive_time_violation_rad": 0.0,
+          "requested_abs_projection_rad_sum": 0.0,
+          "angular_phase_endpoint_magnitude_wu_sum": 0.0
+        },
+        "F56_axis_sums": {
+          "x": [
+            -0.11922535998623628,
+            0.0,
+            0.20479449305884054,
+            -0.32401985304507724,
+            0.0,
+            0.0,
+            3.6093090322042443e-16,
+            7.78023478975598e-16,
+            -7.077671781985373e-16
+          ],
+          "y": [
+            0.1100005012568043,
+            216.60992493747844,
+            0.0,
+            0.5000755637783558,
+            -217.00000000000003,
+            0.0,
+            -1.6046192152785466e-16,
+            7.37257477290143e-17,
+            3.774758283725532e-14
+          ]
+        },
+        "F52": {
+          "first_eligible_tick": 5825,
+          "eligible_within4s": false,
+          "scope": "counterfactual F52 eligibility on AWAKE trace, NO parking; NOT AC201",
+          "derived_drift_line_px_s": 0.3
+        }
+      }
+    },
+    "c40": {
+      "both": {
+        "candidate": "c40",
+        "cell": "both",
+        "derived_motor_damping": 1.0886654722423434,
+        "settled_pose": null,
+        "working_pose_q_rad": {
+          "mean": 0.032108711886440405,
+          "mean_abs": 0.032108711886440405,
+          "min": 0.032108711886437824,
+          "max": 0.03210871188645159
+        },
+        "holding_residual_q_minus_target_rad": {
+          "mean": 0.032108711886440405,
+          "mean_abs": 0.032108711886440405,
+          "min": 0.032108711886437824,
+          "max": 0.03210871188645159
+        },
+        "strength": {
+          "requested": {
+            "mean": -0.044435404255268936,
+            "mean_abs": 0.044435404255268936,
+            "min": -0.04443540425527455,
+            "max": -0.04443540425526553
+          },
+          "bound": {
+            "mean": 0.18864020539110127,
+            "mean_abs": 0.18864020539110127,
+            "min": 0.1886402053911004,
+            "max": 0.18864020539110263
+          },
+          "applied": {
+            "mean": -0.044435404255268936,
+            "mean_abs": 0.044435404255268936,
+            "min": -0.04443540425527455,
+            "max": -0.04443540425526553
+          },
+          "requested_over_bound": {
+            "mean": 0.23555638186007344,
+            "mean_abs": 0.23555638186007344,
+            "min": 0.23555638186005534,
+            "max": 0.23555638186010233
+          },
+          "saturated_ticks": 0,
+          "window_ticks": 300,
+          "body_speed_limited_ticks": 0,
+          "upstream_torque_clipped_ticks": 0,
+          "holding_headroom_observed_all300": true,
+          "all6000_requested_exact_zero": false,
+          "all6000_applied_exact_zero": false
+        },
+        "F56_residual_x_y": [
+          1.27675647831893e-15,
+          2.9032332093947844e-14
+        ],
+        "drift_px_s": 12.910423565431365,
+        "mean_thrust_force_n": 0.16335637980753104,
+        "D08_drift_margin_px_s": -12.610423565431365,
+        "limit_columns": {
+          "limit_engaged_ticks": 0,
+          "max_drive_time_violation_rad": 0.0,
+          "requested_abs_projection_rad_sum": 0.0,
+          "angular_phase_endpoint_magnitude_wu_sum": 0.0
+        },
+        "F56_axis_sums": {
+          "x": [
+            2.9976021664879227e-15,
+            0.0,
+            0.8167818990376552,
+            -0.8167818990376529,
+            0.0,
+            0.0,
+            0.0,
+            -6.106226635438361e-16,
+            1.27675647831893e-15
+          ],
+          "y": [
+            -1.942890293094024e-14,
+            215.786773464278,
+            0.0,
+            1.213226535721965,
+            -217.00000000000003,
+            0.0,
+            -1.3877787807814457e-15,
+            2.886579864025407e-15,
+            2.9032332093947844e-14
+          ]
+        },
+        "F52": {
+          "first_eligible_tick": null,
+          "eligible_within4s": false,
+          "scope": "counterfactual F52 eligibility on AWAKE trace, NO parking; NOT AC201",
+          "derived_drift_line_px_s": 0.3
+        }
+      },
+      "stop_only": {
+        "candidate": "c40",
+        "cell": "stop_only",
+        "derived_motor_damping": 1.0886654722423434,
+        "settled_pose": null,
+        "working_pose_q_rad": {
+          "mean": 0.8451789486806671,
+          "mean_abs": 0.8451789486806671,
+          "min": 0.8408440277655707,
+          "max": 0.8510964932665712
+        },
+        "holding_residual_q_minus_target_rad": {
+          "mean": 0.8451789486806671,
+          "mean_abs": 0.8451789486806671,
+          "min": 0.8408440277655707,
+          "max": 0.8510964932665712
+        },
+        "strength": {
+          "requested": {
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "min": -0.0,
+            "max": -0.0
+          },
+          "bound": {
+            "mean": 0.2062601162734761,
+            "mean_abs": 0.2062601162734761,
+            "min": 0.20578576730756556,
+            "max": 0.20654657332430224
+          },
+          "applied": {
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "requested_over_bound": {
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "saturated_ticks": 0,
+          "window_ticks": 300,
+          "body_speed_limited_ticks": 0,
+          "upstream_torque_clipped_ticks": 300,
+          "holding_headroom_observed_all300": false,
+          "all6000_requested_exact_zero": true,
+          "all6000_applied_exact_zero": true
+        },
+        "F56_residual_x_y": [
+          1.3530843112619095e-16,
+          3.116951141635127e-14
+        ],
+        "drift_px_s": 5.374919874839947,
+        "mean_thrust_force_n": 0.07275297084929805,
+        "D08_drift_margin_px_s": -5.0749198748399476,
+        "limit_columns": {
+          "limit_engaged_ticks": 300,
+          "max_drive_time_violation_rad": 0.15296479246883943,
+          "requested_abs_projection_rad_sum": 52.738773834409294,
+          "angular_phase_endpoint_magnitude_wu_sum": 16.485775953383605
+        },
+        "F56_axis_sums": {
+          "x": [
+            0.02371890298110304,
+            0.0,
+            0.36376485424649024,
+            -0.34004595126538717,
+            0.0,
+            0.0,
+            0.0,
+            -1.700029006457271e-16,
+            1.3530843112619095e-16
+          ],
+          "y": [
+            0.10980700975595128,
+            215.78814670562753,
+            0.0,
+            1.3216603041284203,
+            -217.00000000000003,
+            0.0,
+            0.0,
+            2.7200464103316335e-15,
+            3.116951141635127e-14
+          ]
+        },
+        "F52": {
+          "first_eligible_tick": null,
+          "eligible_within4s": false,
+          "scope": "counterfactual F52 eligibility on AWAKE trace, NO parking; NOT AC201",
+          "derived_drift_line_px_s": 0.3
+        }
+      },
+      "drive_only": {
+        "candidate": "c40",
+        "cell": "drive_only",
+        "derived_motor_damping": 1.0886654722423434,
+        "settled_pose": null,
+        "working_pose_q_rad": {
+          "mean": 0.032108711886440405,
+          "mean_abs": 0.032108711886440405,
+          "min": 0.032108711886437824,
+          "max": 0.03210871188645159
+        },
+        "holding_residual_q_minus_target_rad": {
+          "mean": 0.032108711886440405,
+          "mean_abs": 0.032108711886440405,
+          "min": 0.032108711886437824,
+          "max": 0.03210871188645159
+        },
+        "strength": {
+          "requested": {
+            "mean": -0.044435404255268936,
+            "mean_abs": 0.044435404255268936,
+            "min": -0.04443540425527455,
+            "max": -0.04443540425526553
+          },
+          "bound": {
+            "mean": 0.18864020539110127,
+            "mean_abs": 0.18864020539110127,
+            "min": 0.1886402053911004,
+            "max": 0.18864020539110263
+          },
+          "applied": {
+            "mean": -0.044435404255268936,
+            "mean_abs": 0.044435404255268936,
+            "min": -0.04443540425527455,
+            "max": -0.04443540425526553
+          },
+          "requested_over_bound": {
+            "mean": 0.23555638186007344,
+            "mean_abs": 0.23555638186007344,
+            "min": 0.23555638186005534,
+            "max": 0.23555638186010233
+          },
+          "saturated_ticks": 0,
+          "window_ticks": 300,
+          "body_speed_limited_ticks": 0,
+          "upstream_torque_clipped_ticks": 0,
+          "holding_headroom_observed_all300": true,
+          "all6000_requested_exact_zero": false,
+          "all6000_applied_exact_zero": false
+        },
+        "F56_residual_x_y": [
+          1.27675647831893e-15,
+          2.9032332093947844e-14
+        ],
+        "drift_px_s": 12.910423565431365,
+        "mean_thrust_force_n": 0.16335637980753104,
+        "D08_drift_margin_px_s": -12.610423565431365,
+        "limit_columns": {
+          "limit_engaged_ticks": 0,
+          "max_drive_time_violation_rad": 0.0,
+          "requested_abs_projection_rad_sum": 0.0,
+          "angular_phase_endpoint_magnitude_wu_sum": 0.0
+        },
+        "F56_axis_sums": {
+          "x": [
+            2.9976021664879227e-15,
+            0.0,
+            0.8167818990376552,
+            -0.8167818990376529,
+            0.0,
+            0.0,
+            0.0,
+            -6.106226635438361e-16,
+            1.27675647831893e-15
+          ],
+          "y": [
+            -1.942890293094024e-14,
+            215.786773464278,
+            0.0,
+            1.213226535721965,
+            -217.00000000000003,
+            0.0,
+            -1.3877787807814457e-15,
+            2.886579864025407e-15,
+            2.9032332093947844e-14
+          ]
+        },
+        "F52": {
+          "first_eligible_tick": null,
+          "eligible_within4s": false,
+          "scope": "counterfactual F52 eligibility on AWAKE trace, NO parking; NOT AC201",
+          "derived_drift_line_px_s": 0.3
+        }
+      },
+      "inert": {
+        "candidate": "c40",
+        "cell": "inert",
+        "derived_motor_damping": 1.0886654722423434,
+        "settled_pose": null,
+        "working_pose_q_rad": {
+          "mean": 1.5630796993747584,
+          "mean_abs": 1.5630796993747584,
+          "min": 1.563079699374753,
+          "max": 1.5630796993747635
+        },
+        "holding_residual_q_minus_target_rad": {
+          "mean": 1.5630796993747584,
+          "mean_abs": 1.5630796993747584,
+          "min": 1.563079699374753,
+          "max": 1.5630796993747635
+        },
+        "strength": {
+          "requested": {
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "min": -0.0,
+            "max": -0.0
+          },
+          "bound": {
+            "mean": 0.22211276668010774,
+            "mean_abs": 0.22211276668010774,
+            "min": 0.22211276668010765,
+            "max": 0.22211276668010785
+          },
+          "applied": {
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "requested_over_bound": {
+            "mean": 0.0,
+            "mean_abs": 0.0,
+            "min": 0.0,
+            "max": 0.0
+          },
+          "saturated_ticks": 0,
+          "window_ticks": 300,
+          "body_speed_limited_ticks": 0,
+          "upstream_torque_clipped_ticks": 300,
+          "holding_headroom_observed_all300": false,
+          "all6000_requested_exact_zero": true,
+          "all6000_applied_exact_zero": true
+        },
+        "F56_residual_x_y": [
+          1.6263032587282567e-18,
+          3.880229471064922e-14
+        ],
+        "drift_px_s": 0.08403595917824255,
+        "mean_thrust_force_n": 0.0010633121365426171,
+        "D08_drift_margin_px_s": 0.21596404082175744,
+        "limit_columns": {
+          "limit_engaged_ticks": 0,
+          "max_drive_time_violation_rad": 0.0,
+          "requested_abs_projection_rad_sum": 0.0,
+          "angular_phase_endpoint_magnitude_wu_sum": 0.0
+        },
+        "F56_axis_sums": {
+          "x": [
+            -7.697835424647081e-18,
+            0.0,
+            0.005316560682713085,
+            -0.005316560682713103,
+            0.0,
+            0.0,
+            0.0,
+            8.023096076392733e-18,
+            1.6263032587282567e-18
+          ],
+          "y": [
+            0.0,
+            217.98051714817854,
+            0.0,
+            -0.9805171481785386,
+            -217.00000000000003,
+            0.0,
+            0.0,
+            -6.827871601444713e-15,
+            3.880229471064922e-14
+          ]
+        },
+        "F52": {
+          "first_eligible_tick": 59,
+          "eligible_within4s": true,
+          "scope": "counterfactual F52 eligibility on AWAKE trace, NO parking; NOT AC201",
+          "derived_drift_line_px_s": 0.3
+        }
+      },
+      "lurch": {
+        "candidate": "c40",
+        "cell": "lurch",
+        "derived_motor_damping": 1.0886654722423434,
+        "settled_pose": null,
+        "working_pose_q_rad": {
+          "mean": -0.16601085393335832,
+          "mean_abs": 0.17937059373265238,
+          "min": -0.9638602332030473,
+          "max": 0.046372568357949895
+        },
+        "holding_residual_q_minus_target_rad": {
+          "mean": -0.014516274860250599,
+          "mean_abs": 0.04811771847642614,
+          "min": -0.8249376116726028,
+          "max": 0.789581607251988
+        },
+        "strength": {
+          "requested": {
+            "mean": 0.008030521977560831,
+            "mean_abs": 0.01711471198765875,
+            "min": -0.13999999999999999,
+            "max": 0.13999999999999999
+          },
+          "bound": {
+            "mean": 0.2081620367435202,
+            "mean_abs": 0.2081620367435202,
+            "min": 0.14158994209242232,
+            "max": 0.22231385573998846
+          },
+          "applied": {
+            "mean": 0.008030521977560831,
+            "mean_abs": 0.01711471198765875,
+            "min": -0.13999999999999999,
+            "max": 0.13999999999999999
+          },
+          "requested_over_bound": {
+            "mean": 0.09474665259404731,
+            "mean_abs": 0.09474665259404731,
+            "min": 0.0008109313454528696,
+            "max": 0.7657827667784584
+          },
+          "saturated_ticks": 0,
+          "window_ticks": 300,
+          "body_speed_limited_ticks": 0,
+          "upstream_torque_clipped_ticks": 9,
+          "holding_headroom_observed_all300": false,
+          "all6000_requested_exact_zero": false,
+          "all6000_applied_exact_zero": false
+        },
+        "F56_residual_x_y": [
+          2.7755575615628914e-16,
+          4.29101199017623e-14
+        ],
+        "lurch": {
+          "PROPOSED_protocol": "released0..5699; L held5700..5759 (1s); released5760..5999 (4s); NOT FA4",
+          "com_displacement_held_wu": [
+            0.02659880134783954,
+            -0.02425724510597177
+          ],
+          "com_displacement_end_of_release_wu": [
+            0.10107116872395494,
+            0.0029576996684612944
+          ],
+          "max_abs_q_during_hold_rad": 0.9638602332030473,
+          "max_abs_drive_impulse_during_hold": 0.13999999999999999
+        },
+        "limit_columns": {
+          "limit_engaged_ticks": 0,
+          "max_drive_time_violation_rad": 0.0,
+          "requested_abs_projection_rad_sum": 0.0,
+          "angular_phase_endpoint_magnitude_wu_sum": 0.0
+        },
+        "F56_axis_sums": {
+          "x": [
+            -0.13388642513553836,
+            0.0,
+            0.05794252774868217,
+            -0.19182895288422008,
+            0.0,
+            0.0,
+            -1.6189848940639795e-16,
+            -5.720792763119764e-16,
+            2.7755575615628914e-16
+          ],
+          "y": [
+            0.12497615189034786,
+            216.41248400118397,
+            0.0,
+            0.7124921507063637,
+            -217.00000000000003,
+            0.0,
+            -1.6046192152785466e-16,
+            3.5735303605122226e-16,
+            4.29101199017623e-14
+          ]
+        },
+        "F52": {
+          "first_eligible_tick": 5823,
+          "eligible_within4s": false,
+          "scope": "counterfactual F52 eligibility on AWAKE trace, NO parking; NOT AC201",
+          "derived_drift_line_px_s": 0.3
+        }
+      }
+    }
+  },
+  "derived_values": {
+    "c10": {
+      "PROPOSED_triple": {
+        "angular_relative_speed_cap": 30.0,
+        "stiffness": 10.0,
+        "torque_cap": 12.0
+      },
+      "damping_formula": "c_crit=2*sqrt(k*I_eff); I_eff=1/(inverseI_parent+inverseI_child), authored actual setup geometry",
+      "working_zeta_evaluated_at_measured_mean_bound": 1.0659267588569554,
+      "working_q_mean_deg": 12.78662236005547,
+      "torque_from_mean_requested_impulse_times_hz": -2.8779615249044967,
+      "post_release_first_F52_eligibility_elapsed_ticks": 82,
+      "post_release_first_F52_eligibility_elapsed_s": 1.3666666666666667,
+      "scope": "arithmetic derived from audited compact source values, NOT additional measurement or formal sleep/FA4 acceptance"
+    },
+    "c20": {
+      "PROPOSED_triple": {
+        "angular_relative_speed_cap": 30.0,
+        "stiffness": 20.0,
+        "torque_cap": 12.0
+      },
+      "damping_formula": "c_crit=2*sqrt(k*I_eff); I_eff=1/(inverseI_parent+inverseI_child), authored actual setup geometry",
+      "working_zeta_evaluated_at_measured_mean_bound": 1.0794093119953925,
+      "working_q_mean_deg": 5.1544739681952185,
+      "torque_from_mean_requested_impulse_times_hz": -2.749260216379014,
+      "post_release_first_F52_eligibility_elapsed_ticks": 66,
+      "post_release_first_F52_eligibility_elapsed_s": 1.1,
+      "scope": "arithmetic derived from audited compact source values, NOT additional measurement or formal sleep/FA4 acceptance"
+    },
+    "c40": {
+      "PROPOSED_triple": {
+        "angular_relative_speed_cap": 30.0,
+        "stiffness": 40.0,
+        "torque_cap": 12.0
+      },
+      "damping_formula": "c_crit=2*sqrt(k*I_eff); I_eff=1/(inverseI_parent+inverseI_child), authored actual setup geometry",
+      "working_zeta_evaluated_at_measured_mean_bound": 1.0853703537887764,
+      "working_q_mean_deg": 1.839693676694575,
+      "torque_from_mean_requested_impulse_times_hz": -2.666124255316136,
+      "post_release_first_F52_eligibility_elapsed_ticks": 64,
+      "post_release_first_F52_eligibility_elapsed_s": 1.0666666666666667,
+      "scope": "arithmetic derived from audited compact source values, NOT additional measurement or formal sleep/FA4 acceptance"
+    }
+  },
+  "F56_vector_order": [
+    "delta_p",
+    "normal",
+    "friction",
+    "damping",
+    "gravity",
+    "clamp",
+    "internal_drive",
+    "internal_velocity",
+    "full_residual_from_window_sides"
+  ],
+  "F56_complete_each_of15_runs_passed": true,
+  "maximum_abs_F56_window_residual": 4.565792188770956e-14,
+  "sampling": "15x6000 raw awake rows=90000, four cells plus proposed pulse per candidate; last3005700..5999; observer on/off bit-equality every tick",
+  "proposal_status": "NOT ADOPTED; shared ceiling30 never raised again; stiffness quarter/half/whole owner example40; torque12 shared",
+  "settled_pose": "null ALL runs; no exact constant q/equilibrium credited. Working q means/ranges and holding residuals published; no epsilon or fitted target",
+  "holding_result": "Observed both/drive_only last300 max abs requested/bound below.5, torque/constraint/body-speed clipping0; formal settled-holding criterion not qualified because exact settlement not established",
+  "D08_result": "Default-band both drift8.55015/11.47924/12.91042 >derived.3, no awake-trace F52 eligibility within4s from spawn (none all6000); NOT station-keeping. No hold/freeze added before adoption approval",
+  "damping_caveat": "Continuous authored linearization, fixed coefficient; NOT guaranteed critical damping of nonlinear discrete plant. Loaded zeta at mean bound1.066/1.079/1.085 derived, not asserted1.",
+  "lurch_protocol": "PROPOSED, not FA4: released0..5699, held L5700..5759=1s, released5760..5999=4s; max torque clipping3/7/9 of mixed last300; no constraint clipping",
+  "F52_scope": "Counterfactual exact per-body per-tick AND anchored dwell-net on awake trace, NO physical parking, not AC201. Late post-pulse eligibility does not imply initial settle or actual sleep",
+  "mean_clamped_total_torque": "Retained in raw summary.json joints for every arm. Compact requested-mean*60 derivation separately labelled, not a fabricated raw mean",
+  "public_replay_job_push": 123486613513,
+  "public_replay_job_pr": 123486642982,
+  "public_summary_exactly_matches_old_committed_baseline": true,
+  "public_summary": {
+    "attempt_started": true,
+    "checks": 9053,
+    "determinism_attempt": 1,
+    "engine": "4.7.2-stable (official)",
+    "failures": 0,
+    "falsification": {
+      "after_input": 1,
+      "baseline_digest": "d735ea5f596f9a7b9bdfea0acee9b666a4e364e670f21dba9556985b7bfd19c8",
+      "before_input": 0,
+      "bit": 1,
+      "changed_digest": "0f0f93a619d86a62f7485f3cbfcc2e0d7d19c1a76a609ab1e8e81c5a009fcf99",
+      "physical_bodies_differ_at_flip": true,
+      "tick": 0
+    },
+    "fixed_tick_hz": 60,
+    "fixture": {
+      "input": "0..59 released; alternating L/R per60 ticks thereafter",
+      "name": "Slug public Sim legal floor",
+      "seed": 305419896,
+      "spawn": "actual authored lowest surface at +.01WU; uniform diagnostic material",
+      "ticks": 600
+    },
+    "live_spring_sleep": {
+      "any_sleep": false,
+      "max_dwell_ticks": 2,
+      "scope": "F52 reachability observation, NOT AC-201/FA-4 acceptance; drift remedy pending owner",
+      "ticks": 600
+    },
+    "replay_final_digests": [
+      "d735ea5f596f9a7b9bdfea0acee9b666a4e364e670f21dba9556985b7bfd19c8",
+      "d735ea5f596f9a7b9bdfea0acee9b666a4e364e670f21dba9556985b7bfd19c8",
+      "d735ea5f596f9a7b9bdfea0acee9b666a4e364e670f21dba9556985b7bfd19c8"
+    ],
+    "replay_final_public_state_hashes": [
+      3535650661,
+      3535650661,
+      3535650661
+    ],
+    "replay_full_stream_bytes": 31131584,
+    "replay_result": {
+      "physics_digest": "f66cc342a709f38465b4b437a918137957dcf039b5fe36f9a1c0cd6ffad30fcb",
+      "scope": "physics only; score/flags not implemented",
+      "sleep": {
+        "asleep": false,
+        "dwell_start": [],
+        "last_sleep_tick": -1,
+        "last_wake_tick": -1,
+        "max_body_com_displacement_wu": 0.00042845844511043196,
+        "max_body_dwell_displacement_wu": 0.00042845844511043196,
+        "still_ticks": 0
+      },
+      "ticks": 600
+    },
+    "replay_streams_byte_equal": true,
+    "runtime_gates": {
+      "10": "MEASURED two-second stall; exact solver equality at tick3, delivery-clock difference retained",
+      "12": "MEASURED single left-bit tick0 flip, actual bodies AND final hash differ",
+      "2": "MEASURED held chunks vs fixed ticks + three-step stall/drop, actual accumulator",
+      "3": "MEASURED same/different-seed injection + canonical stream vectors; no random physics perturbation",
+      "9": "MEASURED x3 complete Slug, full tick bytes/hashes/results",
+      "11": "MEASURED real --fixed-fps30/144 callbacks;600 same ticks, streams byte-identical, physics60",
+      "13": "MEASURED committed real baseline matched, linked DECISIONS provenance"
+    },
+    "stall": {
+      "clock_hash_scope": "whole-Sim hashes include delivery clock; compare full solver+RNG at equal ticks, clock differences explicitly retained",
+      "dropped_s": 1.95,
+      "elapsed_s": 2.0,
+      "pending_s": 0.0,
+      "solver_equal_at_tick3": true,
+      "steps": 3
+    },
+    "tuning_sha256": "3a32dd3d2d719ed28220ed531fee05c8d2a799140d3f06e3aeed4d28d6e6f60c",
+    "full_stream_sha256": "05c27f020015dab2fc15ccad5cc963e5d064a8ed3247490a54e8f8ed57de1518",
+    "per_tick_digest_table_sha256": "f9b6fdce63b77143a7187cde3760d023716f066d8f0a54ab93b36dcee737483f",
+    "delivery": [
+      {
+        "actual_ticks": 601,
+        "checks": 308,
+        "compared_ticks": 600,
+        "condition": 30,
+        "failures": 0,
+        "final_accumulator": {
+          "dropped": 0.0,
+          "pending": 0.008333333333333338
+        },
+        "frames": 301,
+        "scope": "actual SceneTree frame callbacks, --fixed-fps, first600 identical released-input fixed ticks; full extra ticks retained; clock outside tick hash",
+        "stream_bytes": 3449908,
+        "tick_hz": 60,
+        "min_frame_seconds": 0.025,
+        "max_frame_seconds": 0.04166666666666666,
+        "startup_frame_seconds": 0.025,
+        "modal_frame_seconds": 0.03333333333333333
+      },
+      {
+        "actual_ticks": 600,
+        "checks": 1446,
+        "compared_ticks": 600,
+        "condition": 144,
+        "failures": 0,
+        "final_accumulator": {
+          "dropped": 0.0,
+          "pending": 0.0
+        },
+        "frames": 1439,
+        "scope": "actual SceneTree frame callbacks, --fixed-fps, first600 identical released-input fixed ticks; full extra ticks retained; clock outside tick hash",
+        "stream_bytes": 3445664,
+        "tick_hz": 60,
+        "min_frame_seconds": 0.006666666666666667,
+        "max_frame_seconds": 0.008333333333333333,
+        "startup_frame_seconds": 0.008333333333333333,
+        "modal_frame_seconds": 0.006944444444444445
+      }
+    ],
+    "delivery_stream_sha256": "a481f6691bfcb971e48dcf6a305bfb6a9019e13f07e4e769bd02998bbc8904a7",
+    "baseline_status": "MATCHED committed generated baseline"
+  },
+  "baseline": "REPRODUCED, NOT regenerated. No adopted solver/default change; first future adopted solver-changing commit must rerun/regenerate with provenance",
+  "python_controls": 185,
+  "load_checks_per_run": 80,
+  "M0": "push40885113136 and PR40885121681 headless+Android success;516=514+2auto compile, not new feature credit",
+  "overall_M1": "Study/static/public success; existing F47 component job failure retained; historical sweeps skipped, NOT waived",
+  "artifacts": [
+    {
+      "id": 12901927851,
+      "name": "m1-public-sim-40885113085",
+      "size_in_bytes": 8523538,
+      "digest": "sha256:32d121f2619c09341e83c8cdddc30540ec399d9c0592fe6d42a481594e98ba60"
+    },
+    {
+      "id": 12901654637,
+      "name": "m1-d09-proposals-40885113085",
+      "size_in_bytes": 398343994,
+      "digest": "sha256:3b82aac1ee32484c89e85503a7b4c86b0518a58ed72f87ddcee5ee57341443d5"
+    }
+  ],
+  "inspection": "ALL15 complete compact annotations/axis-sum books + API artifact metadata inspected; raw ZIP NOT downloaded/inspected. Full raw per-tick/summary/fullF56 files preserved there",
+  "D06": "data/towers/provisional_fa6.json authored as provisional test geometry/input/success PROPOSAL underB04, NOT product content/FA6 run. Identical state/input determinism implies identical outcomes; no artificial noise to hit6-8.",
+  "D07": "phone queued, no M0 waiver carryover",
+  "adopted": false,
+  "baseline_regenerated": false,
+  "STOP": "Required review before adoption; no extra triple, bound raise, hold, further experiment or capture",
+  "tuning_sha256": "3a32dd3d2d719ed28220ed531fee05c8d2a799140d3f06e3aeed4d28d6e6f60c",
+  "core_and_creature_bytes": "unchanged fromd582a30; candidate resources used only in process-local duplicates, mass/weight unchanged",
+  "R23_2x2": "OLD parameterisation retained as history; not replaced by proposed study",
+  "runtime_rows_passed": 8,
+  "runtime_rows_total": 18,
+  "rows_moved": 0,
+  "remaining_rows_not_moved": [
+    "AC-201",
+    "AC-202",
+    "AC-204",
+    "presets/captures",
+    "tickcost",
+    "section10.6",
+    "FA-3",
+    "FA-4",
+    "FA-5",
+    "FA-6"
+  ],
+  "FA5": "UNTOUCHED / NOT RUN",
+  "AC202": "NOT RUN, optional parallel stream not started",
+  "Phase3": "NOT ENTERED",
+  "A": "WITHDRAWN / residual OBSOLETE",
+  "determinism_attempt": 1,
+  "cross_architecture_attempts": 0
+}
