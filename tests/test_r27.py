@@ -13,6 +13,12 @@ class R27Controls(unittest.TestCase):
         jobs=set(re.findall(r'^  ([a-z0-9-]+):$',s,re.M))
         for block in re.findall(r'^    needs: \[([^\]]+)\]',s,re.M):
             for name in block.split(','):self.assertIn(name.strip(),jobs)
+    def test_skip_propagation_cannot_skip_study_after_public_success(self):
+        s=Path('.github/workflows/m1.yml').read_text()
+        for name in ('r27-scenes','r27-soak'):
+            header=s.split('  '+name+':',1)[1].split('    name:',1)[0]
+            self.assertIn('always()',header)
+            self.assertIn("needs.public-sim-runtime.result == 'success'",header)
     def test_pb_bytes_not_changed(self):
         self.assertEqual(hashlib.sha256(Path('core/tuning.tres').read_bytes()).hexdigest(),PLAN['production_tuning_sha256'])
     def test_original_gdd_preserved_and_sleep_named_failed(self):

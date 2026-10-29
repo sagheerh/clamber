@@ -1002,7 +1002,7 @@ jobs:
 
   r27-scenes:
     needs: [public-sim-runtime]
-    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[R27-once]') }}
+    if: ${{ always() && needs.public-sim-runtime.result == 'success' && github.event_name == 'push' && contains(github.event.head_commit.message, '[R27-once]') }}
     name: R27 authored stability, ONE AC202 candidate, static600
     strategy:
       fail-fast: false
@@ -1057,7 +1057,7 @@ jobs:
 
   r27-soak:
     needs: [public-sim-runtime]
-    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[R27-once]') }}
+    if: ${{ always() && needs.public-sim-runtime.result == 'success' && github.event_name == 'push' && contains(github.event.head_commit.message, '[R27-once]') }}
     name: R27 AC204 numerical soak 200 runs (10 per batch)
     strategy:
       fail-fast: false
