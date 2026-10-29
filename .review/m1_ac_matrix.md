@@ -1,6 +1,22 @@
 # M1 acceptance matrix — scoped measured evidence, NOT milestone approval
 
-## Current R17 — 8/18 runtime rows measured; M1 remains RED
+## Current R18 — 8/18 unchanged; literal F56 FAIL, STOP
+
+CI40820719982 @832fa3d: requested last300 lateral momentum/contact-only identity
+fails: -4.163336342344337e-16 vs .24891888144391522, residual
+-.24891888144391563 mass*WU/s. Existing damping -.24891888144391586;
+complete balance closes within existing1e-12, NOT evidence of an internal leak.
+No substitution for literal gate. Existing F47 and literal F56 keep M1 RED.
+Motor2400/0 sweep, A protocol/calibration, after-A drift and AC-201 NOT RUN.
+Owner A direction approved conditionally; B/C rejected. Owner resolution of
+F56's omitted external forces needed. Runtime movement0, attempt1 retained.
+Public full summary EXACTLY matches accepted9a/sourcee193/committed baseline;
+152Python, preserved component counts, M0 CI40820720016 PASS516/0+Android.
+F57 injected RNG survives replay but is NOT consumed by physics. Full measured
+sides/artifact/counts: `.review/m1_r18_external_evidence.json` and PROGRESS.
+No acceptance table/status changes below. FA-5 unchanged.
+
+## Historical accepted R17 — 8/18 runtime rows measured; M1 remains RED
 
 Phase1 CI40816607995: F52/F53/F54 and diagnostic sweep measured, 0/18;
 Phase2 CI40818428101 at commit e1934ed (same-head M0 CI40818428107):

@@ -1087,3 +1087,21 @@ NO physics path consumes RNG. Standalone canonical vector tests do NOT mean
 physics randomness exercised. Accepted A9.3 has this precise injection scope.
 Runtime8/18 and determinism attempt1 retained. AC-201 and other ten runtime
 rows remain NOT RUN; no acceptance claim from this prerequisite harness.
+
+
+R18 measured F56 closeout @832fa3d / CI40820719982, external job123272312328:
+last300 x raw momentum change -4.163336342344337e-16 vs ground friction
+.24891888144391522, literal residual -.24891888144391563 mass*WU/s. Existing
+external damping -.24891888144391586 explains this difference. Full x balance
+residual -6.453171330633722e-16; full y residual3.544387006115812e-14, both within
+existing1e-12. Y literal residual -215.78345997892384; gravity -217 plus damping
+1.2165400210761605 accounts for normal215.78345997892384. Complete ledger and
+per-tick/window internal conservation close; literal predicate remains FALSE.
+This is NOT evidence of an internal defect and NOT authorization to rewrite
+F56 or proceed. STOP applied: motor2400/0 sweep, A calibration protocol/remedy,
+after-A drift and AC-201 NOT RUN. Owner A direction remains approved conditionally;
+B/C still rejected. Owner resolution of the literal equation's omitted external
+forces is required before continuation. No tuning/baseline/physical changes.
+Runtime remains8/18, accepted attempt1 SUCCESS; current public summary EXACTLY
+matches9a/sourcee193 strict baseline. PROGRESS/evidence ledger record exact sides,
+CI/artifacts/counts and failed local ZIP retrieval honestly.

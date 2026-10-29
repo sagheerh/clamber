@@ -69,6 +69,10 @@ def external_identity(rows):
         # Reconstruct both sides from their window sums too, not only per-tick sums.
         sums['literal_residual_from_sides']=sums['delta']-sums['contact']
         sums['full_residual_from_sides']=sums['delta']-math.fsum(sums[k] for k in ('contact','damping','gravity','clamp','internal_drive','internal_velocity'))
+        if not close(sums['internal_drive'],0.) or not close(sums['internal_velocity'],0.):
+            raise ValueError('Window INTERNAL momentum leak; STOP')
+        if not close(sums['attributed_residual'],0.) or not close(sums['full_residual_from_sides'],0.):
+            raise ValueError('Window complete external momentum ledger fails; STOP')
         result['axes'][axis]={'sums':sums,
             'contact_attributed_momentum_change':sums['delta']-math.fsum(sums[k] for k in ('damping','gravity','clamp')),
             'max_abs_per_tick_full_residual':max(map(abs,values['full_residual'])),

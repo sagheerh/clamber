@@ -8,7 +8,73 @@ Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R17 — Phases1/2 measured; 8/18 runtime rows, M1 still RED
+### Current R18 — F56 literal prerequisite FAIL; STOP before sweep/A/Phase3
+
+Measured source **832fa3d**, [M1 CI40820719982](https://github.com/sagheerh/clamber/actions/runs/40820719982).
+F56 job123272312328 reconstructs raw endpoint momentum/contact events from the
+last300 ticks (5700–5999) of the unchanged actuated-after6000 arm. All6000 raw
+rows first pass existing F31/full-ledger checks. Existing precision1e-12;
+impulse units mass*WU/s. Literal residual is LEFT minus RIGHT, no force omitted
+by relabeling the left-hand side.
+
+| last300 sum | lateral x | vertical y |
+|---|---:|---:|
+| raw COM momentum change | -4.163336342344337e-16 | 1.4432899320127035e-15 |
+| ground normal | 0 | 215.78345997892384 |
+| ground friction | .24891888144391522 | 0 |
+| literal contact-only residual | -.24891888144391563 | -215.78345997892384 |
+| existing linear damping | -.24891888144391586 | 1.2165400210761605 |
+| gravity | 0 | -217.00000000000003 |
+| clamp | 0 | 0 |
+| internal drive | -1.249000902703301e-16 | -1.942890293094024e-16 |
+| internal velocity constraints | 9.922618282587337e-16 | -9.825473767932635e-15 |
+| full residual reconstructed from summed sides | -6.453171330633722e-16 | 3.544387006115812e-14 |
+
+**Literal F56 FAILS, exit1, STOP honored.** The complete balance closes within
+1e-12, with internal terms at roundoff. This is evidence of omitted external
+forces in the literal equation, NOT measured evidence of an internal momentum
+leak. The complete balance is NOT substituted for the requested prerequisite.
+Reporter additionally rejects cumulative internal leaks (even sub-precision
+per-tick leaks accumulating above precision), with a negative control.
+
+F55 report-only: .15WU/s ×150px/WU = **22.5px/s** authored static-slip allowance.
+
+| measured drift | px/s | percent of22.5 |
+|---|---:|---:|
+| free-hinge after | .08403595917823123 | .373493 |
+| actuated before | 3.5133210565803203 | 15.614760 |
+| actuated after | 3.9345242550809765 | 17.486774 |
+
+A COM-unit comparison, not proof of every contact's instantaneous static branch;
+3.934px/s alone is NOT an internal-leak finding. Correct motor2400/0 sweep with
+damping untouched: **NOT RUN**. A calibration protocol/rule/justification:
+**NOT SELECTED/APPLIED** because prerequisite failed. Owner A direction retained;
+B/C remain rejected. After-A drift and AC-201 sleep tick: **NOT RUN**, no numbers
+invented, no baseline/tuning/snapshot change. Phase3 not entered.
+F57: RNG is injected/snapshotted/restored/hashed, but physics does NOT consume it.
+
+Regression @832fa3d: public9053/0 + frame30 308/0 + frame144 1446/0, complete
+summary EXACTLY equals accepted9a/sourcee193 including all stream hashes and
+strict committed baseline MATCH. Accepted attempt1 same-build success retained;
+no new failed determinism attempt. Static152Python; mechanics931/sleep4897/
+math381/contact237/analytic136/load80 pass. M1 RED for existing F47 plus literal
+F56 (other four jobs succeed). [M0 CI40820720016](https://github.com/sagheerh/clamber/actions/runs/40820720016)
+PASS516/0 + Android export/alignment; original514 plus TWO automatic script
+compile assertions, not added M0 functional coverage. No physical device timing.
+
+Raw F56 artifact12874039236,27,349,952B,
+`sha256:d243bd5083b07d5ef56bcdec07a990f7e03767fd895fba861e4f3e616ded62ac`.
+Raw/report/logs retained in CI; complete compact annotations retrieved. Local
+ZIP fetch failed at artifact host (EOF); no local ZIP inspection claimed.
+Source/values/statuses: `.review/m1_r18_external_evidence.json`.
+**Runtime8/18, movement0.** Other10 rows unchanged/NOT RUN: AC-201/202/204,
+presets/captures, tickcost, §10.6 cross-arch, FA-3/4/5/6. Components do not
+upgrade those rows; FA-5 unchanged, accepted F52/F53/F54 not reopened.
+
+**Next single milestone M1:** obtain owner resolution of F56's external-force
+identity before the motor2400/0 diagnostic; no remedy pending that resolution.
+
+### Historical accepted R17 — Phases1/2 measured; 8/18 runtime rows, M1 still RED
 
 Reviewer branch completion plan/read-only R17 review were read with git show;
 neither reviewer artifact was copied, committed, merged or rebased. Work order

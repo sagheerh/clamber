@@ -43,8 +43,11 @@ class ExternalIdentityControls(unittest.TestCase):
         r=fixture();r[10]['momentum_budget']['damping_impulse_x_ns']=0.
         with self.assertRaisesRegex(ValueError,'Damping book'):external_identity(r)
     def test_internal_leak_is_stop_not_contact_attribution(self):
-        r=fixture();r[10]['momentum_budget']['internal_impulse_x_ns']=.001
-        with self.assertRaisesRegex(ValueError,'INTERNAL'):external_identity(r)
+        for magnitude,all_ticks in ((.001,False),(.5*IDENTITY_EPS,True)):
+            r=fixture()
+            for tick in (range(300) if all_ticks else [10]):
+                r[tick]['momentum_budget']['internal_impulse_x_ns']=magnitude
+            with self.assertRaisesRegex(ValueError,'INTERNAL'):external_identity(r)
     def test_raw_endpoint_and_book_disagreement_rejected(self):
         r=fixture();r[10]['other_bodies'][0]['avx']+=.001
         with self.assertRaisesRegex(ValueError,'raw endpoint'):external_identity(r)
