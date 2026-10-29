@@ -39,6 +39,7 @@ for hz in 30 144; do
   status=$?
   set -e
   if [[ "$status" != 0 ]]; then cat "$folder/delivery-$hz.log"; exit "$status"; fi
+  grep '^M1 public delivery:' "$folder/delivery-$hz.log" || true
   if grep -Eq 'SCRIPT ERROR:|ERROR:|FAIL|Parse Error:|Failed to load script' "$folder/delivery-$hz.log"; then cat "$folder/delivery-$hz.log"; exit 1; fi
 done
 python3 tests/public_sim_report.py "$folder"

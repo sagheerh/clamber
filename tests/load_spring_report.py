@@ -57,7 +57,7 @@ def count_buckets(rows):
 
 def report(root):
     result={'scope':'F48 diagnostic, pre-drive signed torque contributions before total clamp; NOT equilibrium/acceptance', 'arms':{}}
-    for name in ('baseline-after','current-before','current-after','zero-before','zero-after'):
+    for name in ('baseline-before','baseline-after','current-before','current-after','zero-before','zero-after'):
         folder=root/name
         if (folder/'engine-status.txt').read_text().strip() != '0': raise ValueError(f'{name} incomplete')
         ticks=600 if name.startswith('baseline') else 6000

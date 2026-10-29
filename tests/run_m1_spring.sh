@@ -7,7 +7,7 @@ case "$("$GODOT" --version)" in 4.7.2.stable*) ;; *) echo 'ERROR: exact Godot4.7
 folder="${M1_SPRING_REPORT_DIR:-$(mktemp -d)}"; mkdir -p "$folder"
 "$GODOT" --headless --editor --import > "$folder/import.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/import.log"; then cat "$folder/import.log"; exit 1; fi
-for name in baseline-after current-before current-after zero-before zero-after; do
+for name in baseline-before baseline-after current-before current-after zero-before zero-after; do
   case_folder="$folder/$name"; mkdir -p "$case_folder"
   ticks=6000; flags=(--legal-spawn)
   if [[ "$name" == baseline-* ]]; then ticks=600; else flags+=(--actuated); fi

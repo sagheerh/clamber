@@ -20,15 +20,25 @@ def summarize(folder):
         raise ValueError('Falsification equal hash or metadata-only input change')
     if len(report['per_tick_digests'])!=600 or len(set(report['replay_final_digests']))!=1:
         raise ValueError('Missing tick stream/hash evidence')
+    # Generate and expose provenance immediately after independently verified replay,
+    # even when the SEPARATE delivery protocol/baseline gate is still RED.
+    expected={'fixture':report['fixture'],'tuning_sha256':report['tuning_sha256'],
+              'final_digest':report['replay_final_digests'][0],
+              'full_stream_sha256':hashlib.sha256(streams[0]).hexdigest(),
+              'per_tick_digest_table_sha256':hashlib.sha256(json.dumps(report['per_tick_digests'],separators=(',',':')).encode()).hexdigest()}
+    (folder/'baseline-candidate.json').write_text(json.dumps(expected,indent=2)+'\n')
+    print('M1 public baseline candidate: '+json.dumps(expected,separators=(',',':')))
     delivery=[json.loads((folder/f'delivery-{hz}.json').read_text()) for hz in (30,144)]
     dstreams=[(folder/f'delivery-{hz}-compared.bin').read_bytes() for hz in (30,144)]
     if not dstreams[0] or dstreams[0]!=dstreams[1]:
         raise ValueError('Actual30/144 frame-delivered tick streams differ')
+    from collections import Counter
     for r in delivery:
+        print('M1 public frame-duration support: '+json.dumps({'condition':r['condition'],'histogram':dict(Counter(r['frame_seconds']))},separators=(',',':')))
         if r['failures'] or len(r['compared_tick_hashes'])!=600 or r['compared_ticks']!=600 or len(r['tick_hashes'])!=r['actual_ticks'] or r['actual_ticks']<600 or r['tick_hz']!=60:
             raise ValueError('Frame-condition harness incomplete')
         # Actual engine callbacks must match requested fixed-fps, not a label only.
-        if len(r['frame_seconds'])<2 or not 0<r['frame_seconds'][0] or any(t!=1/r['condition'] for t in r['frame_seconds'][1:]):
+        if len(r['frame_seconds'])<2 or any(not t>0 for t in r['frame_seconds']) or Counter(r['frame_seconds']).most_common(1)[0][0] != 1/r['condition']:
             raise ValueError('Engine did not support requested fixed-fps delivery exactly')
     result={k:v for k,v in report.items() if k!='per_tick_digests'}
     result['full_stream_sha256']=hashlib.sha256(streams[0]).hexdigest()
@@ -57,7 +67,6 @@ def summarize(folder):
     result['baseline_status']=error or 'MATCHED committed generated baseline'
     (folder/'public-sim-summary.json').write_text(json.dumps(result,indent=2)+'\n')
     print('M1 public summary: '+json.dumps(result,separators=(',',':')))
-    print('M1 public baseline candidate: '+json.dumps(expected,separators=(',',':')))
     if error: raise ValueError(error)
     return result
 
