@@ -143,6 +143,8 @@ func _diagnostic_config() -> Dictionary:
 		tuning.motors_gain_default = 0.0
 	if "--angular-bound-one" in OS.get_cmdline_user_args():
 		tuning.physics_max_constraint_angular_impulse_rad_s = 1.0
+	if "--motor-stop-wide" in OS.get_cmdline_user_args():
+		tuning.motors_limit_max_deg = 90.0
 	var spawn_y := 0.33
 	var ticks := 600
 	var lift := 0.0
@@ -274,6 +276,8 @@ func _slug() -> void:
 		row["diagnostic_angular_impulse_limit_rad_s"] = (
 			tuning.physics_max_constraint_angular_impulse_rad_s
 		)
+		row["diagnostic_motor_limit_min_deg"] = tuning.motors_limit_min_deg
+		row["diagnostic_motor_limit_max_deg"] = tuning.motors_limit_max_deg
 		row["diagnostic_motor_damping"] = tuning.motors_joint_damping
 		row["diagnostic_passive_stiffness"] = tuning.physics_passive_stiffness
 		row["diagnostic_motor_stiffness"] = tuning.motors_joint_stiffness

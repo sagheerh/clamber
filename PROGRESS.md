@@ -8,7 +8,20 @@ Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R20 — exact zero drive still walks; ordered STOP before bound sweep
+### Current R21 — two limit/drive-cap diagnostics pending; no remedy
+
+Owner accepts real gain0 and withdraws R20 drive-propulsor prediction. F61 stays
+record-only, F66 measured bounds supersede nominal. A and residual check withdrawn/
+obsolete. Read reviewer via git show only. F64 necessary-stop mechanism remains
+a prediction until upper90 and bound1 arms are measured, in that order. Actual
+per-projection angular error/rotation and velocity-stop predicate instrumentation
+added observationally; WU phase ledger is NOT radians. Defaults remain40 even
+while diagnostic duplicate uses90; next arm freshly40, hashes checked between.
+D08/D06/D07 queued, not diagnostic blockers. Actual results PENDING, runtime8/18
+unchanged, no baseline regeneration or Phase3. See DECISIONS for q0 legality,
+zero-input target0 versus held target, and per-stage measurement definitions.
+
+### Historical R20 — exact zero drive still walks; inference withdrawn by owner R21
 
 Measured source **8e0b907**, [M1 CI40868433005](https://github.com/sagheerh/clamber/actions/runs/40868433005),
 saturation job123429003201. Reviewer R20 read via git show ONLY; no reviewer

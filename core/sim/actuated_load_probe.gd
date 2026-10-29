@@ -7,6 +7,7 @@ var _pairs: Array = []
 var _self_impulses: Array = []
 var _drive_events: Array = []
 var _limit_events: Array = []
+var _position_events: Array = []
 var _self_events: Array = []
 var _input_mask: int = TUNING.physics_zero
 
@@ -79,6 +80,7 @@ func position_phases() -> Array:
 func _begin_tick() -> Error:
 	_drive_events = []
 	_limit_events = []
+	_position_events = []
 	_self_events = []
 	_self_impulses = []
 	for body in bodies:
@@ -99,9 +101,29 @@ func _begin_tick() -> Error:
 
 func _extra_positions(positions_ledger: Array) -> Error:
 	var before := _positions()
-	for joint in _joints:
+	for index in range(_joints.size()):
+		var joint := _joints[index]
+		# R21 observation only; project_position's physical operations stay unchanged.
+		var value := joint.state()
+		if value.is_empty():
+			return ERR_INVALID_DATA
+		var event := {
+			"joint": index,
+			"sequence": _position_events.size(),
+			"parent_part": bodies.find(joint.parent_body),
+			"child_part": bodies.find(joint.child_body),
+			"q_rad": value.q,
+			"lower_rad": joint.lower,
+			"upper_rad": joint.upper,
+			"error_rad": value.q - clampf(value.q, joint.lower, joint.upper),
+			"parent_before": _point_positions(joint.parent_body),
+			"child_before": _point_positions(joint.child_body),
+		}
 		if joint.project_position() != OK:
 			return ERR_INVALID_DATA
+		event["parent_after"] = _point_positions(joint.parent_body)
+		event["child_after"] = _point_positions(joint.child_body)
+		_position_events.append(event)
 	_book_positions(before, positions_ledger, "angular")
 	before = _positions()
 	for pair in _pairs:
@@ -120,16 +142,34 @@ func _extra_velocities() -> Error:
 	for index in range(_joints.size()):
 		var joint := _joints[index]
 		var before := joint.impulse
+		var value := joint.state()
+		if value.is_empty():
+			return ERR_INVALID_DATA
+		var engaged: bool = (
+			(value.q <= joint.lower and value.omega < TUNING.physics_zero)
+			or (value.q >= joint.upper and value.omega > TUNING.physics_zero)
+		)
+		var event := {
+			"joint": index,
+			"sequence": _limit_events.size(),
+			"parent_part": bodies.find(joint.parent_body),
+			"child_part": bodies.find(joint.child_body),
+			"q_rad": value.q,
+			"omega_rad_s": value.omega,
+			"lower_rad": joint.lower,
+			"upper_rad": joint.upper,
+			"engaged": engaged,
+			"impulse_before": before,
+			"parent_positions": _point_positions(joint.parent_body),
+			"child_positions": _point_positions(joint.child_body),
+			"parent_velocities": _point_velocities(joint.parent_body),
+			"child_velocities": _point_velocities(joint.child_body),
+		}
 		if joint.block_velocity() != OK:
 			return ERR_INVALID_DATA
-		_limit_events.append(
-			{
-				"joint": index,
-				"impulse_before": before,
-				"impulse_after": joint.impulse,
-				"impulse": joint.impulse - before
-			}
-		)
+		event["impulse_after"] = joint.impulse
+		event["impulse"] = joint.impulse - before
+		_limit_events.append(event)
 	for pair in _pairs:
 		var first: int = pair[TUNING.physics_zero]
 		var second: int = pair[TUNING.physics_one]
@@ -157,6 +197,7 @@ func _step(before: Dictionary) -> Dictionary:
 	result.motor_gain = _tuning.motors_gain_default
 	result.drive_events = _drive_events
 	result.angular_limit_events = _limit_events
+	result.angular_position_events = _position_events
 	result.self_contact_events = _self_events
 	result.angular_joints = []
 	for joint in _joints:
@@ -178,3 +219,11 @@ func _finish_velocities() -> Error:
 		)
 		PlanarBasis.spin(body, capped - frame.omega)
 	return OK
+
+
+func _point_positions(body: CapsuleBody) -> Array:
+	return [body.a.x, body.a.y, body.b.x, body.b.y]
+
+
+func _point_velocities(body: CapsuleBody) -> Array:
+	return [body.a.velocity_x, body.a.velocity_y, body.b.velocity_x, body.b.velocity_y]

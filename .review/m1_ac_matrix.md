@@ -1,6 +1,15 @@
 # M1 acceptance matrix — scoped measured evidence, NOT milestone approval
 
-## Current R20 — 8/18 unchanged; exact gain0 still walks, ordered STOP
+## Current R21 — 8/18 unchanged; two limit diagnostics pending
+
+Owner accepts gain0/F56, withdraws R20 propulsor prediction. F64 mechanism to be
+tested by upper90 then bound1 at restored40. F63 teeth, per-pass stop/error audit,
+WU phase ledger and separate radians published; no units/causality assumption.
+D08/D06/D07 queued, not diagnostic blockers. Default40 resource stays unchanged,
+no feel choice, A withdrawn, residual test obsolete, no baseline/Phase3 update.
+Measurement PENDING. Exact accepted eight table rows/citations unchanged below.
+
+## Historical R20 — 8/18 unchanged; owner R21 withdraws causal prediction
 
 CI40868433005 @8e0b907: F63 reference/stiffness0 saturation300/300 BOTH, late
 applied means -.04119350481568311 BOTH despite requested -21/-1.8121243561338403.

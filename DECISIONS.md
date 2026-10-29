@@ -1230,3 +1230,41 @@ velocityepsilon/hysteresis/waiver. Runtime8/18 unchanged, all remaining10 NOT RU
 attempt1 same-build success/cross-arch0 retained. Source ledger/PROGRESS records
 F63 quantitative teeth and exact CI/artifacts,167Python/full public summary exact
 Phase2/strict committed baseline MATCH. No local artifact ZIP inspection claimed.
+
+
+## R21 — limit-removal and bound-sign diagnostics; no remedy/feel decision
+
+Read reviewer M1_R21_LIMIT_STOP_REVIEW.md via git show FETCH_HEAD ONLY; no reviewer
+artifact copied/merged. Owner ACCEPTS gain0's real delivery removal/F56 and owns
+withdrawal of R20 saturated-drive-propulsor prediction: gain0 drift5.3874 exceeds
+reference3.9345, so delivered drive was a brake in that comparison. F61 remains
+record-only saturated-authoring arithmetic. F66 use MEASURED current-extent bounds
+(.0411935 reference/.0412489 gain0), not nominal-rest.0444447; observed requested/
+bound ratios also use actual inertia (about509.79/43.99 in R20), not nominal ratios.
+F62 A remains WITHDRAWN; optional.5degree residual check now OBSOLETE, DO NOT RUN.
+
+F64 is an owner HYPOTHESIS to test, not proven from drive-time mean q: project_position
+runs AFTER prediction/distance/hinge, so record q/error at each actual angular pass,
+plus velocity-stop predicates even if cumulative cap yields zero delivered impulse.
+F63 applied-drive teeth/complete F56 and per-tick reference trajectories retained.
+Original angular phase ledger contains ENDPOINT COORDINATE DISPLACEMENT in WU,
+NOT radians. Publish its summed abs net coordinate changes unchanged; separately
+observe all6 angular correction passes and audit requested and observed absolute
+rotation in rad plus endpoint path WU. Do not equate mean drive-time error.1444
+rad with total correction per tick/iteration without measurement, or infer net COM
+injection merely from a nonzero internal positional correction.
+The measured arms are ZERO INPUT, target0. The -.7576rad target is held-L at gain.7,
+not zero-input target; negative torque still follows positive q at target0.
+
+Order: reference40/bound6, arm1 diagnostic upper40->90 with original drive,
+then arm2 bound6->1 with upper40 restored, everything else fixed including damping.
+Only process-local Tuning duplicates vary; core/tuning.tres stays40 THROUGHOUT,
+SHA checked between arms. Wide process exits, next arm constructs fresh40 copy;
+next commit rechecks unchanged default40. No90 adopted, no preset edit/baseline
+regeneration. F65 recorded as D08 band-vs-loaded-operating-pose question: authored
+q0 IS inside[-140,40]; observed gravity-loaded rocking pose beyond40 is not itself
+proof authored q0 is illegal/unreachable, nor a stationary equilibrium (F59).
+No feel choice among widen/pose-mass/intended-stop mechanics is adopted.
+D08, D06 tutorial FA-6 fixture and D07 reference-device tickcost are queued owner
+choices, NONE blocks these two diagnostics. Phase3/coupled feel gates NOT RUN;
+accepted8/18/attempt1 same-build success/cross-arch0 retained. FA-5 untouched.
