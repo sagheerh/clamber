@@ -8,8 +8,8 @@ const TUNING = preload("res://core/tuning.tres")
 var bodies: Array[CapsuleBody] = []
 ## Diagnostic switch ONLY; observer-off/on physical states are compared by harness.
 var collect_contact_samples: bool = false
-## Detached phase observation defaults OFF; _record_length_phase returns immediately.
-## Legacy R27 flag retained for old harness metadata ONLY; it no longer selects physics.
+## R26 detached phase observation and explicitly DIAGNOSTIC ordering arm only.
+## Both default off; neither is a tuning/adoption change or snapshot state.
 var collect_length_phases: bool = false
 var diagnostic_final_distance_pass: bool = false
 var length_phases: Dictionary = {}
@@ -356,14 +356,16 @@ func _velocity_contacts(
 		for index in range(bodies.size()):
 			reaction[index] += bodies[index].measured_reaction_n
 			cleanup[index] += bodies[index].positional_cleanup_n
-	# R28 D1: same traversal, unconditional after ALL contacts/_finish_velocities.
-	# Rows, order, compliance, multipliers and project() maths unchanged; no velocity edit.
-	var before_final := _positions()
-	for link in _links:
-		if link.project(_tuning) != OK:
-			return {"status": ERR_INVALID_DATA}
-	_book_positions(before_final, positions, "distance")
-	_record_length_phase("after_diagnostic_final_distance")
+	# R27 ONE authorised candidate: SAME final traversal, moved AFTER all contacts.
+	# Identical rows,
+	# compliance, multipliers and project() implementation; no velocity edit.
+	if diagnostic_final_distance_pass:
+		var before_final := _positions()
+		for link in _links:
+			if link.project(_tuning) != OK:
+				return {"status": ERR_INVALID_DATA}
+		_book_positions(before_final, positions, "distance")
+		_record_length_phase("after_diagnostic_final_distance")
 	return {"status": OK, "lowest": lowest}
 
 

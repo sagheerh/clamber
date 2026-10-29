@@ -2062,35 +2062,3 @@ snapshot into it, resolves shadows, returns groundedbools only. Parked live pose
 restores unchanged positions from before.physical. No live projection in thatpath,
 no change authorised/needed. Production path Sim→CreatureTickSolver→SleepingLoadProbe
 →ActuatedLoadProbe.advance/step→CoupledLoadProbe._step verified in source.
-
-
-## M1-R28-D1 — adopt AC-202 post-contact distance reprojection
-
-Owner R28 authorises exactly this physics change. Remove only the guard around
-CoupledLoadProbe._velocity_contacts final distance traversal. This helper is
-called by _step; the traversal is after EVERY contact and _finish_velocities,
-before trace publication. Same _links order, same project(_tuning), same rows,
-compliance and multipliers; no reset or velocity edit; nothing else moves.
-Length-phase snapshots remain collect_length_phases defaultOFF, contact batches
-remain collect_contact_samples defaultOFF. General F31 position accounting is
-retained, not replaced by a false incomplete ledger. No tuning value modified.
-Verified P-B bound30.0/stiffness10.0/damping0.5443327361211717/max_torque12.0;
-core/tuning.tres SHA256 before/after5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666.
-
-Before: accepted R26 completed literal-limb max.051910617942553194WU after
-contacts, versus roundoff before contacts. Accepted R27 post-contact candidate
-Slug4.996003610813204e-16/Hopper1.8318679906315083e-15/Twin1.7763568394002505e-15,
-source2cf2c93/CI40960697692, .review/m1_r27_evidence.json#AC202. These are references,
-NOT new adopted-build values. New after-values must be measured on this commit.
-Adoption is conditional on D3 actual surface penetration strictly<.02WU/all3×7200.
-Any >=.02 requires revert and hard stop; dependent baseline/idle/characterisation
-must NOT RUN. No bounding/slop/epsilon/iteration/tuning edit. Legacy runtime bool
-is metadata only, not an A/B physics branch. No new physics switch introduced.
-CI routing: repository-variable AND workflow_dispatch APIs returned403 before
-ANY R28 physics invocation. Use exactly one push-triggered invocation: guard
-immutable github.sha==github.event.after plus [R28-once], checkouteventSHA,
-runner verifies actual HEAD and exact adoption subject. Literal source SHA
-will close all new jobs in the evidence commit (historical pins unchanged).
-An identity-only job blocks stale PR/public replay until this source's generated
-baseline exists. New baseline/public/idle/characterisation depend on penetration
-PASS. No CI retry, no duplicate physical arm; no timing/physics/metric change.

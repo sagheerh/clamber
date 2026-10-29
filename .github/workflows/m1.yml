@@ -460,8 +460,8 @@ jobs:
           retention-days: 7
 
   public-sim-runtime:
-    needs: [r26-baseline, r28-baseline, r28-source-guard]
-    if: ${{ always() && (needs.r28-source-guard.outputs.adoption != 'true' || needs.r28-baseline.result == 'success') && (needs.r26-baseline.result == 'success' || needs.r26-baseline.result == 'skipped') && !inputs.r22_only && !(github.event_name == 'push' && contains(github.event.head_commit.message, '[R22-once]')) }}
+    needs: [r26-baseline, r28-baseline]
+    if: ${{ always() && (!inputs.r28_source_sha || needs.r28-baseline.result == 'success') && (needs.r26-baseline.result == 'success' || needs.r26-baseline.result == 'skipped') && !inputs.r22_only && !(github.event_name == 'push' && contains(github.event.head_commit.message, '[R22-once]')) }}
     name: M1 public Sim replay attempt1 and clock gates
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -1173,13 +1173,13 @@ jobs:
           retention-days: 7
 
   r28-measure:
-    if: ${{ github.event_name == 'push' && github.sha == github.event.after && contains(github.event.head_commit.message, '[R28-once]') }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
     name: R28 adoption-measure (one invocation; exact source pin)
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:
       GODOT_VERSION: 4.7.2-stable
-      R28_SOURCE_SHA: ${{ github.sha }}
+      R28_SOURCE_SHA: ${{ inputs.r28_source_sha }}
     steps:
       - uses: actions/checkout@v5
       - name: Install checksum-verified pinned editor
@@ -1222,13 +1222,13 @@ jobs:
 
   r28-idle:
     needs: [r28-measure]
-    if: ${{ github.event_name == 'push' && github.sha == github.event.after && contains(github.event.head_commit.message, '[R28-once]') }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
     name: R28 idle-family (one invocation; exact source pin)
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:
       GODOT_VERSION: 4.7.2-stable
-      R28_SOURCE_SHA: ${{ github.sha }}
+      R28_SOURCE_SHA: ${{ inputs.r28_source_sha }}
     steps:
       - uses: actions/checkout@v5
       - name: Install checksum-verified pinned editor
@@ -1271,13 +1271,13 @@ jobs:
 
   r28-characterisation:
     needs: [r28-idle]
-    if: ${{ github.event_name == 'push' && github.sha == github.event.after && contains(github.event.head_commit.message, '[R28-once]') }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
     name: R28 ac201a-characterisation (one invocation; exact source pin)
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     env:
       GODOT_VERSION: 4.7.2-stable
-      R28_SOURCE_SHA: ${{ github.sha }}
+      R28_SOURCE_SHA: ${{ inputs.r28_source_sha }}
     steps:
       - uses: actions/checkout@v5
       - name: Install checksum-verified pinned editor
@@ -1320,13 +1320,13 @@ jobs:
 
   r28-baseline:
     needs: [r28-measure]
-    if: ${{ github.event_name == 'push' && github.sha == github.event.after && contains(github.event.head_commit.message, '[R28-once]') }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
     name: R28 generate actual baseline ONLY after penetration PASS
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     env:
       GODOT_VERSION: 4.7.2-stable
-      R28_SOURCE_SHA: ${{ github.sha }}
+      R28_SOURCE_SHA: ${{ inputs.r28_source_sha }}
     steps:
       - uses: actions/checkout@v5
       - name: Install checksum-verified pinned editor
@@ -1372,7 +1372,7 @@ jobs:
           retention-days: 7
 
   r28-m0:
-    if: ${{ github.event_name == 'push' && github.sha == github.event.after && contains(github.event.head_commit.message, '[R28-once]') }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
     name: R28 unchanged M0 headless516
     runs-on: ubuntu-24.04
     timeout-minutes: 10
@@ -1416,21 +1416,3 @@ jobs:
             python3 scripts/check_m0_regression.py "$RUNNER_TEMP/m0-headless.log"
           fi
           exit "$status"
-
-  r28-source-guard:
-    name: Source identity only (NO physics)
-    runs-on: ubuntu-24.04
-    outputs:
-      adoption: ${{ steps.source.outputs.adoption }}
-    steps:
-      - uses: actions/checkout@v5
-      - id: source
-        shell: bash
-        run: |
-          set -euo pipefail
-          test "$(git rev-parse HEAD)" = "$GITHUB_SHA" || test "${{ github.event_name }}" = pull_request
-          if test "$(git log -1 --format=%s)" = 'M1: adopt AC-202 post-contact distance reprojection (physics change)' || (test "${{ github.event_name }}" = pull_request && git log -1 --format=%B "${{ github.event.pull_request.head.sha }}" | grep -F '[R28-once]'); then
-            echo 'adoption=true' >> "$GITHUB_OUTPUT"
-          else
-            echo 'adoption=false' >> "$GITHUB_OUTPUT"
-          fi

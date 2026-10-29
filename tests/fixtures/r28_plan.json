@@ -34,5 +34,5 @@
     "envelope": "max|angle| last600; no new gate or assertion of future/asymptotic boundedness"
   },
   "ordering": "adoption-measure FIRST; baseline-generation/public replay/idle/characterisation ONLY on successful penetration gate; no soak; old R27 pinned jobs untouched",
-  "CI_pin": "Before any run: variables/dispatch both403; one push-triggered source, github.sha==immutable github.event.after and [R28-once], checkout exact eventSHA and runner HEAD assertion. Closing evidence pins literal measured SHA; no historical pins changed."
+  "CI_pin": "one workflow_dispatch at adoption branch HEAD, inputr28_source_sha must equal github.sha; each runner verifies exact HEAD and [R28-once] source commit subject. Repository-variable API denied403, so source pin is immutable dispatch input, not an unpinned branch job."
 }
