@@ -64,6 +64,8 @@ class SaturationControls(unittest.TestCase):
         c=compare(a,b)
         self.assertEqual(c['last300_applied_changed_above_existing_ledger_precision_ticks'],300)
         self.assertEqual(len(c['per_tick']),300)
+        self.assertEqual(c['all_applied_changed_above_existing_ledger_precision_ticks'],300)
+        self.assertEqual(c['first_applied_changed_above_existing_ledger_precision_tick'],0)
         self.assertEqual(c['last300_max_abs_endpoint_position_delta_wu'],.02)
     def test_gain_zero_no_collapse_stops_before_bound_and_A(self):
         s=strength([fixture(gain=0.)]*300)

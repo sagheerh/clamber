@@ -1203,3 +1203,30 @@ ratios without inventing an approx4x tolerance; adopt no values. Only if those t
 leave the saturation claim open may the owner's optional .5deg-residual falsifier
 be considered. No A remedy is authorized. Current8/18 unchanged, attempts1 same-
 build success/cross-arch0, F55/56/57/58/59 preserved; FA-5 untouched.
+
+
+R20 measured @8e0b907 / CI40868433005, saturation job123429003201:
+reference/stiffness0 requested means -21/-1.8121243561338403, actual bounds
+.04119350481568311 each, applied -.04119350481568311 each, saturation300/300
+BOTH. Late applied difference max3.33e-16, no difference above existing1e-12:
+R19 spring-source conclusion WITHDRAWN, late intervention VOID, not falsifying.
+Do not claim identical full trajectories: per-tick/startup differences retained,
+late position offset.0037990209470555314WU despite velocity difference4.44e-15.
+F61 nominal472.497x overshoot confirmed from resource/preset; ACTUAL late cap
+uses current extents and yields509.79x mean requested/bound. Record only, no
+coefficient change, no blanket all-presets/unsaturated-regime authorability claim.
+
+Gain0 requested/applied EXACT0 ALL6000ticks, saturation0/300, torque0. Drift
+5.387448117922983px/s, thrust.0011205429121987627/tick (.06723257473192576N),
+NOT collapse to.08403595917823123. Complete F56 x/y residuals1.734723475976807e-17/
+3.0281332996651145e-14. Reference and stiffness0 F56 also close within1e-12.
+This is a delivered-impulse intervention with teeth, not another void arm.
+ORDER1 STOP applied BEFORE bound6/1 or optional.5degree residual. F62 A remains
+WITHDRAWN/NOT RUN; no calibration/protocol/target/snapshot/baseline change, Phase3
+NOT ENTERED. Nonzero MOTOR drive not necessary for observed motion; contact/
+limit/constraint-path isolation requires new authorization, not a guessed cause.
+All adopted/default physical coefficients/damping/sampling unchanged. No
+velocityepsilon/hysteresis/waiver. Runtime8/18 unchanged, all remaining10 NOT RUN,
+attempt1 same-build success/cross-arch0 retained. Source ledger/PROGRESS records
+F63 quantitative teeth and exact CI/artifacts,167Python/full public summary exact
+Phase2/strict committed baseline MATCH. No local artifact ZIP inspection claimed.

@@ -4,6 +4,7 @@ import json
 import math
 from pathlib import Path
 import sys
+from load_external_report import external_identity
 from load_motor_report import thrust_summary, resource, MOTOR_STIFFNESS, MOTOR_DAMPING, BASELINE_DRIFT_PX_S
 from load_long_report import verify_all
 from load_spring_report import joint_summary
@@ -98,7 +99,11 @@ def compare(reference,arm):
         right=sorted(b['feet']+b['other_bodies'],key=lambda p:p['part'])
         trajectories.append(max(abs(x[k]-y[k]) for x,y in zip(left,right) for k in ('ax','ay','bx','by')))
         velocities.append(max(abs(x[k]-y[k]) for x,y in zip(left,right) for k in ('avx','avy','bvx','bvy')))
-    return {'last300_applied_impulse_delta':stats(impulses[-300:]),
+    return {'all_ticks':len(impulses),
+        'all_applied_changed_above_existing_ledger_precision_ticks':sum(abs(v)>IDENTITY_EPS for v in impulses),
+        'all_max_abs_applied_impulse_delta':max(map(abs,impulses)),
+        'first_applied_changed_above_existing_ledger_precision_tick':next((r['tick'] for r,j in zip(reference,impulses) if abs(j)>IDENTITY_EPS),None),
+        'last300_applied_impulse_delta':stats(impulses[-300:]),
         'last300_applied_changed_above_existing_ledger_precision_ticks':sum(abs(v)>IDENTITY_EPS for v in impulses[-300:]),
         'last300_max_abs_endpoint_position_delta_wu':max(trajectories[-300:]),
         'last300_max_abs_endpoint_velocity_delta_wu_s':max(velocities[-300:]),
@@ -136,10 +141,16 @@ def report(root,stage):
             if any(r[k]!=v for k,v in expected.items()):raise ValueError('Unauthorized mixed intervention')
         verify_all(rows,zero_motor_stiffness=stiffness==0.,zero_motor_gain=gain==0.)
         arm=thrust_summary(rows);arm['strength']=strength(rows);arm['joints']=joint_summary(rows)
+        identity=external_identity(rows)
+        (root/name/'f56-identity.json').write_text(json.dumps(identity,indent=2)+'\n')
+        arm['F56_sums']={axis:data['sums'] for axis,data in identity['axes'].items()}
         arm.update({'motor_stiffness':stiffness,'motor_gain':gain,'angular_impulse_limit_rad_s':bound})
         arms[name]=arm;raw[name]=rows
         compact={k:arm[k] for k in ('drift_px_s','rectified_friction_impulse_per_tick','mean_thrust_force_n',
             'full_window_residual_x_y','F56_complete_passed','strength','joints')}
+        compact['momentum_delta_x']=arm['F56_sums']['x']['delta']
+        compact['damping_impulse_x']=arm['F56_sums']['x']['damping']
+        compact['mean_completed_vx_wu_s']=arm['mean_completed_vx_wu_s']
         print('M1 R20 arm: '+json.dumps({'arm':name,**compact},separators=(',',':')))
     comparisons={name:compare(raw['reference'],rows) for name,rows in raw.items() if name!='reference'}
     for name,c in comparisons.items():
@@ -150,6 +161,7 @@ def report(root,stage):
     result={'stage':stage,'arms':arms,'comparisons':{k:{a:b for a,b in v.items() if a!='per_tick'} for k,v in comparisons.items()},
         'F60_R19_intervention':'VOID, not falsifying' if void else 'Observed delivered-impulse differences; report, no automatic spring attribution',
         'R19_spring_source_conclusion':'WITHDRAWN by owner R20; historical numbers retained',
+        'F60_scope':'late-window applied impulse comparison; full startup differences retained, not literal identical full trajectories',
         'zero_drive_gate':gate,'bound_sweep':'NOT RUN: ordered after gain0 collapse' if stage=='zero-drive' else 'MEASURED',
         'A':'WITHDRAWN by owner F62; NOT RUN','residual_point5deg_arm':'NOT RUN unless two ordered diagnostics leave question open',
         'runtime_rows_passed':8,'runtime_rows_total':18,'baseline':'UNCHANGED; no regeneration','Phase3':'NOT ENTERED'}

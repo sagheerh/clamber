@@ -8,18 +8,99 @@ Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R20 — R19 inference withdrawn; delivered-impulse diagnostics pending
+### Current R20 — exact zero drive still walks; ordered STOP before bound sweep
 
-F60 owner correction accepted: prior motor-stiffness arm is VOID/uninformative,
-NOT spring-source falsification under identical saturated applied impulses.
-Historical numerical observations retained below, inference superseded. F61
-motor strength under the global cap is RECORD ONLY, no values changed. F62 owner
-WITHDRAWS A; do not implement it. F63 adds raw requested/bound/applied and
-saturated_ticks/300 for each arm plus per-tick trajectory comparisons. Angular
-impulse audit includes both cumulative constraint cap and absolute-speed clamp.
-Ordered gain0 and F56 first; STOP before bound6/1 if zero-drive drift does not
-collapse. Measurement PENDING, no numerical outcome claimed. Runtime8/18 and
-attempt1 same-build success retained, no baseline regeneration/Phase3.
+Measured source **8e0b907**, [M1 CI40868433005](https://github.com/sagheerh/clamber/actions/runs/40868433005),
+saturation job123429003201. Reviewer R20 read via git show ONLY; no reviewer
+artifact copied/merged. F60: prior R19 spring-source conclusion WITHDRAWN; the
+late-window motor-stiffness intervention is VOID/uninformative, not falsifying.
+F62: owner WITHDRAWS A, not a conditional setup-remedy authorization.
+
+**F63 teeth, last300 ticks5700–5999 of6000/arm**. Impulse is angular
+mass*WU^2/s; bound×inverse-inertia-sum is relative angular-speed increment rad/s.
+Original damping .02/55, stiffness2400 (except historical stiffness0 record),
+materials/geometry/sampling unchanged; gain0 changes ONLY duplicate diagnostic
+gain. Requested/bound/applied independently reconstructed from raw PRE-DRIVE
+endpoint positions/velocities/inverse masses. Both cumulative constraint bound
+and absolute-body-speed clamp audited on EVERY tick. All6000 observer-on/off
+physical snapshots identical in every arm. Keep mean_clamped_total_torque.
+
+| last300 measurement | reference2400/gain.7 | historical stiffness0/gain.7 | gain0 |
+|---|---:|---:|---:|
+| drift px/s@150 | 3.9345242550809765 | 3.9345242550808814 | 5.387448117922983 |
+| rectified friction impulse/tick mass*WU/s | .0008297296048130507 | .0008297296048130529 | .0011205429121987627 |
+| mean thrust force N | .04978377628878304 | .04978377628878317 | .06723257473192576 |
+| mean requested angular impulse | -21 | -1.8121243561338403 | 0 |
+| mean actual bound | .04119350481568311 | .04119350481568311 | .04124893340210059 |
+| mean applied angular impulse | -.04119350481568311 | -.04119350481568311 | 0 |
+| mean clamped total drive torque | -1260 | -108.72746136803042 | 0 |
+| saturated ticks/300 | 300/300 | 300/300 | 0/300 |
+| body-speed-limited ticks/300 | 0/300 | 0/300 | 0/300 |
+| complete F56 residual x | -6.453171330633722e-16 | -2.914335439641036e-16 | 1.734723475976807e-17 |
+| complete F56 residual y | 3.544387006115812e-14 | 3.1780134079895106e-14 | 3.0281332996651145e-14 |
+
+**Gain0 requested AND applied impulses exactly0 on ALL6000 ticks**, not inferred
+from a torque term or mean. This intervention removes actual drive, changes
+applied impulse on300/300 late ticks, and changes trajectories. Drift INCREASES
+to5.387448117922983 instead of collapsing toward free-hinge.08403595917823123.
+**STOP per ORDER1.** Bound6/1 and optional.5degree-residual diagnostic NOT RUN;
+A withdrawn/NOT RUN, no calibration/target/snapshot/baseline change or Phase3.
+Nonzero MOTOR drive is not necessary for motion in this arm. Remaining contact/
+limit/constraint paths are candidates, not a newly proven attribution to a row.
+Do not tune damping or repair F61 based on this observation.
+
+F60 actual late requested/bound ratios: reference509.7898575451301 mean,
+stiffness0 43.98614805264008 mean; both300/300 at constraint bound. Applied
+pair differences max3.3306690738754696e-16, none above existing1e-12 precision.
+VOID for the late-window spring-source inference, NOT literal identical full
+trajectories: late endpoint position difference.0037990209470555314WU and
+velocity difference4.440892098500626e-15WU/s are published, full startup/each-tick
+differences retained. Gain0 late applied difference mean_abs.04119350481568311,
+endpoint position difference max.9682391801293719WU, velocity.32983720436516883.
+
+**F61 record-only, separate nominal vs actual geometry.** Committed preset/resource:
+head mass.77,length.35,inverse-inertia42.40657301881792; motor.48,.30,
+92.59259259259261. Sum134.99916561141055; nominal-rest bound.044444719141974176,
+deliverable torque2.666683148518451 vs authored1260 =.21164151972368656percent,
+overshoot472.4970796399368. Late ACTUAL bound is smaller(.04119) because actual
+endpoint extent, not authored rest length, drives inertia. Torque knobs are
+masked in this saturated regime; global cap/current inertia controls delivery.
+No claim of equal angular impulse on all joints/presets or all operating regimes.
+No tuning changed. F62 nominal spring-only residual.0011111179785493544rad
+(about.064degrees) recorded as owner's arithmetic, not an implemented dead band
+or a fixed-point proof including damping. A is WITHDRAWN, not labelled failed.
+
+F55/F58/F59 original reference story preserved together in R19 evidence below:
+22.5px/s allowance; .1147percent-weight rectified thrust balanced by2percent
+damping; completed4.01482 vs positional3.93452px/s; positive-velocity6-count
+rocking cycle, settled=false/null; AC-201 zero-input zero-net-motion AND sleep
+within4s, no relaxation. Do not silently assume the new gain0 arm is the SAME
+stationary-momentum cycle. F57 RNG injection/snapshot/restore/hash NOT physics use.
+
+Regression @8e0b907: static167Python; public9053/0 plus frame30 308/0/frame144
+1446/0. Full summary EXACTLY equals accepted Phase2/sourcee193 including strict
+baseline MATCH, triple31,131,584-byte streams/hashes/bitflip/stall/startup601 vs600.
+Accepted attempt1 same-build SUCCESS retained; cross-architecture0. Components
+931mechanics/4897sleep/381math/237contact/136analytic/80load. M1 RED existing F47
+plus gain0 no-collapse gate; other FIVE jobs SUCCESS, corrected F56 included.
+[M0 CI40868432785](https://github.com/sagheerh/clamber/actions/runs/40868432785)
+PASS516/0+Android export/alignment; original514 plus two automatic script compile
+checks, not expanded M0 functional coverage; no device timing measured.
+
+Raw saturation artifact12894668288,84,981,954B,
+`sha256:62ab6598d022df12dd85679ca541ecb21bd6034176fd73d9fa670a16f6c7332b`.
+Full three6000 traces, report, requested/applied books and per-tick reference
+trajectory files retained in CI. Complete compact annotations/metadata retrieved;
+no local ZIP inspection claimed. `.review/m1_r20_saturation_evidence.json` records
+source/arms/F61 arithmetic/counts/public summary/artifacts/STOP.
+
+**Runtime8/18, movement0.** Remaining10 unchanged/NOT RUN: AC-201/202/204,
+presets/captures,tickcost,§10.6,FA-3/4/5/6. FA-5 untouched; no acceptance-table
+upgrades. Original F56 literal record/predicate/default exit1 retained EXACTLY,
+complete form re-run on EVERY diagnostic arm within existing1e-12. Full per-arm
+F56 ledgers exported, not hidden by terminal-velocity approximations.
+**Next single milestone M1:** owner review of zero-drive persistence before any
+authorized contact/limit isolation diagnostic; no further arm/remedy run now.
 
 ### Historical R19 — motor0 thrust unchanged; inference WITHDRAWN by R20
 

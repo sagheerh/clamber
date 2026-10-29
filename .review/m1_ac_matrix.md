@@ -1,14 +1,22 @@
 # M1 acceptance matrix — scoped measured evidence, NOT milestone approval
 
-## Current R20 — 8/18 unchanged; R19 inference withdrawn, F63 measurement pending
+## Current R20 — 8/18 unchanged; exact gain0 still walks, ordered STOP
 
-Owner F60 marks R19 stiffness-only intervention VOID under saturation, not a
-spring-source falsification; historical observations remain. F61 motor authoring
-under the cap is record-only; no tuning change. Owner F62 WITHDRAWS A, not a new
-calibration authorization. F63 requires requested/bound/applied/saturation and
-per-tick trajectory differences. Gain0/F56 first; STOP before bound6/1 if zero
-drive does not collapse drift. Measurement PENDING. Baseline/accepted eight rows
-unchanged; no Phase3. Standing full momentum/internal guards retained.
+CI40868433005 @8e0b907: F63 reference/stiffness0 saturation300/300 BOTH, late
+applied means -.04119350481568311 BOTH despite requested -21/-1.8121243561338403.
+Owner F60 withdraws R19 inference; late stiffness intervention VOID, not falsifying.
+F61 capped authoring record-only, no changes. F62 owner WITHDRAWS A.
+Gain0 requested/applied EXACT0 ALL6000ticks, saturation0/300: drift5.387448117922983
+px/s, thrust.0011205429121987627/tick. No collapse, ORDER1 STOP BEFORE bound6/1,
+optional.5degree residual, remedy or Phase3. Contact/limit path not isolated yet.
+Every arm re-runs complete F56; original literal record/default exit1 retained.
+Per-tick requested/bound/applied and trajectory differences exported, not mean-
+torque inference.167Python/public9053+308+1446/components retained, full public
+summary EXACT Phase2/baseline MATCH. M0 CI40868432785 PASS516/0+Android. Existing
+F47 plus gain0 no-collapse keep M1 RED; corrected F56 job SUCCESS. Movement0,
+attempt1 same-build success/cross-arch0. Remaining10 unchanged/NOT RUN; FA-5 untouched.
+Ledger `.review/m1_r20_saturation_evidence.json`, full tables/arithmetic in PROGRESS.
+Next owner review of zero-drive persistence before any new isolation diagnostic.
 
 ## Historical R19 — 8/18 unchanged; inference WITHDRAWN by R20
 
