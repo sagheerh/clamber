@@ -9,7 +9,7 @@
 
 ## 1. Verdict
 
-**The missing cell returned the free-hinge baseline to 1.1e-14 px/s, the 2×2 is now complete, and the causal question is answered.** There is no inert-row solver defect. The drift requires *either* an applied joint impulse *or* stop projection; **each alone is sufficient, neither is necessary**, and together they partially cancel.
+**The missing cell returned the free-hinge baseline to 1.1e-14 px/s, the 2×2 is now complete, and the causal question is answered.** There is no inert-row solver defect. The drift requires *either* an applied joint impulse *or* stop projection; **each alone is sufficient, neither is necessary**, and together they **interfere partially** — the combined case sits *between* the two, not below both.
 
 | Item | Status |
 |---|---|
@@ -41,9 +41,9 @@ Read as a causal table:
 | neither mechanism | **0.08404** | 1.0× | the floor: hinge + distance + contact only |
 | drive only | 2.9500 | 35.1× | a saturated joint impulse is sufficient on its own |
 | stop only | 5.3874 | 64.1× | per-tick stop projection is sufficient on its own |
-| both | 3.9345 | 46.8× | **less than either alone** — they partially cancel |
+| both | 3.9345 | 46.8× | **between the two**: 27 % below stop-only, 33 % above drive-only — partial interference, not cancellation of both |
 
-The last row is the surprising one and it is why every single-factor prediction I made failed: the two mechanisms do not add, they **interfere**. A 3 % brake difference produced 25 % drift change (R22) because the response is set by the limit cycle's phase, not by any coefficient.
+The last row is the surprising one and it is why every single-factor prediction I made failed. The ordering is **2.95 < 3.93 < 5.39**: adding the stop to the drive *raises* drift by 33 %, while adding the drive to the stop *lowers* it by 27 %. The two mechanisms do not add, and they do **not** simply cancel either — they **interfere**, and the interaction has a sign that depends on which one you start from. A 3 % brake difference produced 25 % drift change (R22) because the response is set by the limit cycle's phase, not by any coefficient.
 
 **And critically: with both mechanisms provably off, the actuated creature reproduces the free-hinge baseline to 1.1e-14 px/s.** That is the result that matters most for trust in the solver: an `AngularJoint` that applies no impulse and projects nothing is **exactly** a coincident hinge. No hidden coupling, no plumbing leak. The baseline-return branch is supported; the inert-row defect branch is dead.
 

@@ -9,7 +9,7 @@
 
 Five rounds of measurement produced one causal statement (`.review/M1_R23_CAUSAL_CLOSURE_REVIEW.md` §3):
 
-> The Slug drifts at zero input because of **two mechanisms, each sufficient, neither necessary**: a saturated angular joint impulse, and per-tick stop projection from a gravity sag that sits past the authored 40° limit. Removing both restores the free-hinge floor **exactly** (0.08404 px/s, Δ1.1e-14). Removing either alone leaves 35–64× that floor. Together they **partially cancel** (3.93 < 2.95 and < 5.39).
+> The Slug drifts at zero input because of **two mechanisms, each sufficient, neither necessary**: a saturated angular joint impulse, and per-tick stop projection from a gravity sag that sits past the authored 40° limit. Removing both restores the free-hinge floor **exactly** (0.08404 px/s, Δ1.1e-14). Removing either alone leaves 35–64× that floor. Together they **interfere partially**: the full ordering is **2.95 < 3.93 < 5.39**, so the combined case is 27 % below stop-only but 33 % **above** drive-only. It is not below both.
 
 No torque coefficient moves that. There is no seventh experiment worth running. The remaining choices are **what the creature should be**, which is yours.
 
