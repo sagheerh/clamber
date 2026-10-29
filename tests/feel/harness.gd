@@ -37,7 +37,11 @@ static func pending_runtime(tuning: Tuning) -> Array:
 					"required_ticks": tuning.feel_static_scene_ticks,
 					"required_fields":
 					["ticks", "sleep_breaking_contacts", "contact_trace", "seed", "tuning_hash"],
-					"reason": "No static creature/contact/sleep scene implemented",
+					"reason":
+					(
+						"Components exist; full all-preset static scene "
+						+ "after motors/limits/self-contact is unexecuted"
+					),
 				}
 			)
 		)
@@ -60,7 +64,7 @@ static func pending_runtime(tuning: Tuning) -> Array:
 					"body_length_wu"
 				],
 				"reason":
-				"Needs real creature contacts, sleep and motors; no invented approximate-lurch tolerance",
+				"Sleep component exists; full motor lurch scene unexecuted, no invented lurch tolerance",
 			}
 		)
 	)
@@ -92,7 +96,7 @@ static func pending_runtime(tuning: Tuning) -> Array:
 					"gate_toggles"
 				],
 				"reason":
-				"No foot/contact response implemented; formula alone is not slip/grip evidence",
+				"Components exist; real coupled FA-5 band (two-foot Hopper) is unexecuted",
 			}
 		)
 	)

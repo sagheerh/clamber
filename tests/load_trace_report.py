@@ -181,9 +181,21 @@ def analyze(rows):
     }
 
 
+def diagnostic_summary(rows):
+    # Preserve the accepted F31 analyzer verbatim; version runtime provenance only.
+    summary = analyze(rows)
+    summary['owner_decisions'] = 'R14 A/A1 pose and positional sleep/F42 APPROVED'
+    summary['limitations'] = [
+        'R14 axis-only pose applied; transient grip is NOT sustained sole-foot support',
+        'free rotational hinges; angular limits/motors/self-response absent',
+        'awake-only diagnostic; tested positional sleep composition deliberately disabled here',
+    ]
+    return summary
+
+
 if __name__ == '__main__':
     rows = [json.loads(line) for line in Path(sys.argv[1]).read_text().splitlines()]
-    summary = analyze(rows)
+    summary = diagnostic_summary(rows)
     Path(sys.argv[2]).write_text(json.dumps(summary, indent=2) + '\n')
     _, profile = motion_profile(rows, close)
     Path(sys.argv[2]).with_name('slug-motion-profile.jsonl').write_text(
@@ -211,5 +223,5 @@ if __name__ == '__main__':
           'N measured=' + str(summary['peak_foot_measured_n']) + 'N (all600), steady measured=' + str(summary['steady_peak_foot_measured_n']) +
           'N; N1 gate=17.36N')
     if not summary['foot_load_path_exercised']:
-        print('M1 Slug F30 BLOCKED: genuine foot load path not exercised; owner pose decision pending')
+        print('M1 Slug F30 BLOCKED: authored R14 A/A1 applied, but genuine foot load path not exercised')
     raise SystemExit(0 if good and summary['momentum_ledger_verified'] and motion['position_ledger_and_speed_identities_verified'] and summary['foot_load_path_exercised'] else 1)

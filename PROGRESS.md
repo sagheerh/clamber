@@ -974,3 +974,11 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
   larger/reversed drift with SAME support set is not the owner's identical-old-
   drift/DIFFERENT-geometry trap. No new approval inferred for a friction fix.
   All full runtime gates NOT RUN; complete-creature determinism attempts0.
+
+
+R14 provenance follow-up: accepted F31 analyzer function and old controls remain
+verbatim; CLI diagnostic_summary updates only runtime owner-decision/limitation
+metadata so published reports no longer claim pose/asleep decisions are pending
+or that the separate sleep component is absent. Awake diagnostic behavior is
+unchanged. New source/provenance control brings Python total97. Pending feel plans
+retain NOT RUN, with reasons updated to acknowledge existing components.

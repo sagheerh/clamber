@@ -38,6 +38,14 @@ class R14OwnerTests(unittest.TestCase):
             for p in d['parts']:p.pop('axis')
             self.assertEqual(hashlib.sha256(json.dumps(d,sort_keys=True).encode()).hexdigest(),expected)
 
+    def test_runtime_report_provenance_not_stale_pending_owner_decisions(self):
+        from load_trace_report import diagnostic_summary
+        r=diagnostic_summary(contact_fixture())
+        self.assertIn('APPROVED',r['owner_decisions'])
+        self.assertNotIn('PENDING',' '.join(r['limitations']))
+        self.assertFalse(r['foot_load_path_exercised'])
+        self.assertTrue(r['momentum_ledger_verified'])
+
     def _case(self,root,pose):
         folder=Path(root)/pose;folder.mkdir()
         rows=contact_fixture()

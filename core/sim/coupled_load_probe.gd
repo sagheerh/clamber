@@ -1,7 +1,7 @@
 class_name CoupledLoadProbe
 extends RefCounted
 ## Engineering load-path probe, NOT public Sim, angular-limit/motor/self-contact solver.
-## Awake integration throughout: sleep optimization is explicitly not implemented.
+## Awake-only baseline; positional sleep composition lives in SleepingLoadProbe.
 const TUNING = preload("res://core/tuning.tres")
 var bodies: Array[CapsuleBody] = []
 ## Diagnostic switch ONLY; observer-off/on physical states are compared by harness.
