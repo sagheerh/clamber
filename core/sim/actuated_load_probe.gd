@@ -159,6 +159,13 @@ func _extra_velocities() -> Error:
 			"lower_rad": joint.lower,
 			"upper_rad": joint.upper,
 			"engaged": engaged,
+			# Preserve exact boundary decisions if decimal JSON rounds a value.
+			"predicate_f64_le_hex":
+			(
+				PackedFloat64Array([value.q, joint.lower, joint.upper, value.omega])
+				. to_byte_array()
+				. hex_encode()
+			),
 			"impulse_before": before,
 			"parent_positions": _point_positions(joint.parent_body),
 			"child_positions": _point_positions(joint.child_body),

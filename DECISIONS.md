@@ -1268,3 +1268,15 @@ No feel choice among widen/pose-mass/intended-stop mechanics is adopted.
 D08, D06 tutorial FA-6 fixture and D07 reference-device tickcost are queued owner
 choices, NONE blocks these two diagnostics. Phase3/coupled feel gates NOT RUN;
 accepted8/18/attempt1 same-build success/cross-arch0 retained. FA-5 untouched.
+
+
+R21 boundary-audit followup: first source0943087 wide90 removed ALL6000 positional
+and velocity stop engagement, but drift2.950043883090746; F64 necessary-stop
+prediction falsified. Bound1 measurement generated, reporting STOPPED on exact
+predicate mismatch; no bound1 number/prediction conclusion yet. Add binary64
+q/lower/upper/omega words, compare exact decoded predicate against recorded bool
+and independently reconstruct raw geometry/velocities. No comparison tolerance
+replaces a relational stop decision, no new epsilon, no physics change. Nextcommit
+rechecks default40/SHA unchanged. Publish Euclidean endpoint-phase magnitude in
+WU as well as labelled L1 sum; neither is angular radians. Rerun both arms ordered
+with complete F56 emitted into bounded annotations; no new remedy authorized.

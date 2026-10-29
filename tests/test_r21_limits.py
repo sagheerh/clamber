@@ -2,6 +2,7 @@
 """Reporter-only negative controls, not synthetic runtime qualifying loads."""
 from copy import deepcopy
 import math
+import struct
 import unittest
 from load_limit_report import audit_limits, limit_summary, turned, relative_q, predictions, LOWER, DEGREE_RADIANS
 from load_motor_report import resource
@@ -22,7 +23,8 @@ def fixture(upper_deg=40.):
         'parent_before':p,'child_before':c,'parent_after':pa,'child_after':ca}
     q=relative_q(pa,ca,0.)
     velocity=[{'joint':0,'sequence':i,'parent_part':0,'child_part':1,'q_rad':q,'omega_rad_s':0.,
-        'lower_rad':LOWER,'upper_rad':upper,'engaged':False,'impulse_before':0.,'impulse_after':0.,'impulse':0.,
+        'lower_rad':LOWER,'upper_rad':upper,'engaged':False,
+        'predicate_f64_le_hex':struct.pack('<4d',q,LOWER,upper,0.).hex(),'impulse_before':0.,'impulse_after':0.,'impulse':0.,
         'parent_positions':pa,'child_positions':ca,'parent_velocities':[0.]*4,'child_velocities':[0.]*4}
         for i in range(int(resource('physics_velocity_passes')))]
     return {'feet':[],'other_bodies':[body(0,p,pa),body(1,c,ca)],'angular_position_events':[projection],
@@ -39,7 +41,7 @@ class LimitControls(unittest.TestCase):
     def test_wide_zero_error_means_exactly_no_projection(self):
         s=limit_summary([fixture(90.)]*300)
         self.assertEqual(s['limit_engaged_ticks'],0)
-        for k in ('requested_abs_projection_rad_sum','angular_phase_net_l1_wu_sum','angular_projection_path_l1_wu_sum'):
+        for k in ('requested_abs_projection_rad_sum','angular_phase_net_l1_wu_sum','angular_phase_endpoint_magnitude_wu_sum','angular_projection_path_l1_wu_sum'):
             self.assertEqual(s[k],0.)
         self.assertTrue(s['limit_block_exact_zero_all6000'])
     def test_forged_error_phase_points_or_missing_iteration_rejected(self):
@@ -54,9 +56,22 @@ class LimitControls(unittest.TestCase):
         r=fixture();e=r['angular_limit_events'][0];p=e['child_positions'];x=p[2]-p[0];y=p[3]-p[1]
         e['omega_rad_s']=.5;e['q_rad']=40*DEGREE_RADIANS;e['engaged']=True
         e['child_velocities']=[.25*y,-.25*x,-.25*y,.25*x]
+        e['predicate_f64_le_hex']=struct.pack('<4d',e['q_rad'],LOWER,e['upper_rad'],.5).hex()
         a=audit_limits(r);self.assertTrue(a['velocity_engaged']);self.assertFalse(a['nonzero_block'])
         e['engaged']=False
         with self.assertRaises(ValueError):audit_limits(r)
+    def test_binary_predicate_does_not_replace_a_boundary_with_an_epsilon(self):
+        r=fixture();e=r['angular_limit_events'][0];p=e['child_positions'];x=p[2]-p[0];y=p[3]-p[1]
+        e['q_rad']=e['upper_rad'];e['omega_rad_s']=.5
+        e['child_velocities']=[.25*y,-.25*x,-.25*y,.25*x]
+        q_exact=math.nextafter(e['upper_rad'],-math.inf)
+        e['predicate_f64_le_hex']=struct.pack('<4d',q_exact,LOWER,e['upper_rad'],.5).hex()
+        self.assertFalse(e['engaged'])
+        a=audit_limits(r);self.assertFalse(a['velocity_engaged'])
+        self.assertEqual(a['decimal_binary_predicate_disagreements'],1)
+        e['engaged']=True
+        with self.assertRaises(ValueError):audit_limits(r)
+
     def test_forged_drive_q_and_limit_band_rejected(self):
         for mode in ('q','band'):
             r=fixture()

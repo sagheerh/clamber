@@ -21,6 +21,18 @@ D08/D06/D07 queued, not diagnostic blockers. Actual results PENDING, runtime8/18
 unchanged, no baseline regeneration or Phase3. See DECISIONS for q0 legality,
 zero-input target0 versus held target, and per-stage measurement definitions.
 
+R21 first source0943087 / M140875933008: wide90 eliminates all stop effects
+all6000 yet drift2.950043883090746, not owner.08-.5. F64 necessary-stop prediction
+falsified; NOT permission for a new causal story/remedy. Referenceper-pass angular
+correction sums.07042523254053407rad/tick, max pre-position error.06331083047340813,
+not drive-time max.1500058532205718rad. Bound1 raw trace generated but report
+failed its EXACT boundary predicate audit; no bound1 result quoted yet. Adding
+raw IEEE754 binary64 predicate words (not an epsilon or trusted boolean) to
+distinguish decimal-rounding ambiguity from an actual audit defect. Need rerun.
+Original40 resourceSHA remains3a32dd3d2d719ed28220ed531fee05c8d2a799140d3f06e3aeed4d28d6e6f60c,
+reverified nextcommit;90 was ONLY a now-exited duplicate. M040875932974 SUCCESS516
+and Android, five other M1 jobs success except unchanged F47 components.
+
 ### Historical R20 — exact zero drive still walks; inference withdrawn by owner R21
 
 Measured source **8e0b907**, [M1 CI40868433005](https://github.com/sagheerh/clamber/actions/runs/40868433005),
