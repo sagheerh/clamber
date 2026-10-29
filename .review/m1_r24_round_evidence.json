@@ -1,0 +1,713 @@
+{
+  "source_head": "8110688945d78b019d90594e85f5f0fa8e7ae9ff",
+  "m1_push_run": 40890281324,
+  "m1_pr_run": 40890293594,
+  "round_job": 123504891124,
+  "round_conclusion": "success; exactlyA3+B1, COLDarchive read; STOP for owner P-A/P-B",
+  "new_raw_ticks": 24000,
+  "observer_equal_ticks_per_cell": 6000,
+  "F56_disjoint300_windows_per_cell": 20,
+  "F56_axis_vector_order": [
+    "delta",
+    "normal",
+    "friction",
+    "damping",
+    "gravity",
+    "clamp",
+    "internal_drive",
+    "internal_velocity",
+    "full_residual_from_sides"
+  ],
+  "new_raw_artifact": {
+    "id": 12904553635,
+    "node_id": "MDg6QXJ0aWZhY3QxMjkwNDU1MzYzNQ==",
+    "name": "m1-r24-round-40890281324",
+    "size_in_bytes": 112920936,
+    "url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12904553635",
+    "archive_download_url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12904553635/zip",
+    "expired": false,
+    "digest": "sha256:af7e60c4d0b6e3dfffb0f526002d2af221a9ecc9ed9b592ac2cadc5f8db39d3b",
+    "created_at": "2026-10-29T14:23:03Z",
+    "updated_at": "2026-10-29T14:23:03Z",
+    "expires_at": "2026-11-05T14:22:48Z",
+    "workflow_run": {
+      "id": 40890281324,
+      "repository_id": 1436504043,
+      "head_repository_id": 1436504043,
+      "head_branch": "arena/4cd0a587-clamber",
+      "head_sha": "8110688945d78b019d90594e85f5f0fa8e7ae9ff"
+    }
+  },
+  "old_source_head": "573a1fb7aa43059b4c51f995a4fe3d5998b0ace1",
+  "old_raw_artifact_id": 12901654637,
+  "old_raw_artifact_digest": "sha256:3b82aac1ee32484c89e85503a7b4c86b0518a58ed72f87ddcee5ee57341443d5",
+  "A": {
+    "0.15": {
+      "candidate": "c40",
+      "candidate_parameters": {
+        "motors_joint_stiffness": 40.0,
+        "motors_max_torque": 12.0,
+        "physics_max_constraint_angular_impulse_rad_s": 30.0
+      },
+      "derived_motor_damping": 1.0886654722423434,
+      "all6000_observer_on_off_equal": true,
+      "static_slip_wu_s": 0.15,
+      "drift_px_s": 12.910423565431365,
+      "mean_thrust_force_n": 0.16335637980753104,
+      "strength": {
+        "requested": {
+          "mean": -0.044435404255268936,
+          "mean_abs": 0.044435404255268936,
+          "min": -0.04443540425527455,
+          "max": -0.04443540425526553
+        },
+        "bound": {
+          "mean": 0.18864020539110127,
+          "mean_abs": 0.18864020539110127,
+          "min": 0.1886402053911004,
+          "max": 0.18864020539110263
+        },
+        "applied": {
+          "mean": -0.044435404255268936,
+          "mean_abs": 0.044435404255268936,
+          "min": -0.04443540425527455,
+          "max": -0.04443540425526553
+        },
+        "requested_over_bound": {
+          "mean": 0.23555638186007344,
+          "mean_abs": 0.23555638186007344,
+          "min": 0.23555638186005534,
+          "max": 0.23555638186010233
+        },
+        "saturated_ticks": 0,
+        "window_ticks": 300,
+        "body_speed_limited_ticks": 0,
+        "upstream_torque_clipped_ticks": 0,
+        "holding_headroom_observed_all300": true,
+        "all6000_requested_exact_zero": false,
+        "all6000_applied_exact_zero": false
+      },
+      "F56_complete_passed": true,
+      "F56_axis_sums": {
+        "x": [
+          2.9976021664879227e-15,
+          0.0,
+          0.8167818990376552,
+          -0.8167818990376529,
+          0.0,
+          0.0,
+          0.0,
+          -6.106226635438361e-16,
+          1.27675647831893e-15
+        ],
+        "y": [
+          -1.942890293094024e-14,
+          215.786773464278,
+          0.0,
+          1.213226535721965,
+          -217.00000000000003,
+          0.0,
+          -1.3877787807814457e-15,
+          2.886579864025407e-15,
+          2.9032332093947844e-14
+        ]
+      },
+      "F56_all6000_per_tick_and20windows_verified": true,
+      "F56_all6000_max_abs_per_tick_full_residual": 8.187894806610529e-16,
+      "F56_all6000_max_abs_window_residual": 5.19306819768417e-14,
+      "F56_literal_vector_passed": false,
+      "implied_allowance_if_proportional_to_this_point": 0.003485555665306822,
+      "implied_allowance_label": "UNMEASURED extrapolation under hypothesis drift proportional through origin; NOT adopted/tested target",
+      "limits": {
+        "limit_engaged_ticks": 0,
+        "window_ticks": 300,
+        "position_limit_engaged_ticks": 0,
+        "velocity_limit_engaged_ticks": 0,
+        "drive_outside_band_ticks": 0,
+        "drive_q_rad_range": [
+          0.032108711886437824,
+          0.03210871188645159
+        ],
+        "max_drive_time_violation_rad": 0.0,
+        "max_position_stage_violation_rad": 0.0,
+        "max_any_sample_violation_rad": 0.0,
+        "requested_abs_projection_rad_sum": 0.0,
+        "requested_abs_projection_rad_per_tick": 0.0,
+        "observed_abs_projection_rad_sum": 0.0,
+        "angular_phase_endpoint_magnitude_wu_sum": 0.0,
+        "angular_phase_net_l1_wu_sum": 0.0,
+        "angular_projection_path_l1_wu_sum": 0.0,
+        "max_abs_limit_block_impulse": 0.0,
+        "limit_block_exact_zero_last300": true,
+        "limit_block_exact_zero_all6000": true,
+        "all6000_limit_engaged_ticks": 0,
+        "last300_decimal_binary_predicate_disagreements": 0,
+        "all6000_decimal_binary_predicate_disagreements": 0,
+        "definition": "engaged tick = any nonzero positional stop error OR exact binary64 velocity predicate; phase ledger WU, rotation rad separately verified"
+      },
+      "F52_observer": {
+        "first_eligible_tick": null,
+        "eligible_within4s": false,
+        "scope": "counterfactual F52 eligibility on AWAKE trace, NO parking; NOT AC201",
+        "derived_drift_line_px_s": 0.3
+      }
+    },
+    "0.015": {
+      "candidate": "c40",
+      "candidate_parameters": {
+        "motors_joint_stiffness": 40.0,
+        "motors_max_torque": 12.0,
+        "physics_max_constraint_angular_impulse_rad_s": 30.0
+      },
+      "derived_motor_damping": 1.0886654722423434,
+      "all6000_observer_on_off_equal": true,
+      "static_slip_wu_s": 0.015,
+      "drift_px_s": 13.267710768853306,
+      "mean_thrust_force_n": 0.16787715666705455,
+      "strength": {
+        "requested": {
+          "mean": -0.04467766785351145,
+          "mean_abs": 0.04467766785351145,
+          "min": -0.04467766785351914,
+          "max": -0.04467766785350662
+        },
+        "bound": {
+          "mean": 0.18870057068143958,
+          "mean_abs": 0.18870057068143958,
+          "min": 0.1887005706814381,
+          "max": 0.1887005706814406
+        },
+        "applied": {
+          "mean": -0.04467766785351145,
+          "mean_abs": 0.04467766785351145,
+          "min": -0.04467766785351914,
+          "max": -0.04467766785350662
+        },
+        "requested_over_bound": {
+          "mean": 0.2367648793650729,
+          "mean_abs": 0.2367648793650729,
+          "min": 0.23676487936504775,
+          "max": 0.23676487936511412
+        },
+        "saturated_ticks": 0,
+        "window_ticks": 300,
+        "body_speed_limited_ticks": 0,
+        "upstream_torque_clipped_ticks": 0,
+        "holding_headroom_observed_all300": true,
+        "all6000_requested_exact_zero": false,
+        "all6000_applied_exact_zero": false
+      },
+      "F56_complete_passed": true,
+      "F56_axis_sums": {
+        "x": [
+          2.220446049250313e-16,
+          0.0,
+          0.8393857833352728,
+          -0.8393857833352721,
+          0.0,
+          0.0,
+          -2.220446049250313e-16,
+          -3.3306690738754696e-16,
+          1.1102230246251565e-16
+        ],
+        "y": [
+          -3.219646771412954e-15,
+          215.79200319537154,
+          0.0,
+          1.2079968046284608,
+          -217.00000000000003,
+          0.0,
+          8.881784197001252e-16,
+          -1.6819878823071122e-14,
+          4.5130565951012613e-14
+        ]
+      },
+      "F56_all6000_per_tick_and20windows_verified": true,
+      "F56_all6000_max_abs_per_tick_full_residual": 1.2698175844150228e-15,
+      "F56_all6000_max_abs_window_residual": 6.96942503708442e-14,
+      "F56_literal_vector_passed": false,
+      "implied_allowance_if_proportional_to_this_point": 0.0003391692868798438,
+      "implied_allowance_label": "UNMEASURED extrapolation under hypothesis drift proportional through origin; NOT adopted/tested target",
+      "limits": {
+        "limit_engaged_ticks": 0,
+        "window_ticks": 300,
+        "position_limit_engaged_ticks": 0,
+        "velocity_limit_engaged_ticks": 0,
+        "drive_outside_band_ticks": 0,
+        "drive_q_rad_range": [
+          0.0320625104654888,
+          0.032062510465504346
+        ],
+        "max_drive_time_violation_rad": 0.0,
+        "max_position_stage_violation_rad": 0.0,
+        "max_any_sample_violation_rad": 0.0,
+        "requested_abs_projection_rad_sum": 0.0,
+        "requested_abs_projection_rad_per_tick": 0.0,
+        "observed_abs_projection_rad_sum": 0.0,
+        "angular_phase_endpoint_magnitude_wu_sum": 0.0,
+        "angular_phase_net_l1_wu_sum": 0.0,
+        "angular_projection_path_l1_wu_sum": 0.0,
+        "max_abs_limit_block_impulse": 0.0,
+        "limit_block_exact_zero_last300": true,
+        "limit_block_exact_zero_all6000": true,
+        "all6000_limit_engaged_ticks": 0,
+        "last300_decimal_binary_predicate_disagreements": 0,
+        "all6000_decimal_binary_predicate_disagreements": 0,
+        "definition": "engaged tick = any nonzero positional stop error OR exact binary64 velocity predicate; phase ledger WU, rotation rad separately verified"
+      },
+      "F52_observer": {
+        "first_eligible_tick": null,
+        "eligible_within4s": false,
+        "scope": "counterfactual F52 eligibility on AWAKE trace, NO parking; NOT AC201",
+        "derived_drift_line_px_s": 0.3
+      }
+    },
+    "0.0015": {
+      "candidate": "c40",
+      "candidate_parameters": {
+        "motors_joint_stiffness": 40.0,
+        "motors_max_torque": 12.0,
+        "physics_max_constraint_angular_impulse_rad_s": 30.0
+      },
+      "derived_motor_damping": 1.0886654722423434,
+      "all6000_observer_on_off_equal": true,
+      "static_slip_wu_s": 0.0015,
+      "drift_px_s": 13.240328070505567,
+      "mean_thrust_force_n": 0.16753068170845398,
+      "strength": {
+        "requested": {
+          "mean": -0.044686085076113706,
+          "mean_abs": 0.044686085076113706,
+          "min": -0.04468608507611534,
+          "max": -0.04468608507611294
+        },
+        "bound": {
+          "mean": 0.18869954734418776,
+          "mean_abs": 0.18869954734418776,
+          "min": 0.18869954734418726,
+          "max": 0.18869954734418817
+        },
+        "applied": {
+          "mean": -0.044686085076113706,
+          "mean_abs": 0.044686085076113706,
+          "min": -0.04468608507611534,
+          "max": -0.04468608507611294
+        },
+        "requested_over_bound": {
+          "mean": 0.2368107698457079,
+          "mean_abs": 0.2368107698457079,
+          "min": 0.23681076984570354,
+          "max": 0.23681076984571717
+        },
+        "saturated_ticks": 0,
+        "window_ticks": 300,
+        "body_speed_limited_ticks": 0,
+        "upstream_torque_clipped_ticks": 0,
+        "holding_headroom_observed_all300": true,
+        "all6000_requested_exact_zero": false,
+        "all6000_applied_exact_zero": false
+      },
+      "F56_complete_passed": true,
+      "F56_axis_sums": {
+        "x": [
+          3.608224830031759e-16,
+          0.0,
+          0.8376534085422698,
+          -0.8376534085422701,
+          0.0,
+          0.0,
+          6.106226635438361e-16,
+          -3.191891195797325e-15,
+          3.2751579226442118e-15
+        ],
+        "y": [
+          -8.326672684688674e-17,
+          215.792076487101,
+          0.0,
+          1.2079235128989743,
+          -217.00000000000003,
+          0.0,
+          -3.608224830031759e-16,
+          1.0852430065710905e-14,
+          3.0059288391726113e-14
+        ]
+      },
+      "F56_all6000_per_tick_and20windows_verified": true,
+      "F56_all6000_max_abs_per_tick_full_residual": 1.1657341758564144e-15,
+      "F56_all6000_max_abs_window_residual": 4.055089597443384e-14,
+      "F56_literal_vector_passed": false,
+      "implied_allowance_if_proportional_to_this_point": 3.398707325103442e-05,
+      "implied_allowance_label": "UNMEASURED extrapolation under hypothesis drift proportional through origin; NOT adopted/tested target",
+      "limits": {
+        "limit_engaged_ticks": 0,
+        "window_ticks": 300,
+        "position_limit_engaged_ticks": 0,
+        "velocity_limit_engaged_ticks": 0,
+        "drive_outside_band_ticks": 0,
+        "drive_q_rad_range": [
+          0.03205799239051865,
+          0.03205799239052309
+        ],
+        "max_drive_time_violation_rad": 0.0,
+        "max_position_stage_violation_rad": 0.0,
+        "max_any_sample_violation_rad": 0.0,
+        "requested_abs_projection_rad_sum": 0.0,
+        "requested_abs_projection_rad_per_tick": 0.0,
+        "observed_abs_projection_rad_sum": 0.0,
+        "angular_phase_endpoint_magnitude_wu_sum": 0.0,
+        "angular_phase_net_l1_wu_sum": 0.0,
+        "angular_projection_path_l1_wu_sum": 0.0,
+        "max_abs_limit_block_impulse": 0.0,
+        "limit_block_exact_zero_last300": true,
+        "limit_block_exact_zero_all6000": true,
+        "all6000_limit_engaged_ticks": 0,
+        "last300_decimal_binary_predicate_disagreements": 0,
+        "all6000_decimal_binary_predicate_disagreements": 0,
+        "definition": "engaged tick = any nonzero positional stop error OR exact binary64 velocity predicate; phase ledger WU, rotation rad separately verified"
+      },
+      "F52_observer": {
+        "first_eligible_tick": null,
+        "eligible_within4s": false,
+        "scope": "counterfactual F52 eligibility on AWAKE trace, NO parking; NOT AC201",
+        "derived_drift_line_px_s": 0.3
+      }
+    }
+  },
+  "B": {
+    "committed_settings": {
+      "diagnostic_d09_candidate": "",
+      "diagnostic_d09_lurch": true,
+      "diagnostic_motor_stiffness": 2400.0,
+      "diagnostic_motor_damping": 55.0,
+      "diagnostic_motor_max_torque": 1800.0,
+      "diagnostic_angular_impulse_limit_rad_s": 6.0,
+      "diagnostic_static_slip_wu_s": 0.15,
+      "diagnostic_motor_limit_max_deg": 40.0,
+      "diagnostic_motor_limit_min_deg": -140.0,
+      "diagnostic_linear_damping": 0.02,
+      "diagnostic_passive_stiffness": 900.0,
+      "motor_gain": 0.7,
+      "diagnostic_pose": "after",
+      "diagnostic_spawn_lift_wu": 0.0
+    },
+    "all6000_observer_on_off_equal": true,
+    "protocol": "SAME proposed95s released /1sL /4srelease; NOT formal FA4",
+    "body_length_definition": "sum initial actual capsule axes, all3parts; not AABB width",
+    "body_chain_length_wu": 0.8999999999999999,
+    "held_displacement_xy_wu": [
+      0.02623016170054049,
+      1.6653345369377348e-16
+    ],
+    "held_horizontal_displacement_body_lengths": 0.029144624111711658,
+    "held_com_displacement_norm_wu": 0.02623016170054049,
+    "end_release_displacement_xy_wu": [
+      0.1311508085026989,
+      0.0
+    ],
+    "held_torque": {
+      "mean": -1260.0,
+      "mean_abs": 1260.0,
+      "min": -1260.0,
+      "max": -1260.0
+    },
+    "held_requested_over_bound": {
+      "mean": 509.78985754513013,
+      "mean_abs": 509.78985754513013,
+      "min": 509.12528876867077,
+      "max": 510.9121414265931
+    },
+    "held_saturated_ticks": 60,
+    "F56_complete_passed": true,
+    "F56_axis_sums": {
+      "x": [
+        -4.163336342344337e-16,
+        0.0,
+        0.24891888144391522,
+        -0.24891888144391586,
+        0.0,
+        0.0,
+        -1.249000902703301e-16,
+        9.922618282587337e-16,
+        -6.453171330633722e-16
+      ],
+      "y": [
+        1.4432899320127035e-15,
+        215.78345997892384,
+        0.0,
+        1.2165400210761605,
+        -217.00000000000003,
+        0.0,
+        -1.942890293094024e-16,
+        -9.825473767932635e-15,
+        3.544387006115812e-14
+      ]
+    },
+    "F56_all6000_per_tick_and20windows_verified": true,
+    "F56_all6000_max_abs_per_tick_full_residual": 1.887379141862766e-15,
+    "F56_all6000_max_abs_window_residual": 3.7914116290949096e-14,
+    "F56_literal_vector_passed": false,
+    "limits": {
+      "limit_engaged_ticks": 300,
+      "window_ticks": 300,
+      "position_limit_engaged_ticks": 300,
+      "velocity_limit_engaged_ticks": 300,
+      "drive_outside_band_ticks": 300,
+      "drive_q_rad_range": [
+        0.8388999929108725,
+        0.8481375540183036
+      ],
+      "max_drive_time_violation_rad": 0.1500058532205718,
+      "max_position_stage_violation_rad": 0.06331083047340813,
+      "max_any_sample_violation_rad": 0.1500058532205718,
+      "requested_abs_projection_rad_sum": 21.12756976216022,
+      "requested_abs_projection_rad_per_tick": 0.07042523254053407,
+      "observed_abs_projection_rad_sum": 21.127569762160093,
+      "angular_phase_endpoint_magnitude_wu_sum": 6.637221585009945,
+      "angular_phase_net_l1_wu_sum": 8.83565758768492,
+      "angular_projection_path_l1_wu_sum": 8.83565758768492,
+      "max_abs_limit_block_impulse": 0.00010279054374075919,
+      "limit_block_exact_zero_last300": false,
+      "limit_block_exact_zero_all6000": false,
+      "all6000_limit_engaged_ticks": 5980,
+      "last300_decimal_binary_predicate_disagreements": 0,
+      "all6000_decimal_binary_predicate_disagreements": 0,
+      "definition": "engaged tick = any nonzero positional stop error OR exact binary64 velocity predicate; phase ledger WU, rotation rad separately verified"
+    }
+  },
+  "C": {
+    "c40": {
+      "candidate": "c40",
+      "source": "OLD573a1fb/artifact12901654637, NO new k study",
+      "last300_com_vx_range_wu_s": [
+        0.08782601064920688,
+        0.08782601064921149
+      ],
+      "last300_drive_q_range_rad": [
+        0.032108711886437824,
+        0.03210871188645159
+      ],
+      "between_ticks_drive_q_spread_rad": 1.3766765505351941e-14,
+      "between_ticks_drive_q_max_abs_adjacent_change_rad": 7.993605777301127e-15,
+      "within_tick_sampled_q_spread_rad": {
+        "mean": 0.10929299596207265,
+        "mean_abs": 0.10929299596207265,
+        "min": 0.10929299596206787,
+        "max": 0.10929299596207942
+      },
+      "drive_time_relative_omega_rad_s": {
+        "mean": 1.2692381774655277,
+        "mean_abs": 1.2692381774655277,
+        "min": 1.2692381774653279,
+        "max": 1.2692381774655785
+      },
+      "all6000_limit_engaged_ticks": 0,
+      "all6000_projection_moved_ticks": 0,
+      "all6000_nonzero_limit_block_ticks": 0,
+      "sample_definition": "drive; after integration reconstructed from raw start+integration phase; pre-angular per-pass; velocity-limit samples; completed. Sampled range, NOT continuous extrema.",
+      "interpretation": "Tiny between-tick drive-q range does NOT imply a frozen within-tick joint. No phase/contact cause isolated by this postprocessing."
+    },
+    "c10": {
+      "candidate": "c10",
+      "source": "OLD573a1fb/artifact12901654637, NO new k study",
+      "last300_com_vx_range_wu_s": [
+        0.058164290952111265,
+        0.058164290952112035
+      ],
+      "last300_drive_q_range_rad": [
+        0.22316866039209327,
+        0.22316866039210037
+      ],
+      "between_ticks_drive_q_spread_rad": 7.105427357601002e-15,
+      "between_ticks_drive_q_max_abs_adjacent_change_rad": 6.217248937900877e-15,
+      "within_tick_sampled_q_spread_rad": {
+        "mean": 0.11155079619301579,
+        "mean_abs": 0.11155079619301579,
+        "min": 0.11155079619301267,
+        "max": 0.11155079619301889
+      },
+      "drive_time_relative_omega_rad_s": {
+        "mean": 1.18727917337618,
+        "mean_abs": 1.18727917337618,
+        "min": 1.1872791733761565,
+        "max": 1.1872791733761956
+      },
+      "all6000_limit_engaged_ticks": 0,
+      "all6000_projection_moved_ticks": 0,
+      "all6000_nonzero_limit_block_ticks": 0,
+      "sample_definition": "drive; after integration reconstructed from raw start+integration phase; pre-angular per-pass; velocity-limit samples; completed. Sampled range, NOT continuous extrema.",
+      "interpretation": "Tiny between-tick drive-q range does NOT imply a frozen within-tick joint. No phase/contact cause isolated by this postprocessing."
+    },
+    "c20": {
+      "candidate": "c20",
+      "source": "OLD573a1fb/artifact12901654637, NO new k study",
+      "last300_com_vx_range_wu_s": [
+        0.07809008127719534,
+        0.07809008127719887
+      ],
+      "last300_drive_q_range_rad": [
+        0.08996254195333808,
+        0.08996254195335229
+      ],
+      "between_ticks_drive_q_spread_rad": 1.4210854715202004e-14,
+      "between_ticks_drive_q_max_abs_adjacent_change_rad": 4.884981308350689e-15,
+      "within_tick_sampled_q_spread_rad": {
+        "mean": 0.11088261179679317,
+        "mean_abs": 0.11088261179679317,
+        "min": 0.11088261179678982,
+        "max": 0.11088261179679781
+      },
+      "drive_time_relative_omega_rad_s": {
+        "mean": 1.2340945681038027,
+        "mean_abs": 1.2340945681038027,
+        "min": 1.2340945681037094,
+        "max": 1.2340945681038589
+      },
+      "all6000_limit_engaged_ticks": 0,
+      "all6000_projection_moved_ticks": 0,
+      "all6000_nonzero_limit_block_ticks": 0,
+      "sample_definition": "drive; after integration reconstructed from raw start+integration phase; pre-angular per-pass; velocity-limit samples; completed. Sampled range, NOT continuous extrema.",
+      "interpretation": "Tiny between-tick drive-q range does NOT imply a frozen within-tick joint. No phase/contact cause isolated by this postprocessing."
+    }
+  },
+  "public_full_summary_exact_old_baseline_push_and_pr": true,
+  "public_summary": {
+    "attempt_started": true,
+    "checks": 9053,
+    "determinism_attempt": 1,
+    "engine": "4.7.2-stable (official)",
+    "failures": 0,
+    "falsification": {
+      "after_input": 1,
+      "baseline_digest": "d735ea5f596f9a7b9bdfea0acee9b666a4e364e670f21dba9556985b7bfd19c8",
+      "before_input": 0,
+      "bit": 1,
+      "changed_digest": "0f0f93a619d86a62f7485f3cbfcc2e0d7d19c1a76a609ab1e8e81c5a009fcf99",
+      "physical_bodies_differ_at_flip": true,
+      "tick": 0
+    },
+    "fixed_tick_hz": 60,
+    "fixture": {
+      "input": "0..59 released; alternating L/R per60 ticks thereafter",
+      "name": "Slug public Sim legal floor",
+      "seed": 305419896,
+      "spawn": "actual authored lowest surface at +.01WU; uniform diagnostic material",
+      "ticks": 600
+    },
+    "live_spring_sleep": {
+      "any_sleep": false,
+      "max_dwell_ticks": 2,
+      "scope": "F52 reachability observation, NOT AC-201/FA-4 acceptance; drift remedy pending owner",
+      "ticks": 600
+    },
+    "replay_final_digests": [
+      "d735ea5f596f9a7b9bdfea0acee9b666a4e364e670f21dba9556985b7bfd19c8",
+      "d735ea5f596f9a7b9bdfea0acee9b666a4e364e670f21dba9556985b7bfd19c8",
+      "d735ea5f596f9a7b9bdfea0acee9b666a4e364e670f21dba9556985b7bfd19c8"
+    ],
+    "replay_final_public_state_hashes": [
+      3535650661,
+      3535650661,
+      3535650661
+    ],
+    "replay_full_stream_bytes": 31131584,
+    "replay_result": {
+      "physics_digest": "f66cc342a709f38465b4b437a918137957dcf039b5fe36f9a1c0cd6ffad30fcb",
+      "scope": "physics only; score/flags not implemented",
+      "sleep": {
+        "asleep": false,
+        "dwell_start": [],
+        "last_sleep_tick": -1,
+        "last_wake_tick": -1,
+        "max_body_com_displacement_wu": 0.00042845844511043196,
+        "max_body_dwell_displacement_wu": 0.00042845844511043196,
+        "still_ticks": 0
+      },
+      "ticks": 600
+    },
+    "replay_streams_byte_equal": true,
+    "runtime_gates": {
+      "10": "MEASURED two-second stall; exact solver equality at tick3, delivery-clock difference retained",
+      "12": "MEASURED single left-bit tick0 flip, actual bodies AND final hash differ",
+      "2": "MEASURED held chunks vs fixed ticks + three-step stall/drop, actual accumulator",
+      "3": "MEASURED same/different-seed injection + canonical stream vectors; no random physics perturbation",
+      "9": "MEASURED x3 complete Slug, full tick bytes/hashes/results",
+      "11": "MEASURED real --fixed-fps30/144 callbacks;600 same ticks, streams byte-identical, physics60",
+      "13": "MEASURED committed real baseline matched, linked DECISIONS provenance"
+    },
+    "stall": {
+      "clock_hash_scope": "whole-Sim hashes include delivery clock; compare full solver+RNG at equal ticks, clock differences explicitly retained",
+      "dropped_s": 1.95,
+      "elapsed_s": 2.0,
+      "pending_s": 0.0,
+      "solver_equal_at_tick3": true,
+      "steps": 3
+    },
+    "tuning_sha256": "3a32dd3d2d719ed28220ed531fee05c8d2a799140d3f06e3aeed4d28d6e6f60c",
+    "full_stream_sha256": "05c27f020015dab2fc15ccad5cc963e5d064a8ed3247490a54e8f8ed57de1518",
+    "per_tick_digest_table_sha256": "f9b6fdce63b77143a7187cde3760d023716f066d8f0a54ab93b36dcee737483f",
+    "delivery": [
+      {
+        "actual_ticks": 601,
+        "checks": 308,
+        "compared_ticks": 600,
+        "condition": 30,
+        "failures": 0,
+        "final_accumulator": {
+          "dropped": 0.0,
+          "pending": 0.008333333333333338
+        },
+        "frames": 301,
+        "scope": "actual SceneTree frame callbacks, --fixed-fps, first600 identical released-input fixed ticks; full extra ticks retained; clock outside tick hash",
+        "stream_bytes": 3449908,
+        "tick_hz": 60,
+        "min_frame_seconds": 0.025,
+        "max_frame_seconds": 0.04166666666666666,
+        "startup_frame_seconds": 0.025,
+        "modal_frame_seconds": 0.03333333333333333
+      },
+      {
+        "actual_ticks": 600,
+        "checks": 1446,
+        "compared_ticks": 600,
+        "condition": 144,
+        "failures": 0,
+        "final_accumulator": {
+          "dropped": 0.0,
+          "pending": 0.0
+        },
+        "frames": 1439,
+        "scope": "actual SceneTree frame callbacks, --fixed-fps, first600 identical released-input fixed ticks; full extra ticks retained; clock outside tick hash",
+        "stream_bytes": 3445664,
+        "tick_hz": 60,
+        "min_frame_seconds": 0.006666666666666667,
+        "max_frame_seconds": 0.008333333333333333,
+        "startup_frame_seconds": 0.008333333333333333,
+        "modal_frame_seconds": 0.006944444444444445
+      }
+    ],
+    "delivery_stream_sha256": "a481f6691bfcb971e48dcf6a305bfb6a9019e13f07e4e769bd02998bbc8904a7",
+    "baseline_status": "MATCHED committed generated baseline"
+  },
+  "m0_push_run": 40890281543,
+  "m0_pr_run": 40890293796,
+  "m0_headless_checks": 516,
+  "m0_android_push_and_pr": "success",
+  "python_controls": 190,
+  "core_default_and_creature_bytes_unchanged_since": "7d48ba03884ea6b30c1998b6070bf93a58c9a11a",
+  "tuning_sha256": "3a32dd3d2d719ed28220ed531fee05c8d2a799140d3f06e3aeed4d28d6e6f60c",
+  "interpretations": {
+    "A": "Through-origin proportional-to-slip hypothesis FALSIFIED by three cells. 100x smaller allowance did NOT reduce drift. Conditional inferred targets below are unsupported extrapolations, NOT a proposed fix/adoption.",
+    "B": "Committed reference is0.029144624111711658 horizontal bodylengths, NOT near1. No FA4 qualification claimed. Heldtorque-1260 all60ticks, all saturated.",
+    "C": "Drivephase q repeats almost exactly across ticks; within-tick sampledq moves~.11rad and omega~1.2rad/s, contradicting frozen-throughout-tick premise. No unique cause isolated.",
+    "F65": "CLOSED by measured powered candidate re-scale; old3x6000rawcounts0engagement/0projection/0block, NOT adopted or currentdefaultfixed.",
+    "F71": "Finite3point empiricalA-B/k fit, NOT measured rigidjointlimit/universal impossibility proof.",
+    "F73": "k10->40 worsens drift8.55->12.91 while reducing lurch.14076->.02660. Claimed opposite-direction tradeoff is sign-inverted."
+  },
+  "adopted": false,
+  "brace_implemented": false,
+  "baseline_regenerated": false,
+  "runtime_rows_passed": 8,
+  "runtime_rows_total": 18,
+  "movement_rows_measured": 0,
+  "next": "Owner chooses exactly P-A saturated+visiblebrace or P-B c10+visiblebrace+baseline provenance/lurch rederive. No more rounds."
+}

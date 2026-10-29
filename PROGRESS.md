@@ -8,27 +8,32 @@ Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R24 — one final A/B round + C archive audit PENDING
+### Current R24 — final round COMPLETE / STOP FOR OWNER P-A/P-B / 8of18
 
-R24 review and decision addendum read via git show reviewer branch ONLY, neither
-copied/merged. D09 study ACCEPTED, no adoption. F65 CLOSED by measured powered
-candidate RE-SCALE (legal q12.787/5.154/1.840deg); committed defaults remain OLD.
-Three A cells: c40 slip.15/.015/.0015, all other candidate settings fixed; one B
-committed-default lurch using SAME95sreleased/1sL/4srelease proposal. FullF56 each.
-C reprocesses original D09 archive12901654637, no repeat of3poweredk arms: publish
-completed COMvx ranges, drive-q per-tick range/change, plus within-tick sampled q
-range/driveomega to prevent stroboscopic samples being mistaken for frozen joint.
-Preregistered `.review/m1_r24_round_plan.md`. No extra tests/parameters afterwards.
-Then owner chooses EXACTLY P-A(saturated+visiblebrace) or P-B(c10+visiblebrace).
-Brace authorised in principle, deliberately NOT implemented before package choice.
-Snapshot/restore/explicit internal momentum ledger/no manufactured support required.
-F71 fit is extrapolation not measured kInfinity; F72 frozen-within-tick claim not
-inferred from drive means; F73 observedk↑drift↑ and lurch↓, not better drift.
-FA6 variance now pre-registered fixed offsets0,4,..36, one seed/spawn/geometry,
-no other variance, no FA6 run or post-result offset selection. Existing proposed
-60tick pulse/fixed300tick horizon retained; only onset changes. D07 queued.
-8/18 movement0/FA5 untouched/AC202notrun. One round then STOP, no adoption/hold/
-AC201 rewrite/baseline regeneration/M2/camera/captures/waivers. Results PENDING.
+Source8110688 /push40890281324 /round123504891124 SUCCESS; exactlyA3+B1/24krawticks.
+COLDarchive12901654637 read only (no3k/15armrepeat). Fullprecision/report:
+`.review/m1_r24_round_evidence.json`, `.review/m1_r24_round_report.md`.
+A slip.15/.015/.0015 drift12.9104235654/13.2677107689/13.2403280705px/s:
+100xlessslip did NOT reduce creep. ProportionalhypothesisFALSIFIED; conditional
+.00348556/.000339169/.0000339871WU/s targets UNMEASURED/unsupported/notadopted.
+Bcommittedsameproposedlurch heldCOMx.02623016170054049WU=.029144624111711658bodylengths
+(actualsumaxes.8999999999999999WU), NOTnear1; noformalFA4qualification.
+Cold3driveqspreads7.105e-15/1.421e-14/1.377e-14rad butwithin-tick sampledqspread
+~.11155/.11088/.10929rad, omega~1.187/1.234/1.269rad/s. F72frozen-throughout-tick
+premisecontradicted; drivephase recurrence real, no uniquecontactcauseisolated.
+F65CLOSED BY RE-SCALE: oldpowered all6000each0engaged/0projection/0block,
+legalworkingpose, notdefaultfixed/adopted. F71empiricalfitnotrigidlimit. F73sign
+corrected:k↑drift↑ andlurch↓, notopposingmetrics/no universalnomotor theorem.
+FullF56all4/6000each/20windows eachPASS,maxpertick1.8874e-15/maxwindow6.9694e-14,
+observer6000equal each; literalF56false/defaultexit1 unchanged. Raw/CSV/books
+artifact12904553635 external.190Python/load80each/M0516+Androidpush+PRPASS.
+PublicFULLsummaryEXACToldbaselinepush+PR, reproducedNOTregenerated; M1F47red/notwaived.
+No core/default/creature change.8/18movement0/tenNOTRUN/FA5untouched/AC202notrun.
+STOP: ownerchoosesP-Asaturated+visiblebrace OR P-Bc10+visiblebrace+baseline/lurch
+provenance. Neitherchosen/adopted/implemented; braceauthorisedbutdeferred. No more
+measurements/targettrials, noAC201rewrite/epsilon/waiver/M2/camera/captures.
+FA6onsetsfixed0,4,..36 onlyvariance/one seedspawngeometryphysics/noFA6run;
+provisional60pulse/fixed300horizon,B04layout/D07phonequeued. One boundedrounddone.
 
 ### Historical D09 — three proposals measured; STOP BEFORE ADOPTION
 

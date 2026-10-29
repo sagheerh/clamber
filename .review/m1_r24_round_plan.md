@@ -41,3 +41,11 @@ No adoption, default update, hold, baseline regeneration, captures, extra factor
 sweeps or new acceptance credit. Public replay/clock runs on sourcecommit to
 reproduce committed baseline; eventual P-B actual adoption must rerun/regenerate
 with provenance.8/18/FA5 untouched; AC202 not started in this bounded final round.
+
+## Execution disposition
+
+Registered at8110688, executed ONCE in push40890281324/job123504891124SUCCESS.
+Exactly4new6000tick cells; C recoveredoldartifact without newphysics. Results
+`m1_r24_round_report.md`/`m1_r24_round_evidence.json`: scaling hypothesis falsified,
+reference .02914bodylengths, stroboscopicq does not mean frozenwithin-tickpose.
+No repeat/targettrial/adoption/brace. This plan is closed; STOPforownerP-A/P-B.

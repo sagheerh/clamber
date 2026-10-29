@@ -1,17 +1,31 @@
 # M1 acceptance matrix — scoped measured evidence, NOT milestone approval
 
-## Current R24 — final round registered/PENDING; 8of18 unchanged
+## Current R24 — final round COMPLETE / STOP FOR OWNER P-A/P-B / 8of18
 
-D09 accepted. F65 CLOSED by measured candidate re-scale, not adopted/defaultfixed.
-ONLY A3c40slips.15/.015/.0015 + B1committeddefaultsameproposedlurch/fullF56;
-C archived3poweredtraces, no repeatedkstudy. Per-tickq CSV plus COMvxrange and
-within-tick phases/omega distinguish sampled driftphaseconstancy from frozenjoint.
-Plan `.review/m1_r24_round_plan.md`. No results yet. F71fitunmeasuredasymptote;
-F73k↑actuallydrift↑,lurch↓. D08physicalstationkeepingpremisefalsified/fallback
-braceauthorised but deliberately deferred pending ownerP-A/P-B afterthisround.
-P-Asaturated+brace / P-Bc10+brace+baselineprovenance, neitheradopted. Onsetsfixed
-0,4,..36, onespawn/seed/geometry/physics/nootherFA6variance; noFA6run. No brace,
-AC201rewrite, newgatecredit, defaults, mass/weight, M2/camera/captures.8/18movement0.
+Source8110688 /push40890281324 /round123504891124 SUCCESS; exactlyA3+B1/24krawticks.
+COLDarchive12901654637 read only (no3k/15armrepeat). Fullprecision/report:
+`.review/m1_r24_round_evidence.json`, `.review/m1_r24_round_report.md`.
+A slip.15/.015/.0015 drift12.9104235654/13.2677107689/13.2403280705px/s:
+100xlessslip did NOT reduce creep. ProportionalhypothesisFALSIFIED; conditional
+.00348556/.000339169/.0000339871WU/s targets UNMEASURED/unsupported/notadopted.
+Bcommittedsameproposedlurch heldCOMx.02623016170054049WU=.029144624111711658bodylengths
+(actualsumaxes.8999999999999999WU), NOTnear1; noformalFA4qualification.
+Cold3driveqspreads7.105e-15/1.421e-14/1.377e-14rad butwithin-tick sampledqspread
+~.11155/.11088/.10929rad, omega~1.187/1.234/1.269rad/s. F72frozen-throughout-tick
+premisecontradicted; drivephase recurrence real, no uniquecontactcauseisolated.
+F65CLOSED BY RE-SCALE: oldpowered all6000each0engaged/0projection/0block,
+legalworkingpose, notdefaultfixed/adopted. F71empiricalfitnotrigidlimit. F73sign
+corrected:k↑drift↑ andlurch↓, notopposingmetrics/no universalnomotor theorem.
+FullF56all4/6000each/20windows eachPASS,maxpertick1.8874e-15/maxwindow6.9694e-14,
+observer6000equal each; literalF56false/defaultexit1 unchanged. Raw/CSV/books
+artifact12904553635 external.190Python/load80each/M0516+Androidpush+PRPASS.
+PublicFULLsummaryEXACToldbaselinepush+PR, reproducedNOTregenerated; M1F47red/notwaived.
+No core/default/creature change.8/18movement0/tenNOTRUN/FA5untouched/AC202notrun.
+STOP: ownerchoosesP-Asaturated+visiblebrace OR P-Bc10+visiblebrace+baseline/lurch
+provenance. Neitherchosen/adopted/implemented; braceauthorisedbutdeferred. No more
+measurements/targettrials, noAC201rewrite/epsilon/waiver/M2/camera/captures.
+FA6onsetsfixed0,4,..36 onlyvariance/one seedspawngeometryphysics/noFA6run;
+provisional60pulse/fixed300horizon,B04layout/D07phonequeued. One boundedrounddone.
 
 ## Historical D09 — three-proposal study COMPLETE / STOP BEFORE ADOPTION / 8of18
 

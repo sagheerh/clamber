@@ -1594,3 +1594,31 @@ No post-result list tuning. D07phone queued; M0waiver does notcarry. AC202/FA5
 parallel if this last round extends, not started in this one bounded increment.
 STOP afterA/B/C for owner package choice;8/18 movement0, tenNOTRUN, no Phase3/A/
 residual/M2/camera/captures/tolerance/epsilon/mass/weight changes.
+
+
+## R24 result — final A/B/C COMPLETE; STOP for P-A/P-B (no adoption)
+
+Source8110688/roundjob123504891124SUCCESS, exactly3slipcells+1defaultlurch;
+C oldsource573a1fb/archive12901654637 read, no newstiffness runs. Fullfacts in
+`.review/m1_r24_round_report.md` and evidenceJSON. A100xthreshold reduction does
+NOTreduce drift12.9104/13.2677/13.2403: proportionalhypothesisFALSIFIED, no magic
+.00349targetadoption. Publishper-pointconditionalallowances as UNMEASURED and
+unsupported, not a setting proposal. Bheldx.0262301617WU=.0291446241bodylengths,
+actualsum.8999999999999999WU; NOTnearbodylength, noFA4PASS. F72driveq recurrence
+confirmed but within-tick sampledq~.11rad/nonzeroomega~1.2rad/s contradictsfrozen
+throughouttick premise. No unique contactcause demonstrated/universal no-k proof.
+F65 CLOSED BY MEASURED RE-SCALE verified cold3x6000: zeroengagement/projection/
+nonzeroblock in all3poweredcases; workingposeslegal. Currentdefaultnotfixed/
+adopted. F71fitfinitepointsNOTmeasuredrigidlimit; F73signcorrectionstiffness↑
+drift↑andlurch↓, not opposingdirections. No contact-model fix inferred from A.
+FullF56each6000raw/20windowsPASS/maxpertick1.887379141862766e-15/maxwindow
+6.96942503708442e-14; observerbit-equal6000each, literaldefaultfalse/exit1unchanged.
+PublicFULLsummarypush+PRexactoldbaseline, reproducedNOTregenerated,190controls,
+M0516+Androidpush+PRPASS. OverallM1F47RED/notwaived, rounditselfSUCCESS. Artifact
+12904553635 externalraw/CSV/books, no generatedrawGit. No default/creature/core
+changes.8/18movement0/tenNOTRUN. Finalroundcompleteinoneincrement, noextension.
+STOPforownerEXACTLY P-Asaturated+visiblebrace or P-Bc10+visiblebrace+actualadoption
+baselineprovenance/lurchrederive. No furtherphysics trials/contact sweeps; no
+packagechoice/brace/adoption yet. PreregisteredFA6offsets fixed/noFA6run. Future
+visiblebrace must snapshot/restore/explicit internalnetzero ledger/fullF56 and
+never manufactures support/fudgesloads. AC201strictunchanged/noM2/camera/captures.
