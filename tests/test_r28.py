@@ -15,7 +15,7 @@ class R28Controls(unittest.TestCase):
             return
         c=s.split('func _velocity_contacts',1)[1].split('func _rigid_velocity',1)[0]
         self.assertNotIn('if diagnostic_final_distance_pass:',c)
-        self.assertEqual(c.count('for link in _links:'),1)
+        self.assertEqual(c.count('\n\tfor link in _links:'),1)
         self.assertEqual(c.count('link.project(_tuning)'),1)
         self.assertIn('\n\tfor link in _links:\n\t\tif link.project(_tuning) != OK:',c)
         self.assertGreater(c.index('\n\tfor link in _links:'),c.index('if _finish_velocities() != OK:'))
@@ -36,7 +36,8 @@ class R28Controls(unittest.TestCase):
         s=Path('.github/workflows/m1.yml').read_text()
         for name in ('r28-measure','r28-baseline','r28-idle','r28-characterisation','r28-m0'):
             header=s.split('  '+name+':',1)[1].split('    name:',1)[0]
-            self.assertIn('github.sha == inputs.r28_source_sha',header)
+            self.assertIn('github.sha == github.event.after',header)
+            self.assertIn("contains(github.event.head_commit.message, '[R28-once]')",header)
         self.assertIn('needs: [r28-measure]',s.split('  r28-baseline:',1)[1])
         self.assertIn('needs: [r28-measure]',s.split('  r28-idle:',1)[1])
         self.assertIn('needs: [r28-idle]',s.split('  r28-characterisation:',1)[1])
