@@ -61,7 +61,7 @@ func state() -> Dictionary:
 		"parent": parent,
 		"child": child,
 		"angle": radians,
-		"q": PlanarBasis.wrap(radians - rest_angle),
+		"q": PlanarBasis.wrap_angle(radians - rest_angle),
 		"omega": child.omega - parent.omega,
 		"weight": parent.inverse_inertia + child.inverse_inertia
 	}

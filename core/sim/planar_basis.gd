@@ -6,7 +6,7 @@ const TUNING = preload("res://core/tuning.tres")
 const TABLE = preload("res://data/math/cordic_table.gd")
 
 
-static func wrap(angle: float) -> float:
+static func wrap_angle(angle: float) -> float:
 	if not is_finite(angle):
 		return NAN
 	while angle > PI:
@@ -35,11 +35,11 @@ static func angle(x: float, y: float) -> float:
 		x += direction * y * TABLE.FACTORS[index]
 		y -= direction * old_x * TABLE.FACTORS[index]
 		result += direction * TABLE.ANGLES[index]
-	return wrap(offset + result)
+	return PlanarBasis.wrap_angle(offset + result)
 
 
 static func basis(radians: float) -> Array:
-	var remaining := wrap(radians)
+	var remaining := PlanarBasis.wrap_angle(radians)
 	if not is_finite(remaining):
 		return []
 	var sign: float = TUNING.physics_one

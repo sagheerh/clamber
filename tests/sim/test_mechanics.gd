@@ -32,7 +32,7 @@ func _math() -> void:
 			"binary64 algebraic rotation vs independent math"
 		)
 		_check(
-			absf(PlanarBasis.wrap(PlanarBasis.angle(axes[0], axes[1]) - radians)) < 2e-15,
+			absf(PlanarBasis.wrap_angle(PlanarBasis.angle(axes[0], axes[1]) - radians)) < 2e-15,
 			"signed angle wrap roundtrip"
 		)
 	_check(
