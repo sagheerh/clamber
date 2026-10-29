@@ -71,7 +71,7 @@ Provenance: `docs/CLAMBER_REVIEW_AGENT.provenance.md`. **M1-B02 RESOLVED
 | §10.6 repeatability | Fixed scenario 10000 ticks, 100 local repeats; recorded 60 s cross-architecture/device replay and 200-run soak tracked separately | NOT RUN | No device/architecture evidence; no M0 waiver carries forward |
 | FA-1 | Collision diameter at least15px and head30px at width-derived150px/WU; analytic only, not camera/device evidence | PASS (analytic only) | CI40677962012; $RUNNER_TEMP/m1-owner-geometry.json |
 | FA-2 | Every shipped limb length has aspect ratio3:1..12:1; analytic geometry only | PASS (analytic only) | CI40677962012; $RUNNER_TEMP/m1-owner-geometry.json |
-| FA-3 | All three real presets:600 static ticks, zero sleep-breaking contacts; contact trace and actual observations | NOT RUN | R13 F38 owner-CLOSED; F41/F42 contact telemetry pending, sleep-breaking definition owner-pending; F40 motor intra-step0.94..1.53 reference px at150px/WU and60Hz, rendered observation absent; F39 soak extrapolation below; no all-preset static scene |
+| FA-3 | All three real presets:600 static ticks, zero sleep-breaking contacts; contact trace and actual observations | NOT RUN | R13 F38 owner-CLOSED; F41/F42 telemetry measured; sleep-breaking definition owner-pending; F40 motor intra-step0.94..1.53 reference px at150px/WU and60Hz, rendered observation absent; F39 soak extrapolation below; no all-preset static scene |
 | FA-4 | Slug settles/sleeps within4s and L-hold lurches approximately one body length; record distances/input | NOT RUN | R13 asleep/F42 persistent-support interpretation separate owner decision from F30 pose; no predicate chosen; no motor/tutorial trace |
 | FA-5 | Owner R8/F24: foot load below max(5N,40percent of expected share W/N_previous_grounded) slips; at/above grips with grounded/lowest eligibility; frozen previous-tick N; N0 disables grip; two-foot stance and airborne traces required | NOT RUN | R11 engineering probe: last300 grip0/300, foot support share about22.2393percent; F30 pose pending; no accepted band or stance trace |
 | FA-6 | Ten scripted tutorial runs, actual per-run outcomes and input log; target6..8 successes, stop on10 or at most4 | NOT RUN | Actual success_count unknown; no tutorial scenario |
@@ -299,3 +299,14 @@ Observer on/off full physical state equality is diagnostics, not creature
 determinism acceptance. F31 independent controls preserved, baseline F30 RED.
 Owner F30+asleep/F42 -> authorized pose+hard F36 assertion -> FA-5 band; re-measure
 F41 after approved pose and compare. FA-3/4/5/6 NOT RUN; determinism attempts0.
+
+R13 measured @de26fa3 / CI40802438116: both600 cases verify F31/motion and
+observer-on/off physical states. Late per-pass active counts head3/3, motor3/3,
+foot3/2; all17/tick static and retained0, but later overlapping samples reopen
+earlier tangents. Motor final A vx=-.0027983689378984, B0; actual COM drift
+≈-7.175187723414e-6WU/tick. Threshold1.5 affects transients (67 non-static samples
+at.15 vs0 at1.5), not late drift (paired COM vx difference<=3.985e-17WU/s).
+F42 late grounded[0,1,2], all300 ticks have active/support contacts, zero new
+body-grounding transitions. Raw impulses/sets retained; no sleep interpretation.
+No resource/default/solver fix. Re-measure after owner-authorized pose; FA-3/4/5/6
+remain NOT RUN; determinism0. Full source/artifact details: PROGRESS/M1-D11.

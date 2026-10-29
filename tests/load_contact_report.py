@@ -7,6 +7,7 @@ import re
 from load_trace_report import analyze, close
 
 RESOURCE = (Path(__file__).resolve().parents[1] / 'core/tuning.tres').read_text()
+SLOP = float(re.search(r'^physics_contact_slop_wu = (.+)$', RESOURCE, re.M)[1])
 PASSES = int(re.search(r'^physics_velocity_passes = (.+)$', RESOURCE, re.M)[1])
 
 
@@ -32,6 +33,8 @@ def com_dx(row, phase):
 def inspect(rows):
     # Accepted F31/F35 verification remains the first independent door.
     accepted = analyze(rows)
+    if not accepted['momentum_ledger_verified'] or not accepted['motion']['position_ledger_and_speed_identities_verified']:
+        raise ValueError('Accepted F31/motion independent verification failed')
     previous = []
     profiles = []
     events_out = []
@@ -72,7 +75,7 @@ def inspect(rows):
             active = 0
             last_state = None
             for event in events:
-                numeric = ('u', 'nx', 'ny', 'tangent_before', 'tangent_after', 'normal_impulse_ns',
+                numeric = ('u', 'nx', 'ny', 'distance_wu', 'tangent_before', 'tangent_after', 'normal_impulse_ns',
                            'tangential_impulse_ns', 'inverse_mass_a', 'inverse_mass_b', 'positional_cleanup_n', 'avx_before', 'avy_before', 'bvx_before', 'bvy_before',
                            'avx_after', 'avy_after', 'bvx_after', 'bvy_after')
                 if not all(math.isfinite(event[k]) for k in numeric):
@@ -90,6 +93,12 @@ def inspect(rows):
                 if event['positional_cleanup_n'] < 0:
                     raise ValueError('Negative positional cleanup')
                 cleanup_sums[part] += event['positional_cleanup_n']
+                if event['active'] != (event['distance_wu'] <= body['radius_wu']+SLOP) or not close(event['nx']**2+event['ny']**2,1.0):
+                    raise ValueError('Active/normal sample geometry mismatch')
+                denominator = (1-event['u'])**2*body['inverse_mass_a']+event['u']**2*body['inverse_mass_b']
+                expected_cleanup = max(0,body['radius_wu']-SLOP-event['distance_wu'])/denominator/row['momentum_budget']['dt_s']**2 if event['active'] else 0.0
+                if not close(event['positional_cleanup_n'],expected_cleanup):
+                    raise ValueError('Positional cleanup not independently reproduced')
                 if event['normal_impulse_ns'] < 0:
                     raise ValueError('Negative normal impulse')
                 if event['active']:
@@ -155,6 +164,7 @@ def inspect(rows):
         stats[part]['active_counts'] = sorted(stats[part]['active_counts'])
         stats[part]['last_final_pass_samples'] = last_samples[part]
     summary = {'rows': len(rows), 'sample_events': len(events_out), 'observer_on_off_equal_ticks': len(rows),
+               'last_tick_sample_impulses': [{k:e[k] for k in ('part','velocity_pass','sample_index','u','normal_impulse_ns','tangential_impulse_ns')} for e in events_out if e['tick']==599 and e['active']],
                'full_active_sample_count': sum(e['active'] for e in events_out),
                'full_static_branch_count': sum(e['active'] and e['static_branch'] for e in events_out),
                'steady_active_sample_count': sum(e['active'] for e in events_out if e['tick']>=300),

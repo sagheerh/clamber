@@ -30,6 +30,7 @@ def contact_fixture():
                     row['contact_samples'].append({
                         'part':p,'velocity_pass':v,'sample_index':i,'intervals':1,'u':float(i),
                         'inverse_mass_a':bodies[p]['inverse_mass_a'],'inverse_mass_b':bodies[p]['inverse_mass_b'],'positional_cleanup_n':0.0,
+                        'distance_wu':bodies[p]['radius_wu']-.02 if p==2 else .2,
                         'nx':0.0,'ny':1.0,'active':p==2,'static_branch':p==2,
                         'avx_before':0.0,'avy_before':-impulse*bodies[p]['inverse_mass_a'],
                         'bvx_before':0.0,'bvy_before':0.0,
@@ -96,6 +97,7 @@ class ContactObserverTests(unittest.TestCase):
                     b-=head['inverse_mass_b']*u*j
                     events.append({'part':0,'velocity_pass':v,'sample_index':i,'intervals':2,'u':u,
                                    'inverse_mass_a':head['inverse_mass_a'],'inverse_mass_b':head['inverse_mass_b'],'positional_cleanup_n':0.0,
+                                   'distance_wu':head['radius_wu']-.02,
                                    'nx':0.0,'ny':1.0,'active':True,'static_branch':True,
                                    'avx_before':before_a,'bvx_before':before_b,'avy_before':0.0,'bvy_before':0.0,
                                    'avx_after':a,'bvx_after':b,'avy_after':0.0,'bvy_after':0.0,
@@ -105,6 +107,14 @@ class ContactObserverTests(unittest.TestCase):
         report,_,_=inspect(rows)
         self.assertEqual(report['parts'][0]['active_counts'],[3])
         self.assertGreater(report['parts'][0]['earlier_static_sample_changed_by_later_samples_count'],0)
+
+    def test_sample_geometry_not_just_claimed_active_flag(self):
+        rows=contact_fixture();rows[350]['contact_samples'][4]['distance_wu']=.2
+        with self.assertRaises(ValueError):inspect(rows)
+
+    def test_positional_cleanup_is_recomputed_and_never_an_impulse(self):
+        rows=contact_fixture();rows[350]['contact_samples'][4]['positional_cleanup_n']=1.0
+        with self.assertRaises(ValueError):inspect(rows)
 
     def test_slip_sweep_observes_both_without_adoption(self):
         from load_slip_report import summarize, VALUES

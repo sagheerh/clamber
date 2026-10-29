@@ -623,3 +623,28 @@ Order remains owner F30 pose AND asleep/F42 -> authorized pose+hard F36 assertio
 foot-pad.05WU support) and compare explicitly. No angular-limit/epsilon/damping/
 retune/model/sampling fix, M2 or captures. Baseline F30 remains RED until genuine
 foot support path. FA-3/4/5/6/all coupled runtime gates NOT RUN; determinism0.
+
+
+M1-D11 observed @de26fa3 / CI40802438116: both600-tick diagnostic cases complete,
+all F31/motion and observer-on/off full physical states match. Every late tick has
+actual head3/3, motor3/3, foot3/2 active samples per pass. Final-pass motor
+u0->u.5->u1 all return retained0/tangent0 immediately; later samples reopen
+u0/u.5 to+.0027983689378984/+.0013991844689492WU/s, leaving motor A vx
+-.0027983689378984 and B0. Head likewise leaves A=-2.41613678290311e-5, B0.
+This demonstrates actual overlapping sequential sample rows, not one-sample
+assumption. Endpoint impulse identities verify within1.111e-16; no solver fix.
+
+.15vs1.5 full600 active/static counts9917/9850 vs9909/9909 and max paired
+COM vx difference.014493333006502587WU/s show transient sensitivity. Every last300
+tick has17 active responses, ALL static in both cases (5100/5100); late paired
+COM vx difference<=3.985e-17WU/s, actual mean COM dx≈-7.175187723414e-6WU/tick
+and identical integrated mean dx=-7.175187723396494e-6. Resource stays.15. No
+threshold/order/sampling adoption; re-measure after authorized F30 pose.
+
+F42 late grounded sets always[0,1,2], zero new-grounded transitions but active
+contacts and nonzero support impulses on all300 ticks. Raw all600 per-contact
+impulses and grounded/new/lifted sets retained without classifying sleep-breaking
+or sleep eligibility. Owner asleep answer must clarify persistent support contacts.
+No FA-3 acceptance rewrite. Observer equivalence is not creature determinism;
+byte-serialized snapshot strengthening is pending CI at this follow-up commit.
+F30+asleep/F42 remain owner-blocked; FA-3/4/5/6/all coupled runtime gates NOT RUN.

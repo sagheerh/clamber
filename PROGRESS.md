@@ -22,7 +22,7 @@ scaffold/PR; no M1 implementation or gate completion is claimed by this closeout
   signed impulses, inverse masses, normal and separately named positional cleanup.
   Reports count actual candidates/active samples, and re-evaluate each earlier
   sample at body-end (no one-sample assumption). Independent raw checks plus
-  eleven new synthetic controls; 89 Python tests pass locally. Engine pending.
+  thirteen new synthetic controls; 91 Python tests pass locally. Engine results below.
 - Test-only cloned Tuning --static-slip=.15|1.5, same600/6/.33/zero initial motion.
   Resource remains.15; both traces retained. Compare full-run/steady branch
   activation and COM drift. NOT a friction fix or adopted threshold.
@@ -30,8 +30,8 @@ scaffold/PR; no M1 implementation or gate completion is claimed by this closeout
   impulses retained. No definition of sleep-breaking contact or sleep eligibility.
   Owner asleep answer must clarify how to interpret persistent support contacts.
 - Instrumented/uninstrumented full physical snapshots checked every tick in the
-  harness; outcome pending pinned engine. Not creature determinism acceptance.
-- Next M1: measure R13 ONLY, then owner F30 AND asleep/F42 answers -> authorized
+  harness; results below. Not creature determinism acceptance.
+- Next M1: owner F30 AND asleep/F42 answers -> authorized
   pose with hard F36 assertion -> FA-5 band. Re-measure F41 after approved pose,
   compare motor-belly.095WU to foot-pad.05WU support. Preflight stays F30 RED;
   FA-3/4/5/6/all coupled runtime gates NOT RUN, determinism attempts0; no retune,
@@ -791,3 +791,60 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
   Next M1: await both answers, then authorized pose+hard F36 assertion, only then
   FA-5 band. FA-3/4/5/6/all coupled runtime gates NOT RUN; determinism attempts0.
   No retune, velocity epsilon, damping change, M2, or captures.
+
+
+### R13 measured sample responses @de26fa3 / CI40802438116
+
+- Pinned engine381 math/237 contact/131 analytic/80 load components PASS;
+  both600-tick threshold probes OBSERVED, all F31/motion identities verify.
+  Observer on/off full physical snapshots equal at every tick for each case.
+  Byte-serialized snapshot comparison is added in the follow-up for stricter
+  diagnostic evidence (not creature determinism). Baseline F30 ONLY remains RED.
+- Crucial actual last300 sample counts PER PASS (all candidates active):
+  head3/3, motor3/3, foot3/2. Total17 active responses/tick, NOT one contact/body
+  and NOT two foot samples in both passes. Candidate count uses current extent,
+  not an assumption from rest length. Counts stable for every last300 tick.
+- At599 final pass, all8 active samples take static branch and retain0 tangent.
+  Motor u0: A vx .0000483227356581 ->0, B vx .00559673787580 survives.
+  u.5: A/B become[-.0027983689378984,+.0027983689378984], sampled tangent0.
+  u1: B becomes0, A stays-.0027983689378984; earlier u0/u.5 tangents become
+  +.0027983689378984/+.0013991844689492. Head similarly ends A vx
+  -.0000241613678290311, B0; earlier tangents+.0000241613678290311/
+  +.0000120806839145155. Foot final pass has independent u0/1 and ends vx0
+  at599 (last300 body COM range only +/-8.67e-19 float noise).
+- Thus zeroing EACH interpolated sample does not simultaneously stop endpoints:
+  later overlapping rows measurably reintroduce earlier sample tangent. This is
+  observed in actual multi-sample responses, not a single-sample assumption.
+  Body-end COM vx final pass: head≈-1.20806839145e-5, motor≈-.0013991844689492,
+  foot≈0. First-pass COM vx: head+.000295201730920, motor-.000504600195549,
+  foot+.001771830516589WU/s. No change to sampling/order/friction proposed.
+- Completed creature COM vx final300 baseline range
+  [-.0004392972075547341,-.00043929720755467625]WU/s;1.5 case
+  [-.0004392972075547327,-.0004392972075546731]. Maximum paired late difference
+  3.984442983884229e-17WU/s. Mean actual COM dx baseline=-7.175187723414263e-6
+  vs1.5=-7.175187723414633e-6WU/tick; integrated contribution BOTH
+  -7.175187723396494e-6. Steady drift insensitive in this diagnostic, NOT a
+  blanket threshold-inactivity claim or a friction fix authorization.
+- Transients DO differ: full600 active/static branch counts .15=9917/9850
+  (67 non-static),1.5=9909/9909 (0 non-static), total candidates10151/10150.
+  Max paired completed COM vx difference over600=.014493333006502587WU/s.
+  Last300 BOTH5100/5100 active responses use static branch, so increasing its
+  threshold cannot change that observed branch selection. Max endpoint impulse
+  identity error1.1102230246251565e-16; sampled target error<=4.164e-17WU/s.
+- F42 BOTH cases: grounded sets[0,1,2] for every last300 tick, active contacts
+  on all300 ticks, zero newly-grounded transitions in that window. Support
+  normal impulse sum≈.726601780739229Ns/tick remains nonzero, not position
+  cleanup. Raw per-contact signed impulses and all600 sets/transitions are
+  retained as contact-events.jsonl / grounding-events.jsonl per case. This is
+  NOT a sleep-breaking/sleep-eligible classification or a changed FA-3 criterion.
+- Source-pinned artifacts: R13=12866817056,3405462bytes,SHA256
+  7c19029879a62c732cbb9e01871705674a95fc57818afbc37f1a4f593c38a502;
+  baseline=12865849732,2482879bytes,SHA256
+  baaa4c558b290612142ec20eaa76b7cb9850ec3672be2ad534ba51a0b7901dd7.
+  API annotations and metadata inspected; raw ZIP not locally downloaded.
+- F38 owner-CLOSED; F40 accepted; F39 REVIEWER CORRECTION (not agent error).
+  F41/F42 are measurement/clarification findings, not closed by self-award.
+  Owner F30 AND asleep/F42 still pending -> authorized pose+hard F36 assertion
+  -> FA-5 band. Re-measure F41 after pose and compare. No resource edit, retune,
+  epsilon, damping, iterations adoption, geometry/limits, M2/captures. FA-3/4/5/6
+  and all coupled runtime gates NOT RUN; creature determinism attempts0.

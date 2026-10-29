@@ -57,10 +57,14 @@ if __name__=='__main__':
         if 'contact_report' in case:
             r=case['contact_report']
             brief.update({k:r[k] for k in ('sample_events','observer_on_off_equal_ticks','steady_completed_com_vx_range_wu_s','steady_ticks_with_any_active_sample','steady_new_grounded_transition_count','steady_grounded_sets','max_tangent_target_identity_error','full_active_sample_count','full_static_branch_count','steady_active_sample_count','steady_static_branch_count','steady_mean_com_dx_wu_tick','steady_mean_integration_com_dx_wu_tick')})
+        if 'contact_report' in case:
+            brief['grounded_transition_ticks'] = [{k:r[k] for k in ('tick','new_grounded_parts','lifted_parts')} for r in case['contact_report']['grounded_transitions_all600']]
         print('M1 slip case: '+json.dumps(brief,sort_keys=True))
     if report['cases'][0]['status']=='OBSERVED':
         for part,stats in report['cases'][0]['contact_report']['parts'].items():
             print('M1 slip baseline part: '+json.dumps({'part':part,**stats},sort_keys=True))
+    if report['cases'][0]['status']=='OBSERVED':
+        print('M1 slip final impulses: '+json.dumps(report['cases'][0]['contact_report']['last_tick_sample_impulses'],sort_keys=True))
     print('M1 slip comparison: '+json.dumps(report['comparison'],sort_keys=True))
     print('M1 slip scope: resource0.15 unchanged; diagnostic1.5 NOT adopted; no sampling/sleep/pose fix')
     raise SystemExit(0 if report['comparison']['status']=='OBSERVED' else 1)

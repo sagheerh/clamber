@@ -205,7 +205,10 @@ func _slug() -> void:
 			push_error("coupled probe aborted at tick%d status%s" % [tick, row.status])
 			break
 		var unobserved := reference.step()
-		if unobserved.status != OK or probe.snapshot() != reference.snapshot():
+		if (
+			unobserved.status != OK
+			or var_to_bytes(probe.snapshot()) != var_to_bytes(reference.snapshot())
+		):
 			push_error("observer changed physical state at tick%d" % tick)
 			quit(1)
 			return
