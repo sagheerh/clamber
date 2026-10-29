@@ -5,7 +5,7 @@ import hashlib
 import json
 import unittest
 from pathlib import Path
-from r26_report import Events, complete, length_errors, retention, terrain_sample
+from r26_report import Events, complete, completed_flags, length_errors, retention, terrain_sample
 
 
 class R26Controls(unittest.TestCase):
@@ -81,6 +81,14 @@ class R26Controls(unittest.TestCase):
                          ['stance', 'drop_onto_feet', 'ledge_departure', 'midair_sample'])
         self.assertEqual([s['lift'] for s in p['cases']], [0., 2., 0., 4.])
         self.assertTrue(p['no_outcome_retuning'])
+
+    def test_nonfoot_schema_not_misread_as_missing_foot_flag(self):
+        completed_flags({'grounded': True}, True, False, False)
+        completed_flags({'grounded': False}, False, False, False)
+        with self.assertRaises(ValueError):
+            completed_flags({'grounded': True, 'gripping': False}, True, True, True)
+        with self.assertRaises(ValueError):
+            completed_flags({'grounded': False}, True, False, False)
 
     def test_jobs_independent_and_push_once_only(self):
         s = Path('.github/workflows/m1.yml').read_text().split('  r26-diagnostics:', 1)[1].split('  r26-baseline:', 1)[0]

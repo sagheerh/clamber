@@ -153,15 +153,15 @@ def d2(root, engine):
             output.write(json.dumps({'tick': count, 'phases': phases}, separators=(',', ':'))+'\n')
             count += 1
         output.close()
-        require(complete(engine[arm], count), f'{arm}: incomplete7200')
-        arms[arm] = dict(ticks=count, awake_ticks=awake, parked_ticks=count-awake,
+        require(count == engine[arm]['ticks'], f'{arm}: raw rows disagree with termination report')
+        arms[arm] = dict(ticks=count, completed=complete(engine[arm], count), awake_ticks=awake, parked_ticks=count-awake,
                          maxima=maxima, termination=engine[arm],
                          true_limb_passed=maxima['completed/limb']['error_wu'] <= .05,
                          all_parts_passed=maxima['completed/all']['error_wu'] <= .05)
     return {'diagnostic_only': True, 'preset': 'Hopper', 'arms': arms,
             'phase_semantics': 'after_iteration_distance is the last existing distance block BEFORE hinge/angular/self-contact. after_diagnostic_final_distance is ONE added traversal AFTER all position iterations, BEFORE velocity/contact cleanup. Completed-tick true limbs determine the unchanged .05 criterion. No pass is moved after contact cleanup.',
-            'ordering_candidate_meets_limb_criterion': arms['final_distance']['true_limb_passed'],
-            'measurement_complete': True, 'adopted': False}
+            'ordering_candidate_meets_limb_criterion': arms['final_distance']['completed'] and arms['final_distance']['true_limb_passed'],
+            'measurement_complete': all(a['completed'] for a in arms.values()), 'adopted': False}
 
 
 def terrain_sample(x, y, ledge):
@@ -208,6 +208,12 @@ class Events:
                 for branch in BRANCHES}
 
 
+def completed_flags(body, active, expected_grip, is_foot):
+    require(body['grounded'] == active, 'Completed grounded flag differs from reconstructed law')
+    if is_foot:
+        require(body['gripping'] == expected_grip, 'Completed foot grip differs from reconstructed law')
+
+
 def validate_fa5_row(r, previous, spec):
     """No synthetic observations: recompute N, raw SDF normals, load and predicate."""
     require(r['status'] == 0 and r['observer_on_off_physical_state_equal'], 'Incomplete/observer-altered row')
@@ -219,7 +225,7 @@ def validate_fa5_row(r, previous, spec):
     require(n == r['previous_grounded_feet'], 'Frozen N mismatch')
     weight = math.fsum(b['mass'] for b in bodies.values())*abs(resource('physics_gravity_wu_s2'))
     require(close(weight, r['weight_n']), 'Mass/weight mismatch')
-    threshold = max(resource('physics_grip_normal_force_floor'), resource('physics_grip_normal_force_ratio')*weight/n) if n else None
+    threshold = max(resource('physics_grip_normal_force_floor'), resource('physics_grip_normal_force_ratio')*r['weight_n']/n) if n else None
     distribution = []
     keys = set()
     candidate_counts = Counter()
@@ -244,6 +250,9 @@ def validate_fa5_row(r, previous, spec):
             load = max(0., -(part['hinge_x_ns']+part['extra']['x'])*nx*60
                        -(b['mass']*resource('physics_gravity_wu_s2')/60+part['hinge_y_ns']+part['extra']['y'])*ny*60)
             require(close(load, part['applied_load_n']), 'Load not derived from gravity/real hinge/self-contact impulse')
+            # Predicate uses the actual full-precision solver scalar AFTER the
+            # independent reconstruction, not a reordered arithmetic expression.
+            load = part['applied_load_n']
             events = [e for e in r['contact_samples'] if e['part'] == i and e['velocity_pass'] == batch['velocity_pass']]
             require(events and [e['sample_index'] for e in events] == list(range(len(events))), 'Missing/duplicate real contact samples')
             may_grip = i in feet and n > 0 and lowest and load >= threshold
@@ -256,7 +265,7 @@ def validate_fa5_row(r, previous, spec):
             active = active_prefix
             expected_grip = active and may_grip
             if batch['velocity_pass'] == 1:
-                require(b['grounded'] == active and b['gripping'] == expected_grip, 'Completed body flags differ from reconstructed law')
+                completed_flags(b, active, expected_grip, i in feet)
             if i not in feet:
                 continue
             branch = ('airborne' if not active else 'N0_no_grip' if not n else

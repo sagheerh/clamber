@@ -327,6 +327,5 @@ func _zero_input_live_sleep() -> void:
 		"ticks": 600,
 		"any_sleep": any_sleep,
 		"max_dwell_ticks": max_dwell,
-		"scope":
-		"R25 actual F52 observation with adopted joint brace; deadline/drift in separate adoption gate"
+		"scope": "Actual F52 observation; deadline/drift in separate acceptance evidence"
 	}

@@ -946,3 +946,56 @@ jobs:
           name: m1-r25-archive-audit-${{ github.run_id }}
           path: ${{ runner.temp }}/r25-audit/
           retention-days: 7
+
+  r26-archive-audit:
+    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[R26-audit]') }}
+    name: R26 ORIGINAL archive audit ONLY (ZERO new physics)
+    permissions:
+      contents: read
+      actions: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v5
+        with:
+          pattern: m1-r26-*-40901902007
+          run-id: 40901902007
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: ${{ runner.temp }}/r26-archives
+      - name: Interpret original bytes; NO editor, replay, solver or new arms
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tests/r26_archive_audit.py "$RUNNER_TEMP/r26-archives" "$RUNNER_TEMP/r26-audit"
+      - name: Publish bounded D2 evidence and baseline provenance
+        shell: bash
+        run: |
+          python3 - "$RUNNER_TEMP/r26-audit" <<'PYLOG'
+          import sys
+          from pathlib import Path
+          root=Path(sys.argv[1])
+          fields=['source_head','source_run','new_physics_runs','raw_provenance','generated_baseline_byte_equal_committed','generated_baseline_file_sha256','generated_baseline','original_generated_provenance','D2','decision']
+          text=''.join((root/f'console-{k}.log').read_text() for k in fields)
+          assert len(text)<=35000
+          for i in range(0,len(text),3500):
+              escaped=text[i:i+3500].replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print('::notice title=R26 archived D2 and provenance ONLY::'+escaped)
+          PYLOG
+      - name: Publish repaired FA5 event evidence (original archive ONLY)
+        shell: bash
+        run: |
+          python3 - "$RUNNER_TEMP/r26-audit/console-FA5.log" <<'PYLOG'
+          import sys
+          text=open(sys.argv[1]).read()
+          assert len(text)<=35000
+          for i in range(0,len(text),3500):
+              escaped=text[i:i+3500].replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print('::notice title=R26 archived FA5 ONLY::'+escaped)
+          PYLOG
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r26-archive-audit-${{ github.run_id }}
+          path: ${{ runner.temp }}/r26-audit/
+          retention-days: 7

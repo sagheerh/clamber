@@ -1806,3 +1806,47 @@ committed-byte strict rerun. Generator is separately scoped to R26/old R25 hash;
 normal baseline checker is unchanged. D2 nondefault diagnostic is not adopted
 as a production baseline; its paired trace hashes/ordering identity are separate.
 Results and generated hashes PENDING; no qualifying measurements claimed yet.
+
+
+## M1-R26-BASELINE — generated P-B WITHOUT brace replay provenance
+
+Owner R26 authorised regeneration on brace removal, source114265e0116101a897d8429a2998f4987549f86f,
+CI40901902007 / generator123546155675 SUCCESS. Generated actual pinned4.7.2
+triple byte-equal replay streams plus30/144Hz delivery checks, not edited expected
+physics. Source overlay modifies ONLY baseline+DECISIONS provenance. SAME-source
+strict public replay123546537887 SUCCESS (9053+308+1446 checks,0failures).
+Final digest 4ec66a1f719135112c28f4e6678d87f4e3c04221d5236816ec02788faa0a6aaa; full stream SHA256 cf98342cf54a06180a68223fb9aa0cb217209b2adb77c544293348e896e29190;
+per-tick table SHA256 ab2be178d0dee0da6d6d08e8ac8109fb3598803d2c970ffbb61235ef8c3288af.
+Generated baseline bytes are committed here WITHOUT core/data/tuning edits.
+Archive-only audit compares those committed bytes with original generation.
+Subsequent normal public CI must match committed bytes. R25's P-B+brace baseline
+remains historical; this is a separately identified P-B WITHOUT brace baseline.
+D2's nondefault Hopper final-distance arm is NOT adopted or substituted here.
+
+## M1-R26-D1 — measured fork: Option2; NO further diagnostic measurement
+
+Source114265e / CI40901902007 / D1job123546155730 SUCCESS. Exactly four6000-tick
+released process-local friction duplicates; all observed/unobserved snapshots
+byte-equal, all6000 positions/contacts/F31 and20F56windows per cell independently
+verified. Default resource remains.9 with four P-B values untouched.
+
+| Friction | Drift px/s | Signed rectified thrust N |
+|---|---:|---:|
+| .9 | 8.550150769956836 | .10818558117092802 |
+| .3 | 9.393416417530442 | .11885547303816352 |
+| 1.8 | 8.482160126141556 | .10732529139197892 |
+| 3.6 | 8.482160126141556 | .10732529139197892 |
+
+No roughly proportional response; reducing coefficient3× INCREASES drift/thrust
+~9.9%. Coefficients1.8/3.6 are the SAME clamped dynamic operator, not independent
+carrier localization. Each last300 has900 dynamic,1800 static-override,2400
+inactive candidates; .3/.9 dynamic unsaturated versus1.8/3.6 dynamic clamped.
+Cannot infer a located normal-accumulation/position-projection fix from this
+alone. D1 is **inconclusive for a correctness-shaped cause**; owner binding fork
+therefore selects **Option2**, irrespective of D2. No more sweeps/brace/lurch/
+additional measurements to seek a different outcome. No diagnostic adopted.
+OWNER must author AC201's replacement number; existing settles/sleeps criterion
+has NOT been silently rewritten. AC202 remains honest measured failure, .05
+unchanged. D2 and repaired FA5 ARCHIVE-ONLY interpretation are being completed;
+D2 diagnostic itself finished7200; baseline terminated7067/status30 at tick7067,
+so no full7200baseline claim. No physics rerun to repair reporting/fixture gaps.

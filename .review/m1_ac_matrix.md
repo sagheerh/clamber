@@ -13,8 +13,17 @@ arm, exact phases and literal-limb .05 unchanged; no diagnostic adoption.
 F77 parallel authored stance/drop/ledge/midair, frozen-N/load/normal/grip audit,
 unconditional termination/status/tick and independent events, no syntheticloads.
 New P-B-without-brace baseline/provenance + same-source strict replay required.
-Measurements PENDING. BOTH located causes => one subsequent fixed increment;
-EITHER inconclusive => Option2, OWNER authors AC201 number, AC202 honest failure.
+Source114265e / CI40901902007: D1 complete four6000tick cells, drift8.55015/
+9.39342/8.48216/8.48216px/s, thrust.108186/.118855/.107325/.107325N. NOT
+proportional; coefficient clamp recorded. D1 no located correctness-shaped cause
+=> binding **Option2**. OWNER authors AC201 number, unchanged AC202 honestfailure.
+D2 diagnostic7200complete; paired baseline7067/status30/failingtick7067; no
+full7200baseline claim. FA5 raw archived; reporter non-foot missing-gripping-field
+bug repaired ARCHIVEONLY, no physical rerun. D2 partial-baseline reporter also
+repaired ARCHIVEONLY, no data/tolerance change. Baseline generator+same-source
+strict publicPASS9053+308+1446; generated actualbytes nowcommitted/provenance.
+Archive-only audit and normal committed-baseline checks pending; core/data EXACT
+114265e, no additional diagnostic arms. Evidence `.review/m1_r26_diagnostic_evidence.json`.
 NO further measurement/sweeps/.05 widening/new slip/stiffness/damping/epsilon;
 no waiver/M2/camera/captures. Matrix remains8/18; old F47 red not waived.
 

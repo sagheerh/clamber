@@ -7,12 +7,12 @@
     "ticks": 600
   },
   "tuning_sha256": "5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666",
-  "final_digest": "a30a132f739e97ce3b4f73ca1716fb7359e0ae22b460378d8396b01da773fb71",
-  "full_stream_sha256": "a2929a0c590f68cbe795ab03b2027cb94a9990fef69732236865f1fb30d3e557",
-  "per_tick_digest_table_sha256": "f2c680300abdc6e2937a493aa344e1404dece005397cd8a99a6c17a52bd4f239",
-  "decision_id": "M1-R25-BASELINE",
-  "source_head": "8d73597f0ce4c118ad0602816b51770d8292611f",
-  "source_ci_run": 40895082337,
-  "source_job": "r25-baseline",
-  "provenance": "Owner R25 authorised regeneration on adoption source. Triple streams independently byte-equal; 30/144 clock streams equal. Normal public job reruns same commit against this explicit baseline overlay; generated baseline then committed without physics changes."
+  "final_digest": "4ec66a1f719135112c28f4e6678d87f4e3c04221d5236816ec02788faa0a6aaa",
+  "full_stream_sha256": "cf98342cf54a06180a68223fb9aa0cb217209b2adb77c544293348e896e29190",
+  "per_tick_digest_table_sha256": "ab2be178d0dee0da6d6d08e8ac8109fb3598803d2c970ffbb61235ef8c3288af",
+  "decision_id": "M1-R26-BASELINE",
+  "source_head": "114265e0116101a897d8429a2998f4987549f86f",
+  "source_ci_run": 40901902007,
+  "source_job": "r26-baseline",
+  "provenance": "Owner R26 authorised regeneration on brace-removal source. Triple streams independently byte-equal; 30/144 clock streams equal. Normal public job reruns same commit against this explicit baseline overlay; generated baseline then committed without physics changes."
 }
