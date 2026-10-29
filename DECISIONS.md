@@ -2038,3 +2038,27 @@ AC201a's intentional measuredFAIL remains in evidence, not rerun or hidden.
 PR3 stilldraft/open, updatedcurrentR27intro; protected59421char tail EXACT
 SHA23f409294933ddd4638139254f41cc5bee6c70a35f28cea6509f9d0c199d76be.
 Final follow-up records verification only; no product/code/tuning/baseline edit.
+
+
+## M1-R28-D8 — quarantine only expected-red F47 diagnostic
+
+Owner R28 explicitly classifies F47 Slug600 load diagnostic as non-acceptance.
+Only its named workflow step gains continue-on-error:true. Command, nonzeroexit,
+raw artifact, ::error annotation, assertions and thresholds remain unchanged.
+Expected-red until M1.1 contact rectifier lands; never an acceptance gate. Before:
+publication93c17d6 job123763105825 failed only thisstep. After: measure actualjob
+conclusion, do not infer that the diagnostic passes from a green job. No other
+step is quarantined. Historical dispatch-only studies are excluded from R28's
+bounded dispatch, not re-run or newly credited. Owner FA3 is VACUOUS/UNCREDITED:
+zero wakes with zero sleepingticks is not a credited feel pass; R27 raw evidence
+is preserved historically, not reused to claim rest. No P2/P3 work.
+
+R28 pre-outcome contract: tests/fixtures/r28_plan.json. Source metadata recovery:
+restored HEADc641990 but every tracked blob matched remote fb890fd; mixed reset
+repaired metadata, no working-file change. Verified startfb890fd5bb8c547d45c96bfa8940eca3a9227b20,
+P-B bound30.0/k10.0/damping0.5443327361211717/cap12.0, tuningSHA5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666.
+SleepingLoadProbe._grounded_query creates each CapsuleBody.new(), restores copied
+snapshot into it, resolves shadows, returns groundedbools only. Parked live pose
+restores unchanged positions from before.physical. No live projection in thatpath,
+no change authorised/needed. Production path Sim→CreatureTickSolver→SleepingLoadProbe
+→ActuatedLoadProbe.advance/step→CoupledLoadProbe._step verified in source.

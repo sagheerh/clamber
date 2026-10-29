@@ -4,6 +4,11 @@ on:
   pull_request:
   workflow_dispatch:
     inputs:
+      r28_source_sha:
+        description: 'R28 exact adoption SHA; one dispatch; new jobs require github.sha equality'
+        required: false
+        default: ''
+        type: string
       r22_only:
         description: 'R22 authorized single missing cell; skip historical runtime arms (not passed/waived)'
         required: false
@@ -121,6 +126,7 @@ jobs:
           retention-days: 7
 
       - name: Hinged Slug600 load diagnostic (NOT FA acceptance)
+        continue-on-error: true
         shell: bash
         run: |
           set +e
@@ -173,7 +179,7 @@ jobs:
       # Accepted R11 experiment remains manually reproducible; R12 requests only
       # the three-spawn experiment on normal pushes, not another iteration sweep.
       - name: R11 isolated position-iteration sensitivity (NOT adoption or FA)
-        if: ${{ always() && github.event_name == 'workflow_dispatch' }}
+        if: ${{ always() && (github.event_name == 'workflow_dispatch' && !inputs.r28_source_sha) }}
         shell: bash
         run: |
           set +e
@@ -191,7 +197,7 @@ jobs:
           PYLOG
           exit "$status"
       - name: Preserve all iteration traces and per-tick motion profiles
-        if: ${{ always() && github.event_name == 'workflow_dispatch' }}
+        if: ${{ always() && (github.event_name == 'workflow_dispatch' && !inputs.r28_source_sha) }}
         uses: actions/upload-artifact@v5
         with:
           name: m1-r11-motion-sweep-${{ github.run_id }}
@@ -202,7 +208,7 @@ jobs:
           retention-days: 7
 
       - name: R12 three spawn heights at unchanged configured iterations (NOT rest acceptance)
-        if: ${{ always() && github.event_name == 'workflow_dispatch' }}
+        if: ${{ always() && (github.event_name == 'workflow_dispatch' && !inputs.r28_source_sha) }}
         shell: bash
         run: |
           set +e
@@ -220,7 +226,7 @@ jobs:
           PYLOG
           exit "$status"
       - name: Preserve all three spawn traces and motion profiles
-        if: ${{ always() && github.event_name == 'workflow_dispatch' }}
+        if: ${{ always() && (github.event_name == 'workflow_dispatch' && !inputs.r28_source_sha) }}
         uses: actions/upload-artifact@v5
         with:
           name: m1-r12-spawn-probe-${{ github.run_id }}
@@ -340,7 +346,7 @@ jobs:
           retention-days: 7
 
   convergence-observation:
-    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.r22_only }}
+    if: ${{ (github.event_name == 'workflow_dispatch' && !inputs.r28_source_sha) && !inputs.r22_only }}
     name: R16 zero-input convergence observation (NOT runtime acceptance)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -399,7 +405,7 @@ jobs:
           retention-days: 7
 
   spring-observation:
-    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.r22_only }}
+    if: ${{ (github.event_name == 'workflow_dispatch' && !inputs.r28_source_sha) && !inputs.r22_only }}
     name: R17 spring mechanism diagnostic (NOT runtime acceptance)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -454,8 +460,8 @@ jobs:
           retention-days: 7
 
   public-sim-runtime:
-    needs: [r26-baseline]
-    if: ${{ always() && (needs.r26-baseline.result == 'success' || needs.r26-baseline.result == 'skipped') && !inputs.r22_only && !(github.event_name == 'push' && contains(github.event.head_commit.message, '[R22-once]')) }}
+    needs: [r26-baseline, r28-baseline]
+    if: ${{ always() && (!inputs.r28_source_sha || needs.r28-baseline.result == 'success') && (needs.r26-baseline.result == 'success' || needs.r26-baseline.result == 'skipped') && !inputs.r22_only && !(github.event_name == 'push' && contains(github.event.head_commit.message, '[R22-once]')) }}
     name: M1 public Sim replay attempt1 and clock gates
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -477,6 +483,20 @@ jobs:
           cp "$RUNNER_TEMP/r26-generated/r26-baseline/public_sim_baseline.json" tests/fixtures/public_sim_baseline.json
           cat "$RUNNER_TEMP/r26-generated/r26-baseline/provenance.md" >> DECISIONS.md
           git diff --name-only
+          test "$(git diff --name-only | wc -l)" -eq 2
+      - name: Download R28 generated baseline on this exact adoption commit
+        if: ${{ needs.r28-baseline.result == 'success' }}
+        uses: actions/download-artifact@v5
+        with:
+          name: m1-r28-baseline-${{ github.run_id }}
+          path: ${{ runner.temp }}/r28-generated
+      - name: Apply ONLY generated R28 baseline and provenance overlay
+        if: ${{ needs.r28-baseline.result == 'success' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp "$RUNNER_TEMP/r28-generated/public_sim_baseline.json" tests/fixtures/public_sim_baseline.json
+          cat "$RUNNER_TEMP/r28-generated/provenance.md" >> DECISIONS.md
           test "$(git diff --name-only | wc -l)" -eq 2
       - name: Install checksum-verified pinned editor
         shell: bash
@@ -528,7 +548,7 @@ jobs:
           retention-days: 7
 
   external-momentum-prerequisite:
-    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.r22_only }}
+    if: ${{ (github.event_name == 'workflow_dispatch' && !inputs.r28_source_sha) && !inputs.r22_only }}
     name: R19 F56 complete external prerequisite (literal record retained)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -583,7 +603,7 @@ jobs:
           retention-days: 7
 
   limit-source-diagnostic:
-    if: ${{ github.event_name == 'workflow_dispatch' && !inputs.r22_only }}
+    if: ${{ (github.event_name == 'workflow_dispatch' && !inputs.r28_source_sha) && !inputs.r22_only }}
     name: R21 wide stop then bound diagnostic (NOT runtime acceptance)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -638,7 +658,7 @@ jobs:
           retention-days: 7
 
   inert-source-diagnostic:
-    if: ${{ (github.event_name == 'workflow_dispatch' && inputs.r22_only) || (github.event_name == 'push' && contains(github.event.head_commit.message, '[R22-once]')) }}
+    if: ${{ ((github.event_name == 'workflow_dispatch' && !inputs.r28_source_sha) && inputs.r22_only) || (github.event_name == 'push' && contains(github.event.head_commit.message, '[R22-once]')) }}
     name: R22 single gain0 + wide90 cell (MANDATORY STOP)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -1151,3 +1171,248 @@ jobs:
             ${{ runner.temp }}/r27-soak-archives/aggregate.json
             ${{ runner.temp }}/r27-soak-summary.log
           retention-days: 7
+
+  r28-measure:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
+    name: R28 adoption-measure (one invocation; exact source pin)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GODOT_VERSION: 4.7.2-stable
+      R28_SOURCE_SHA: ${{ inputs.r28_source_sha }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Execute original arm ONCE and annotate full measured result
+        shell: bash
+        run: |
+          set +e
+          M1_R28_REPORT_DIR="$RUNNER_TEMP/r28-adoption-measure" bash tests/run_m1_r28.sh 'adoption-measure' > "$RUNNER_TEMP/r28-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/r28-console.log" "$status" <<'PYLOG'
+          import sys
+          text='\n'.join(l for l in open(sys.argv[1]).read().splitlines() if l.startswith('M1 R28') or 'ERROR' in l or 'Error' in l)
+          assert len(text)<=35000, 'raw remains uploaded, annotation overflow is not a physics retry'
+          for i in range(0,len(text),3500):
+              level='notice' if sys.argv[2]=='0' else 'error'
+              escaped=text[i:i+3500].replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print(f'::{level} title=M1 R28 measured::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r28-adoption-measure-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/r28-adoption-measure/
+            ${{ runner.temp }}/r28-console.log
+          retention-days: 7
+
+  r28-idle:
+    needs: [r28-measure]
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
+    name: R28 idle-family (one invocation; exact source pin)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GODOT_VERSION: 4.7.2-stable
+      R28_SOURCE_SHA: ${{ inputs.r28_source_sha }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Execute original arm ONCE and annotate full measured result
+        shell: bash
+        run: |
+          set +e
+          M1_R28_REPORT_DIR="$RUNNER_TEMP/r28-idle-family" bash tests/run_m1_r28.sh 'idle-family' > "$RUNNER_TEMP/r28-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/r28-console.log" "$status" <<'PYLOG'
+          import sys
+          text='\n'.join(l for l in open(sys.argv[1]).read().splitlines() if l.startswith('M1 R28') or 'ERROR' in l or 'Error' in l)
+          assert len(text)<=35000, 'raw remains uploaded, annotation overflow is not a physics retry'
+          for i in range(0,len(text),3500):
+              level='notice' if sys.argv[2]=='0' else 'error'
+              escaped=text[i:i+3500].replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print(f'::{level} title=M1 R28 measured::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r28-idle-family-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/r28-idle-family/
+            ${{ runner.temp }}/r28-console.log
+          retention-days: 7
+
+  r28-characterisation:
+    needs: [r28-idle]
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
+    name: R28 ac201a-characterisation (one invocation; exact source pin)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GODOT_VERSION: 4.7.2-stable
+      R28_SOURCE_SHA: ${{ inputs.r28_source_sha }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Execute original arm ONCE and annotate full measured result
+        shell: bash
+        run: |
+          set +e
+          M1_R28_REPORT_DIR="$RUNNER_TEMP/r28-ac201a-characterisation" bash tests/run_m1_r28.sh 'ac201a-characterisation' > "$RUNNER_TEMP/r28-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/r28-console.log" "$status" <<'PYLOG'
+          import sys
+          text='\n'.join(l for l in open(sys.argv[1]).read().splitlines() if l.startswith('M1 R28') or 'ERROR' in l or 'Error' in l)
+          assert len(text)<=35000, 'raw remains uploaded, annotation overflow is not a physics retry'
+          for i in range(0,len(text),3500):
+              level='notice' if sys.argv[2]=='0' else 'error'
+              escaped=text[i:i+3500].replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print(f'::{level} title=M1 R28 measured::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r28-ac201a-characterisation-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/r28-ac201a-characterisation/
+            ${{ runner.temp }}/r28-console.log
+          retention-days: 7
+
+  r28-baseline:
+    needs: [r28-measure]
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
+    name: R28 generate actual baseline ONLY after penetration PASS
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GODOT_VERSION: 4.7.2-stable
+      R28_SOURCE_SHA: ${{ inputs.r28_source_sha }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Actual public streams, expected old-baseline mismatch, generate with provenance
+        shell: bash
+        run: |
+          set +e
+          M1_PUBLIC_REPORT_DIR="$RUNNER_TEMP/r28-baseline-raw" bash tests/run_m1_public.sh > "$RUNNER_TEMP/r28-baseline-console.log" 2>&1
+          status=$?
+          set -e
+          test "$status" -ne 0
+          python3 tests/r28_baseline.py "$RUNNER_TEMP/r28-baseline-raw" "$RUNNER_TEMP/r28-baseline" > "$RUNNER_TEMP/r28-generated.log"
+          python3 - "$RUNNER_TEMP/r28-generated.log" <<'PYLOG'
+          import sys
+          text=open(sys.argv[1]).read()
+          for i in range(0,len(text),3500):
+              print('::notice title=M1 R28 generated baseline::'+text[i:i+3500].replace('%','%25').replace('\n','%0A'))
+          PYLOG
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r28-baseline-${{ github.run_id }}
+          path: ${{ runner.temp }}/r28-baseline/
+          retention-days: 7
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r28-baseline-raw-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/r28-baseline-raw/
+            ${{ runner.temp }}/r28-baseline-console.log
+          retention-days: 7
+
+  r28-m0:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
+    name: R28 unchanged M0 headless516
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Unchanged M0 command and count guard
+        shell: bash
+        run: |
+          set +e
+          tests/run_tests.sh 2>&1 | tee "$RUNNER_TEMP/m0-headless.log"
+          status=${PIPESTATUS[0]}
+          set -e
+          python3 - "$RUNNER_TEMP/m0-headless.log" "$status" <<'PYLOG'
+          import re, sys
+          lines = open(sys.argv[1]).read().splitlines()
+          if sys.argv[2] != "0":
+              selected = [line for line in lines if re.search(r"SCRIPT ERROR|ERROR:|FAIL:|Parse Error|M0:|Error:", line)]
+              for line in (selected or lines[-20:])[:40]:
+                  escaped = line.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+                  print("::error title=M0 engine diagnostics::" + escaped)
+          else:
+              for line in lines:
+                  if line.startswith("M0:"):
+                      print("::notice title=M0 headless result::" + line)
+          PYLOG
+          if [ "$status" -eq 0 ]; then
+            python3 scripts/check_m0_regression.py "$RUNNER_TEMP/m0-headless.log"
+          fi
+          exit "$status"

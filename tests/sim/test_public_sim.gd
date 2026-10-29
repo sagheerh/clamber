@@ -126,6 +126,7 @@ func _rng_controls() -> void:
 
 func _replays() -> void:
 	_report.attempt_started = true
+	_report.actual_input_log = []
 	var digest_tables: Array = []
 	var finals: Array = []
 	var results: Array = []
@@ -135,7 +136,10 @@ func _replays() -> void:
 		var hashes: Array = []
 		var stream := PackedByteArray()
 		for tick in range(TICKS):
-			sim.step(_input(tick))
+			var actual_mask := _input(tick)
+			if run_index == 0:
+				_report.actual_input_log.append(actual_mask)
+			sim.step(actual_mask)
 			_check(sim.last_status == OK, "attempt1 replay tick completes")
 			if sim.last_status != OK:
 				return
