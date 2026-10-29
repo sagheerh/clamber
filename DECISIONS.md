@@ -725,3 +725,17 @@ play max endpoint speed≈.202WU/s=30px/s at150px/WU remains a shimmer/feel risk
 motor work, not now. No epsilon/hysteresis/decay/grace/contact fix. Motors/limits/
 self-contact NEXT, then FA-5 Hopper and all3 FA-3/4, public Sim last; gates NOT RUN,
 complete-creature determinism attempts0, no M2/camera/screens/captures.
+
+
+D12 executed sleep @e36c407 / CI40805104578:3659 checks PASS. Sleep61/210/390,
+input wake180/360 across600 engineering ticks. Restoring at47(partial dwell15)
+and62(asleep) gives1091 subsequent byte-identical full physical+sleep snapshots,
+including identical sleep/wake ticks. F42 persistent support/nonzero prior
+support impulses do not wake; ungrounded->grounded control DOES wake. No impulse
+threshold. This is COMPONENT/engineering-probe evidence, not complete-creature
+determinism or all-preset motor-lurch acceptance. Attempts remain0.
+
+Only two owner sleep fields added; previous400 resource entries unchanged. Scope
+next remains motors/angular limits/self-contact -> actual Hopper two-foot FA-5
+and all3 FA-3/4 -> public Sim last. No pending owner decision invented, no retune,
+no plateau fix claim. Sleep parks the plateau;≈.202WU/s awake shimmer risk remains.

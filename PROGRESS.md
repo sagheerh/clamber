@@ -8,25 +8,33 @@ Session date: 2026-10-28. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R14 / owner A+A1 approved; pose-only measurement first
+### Current R14 / ordered steps1–3 implemented and measured; M1 still incomplete
 
-- Owner decisions are final: M1-D12 records A/A1 and positional sleep/dwell plus
-  transition-only F42. No longer waiting for owner pose/asleep choices.
-- F41b answered in chat BEFORE source edits: current extent ceil crosses cell.25
-  after first-pass position cleanup, foot3->2. Candidate/active counts at fixed
-  current/previous positions are velocity-invariant; indirect integration path
-  remains, not a direct motion-magnitude sample-count rule.
-- Pose commit changes only foot axes in3 catalog JSONs; exactly TwinRoller foot5
-  is an exempt retained head-attached non-support stub. Hard F36 catalog assertion
-  now enabled, original synthetic bad-pose detector preserved. Hopper two-foot
-  branch is future FA-5 fixture, never TwinRoller stub.
-- Unchanged paired Slug600/.33/6/.15/zero-motion and everytick supports/F41 events
-  implemented; pinned engine pending. Do not claim genuine support from authored
-  bottoms. No sleep/tuning/solver change in this pose increment.
-- Next M1: measure pose FIRST (stop/re-derive on owner F41 trap), then separate
-  sleep commit (.001 displacement/30ticks, zero endpoints, input wake, exact
-  restore replay), then motors/limits/self-contact -> FA-5 Hopper/all3 FA-3/4 ->
-  public Sim LAST. All runtime FA-3/4/5/6 NOT RUN; determinism0; no retune/M2/captures.
+- F41b answered BEFORE source edits: foot current extent ceil crosses cell.25
+  after first-pass positional cleanup; candidate/active count3->2, velocity-
+  invariant at fixed current/previous positions+terrain. Indirect geometry path
+  through integration remains. No sampling/contact fix or new epsilon.
+- Owner A/A1 implemented126dc80: five foot axes ->DOWN only; hard F36 authored
+  audit passes, exact retained exemption TwinRoller foot5 parent0 non-support stub.
+  Original bad-pose synthetic control remains. Hopper two-foot grip proof belongs
+  to future FA-5, NOT TwinRoller stub or the authored-bottom assertion.
+- Unexpected measured dynamic result: before0 grip ticks, after1(at19), late
+  fraction0 both. All3 bodies STILL grounded with17 active responses/tick; mean
+  COM dx reverses/grows -7.175187723414263e-6 ->+9.337328797577746e-6WU/tick.
+  F41 retained, not pose-artefact downgrade. Unchanged .33 spawn now starts new
+  pad at-.27WU; sole-foot support prediction NOT observed. No silent spawn fix.
+- Sleep sourcee36c407 / CI40805104578:3659 component checks PASS;600 engineering
+  ticks, sleeps[61,210,390], input wakes[180,360]. Restore at47(partial dwell)
+  and62(asleep):1091 full serialized-state continuation comparisons identical.
+  Every asleep endpoint zero; persistent/new-grounding F42 controls pass. This
+  is NOT complete-creature determinism or an all-preset FA-3/4 pass.
+- EXACTLY two tuning additions, owner R14 Decision2: .001WU/30ticks. All previous
+  tuning-resource bytes unchanged. Sleep parks plateau, does NOT fix it; awake
+  max endpoint speed≈.202WU/s≈30px/s at150px/WU remains a motor-stage feel risk.
+- Next M1 STEP4: motors/angular limits/self-contact. Then STEP5 Hopper two-foot
+  FA-5 and all3 FA-3/4. STEP6 public Sim wiring LAST, currently untouched. No owner
+  approval blocker, no retune/M2/camera/screens/captures. FA-3/4/5/6/all complete
+  runtime gates remain NOT RUN; complete-creature determinism attempts0.
 
 ### Exists
 
@@ -932,3 +940,37 @@ are unresolved (M1-D01). M1 solver, presets, captures and runtime gates NOT RUN.
 - Next M1 after sleep evidence: motors/angular limits/self-contact, then Hopper
   two-foot FA-5 and all3 FA-3/4, public Sim LAST. No tuning changes beyond the two
   owner constants, no retune/M2/screens/camera/captures. Determinism attempts0.
+
+
+### R14 sleep executed @e36c407 / CI40805104578
+
+- Static96 Python=19/5/40/13/5(new R14)/6/8 PASS. Source locks prove ALL previous
+  tuning-resource bytes unchanged (only.001/30 additions) and non-axis preset
+  content/parents unchanged. Original34 accepted parser/control methods retained.
+- Pinned381 math/237 contact/136 analytic/80 load +3659 sleep component checks
+  PASS. Full M1 CI green; unchanged paired pose600 repeats exact measured results
+  above. No sustained-support/feel/runtime acceptance implication from green CI.
+- Sleep ticks61/210/390, wake ticks180/360,600 original state rows; first sleep
+  after62 completed fixed ticks (~1.033s), not a fabricated plateau-entry estimate.
+  Restore checkpoints47 (15 accumulated still ticks) and62 (asleep) compare
+  553+538=1091 subsequent physical+dwell/sleep/wake states byte-identically.
+- Strict boundary/reset/max-per-body tests, all-endpoint velocity zeroing,
+  persistent-support NOT waking and actual false->true grounded wake controls
+  pass. Bad controller/wrapper restore atomic; invalid dwell rejected. Input
+  re-arms fully, prevents accumulating dwell while held. New contact wake uses
+  existing resolver on detached clones, no impulse threshold or force injection.
+- Awake F41 probe stays awake by construction; wrapper records a separate
+  awake_solver_trace_before_sleep_parking and never presents stale/parked force
+  fields as a fresh conservation trace. Snapshot predicate reads physical body
+  snapshots only; no wall-clock/frame-time or hidden temporal cache.
+- Sleep artifact12868315418,5667bytes,SHA256
+  0b06ae9a38fb1135a7b62c1c759fff911cc9e329a79471fe948bcf460560a207;
+  paired pose12867413739,3985484bytes,SHA256
+  f673165d7a2ec938d998607ceb0ededebb391cdaea8024c2b1125ae187b928d0.
+  API annotations/metadata inspected, raw ZIP not downloaded locally. All600
+  per-body support channels/contact samples retained separately from sleep rows.
+- Steps4–6 NOT implemented in this increment. Motors/limits/self-contact next,
+  then actual Hopper two-foot band and all3 FA-3/4, public Sim last. F41 persists;
+  larger/reversed drift with SAME support set is not the owner's identical-old-
+  drift/DIFFERENT-geometry trap. No new approval inferred for a friction fix.
+  All full runtime gates NOT RUN; complete-creature determinism attempts0.
