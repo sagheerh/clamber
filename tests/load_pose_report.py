@@ -5,6 +5,7 @@ from pathlib import Path
 import sys
 from load_trace_report import analyze
 from load_contact_report import save
+from load_convergence_report import drift_summary
 
 
 def compare(root):
@@ -27,7 +28,7 @@ def compare(root):
                 'last300_all_terrain_reaction_n':a['all_terrain_reaction_range_n'],
                 'last300_foot_ranges_n':a['steady_ranges_n'],
                 'all_grounded_force_window':a['force_window_within_owner_tolerance'],
-                'f31_verified':a['momentum_ledger_verified'], 'contacts':c}
+                'f31_verified':a['momentum_ledger_verified'], 'zero_input_drift':drift_summary(rows), 'contacts':c}
             # Everytick support channel remains raw, not merely a summary.
             (folder/'supports-600.jsonl').write_text(''.join(json.dumps({
                 'tick':r['tick'],'previous_grounded_feet':r['previous_grounded_feet'],
@@ -55,5 +56,7 @@ if __name__=='__main__':
             brief['active_per_part_pass']={p:{v:s['active_count_histogram'] for v,s in stat['per_pass'].items()} for p,stat in c['parts'].items()}
             brief['com_vx_range']=c['steady_completed_com_vx_range_wu_s']
         print('M1 pose '+pose+': '+json.dumps(brief,sort_keys=True))
+        if 'zero_input_drift' in case:
+            print('M1 pose zero-input drift '+pose+': '+json.dumps(case['zero_input_drift'],sort_keys=True))
     print('M1 pose F41: '+json.dumps(report.get('F41',{'status':'INCOMPLETE'}),sort_keys=True))
     raise SystemExit(0 if 'F41' in report and not report['F41']['suspicious_identical_drift_different_support'] else 1)

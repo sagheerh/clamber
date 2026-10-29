@@ -38,6 +38,15 @@ class ConvergenceControls(unittest.TestCase):
         for a in ([(0.,0.)]*299, [(0.,float('nan'))]*300):
             with self.assertRaises(ValueError): classify(a)
 
+    def test_count_recurrence_does_not_grant_settlement(self):
+        rows=fixture()
+        for i,r in enumerate(rows):
+            r['contact_counts']=[{'active_count':i%3}]
+        d=drift_summary(rows)
+        self.assertEqual(d['raw_recurrence_diagnostics']['count_pattern_period_ticks'],3)
+        self.assertEqual(d['raw_recurrence_diagnostics']['repeat_lag_vx_max_difference_wu_s'],0.)
+        self.assertIn('no settlement',d['raw_recurrence_diagnostics']['meaning'])
+
     def test_zero_input_has_live_return_label_and_own_units(self):
         rows=fixture()
         for r in rows:r['diagnostic_actuated']=True;r['input_mask']=0

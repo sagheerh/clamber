@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import re
 import sys
+from load_convergence_report import drift_summary
 from load_contact_report import save, RESOURCE, com_vx
 from load_trace_report import analyze
 
@@ -29,7 +30,7 @@ def summarize(folder):
                 raise ValueError('R13 initial conditions changed')
             report = save(root, rows)
             observed_rows.append(rows)
-            case.update(status='OBSERVED', rows=len(rows), contact_report=report,
+            case.update(status='OBSERVED', rows=len(rows), contact_report=report, zero_input_drift=drift_summary(rows),
                         all_grounded_force_window=accepted['force_window_within_owner_tolerance'])
         except (ValueError, KeyError, OSError, TypeError, StopIteration) as error:
             case.update(status='NOT COMPLETED', finding=str(error))
@@ -60,6 +61,8 @@ if __name__=='__main__':
         if 'contact_report' in case:
             brief['grounded_transition_ticks'] = [{k:r[k] for k in ('tick','new_grounded_parts','lifted_parts')} for r in case['contact_report']['grounded_transitions_all600']]
         print('M1 slip case: '+json.dumps(brief,sort_keys=True))
+        if 'zero_input_drift' in case:
+            print('M1 slip zero-input drift: '+json.dumps(case['zero_input_drift'],sort_keys=True))
     if report['cases'][0]['status']=='OBSERVED':
         for part,stats in report['cases'][0]['contact_report']['parts'].items():
             print('M1 slip baseline part: '+json.dumps({'part':part,**stats},sort_keys=True))

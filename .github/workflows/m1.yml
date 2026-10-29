@@ -348,12 +348,22 @@ jobs:
           set -e
           python3 - "$RUNNER_TEMP/m1-convergence-console.log" "$status" <<'PYLOG'
           import sys
+          messages=[]
+          current=''
           for line in open(sys.argv[1]).read().splitlines():
               if line.startswith(('M1 convergence','M1 zero-input drift','M1 F50')) or 'ERROR' in line or 'FAIL' in line:
                   for start in range(0,len(line),3500):
-                      level='notice' if sys.argv[2]=='0' else 'error'
-                      text=line[start:start+3500].replace('%','%25').replace('\r','%0D')
-                      print(f'::{level} title=M1 R16 convergence ONLY::'+text)
+                      chunk=line[start:start+3500]
+                      if len(current)+len(chunk)+1>3500:
+                          messages.append(current);current=''
+                      current+=('\n' if current else '')+chunk
+          if current:messages.append(current)
+          # The full report remains in the artifact; fail visibly rather than drop results.
+          assert len(messages)<=10, 'diagnostic annotation budget exceeded; full raw artifact retained'
+          for message in messages:
+              level='notice' if sys.argv[2]=='0' else 'error'
+              text=message.replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print(f'::{level} title=M1 R16 convergence ONLY::'+text)
           PYLOG
           exit "$status"
       - name: Preserve R16 full raw zero-input traces, pre-fold phases and spawn evidence

@@ -882,3 +882,19 @@ R16 F50 post-pose root derived+.01/.21 (about.610/.810) BOTH baseline600 and
 actuated6000; original pre-pose actuated6000 retained. Same pose, only authorized
 +.20 fixture lift; no tuning field/retune. Validate ACTUAL raw initial surfaces.
 Nonsettled window means are facts only, settled comparison null; F41 stays OPEN.
+
+
+R16 @34b0cfd / CI40813196081: independent observation job SUCCESS, all5 cases
+complete, original M1 gate RED only F47. Both original actuated arms6000 remain
+oscillating, settled values null: before final300 mean dx.0003903690062867022,
+after.0004371693616756641WU/tick; net3.51332105658/3.93452425508px/s. Similar
+window bands do not prove equilibrium; no exact recurrence is not divergence.
+F49 Slug angular max phase coordinates.009223146/.008874612/.009034440WU
+(before/after/raised), drive max.044444719/.044386385/.044374511, limit-block
+max.000177216/.000340027/.000566626 mass*WU^2/s; self phase/impulses0 (no eligible
+Slug self pair). Source mechanics unchanged, only telemetry. Per-step10-notice
+cap hid later F50 summaries despite complete artifact: pack notices<=3500chars,
+assert<=10, no silent result loss. Raw count-period and repeat-lag differences
+are observation ONLY, not a settlement tolerance or acceptance criterion.
+Every diagnostic entry point now has an own zero-input drift line, including
+historical pose/slip/spawn; spring live status explicit. No equilibrium claim.

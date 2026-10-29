@@ -43,6 +43,16 @@ def drift_summary(rows):
     dx = math.fsum(v[0] for v in tail) / 300
     vx = math.fsum(v[1] for v in tail) / 300
     active = rows[0].get('diagnostic_actuated', False)
+    recurrence = {'count_pattern_period_ticks': None, 'repeat_lag_dx_max_difference_wu_tick': None,
+                  'repeat_lag_vx_max_difference_wu_s': None,
+                  'meaning': 'observed recurrence differences ONLY; no settlement tolerance/pass criterion'}
+    if all('contact_counts' in r for r in rows[-300:]):
+        signatures = [r['contact_counts'] for r in rows[-300:]]
+        period = next((p for p in range(1,151) if all(signatures[i] == signatures[i-p] for i in range(p,300))), None)
+        recurrence['count_pattern_period_ticks'] = period
+        if period:
+            recurrence['repeat_lag_dx_max_difference_wu_tick'] = max(abs(tail[i][0]-tail[i-period][0]) for i in range(period,300))
+            recurrence['repeat_lag_vx_max_difference_wu_s'] = max(abs(tail[i][1]-tail[i-period][1]) for i in range(period,300))
     return {'input_mask': 0, 'spring_return_live': active,
             'power_description': 'ZERO INPUT IS NOT UNPOWERED: always-on spring return active' if active else 'free-hinge baseline; no motor spring return',
             'observation_ticks': [rows[-300]['tick'], rows[-1]['tick']],
@@ -51,4 +61,4 @@ def drift_summary(rows):
             'net_drift_px_s_at_150px_wu': dx * 60 * 150,
             'observed_window_lateral_travel_wu': math.fsum(v[0] for v in tail),
             'mean_completed_com_vx_wu_s': vx,
-            'convergence': c}
+            'convergence': c, 'raw_recurrence_diagnostics': recurrence}

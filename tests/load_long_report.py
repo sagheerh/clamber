@@ -137,7 +137,11 @@ if __name__=='__main__':
             counts[name]=[r['contact_counts'] for r in rows[-300:]]
         except (OSError,ValueError,KeyError,TypeError) as e:
             result[name]={'status':'NOT COMPLETED','finding':str(e)}
-        print('M1 convergence '+name+': '+json.dumps({k:v for k,v in result[name].items() if k != 'windows_ending_at_ticks_exclusive'},sort_keys=True))
+        brief={k:v for k,v in result[name].items() if k not in ('windows_ending_at_ticks_exclusive','last300_counts','zero_input_drift','sustained_support_gate')}
+        if 'sustained_support_gate' in result[name]:
+            g=result[name]['sustained_support_gate']
+            brief.update(support_gate_passed=g['passed'],last300_grip_fraction=g['grip_fraction'],max_single_foot_share=g['max_single_foot_grounded_support_share'])
+        print('M1 convergence '+name+': '+json.dumps(brief,sort_keys=True))
         for window,d in result[name].get('windows_ending_at_ticks_exclusive',{}).items():
             print('M1 zero-input drift '+name+' through'+window+': '+json.dumps(d,sort_keys=True))
         if 'zero_input_drift' in result[name]:

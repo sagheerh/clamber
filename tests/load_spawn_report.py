@@ -5,6 +5,7 @@ import math
 from pathlib import Path
 import re
 import sys
+from load_convergence_report import drift_summary
 from load_trace_report import analyze, close, LINEAR_DAMPING
 from load_motion_report import motion_profile
 
@@ -73,6 +74,7 @@ def summarize(folder):
             verified = report['momentum_ledger_verified'] and motion['position_ledger_and_speed_identities_verified']
             case.update({
                 'status': 'OBSERVED' if verified else 'BOOKKEEPING FINDING',
+                'zero_input_drift': drift_summary(rows),
                 'rows': len(rows), 'ledger_verified': bool(verified),
                 'steady_p_y_range_ns': [min(ps), max(ps)],
                 'steady_p_y_mean_ns': math.fsum(ps) / len(ps),
@@ -101,6 +103,8 @@ if __name__ == '__main__':
     Path(sys.argv[1], 'spawn-comparison.json').write_text(json.dumps(report, indent=2) + '\n')
     for case in report['cases']:
         print('M1 spawn row: ' + json.dumps(case, sort_keys=True))
+        if 'zero_input_drift' in case:
+            print('M1 spawn zero-input drift: ' + json.dumps(case['zero_input_drift'],sort_keys=True))
     print('M1 spawn comparison: ' + json.dumps(report['comparison'], sort_keys=True))
     print('M1 spawn scope: unchanged6 iterations; no rest definition/model/pose adopted; no velocity epsilon')
     raise SystemExit(0 if all(c['status'] == 'OBSERVED' for c in report['cases']) else 1)

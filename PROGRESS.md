@@ -1153,3 +1153,33 @@ retain NOT RUN, with reasons updated to acknowledge existing components.
 - Active matrix evidence now reflects approved A/A1 rather than a pending owner
   pose choice; FA-4 scope explicitly all3 presets per R14. All full runtime gate
   statuses stay NOT RUN. Steps1–3 implemented; steps4–6 remain next, not complete.
+
+
+### R16 measured F48/F49 @34b0cfd / CI40813196081 (component jobs PASS, M1 RED)
+
+- Dedicated observation job123248107087 SUCCESS; all FIVE requested raw cases
+  OBSERVED (3×6000 actuated, 2×600 baseline), observer equivalence/identities pass.
+  Original job fails ONLY F47 load-path door, not components or a measurement.
+- Live-spring zero-input before, mean COM dx at600/3000/6000 respectively:
+  .0003903690062867916 / .00039180535626671774 / .0003903690062867022WU/tick.
+  Post-pose+.01: .000437169361675691 / .00043716936167569775 /
+  .0004371693616756641. Last6000 final300 net drift3.51332105658 /3.93452425508
+  px/s at150px/WU (WU/s .0234221403772 /.0262301617005). Spring return LIVE at0.
+- Both oscillating under exact observed-pattern criterion, NOT settled by6000:
+  before vx[.02054052008572514,.04154125326362168], after
+  [.022195775258306853,.04314821835302906]. Settled values null. Bounded bands /
+  similar means are NOT proof of equilibrium, and failure of exact recurrence
+  is NOT proof of divergence. Add raw count-period/lag differences (no tolerance,
+  no pass criterion) so binary64-scale repeat variation is visible, not hidden.
+- F49 pre-fold angular max |net tick phase coordinate| before/after/raised:
+  .009223146015561803/.008874611801879255/.009034439887647586WU.
+  Max drive angular impulses .044444719141974176/.04438638495109458/
+  .0443745109016708 (mass*WU^2/s); max limit-block .00017721591385786578/
+  .0003400274408216497/.0005666264465788995. Self-contact phase/impulse maxima
+  all0 for Slug (real D10 pair list excludes its foot and adjacent head/motor).
+- Annotation per-step cap10 hid later F50 results even in the separate job.
+  Full reports/artifacts are complete; pack bounded notices and compact repeated
+  metadata, assert<=10 rather than silently dropping evidence. Repeat measurements
+  to expose both complete6000/raised/baseline F50 summaries. No physics change.
+- Next single M1 stage after this evidence: public Sim/F45/replay, NOT implemented
+  this increment. All coupled runtime gates NOT RUN, determinism attempts0.
