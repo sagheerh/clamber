@@ -1,0 +1,20 @@
+{
+  "scope": "unadopted test-only awake-row substitution in public clock/Sim; not production acceptance or determinism",
+  "source_commit": "36313adee19458995618a860843b078a356975ed",
+  "source_ci_run": "41005575775",
+  "core_manifest": {
+    "source_commit": "0c1d3f875af8a9ddee1b3f6d10d0784060db4f1d",
+    "tuning_sha256": "5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666",
+    "core_tree_sha256": "557524202efe109074f692a56240ca6b50fcd422db4ed38888aed1b4476704df"
+  },
+  "engine_build": "4.7.2.stable.official.ed1daf0bf",
+  "candidate_sha256": {
+    "tests/physics_fix/actuated_contact_composition.gd": "ab2ce1c220049c99143a647791b5ac90b41ba56ed86d2bb837b2d9301c52474b",
+    "tests/physics_fix/capsule_contact_composition.gd": "177e09d8646870ad1cde7dc7ddb1e5a7a02582ec06cb1b8a9398f898ff0de202",
+    "tests/physics_fix/rigid_contact_candidate.gd": "4755e992fdcd364fe7598a25e25126b487129ddd95f3b82d4414ba4802692026",
+    "tests/physics_fix/test_contact_composition.gd": "f39dfbeb42c52e07979d018b67a550f0781dff15bee253f9df7c3bb9f542b548",
+    "tests/physics_fix/test_rigid_contact_candidate.gd": "77167e7ee02141583c20fa68651fb4a3dd6d0adcc2291606f921520c57692958",
+    "tests/run_m1_contact_composition.sh": "17bb6f19297b05c73b5f291e80cb3ce42a34c151c4bed4e1f4cfa7e5c83f42fd",
+    "scripts/publish_m1_contact_composition.py": "733b42291368b1e485fc18cd467e9caf97536ff2f67641aacb3fedc8bb52b1a9"
+  }
+}
