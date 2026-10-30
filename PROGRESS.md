@@ -8,7 +8,34 @@ Session date: 2026-10-30. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-## ZIP delivery preparation — not a merge or an M1 verdict (2026-10-30)
+## Active continuation — opt-in M1 device diagnostic (2026-10-30)
+
+Branch `arena/f43f36ab-clamber` starts from merged main `7d86dd5`. The earlier
+"main not advanced" notes below describe the previous session, not current main.
+Owner wants executable code before doing their physical-device testing.
+
+Added a separate `tests/device/m1_lab.tscn`: production presets + public Sim,
+held L/R touch/keyboard, explicit pause/resume, background input clear, fixed
+collision diagram (150px/WU, no camera work), and actual committed tick/session
+logs. No product screen/default boot change. New isolated APK staging/build script
+uses package `org.clamber.m1lab`; normal exports remain unchanged and exclude tests.
+`M1_DEVICE_TEST.md` documents install, manual testing and whole-log extraction.
+
+This closes a manual testing-access gap, NOT the physics failures. AC-201/AC-202
+remain FAILED, adoption stays reverted, FA-3 uncredited, M1 BLOCKED / NOT SIGNED,
+M2 blocked. No D0, accepted R27/R29 runs, tuning/core/threshold changes or P3.
+Python package contracts and GDScript grammar/static checks are tested; engine
+semantic compilation, input execution, APK build/install and device testing are
+NOT RUN without the pinned engine/SDK/phone. Do not describe this as all M1 code
+complete or phone-ready validated. Source manifest still matches unchanged core.
+
+The squashed checkout initially lacked 4796ec6/fb890fd history and correctly
+failed closed. Fetching the original pinned 4796ec6 object/history restored the
+unchanged Git checks (no assertion edits): 232/0 in Git and 232/0 in no-.git ZIP.
+Device package tests10/0, provenance10/0; GDScript grammar/lint clean. No real
+engine/phone result implied. See `.review/m1_device_increment.md` for scope.
+
+## Historical ZIP delivery preparation — not a merge or an M1 verdict (2026-10-30)
 
 The intended main integration carries the M1 code for local execution, **not an
 M1 sign-off**. Main has NOT been advanced by this session: branch-only write

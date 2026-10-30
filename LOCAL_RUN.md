@@ -30,11 +30,12 @@ missing entry or mismatch. The build string must be exactly
 
 ## Unzip and run once, in order
 
-The requested reproducible download name is `m1-blocked-2026-10-30`. **That tag
-has not been published by this session; main has not been advanced.** Until the
-owner completes the fast-forward/tag handoff, download the ZIP of the exact
-packaging commit on `arena/4cd0a587-clamber`, not the old branch
-`arena/5b72e4ab-clamber`. Once published, use the annotated tag's source ZIP.
+The prior M1 foundations were merged to main at `7d86dd5`; this continuation is
+on `arena/f43f36ab-clamber`. Download the ZIP of an exact source commit on this
+branch for these instructions. The earlier requested name
+`m1-blocked-2026-10-30` is not asserted here as a published tag. Do not use the old
+`arena/5b72e4ab-clamber` source. For interactive desktop/phone testing instead of
+headless measurements, see `M1_DEVICE_TEST.md`.
 
 Unzip the source ZIP, enter its top-level directory, then copy/paste, replacing
 only the Godot binary path. Use an absolute path, including spaces if necessary:

@@ -4,6 +4,14 @@ M0 engineering skeleton for the offline-first, portrait Android physics game in
 [`docs/GDD.md`](docs/GDD.md). There is **no gameplay, product screen, or final art**
 in this milestone. Boot is a solid GDD navy (`#00192F`) surface.
 
+## M1 owner testing (opt-in)
+
+Main now includes the standalone M1 solver and three presets, but **M1 is BLOCKED /
+NOT SIGNED**. Default boot intentionally remains the M0 engineering surface.
+For the separate interactive diagnostic scene and debug Android APK build path,
+see [M1_DEVICE_TEST.md](M1_DEVICE_TEST.md). For ordered headless observations,
+see [LOCAL_RUN.md](LOCAL_RUN.md). The lab is not a game screen or acceptance pass.
+
 ## Exact toolchain
 
 - **Godot 4.7.2-stable**, standard GDScript build (not .NET), pinned in

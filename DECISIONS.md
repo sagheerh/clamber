@@ -3,6 +3,28 @@
 The GDD's existing D-01–D-17, CD-01, and A-xx decisions remain normative.
 New implementation decisions use M0-Dxx to avoid colliding with those IDs.
 
+## M1-DEVICE-D01 — Opt-in diagnostic access, not a product screen
+
+2026-10-30 continuation on active `arena/f43f36ab-clamber`, based on merged main
+7d86dd5. Owner will perform physical-device testing. Provide an isolated test-only
+scene and optional debug APK (`org.clamber.m1lab`), not a new S00–S16 screen or
+change to normal boot/export. It uses production presets/public Sim with the
+existing R25 flatplane/spawn/material fixture unchanged. New sessions are manual
+exploration, not reruns or relabelled acceptance protocols.
+
+Input is event-driven held L/R with touch ownership; pause/background clears it
+and requires explicit resume. Only public Sim's fixed-step accumulator advances
+physics. Diagram is collision radii at150px/WU, not visual-art geometry, Camera2D
+or camera/FA acceptance. Tick_completed is the source of logs; failures stop,
+logs are owner-attested, and interactive logging is not a D2 benchmark. Export
+staging includes source inventories and keeps core/presets/default configs intact.
+
+M1 remains BLOCKED / NOT SIGNED; AC-201/AC-202 FAILED, FA-3 uncredited, M2 blocked.
+No solver fix/adoption/retune/threshold change or M1 completion verdict. The earlier
+no-physics restrictions are not silently converted into permission to retry the
+reverted adoption. Engine compile/Android/device evidence remains NOT RUN until
+real tools are available; grammar and Python tests are not substitutes.
+
 ## M1-ZIP-D01 — Main integration is execution access, not acceptance
 
 2026-10-30 owner direction: main is to carry the M1 code for local execution;
