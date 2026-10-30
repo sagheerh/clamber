@@ -2,6 +2,7 @@
 """Static/forgery controls, NOT numerical runtime/feel acceptance evidence."""
 import hashlib,json,math,re,sys,tempfile,unittest,subprocess
 from pathlib import Path
+from source_provenance import historical_blob
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 from check_m1_matrix import validate_matrix,R27_VERDICTS
 from r27_report import PLAN,angle_degrees,completed,com,aggregate
@@ -34,7 +35,7 @@ class R27Controls(unittest.TestCase):
     def test_original_plan_and_candidate_bytes_pinned_after_outcomes(self):
         e=json.loads(Path('.review/m1_r27_evidence.json').read_text())
         for field,path in [('tuning_sha256','core/tuning.tres'),('plan_sha256','tests/fixtures/r27_plan.json'),('candidate_source_core_sha256','core/sim/coupled_load_probe.gd'),('baseline_file_sha256','tests/fixtures/public_sim_baseline.json')]:
-            self.assertEqual(hashlib.sha256(subprocess.check_output(['git','show','fb890fd:'+path])).hexdigest(),e[field])
+            self.assertEqual(hashlib.sha256(historical_blob('fb890fd:'+path)).hexdigest(),e[field])
     def test_static_policy_not_misrepresented_as_sustained_sleep(self):
         e=json.loads(Path('.review/m1_r27_evidence.json').read_text())
         self.assertTrue(e['FA3']['passed'])
@@ -80,7 +81,7 @@ class R27Controls(unittest.TestCase):
             self.assertTrue(validate_matrix(wrong))
         self.assertTrue(validate_matrix(text.replace('NOT RUN | Actual success_count unknown','PASS (measured policy coverage) | Actual success_count unknown')))
     def test_one_pass_moved_outside_contact_loop(self):
-        s=subprocess.check_output(['git','show','fb890fd:core/sim/coupled_load_probe.gd'],text=True) # historical candidate, NOT live R28 requirement
+        s=historical_blob('fb890fd:core/sim/coupled_load_probe.gd',text=True) # historical candidate, NOT live R28 requirement
         predict=s.split('func _predict_and_project',1)[1].split('func _velocity_contacts',1)[0]
         self.assertNotIn('diagnostic_final_distance_pass',predict)
         contact=s.split('func _velocity_contacts',1)[1].split('func _rigid_velocity',1)[0]

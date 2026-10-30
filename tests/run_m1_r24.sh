@@ -2,11 +2,18 @@
 # R24 time box: three A cells, one B, C from archived data. STOP thereafter.
 set -euo pipefail
 cd "$(dirname "$0")/.."
+if [[ "${CLAMBER_LOCAL:-}" == 1 ]]; then
+ python3 tests/source_provenance.py
+fi
 GODOT="${GODOT:-godot}"
 case "$("$GODOT" --version)" in 4.7.2.stable*) ;; *) echo 'ERROR: exact Godot4.7.2 required' >&2; exit 1 ;; esac
 folder="${M1_R24_REPORT_DIR:?}"; old="${M1_R24_OLD_DIR:?}"; mkdir -p "$folder"
 resource_before="$(sha256sum core/tuning.tres)"
-git diff --exit-code 7d48ba0 -- core/tuning.tres data/creatures/
+if [[ "${CLAMBER_LOCAL:-}" == 1 ]]; then
+ python3 tests/source_guard_r24.py
+else
+ git diff --exit-code 7d48ba0 -- core/tuning.tres data/creatures/
+fi
 "$GODOT" --headless --editor --import > "$folder/import.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/import.log"; then cat "$folder/import.log"; exit 1; fi
 for name in A-0.15 A-0.015 A-0.0015 B; do

@@ -2,6 +2,9 @@
 # OWNER R26 last bounded increment. One invocation per mode; no physical retry.
 set -euo pipefail
 cd "$(dirname "$0")/.."
+if [[ "${CLAMBER_LOCAL:-}" == 1 ]]; then
+ python3 tests/source_provenance.py
+fi
 mode="${1:?d1/d2/fa5}"; folder="${M1_R26_REPORT_DIR:?}"; mkdir -p "$folder"
 [[ "$mode" == d1 || "$mode" == d2 || "$mode" == fa5 ]]
 case "$("${GODOT:?}" --version)" in 4.7.2.stable*) ;; *) exit 1;; esac
@@ -15,8 +18,10 @@ fi
 python3 - "$folder" "$status" <<'PY'
 import hashlib,json,os,subprocess,sys
 from pathlib import Path
+sys.path.insert(0,"tests")
+from source_provenance import source_head
 p=Path(sys.argv[1]); status=int(sys.argv[2])
-(p/'source.json').write_text(json.dumps(dict(source_head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),source_ci_run=os.environ.get('GITHUB_RUN_ID'),tuning_sha256=hashlib.sha256(Path('core/tuning.tres').read_bytes()).hexdigest(),raw_traces_sha256={f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in p.glob('*.jsonl')}),indent=2)+'\n')
+(p/'source.json').write_text(json.dumps(dict(source_head=source_head(),source_ci_run=os.environ.get('GITHUB_RUN_ID'),tuning_sha256=hashlib.sha256(Path('core/tuning.tres').read_bytes()).hexdigest(),raw_traces_sha256={f.name:hashlib.sha256(f.read_bytes()).hexdigest() for f in p.glob('*.jsonl')}),indent=2)+'\n')
 (p/'runner-termination.json').write_text(json.dumps(dict(status=status,termination_reason='engine_returned' if (p/'engine.json').exists() else 'engine_did_not_produce_termination_report', failing_tick=None if status==0 else 'see engine.json, or unavailable before initialization'))+'\n')
 PY
 report_status=0

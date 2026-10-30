@@ -2,6 +2,9 @@
 # R27 one candidate/configuration; separately authorised stability/static/soak.
 set -euo pipefail
 cd "$(dirname "$0")/.."
+if [[ "${CLAMBER_LOCAL:-}" == 1 ]]; then
+ python3 tests/source_provenance.py
+fi
 mode="${1:?ac201/ac202/fa3/soak}"; batch="${2:--1}"
 folder="${M1_R27_REPORT_DIR:?}"; mkdir -p "$folder"
 [[ "$mode" == ac201 || "$mode" == ac202 || "$mode" == fa3 || "$mode" == soak ]]
@@ -15,13 +18,15 @@ fi
 python3 - "$folder" "$mode" "$batch" "$status" <<'PY'
 import hashlib,json,os,subprocess,sys
 from pathlib import Path
+sys.path.insert(0,"tests")
+from source_provenance import source_head
 p=Path(sys.argv[1])
 def sha(f):
  h=hashlib.sha256()
  with f.open('rb') as stream:
   while b:=stream.read(1<<20):h.update(b)
  return h.hexdigest()
-(p/'source.json').write_text(json.dumps(dict(source_head=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),source_ci_run=os.environ.get('GITHUB_RUN_ID'),mode=sys.argv[2],batch=int(sys.argv[3]),tuning_sha256=sha(Path('core/tuning.tres')),plan_sha256=sha(Path('tests/fixtures/r27_plan.json')),raw_sha256={f.name:sha(f) for f in p.glob('*.jsonl')}),indent=2)+'\n')
+(p/'source.json').write_text(json.dumps(dict(source_head=source_head(),source_ci_run=os.environ.get('GITHUB_RUN_ID'),mode=sys.argv[2],batch=int(sys.argv[3]),tuning_sha256=sha(Path('core/tuning.tres')),plan_sha256=sha(Path('tests/fixtures/r27_plan.json')),raw_sha256={f.name:sha(f) for f in p.glob('*.jsonl')}),indent=2)+'\n')
 (p/'runner-termination.json').write_text(json.dumps(dict(status=int(sys.argv[4]),termination_reason='engine_returned' if (p/'engine.json').exists() else 'initialization_failure', failing_tick='see per-fixture engine termination' if (p/'engine.json').exists() else None))+'\n')
 PY
 report_status=0

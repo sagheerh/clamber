@@ -2,9 +2,13 @@
 """No simulation; R29 launch/scope/evidence forgery controls."""
 import gzip,hashlib,json,subprocess,unittest
 from pathlib import Path
+from source_provenance import verify
 class R29Controls(unittest.TestCase):
  def test_core_and_tuning_unchanged(self):
-  self.assertEqual(subprocess.check_output(['git','diff','4796ec6','--','core/']),b'')
+  if Path('.git').exists():
+   self.assertEqual(subprocess.check_output(['git','diff','4796ec6','--','core/']),b'')
+  else:
+   verify()
   self.assertEqual(hashlib.sha256(Path('core/tuning.tres').read_bytes()).hexdigest(),'5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666')
  def test_push_gate_no_upload_before_measurements(self):
   s=Path('.github/workflows/r29.yml').read_text()

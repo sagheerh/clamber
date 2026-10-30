@@ -1,12 +1,42 @@
 # CLAMBER progress
 
-## Current milestone: M0 — APPROVED / COMPLETE (owner override); M1 — IN PROGRESS / 8 of 18 runtime gates with accepted evidence; creature feel acceptance incomplete
+## Current milestone: M0 — APPROVED / COMPLETE (owner override); M1 — BLOCKED / NOT SIGNED; M2 blocked
 
 Session date: 2026-10-30. Normative inputs: `docs/GDD.md` and
 `docs/ui/CLAMBER_UI.jpeg`. M0 is accepted by the GDD owner under M0-D07, dated 2026-10-28. Verdict:
 **APPROVE — HUMAN OVERRIDE**. Missing device evidence and measured FPS/P95 are
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
+
+## ZIP delivery preparation — not a merge or an M1 verdict (2026-10-30)
+
+The intended main integration carries the M1 code for local execution, **not an
+M1 sign-off**. Main has NOT been advanced by this session: branch-only write
+permissions prevent updating main or publishing its tag. The agent branch has
+ZIP-safe tooling and `LOCAL_RUN.md`; fast-forward/tag handoff is pending.
+
+**M1 BLOCKED and NOT SIGNED.** AC-201 FAILED. AC-202 FAILED: adoption reverted;
+the control is at `physics_contact_slop_wu = 0.02` plus roundoff, and adoption
+reached 2.5–4.7× the designed slop. F79 WITHDRAWN. FA-3 is uncredited. Five runtime
+gates remain NOT RUN: presets+captures, tick cost §10.4, §10.6 step 1, FA-4,
+and FA-6. CI is blocked by account billing/allocation (GitHub's exact annotation
+allows failed payments OR spending-limit exhaustion; neither cause independently
+established). M2 remains blocked. **A merge is not a verdict.**
+
+ZIP controls passed twice without `.git`: 232/0 each. Separate packaging tests
+verify hash failures, including edits/additions/deletions/renames. Launch-routing
+checks used a labelled test double, zero real engine ticks: NOT import/compile
+or runtime evidence. Real Godot proof remains unavailable because the pinned
+asset download redirects to a blocked host. No D0 or D1–D5 measurement was run.
+Historical M0 516/0 remains historical, not a fresh result.
+
+Manifest pins core/tuning to 0c1d3f8 (byte-identical to 4796ec6); packaging changes
+necessarily differ from the full 0c1d3f8 tree. Existing CI markers and historical
+R1x–R29 pins are untouched. No physics, assertions, thresholds, tuning/slop/
+iterations, preset/save/M0 expectations or billing/artifacts were changed.
+`arena/5b72e4ab-clamber` was NOT merged: the owner identifies it as predating the
+M1 workflow and R28/R29 evidence, risking loss of workflows and evidence files.
+Details and exact merge-proof limitations: `.review/m1_zip_delivery_report.md`.
 
 ## R29 resumed from eee6c81 — required proof blocked, no arms launched
 

@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
+if [[ "${CLAMBER_LOCAL:-}" == 1 ]]; then
+ exec python3 tests/r29_local.py "$@"
+fi
 export R29_FOLDER=tests/fixtures/m1_r29_execution
 folder="$R29_FOLDER"
 mkdir -p "$folder"

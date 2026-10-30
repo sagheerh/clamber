@@ -2,16 +2,17 @@
 """R28 source/forgery controls, never a substitute for measured penetration."""
 import hashlib, json, re, subprocess, sys, unittest
 from pathlib import Path
+from source_provenance import historical_blob
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 
 
 class R28Controls(unittest.TestCase):
     def test_tuning_exact_start(self):
-        self.assertEqual(Path('core/tuning.tres').read_bytes(),subprocess.check_output(['git','show','fb890fd:core/tuning.tres']))
+        self.assertEqual(Path('core/tuning.tres').read_bytes(),historical_blob('fb890fd:core/tuning.tres'))
     def test_exact_one_traversal_with_no_runtime_physics_flag_after_adoption(self):
         s=Path('core/sim/coupled_load_probe.gd').read_text()
         if '## M1-R28-D1 —' not in Path('DECISIONS.md').read_text():
-            self.assertEqual(s,subprocess.check_output(['git','show','fb890fd:core/sim/coupled_load_probe.gd'],text=True))
+            self.assertEqual(s,historical_blob('fb890fd:core/sim/coupled_load_probe.gd',text=True))
             return
         c=s.split('func _velocity_contacts',1)[1].split('func _rigid_velocity',1)[0]
         self.assertNotIn('if diagnostic_final_distance_pass:',c)

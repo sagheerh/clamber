@@ -3,6 +3,39 @@
 The GDD's existing D-01–D-17, CD-01, and A-xx decisions remain normative.
 New implementation decisions use M0-Dxx to avoid colliding with those IDs.
 
+## M1-ZIP-D01 — Main integration is execution access, not acceptance
+
+2026-10-30 owner direction: main is to carry the M1 code for local execution;
+**M1 remains BLOCKED and NOT SIGNED**, and M2 remains blocked. A merge is not a
+verdict. AC-201 FAILED; AC-202 FAILED (adoption reverted, control at
+`physics_contact_slop_wu = 0.02` plus roundoff, adoption 2.5–4.7× designed slop);
+FA-3 uncredited. Presets+captures, tick cost §10.4, §10.6 step 1, FA-4 and FA-6
+are five NOT RUN runtime gates because account billing blocks CI allocation.
+No fresh gate result or acceptance verdict is created by ZIP packaging.
+
+Only `arena/4cd0a587-clamber` may be written by this session; main advancement
+and annotated tag `m1-blocked-2026-10-30` are pending owner/maintainer action.
+No merge of `arena/5b72e4ab-clamber`: owner warns that the older branch predates
+M1 workflows and R28/R29 evidence and would lose those files. No files were
+copied from that branch. No D0 rerun, AC-202 retry/adoption, physics change, P3,
+billing operation or artifact deletion is authorised by this packaging work.
+
+Local mode (`CLAMBER_LOCAL=1`) verifies committed source/tuning SHA256 before
+invoking the existing measurement code; CI's unset-local path retains its Git
+checks and immutable workflow pins. The source manifest names 0c1d3f8 as the
+core provenance, not the later packaging commit (avoids a self-referential SHA).
+Canonical tree identity includes sorted source paths and exact bytes; all pinned
+core blobs have mode 100644. Generated untracked `.gd.uid` sidecars are excluded,
+matching the original Git guard; source additions/removals/renames and symlinks
+fail closed. Historical static assertions use exact hash-pinned archived blobs
+without Git. No expected result, threshold or assertion was weakened.
+
+Local runs are once-only, ordered D1–D5, owner-attested rather than CI evidence;
+retain the entire execution folder, build string, raw data and failure logs.
+D2 reference hardware remains D07/phone work; no 3 ms proxy verdict. Separate
+packaging tests and mocked launch routing are NOT measurement evidence.
+See `LOCAL_RUN.md` and `.review/m1_zip_delivery_report.md`.
+
 ## M0-D01 — Empty engineering boot, not a new game screen
 
 The packet excludes every mockup screen. `ui/boot.tscn` is only the requested solid

@@ -1,0 +1,18 @@
+{
+  "fb890fd:core/tuning.tres": {
+    "file": "core__tuning.tres.txt",
+    "sha256": "5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666"
+  },
+  "fb890fd:core/sim/coupled_load_probe.gd": {
+    "file": "core__sim__coupled_load_probe.gd.txt",
+    "sha256": "fa0c73872d5eb146602a4d085678da1cf88800318752807f0d15c63ef906555b"
+  },
+  "fb890fd:tests/fixtures/r27_plan.json": {
+    "file": "tests__fixtures__r27_plan.json.txt",
+    "sha256": "2aff56deb213b008d890473251952c1c428bc8abffee778826a6fb42c5787107"
+  },
+  "fb890fd:tests/fixtures/public_sim_baseline.json": {
+    "file": "tests__fixtures__public_sim_baseline.json.txt",
+    "sha256": "2779456f6a35338a97666bcec813608ae5bda83c612ec1d5b6560df62590f679"
+  }
+}

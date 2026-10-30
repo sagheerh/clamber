@@ -2,6 +2,9 @@
 # Historical R25 independent fixture runner; NOT the R26 repaired F77 fixtures.
 set -euo pipefail
 cd "$(dirname "$0")/.."
+if [[ "${CLAMBER_LOCAL:-}" == 1 ]]; then
+ python3 tests/source_provenance.py
+fi
 mode="${1:?ac202/fa5}"; folder="${M1_R25_REPORT_DIR:?}"; mkdir -p "$folder"
 case "$("${GODOT:?}" --version)" in 4.7.2.stable*) ;; *) exit 1;; esac
 "$GODOT" --headless --editor --import > "$folder/import.log" 2>&1

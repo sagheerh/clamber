@@ -6,6 +6,7 @@ import json
 import unittest
 import subprocess
 from pathlib import Path
+from source_provenance import historical_blob
 from r26_report import Events, complete, completed_flags, length_errors, require_target, retention, terrain_sample
 
 
@@ -21,7 +22,7 @@ class R26Controls(unittest.TestCase):
                          '5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666')
 
     def test_diagnostic_and_observation_default_off(self):
-        s = subprocess.check_output(['git','show','fb890fd:core/sim/coupled_load_probe.gd'],text=True) # closed R26/R27 contract
+        s = historical_blob('fb890fd:core/sim/coupled_load_probe.gd',text=True) # closed R26/R27 contract
         self.assertIn('collect_length_phases: bool = false', s)
         self.assertIn('diagnostic_final_distance_pass: bool = false', s)
         added = s.split('if diagnostic_final_distance_pass:', 1)[1].split('_record_length_phase("after_diagnostic_final_distance")', 1)[0]
