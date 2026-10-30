@@ -32,3 +32,4 @@ python3 tests/test_android_inspection.py
 echo 'PASS: review_checks.sh static checks completed.'
 echo 'PENDING: formal INV-01..INV-10 semantic sweep / A10 five-fakes / A12 review.'
 echo 'Runtime evidence is tracked per gate in .review/m1_ac_matrix.md; static checks alone never upgrade it.'
+python3 tests/test_r29.py

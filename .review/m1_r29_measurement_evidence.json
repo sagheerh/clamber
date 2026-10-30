@@ -43,13 +43,16 @@
         },
         "adopted_R28_max_wu": 0.0933999293597247,
         "ratio_control_to_adopted": 0.2141329242656268,
-        "attribution": ">=.02; similarity must be evaluated from reported pair/ratio, not a new threshold"
+        "attribution": "penetration is PRE-EXISTING; the reprojection is not demonstrated to cause it; F79 stands as its own defect",
+        "similarity_basis": "same WU order, exact ratios reported; adopted maxima2.54\u20134.67times larger; no numeric similarity cutoff and no claim reprojection cannot increase maximum"
       },
       "threshold": 0.02,
       "verdict": "FAIL",
       "artifact": "tests/fixtures/m1_r29_raw/D0-Hopper.jsonl.gz",
       "not_measured": false,
-      "blocker": null
+      "blocker": null,
+      "source_commit_sha": "819cefc4ce9b66e6f8725d1ed24694e85e8f5154",
+      "source_ci_run": "40974609556"
     },
     {
       "gate": "D0/Slug",
@@ -81,13 +84,16 @@
         },
         "adopted_R28_max_wu": 0.07028201067739755,
         "ratio_control_to_adopted": 0.2845678404364825,
-        "attribution": ">=.02; similarity must be evaluated from reported pair/ratio, not a new threshold"
+        "attribution": "penetration is PRE-EXISTING; the reprojection is not demonstrated to cause it; F79 stands as its own defect",
+        "similarity_basis": "same WU order, exact ratios reported; adopted maxima2.54\u20134.67times larger; no numeric similarity cutoff and no claim reprojection cannot increase maximum"
       },
       "threshold": 0.02,
       "verdict": "FAIL",
       "artifact": "tests/fixtures/m1_r29_raw/D0-Slug.jsonl.gz",
       "not_measured": false,
-      "blocker": null
+      "blocker": null,
+      "source_commit_sha": "819cefc4ce9b66e6f8725d1ed24694e85e8f5154",
+      "source_ci_run": "40974609556"
     },
     {
       "gate": "D0/TwinRoller",
@@ -119,13 +125,16 @@
         },
         "adopted_R28_max_wu": 0.05075245867956493,
         "ratio_control_to_adopted": 0.3940695785060293,
-        "attribution": ">=.02; similarity must be evaluated from reported pair/ratio, not a new threshold"
+        "attribution": "penetration is PRE-EXISTING; the reprojection is not demonstrated to cause it; F79 stands as its own defect",
+        "similarity_basis": "same WU order, exact ratios reported; adopted maxima2.54\u20134.67times larger; no numeric similarity cutoff and no claim reprojection cannot increase maximum"
       },
       "threshold": 0.02,
       "verdict": "FAIL",
       "artifact": "tests/fixtures/m1_r29_raw/D0-TwinRoller.jsonl.gz",
       "not_measured": false,
-      "blocker": null
+      "blocker": null,
+      "source_commit_sha": "819cefc4ce9b66e6f8725d1ed24694e85e8f5154",
+      "source_ci_run": "40974609556"
     }
   ],
   "attribution_rule": {

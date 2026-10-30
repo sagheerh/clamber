@@ -17,3 +17,31 @@ sets diagnostic_final_distance_pass. Records each tick's worst sample plus
 all body endpoints/radii/kinds (gzipped), first failing full state if needed.
 Attribution "similar magnitude" has no invented threshold: report ratio/pair,
 owner rule verbatim. The AC202 owner FAILED/no-readoption decision is invariant.
+
+D0 completed once: source819cefc / CI40974609556, evidencecommita3c7cc0.
+Sixfacts fresh verified: start4796ec6,tuning5f4d..666,core=f b890fd,226/0,M0516/0,
+engine4.7.2.stable.official.ed1daf0bf/checksumverified. All3controlmaxima
+.020000000000000823WU (Slug22/Hopper33/Twin15,head0/u0). Ratio to adopted
+.2845678404364825/.2141329242656268/.3940695785060293. Same WUorder as adopted;
+preexisting penetration, no assertion reprojection cannot increase its maximum.
+Ownerdecision AC202FAILEDforM1 immutable; no readoption.
+
+Remaining arms one next push-worker, D0 NEVER rerun. D1all3realpresets600ticks,
+seed305419896, released0..59 then alternate L/R60ticks, same wide flatplane;
+full per-tick contact/grounded/pose/COM captures+PythonSVG+manifest<=5MB.
+D2owner selected ten independent productionSlugs/30capsules, aggregate notone
+coupledcreature. Both existing directCreatureTickSolver.step/publicSim.step
+entrypaths:1000warmupdiscarded then10000samples each; allrawtimings committed,
+structuralobjects/scalarrows/dynamiccontactcounts separate. No proposedframe-only
+optimization; no unimplemented mode/proxy or Snapdragonclaim. D07unmeasured.
+D3one process100repeats×10000publicSimticks, exactcanonicalfinalstateSHA256;
+all100hashes committed. F78localrepeatability, no independentRNGdeterminismclaim.
+D4released240(4s deadline),L60,release240. Uses alreadydocumented60tickpulse/
+240release observation; NOT historical5700tick dwell. F52settled/sleep predicate
+only, no velocitytolerance. .9WU normalization/150px, 1BLspec-vs-scale OPEN.
+D5ten identical L60/released240, same seed/spawn/pose. Flatplane substitute for
+nonexistent tutorial chunk/successpredicate; alltenfinalhash/COM outcomes;
+successesnull/FA6NOTRUN, never0/10fabricated. Variance NONE: insensitivebyconstruction.
+No historicalvaryingonset list silently substituted. No new successcondition.
+Any nonfinite: firsttick/pre/post/ongoing trace retained, stop later physicalarms.
+D7afterall prescribedarms: >=226controls/0,M0516/0, corestartdiffEMPTY/tuningsame.
