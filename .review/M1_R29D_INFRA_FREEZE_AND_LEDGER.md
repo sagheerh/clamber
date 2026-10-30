@@ -115,3 +115,45 @@ blocked by account billing"* — never as a pass.
 4. **M1 is BLOCKED, not failed, and not passable by absence.** M2 stays blocked.
 5. **P3 is deferred**, and when it runs it uses the **frozen ledger in §3** — not any total quoted from memory,
    including mine.
+
+---
+
+## 7. CONFIRMED (owner screenshot, 2026-10-30) — the prediction in §2 was exact
+
+Owner-supplied billing page, **Current month** timeframe:
+
+| meter | used | included | state |
+|---|---:|---:|---|
+| **Compute (Actions minutes)** | **$12.13 consumed** ($12.00 included) | $12.00 | **EXHAUSTED — 101 %** |
+| **Actions storage** | 0.5 GB | 0.5 GB | **EXHAUSTED — 100 %** |
+| Billable usage | **$0** | — | within discounts, nothing owed yet |
+| reset | **"Included usage limits reset in 2 days"** | — | ≈ 2026-11-01 |
+
+**Both blockers are one meter pair, exactly as diagnosed:** the compute meter is overdrawn by **13 cents**,
+which is why `40979233978`, `40980478102` and every M0 android upload fail with zero steps. The artifact
+quota is the same page's second row. **Nothing is wrong with the repo, the harness, the workflow or the
+physics.** `gh api` returned 403 on `/billing/*`, so this page was the only way to confirm it — it is now
+confirmed, and no further launch attempt should be made until one of the two conditions in §8 holds.
+
+**Cost of finishing M1's remaining CI:** five arms at ~3–5 min each plus a proof job ≈ **20–30 Linux minutes
+≈ $0.16–0.24** at the standard overage rate. This is a rounding error against the $12 already spent — the
+block is a **cap**, not an affordability problem.
+
+---
+
+## 8. The two viable moves, now with real numbers
+
+| | action | cost | outcome |
+|---|---|---|---|
+| **A1 — free** | **Wait for the reset (≈2 days, 2026-11-01).** Do nothing else. | **$0** | on 1 Nov, re-pin `[R29-once-3]` to the then-current head, run the runner proof, then D1–D5. Artifact storage also resets, so M0 android stops being red. |
+| **A2 — pay ~25 ¢** | **Set a small spending limit** (e.g. **$5**) in `Settings → Billing → Spending limits`, keeping "stop usage when limit is reached". | **~$0.25** of the M1 arms; the $5 cap is a ceiling, not a charge | everything runs **today**: proof → D1–D5 → P3 → M1 signed. |
+| B | Owner runs the arms locally with Godot 4.7.2 | ~1–2 h of owner time | same numbers, owner-attested evidence, no CI |
+| C | Close M1 as **INCOMPLETE-BLOCKED** (5 `NOT RUN`, unsigned) | $0 | honest record; **M2 stays blocked**; every gate still owed later |
+
+**Reviewer recommendation: A2.** Twenty-five cents buys back two days and removes the last uncertainty in the
+milestone. **A1 if spending is off-limits** — it costs nothing but time and M1 is not on fire. **B only if the
+owner wants the numbers today and won't touch billing. C is not recommended while A1 is hours away.**
+
+**Do not choose C to "close the milestone".** Five unmeasured gates signed as complete is exactly the failure
+this review exists to prevent; C's verdict text is fixed as *"M1 not complete — five runtime gates unmeasured,
+blocked by account billing"*.
