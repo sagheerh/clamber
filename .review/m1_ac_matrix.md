@@ -1,6 +1,20 @@
 # M1 acceptance matrix — scoped measured evidence, NOT milestone approval
 
-## Current R28 — adoption REVERTED: penetration hard stop
+## Current R29 — D0 measured; D1–D5 NOT RUN, no P3
+
+Zero core/tuning changes from4796ec6. D0CI40974609556/source819cefc all3×7200:
+maxpenetration.020000000000000823WUeach, head0/u0,ticksSlug22/Hopper33/Twin15.
+PreexistingF79; AC202staysFAILEDforM1/no-readoption independent of attribution.
+D1–D5CI40976842113/source8dfe959NOTRUN: helper_checked conflicts inheritedint,
+GDScriptparseerrorline111, ZEROmeasurementticks. Logs preserved; no retry or
+reference/window substitution. Separate corrected-helper --check-only passed
+CI40977382604, ZEROmeasurementticks. D7finalcode2041793static232/0,M0516/0.
+DedicatedR29workflowhad no uploads; directrepoCIpush preservedallevidence.
+LegacyartifactquotaRED exception doesnotexplainR29compilerfailure. No P3verdict,
+newacceptancecredit, physicsfix, retune, adoption, acceptedsoak rerun or M1complete.
+See `.review/m1_r29_measurement_{evidence.json,report.md}` for pergateNOTRUN/blockers.
+
+## Historical R28 — adoption REVERTED: penetration hard stop
 
 Measured source446d870 / CI40970023755. All3×7200 complete. PenetrationWU
 Slug.07028201067739755/Hopper.0933999293597247/Twin.05075245867956493 >=.02:

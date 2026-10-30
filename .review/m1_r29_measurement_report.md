@@ -144,8 +144,13 @@ this report now records missing measurements explicitly instead of claiming data
 
 Helper renamed to `_checked_step` for future use, with a separate Godot
 **--check-only** validation (no initialization/no measurementticks). No R29arm
-was retried after correction. Compile-only outcome is recorded in evidence when
-available; it cannot retroactively turn D1–D5 into measured results.
+was retried after correction. Compile-only [CI40977382604](https://github.com/sagheerh/clamber/actions/runs/40977382604),
+job123808676345, code2041793: **SUCCESS, zero measurement ticks**; measurementjob
+123808678296SKIPPED. It cannot retroactively turn D1–D5 into measured results.
+Final code static [CI40977382608](https://github.com/sagheerh/clamber/actions/runs/40977382608)
+job123808677197 **232/0 SUCCESS**; M0 [CI40977382698](https://github.com/sagheerh/clamber/actions/runs/40977382698)
+headlessjob123808676727 **516/0 SUCCESS**. Legacypublicjob123808677357REDfrom
+artifactquota; Androidjobpending at closure, no Android/device delivery claim.
 
 ## Not measured
 

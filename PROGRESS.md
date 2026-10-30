@@ -8,7 +8,29 @@ Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R28 — adoption attempted, FAILED penetration, REVERTED
+### Current R29 — D0 measured, D1–D5 compiler-blocked, no P3
+
+Zero core/tuning change from4796ec6; startfacts fresh226/0,M0516/0,checksumGodot
+4.7.2.stable.official.ed1daf0bf. D6push-only path restoredFIRST. D0source819cefc /
+CI40974609556SUCCESS: all3×7200, maxpenetrationWU .020000000000000823each,
+worstSlug22/Hopper33/Twin15, head0/u0. PRE-EXISTING, F79own defect; adopted
+maxima .07028201067739755/.0933999293597247/.05075245867956493 remain larger;
+no proof projection cannot increase max. AC202FAILEDforM1/no-readoption unchanged.
+
+Remainingarmssource8dfe959/CI40976842113FAILED: helperfunction_checked collided
+with inheritedinteger_checked. Testscript failedtoload atline111; D1–D5ZERO
+measurementticks, NOT RUN exactblockers/logs committed. No reference/window/
+value substitution. No arm retry. Renamedhelper_checked_step ONLY and tested
+--check-only CI40977382604job123808676345SUCCESS; zero measurementticks and
+measurementjobSKIPPED. D7source2041793static232/0 andM0516/0SUCCESS.
+
+Both worker outputs committed directlytosamebranch[skipci], no artifactupload
+or deletion attempt. LiteralclosedSHA819cefc4ce9b66e6f8725d1ed24694e85e8f5154 /
+8dfe959fe3587cd4f1cbf978c9c28f7186352689. No physics/adoption/retune/threshold/
+iteration/slop/epsilon change. FA3uncredited,FA5caveat,AC204notrerun/determinism
+state unchanged. No P3verdict/M1completeclaim. See R29report/evidence under.review.
+
+### Historical R28 — adoption attempted, FAILED penetration, REVERTED
 
 Measured446d870/CI40970023755:7200ticks/all3 complete; maxpenetrationWU
 Slug.07028201067739755, Hopper.0933999293597247,Twin.05075245867956493.

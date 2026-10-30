@@ -2101,3 +2101,43 @@ AllnewR28jobs closedliteral446d870 and skipped; historicalR27/soak not rerun.
 PR3stilldraft/protectedtail59421chars SHA23f409294933ddd4638139254f41cc5bee6c70a35f28cea6509f9d0c199d76be unchanged.
 No productionphysicschange remains; rawartifactdelivery and allCIgreen blocked
 byquota. Stop/waitowner. Do not retryphysicalmeasurements to repair artifacts.
+
+
+## M1-R29 — zero-physics measurement accounting; no P3
+
+D6launchpathFIRSTcommitdafd3c1: new push-only[R29-once] eventSHA==after gate,
+HEADassertion, checksumGodot4.7.2; NO dispatch/artifactdeletion/uploaddependency.
+D0source819cefc4ce9b66e6f8725d1ed24694e85e8f5154 /CI40974609556SUCCESS,
+all3×7200. Slug/Hopper/Twin eachmax.020000000000000823WU; worsthead0/u0,
+ticks22/33/15. ExactpairedR28adopted .07028201067739755/.0933999293597247/
+.05075245867956493WU, ratios.2845678404364825/.2141329242656268/.3940695785060293.
+PRE-EXISTINGpenetration; F79independentexistingdefect; no demonstration projection
+caused its existence, no proof it cannot increase max. No invented similarity
+cutoff. Strict.02limit/noepsilon. OwnerAC202FAILEDforM1/no-readoption remains;
+projection reevaluation only insideM1.1aftercontactrectifierfix. No fix attempted.
+
+D1–D5source8dfe959fe3587cd4f1cbf978c9c28f7186352689/CI40976842113FAILED:
+agent-authored helper_checked conflicts inheritedinteger_checked, scriptparse
+errorline111, ZEROmeasurementticks. Allfive NOT RUN/logs committed, not physics
+failures or quotablockers. NOTRUN is not a reference result/estimatednumber.
+D2owner chose10independentproductionSlugs/30capsules aggregate; no actualtimings
+or constraintcounts. D4approx1BLspec-vs-scale unresolved; no criterionauthored.
+D5nonexistenttutorialgoal/successpredicate; proposedflatplane/identicalinputs
+varianceNONE not executed; no outcomes/successcount invented. No arm retried.
+
+Test-only helper renamed_checked_step; separate --check-only source2041793 /
+CI40977382604job123808676345SUCCESS (zero ticks), measurementjobSKIPPED. This
+is NOT a second measurement invocation or retroactive D1–D5result. Editorimport/
+gdlint/M0didnotcatchinheritedbinding; explicitcompilecheck nowpreventsthatgap.
+D7finalcode2041793: CI40977382608staticjob123808677197SUCCESS232/0;
+CI40977382698headless123808676727SUCCESS516/0. core/startdiffEMPTY, tuningSHA
+5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666 byteidentical;
+no preset/save/M0expectationchanges. Only docs/testregistration/tests/fixtures/
+workflow. LegacyM1uploadquotaRED remainsinfraexception, NOT cause ofR29compiler
+failure. Evidence surviveddirectsamebranchCIpush[skipci]; no upload/deletion.
+
+AllR29measurementjobs closedtoliteral measured819cefc/attempted8dfe959SHA;
+historicalmarkerjobs untouched/unrun. No P3/retune/sweep/brace/slop/epsilon/
+tolerance/iteration/adoption/acceptedsoak rerun/deviceperformance/M1complete.
+AcceptedFA3vacuous/uncredited,FA5transient2–4tickcaveat, samebuildattempt1 and
+crossarchitecture0 unchanged; no repetition-as-determinism credit.
