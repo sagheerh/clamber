@@ -20,11 +20,42 @@ frozen prior N, contact/sleep policy, and transactional validation. Nonparallel
 manifolds/hinges still need composition work. AC-201 is not attributed to a proven
 new patch; initial gravity moment is not a time-domain prediction.
 
-Real engine validation is required before production selection. Sandbox download
-is blocked and recent main jobs show allocation refusal; twelve exact-rational/
-static tests and grammar success are not engine evidence. No core/tuning/expectation
-change, old arm rerun, new proof retry, artifact deletion or billing operation.
-M1 remains BLOCKED / NOT SIGNED. See `.review/m1_physics_fix_analysis.md`.
+Update after the requested recheck: exact-engine primitive validation has now
+passed31/0 on this branch (41004935173/source6c1c487). The old main allocation
+failure is historical, not a current infrastructure blocker. One source-pinned
+coupled candidate (41005575775/source36313ad) compiled and completed600 Slug ticks
+but **failed posture/sleep**; REJECTED/NOT ADOPTED. Core/tuning/manifest unchanged.
+M1 remains BLOCKED / NOT SIGNED. See `.review/m1_physics_fix_recheck.md`.
+
+## M1-PHYSICS-FIX-D02 — Error barriers fixed; composed failure must not be adopted
+
+2026-10-30 recheck: reproduce and fix the candidate runner's three false-pass
+paths (`! grep` exempt from Bash errexit). Explicit error-log exits;9 routing
+controls before/after. New composed runner has13 routing controls. All use
+labelled test doubles and are NOT engine evidence.
+
+Freeze ONE new test-only composed candidate/protocol before executing, using
+original six/two budgets, original contact eligibility/batch/sweep/caps and
+unmodified F52. Rigid contact + common translation and existing rigidity rows
+reordered BEFORE terrain contact, never rejected final-distance-after-contact
+repair. Public Sim/clock used with explicitly substituted awake-row fixture;
+not production/reference/determinism adoption. Failure is terminal: public
+rollback recreates baseline implementation, so never continue after a failed step.
+
+Pinned official4.7.2 source36313ad run41005575775: primitive31/0, then600-tick
+idle Slug fails39.6749° posture and zero sleep. COM≤.90, zero airborne, bone
+roundoff and penetration slop+roundoff are observations only. All three7200 arms
+NOT RUN. Full trace+source+logs persisted separately in evidence child9f77efd;
+no artifact-upload prerequisite. No automatic retry or later arm after failure.
+
+Independent sealed-evidence audit reports hinge endpoint position/velocity
+residuals, anchored F52 rejection and changing sample counts. These locate missing
+coupled consistency, NOT an adopted correction or proof that sampling/friction
+alone explains posture. Preserve original source/thresholds and raw evidence;
+do not force upright, freeze creep, increase iterations or fake the historical
+manifest. Any eventual production change requires fresh explained provenance,
+public baseline/regressions, full length+penetration and rest/release validation.
+No signature, FA3 credit, device/performance waiver or M2 unlock.
 
 ## M1-DEVICE-D01 — Opt-in diagnostic access, not a product screen
 

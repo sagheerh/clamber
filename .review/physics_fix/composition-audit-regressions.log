@@ -1,0 +1,17 @@
+test_claimed_pass_rejected (__main__.CompositionAudit.test_claimed_pass_rejected) ... ok
+test_edited_compressed_evidence_rejected_before_decode (__main__.CompositionAudit.test_edited_compressed_evidence_rejected_before_decode) ... ok
+test_edited_engine_provenance_rejected (__main__.CompositionAudit.test_edited_engine_provenance_rejected) ... ok
+test_fabricated_native_length_rejected (__main__.CompositionAudit.test_fabricated_native_length_rejected) ... ok
+test_fabricated_native_penetration_rejected (__main__.CompositionAudit.test_fabricated_native_penetration_rejected) ... ok
+test_fabricated_sleep_in_summary_rejected (__main__.CompositionAudit.test_fabricated_sleep_in_summary_rejected) ... ok
+test_historical_code_mismatch_fails_closed_without_git (__main__.CompositionAudit.test_historical_code_mismatch_fails_closed_without_git) ... ok
+test_nonfinite_in_head_not_just_foot_rejected (__main__.CompositionAudit.test_nonfinite_in_head_not_just_foot_rejected) ... ok
+test_real_sealed_failure_is_not_adoption (__main__.CompositionAudit.test_real_sealed_failure_is_not_adoption) ... ok
+test_truncated_horizon_is_not_complete (__main__.CompositionAudit.test_truncated_horizon_is_not_complete) ... ok
+test_unexecuted_7200_arm_cannot_be_credited (__main__.CompositionAudit.test_unexecuted_7200_arm_cannot_be_credited) ... ok
+test_wrong_tick_input_rejected (__main__.CompositionAudit.test_wrong_tick_input_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.646s
+
+OK

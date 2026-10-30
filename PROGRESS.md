@@ -17,22 +17,47 @@ No forced upright controller, scripted gait, changed sleep/threshold, or blind
 re-adoption of the rejected final-distance repair.
 
 Located the AC-202 terminal-operator incompatibility: contact cleanup moves free
-endpoints after completed bone solves. An isolated unadopted rigid-contact kernel
-and primitive tests now exist under `tests/physics_fix/`; no production callsite.
-AC-201 posture/drift cause is not yet isolated to a demonstrated correction.
-Static Slug spawn gravity moment is3.773, not proof of dynamic posture outcome.
+endpoints after completed bone solves. Fresh recheck fixed a real test-runner
+false-pass defect: standalone inverted `grep` did not stop `set -e`. Reproduced
+three failures before the fix; explicit exits now pass9 routing regressions.
 
-Validation: existing controls232/0, analytical/oracle tests12/0, grammar/lint clean,
-device packaging10/0 and provenance10/0. These are NOT engine/AC results. Official
-binary download is blocked; recent main CI40993179302/job123860148269 failed
-before start, steps[], exact billing/spending-limit annotation preserved. No new
-proof or complete-creature run launched. Candidate's31 planned engine unit checks
-and all new AC validation are NOT RUN. Core/tuning/historical evidence unchanged.
+**CI is now available; the old allocation blocker is historical, not current.**
+Current-branch source6c1c487/run41004935173 checksum-verified official Godot
+4.7.2.ed1daf0bf, compiled the kernel and ran **31 primitive checks / 0 failures**.
+Source36313ad/run41005575775 repeated primitives successfully, then compiled and
+executed ONE new, test-only assembled rigid-contact candidate. It kept original
+eligibility/load/sleep/tuning/iteration budgets; reordered existing rigidity rows
+before contact; no rejected post-contact distance repair.
 
-**Neither failure is fixed yet.** M1 BLOCKED / NOT SIGNED, M2 blocked. Next gate
-is a real pinned desktop-engine primitive run, followed by coupled-manifold/hinge
-implementation and source-pinned public/full-creature regression. See
-`.review/m1_physics_fix_analysis.md` and `tests/run_m1_contact_candidate.sh`.
+**Candidate REJECTED / NOT ADOPTED.** Slug released600 completed ticks:
+max attitude39.67491255849509°>15°, no sleep (original4s and600 both fail),
+COM .5006718410403428WU≤.90, airborne0; bone error1.1102230246251565e−16WU,
+penetration .020000000000000823WU (slop+roundoff; no report violation at
+`>.02*(1+1e-9)`). The last two observations are IDLE-ONLY, **not AC-202 PASS**.
+All three7200-tick length arms stayed **NOT RUN** after the failed first gate.
+Full600-row trace, source hashes, logs and raw/gzip hashes preserved in
+`tests/fixtures/m1_contact_composition/36313adee194/` (evidence child9f77efd).
+Independent offline audit12/0; composed-runner routing13/0, zero new physics ticks.
+
+Trace audit locates remaining *coupled* incompatibility: despite rigid bones,
+post-contact hinge position gaps peak .06874241313623658WU and relative endpoint
+velocity gaps peak1.7990887822518324WU/s. F52 still-count never exceeds1;
+50 of ticks500–599 exceed its anchored .001WU window. Foot sample count toggles
+2/3 at a cell boundary. These are observations, not a proven posture/root-cause
+patch or licence to change friction, sampling thresholds, iterations or sleep.
+
+Current-source standard regression CI also succeeded (not candidate acceptance):
+M0 run41005575708 headless516/0 + normal Android export/alignment; M1
+run41005575764 static232/0, point/link and existing public replay/clock/baseline
+jobs success. No M1 lab APK/phone execution, cross-architecture proof or D2 phone
+benchmark. Historical R27/R28 arms and R29 measurements skipped; R29 parse only.
+
+Local recheck: controls232/0, analytical12/0, package10/0, provenance10/0,
+no-.git ZIP controls232/0 + sealed audit12/0; all five candidate GDScripts grammar/lint clean. Production core/tuning/manifest
+unchanged; historical evidence preserved. **Neither production failure is fixed.**
+M1 BLOCKED / NOT SIGNED, FA3 uncredited, M2 blocked. No automatic retry after the
+candidate failure. See `.review/m1_physics_fix_recheck.md` for actual results,
+remaining rigid-hinge/manifold work and exact source/job/evidence links.
 
 ## Active continuation — opt-in M1 device diagnostic (2026-10-30)
 

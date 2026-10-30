@@ -1,0 +1,29 @@
+{
+  "scope": "independent audit of600 FAILED candidate ticks; zero new simulation",
+  "source_commit": "36313adee19458995618a860843b078a356975ed",
+  "max_attitude_deg": 39.67491255849509,
+  "first_angle_violation_tick": 8,
+  "first_head_grounded_tick": 11,
+  "net_com_wu": 0.5006718410403428,
+  "sleeping_ticks": 0,
+  "first_sleep_tick": null,
+  "max_still_ticks": 1,
+  "max_dwell_displacement_wu": 0.0682664587666781,
+  "late500_599_window_violations": 50,
+  "max_bone_error_wu": 1.1102230246251565e-16,
+  "native_max_bone_error_wu": 1.1102230246251565e-16,
+  "geometric_max_penetration_wu": 0.020000000000000448,
+  "native_max_penetration_wu": 0.020000000000000823,
+  "max_hinge_position_gap_wu": 0.06874241313623658,
+  "max_hinge_velocity_gap_wu_s": 1.7990887822518324,
+  "final_hinge_velocity_gaps_wu_s": [
+    0.3344416667386175,
+    0.09601206993057251
+  ],
+  "foot_sample_counts": [
+    2,
+    3
+  ],
+  "AC202_7200": "NOT RUN for ALL THREE; never inferred from600",
+  "verdict": "candidate REJECTED / NOT ADOPTED; M1 BLOCKED / NOT SIGNED"
+}

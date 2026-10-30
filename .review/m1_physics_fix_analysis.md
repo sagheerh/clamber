@@ -2,7 +2,10 @@
 
 Date: 2026-10-30. Branch: `arena/f43f36ab-clamber`; investigation base `394f7e9`.
 Owner now explicitly authorises carefully analysed physics fixes. Lack of
-permission is **no longer the blocker**. Validation infrastructure is the blocker.
+permission is **no longer the blocker**. **Recheck update:** CI now works on this
+branch; primitive31/0 passed and one composed600-tick candidate FAILED posture/
+sleep. See [the recheck report](m1_physics_fix_recheck.md). The original analysis
+below is retained as context; old NOT RUN/allocation statements are superseded.
 No production operator is changed/adopted in this increment.
 
 ## 1. What this game is supposed to do
@@ -157,7 +160,7 @@ qualifying load, aggregate projection caps, F31 budgets, rollback and snapshots 
 composition tests. No claim is made that any new kernel eliminates35° posture
 change or makes a complete creature sleep.
 
-## 6. Validation and infrastructure gate
+## 6. Original pre-recheck validation/infrastructure snapshot (superseded)
 
 Actually run:
 
@@ -188,7 +191,7 @@ candidate**. Neither alternative billing cause is independently established.
 No repeated proof/job, billing operation, artifact upload/deletion or credentials
 request was made. Zero new complete-creature attempts; no D0/R27/R29 rerun.
 
-## 7. Safe next gate (desktop engine, no phone needed yet)
+## 7. Original proposed next gate (primitive/composition execution now done)
 
 Make the checksum-verified pinned4.7.2 official ed1daf0bf engine available, then:
 
@@ -217,9 +220,13 @@ inputs. Curved/slope/edge contacts, speed/torque caps, F24/F31 and atomic
 rollback need regression coverage. Old historical evidence is never overwritten.
 Only then can production contact be changed and a new verdict considered.
 
-## Status
+## Current status after recheck
 
-**AC-201 and AC-202 remain FAILED on the current production solver.** Candidate
-code/analysis is saved, but neither failure has been fixed or validated yet.
-M1 BLOCKED / NOT SIGNED; M2 blocked. The outstanding blocker is engine execution,
-not missing permission, and the remaining composition work is explicitly open.
+**AC-201 and AC-202 remain FAILED on the current production solver.** Real
+primitive compilation/execution31/0 now passed. A single fresh assembled candidate
+completed600 idle ticks but failed posture39.6749° and F52 sleep; all three7200
+arms NOT RUN. It was not adopted. The current blocker is a demonstrated remaining
+coupled constraint/rest defect, **not unavailable CI or missing permission**.
+M1 BLOCKED / NOT SIGNED; FA3 uncredited; M2 blocked. Exact results, independent
+trace audit, source identity and next implementation gap are in
+[the recheck report](m1_physics_fix_recheck.md).

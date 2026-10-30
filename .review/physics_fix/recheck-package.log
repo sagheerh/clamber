@@ -1,0 +1,15 @@
+test_exact_core_and_fixture_bytes (__main__.DevicePackageTests.test_exact_core_and_fixture_bytes) ... ok
+test_existing_destination_never_overwritten (__main__.DevicePackageTests.test_existing_destination_never_overwritten) ... ok
+test_failed_provenance_prevents_staging (__main__.DevicePackageTests.test_failed_provenance_prevents_staging) ... ok
+test_input_is_held_and_release_cleared_on_pause (__main__.DevicePackageTests.test_input_is_held_and_release_cleared_on_pause) ... ok
+test_inventory_hashes_actual_staged_sources (__main__.DevicePackageTests.test_inventory_hashes_actual_staged_sources) ... ok
+test_isolated_main_and_apk_package (__main__.DevicePackageTests.test_isolated_main_and_apk_package) ... ok
+test_no_acceptance_runners_in_staging (__main__.DevicePackageTests.test_no_acceptance_runners_in_staging) ... ok
+test_normal_export_still_excludes_tests (__main__.DevicePackageTests.test_normal_export_still_excludes_tests) ... ok
+test_view_is_fixed_collision_diagram (__main__.DevicePackageTests.test_view_is_fixed_collision_diagram) ... ok
+test_wrong_engine_rejected_before_build (__main__.DevicePackageTests.test_wrong_engine_rejected_before_build) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.033s
+
+OK

@@ -16,6 +16,9 @@ AC-201/AC-202 root-cause work is now authorised. Current analysis and the isolat
 unadopted contact candidate are documented in
 [`.review/m1_physics_fix_analysis.md`](.review/m1_physics_fix_analysis.md).
 The production solver has **not** been repaired or re-approved by that candidate.
+Recheck: real pinned-engine primitives31/0; a new composed Slug candidate ran600
+actual ticks but failed posture/sleep and was **rejected**, not adopted. Full
+results and preserved evidence: [recheck report](.review/m1_physics_fix_recheck.md).
 
 ## Exact toolchain
 

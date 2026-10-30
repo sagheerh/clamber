@@ -131,6 +131,9 @@ the ZIP path, not edited expectations or a fake `.git` directory.
 
 M1's existing physics failures are not fixed by this diagnostic tooling. The owner has now authorised carefully analysed physics fixes. The new contact
 candidate is **not selected by this lab**; production still has the known failures
-pending primitive/composition validation. See `.review/m1_physics_fix_analysis.md`.
+after real primitive31/0 validation and a REJECTED600-tick composed candidate
+(posture39.67°/sleep absent). The unmodified production lab does not select those
+rows. See `.review/m1_physics_fix_recheck.md`; this was CI desktop physics, not
+an M1 lab APK build/install or physical-device pass.
 Physical-device observations cannot turn those failures into “M1 passed” by
 themselves.
