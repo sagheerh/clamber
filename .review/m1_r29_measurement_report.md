@@ -1,9 +1,21 @@
-# R29 measurement report — head bb88cd1b67229ca72dc2b1734d23b58e99e50d1c
+# R29 measurement report — head fe56aadd936a167ee10487951c33f824a045fc07
 
-Reviewer5ed8fca corrections applied. **D0 is CONTROL AT SLOP, F79 WITHDRAWN.**
-L1was a zero-tick launch incident, not an executed measurement. AuthorizedL2
-was attempted once under[R29-once-2], but GitHub refused to start its job.
-**Second launch failure → STOP. No arm execution or further launch. No P3.**
+## Resumption from eee6c81 — runner proof blocked, arms NOT LAUNCHED
+
+The mandatory trivial zero-physics runner proof was attempted FIRST, source
+fe56aad/[R29-runner-proof], CI40980478102/job123818988944. GitHub did not start
+it: **steps[], zero runnersteps, zero engine/measurementticks**. Exact annotation:
+
+> The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings
+
+The proof therefore did not pass. **[R29-once-3] was NOT activated; the five arms
+were NOT launched/re-pinned to a measurement source.** Old marker2 remains
+literally closed tobb88cd1. No proof retry, alternate execution or new arm attempt.
+L1 andL2 are **zero-tick launch incidents, neither measurement evidence nor arm
+failures**. RP1 is a preflight allocation failure, also not an arm failure.
+Check metadata/annotations committed under `m1_r29_launch_incidents/RP1-*.json`.
+No D0 rerun, physics/tuning edit, AC202readoption or P3. The D0 correction and
+original measurements below remain unchanged; all D1–D5 values remain NOT RUN.
 
 Original startingfacts remain recorded:4796ec6, productioncorebyteequalfb890fd,
 tuningSHA2565f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666,
@@ -39,7 +51,7 @@ only insideM1.1aftercontactrectifierfix, not this session.
 |Hopper|NOT RUN|NOT RUN|NOT RUN|NOT RUN|NOT RUN|
 |TwinRoller|NOT RUN|NOT RUN|NOT RUN|NOT RUN|NOT RUN|
 
-L2job never started: no captures/manifest/plots generated; no reference or window
+Required RP1proof never started, so no arms were launched: no captures/manifest/plots generated; no reference or window
 substitution. Capture footprint0 is NOT a completed capture deliverable.
 
 ## D2 tick cost (3.0 ms not applied as pass/fail)
@@ -58,7 +70,7 @@ reference.3.0ms is NOT a PASS/FAIL predicate. **Reference-device leg NOT MEASURE
 ## D3 §10.6 step 1
 
 **100/100 identical: NOT RUN | hash NOT RUN | steps2–3 NOT RUN**.
-L2executed0repeats/0ticks; no hashlog exists. Steps2–3 lack crossarchitecture/
+This resumption executed0repeats/0ticks; no hashlog exists. Steps2–3 lack crossarchitecture/
 five-device hardware. No soak rerun or repetition-as-independent-determinism claim.
 
 ## D4 FA-4 | D5 FA-6
@@ -84,8 +96,8 @@ was measured; all outcomes/success_count remainnull, not0or10 fabricated.
   `5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666`.
 - No presets/save/M0expectation edits. Changes are docs/tests/workflow/fixtures/
   testregistration only; no physics/adoption/retune.
-- Fresh current-head M0 **NOT RUN**: CI40979233773 headlessjob123814811476
-  has steps[]. Lastverified **516/0**, source2041793/job123808676727, is historical
+- Fresh resumption M0 **NOT RUN**: runnerproof blocked before reaching arms/D7.
+  Historical L2 CI40979233773 headlessjob123814811476 also had steps[]. Lastverified **516/0**, source2041793/job123808676727, is historical
   proof—not relabelled as a fresh test. CI all-green is NOT claimed.
 
 Launchaccounting:
@@ -100,17 +112,18 @@ Launchaccounting:
   are committed under `tests/fixtures/m1_r29_launch_incidents/`.
 - Both failedlaunches are distinct. L2is billing/spending-limit infrastructure,
   NOT another compiler or physics failure and NOT artifactstoragequota.
-- Per second-failure instruction: stopped, no alternative local/CI path, no
-  further launch, no artifact deletion. [R29-once-2] closed to literalbb88cd1SHA.
+- Historical L2closeout kept marker2 closed tobb88cd1; owner now explicitly
+  classifies L1/L2 as launchincidents, NOT armfailures. Resumption awaits required
+  runnerproof; marker3notactivated. No artifactdeletion or alternate execution.
 
 ## Not measured
 
-D1–D5 and fresh current-head engine/M0regression: exact L2billing/spending-limit
-annotation above; job never started. No captures/timings/hashes/lurch/outcomes or
+D1–D5 and fresh current-head engine/M0regression: exact RP1billing/spending-limit
+annotation above; mandatory proofjob never started and no arms were launched. No captures/timings/hashes/lurch/outcomes or
 hardware string fabricated. D07/crossarchitecture/five-device legs: no hardware.
 Tutorialsuccesspredicate and 1BLinterpretation remain open. No frame-only optimized
 transactionmode exists; no corechange authorized to create it.
 
 No P3, AC202readoption, retune/sweep/brace, physics slop/epsilon/tolerance/iteration
 edit, acceptedsoak rerun, FA3credit, penetration/creepfix, mobileperformance or
-M1complete claim. **STOPPED after second launch failure.**
+M1complete claim. **Awaiting successful runner proof; no arm failures or executions in this resumption.**

@@ -1,6 +1,16 @@
 # M1 acceptance matrix — scoped measured evidence, NOT milestone approval
 
-## Current R29 — CONTROL AT SLOP; F79 WITHDRAWN; L2STOP
+## R29 resumed from eee6c81 — required proof blocked, no arms launched
+
+Proofsourcefe56aad/CI40980478102/job123818988944steps[]: GitHubreported account
+paymentfailure OR spendinglimitneedsincrease; exactannotation/metadata committed.
+Zero engine/measurementticks. Marker[R29-once-3] NOTactivated, no measurement
+sourcepin/armexecution created. L1/L2 are zero-ticklaunchincidents, NOT measurement
+evidence or armfailures. RP1is preflightallocationfailure, not armfailure. Await
+workingrunnerproof; no D0rerun/corechange/adoption/P3. D0CONTROLATSLOP/F79WITHDRAWN
+unchanged. Localcontrols232/0; no freshengineM0run, previous516/0notfreshproof.
+
+## Previous R29 — CONTROL AT SLOP; F79 WITHDRAWN; L2STOP
 
 D0rawnumbers unchanged: .020000000000000823WU on designed.02slop, roundoff,
 not preexistingdefect. Reportdefecttest>.02*(1+1e-9). Adopted/control3.514/4.670/

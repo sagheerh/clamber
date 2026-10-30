@@ -162,13 +162,15 @@
       "metric": "three preset captures/plots/hash distinctness",
       "value": null,
       "threshold": "binary trace-hash inequality, no authored numeric distinctness threshold",
-      "verdict": "NOT RUN",
-      "artifact": "tests/fixtures/m1_r29_launch_incidents/L2-annotations.json",
+      "verdict": "NOT RUN \u2014 PREFLIGHT BLOCKED",
+      "artifact": "tests/fixtures/m1_r29_launch_incidents/RP1-annotations.json",
       "not_measured": true,
-      "blocker": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings No runner allocated, no steps or ticks. Stopped after second launch failure.",
-      "source_commit_sha": "bb88cd1b67229ca72dc2b1734d23b58e99e50d1c",
-      "source_ci_run": 40979233978,
-      "executed_ticks": 0
+      "blocker": "Required zero-physics runner proof RP1 was not started: The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+      "source_commit_sha": null,
+      "source_ci_run": null,
+      "executed_ticks": 0,
+      "proof_ci_run": 40980478102,
+      "arm_failure": false
     },
     {
       "gate": "D2",
@@ -180,73 +182,81 @@
         "row": "NOT MEASURABLE AS SPECIFIED",
         "D07": "NOT MEASURED"
       },
-      "verdict": "NOT RUN",
-      "artifact": "tests/fixtures/m1_r29_launch_incidents/L2-annotations.json",
+      "verdict": "NOT RUN \u2014 PREFLIGHT BLOCKED",
+      "artifact": "tests/fixtures/m1_r29_launch_incidents/RP1-annotations.json",
       "not_measured": true,
-      "blocker": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings No runner allocated, no steps or ticks. Stopped after second launch failure.",
-      "source_commit_sha": "bb88cd1b67229ca72dc2b1734d23b58e99e50d1c",
-      "source_ci_run": 40979233978,
-      "executed_ticks": 0
+      "blocker": "Required zero-physics runner proof RP1 was not started: The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+      "source_commit_sha": null,
+      "source_ci_run": null,
+      "executed_ticks": 0,
+      "proof_ci_run": 40980478102,
+      "arm_failure": false
     },
     {
       "gate": "D3",
       "metric": "100 local repeats x10000 ticks, all hashes",
       "value": null,
       "threshold": "100/100 final hashes identical",
-      "verdict": "NOT RUN",
-      "artifact": "tests/fixtures/m1_r29_launch_incidents/L2-annotations.json",
+      "verdict": "NOT RUN \u2014 PREFLIGHT BLOCKED",
+      "artifact": "tests/fixtures/m1_r29_launch_incidents/RP1-annotations.json",
       "not_measured": true,
-      "blocker": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings No runner allocated, no steps or ticks. Stopped after second launch failure.",
-      "source_commit_sha": "bb88cd1b67229ca72dc2b1734d23b58e99e50d1c",
-      "source_ci_run": 40979233978,
-      "executed_ticks": 0
+      "blocker": "Required zero-physics runner proof RP1 was not started: The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+      "source_commit_sha": null,
+      "source_ci_run": null,
+      "executed_ticks": 0,
+      "proof_ci_run": 40980478102,
+      "arm_failure": false
     },
     {
       "gate": "D4",
       "metric": "settle/sleep and lurch WU/BL/px",
       "value": null,
       "threshold": "sleep within4s;1BL interpretation ownercall",
-      "verdict": "NOT RUN",
-      "artifact": "tests/fixtures/m1_r29_launch_incidents/L2-annotations.json",
+      "verdict": "NOT RUN \u2014 PREFLIGHT BLOCKED",
+      "artifact": "tests/fixtures/m1_r29_launch_incidents/RP1-annotations.json",
       "not_measured": true,
-      "blocker": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings No runner allocated, no steps or ticks. Stopped after second launch failure.",
-      "source_commit_sha": "bb88cd1b67229ca72dc2b1734d23b58e99e50d1c",
-      "source_ci_run": 40979233978,
-      "executed_ticks": 0
+      "blocker": "Required zero-physics runner proof RP1 was not started: The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+      "source_commit_sha": null,
+      "source_ci_run": null,
+      "executed_ticks": 0,
+      "proof_ci_run": 40980478102,
+      "arm_failure": false
     },
     {
       "gate": "D5",
       "metric": "ten outcomes, variance NONE",
       "value": null,
       "threshold": "6..8successes; no invented tutorial predicate",
-      "verdict": "NOT RUN",
-      "artifact": "tests/fixtures/m1_r29_launch_incidents/L2-annotations.json",
+      "verdict": "NOT RUN \u2014 PREFLIGHT BLOCKED",
+      "artifact": "tests/fixtures/m1_r29_launch_incidents/RP1-annotations.json",
       "not_measured": true,
-      "blocker": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings No runner allocated, no steps or ticks. Stopped after second launch failure.",
-      "source_commit_sha": "bb88cd1b67229ca72dc2b1734d23b58e99e50d1c",
-      "source_ci_run": 40979233978,
-      "executed_ticks": 0
+      "blocker": "Required zero-physics runner proof RP1 was not started: The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+      "source_commit_sha": null,
+      "source_ci_run": null,
+      "executed_ticks": 0,
+      "proof_ci_run": 40980478102,
+      "arm_failure": false
     },
     {
       "gate": "D6",
       "metric": "authorized corrected-source push launch, literal closure, evidence survival",
       "value": {
-        "source_commit_sha": "bb88cd1b67229ca72dc2b1734d23b58e99e50d1c",
-        "ci_run": 40979233978,
-        "job": 123814811746,
-        "conclusion": "failure before job start",
+        "source_commit_sha": "fe56aadd936a167ee10487951c33f824a045fc07",
+        "ci_run": 40980478102,
+        "job": 123818988944,
+        "verdict": "BLOCKED BEFORE JOB START",
         "runner_steps": 0,
-        "executed_ticks": 0,
+        "measurement_ticks": 0,
         "blocker": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
-        "artifact": "tests/fixtures/m1_r29_launch_incidents/L2-annotations.json",
-        "stop": "Second launch failure: STOP; no further launch or alternative execution",
-        "L1": "remains distinct: original inherited-member parse collision, zero ticks, committed engine logs retained"
+        "artifact": "tests/fixtures/m1_r29_launch_incidents/RP1-annotations.json",
+        "measurement_evidence": false,
+        "arm_failure": false
       },
       "threshold": "[R29-once-2]; exactSHA; stop on further failure",
-      "verdict": "LAUNCHED; INFRASTRUCTURE BLOCKED; STOPPED",
-      "artifact": ".github/workflows/r29.yml",
-      "not_measured": false,
-      "blocker": null
+      "verdict": "BLOCKED AT REQUIRED RUNNER PROOF",
+      "artifact": "tests/fixtures/m1_r29_launch_incidents/RP1-annotations.json",
+      "not_measured": true,
+      "blocker": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings"
     },
     {
       "gate": "D7",
@@ -300,9 +310,11 @@
     "tests/fixtures/m1_r29_raw/start-static.log": "a3c8e9dc26fbd3972f4dc0ee2cdc6d2c945454a9cb12212d355b1cd12ee7a12c",
     "tests/fixtures/m1_r29_launch_incidents/L2-annotations.json": "1dd65409b00d2bbf072c60f62ae73bbf5ed7a33c2c06dafc35b71c7b2fae3dd2",
     "tests/fixtures/m1_r29_launch_incidents/L2-jobs.json": "861e8cb9fe24304f5638070ceb6a4b9aeadff7293deb98e62e305da9880338f8",
-    "tests/fixtures/m1_r29_launch_incidents/L2-run.json": "bbbd34d95ce16e7253d57c934d020832f4a4b1a17421bc48b4cf436187cda067"
+    "tests/fixtures/m1_r29_launch_incidents/L2-run.json": "bbbd34d95ce16e7253d57c934d020832f4a4b1a17421bc48b4cf436187cda067",
+    "tests/fixtures/m1_r29_launch_incidents/RP1-jobs.json": "78e3a25e685b1ea981d90557254dfcef2819cb8883ba1459dacbe04f516a0268",
+    "tests/fixtures/m1_r29_launch_incidents/RP1-annotations.json": "6a780e2c5e733537f34d2551369d03b7190cf741e6b6253b65e49b8c648c4fdb"
   },
-  "report_head": "bb88cd1b67229ca72dc2b1734d23b58e99e50d1c",
+  "report_head": "fe56aadd936a167ee10487951c33f824a045fc07",
   "D2_owner_choice": "ten independent production Slugs,30capsules aggregate; NOT EXECUTED; actual constraintcount/hardware/timings NOT RUN, not filled from reference",
   "D4_open_question": "1.00BL spec value vs scale unresolved; no lurch acceptance threshold chosen; measurement itself NOT RUN",
   "D5_missing_scenario": "tutorial chunk/goal/success predicate absent. Proposed substitute flatplane+identicalinputL60/released240, varianceNONE, was NOT EXECUTED. No ten outcomes/success counts/insensitivity measurement claimed.",
@@ -347,7 +359,7 @@
     "tuning_sha256": "5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666",
     "infrastructure_exception": "legacy M1 public artifact upload failed quota, job123808677357; does NOT explain/erase R29 harness compiler failure; Androidjobpending, no Android/device claim"
   },
-  "closing_status": "D0 CONTROL AT SLOP; F79 WITHDRAWN. L1zero-tick compiler launch incident. L2zero-step billing launch incident; STOP. D1\u2013D5 NOT RUN, no P3.",
+  "closing_status": "RP1 runner proof blocked by GitHub billing/spending limit, zero steps; marker3 not activated; D1\u2013D5 unlaunched. L1/L2 not arm failures. Await functioning runner proof.",
   "final_local_controls": 232,
   "final_local_failures": 0,
   "changed_files": [
@@ -467,7 +479,10 @@
         "completed_ticks": 0
       }
     ],
-    "logs": "tests/fixtures/m1_r29_raw/D[1-5]-engine.log"
+    "logs": "tests/fixtures/m1_r29_raw/D[1-5]-engine.log",
+    "measurement_evidence": false,
+    "arm_failure": false,
+    "classification": "zero-tick launch incident; not measurement evidence or arm failure"
   },
   "F79": "WITHDRAWN",
   "reviewer_correction": "5ed8fca owner-authorized slop-relative roundoff interpretation; NO physics/tuning change",
@@ -509,8 +524,11 @@
     "executed_ticks": 0,
     "blocker": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
     "artifact": "tests/fixtures/m1_r29_launch_incidents/L2-annotations.json",
-    "stop": "Second launch failure: STOP; no further launch or alternative execution",
-    "L1": "remains distinct: original inherited-member parse collision, zero ticks, committed engine logs retained"
+    "stop": "Historical L2 closeout; owner now authorizes resume after runner proof; not an arm failure",
+    "L1": "remains distinct: original inherited-member parse collision, zero ticks, committed engine logs retained",
+    "measurement_evidence": false,
+    "arm_failure": false,
+    "classification": "zero-tick launch incident; not measurement evidence or arm failure"
   },
   "D6_closure": {
     "marker": "[R29-once-2]",
@@ -526,5 +544,33 @@
     },
     "closed": true,
     "reason": "owner second-failure stop; no automatic retry"
+  },
+  "resumption_from_eee6c81": {
+    "runner_proof": {
+      "source_commit_sha": "fe56aadd936a167ee10487951c33f824a045fc07",
+      "ci_run": 40980478102,
+      "job": 123818988944,
+      "verdict": "BLOCKED BEFORE JOB START",
+      "runner_steps": 0,
+      "measurement_ticks": 0,
+      "blocker": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+      "artifact": "tests/fixtures/m1_r29_launch_incidents/RP1-annotations.json",
+      "measurement_evidence": false,
+      "arm_failure": false
+    },
+    "requested_marker": "[R29-once-3]",
+    "measurement_marker_activated": false,
+    "measurement_jobs_re_pinned": false,
+    "reason": "Required runner proof could not start; no arm launch or new measurement source created",
+    "executions": {
+      "D1": 0,
+      "D2": 0,
+      "D3": 0,
+      "D4": 0,
+      "D5": 0
+    },
+    "no_D0_rerun": true,
+    "no_AC202_readoption": true,
+    "no_P3": true
   }
 }

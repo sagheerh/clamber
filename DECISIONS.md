@@ -2166,3 +2166,16 @@ fabricated. D4oneBLownerquestion, D5varianceNONEplannednotobserved; tutorial
 predicateabsent. CurrentheadM0engineCI NOTRUN/billing, previous516/0source2041793
 is historynotfreshproof. Localcontrols232/0, core/startdiffEMPTY, tuningbyteequal.
 No P3/retune/readoption/physicsfix/soakrerun/FA3credit/mobile/M1complete claim.
+
+
+## R29 resume eee6c81 — mandatory runner proof before marker3
+
+Ownerrestoredauthorization: L1/L2zero-ticklaunchincidents, neither measurement
+nor armfailure. A real after-tick failure would stop arms, no such failure exists.
+First attempted trivial runnerproof ONLY: sourcefe56aadd936a167ee10487951c33f824a045fc07,
+CI40980478102/job123818988944. Steps[]; no runnerallocated. GitHubstillreported
+recentpaymentsfailed OR spendinglimitneedsincrease. Exactannotation retained,
+no cause chosen between its alternatives. Requiredproof didnotpass; no marker3
+activation/repin/measurementlaunch. No retry/alternateexecution, no D0rerun or
+newphysics/M1verdict. Oldmarker2pin remainsclosed. D1–D5NOTRUN/preflightblocked.
+Proofis NOTarmfailure. Need a functioning runnerproof before authorizedarms.

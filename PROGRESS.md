@@ -8,7 +8,17 @@ Session date: 2026-10-30. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R29 — reviewer correction applied; L2blocked; STOP/no P3
+## R29 resumed from eee6c81 — required proof blocked, no arms launched
+
+Proofsourcefe56aad/CI40980478102/job123818988944steps[]: GitHubreported account
+paymentfailure OR spendinglimitneedsincrease; exactannotation/metadata committed.
+Zero engine/measurementticks. Marker[R29-once-3] NOTactivated, no measurement
+sourcepin/armexecution created. L1/L2 are zero-ticklaunchincidents, NOT measurement
+evidence or armfailures. RP1is preflightallocationfailure, not armfailure. Await
+workingrunnerproof; no D0rerun/corechange/adoption/P3. D0CONTROLATSLOP/F79WITHDRAWN
+unchanged. Localcontrols232/0; no freshengineM0run, previous516/0notfreshproof.
+
+### Previous R29 — reviewer correction applied; L2blocked; STOP/no P3
 
 D0unchangedrawdata: .020000000000000823WUeach on designed .02slop. Verdict
 CONTROL AT SLOP(0.02+roundoff), notFAIL; relativeexcess4.1e-14. Defectcomparison
