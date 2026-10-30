@@ -4,7 +4,7 @@ permissions:
   contents: write
 jobs:
   measurements:
-    if: ${{ github.event_name == 'push' && github.sha == github.event.after && contains(github.event.head_commit.message, '[R29-once]') }}
+    if: ${{ github.event_name == 'push' && github.sha == github.event.after && contains(github.event.head_commit.message, '[R29-once]') && (github.sha == '819cefc4ce9b66e6f8725d1ed24694e85e8f5154' || github.sha == '8dfe959fe3587cd4f1cbf978c9c28f7186352689') }}
     runs-on: ubuntu-24.04
     timeout-minutes: 55
     env:
@@ -34,3 +34,36 @@ jobs:
       - name: Persist repo evidence even after measurement failure; no artifact uploads
         if: always()
         run: python3 tests/r29_publish.py
+
+  parse-only:
+    name: Parse R29 harness ONLY (zero measurement ticks)
+    if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '[R29-once]') }}
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install exact checksum-pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Compile only; do not initialize or step a measurement
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$GODOT" --headless --editor --import > "$RUNNER_TEMP/r29-import.log" 2>&1
+          "$GODOT" --headless --check-only --script res://tests/sim/test_r29.gd > "$RUNNER_TEMP/r29-parse.log" 2>&1
+          cat "$RUNNER_TEMP/r29-parse.log"
+          ! grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:' "$RUNNER_TEMP/r29-parse.log"
+          echo '::notice title=R29 parse only::Harness parsed after helper rename; ZERO physical measurement ticks; no arm rerun'

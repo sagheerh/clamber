@@ -108,7 +108,7 @@ func _mask(tick: int) -> int:
 	return 0 if tick < 60 else 1 if (tick / 60) % 2 == 1 else 2
 
 
-func _checked(sim: Sim, tick: int, mask: int, file: FileAccess = null) -> Dictionary:
+func _checked_step(sim: Sim, tick: int, mask: int, file: FileAccess = null) -> Dictionary:
 	var rig: SleepingLoadProbe = sim._solver._rig
 	var before := rig.snapshot()
 	sim.step(mask)
@@ -144,7 +144,7 @@ func _capture() -> bool:
 		var f := FileAccess.open(_folder + "/D1-" + name + ".jsonl", FileAccess.WRITE)
 		_write("D1-" + name + "-spawn.json", rig.snapshot())
 		for tick in range(600):
-			var state := _checked(sim, tick, _mask(tick))
+			var state := _checked_step(sim, tick, _mask(tick))
 			if state.is_empty():
 				f.close()
 				return false
@@ -278,7 +278,7 @@ func _repeatability() -> bool:
 			return false
 		var trace := FileAccess.open(_folder + "/D3-current.jsonl", FileAccess.WRITE)
 		for tick in range(10000):
-			if _checked(sim, tick, _mask(tick), trace).is_empty():
+			if _checked_step(sim, tick, _mask(tick), trace).is_empty():
 				f.close()
 				trace.close()
 				return false
@@ -298,7 +298,7 @@ func _feel_four() -> bool:
 	var f := FileAccess.open(_folder + "/D4.jsonl", FileAccess.WRITE)
 	for tick in range(540):
 		var mask := 1 if tick >= 240 and tick < 300 else 0
-		if _checked(sim, tick, mask, f).is_empty():
+		if _checked_step(sim, tick, mask, f).is_empty():
 			f.close()
 			return false
 	f.close()
@@ -314,7 +314,7 @@ func _feel_six() -> bool:
 		var f := FileAccess.open(_folder + "/D5-run-%02d.jsonl" % run, FileAccess.WRITE)
 		for tick in range(300):
 			var mask := 1 if tick < 60 else 0
-			if _checked(sim, tick, mask, f).is_empty():
+			if _checked_step(sim, tick, mask, f).is_empty():
 				f.close()
 				return false
 		f.close()
