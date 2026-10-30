@@ -12,6 +12,11 @@ For the separate interactive diagnostic scene and debug Android APK build path,
 see [M1_DEVICE_TEST.md](M1_DEVICE_TEST.md). For ordered headless observations,
 see [LOCAL_RUN.md](LOCAL_RUN.md). The lab is not a game screen or acceptance pass.
 
+AC-201/AC-202 root-cause work is now authorised. Current analysis and the isolated,
+unadopted contact candidate are documented in
+[`.review/m1_physics_fix_analysis.md`](.review/m1_physics_fix_analysis.md).
+The production solver has **not** been repaired or re-approved by that candidate.
+
 ## Exact toolchain
 
 - **Godot 4.7.2-stable**, standard GDScript build (not .NET), pinned in

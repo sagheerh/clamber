@@ -8,6 +8,32 @@ Session date: 2026-10-30. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
+## Active physics-fix investigation — owner authorisation granted (2026-10-30)
+
+Owner now explicitly requests AC-201/AC-202 fixes after project/game analysis.
+Permission is no longer the blocker. Reviewed game pillars/held two-channel
+control, solver/contact/sleep implementation and actual R26–R29 failure records.
+No forced upright controller, scripted gait, changed sleep/threshold, or blind
+re-adoption of the rejected final-distance repair.
+
+Located the AC-202 terminal-operator incompatibility: contact cleanup moves free
+endpoints after completed bone solves. An isolated unadopted rigid-contact kernel
+and primitive tests now exist under `tests/physics_fix/`; no production callsite.
+AC-201 posture/drift cause is not yet isolated to a demonstrated correction.
+Static Slug spawn gravity moment is3.773, not proof of dynamic posture outcome.
+
+Validation: existing controls232/0, analytical/oracle tests12/0, grammar/lint clean,
+device packaging10/0 and provenance10/0. These are NOT engine/AC results. Official
+binary download is blocked; recent main CI40993179302/job123860148269 failed
+before start, steps[], exact billing/spending-limit annotation preserved. No new
+proof or complete-creature run launched. Candidate's31 planned engine unit checks
+and all new AC validation are NOT RUN. Core/tuning/historical evidence unchanged.
+
+**Neither failure is fixed yet.** M1 BLOCKED / NOT SIGNED, M2 blocked. Next gate
+is a real pinned desktop-engine primitive run, followed by coupled-manifold/hinge
+implementation and source-pinned public/full-creature regression. See
+`.review/m1_physics_fix_analysis.md` and `tests/run_m1_contact_candidate.sh`.
+
 ## Active continuation — opt-in M1 device diagnostic (2026-10-30)
 
 Branch `arena/f43f36ab-clamber` starts from merged main `7d86dd5`. The earlier

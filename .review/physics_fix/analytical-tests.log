@@ -1,0 +1,17 @@
+test_axial_endpoint_impulse_injects_stretch_velocity (__main__.ContactAnalysis.test_axial_endpoint_impulse_injects_stretch_velocity) ... ok
+test_candidate_has_no_production_callsite (__main__.ContactAnalysis.test_candidate_has_no_production_callsite) ... ok
+test_common_translation_preserves_extent (__main__.ContactAnalysis.test_common_translation_preserves_extent) ... ok
+test_coupled_normal_tangent_targets (__main__.ContactAnalysis.test_coupled_normal_tangent_targets) ... ok
+test_existing_sleep_and_tuning_not_replaced (__main__.ContactAnalysis.test_existing_sleep_and_tuning_not_replaced) ... ok
+test_free_endpoint_cleanup_changes_bone_length (__main__.ContactAnalysis.test_free_endpoint_cleanup_changes_bone_length) ... ok
+test_normal_only_oblique_row_has_zero_tangent_impulse (__main__.ContactAnalysis.test_normal_only_oblique_row_has_zero_tangent_impulse) ... ok
+test_oblique_matrix_is_positive_definite (__main__.ContactAnalysis.test_oblique_matrix_is_positive_definite) ... ok
+test_postnormal_tangent_target_removes_energy (__main__.ContactAnalysis.test_postnormal_tangent_target_removes_energy) ... ok
+test_preserving_prenormal_tangent_can_inject_energy (__main__.ContactAnalysis.test_preserving_prenormal_tangent_can_inject_energy) ... ok
+test_separating_frictionless_contact_does_not_pull (__main__.ContactAnalysis.test_separating_frictionless_contact_does_not_pull) ... ok
+test_slug_spawn_has_nonzero_gravity_moment (__main__.ContactAnalysis.test_slug_spawn_has_nonzero_gravity_moment) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.002s
+
+OK

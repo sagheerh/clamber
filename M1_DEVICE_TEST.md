@@ -129,7 +129,8 @@ Git-present controls and no-`.git` ZIP controls both passed 232/0 after that;
 no historical assertions were weakened. If fetching history is unavailable, use
 the ZIP path, not edited expectations or a fake `.git` directory.
 
-M1's existing physics failures are not fixed by this diagnostic tooling. Changing
-the solver or retrying the reverted AC-202 adoption remains outside the prior
-no-physics authorisation. Physical-device testing can provide observations, but
-cannot turn those known failures into “code complete / M1 passed” by itself.
+M1's existing physics failures are not fixed by this diagnostic tooling. The owner has now authorised carefully analysed physics fixes. The new contact
+candidate is **not selected by this lab**; production still has the known failures
+pending primitive/composition validation. See `.review/m1_physics_fix_analysis.md`.
+Physical-device observations cannot turn those failures into “M1 passed” by
+themselves.

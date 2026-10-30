@@ -1,0 +1,365 @@
+CLAMBER M1 review — static/invariant subset
+PASS: M1 scoped-evidence matrix guard; owner pack SHA-256 / 379 lines verified.
+PASS: 79 GDScript/scene files scanned; known static invariant subset clean.
+PASS: A9.1 static restrictions; A9.6 math scan; exact engine pin; tuning/core boundaries.
+NOTE: passing scans of current stubs do not prove an implemented solver or injected RNG.
+test_current_matrix_and_immutable_pack (__main__.MatrixGuardTests.test_current_matrix_and_immutable_pack) ... ok
+test_each_runtime_row_rejects_every_success_token_with_real_evidence (__main__.MatrixGuardTests.test_each_runtime_row_rejects_every_success_token_with_real_evidence) ... ok
+test_fa_scopes_and_prose_escape_fail_closed (__main__.MatrixGuardTests.test_fa_scopes_and_prose_escape_fail_closed) ... ok
+test_missing_table_gate_and_malformed_row_fail_closed (__main__.MatrixGuardTests.test_missing_table_gate_and_malformed_row_fail_closed) ... ok
+test_not_run_floor_is_falsifiable (__main__.MatrixGuardTests.test_not_run_floor_is_falsifiable) ... ok
+test_regression_and_count_floor_exceptions_require_scope_and_citation (__main__.MatrixGuardTests.test_regression_and_count_floor_exceptions_require_scope_and_citation) ... ok
+test_status_allowlist_rejects_bypasses_and_empty_in_every_table (__main__.MatrixGuardTests.test_status_allowlist_rejects_bypasses_and_empty_in_every_table) ... ok
+test_success_hidden_in_evidence_is_rejected (__main__.MatrixGuardTests.test_success_hidden_in_evidence_is_rejected) ... ok
+test_success_requires_nonempty_non_none_evidence (__main__.MatrixGuardTests.test_success_requires_nonempty_non_none_evidence) ... ok
+test_banned_sim_sources (__main__.ReviewChecksTests.test_banned_sim_sources) ... ok
+test_comments_strings_and_injected_seed_parameter_allowed (__main__.ReviewChecksTests.test_comments_strings_and_injected_seed_parameter_allowed) ... ok
+test_core_numbers_and_dependencies (__main__.ReviewChecksTests.test_core_numbers_and_dependencies) ... ok
+test_count_errors_or_missing_completion_fail (__main__.ReviewChecksTests.test_count_errors_or_missing_completion_fail) ... ok
+test_engine_floor_cannot_be_hidden_by_more_python_checks (__main__.ReviewChecksTests.test_engine_floor_cannot_be_hidden_by_more_python_checks) ... ok
+test_m0_exact_baseline (__main__.ReviewChecksTests.test_m0_exact_baseline) ... ok
+test_nested_run_and_tower_sources (__main__.ReviewChecksTests.test_nested_run_and_tower_sources) ... ok
+test_physics_nodes_in_scripts_and_scenes (__main__.ReviewChecksTests.test_physics_nodes_in_scripts_and_scenes) ... ok
+test_previous_m0_floor_now_fails_even_with_original_python_checks (__main__.ReviewChecksTests.test_previous_m0_floor_now_fails_even_with_original_python_checks) ... ok
+test_visual_radius_isolation_including_dynamic_lookup (__main__.ReviewChecksTests.test_visual_radius_isolation_including_dynamic_lookup) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.352s
+
+OK
+test_derivation_byte_identity (__main__.OwnerGeometrySourceTests.test_derivation_byte_identity) ... ok
+test_owner_constants_exact_and_sourced (__main__.OwnerGeometrySourceTests.test_owner_constants_exact_and_sourced) ... ok
+test_owner_f24_expected_share_floor (__main__.OwnerGeometrySourceTests.test_owner_f24_expected_share_floor) ... ok
+test_owner_force_ratio_scales_not_old_absolute_force (__main__.OwnerGeometrySourceTests.test_owner_force_ratio_scales_not_old_absolute_force) ... ok
+test_production_catalog_and_nonresource_export (__main__.OwnerGeometrySourceTests.test_production_catalog_and_nonresource_export) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.002s
+
+OK
+test_airborne_applied_force_cannot_supply_ground_support (__main__.LoadTraceTests.test_airborne_applied_force_cannot_supply_ground_support) ... ok
+test_ci_annotations_exclude_raw_ticks_and_preserve_bounded_engagement_evidence (__main__.LoadTraceTests.test_ci_annotations_exclude_raw_ticks_and_preserve_bounded_engagement_evidence) ... ok
+test_claimed_sum_not_trusted (__main__.LoadTraceTests.test_claimed_sum_not_trusted) ... ok
+test_com_x_reconciliation_not_single_endpoint_velocity_comparison (__main__.LoadTraceTests.test_com_x_reconciliation_not_single_endpoint_velocity_comparison) ... ok
+test_complete_window (__main__.LoadTraceTests.test_complete_window) ... ok
+test_contact_velocity_delta_independent_of_reported_force (__main__.LoadTraceTests.test_contact_velocity_delta_independent_of_reported_force) ... ok
+test_damping_claim_checked_against_raw_start_momentum_and_resource (__main__.LoadTraceTests.test_damping_claim_checked_against_raw_start_momentum_and_resource) ... ok
+test_decay_profile_reports_nonzero_plateau_without_a_rest_epsilon (__main__.LoadTraceTests.test_decay_profile_reports_nonzero_plateau_without_a_rest_epsilon) ... ok
+test_endpoint_momentum_independently_reconstructed (__main__.LoadTraceTests.test_endpoint_momentum_independently_reconstructed) ... ok
+test_fake_speed_claim_rejected_as_identity_not_sleep_threshold (__main__.LoadTraceTests.test_fake_speed_claim_rejected_as_identity_not_sleep_threshold) ... ok
+test_false_grip_without_qualifying_applied_channel_rejected (__main__.LoadTraceTests.test_false_grip_without_qualifying_applied_channel_rejected) ... ok
+test_grip_flag_without_real_reaction_is_not_a_foot_load_path (__main__.LoadTraceTests.test_grip_flag_without_real_reaction_is_not_a_foot_load_path) ... ok
+test_ledger_claim_not_trusted (__main__.LoadTraceTests.test_ledger_claim_not_trusted) ... ok
+test_literal_ceiling_not_weight_over_60_or_epsilon (__main__.LoadTraceTests.test_literal_ceiling_not_weight_over_60_or_epsilon) ... ok
+test_loaded_grip_parser_control_does_not_upgrade_runtime_acceptance (__main__.LoadTraceTests.test_loaded_grip_parser_control_does_not_upgrade_runtime_acceptance) ... ok
+test_missing_body_geometry_rejected (__main__.LoadTraceTests.test_missing_body_geometry_rejected) ... ok
+test_missing_position_phase_rejected (__main__.LoadTraceTests.test_missing_position_phase_rejected) ... ok
+test_missing_spawn_data_is_not_an_equilibrium (__main__.LoadTraceTests.test_missing_spawn_data_is_not_an_equilibrium) ... ok
+test_missing_sweep_data_is_not_a_zero_amplitude_result (__main__.LoadTraceTests.test_missing_sweep_data_is_not_a_zero_amplitude_result) ... ok
+test_nonconserving_internal_rows_cannot_be_hidden_by_budget_terms (__main__.LoadTraceTests.test_nonconserving_internal_rows_cannot_be_hidden_by_budget_terms) ... ok
+test_nonfinite_rejected (__main__.LoadTraceTests.test_nonfinite_rejected) ... ok
+test_partial_rejected (__main__.LoadTraceTests.test_partial_rejected) ... ok
+test_position_ledger_claim_not_trusted (__main__.LoadTraceTests.test_position_ledger_claim_not_trusted) ... ok
+test_positional_cannot_mask_missing_reaction (__main__.LoadTraceTests.test_positional_cannot_mask_missing_reaction) ... ok
+test_shared_support_not_a_foot_only_force_failure (__main__.LoadTraceTests.test_shared_support_not_a_foot_only_force_failure) ... ok
+test_single_grip_tick_is_distinguished_from_sustained_support (__main__.LoadTraceTests.test_single_grip_tick_is_distinguished_from_sustained_support) ... ok
+test_spawn_all_three_at_configured_six_without_sleep_adoption (__main__.LoadTraceTests.test_spawn_all_three_at_configured_six_without_sleep_adoption) ... ok
+test_spawn_comparison_different_or_same_never_chooses_asleep (__main__.LoadTraceTests.test_spawn_comparison_different_or_same_never_chooses_asleep) ... ok
+test_spawn_rejects_iteration_change (__main__.LoadTraceTests.test_spawn_rejects_iteration_change) ... ok
+test_spawn_rejects_mismatched_height_and_nonzero_initial_motion (__main__.LoadTraceTests.test_spawn_rejects_mismatched_height_and_nonzero_initial_motion) ... ok
+test_support_share_uses_all_grounded_reaction_and_excludes_cleanup (__main__.LoadTraceTests.test_support_share_uses_all_grounded_reaction_and_excludes_cleanup) ... ok
+test_sweep_is_observation_only_with_every_sample_and_no_adoption (__main__.LoadTraceTests.test_sweep_is_observation_only_with_every_sample_and_no_adoption) ... ok
+test_synthetic_damping_bias_identity_not_physics_evidence (__main__.LoadTraceTests.test_synthetic_damping_bias_identity_not_physics_evidence) ... ok
+test_two_x_not_divided_away (__main__.LoadTraceTests.test_two_x_not_divided_away) ... ok
+test_unchanging_false_grip_is_not_an_engagement_success (__main__.LoadTraceTests.test_unchanging_false_grip_is_not_an_engagement_success) ... ok
+test_wrong_completed_bottom_rejected (__main__.LoadTraceTests.test_wrong_completed_bottom_rejected) ... ok
+test_wrong_other_body_sum_rejected (__main__.LoadTraceTests.test_wrong_other_body_sum_rejected) ... ok
+test_wrong_previous_count (__main__.LoadTraceTests.test_wrong_previous_count) ... ok
+test_wrong_start_bottom_rejected (__main__.LoadTraceTests.test_wrong_start_bottom_rejected) ... ok
+test_zero_ground_support_share_is_undefined_not_divided_or_clipped (__main__.LoadTraceTests.test_zero_ground_support_share_is_undefined_not_divided_or_clipped) ... ok
+
+----------------------------------------------------------------------
+Ran 40 tests in 2.534s
+
+OK
+test_complete_samples_impulses_and_grounding_are_independently_checked (__main__.ContactObserverTests.test_complete_samples_impulses_and_grounding_are_independently_checked) ... ok
+test_grounded_transition_not_inferred_from_impulse (__main__.ContactObserverTests.test_grounded_transition_not_inferred_from_impulse) ... ok
+test_later_overlapping_sample_can_reopen_a_previously_zeroed_sample (__main__.ContactObserverTests.test_later_overlapping_sample_can_reopen_a_previously_zeroed_sample) ... ok
+test_missing_candidate_rejected (__main__.ContactObserverTests.test_missing_candidate_rejected) ... ok
+test_missing_sweep_does_not_mean_zero_residual (__main__.ContactObserverTests.test_missing_sweep_does_not_mean_zero_residual) ... ok
+test_observer_read_only_comparison_required (__main__.ContactObserverTests.test_observer_read_only_comparison_required) ... ok
+test_positional_cleanup_is_recomputed_and_never_an_impulse (__main__.ContactObserverTests.test_positional_cleanup_is_recomputed_and_never_an_impulse) ... ok
+test_retained_zero_requires_real_endpoint_response (__main__.ContactObserverTests.test_retained_zero_requires_real_endpoint_response) ... ok
+test_sample_geometry_not_just_claimed_active_flag (__main__.ContactObserverTests.test_sample_geometry_not_just_claimed_active_flag) ... ok
+test_signed_impulse_not_just_claimed_force (__main__.ContactObserverTests.test_signed_impulse_not_just_claimed_force) ... ok
+test_slip_sweep_observes_both_without_adoption (__main__.ContactObserverTests.test_slip_sweep_observes_both_without_adoption) ... ok
+test_tangent_claim_recomputed_from_endpoints (__main__.ContactObserverTests.test_tangent_claim_recomputed_from_endpoints) ... ok
+test_wrong_static_branch_rejected (__main__.ContactObserverTests.test_wrong_static_branch_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 1.909s
+
+OK
+test_catalog_axes_only_and_exact_retained_stub (__main__.R14OwnerTests.test_catalog_axes_only_and_exact_retained_stub) ... ok
+test_incomplete_pair_not_a_zero_residual (__main__.R14OwnerTests.test_incomplete_pair_not_a_zero_residual) ... ok
+test_only_two_owner_tuning_additions_no_old_resource_change (__main__.R14OwnerTests.test_only_two_owner_tuning_additions_no_old_resource_change) ... ok
+test_owner_identical_drift_changed_support_trap_not_silently_accepted (__main__.R14OwnerTests.test_owner_identical_drift_changed_support_trap_not_silently_accepted) ... ok
+test_paired_report_runs_independent_checks_without_claiming_support_fixed (__main__.R14OwnerTests.test_paired_report_runs_independent_checks_without_claiming_support_fixed) ... ok
+test_runtime_report_provenance_not_stale_pending_owner_decisions (__main__.R14OwnerTests.test_runtime_report_provenance_not_stale_pending_owner_decisions) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.326s
+
+OK
+test_count_types_required (__main__.R15Counts.test_count_types_required) ... ok
+test_counts_match_all_raw_candidates (__main__.R15Counts.test_counts_match_all_raw_candidates) ... ok
+test_duplicate_count_row_rejected (__main__.R15Counts.test_duplicate_count_row_rejected) ... ok
+test_forged_interval_candidate_active_rejected_independently (__main__.R15Counts.test_forged_interval_candidate_active_rejected_independently) ... ok
+test_legal_spawn_claim_checked_against_actual_start_endpoints (__main__.R15Counts.test_legal_spawn_claim_checked_against_actual_start_endpoints) ... ok
+test_lossless_phase_adapter_keeps_source_raw (__main__.R15Counts.test_lossless_phase_adapter_keeps_source_raw) ... ok
+test_missing_inactive_body_pass_rejected (__main__.R15Counts.test_missing_inactive_body_pass_rejected) ... ok
+test_missing_legal_evidence_not_a_measured_comparison (__main__.R15Counts.test_missing_legal_evidence_not_a_measured_comparison) ... ok
+test_missing_raw_event_not_accepted_as_smaller_regime (__main__.R15Counts.test_missing_raw_event_not_accepted_as_smaller_regime) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.176s
+
+OK
+test_actual_cli_fails_landing_only_without_bypass (__main__.R16Gate.test_actual_cli_fails_landing_only_without_bypass) ... ok
+test_aggregate_feet_majority_cannot_fake_single_foot_majority (__main__.R16Gate.test_aggregate_feet_majority_cannot_fake_single_foot_majority) ... ok
+test_exact_half_fails_no_epsilon (__main__.R16Gate.test_exact_half_fails_no_epsilon) ... ok
+test_landing_impact_only_does_not_pass (__main__.R16Gate.test_landing_impact_only_does_not_pass) ... ok
+test_only_last300_counts (__main__.R16Gate.test_only_last300_counts) ... ok
+test_positive_control_majority_loaded_grip_not_fa5 (__main__.R16Gate.test_positive_control_majority_loaded_grip_not_fa5) ... ok
+test_share_and_grip_must_coincide_same_foot_and_tick (__main__.R16Gate.test_share_and_grip_must_coincide_same_foot_and_tick) ... ok
+test_ungrounded_and_zero_reaction_and_cleanup_cannot_pass (__main__.R16Gate.test_ungrounded_and_zero_reaction_and_cleanup_cannot_pass) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.657s
+
+OK
+test_changing_oscillation_is_not_settled_by_bounded_range (__main__.ConvergenceControls.test_changing_oscillation_is_not_settled_by_bounded_range) ... ok
+test_count_recurrence_does_not_grant_settlement (__main__.ConvergenceControls.test_count_recurrence_does_not_grant_settlement) ... ok
+test_exact_constant_positive_drift_is_settled_not_rest (__main__.ConvergenceControls.test_exact_constant_positive_drift_is_settled_not_rest) ... ok
+test_exact_period_reports_nonzero_settled_mean (__main__.ConvergenceControls.test_exact_period_reports_nonzero_settled_mean) ... ok
+test_monotone_is_transient_not_equilibrium (__main__.ConvergenceControls.test_monotone_is_transient_not_equilibrium) ... ok
+test_same_vx_changing_position_drift_does_not_pass (__main__.ConvergenceControls.test_same_vx_changing_position_drift_does_not_pass) ... ok
+test_short_or_nonfinite_is_unavailable_not_settled (__main__.ConvergenceControls.test_short_or_nonfinite_is_unavailable_not_settled) ... ok
+test_tiny_velocity_change_is_not_epsilon_clipped (__main__.ConvergenceControls.test_tiny_velocity_change_is_not_epsilon_clipped) ... ok
+test_zero_input_has_live_return_label_and_own_units (__main__.ConvergenceControls.test_zero_input_has_live_return_label_and_own_units) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.017s
+
+OK
+test_absent_or_nonfinite_telemetry_not_reported_as_zero (__main__.PhaseSpawnControls.test_absent_or_nonfinite_telemetry_not_reported_as_zero) ... ok
+test_forged_impulse_sums_rejected (__main__.PhaseSpawnControls.test_forged_impulse_sums_rejected) ... ok
+test_raised_clearance_rederived_from_raw_capsules_not_root_claim (__main__.PhaseSpawnControls.test_raised_clearance_rederived_from_raw_capsules_not_root_claim) ... ok
+test_raw_magnitudes_survive_cancelling_folded_hinge (__main__.PhaseSpawnControls.test_raw_magnitudes_survive_cancelling_folded_hinge) ... ok
+test_spawn_comparison_defers_nonsettled_means (__main__.PhaseSpawnControls.test_spawn_comparison_defers_nonsettled_means) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.032s
+
+OK
+test_forged_contribution_rejected (__main__.SpringControls.test_forged_contribution_rejected) ... ok
+test_passive_zero_contribution (__main__.SpringControls.test_passive_zero_contribution) ... ok
+test_zero_passive_does_not_disable_motor_return (__main__.SpringControls.test_zero_passive_does_not_disable_motor_return) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+OK
+test_actual_144_binary64_modal_duration_keeps_raw_elapsed (__main__.PublicRuntimeControls.test_actual_144_binary64_modal_duration_keeps_raw_elapsed) ... ok
+test_attempt_not_executed_is_not_evidence (__main__.PublicRuntimeControls.test_attempt_not_executed_is_not_evidence) ... ok
+test_equal_flip_hash_is_red (__main__.PublicRuntimeControls.test_equal_flip_hash_is_red) ... ok
+test_frame_label_without_actual_delivery_rejected (__main__.PublicRuntimeControls.test_frame_label_without_actual_delivery_rejected) ... ok
+test_frame_stream_disagreement_rejected (__main__.PublicRuntimeControls.test_frame_stream_disagreement_rejected) ... ok
+test_full_bytes_disagree_even_when_booleans_claim_equal (__main__.PublicRuntimeControls.test_full_bytes_disagree_even_when_booleans_claim_equal) ... ok
+test_metadata_only_flip_is_red (__main__.PublicRuntimeControls.test_metadata_only_flip_is_red) ... ok
+test_missing_baseline_is_red_not_bootstrap_pass (__main__.PublicRuntimeControls.test_missing_baseline_is_red_not_bootstrap_pass) ... ok
+test_short_hash_table_rejected (__main__.PublicRuntimeControls.test_short_hash_table_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.009s
+
+OK
+test_borrowed_real_other_row_artifact_rejected (__main__.MeasuredScopeControls.test_borrowed_real_other_row_artifact_rejected) ... ok
+test_exact_measured_triples_allowed (__main__.MeasuredScopeControls.test_exact_measured_triples_allowed) ... ok
+test_fabricated_run_rejected_even_with_measured_status (__main__.MeasuredScopeControls.test_fabricated_run_rejected_even_with_measured_status) ... ok
+test_real_replay_citation_cannot_upgrade_unrun_creature_gate (__main__.MeasuredScopeControls.test_real_replay_citation_cannot_upgrade_unrun_creature_gate) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.030s
+
+OK
+test_damping_balance_does_not_fake_contact_only_pass (__main__.ExternalIdentityControls.test_damping_balance_does_not_fake_contact_only_pass) ... ok
+test_damping_cannot_be_silently_removed (__main__.ExternalIdentityControls.test_damping_cannot_be_silently_removed) ... ok
+test_forged_raw_contact_cannot_borrow_complete_ledger (__main__.ExternalIdentityControls.test_forged_raw_contact_cannot_borrow_complete_ledger) ... ok
+test_internal_leak_is_stop_not_contact_attribution (__main__.ExternalIdentityControls.test_internal_leak_is_stop_not_contact_attribution) ... ok
+test_missing_reordered_and_nonfinite_rejected (__main__.ExternalIdentityControls.test_missing_reordered_and_nonfinite_rejected) ... ok
+test_raw_endpoint_and_book_disagreement_rejected (__main__.ExternalIdentityControls.test_raw_endpoint_and_book_disagreement_rejected) ... ok
+test_reporting_does_not_modify_raw_evidence (__main__.ExternalIdentityControls.test_reporting_does_not_modify_raw_evidence) ... ok
+test_stationary_zero_impulse_positive_control (__main__.ExternalIdentityControls.test_stationary_zero_impulse_positive_control) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.032s
+
+OK
+test_authorized_form_still_aborts_internal_and_forged_damping (__main__.R19Controls.test_authorized_form_still_aborts_internal_and_forged_damping) ... ok
+test_complete_authorization_never_overwrites_literal_failure (__main__.R19Controls.test_complete_authorization_never_overwrites_literal_failure) ... ok
+test_mass_forgery_and_nonzero_horizontal_normals_rejected (__main__.R19Controls.test_mass_forgery_and_nonzero_horizontal_normals_rejected) ... ok
+test_no_collapse_stops_and_owner_boundary_not_widened (__main__.R19Controls.test_no_collapse_stops_and_owner_boundary_not_widened) ... ok
+test_reporting_does_not_mutate_raw_trace (__main__.R19Controls.test_reporting_does_not_mutate_raw_trace) ... ok
+test_signed_thrust_terminal_identity_not_absolute_contact_sum (__main__.R19Controls.test_signed_thrust_terminal_identity_not_absolute_contact_sum) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.033s
+
+OK
+test_actual_extent_not_authored_length_controls_inertia_audit (__main__.SaturationControls.test_actual_extent_not_authored_length_controls_inertia_audit) ... ok
+test_audit_does_not_mutate_physics (__main__.SaturationControls.test_audit_does_not_mutate_physics) ... ok
+test_body_speed_clamp_independent_of_constraint_bound (__main__.SaturationControls.test_body_speed_clamp_independent_of_constraint_bound) ... ok
+test_forged_requested_bound_applied_and_inertia_rejected (__main__.SaturationControls.test_forged_requested_bound_applied_and_inertia_rejected) ... ok
+test_gain_zero_no_collapse_stops_before_bound_and_A (__main__.SaturationControls.test_gain_zero_no_collapse_stops_before_bound_and_A) ... ok
+test_requested_vs_applied_shows_two_saturating_terms_are_not_falsification (__main__.SaturationControls.test_requested_vs_applied_shows_two_saturating_terms_are_not_falsification) ... ok
+test_teeth_include_each_tick_not_just_equal_means (__main__.SaturationControls.test_teeth_include_each_tick_not_just_equal_means) ... ok
+test_true_gain_zero_is_measured_not_inferred_from_stiffness (__main__.SaturationControls.test_true_gain_zero_is_measured_not_inferred_from_stiffness) ... ok
+test_zero_request_can_still_trigger_absolute_speed_repair_is_not_hidden (__main__.SaturationControls.test_zero_request_can_still_trigger_absolute_speed_repair_is_not_hidden) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.025s
+
+OK
+test_binary_predicate_does_not_replace_a_boundary_with_an_epsilon (__main__.LimitControls.test_binary_predicate_does_not_replace_a_boundary_with_an_epsilon) ... ok
+test_default_stop_remains40_and_audit_never_mutates_data (__main__.LimitControls.test_default_stop_remains40_and_audit_never_mutates_data) ... ok
+test_forged_drive_q_and_limit_band_rejected (__main__.LimitControls.test_forged_drive_q_and_limit_band_rejected) ... ok
+test_forged_error_phase_points_or_missing_iteration_rejected (__main__.LimitControls.test_forged_error_phase_points_or_missing_iteration_rejected) ... ok
+test_projection_and_phase_units_are_separate_and_match_endpoints (__main__.LimitControls.test_projection_and_phase_units_are_separate_and_match_endpoints) ... ok
+test_velocity_engagement_is_not_inferred_from_nonzero_impulse (__main__.LimitControls.test_velocity_engagement_is_not_inferred_from_nonzero_impulse) ... ok
+test_wide_zero_error_means_exactly_no_projection (__main__.LimitControls.test_wide_zero_error_means_exactly_no_projection) ... ok
+test_wrong_prediction_does_not_get_a_fitted_story (__main__.LimitControls.test_wrong_prediction_does_not_get_a_fitted_story) ... ok
+test_zero_error_projection_cannot_hide_motion (__main__.LimitControls.test_zero_error_projection_cannot_hide_motion) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.012s
+
+OK
+test_committed40_stays40 (__main__.InertControls.test_committed40_stays40) ... ok
+test_no_band_or_drive_setting_substitutes_for_measured_inertness (__main__.InertControls.test_no_band_or_drive_setting_substitutes_for_measured_inertness) ... ok
+test_one_runtime_call_and_no_sweep_runner (__main__.InertControls.test_one_runtime_call_and_no_sweep_runner) ... ok
+test_only_missing_cell_authorized (__main__.InertControls.test_only_missing_cell_authorized) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.002s
+
+OK
+test_critical_damping_formula_and_invalid_inputs (__main__.StudyControls.test_critical_damping_formula_and_invalid_inputs) ... ok
+test_d06_is_provisional_fixed_owner_band_and_no_fake_randomness (__main__.StudyControls.test_d06_is_provisional_fixed_owner_band_and_no_fake_randomness) ... ok
+test_f52_keeps_net_dwell_not_mean_drift (__main__.StudyControls.test_f52_keeps_net_dwell_not_mean_drift) ... ok
+test_old_audit_stays_strict_and_candidate_requires_measured_coefficients (__main__.StudyControls.test_old_audit_stays_strict_and_candidate_requires_measured_coefficients) ... ok
+test_three_registered_proposals_and_same_bound_ceiling (__main__.StudyControls.test_three_registered_proposals_and_same_bound_ceiling) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+OK
+test_allowance_is_conditional_not_an_adopted_tolerance (__main__.RoundControls.test_allowance_is_conditional_not_an_adopted_tolerance) ... ok
+test_exact_four_run_protocol_no_d09_repeat (__main__.RoundControls.test_exact_four_run_protocol_no_d09_repeat) ... ok
+test_fixed_onset_variance_registered_before_fa6 (__main__.RoundControls.test_fixed_onset_variance_registered_before_fa6) ... ok
+test_phase_sampling_does_not_confuse_drive_sample_with_frozen_joint (__main__.RoundControls.test_phase_sampling_does_not_confuse_drive_sample_with_frozen_joint) ... ok
+test_r25_only_owner_authorised_defaults_adopted (__main__.RoundControls.test_r25_only_owner_authorised_defaults_adopted) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.000s
+
+OK
+test_actual_operator_clamp_and_forgery (__main__.R26Controls.test_actual_operator_clamp_and_forgery) ... ok
+test_airborne_cases_explicit_before_outcomes (__main__.R26Controls.test_airborne_cases_explicit_before_outcomes) ... ok
+test_brace_removed_from_runtime (__main__.R26Controls.test_brace_removed_from_runtime) ... ok
+test_completion_cannot_mask_step_failure (__main__.R26Controls.test_completion_cannot_mask_step_failure) ... ok
+test_diagnostic_and_observation_default_off (__main__.R26Controls.test_diagnostic_and_observation_default_off) ... ok
+test_edited_termination_target_cannot_qualify_shortened_fixture (__main__.R26Controls.test_edited_termination_target_cannot_qualify_shortened_fixture) ... ok
+test_events_collapse_samples_and_passes_not_episodes (__main__.R26Controls.test_events_collapse_samples_and_passes_not_episodes) ... ok
+test_flat_and_ledge_sdf_independent (__main__.R26Controls.test_flat_and_ledge_sdf_independent) ... ok
+test_jobs_independent_and_push_once_only (__main__.R26Controls.test_jobs_independent_and_push_once_only) ... ok
+test_nonfoot_schema_not_misread_as_missing_foot_flag (__main__.R26Controls.test_nonfoot_schema_not_misread_as_missing_foot_flag) ... ok
+test_pb_resource_bytes_unchanged (__main__.R26Controls.test_pb_resource_bytes_unchanged) ... ok
+test_phase_error_forgery_and_missing_row_rejected (__main__.R26Controls.test_phase_error_forgery_and_missing_row_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.005s
+
+OK
+test_actual_com_mass_weighted (__main__.R27Controls.test_actual_com_mass_weighted) ... ok
+test_closed_physical_jobs_cannot_be_retriggered_by_future_marker (__main__.R27Controls.test_closed_physical_jobs_cannot_be_retriggered_by_future_marker) ... ok
+test_exact_policy_upgrade_not_blanket_fa_permission (__main__.R27Controls.test_exact_policy_upgrade_not_blanket_fa_permission) ... ok
+test_failure_or_edited_target_cannot_pass (__main__.R27Controls.test_failure_or_edited_target_cannot_pass) ... ok
+test_one_pass_moved_outside_contact_loop (__main__.R27Controls.test_one_pass_moved_outside_contact_loop) ... ok
+test_original_gdd_preserved_and_sleep_named_failed (__main__.R27Controls.test_original_gdd_preserved_and_sleep_named_failed) ... ok
+test_original_plan_and_candidate_bytes_pinned_after_outcomes (__main__.R27Controls.test_original_plan_and_candidate_bytes_pinned_after_outcomes) ... ok
+test_pb_bytes_not_changed (__main__.R27Controls.test_pb_bytes_not_changed) ... ok
+test_preregistered_horizon_and_scope (__main__.R27Controls.test_preregistered_horizon_and_scope) ... ok
+test_published_measured_outcomes_cannot_be_relabelled_as_expected_pass (__main__.R27Controls.test_published_measured_outcomes_cannot_be_relabelled_as_expected_pass) ... ok
+test_skip_propagation_cannot_skip_study_after_public_success (__main__.R27Controls.test_skip_propagation_cannot_skip_study_after_public_success) ... ok
+test_soak_cannot_hide_missing_batches (__main__.R27Controls.test_soak_cannot_hide_missing_batches) ... ok
+test_soak_evidence_requires_all200_and_all20_shards (__main__.R27Controls.test_soak_evidence_requires_all200_and_all20_shards) ... ok
+test_static_policy_not_misrepresented_as_sustained_sleep (__main__.R27Controls.test_static_policy_not_misrepresented_as_sustained_sleep) ... ok
+test_vector_angle_not_endpoint_only (__main__.R27Controls.test_vector_angle_not_endpoint_only) ... ok
+test_workflow_dependencies_exist (__main__.R27Controls.test_workflow_dependencies_exist) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.029s
+
+OK
+test_exact_one_traversal_with_no_runtime_physics_flag_after_adoption (__main__.R28Controls.test_exact_one_traversal_with_no_runtime_physics_flag_after_adoption) ... ok
+test_fixture_horizons_unchanged (__main__.R28Controls.test_fixture_horizons_unchanged) ... ok
+test_measurements_pinned_and_dependents_stop (__main__.R28Controls.test_measurements_pinned_and_dependents_stop) ... ok
+test_only_f47_quarantined (__main__.R28Controls.test_only_f47_quarantined) ... ok
+test_parked_resolver_is_detached (__main__.R28Controls.test_parked_resolver_is_detached) ... ok
+test_stop_is_strict_and_no_physical_clamping (__main__.R28Controls.test_stop_is_strict_and_no_physical_clamping) ... ok
+test_tuning_exact_start (__main__.R28Controls.test_tuning_exact_start) ... ok
+test_waveform_sweeps_not_dispatched_as_r28 (__main__.R28Controls.test_waveform_sweeps_not_dispatched_as_r28) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.006s
+
+OK
+test_core_has_no_numeric_literals_or_ui_platform_dependencies (__main__.M0StaticTests.test_core_has_no_numeric_literals_or_ui_platform_dependencies) ... ok
+test_project_and_android_contract (__main__.M0StaticTests.test_project_and_android_contract) ... ok
+test_public_interfaces_are_declared (__main__.M0StaticTests.test_public_interfaces_are_declared) ... ok
+test_sim_guardrails (__main__.M0StaticTests.test_sim_guardrails) ... ok
+test_skeleton_and_resource_references (__main__.M0StaticTests.test_skeleton_and_resource_references) ... ok
+test_tuning_complete_and_single_source (__main__.M0StaticTests.test_tuning_complete_and_single_source) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.057s
+
+OK
+test_archives_and_bundle_config (__main__.AndroidInspectorTests.test_archives_and_bundle_config) ... ok
+test_incongruent_elf (__main__.AndroidInspectorTests.test_incongruent_elf) ... ok
+test_manifest (__main__.AndroidInspectorTests.test_manifest) ... ok
+test_missing_and_modified_preset_assets (__main__.AndroidInspectorTests.test_missing_and_modified_preset_assets) ... ok
+test_truncated_elf (__main__.AndroidInspectorTests.test_truncated_elf) ... ok
+test_under_aligned_elf (__main__.AndroidInspectorTests.test_under_aligned_elf) ... ok
+test_valid_elf (__main__.AndroidInspectorTests.test_valid_elf) ... ok
+test_wrong_machine (__main__.AndroidInspectorTests.test_wrong_machine) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.005s
+
+OK
+PASS: review_checks.sh static checks completed.
+PENDING: formal INV-01..INV-10 semantic sweep / A10 five-fakes / A12 review.
+Runtime evidence is tracked per gate in .review/m1_ac_matrix.md; static checks alone never upgrade it.
+test_core_and_tuning_unchanged (__main__.R29Controls.test_core_and_tuning_unchanged) ... ok
+test_d0_no_readoption_and_same_sampler (__main__.R29Controls.test_d0_no_readoption_and_same_sampler) ... ok
+test_d0_original_numbers_and_all_ticks (__main__.R29Controls.test_d0_original_numbers_and_all_ticks) ... ok
+test_fixed_horizons_no_synthetic_success (__main__.R29Controls.test_fixed_horizons_no_synthetic_success) ... ok
+test_owner_workload_and_no_new_threshold (__main__.R29Controls.test_owner_workload_and_no_new_threshold) ... ok
+test_push_gate_no_upload_before_measurements (__main__.R29Controls.test_push_gate_no_upload_before_measurements) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.501s
+
+OK

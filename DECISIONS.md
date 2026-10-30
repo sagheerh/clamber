@@ -3,6 +3,29 @@
 The GDD's existing D-01–D-17, CD-01, and A-xx decisions remain normative.
 New implementation decisions use M0-Dxx to avoid colliding with those IDs.
 
+## M1-PHYSICS-FIX-D01 — Root-cause repair authorised; no unverified adoption
+
+2026-10-30: owner explicitly authorises fixing AC-201/AC-202 after understanding
+CLAMBER's purpose and existing implementation. This supersedes earlier no-physics
+permission restrictions for targeted correctness work. It is not permission to
+reduce acceptance thresholds, hide drift in sleep, fake determinism/gait results,
+retune the resource or blindly retry the rejected AC-202 final-distance adoption.
+
+Analyse terminal contact/bone compatibility, not friction coefficients alone.
+The present free-endpoint rows can change length after earlier distance solves;
+prior traces identify the actual contact cleanup phase. A rigidity-constrained
+contact mass matrix and common-translation primitive are implemented only as an
+unadopted test candidate. Preserve momentum accounting, actual load provenance,
+frozen prior N, contact/sleep policy, and transactional validation. Nonparallel
+manifolds/hinges still need composition work. AC-201 is not attributed to a proven
+new patch; initial gravity moment is not a time-domain prediction.
+
+Real engine validation is required before production selection. Sandbox download
+is blocked and recent main jobs show allocation refusal; twelve exact-rational/
+static tests and grammar success are not engine evidence. No core/tuning/expectation
+change, old arm rerun, new proof retry, artifact deletion or billing operation.
+M1 remains BLOCKED / NOT SIGNED. See `.review/m1_physics_fix_analysis.md`.
+
 ## M1-DEVICE-D01 — Opt-in diagnostic access, not a product screen
 
 2026-10-30 continuation on active `arena/f43f36ab-clamber`, based on merged main
