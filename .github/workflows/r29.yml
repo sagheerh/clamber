@@ -37,7 +37,7 @@ jobs:
 
   parse-only:
     name: Parse R29 harness ONLY (zero measurement ticks)
-    if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '[R29-once-2]') }}
+    if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '[R29-once-2]') && !contains(github.event.head_commit.message, '[R29-runner-proof]') }}
     permissions:
       contents: read
     runs-on: ubuntu-24.04
@@ -67,3 +67,20 @@ jobs:
           cat "$RUNNER_TEMP/r29-parse.log"
           ! grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:' "$RUNNER_TEMP/r29-parse.log"
           echo '::notice title=R29 parse only::Harness parsed after helper rename; ZERO physical measurement ticks; no arm rerun'
+
+  runner-proof:
+    name: R29 runner proof ONLY (zero physics)
+    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[R29-runner-proof]') }}
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Prove runner allocation and source identity without physics
+        run: |
+          test "$(git rev-parse HEAD)" = "${{ github.sha }}"
+          echo "::notice title=R29 runner proof::Runner allocated, checkout correct, no engine or measurement ticks; source=${{ github.sha }}"
+          uname -m
