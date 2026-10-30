@@ -1,0 +1,954 @@
+{
+  "source_head": "8d73597f0ce4c118ad0602816b51770d8292611f",
+  "push_run": 40895082337,
+  "pr_run": 40895093915,
+  "brace_job": 123521869979,
+  "brace_controls": {
+    "checks": 724,
+    "failures": 0
+  },
+  "arms": {
+    "gain1-short": {
+      "arm": "gain1-short",
+      "ticks": 6000,
+      "brace_enabled": true,
+      "gain": 1.0,
+      "hold_ticks": 60,
+      "first_actual_sleep_tick": null,
+      "actual_sleep_within4s": false,
+      "awake_ticks_with_F56_raw_verified": 6000,
+      "parked_rows_NO_fresh_force_budget": 0,
+      "parking_events_EXCLUDED_from_awake_force_budget": [],
+      "F56_complete_passed": true,
+      "observer_equal_all_ticks": true,
+      "max_abs_per_tick_F56_residual": 1.2212453270876722e-15,
+      "max_abs_per_tick_brace_internal": 4.440892098500626e-16,
+      "F56_axis_sums_including_brace_SUBSET_last_column": {
+        "x": [
+          0.0010671991267853045,
+          0.0,
+          15.299813090241706,
+          -15.29874589111494,
+          0.0,
+          0.0,
+          -2.707675324730395e-14,
+          2.2998672465166653e-14,
+          2.320470475925679e-14,
+          -6.37092443145533e-15
+        ],
+        "y": [
+          0.13461902546415128,
+          4310.476156632516,
+          0.0,
+          29.658462392947687,
+          -4340.0,
+          0.0,
+          -1.1054698823009801e-13,
+          3.4163297191192044e-13,
+          1.0658943346009142e-13,
+          -2.2205848271283912e-13
+        ]
+      },
+      "chain_length_wu": 0.8999999999999999,
+      "held_xy_wu": [
+        0.10384744609283914,
+        -0.060661848469803076
+      ],
+      "end_release_xy_wu": [
+        0.10314968246438916,
+        -0.06641377204148244
+      ],
+      "held_horizontal_body_lengths": 0.11538605121426572,
+      "end_release_horizontal_body_lengths": 0.11461075829376574,
+      "peak_horizontal_during_hold_body_lengths": 0.11538605121426572
+    },
+    "gain07-long": {
+      "arm": "gain07-long",
+      "ticks": 6240,
+      "brace_enabled": true,
+      "gain": 0.7,
+      "hold_ticks": 300,
+      "first_actual_sleep_tick": null,
+      "actual_sleep_within4s": false,
+      "awake_ticks_with_F56_raw_verified": 6240,
+      "parked_rows_NO_fresh_force_budget": 0,
+      "parking_events_EXCLUDED_from_awake_force_budget": [],
+      "F56_complete_passed": true,
+      "observer_equal_all_ticks": true,
+      "max_abs_per_tick_F56_residual": 1.2212453270876722e-15,
+      "max_abs_per_tick_brace_internal": 5.551115123125783e-16,
+      "F56_axis_sums_including_brace_SUBSET_last_column": {
+        "x": [
+          -0.10943495245803089,
+          0.0,
+          15.061175271080886,
+          -15.170610223538935,
+          0.0,
+          0.0,
+          -2.6978853179260298e-14,
+          2.3367619688199892e-14,
+          2.2513864687476182e-14,
+          -6.358351074386287e-15
+        ],
+        "y": [
+          -0.4864526822372458,
+          4481.590734031744,
+          0.0,
+          31.522813286018355,
+          -4513.6,
+          0.0,
+          -1.08527770104061e-13,
+          3.405366266751031e-13,
+          1.2030567514420554e-13,
+          -2.1883883594142617e-13
+        ]
+      },
+      "chain_length_wu": 0.8999999999999999,
+      "held_xy_wu": [
+        0.24218608284050802,
+        -0.04001596579416333
+      ],
+      "end_release_xy_wu": [
+        0.03563734148342235,
+        -0.0421249748758972
+      ],
+      "held_horizontal_body_lengths": 0.2690956476005645,
+      "end_release_horizontal_body_lengths": 0.0395970460926915,
+      "peak_horizontal_during_hold_body_lengths": 0.2690956476005645
+    },
+    "idle-on": {
+      "arm": "idle-on",
+      "ticks": 6000,
+      "brace_enabled": true,
+      "gain": 0.7,
+      "hold_ticks": 0,
+      "first_actual_sleep_tick": null,
+      "actual_sleep_within4s": false,
+      "awake_ticks_with_F56_raw_verified": 6000,
+      "parked_rows_NO_fresh_force_budget": 0,
+      "parking_events_EXCLUDED_from_awake_force_budget": [],
+      "F56_complete_passed": true,
+      "observer_equal_all_ticks": true,
+      "max_abs_per_tick_F56_residual": 1.2212453270876722e-15,
+      "max_abs_per_tick_brace_internal": 4.440892098500626e-16,
+      "F56_axis_sums_including_brace_SUBSET_last_column": {
+        "x": [
+          0.13304409818579097,
+          0.0,
+          16.034280691289315,
+          -15.901236593103544,
+          0.0,
+          0.0,
+          -2.8599084905822636e-14,
+          2.3650379614784112e-14,
+          2.4156322558574472e-14,
+          -7.17193638461941e-15
+        ],
+        "y": [
+          -0.25944846702729835,
+          4308.106747201399,
+          0.0,
+          31.633804331572996,
+          -4340.0,
+          0.0,
+          -1.1080025785759062e-13,
+          3.505529200253932e-13,
+          1.0313017800855917e-13,
+          -2.1360690993788012e-13
+        ]
+      },
+      "drift_px_s": 12.617730602141002
+    },
+    "idle-off": {
+      "arm": "idle-off",
+      "ticks": 6000,
+      "brace_enabled": false,
+      "gain": 0.7,
+      "hold_ticks": 0,
+      "first_actual_sleep_tick": null,
+      "actual_sleep_within4s": false,
+      "awake_ticks_with_F56_raw_verified": 6000,
+      "parked_rows_NO_fresh_force_budget": 0,
+      "parking_events_EXCLUDED_from_awake_force_budget": [],
+      "F56_complete_passed": true,
+      "observer_equal_all_ticks": true,
+      "max_abs_per_tick_F56_residual": 1.5543122344752192e-15,
+      "max_abs_per_tick_brace_internal": 0.0,
+      "F56_axis_sums_including_brace_SUBSET_last_column": {
+        "x": [
+          0.09015465097577324,
+          0.0,
+          10.875212577908103,
+          -10.785057926932325,
+          0.0,
+          0.0,
+          -6.924951304844059e-15,
+          -5.5870916323803905e-15,
+          8.0134195720033e-15,
+          0.0
+        ],
+        "y": [
+          -0.14176154367626745,
+          4322.265890927447,
+          0.0,
+          17.592347528876527,
+          -4340.0,
+          0.0,
+          -1.1379786002407855e-15,
+          -2.392253062311056e-13,
+          6.060594734402791e-13,
+          0.0
+        ]
+      },
+      "drift_px_s": 8.550150769956836
+    },
+    "lurch-off": {
+      "arm": "lurch-off",
+      "ticks": 6000,
+      "brace_enabled": false,
+      "gain": 0.7,
+      "hold_ticks": 60,
+      "first_actual_sleep_tick": 5841,
+      "actual_sleep_within4s": false,
+      "awake_ticks_with_F56_raw_verified": 5842,
+      "parked_rows_NO_fresh_force_budget": 158,
+      "parking_events_EXCLUDED_from_awake_force_budget": [
+        5841
+      ],
+      "F56_complete_passed": true,
+      "observer_equal_all_ticks": true,
+      "max_abs_per_tick_F56_residual": 1.5543122344752192e-15,
+      "max_abs_per_tick_brace_internal": 0.0,
+      "F56_axis_sums_including_brace_SUBSET_last_column": {
+        "x": [
+          0.0016173928378574237,
+          0.0,
+          10.672680768433496,
+          -10.671063375595635,
+          0.0,
+          0.0,
+          -5.723926348273242e-15,
+          -4.5592950779184444e-15,
+          6.379777619820032e-15,
+          0.0
+        ],
+        "y": [
+          -0.0772343650799887,
+          4208.723541987542,
+          0.0,
+          16.912556980710676,
+          -4225.713333333334,
+          0.0,
+          -2.42861286636753e-17,
+          -2.238994580017195e-13,
+          5.782709380786066e-13,
+          0.0
+        ]
+      },
+      "chain_length_wu": 0.8999999999999999,
+      "held_xy_wu": [
+        0.14075959883633615,
+        -0.03773132734892369
+      ],
+      "end_release_xy_wu": [
+        0.2249433803374048,
+        0.00975498689401097
+      ],
+      "held_horizontal_body_lengths": 0.15639955426259575,
+      "end_release_horizontal_body_lengths": 0.24993708926378314,
+      "peak_horizontal_during_hold_body_lengths": 0.15639955426259575
+    },
+    "lurch-on": {
+      "arm": "lurch-on",
+      "ticks": 6000,
+      "brace_enabled": true,
+      "gain": 0.7,
+      "hold_ticks": 60,
+      "first_actual_sleep_tick": null,
+      "actual_sleep_within4s": false,
+      "awake_ticks_with_F56_raw_verified": 6000,
+      "parked_rows_NO_fresh_force_budget": 0,
+      "parking_events_EXCLUDED_from_awake_force_budget": [],
+      "F56_complete_passed": true,
+      "observer_equal_all_ticks": true,
+      "max_abs_per_tick_F56_residual": 1.2212453270876722e-15,
+      "max_abs_per_tick_brace_internal": 7.771561172376096e-16,
+      "F56_axis_sums_including_brace_SUBSET_last_column": {
+        "x": [
+          -0.06329906713607815,
+          0.0,
+          14.923334419406439,
+          -14.986633486542537,
+          0.0,
+          0.0,
+          -2.721130612504119e-14,
+          2.3719768553823184e-14,
+          2.234863227638939e-14,
+          -6.368759415242148e-15
+        ],
+        "y": [
+          -0.31233139902841506,
+          4307.6255628095305,
+          0.0,
+          32.06210579144119,
+          -4340.0,
+          0.0,
+          -1.1077597172892695e-13,
+          3.3781658026477146e-13,
+          1.1225525717306617e-13,
+          -2.2015722578316854e-13
+        ]
+      },
+      "chain_length_wu": 0.8999999999999999,
+      "held_xy_wu": [
+        0.14009625154262473,
+        -0.040719715749486685
+      ],
+      "end_release_xy_wu": [
+        -0.06129663822438047,
+        -0.04309817522407153
+      ],
+      "held_horizontal_body_lengths": 0.15566250171402748,
+      "end_release_horizontal_body_lengths": -0.0681073758048672,
+      "peak_horizontal_during_hold_body_lengths": 0.15566250171402748
+    },
+    "gain1-long": {
+      "arm": "gain1-long",
+      "ticks": 6240,
+      "brace_enabled": true,
+      "gain": 1.0,
+      "hold_ticks": 300,
+      "first_actual_sleep_tick": null,
+      "actual_sleep_within4s": false,
+      "awake_ticks_with_F56_raw_verified": 6240,
+      "parked_rows_NO_fresh_force_budget": 0,
+      "parking_events_EXCLUDED_from_awake_force_budget": [],
+      "F56_complete_passed": true,
+      "observer_equal_all_ticks": true,
+      "max_abs_per_tick_F56_residual": 1.2212453270876722e-15,
+      "max_abs_per_tick_brace_internal": 4.440892098500626e-16,
+      "F56_axis_sums_including_brace_SUBSET_last_column": {
+        "x": [
+          0.0010660608460745517,
+          0.0,
+          15.33789013607845,
+          -15.336824075232395,
+          0.0,
+          0.0,
+          -2.7019229545790016e-14,
+          2.298671574808321e-14,
+          2.3127089436233983e-14,
+          -6.3962608809736005e-15
+        ],
+        "y": [
+          0.13447797191152006,
+          4484.963830277194,
+          0.0,
+          28.77064769471815,
+          -4513.6,
+          0.0,
+          -1.1079678841063867e-13,
+          3.389337421833005e-13,
+          1.2702621073057418e-13,
+          -2.207817262345202e-13
+        ]
+      },
+      "chain_length_wu": 0.8999999999999999,
+      "held_xy_wu": [
+        0.12388619817252788,
+        -0.06067776106625124
+      ],
+      "end_release_xy_wu": [
+        0.12321238162303771,
+        -0.06649731392242988
+      ],
+      "held_horizontal_body_lengths": 0.13765133130280877,
+      "end_release_horizontal_body_lengths": 0.1369026462478197,
+      "peak_horizontal_during_hold_body_lengths": 0.13765133130280877
+    }
+  },
+  "verdict": {
+    "source_head": "8d73597f0ce4c118ad0602816b51770d8292611f",
+    "gate_failures": [
+      "STOP: unmodified actual F52 did not fire within4s",
+      "STOP: brace drift above.3px/s",
+      "Brace weakens held lurch vs same-adopted brace-off arm",
+      "STOP F74: sampled ceiling short of1bodylength; no gain/contraction widening"
+    ],
+    "public_actual_F52_first_sleep_tick": null,
+    "public_actual_F52_within4s": false,
+    "F74_sampled_max_end_release_body_lengths": 0.24993708926378314,
+    "F74_scope": "Published .7/1.0 x 1s/5s durations only, NOT a global maximum over unrestricted holdtime; idle translation must not be relabelled input effect"
+  },
+  "independent": {
+    "FA5": {
+      "gate": "FA5",
+      "ticks": 7067,
+      "max_previous_grounded_feet": 2,
+      "branch_counts": {
+        "below": 15317,
+        "at_or_above": 7,
+        "two_foot_grip": 2,
+        "airborne": 0,
+        "N0_no_grip": 4
+      },
+      "examples": {
+        "N0_no_grip": {
+          "tick": 0,
+          "pass": 0,
+          "part": 5,
+          "N": 0,
+          "threshold": null,
+          "actual_load": 8.4,
+          "lowest": true,
+          "grounded": true,
+          "expected_grip": false
+        },
+        "below": {
+          "tick": 1,
+          "pass": 0,
+          "part": 5,
+          "N": 2,
+          "threshold": 18.871999999999996,
+          "actual_load": 9.5875248,
+          "lowest": true,
+          "grounded": true,
+          "expected_grip": false
+        },
+        "at_or_above": {
+          "tick": 5,
+          "pass": 1,
+          "part": 7,
+          "N": 2,
+          "threshold": 18.871999999999996,
+          "actual_load": 19.47748602476598,
+          "lowest": true,
+          "grounded": true,
+          "expected_grip": true
+        },
+        "two_foot_grip": {
+          "tick": 6,
+          "pass": 1,
+          "parts": [
+            5,
+            7
+          ],
+          "N": 2
+        }
+      },
+      "missing_coverage": [
+        "airborne"
+      ],
+      "passed": false,
+      "scope": "actual authoredHopper/braceoff/natural hinge+gravity+selfcontact loads; no synthetic qualifying loads or pose edits; missingbranches are NOTPASS"
+    },
+    "AC202": {
+      "gate": "AC202",
+      "passed": false,
+      "presets": {
+        "Slug": {
+          "ticks": 7200,
+          "maximum_length_error_wu": 0.09437461522175528,
+          "at": [
+            6,
+            2,
+            "foot"
+          ],
+          "passed": false
+        },
+        "Hopper": {
+          "ticks": 7200,
+          "maximum_length_error_wu": 0.199917694835798,
+          "at": [
+            9,
+            7,
+            "foot"
+          ],
+          "passed": false
+        },
+        "TwinRoller": {
+          "ticks": 7200,
+          "maximum_length_error_wu": 0.09966156857329556,
+          "at": [
+            6,
+            4,
+            "foot"
+          ],
+          "passed": false
+        }
+      },
+      "scope": "publicSim, allparts strongerthanlimbs,7200ticks each, threshold UNCHANGED.05WU"
+    }
+  },
+  "raw_artifacts": [
+    {
+      "id": 12907195620,
+      "node_id": "MDg6QXJ0aWZhY3QxMjkwNzE5NTYyMA==",
+      "name": "m1-r25-baseline-40895082337",
+      "size_in_bytes": 8101265,
+      "url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12907195620",
+      "archive_download_url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12907195620/zip",
+      "expired": false,
+      "digest": "sha256:d49272455540985470713aaa84efe737b7fd7b4ed11732bb1d023e847ea1a16b",
+      "created_at": "2026-10-29T14:48:53Z",
+      "updated_at": "2026-10-29T14:48:53Z",
+      "expires_at": "2026-11-05T14:48:50Z",
+      "workflow_run": {
+        "id": 40895082337,
+        "repository_id": 1436504043,
+        "head_repository_id": 1436504043,
+        "head_branch": "arena/4cd0a587-clamber",
+        "head_sha": "8d73597f0ce4c118ad0602816b51770d8292611f"
+      }
+    },
+    {
+      "id": 12906931396,
+      "node_id": "MDg6QXJ0aWZhY3QxMjkwNjkzMTM5Ng==",
+      "name": "m1-r25-fa5-40895082337",
+      "size_in_bytes": 83669794,
+      "url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12906931396",
+      "archive_download_url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12906931396/zip",
+      "expired": false,
+      "digest": "sha256:49f025fbfa4558e72ba87d74b592fb18c0eaa801d604b89f9ac1fa8de31c2085",
+      "created_at": "2026-10-29T14:50:33Z",
+      "updated_at": "2026-10-29T14:50:33Z",
+      "expires_at": "2026-11-05T14:50:23Z",
+      "workflow_run": {
+        "id": 40895082337,
+        "repository_id": 1436504043,
+        "head_repository_id": 1436504043,
+        "head_branch": "arena/4cd0a587-clamber",
+        "head_sha": "8d73597f0ce4c118ad0602816b51770d8292611f"
+      }
+    },
+    {
+      "id": 12906214059,
+      "node_id": "MDg6QXJ0aWZhY3QxMjkwNjIxNDA1OQ==",
+      "name": "m1-r25-brace-40895082337",
+      "size_in_bytes": 95845021,
+      "url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12906214059",
+      "archive_download_url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12906214059/zip",
+      "expired": false,
+      "digest": "sha256:c55432ea3bfbfc0d26aa10e2eb0df22483c20619a7db8d4f38f32f11b7280101",
+      "created_at": "2026-10-29T14:54:05Z",
+      "updated_at": "2026-10-29T14:54:05Z",
+      "expires_at": "2026-11-05T14:53:48Z",
+      "workflow_run": {
+        "id": 40895082337,
+        "repository_id": 1436504043,
+        "head_repository_id": 1436504043,
+        "head_branch": "arena/4cd0a587-clamber",
+        "head_sha": "8d73597f0ce4c118ad0602816b51770d8292611f"
+      }
+    },
+    {
+      "id": 12905499863,
+      "node_id": "MDg6QXJ0aWZhY3QxMjkwNTQ5OTg2Mw==",
+      "name": "m1-r25-ac202-40895082337",
+      "size_in_bytes": 14907250,
+      "url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12905499863",
+      "archive_download_url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12905499863/zip",
+      "expired": false,
+      "digest": "sha256:cb2a49192e970022d62de616de461c72c7898a98cdb00b52af047992e5cf8bdf",
+      "created_at": "2026-10-29T14:50:38Z",
+      "updated_at": "2026-10-29T14:50:38Z",
+      "expires_at": "2026-11-05T14:50:35Z",
+      "workflow_run": {
+        "id": 40895082337,
+        "repository_id": 1436504043,
+        "head_repository_id": 1436504043,
+        "head_branch": "arena/4cd0a587-clamber",
+        "head_sha": "8d73597f0ce4c118ad0602816b51770d8292611f"
+      }
+    }
+  ],
+  "baseline": {
+    "fixture": {
+      "input": "0..59 released; alternating L/R per60 ticks thereafter",
+      "name": "Slug public Sim legal floor",
+      "seed": 305419896,
+      "spawn": "actual authored lowest surface at +.01WU; uniform diagnostic material",
+      "ticks": 600
+    },
+    "tuning_sha256": "5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666",
+    "final_digest": "a30a132f739e97ce3b4f73ca1716fb7359e0ae22b460378d8396b01da773fb71",
+    "full_stream_sha256": "a2929a0c590f68cbe795ab03b2027cb94a9990fef69732236865f1fb30d3e557",
+    "per_tick_digest_table_sha256": "f2c680300abdc6e2937a493aa344e1404dece005397cd8a99a6c17a52bd4f239",
+    "decision_id": "M1-R25-BASELINE",
+    "source_head": "8d73597f0ce4c118ad0602816b51770d8292611f",
+    "source_ci_run": 40895082337,
+    "source_job": "r25-baseline",
+    "provenance": "Owner R25 authorised regeneration on adoption source. Triple streams independently byte-equal; 30/144 clock streams equal. Normal public job reruns same commit against this explicit baseline overlay; generated baseline then committed without physics changes."
+  },
+  "baseline_generation_job": 123521870237,
+  "public_rerun_same_physics_commit_job": 123522445066,
+  "public_summary": {
+    "attempt_started": true,
+    "checks": 9057,
+    "determinism_attempt": 1,
+    "engine": "4.7.2-stable (official)",
+    "failures": 0,
+    "falsification": {
+      "after_input": 1,
+      "baseline_digest": "a30a132f739e97ce3b4f73ca1716fb7359e0ae22b460378d8396b01da773fb71",
+      "before_input": 0,
+      "bit": 1,
+      "changed_digest": "6010c57dab55cde75f19472866cc12b687233cce62b1140e6e014aa166c1e0f1",
+      "physical_bodies_differ_at_flip": true,
+      "tick": 0
+    },
+    "fixed_tick_hz": 60,
+    "fixture": {
+      "input": "0..59 released; alternating L/R per60 ticks thereafter",
+      "name": "Slug public Sim legal floor",
+      "seed": 305419896,
+      "spawn": "actual authored lowest surface at +.01WU; uniform diagnostic material",
+      "ticks": 600
+    },
+    "live_spring_sleep": {
+      "any_sleep": false,
+      "max_dwell_ticks": 0,
+      "scope": "R25 actual F52 observation with adopted joint brace; deadline/drift in separate adoption gate",
+      "ticks": 600
+    },
+    "replay_final_digests": [
+      "a30a132f739e97ce3b4f73ca1716fb7359e0ae22b460378d8396b01da773fb71",
+      "a30a132f739e97ce3b4f73ca1716fb7359e0ae22b460378d8396b01da773fb71",
+      "a30a132f739e97ce3b4f73ca1716fb7359e0ae22b460378d8396b01da773fb71"
+    ],
+    "replay_final_public_state_hashes": [
+      1153017493,
+      1153017493,
+      1153017493
+    ],
+    "replay_full_stream_bytes": 31129748,
+    "replay_result": {
+      "physics_digest": "70849afd61589ce3529b853d017c3f9b3f5496b3e8edb06d786b2d3bfb882ad7",
+      "scope": "physics only; score/flags not implemented",
+      "sleep": {
+        "asleep": false,
+        "dwell_start": [],
+        "last_sleep_tick": -1,
+        "last_wake_tick": -1,
+        "max_body_com_displacement_wu": 0.0004692628150728125,
+        "max_body_dwell_displacement_wu": 0.0004692628150728125,
+        "still_ticks": 0
+      },
+      "ticks": 600
+    },
+    "replay_streams_byte_equal": true,
+    "runtime_gates": {
+      "10": "MEASURED two-second stall; exact solver equality at tick3, delivery-clock difference retained",
+      "12": "MEASURED single left-bit tick0 flip, actual bodies AND final hash differ",
+      "2": "MEASURED held chunks vs fixed ticks + three-step stall/drop, actual accumulator",
+      "3": "MEASURED same/different-seed injection + canonical stream vectors; no random physics perturbation",
+      "9": "MEASURED x3 complete Slug, full tick bytes/hashes/results",
+      "11": "MEASURED real --fixed-fps30/144 callbacks;600 same ticks, streams byte-identical, physics60",
+      "13": "MEASURED committed real baseline matched, linked DECISIONS provenance"
+    },
+    "stall": {
+      "clock_hash_scope": "whole-Sim hashes include delivery clock; compare full solver+RNG at equal ticks, clock differences explicitly retained",
+      "dropped_s": 1.95,
+      "elapsed_s": 2.0,
+      "pending_s": 0.0,
+      "solver_equal_at_tick3": true,
+      "steps": 3
+    },
+    "tuning_sha256": "5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666",
+    "full_stream_sha256": "a2929a0c590f68cbe795ab03b2027cb94a9990fef69732236865f1fb30d3e557",
+    "per_tick_digest_table_sha256": "f2c680300abdc6e2937a493aa344e1404dece005397cd8a99a6c17a52bd4f239",
+    "delivery": [
+      {
+        "actual_ticks": 601,
+        "checks": 308,
+        "compared_ticks": 600,
+        "condition": 30,
+        "failures": 0,
+        "final_accumulator": {
+          "dropped": 0.0,
+          "pending": 0.008333333333333338
+        },
+        "frames": 301,
+        "scope": "actual SceneTree frame callbacks, --fixed-fps, first600 identical released-input fixed ticks; full extra ticks retained; clock outside tick hash",
+        "stream_bytes": 2598664,
+        "tick_hz": 60,
+        "min_frame_seconds": 0.025,
+        "max_frame_seconds": 0.04166666666666666,
+        "startup_frame_seconds": 0.025,
+        "modal_frame_seconds": 0.03333333333333333
+      },
+      {
+        "actual_ticks": 600,
+        "checks": 1446,
+        "compared_ticks": 600,
+        "condition": 144,
+        "failures": 0,
+        "final_accumulator": {
+          "dropped": 0.0,
+          "pending": 0.0
+        },
+        "frames": 1439,
+        "scope": "actual SceneTree frame callbacks, --fixed-fps, first600 identical released-input fixed ticks; full extra ticks retained; clock outside tick hash",
+        "stream_bytes": 2594340,
+        "tick_hz": 60,
+        "min_frame_seconds": 0.006666666666666667,
+        "max_frame_seconds": 0.008333333333333333,
+        "startup_frame_seconds": 0.008333333333333333,
+        "modal_frame_seconds": 0.006944444444444445
+      }
+    ],
+    "delivery_stream_sha256": "c85a0b7e82432b794f958cef6780a0c804d424757b619205688bf296ce508986",
+    "baseline_status": "MATCHED committed generated baseline"
+  },
+  "source_static": "FAIL184controls: shallow checkout cannot gitshowfc33aaa. Pure test control repaired with same immutable pre-R25 resource SHA, no physics change. Local198PASS. Fixed follow-upc169ded push+PR:198controlsPASS.",
+  "m0": {
+    "push_run": 40895082360,
+    "pr_run": 40895093958,
+    "headless_checks": 516,
+    "headless_failures": 0,
+    "android_push_pr": "success"
+  },
+  "matrix": "8/18 retained, no AC201/202/FA5 credit",
+  "scope": "STOP. Core/tuning unchanged since8d73597; c169ded generatedbaseline/testfix/archive-reporting ONLY. No new physical investigation after failure.",
+  "archive_audit": {
+    "run": 40896828176,
+    "job": 123528127119,
+    "source_head": "8d73597f0ce4c118ad0602816b51770d8292611f",
+    "source_run": 40895082337,
+    "new_physics_runs": 0,
+    "AC202": {
+      "Slug": {
+        "ticks": 7200,
+        "by_kind": {
+          "head": {
+            "max_error_wu": 0.021824347380989206,
+            "at": [
+              180,
+              0
+            ]
+          },
+          "motor": {
+            "max_error_wu": 0.06735552288921903,
+            "at": [
+              81,
+              1
+            ]
+          },
+          "foot": {
+            "max_error_wu": 0.09437461522175528,
+            "at": [
+              6,
+              2
+            ]
+          }
+        },
+        "limb_motor_passive_max_wu": 0.06735552288921903,
+        "limb_motor_passive_criterion_met": false,
+        "all_segment_criterion_met": false
+      },
+      "Hopper": {
+        "ticks": 7200,
+        "by_kind": {
+          "head": {
+            "max_error_wu": 0.012021187208262729,
+            "at": [
+              64,
+              0
+            ]
+          },
+          "motor": {
+            "max_error_wu": 0.1090211629000053,
+            "at": [
+              28,
+              4
+            ]
+          },
+          "passive": {
+            "max_error_wu": 0.07581624961617467,
+            "at": [
+              65,
+              2
+            ]
+          },
+          "limb": {
+            "max_error_wu": 0.09978856801616326,
+            "at": [
+              13,
+              6
+            ]
+          },
+          "foot": {
+            "max_error_wu": 0.199917694835798,
+            "at": [
+              9,
+              7
+            ]
+          }
+        },
+        "limb_motor_passive_max_wu": 0.1090211629000053,
+        "limb_motor_passive_criterion_met": false,
+        "all_segment_criterion_met": false
+      },
+      "TwinRoller": {
+        "ticks": 7200,
+        "by_kind": {
+          "head": {
+            "max_error_wu": 0.029350917127110854,
+            "at": [
+              14,
+              0
+            ]
+          },
+          "motor": {
+            "max_error_wu": 0.07263504920267333,
+            "at": [
+              650,
+              1
+            ]
+          },
+          "passive": {
+            "max_error_wu": 0.044345258978976565,
+            "at": [
+              887,
+              2
+            ]
+          },
+          "foot": {
+            "max_error_wu": 0.09966156857329556,
+            "at": [
+              6,
+              4
+            ]
+          }
+        },
+        "limb_motor_passive_max_wu": 0.07263504920267333,
+        "limb_motor_passive_criterion_met": false,
+        "all_segment_criterion_met": false
+      }
+    },
+    "FA5": {
+      "rows": 7067,
+      "last_tick": 7066,
+      "last_endpoint_x_range": [
+        -11.998676101856619,
+        -11.215033260486496
+      ],
+      "last_endpoint_y_range": [
+        0.030000000000000093,
+        0.375246999395938
+      ],
+      "fixture_bounds": {
+        "x": [
+          -12.0,
+          12.0
+        ],
+        "y": [
+          -4.0,
+          8.0
+        ]
+      },
+      "termination_reason": "NOT LOGGED: harness breaks on bad status or observer mismatch. Last completed row only; no new step/replay to infer cause.",
+      "report": {
+        "gate": "FA5",
+        "ticks": 7067,
+        "max_previous_grounded_feet": 2,
+        "branch_counts": {
+          "below": 15317,
+          "at_or_above": 7,
+          "two_foot_grip": 2,
+          "airborne": 0,
+          "N0_no_grip": 4
+        },
+        "examples": {
+          "N0_no_grip": {
+            "tick": 0,
+            "pass": 0,
+            "part": 5,
+            "N": 0,
+            "threshold": null,
+            "actual_load": 8.4,
+            "lowest": true,
+            "grounded": true,
+            "expected_grip": false
+          },
+          "below": {
+            "tick": 1,
+            "pass": 0,
+            "part": 5,
+            "N": 2,
+            "threshold": 18.871999999999996,
+            "actual_load": 9.5875248,
+            "lowest": true,
+            "grounded": true,
+            "expected_grip": false
+          },
+          "at_or_above": {
+            "tick": 5,
+            "pass": 1,
+            "part": 7,
+            "N": 2,
+            "threshold": 18.871999999999996,
+            "actual_load": 19.47748602476598,
+            "lowest": true,
+            "grounded": true,
+            "expected_grip": true
+          },
+          "two_foot_grip": {
+            "tick": 6,
+            "pass": 1,
+            "parts": [
+              5,
+              7
+            ],
+            "N": 2
+          }
+        },
+        "missing_coverage": [
+          "airborne"
+        ],
+        "passed": false,
+        "scope": "actual authoredHopper/braceoff/natural hinge+gravity+selfcontact loads; no synthetic qualifying loads or pose edits; missingbranches are NOTPASS"
+      }
+    },
+    "public_idle_equals_force_trace_physical_first600": {
+      "ticks": 600,
+      "equal": true
+    },
+    "committed_baseline_byte_equal_generated": true,
+    "generated_baseline_file_sha256": "3d2f95e2187b2f90961d31a525eaa9d79ccb4296dec4fb766c6754f4043f185f"
+  },
+  "committed_baseline_followup": {
+    "head": "c169dedd76dabad38167f7fe457c0a0b6cef7571",
+    "push_run": 40896828176,
+    "pr_run": 40896836574,
+    "push_public_job": 123528127573,
+    "pr_public_job": 123528164326,
+    "normal_strict_committed_baseline_push_pr": "PASS, same exact new source hashes",
+    "static_python_controls": 198,
+    "static_push_pr": "PASS",
+    "overall_m1": "FAIL only original HingedSlug600/F47 step, NOTWAIVED; R25physical acceptance separately FAILED",
+    "m0_push_run": 40896828167,
+    "m0_pr_run": 40896836545,
+    "m0_push_pr_headless_android": "success; headless516checks/0failures"
+  },
+  "archive_audit_artifact": {
+    "id": 12907825786,
+    "node_id": "MDg6QXJ0aWZhY3QxMjkwNzgyNTc4Ng==",
+    "name": "m1-r25-archive-audit-40896828176",
+    "size_in_bytes": 5297,
+    "url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12907825786",
+    "archive_download_url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12907825786/zip",
+    "expired": false,
+    "digest": "sha256:0429795779e4d1983b4dd34badbe0b41c9ca89df88399dd86e670566c0aa16e2",
+    "created_at": "2026-10-29T14:59:01Z",
+    "updated_at": "2026-10-29T14:59:01Z",
+    "expires_at": "2026-11-05T14:59:00Z",
+    "workflow_run": {
+      "id": 40896828176,
+      "repository_id": 1436504043,
+      "head_repository_id": 1436504043,
+      "head_branch": "arena/4cd0a587-clamber",
+      "head_sha": "c169dedd76dabad38167f7fe457c0a0b6cef7571"
+    }
+  }
+}

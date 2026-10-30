@@ -1,0 +1,208 @@
+{
+  "source_head": "eea4e52ce2b1c86a421b46e687879d83f359986f",
+  "m1_run": 40880532917,
+  "inert_job": 123470523762,
+  "job_conclusion": "success: single authorized cell plus all integrity audits",
+  "arm": {
+    "arm": "gain0-wide90",
+    "rows": 6000,
+    "window_ticks": [
+      5700,
+      5999
+    ],
+    "drift_px_s": 0.08403595917824255,
+    "rectified_friction_impulse_per_tick": 1.772186894237695e-05,
+    "mean_thrust_force_n": 0.0010633121365426171,
+    "free_hinge_baseline_px_s": 0.08403595917823123,
+    "drift_minus_free_hinge_px_s": 1.1324274851176597e-14,
+    "limits": {
+      "limit_engaged_ticks": 0,
+      "window_ticks": 300,
+      "position_limit_engaged_ticks": 0,
+      "velocity_limit_engaged_ticks": 0,
+      "drive_outside_band_ticks": 0,
+      "drive_q_rad_range": [
+        1.563079699374753,
+        1.5630796993747635
+      ],
+      "max_drive_time_violation_rad": 0.0,
+      "max_position_stage_violation_rad": 0.0,
+      "max_any_sample_violation_rad": 0.0,
+      "requested_abs_projection_rad_sum": 0.0,
+      "requested_abs_projection_rad_per_tick": 0.0,
+      "observed_abs_projection_rad_sum": 0.0,
+      "angular_phase_endpoint_magnitude_wu_sum": 0.0,
+      "angular_phase_net_l1_wu_sum": 0.0,
+      "angular_projection_path_l1_wu_sum": 0.0,
+      "max_abs_limit_block_impulse": 0.0,
+      "limit_block_exact_zero_last300": true,
+      "limit_block_exact_zero_all6000": true,
+      "all6000_limit_engaged_ticks": 0,
+      "last300_decimal_binary_predicate_disagreements": 0,
+      "all6000_decimal_binary_predicate_disagreements": 0,
+      "definition": "engaged tick = any nonzero positional stop error OR exact binary64 velocity predicate; phase ledger WU, rotation rad separately verified"
+    },
+    "strength": {
+      "unit": "angular impulse mass*WU^2/s; bound*weight is relative rad/s increment",
+      "requested": {
+        "mean": 0.0,
+        "mean_abs": 0.0,
+        "min": -0.0,
+        "max": -0.0
+      },
+      "bound": {
+        "mean": 0.04442255333602155,
+        "mean_abs": 0.04442255333602155,
+        "min": 0.044422553336021534,
+        "max": 0.04442255333602157
+      },
+      "applied": {
+        "mean": 0.0,
+        "mean_abs": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "requested_over_bound": {
+        "mean": 0.0,
+        "mean_abs": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "saturated_ticks": 0,
+      "window_ticks": 300,
+      "saturated_fraction": 0.0,
+      "constraint_limited_ticks": 0,
+      "body_speed_limited_ticks": 0,
+      "at_constraint_bound_ticks": 0,
+      "definition": "saturated iff reconstructed final applied != requested; constraint/body-speed limits separately counted",
+      "all6000_requested_exact_zero": true,
+      "all6000_applied_exact_zero": true,
+      "all6000_max_abs_applied": 0.0
+    },
+    "inert_premise_all6000_verified": true,
+    "mean_clamped_total_torque": 0.0,
+    "STOP": "MANDATORY regardless of outcome: no further arm, sweep, remedy or design change authorized",
+    "A": "WITHDRAWN; residual OBSOLETE / NOT RUN",
+    "baseline": "UNCHANGED",
+    "Phase3": "NOT ENTERED",
+    "runtime_rows_passed": 8,
+    "runtime_rows_total": 18,
+    "rows_moved": 0
+  },
+  "F56": {
+    "window_ticks": [
+      5700,
+      5999
+    ],
+    "impulse_unit": "mass*WU/s",
+    "ledger_precision_existing": 1e-12,
+    "literal_definition": "sum(p_after-p_before) == sum(ground normal + friction), no damping/gravity subtraction",
+    "complete_definition": "delta_p == contact + damping + gravity + clamp + internal_drive + internal_velocity",
+    "axes": {
+      "x": {
+        "sums": {
+          "delta": -7.697835424647081e-18,
+          "normal": 0.0,
+          "friction": 0.005316560682713085,
+          "contact": 0.005316560682713085,
+          "damping": -0.005316560682713103,
+          "gravity": 0.0,
+          "clamp": 0.0,
+          "internal_drive": 0.0,
+          "internal_velocity": 8.023096076392733e-18,
+          "full_residual": 1.9244588561617704e-18,
+          "literal_residual": -0.005316560682713093,
+          "attributed_residual": 9.947554932554503e-18,
+          "literal_residual_from_sides": -0.005316560682713093,
+          "full_residual_from_sides": 1.6263032587282567e-18
+        },
+        "contact_attributed_momentum_change": 0.005316560682713095,
+        "max_abs_per_tick_full_residual": 7.521652571618187e-19,
+        "max_abs_per_tick_internal_drive": 0.0,
+        "max_abs_per_tick_internal_velocity": 9.75781955236954e-19,
+        "literal_contact_only_passed": false,
+        "complete_external_balance_passed": true
+      },
+      "y": {
+        "sums": {
+          "delta": 0.0,
+          "normal": 217.98051714817854,
+          "friction": 0.0,
+          "contact": 217.98051714817854,
+          "damping": -0.9805171481785386,
+          "gravity": -217.00000000000003,
+          "clamp": 0.0,
+          "internal_drive": 0.0,
+          "internal_velocity": -6.827871601444713e-15,
+          "full_residual": 3.661307368396649e-14,
+          "literal_residual": -217.98051714817854,
+          "attributed_residual": 3.019806626980426e-14,
+          "literal_residual_from_sides": -217.98051714817854,
+          "full_residual_from_sides": 3.880229471064922e-14
+        },
+        "contact_attributed_momentum_change": 217.98051714817856,
+        "max_abs_per_tick_full_residual": 2.476317761956892e-16,
+        "max_abs_per_tick_internal_drive": 0.0,
+        "max_abs_per_tick_internal_velocity": 1.3877787807814457e-16,
+        "literal_contact_only_passed": false,
+        "complete_external_balance_passed": true
+      }
+    },
+    "F56_literal_lateral_passed": false,
+    "F56_literal_vector_passed": false,
+    "internal_rows_and_complete_ledger_verified": true,
+    "remedy_authorized_by_requested_gate": false,
+    "outcome": "STOP: literal contact-only identity fails; do NOT apply remedy or silently redefine momentum change"
+  },
+  "python_controls": 180,
+  "load_component_checks": 80,
+  "execution": "EXACTLY ONE new diagnostic arm,6000ticks with observer-on/off physical snapshots equal each tick; push marker, no PR repeat; no baseline rerun or other sweep",
+  "dispatch_deviation": "Manual Actions dispatch denied HTTP403 before any run; one explicit push marker used instead; legacy runtime jobs manual-only and skipped, NOT passed/waived/closed; closeout skip-ci prevents rerun",
+  "other_runtime_jobs_this_run": "math-foundations/convergence/spring/public/F56-reference/R21-sweeps SKIPPED; historical evidence retained, existing F47 not closed, public not remeasured",
+  "artifact_inspection": "Complete compact annotations/API artifact metadata inspected; raw ZIP NOT downloaded/inspected",
+  "artifacts": [
+    {
+      "id": 12900316209,
+      "name": "m1-r22-inert-40880532917",
+      "size_in_bytes": 21060464,
+      "digest": "sha256:cbad831725ce1a51c0bcbaf22650a14a3ca31c17e5175219c514ffe30358de2c"
+    }
+  ],
+  "inference": "Owner baseline-return branch supported: independently audited inert angular row returns to free-hinge drift within1.1324274851176597e-14px/s. No inert-row solver/plumbing defect exposed by this fixture. STOP.",
+  "F67": "Drive-as-brake MECHANISM WITHDRAWN by owner; nonmonotone four-arm correlations retained. The previous2.95/35x floor was only among active configurations, not mere row presence: this inert-row cell is a counterexample to a universal floor.",
+  "F61": "Measured nonzero late-window arms constraint saturated300/300, bound1 requested/bound3080.1157876576485; no retune. Torque clamp binds upstream request and gain0 switches drive off; do not generalize no linear regime to arbitrary untested inputs/startup.",
+  "F68": "Owner structural finding for tested released-input actuated fixture/defaults: creep contradicts zero-input settle/sleep\u22644s; band change alone insufficient, station-keeping/design decision required. Formal AC201 NOT RUN/original predicate unchanged, not a mathematical proof over all poses/masses.",
+  "owner_D08": "Widen90 measured2.9500 insufficient; pose/mass authoring change unmeasured (not bounded by wide90 comparison); intended mechanic/net-displacement duration/re-scoped sleep + station-keeping recommendation requires explicit owner numbers/design decision. Nothing adopted.",
+  "STOP": "No further experiment/arm/sweep/diagnosis/remedy authorized or run after this cell; owner handoff only",
+  "tuning_sha256": "3a32dd3d2d719ed28220ed531fee05c8d2a799140d3f06e3aeed4d28d6e6f60c",
+  "upper_default_deg": 40,
+  "diagnostic_revert": "Process-local90 exited; resource/creatures byte-identical74c629e before/after, verified again nextcommit; no90 ever committed as default",
+  "core_and_gd_harness": "Byte-identical63cb024; no physics/telemetry/solver change for R22",
+  "A": "WITHDRAWN",
+  "residual": "OBSOLETE / NOT RUN",
+  "baseline": "UNCHANGED / no regeneration",
+  "Phase3": "NOT ENTERED",
+  "runtime_rows_passed": 8,
+  "runtime_rows_total": 18,
+  "rows_moved": 0,
+  "remaining_rows_not_moved": [
+    "AC-201",
+    "AC-202",
+    "AC-204",
+    "presets/captures",
+    "tickcost",
+    "section10.6",
+    "FA-3",
+    "FA-4",
+    "FA-5",
+    "FA-6"
+  ],
+  "FA5": "UNTOUCHED",
+  "determinism_attempt": 1,
+  "cross_architecture_attempts": 0,
+  "owner_queue": [
+    "D08 station-keeping/mechanic",
+    "D06 FA-6 tutorial",
+    "D07 reference-device tickcost"
+  ]
+}

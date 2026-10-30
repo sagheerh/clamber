@@ -1,0 +1,44 @@
+test_core_has_no_numeric_literals_or_ui_platform_dependencies (__main__.M0StaticTests.test_core_has_no_numeric_literals_or_ui_platform_dependencies) ... ok
+test_project_and_android_contract (__main__.M0StaticTests.test_project_and_android_contract) ... ok
+test_public_interfaces_are_declared (__main__.M0StaticTests.test_public_interfaces_are_declared) ... ok
+test_sim_guardrails (__main__.M0StaticTests.test_sim_guardrails) ... ok
+test_skeleton_and_resource_references (__main__.M0StaticTests.test_skeleton_and_resource_references) ... ok
+test_tuning_complete_and_single_source (__main__.M0StaticTests.test_tuning_complete_and_single_source) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.061s
+
+OK
+test_archives_and_bundle_config (__main__.AndroidInspectorTests.test_archives_and_bundle_config) ... ok
+test_incongruent_elf (__main__.AndroidInspectorTests.test_incongruent_elf) ... ok
+test_manifest (__main__.AndroidInspectorTests.test_manifest) ... ok
+test_missing_and_modified_preset_assets (__main__.AndroidInspectorTests.test_missing_and_modified_preset_assets) ... ok
+test_truncated_elf (__main__.AndroidInspectorTests.test_truncated_elf) ... ok
+test_under_aligned_elf (__main__.AndroidInspectorTests.test_under_aligned_elf) ... ok
+test_valid_elf (__main__.AndroidInspectorTests.test_valid_elf) ... ok
+test_wrong_machine (__main__.AndroidInspectorTests.test_wrong_machine) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.006s
+
+OK
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Scanning file structure...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | Loading global class names...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Started Loading editor (5 steps)[39m[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Loading editor layout...[39m[0m
+[  16% ] [90m[1mloading_editor_layout[22m | Loading docks...[39m[0m
+[92m[ DONE ][39m [1mloading_editor_layout[22m
+[0m
+cannot connect to daemon at tcp:5037: Connection refused
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+M0: 516 checks, 0 failures

@@ -1,0 +1,72 @@
+{
+  "authority": "Owner R27; readonly reviewer57ed098 section6. Drift closed, no D1/brace/knob/epsilon/tolerance changes.",
+  "production_tuning_sha256": "5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666",
+  "ac201": {
+    "preset": "Slug",
+    "ticks": 600,
+    "input_mask": 0,
+    "seed": 305419896,
+    "body_length_wu": 0.9,
+    "attitude_degrees_max": 15.0,
+    "displacement_body_lengths_max": 1.0,
+    "pixels_per_wu": 150,
+    "attitude_definition": "Vector from head capsule centre to arithmetic mean of foot capsule centres; maximum absolute signed angle from SPAWN vector over every completed tick. Also report peak-to-peak angle span, not substitute endpoint-only change.",
+    "displacement_definition": "Euclidean norm of mass-weighted centre-of-mass displacement from SPAWN to tick599, not last300 drift extrapolated to 10s.",
+    "owner_reference": "85.5px/.570WU/.633BL/1.58x is steady drift x10s reference, not an imposed expected measured result. Disclose actual from-spawn margin, failing .5BL alternative, 13.5px/s steady creep boundary.",
+    "sleep": "UNMODIFIED F52 within600ticks, FAILED named M1.1 carry-over; preserve original GDD4s clause"
+  },
+  "ac202": {
+    "presets": [
+      "Slug",
+      "Hopper",
+      "TwinRoller"
+    ],
+    "ticks": 7200,
+    "seed": 305419896,
+    "input": "repeating released/L/R/both blocks60",
+    "candidate": "ONE same distance traversal moved AFTER BOTH velocity/contact cleanup passes, not appended after each pass; no row/multiplier/compliance/iteration/tolerance change",
+    "default_enabled": false,
+    "criterion_wu": 0.05,
+    "limb_definition": "All articulated limb segments: motor/passive/limb. Also report literal-kind limb separately (null for Slug/TwinRoller), head and foot separately, and all-parts maximum. Never substitute foot error for limb criterion.",
+    "adoption": "Candidate only, report for owner adoption if all three pass; production defaults and replay baseline remain unchanged until adoption. No second arm/retune.",
+    "bounds_wu": [
+      -64,
+      64,
+      -4,
+      8
+    ],
+    "fixture_domain_reason": "Preregister wider TEST domain for same uniform plane/.25WU grid, avoiding known R26 -12 boundary truncation. No outcome-dependent widening. Body geometry/material/constants unchanged."
+  },
+  "fa3": {
+    "presets": [
+      "Slug",
+      "Hopper",
+      "TwinRoller"
+    ],
+    "ticks": 600,
+    "seed": 305419896,
+    "input_mask": 0,
+    "candidate_enabled": false,
+    "sleep_breaking_contact_definition": "Actual sleeping-to-awake transition with zero input and newly grounded body, same F42 rule; include wake_reason, last_wake_tick, new_grounded and full contact trace. Report sleeping ticks/opportunities explicitly; zero wake events is not proof of rest or sustained grip."
+  },
+  "soak": {
+    "runs": 200,
+    "ticks_per_run": 7200,
+    "batches": 20,
+    "runs_per_batch": 10,
+    "seed_base": 1388320512,
+    "preset_selection": "run_id modulo3 in Slug,Hopper,TwinRoller order",
+    "input": "injected xoshiro128** test-owned stream seeded per run, next_u32() &3 every60 ticks, held between; no global RNG",
+    "candidate_enabled": false,
+    "composition": "Real SleepingLoadProbe+ActuatedLoadProbe used by public Sim; numerical soak, NOT public replay/determinism attempt. All engine/status rejection is a failed run, never a successful zero-NaN run.",
+    "horizon_derivation": "AC204 does not specify run duration; preregister120s/7200ticks per run using adjacent AC202 two-minute scenario, NOT shortened after outcomes.",
+    "bounds_wu": [
+      -64,
+      64,
+      -4,
+      8
+    ],
+    "fixture": "Same uniform plane, .25WU cells, materials/gravity/body geometry; wider TEST grid preregistered to avoid historical120s -12 boundary truncation. No outcome-dependent widening.",
+    "logging": "Per-run target/completed ticks, seed, preset, input/state hashes, all finite scan counts, nonfinite paths, first failing tick/status/reason, final snapshot, no retries. Compact run logs not huge raw traces; failures retain offending observations."
+  }
+}

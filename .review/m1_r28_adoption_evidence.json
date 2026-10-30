@@ -1,0 +1,312 @@
+{
+  "schema": 1,
+  "start_head": "fb890fd5bb8c547d45c96bfa8940eca3a9227b20",
+  "measured_adoption_head": "446d870da5c02ecfc295a19d7f35a8436b3b7fa7",
+  "adoption_commit": "446d870da5c02ecfc295a19d7f35a8436b3b7fa7",
+  "revert_commit": "75fd3e7ff9f1e370831386f700757f8f26cacf3d",
+  "adoption_retained": false,
+  "stop_reason": "D3 penetration>=.02 on all3; exact full-commit revert; no later measurement arms run",
+  "source_run": 40970023755,
+  "source_job": 123784170344,
+  "source": {
+    "source_commit_sha": "446d870da5c02ecfc295a19d7f35a8436b3b7fa7",
+    "source_ci_run": "40970023755",
+    "mode": "adoption-measure",
+    "engine_status": 0,
+    "tuning_sha256": "5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666",
+    "raw_sha256": {
+      "Slug.jsonl": "069321705aa6ab9ae4b356d060e5d3e45fa0fa33429f074b20f259963e7a54f4",
+      "Hopper.jsonl": "7b2f5c9d08c2d12348fba3db3cd6f6d4d438ef0159eeaa0f0dcdda9d62b90eae",
+      "TwinRoller.jsonl": "edbefd7c57afde67eef3e58214e5af42b9031d24343cd068513c74c1fbb4823a"
+    }
+  },
+  "measurements": {
+    "penetration": {
+      "Slug": {
+        "max_penetration_wu": 0.07028201067739755,
+        "max_foot_penetration_wu": 0.07028201067739755,
+        "limit": 0.02,
+        "verdict": "FAIL",
+        "worst_sample": {
+          "center": [
+            0.32849538139486106,
+            -0.02028201067739773
+          ],
+          "distance_wu": -0.020282010677397544,
+          "kind": "foot",
+          "normal": [
+            0.0,
+            1.0
+          ],
+          "part": 2,
+          "penetration_wu": 0.07028201067739755,
+          "radius_wu": 0.05,
+          "surface": [
+            0.32849538139486106,
+            -0.07028201067739773
+          ],
+          "u": 1.0,
+          "tick": 6
+        },
+        "ticks": 7200,
+        "completed": true,
+        "termination": {
+          "failing_tick": null,
+          "status": 0,
+          "target_ticks": 7200,
+          "termination_reason": "completed",
+          "ticks": 7200
+        }
+      },
+      "Hopper": {
+        "max_penetration_wu": 0.0933999293597247,
+        "max_foot_penetration_wu": 0.0933999293597247,
+        "limit": 0.02,
+        "verdict": "FAIL",
+        "worst_sample": {
+          "center": [
+            0.33333254693529074,
+            -0.04339992935972453
+          ],
+          "distance_wu": -0.0433999293597247,
+          "kind": "foot",
+          "normal": [
+            0.0,
+            1.0
+          ],
+          "part": 5,
+          "penetration_wu": 0.0933999293597247,
+          "radius_wu": 0.05,
+          "surface": [
+            0.33333254693529074,
+            -0.09339992935972453
+          ],
+          "u": 1.0,
+          "tick": 7
+        },
+        "ticks": 7200,
+        "completed": true,
+        "termination": {
+          "failing_tick": null,
+          "status": 0,
+          "target_ticks": 7200,
+          "termination_reason": "completed",
+          "ticks": 7200
+        }
+      },
+      "TwinRoller": {
+        "max_penetration_wu": 0.05075245867956493,
+        "max_foot_penetration_wu": 0.048174420428044054,
+        "limit": 0.02,
+        "verdict": "FAIL",
+        "worst_sample": {
+          "center": [
+            3.293479503287627,
+            0.044247541320435166
+          ],
+          "distance_wu": 0.04424754132043507,
+          "kind": "motor",
+          "normal": [
+            0.0,
+            1.0
+          ],
+          "part": 1,
+          "penetration_wu": 0.05075245867956493,
+          "radius_wu": 0.095,
+          "surface": [
+            3.293479503287627,
+            -0.050752458679564835
+          ],
+          "u": 1.0,
+          "tick": 2162
+        },
+        "ticks": 7200,
+        "completed": true,
+        "termination": {
+          "failing_tick": null,
+          "status": 0,
+          "target_ticks": 7200,
+          "termination_reason": "completed",
+          "ticks": 7200
+        }
+      }
+    },
+    "ac202_production": {
+      "Slug": {
+        "completed_tick_limb_max_wu": 4.996003610813204e-16,
+        "worst": {
+          "error_wu": 4.996003610813204e-16,
+          "part": 1,
+          "kind": "motor",
+          "tick": 6092
+        },
+        "ticks": 7200,
+        "limit": 0.05,
+        "verdict": "PASS"
+      },
+      "Hopper": {
+        "completed_tick_limb_max_wu": 1.8318679906315083e-15,
+        "worst": {
+          "error_wu": 1.8318679906315083e-15,
+          "part": 6,
+          "kind": "limb",
+          "tick": 5739
+        },
+        "ticks": 7200,
+        "limit": 0.05,
+        "verdict": "PASS"
+      },
+      "TwinRoller": {
+        "completed_tick_limb_max_wu": 1.7763568394002505e-15,
+        "worst": {
+          "error_wu": 1.7763568394002505e-15,
+          "part": 3,
+          "kind": "motor",
+          "tick": 5608
+        },
+        "ticks": 7200,
+        "limit": 0.05,
+        "verdict": "PASS"
+      }
+    },
+    "penetration_gate_passed": false,
+    "stop_and_revert": true,
+    "verification_passed": true
+  },
+  "tuning_before_sha256": "5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666",
+  "tuning_after_sha256": "5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666",
+  "verified_pb": {
+    "bound": 30.0,
+    "stiffness": 10.0,
+    "damping": 0.5443327361211717,
+    "max_torque": 12.0
+  },
+  "baseline": {
+    "status": "NOT RUN on adopted build: penetration hard stop",
+    "fixture_unchanged": true,
+    "fixture_sha256": "2779456f6a35338a97666bcec813608ae5bda83c612ec1d5b6560df62590f679",
+    "source_commit_sha": null,
+    "new_digest_reproduced": null,
+    "old_fixture_source_commit_sha": "114265e0116101a897d8429a2998f4987549f86f"
+  },
+  "idle_family": {
+    "status": "NOT RUN",
+    "blocker": "D3 hard stop; job123785570864 skipped; R15 diagnostic output MUST NOT substitute the specified from-spawn600 arm"
+  },
+  "characterisation": {
+    "status": "NOT RUN",
+    "blocker": "D3 hard stop; job123785570911 skipped; no3600tick window or extrapolation"
+  },
+  "R27_accepted_reference": {
+    "source": ".review/m1_r27_evidence.json, owner R28 section2; not rederived/rerun",
+    "attitude_peak_to_peak_deg": 35.34385590667538,
+    "COM_net_wu": 0.6460243614279206,
+    "COM_net_px": 96.9036542141881,
+    "sleep_first_tick": null,
+    "sleeping_ticks": 0,
+    "drift_R26_px_s": 8.550150769956836,
+    "FA3": "VACUOUS, UNCREDITED",
+    "soak": "accepted200/200,1440000ticks; not rerun/not determinism",
+    "determinism": "same-buildattempt1 only; crossarchitecture0"
+  },
+  "artifacts": {
+    "status": "UPLOAD FAILED; no raw JSON artifact available",
+    "blocker": "GitHub artifact storage quota hit; recalculated6-12h; uploadstep failed. No deletion of historical evidence, no physical retry. Rawfile SHA256 retained above, numeric source reports in check annotations; hashes are NOT raw data.",
+    "source_annotation_check": 123784170344,
+    "independent_local_raw_revalidation": "NOT RUN: raw JSON unavailable after upload failure; runner reporter verification passed before upload, annotation retained verbatim"
+  },
+  "regression": {
+    "local_controls": 226,
+    "source_static_controls_before_abort": 188,
+    "source_static_conclusion": "failure",
+    "source_static_blocker": "historical git show fb890fd fixture assertions cannot resolve startcommit in checkout default shallow history; regression-only fetch-depth0 correction needed",
+    "M0_adoption_job": 123784170381,
+    "M0_checks": 516,
+    "M0_failures": 0,
+    "tuning_diff": "EMPTY",
+    "production_core_diff_after_revert": "EMPTY",
+    "literal_source_pin_enforced_by_control": true,
+    "current_FA3": "NOT RUN; vacuous/uncredited; removed FA3 pass exception from matrixguard",
+    "current_AC202": "FAILED (R28 penetration; reverted); exact scoped matrixguard citation",
+    "local_after_revert_controls": 226,
+    "local_after_revert_failures": 0,
+    "final_code_head": "9784b5fe4147ee90ced8139602940cf712c12791",
+    "final_M1_run": 40971243040,
+    "final_static_job": 123788231404,
+    "final_static_job_conclusion": "success",
+    "final_static_controls": 226,
+    "final_static_failures": 0,
+    "final_public_job": 123788231768,
+    "final_public_teststep": "success",
+    "final_public_job_conclusion": "failure: artifact quota, NOT replay failure",
+    "final_public_checks": 9053,
+    "final_public_failures": 0,
+    "final_public_engine": "4.7.2-stable (official)",
+    "final_public_baseline_status": "MATCHED committed generated baseline",
+    "final_public_final_digest": "4ec66a1f719135112c28f4e6678d87f4e3c04221d5236816ec02788faa0a6aaa",
+    "final_public_full_stream_sha256": "cf98342cf54a06180a68223fb9aa0cb217209b2adb77c544293348e896e29190",
+    "final_public_tick_table_sha256": "ab2be178d0dee0da6d6d08e8ac8109fb3598803d2c970ffbb61235ef8c3288af",
+    "final_delivery_checks": [
+      {
+        "condition": 30,
+        "checks": 308,
+        "failures": 0
+      },
+      {
+        "condition": 144,
+        "checks": 1446,
+        "failures": 0
+      }
+    ],
+    "final_M0_run": 40971242996,
+    "final_M0_headless_job": 123788230935,
+    "final_M0_headless_conclusion": "success",
+    "final_M0_checks": 516,
+    "final_M0_failures": 0,
+    "final_math_job": 123788231589,
+    "final_math_job_conclusion": "failure: artifactquota before F47; math381/0 and contact237/0 steps success",
+    "final_changed_files": [
+      ".github/workflows/m1.yml",
+      ".review/m1_ac_matrix.md",
+      ".review/m1_r28_adoption_evidence.json",
+      ".review/m1_r28_adoption_report.md",
+      "DECISIONS.md",
+      "PROGRESS.md",
+      "scripts/check_m1_matrix.py",
+      "scripts/review_checks.sh",
+      "tests/fixtures/r28_plan.json",
+      "tests/r28_baseline.py",
+      "tests/r28_report.py",
+      "tests/run_m1_r28.sh",
+      "tests/sim/test_public_sim.gd",
+      "tests/sim/test_r28.gd",
+      "tests/test_r26_diagnostics.py",
+      "tests/test_r27.py",
+      "tests/test_r28.py"
+    ],
+    "production_changes_retained": []
+  },
+  "D8": {
+    "decision": "quarantine only F47 step with continue-on-error:true, commit8bcb481; thresholds/assertions/command/errorannotation/artifactdefinition unchanged",
+    "before_job": 123763105825,
+    "before_conclusion": "failure, F47",
+    "after_job": 123784170278,
+    "after_conclusion": "failure, artifact quota BEFORE F47; F47 SKIPPED, not passing. After-diagnostic conclusion NOT RUN due quota. No CI-green claim.",
+    "final_after_job": 123788231589,
+    "final_after_conclusion": "failure from artifactquota BEFORE F47; F47 skipped; diagnostic NOT RUN, not PASS"
+  },
+  "CI_routing": {
+    "dispatch": "403 integration permission denied before any R28run; unmeasured0fe33d2 amended before launch",
+    "one_push_run": 40970023755,
+    "source_pin": "actual446d870 immutable eventSHA and runner HEAD equality",
+    "historical_R27_R26": "not rerun",
+    "soak": "not rerun"
+  },
+  "raw_annotation_message": "M1 R28 source: {  \"source_commit_sha\": \"446d870da5c02ecfc295a19d7f35a8436b3b7fa7\",  \"source_ci_run\": \"40970023755\",  \"mode\": \"adoption-measure\",  \"engine_status\": 0,  \"tuning_sha256\": \"5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666\",  \"raw_sha256\": {    \"Slug.jsonl\": \"069321705aa6ab9ae4b356d060e5d3e45fa0fa33429f074b20f259963e7a54f4\",    \"Hopper.jsonl\": \"7b2f5c9d08c2d12348fba3db3cd6f6d4d438ef0159eeaa0f0dcdda9d62b90eae\",    \"TwinRoller.jsonl\": \"edbefd7c57afde67eef3e58214e5af42b9031d24343cd068513c74c1fbb4823a\"  }}\nM1 R28 report: {\"penetration\":{\"Slug\":{\"max_penetration_wu\":0.07028201067739755,\"max_foot_penetration_wu\":0.07028201067739755,\"limit\":0.02,\"verdict\":\"FAIL\",\"worst_sample\":{\"center\":[0.32849538139486106,-0.02028201067739773],\"distance_wu\":-0.020282010677397544,\"kind\":\"foot\",\"normal\":[0.0,1.0],\"part\":2,\"penetration_wu\":0.07028201067739755,\"radius_wu\":0.05,\"surface\":[0.32849538139486106,-0.07028201067739773],\"u\":1.0,\"tick\":6},\"ticks\":7200,\"completed\":true,\"termination\":{\"failing_tick\":null,\"status\":0,\"target_ticks\":7200,\"termination_reason\":\"completed\",\"ticks\":7200}},\"Hopper\":{\"max_penetration_wu\":0.0933999293597247,\"max_foot_penetration_wu\":0.0933999293597247,\"limit\":0.02,\"verdict\":\"FAIL\",\"worst_sample\":{\"center\":[0.33333254693529074,-0.04339992935972453],\"distance_wu\":-0.0433999293597247,\"kind\":\"foot\",\"normal\":[0.0,1.0],\"part\":5,\"penetration_wu\":0.0933999293597247,\"radius_wu\":0.05,\"surface\":[0.33333254693529074,-0.09339992935972453],\"u\":1.0,\"tick\":7},\"ticks\":7200,\"completed\":true,\"termination\":{\"failing_tick\":null,\"status\":0,\"target_ticks\":7200,\"termination_reason\":\"completed\",\"ticks\":7200}},\"TwinRoller\":{\"max_penetration_wu\":0.05075245867956493,\"max_foot_penetration_wu\":0.048174420428044054,\"limit\":0.02,\"verdict\":\"FAIL\",\"worst_sample\":{\"center\":[3.293479503287627,0.044247541320435166],\"distance_wu\":0.04424754132043507,\"kind\":\"motor\",\"normal\":[0.0,1.0],\"part\":1,\"penetration_wu\":0.05075245867956493,\"radius_wu\":0.095,\"surface\":[3.293479503287627,-0.050752458679564835],\"u\":1.0,\"tick\":2162},\"ticks\":7200,\"completed\":true,\"termination\":{\"failing_tick\":null,\"status\":0,\"target_ticks\":7200,\"termination_reason\":\"completed\",\"ticks\":7200}}},\"ac202_production\":{\"Slug\":{\"completed_tick_limb_max_wu\":4.996003610813204e-16,\"worst\":{\"error_wu\":4.996003610813204e-16,\"part\":1,\"kind\":\"motor\",\"tick\":6092},\"ticks\":7200,\"limit\":0.05,\"verdict\":\"PASS\"},\"Hopper\":{\"completed_tick_limb_max_wu\":1.8318679906315083e-15,\"worst\":{\"error_wu\":1.8318679906315083e-15,\"part\":6,\"kind\":\"limb\",\"tick\":5739},\"ticks\":7200,\"limit\":0.05,\"verdict\":\"PASS\"},\"TwinRoller\":{\"completed_tick_limb_max_wu\":1.7763568394002505e-15,\"worst\":{\"error_wu\":1.7763568394002505e-15,\"part\":3,\"kind\":\"motor\",\"tick\":5608},\"ticks\":7200,\"limit\":0.05,\"verdict\":\"PASS\"}},\"penetration_gate_passed\":false,\"stop_and_revert\":true,\"verification_passed\":true}",
+  "PR3": {
+    "draft": true,
+    "protected_tail_characters": 59421,
+    "protected_tail_sha256": "23f409294933ddd4638139254f41cc5bee6c70a35f28cea6509f9d0c199d76be",
+    "body_updated_to_R28": true
+  }
+}

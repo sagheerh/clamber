@@ -31,6 +31,10 @@ extends Resource
 @export var physics_sleep_velocity_wu_s: float
 ## GDD §4.2
 @export var physics_sleep_grounded_s: float
+## Owner R14 Decision2 / M1-D12: positional sleep, NOT a plateau fix.
+@export var sleep_still_displacement_wu: float
+## Owner R14 Decision2 / M1-D12: consecutive fixed ticks, no wall clock.
+@export var sleep_dwell_ticks: int
 ## GDD §3.1–3.5
 @export var physics_max_children: int
 ## GDD §3.1–3.5
@@ -767,3 +771,54 @@ extends Resource
 @export var generator_reference_time_multiplier: float
 ## GDD §6.1–6.5
 @export var generator_reroll_attempts: int
+
+
+@export_group("Owner M1-D04 geometry and feel checks")
+## owner M1-D04
+@export var physics_limb_collision_radius_wu: float
+## owner M1-D04
+@export var physics_passive_collision_radius_wu: float
+## owner M1-D04
+@export var physics_motor_collision_radius_wu: float
+## owner M1-D04
+@export var physics_foot_collision_radius_wu: float
+## owner M1-D04
+@export var physics_head_collision_radius_wu: float
+## owner M1-D04 — art only; never a solver input
+@export var art_limb_visual_radius_wu: float
+## owner M1-D04 — art only; never a solver input
+@export var art_passive_visual_radius_wu: float
+## owner M1-D04 — art only; never a solver input
+@export var art_motor_visual_radius_wu: float
+## owner M1-D04 — art only; never a solver input
+@export var art_foot_visual_radius_wu: float
+## owner M1-D04 — art only; never a solver input
+@export var art_head_visual_radius_wu: float
+## owner M1-D04
+@export var physics_head_mass_per_wu: float
+## owner M1-D04
+@export var physics_head_length_wu: float
+## owner M1-D04
+@export var physics_grip_normal_force_ratio: float
+## owner M1-D04
+@export var physics_grip_normal_force_floor: float
+## owner M1-D04
+@export var physics_d10_bend_margin_wu: float
+## owner M1-D04
+@export var feel_readability_px_per_wu: float
+## owner M1-D04
+@export var feel_min_collision_diameter_px: float
+## owner M1-D04
+@export var feel_min_head_collision_diameter_px: float
+## owner M1-D04
+@export var feel_limb_aspect_ratio_min: float
+## owner M1-D04
+@export var feel_limb_aspect_ratio_max: float
+## owner M1-D04
+@export var feel_static_scene_ticks: int
+## owner M1-D04
+@export var feel_tutorial_runs: int
+## owner M1-D04
+@export var feel_tutorial_successes_min: int
+## owner M1-D04
+@export var feel_tutorial_successes_max: int

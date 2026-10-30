@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Static evidence only; NOT a substitute for replay/soak/performance/visual review.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+echo 'CLAMBER M1 review — static/invariant subset'
+python3 scripts/check_m1_matrix.py
+python3 scripts/review_static.py
+python3 tests/test_review_checks.py
+python3 tests/test_owner_geometry_source.py
+python3 tests/test_load_trace.py
+python3 tests/test_contact_trace.py
+python3 tests/test_r14_owner.py
+python3 tests/test_r15_counts.py
+python3 tests/test_r16_gate.py
+python3 tests/test_r16_convergence.py
+python3 tests/test_r16_phase_spawn.py
+python3 tests/test_r17_spring.py
+python3 tests/test_r17_public.py
+python3 tests/test_r17_matrix.py
+python3 tests/test_r18_external.py
+python3 tests/test_r19_motor.py
+python3 tests/test_r20_saturation.py
+python3 tests/test_r21_limits.py
+python3 tests/test_r22_inert.py
+python3 tests/test_d09_study.py
+python3 tests/test_r24_round.py
+python3 tests/test_r26_diagnostics.py
+python3 tests/test_r27.py
+python3 tests/test_r28.py
+python3 tests/test_static.py
+python3 tests/test_android_inspection.py
+echo 'PASS: review_checks.sh static checks completed.'
+echo 'PENDING: formal INV-01..INV-10 semantic sweep / A10 five-fakes / A12 review.'
+echo 'Runtime evidence is tracked per gate in .review/m1_ac_matrix.md; static checks alone never upgrade it.'
+python3 tests/test_r29.py

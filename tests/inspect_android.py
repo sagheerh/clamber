@@ -10,6 +10,27 @@ from pathlib import Path
 ANDROID = '{http://schemas.android.com/apk/res/android}'
 PAGE_SIZE = 16384
 
+ROOT = Path(__file__).resolve().parents[1]
+PRESET_FILES = ('preset_slug.json', 'preset_hopper.json', 'preset_twinroller.json')
+
+
+def check_preset_assets(path, prefix):
+    """Production JSON is non-resource data: require exact bytes in both packages."""
+    paths = []
+    with zipfile.ZipFile(path) as archive:
+        for filename in PRESET_FILES:
+            relative = 'data/creatures/' + filename
+            try:
+                actual = archive.read(prefix + relative)
+            except KeyError as error:
+                matches = [name for name in archive.namelist() if name.endswith('/' + relative)]
+                raise ValueError('Production preset missing from package: ' + prefix + relative
+                                 + '; matching entries=' + repr(matches)) from error
+            if actual != (ROOT / relative).read_bytes():
+                raise ValueError('Production preset bytes differ in package: ' + relative)
+            paths.append(relative)
+    return paths
+
 
 def check_elf(data):
     if len(data) < 64 or data[:6] != b'\x7fELF\x02\x01':
@@ -81,6 +102,8 @@ def inspect(aab, apk, manifest, config):
     return {'manifest': check_manifest(manifest),
             'aab_native_load_segments': check_archive(aab, 'base/lib/'),
             'apk_native_load_segments': check_archive(apk, 'lib/'),
+            'aab_production_presets': check_preset_assets(aab, 'assetPackInstallTime/assets/'),
+            'apk_production_presets': check_preset_assets(apk, 'assets/'),
             'bundle_page_alignment': '16KB',
             'device_installation': 'NOT MEASURED', 'device_frame_timing': 'NOT MEASURED'}
 

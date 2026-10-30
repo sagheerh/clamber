@@ -1,0 +1,1420 @@
+name: M1 independent foundations (not runtime acceptance)
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      r28_source_sha:
+        description: 'R28 exact adoption SHA; one dispatch; new jobs require github.sha equality'
+        required: false
+        default: ''
+        type: string
+      r22_only:
+        description: 'R22 authorized single missing cell; skip historical runtime arms (not passed/waived)'
+        required: false
+        default: false
+        type: boolean
+permissions:
+  contents: read
+jobs:
+  review-static:
+    name: M1 invariant/static subset (NOT replay or soak)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Review checks and scanner falsification fixtures
+        shell: bash
+        run: |
+          set +e
+          scripts/review_checks.sh 2>&1 | tee "$RUNNER_TEMP/m1-static.log"
+          status=${PIPESTATUS[0]}
+          set -e
+          python3 - "$RUNNER_TEMP/m1-static.log" <<'PYCOUNT'
+          import re,sys
+          counts=re.findall(r'^Ran (\d+) tests? in ',open(sys.argv[1]).read(),re.M)
+          print('::notice title=M1 actual Python controls::'+str(sum(map(int,counts)))+' unittest controls executed; failures still propagate via runner status')
+          PYCOUNT
+          exit "$status"
+      - name: Record scope of evidence
+        run: echo '::notice title=M1 scaffold only::Static subset only. Runtime results belong exclusively to the public Sim job and measured matrix evidence. Soak, performance, captures, full semantic sweep/five-fakes/A12 remain pending.'
+  math-foundations:
+    if: ${{ !inputs.r22_only && !(github.event_name == 'push' && contains(github.event.head_commit.message, '[R22-once]')) }}
+    name: M1 point/link unit tests (NOT creature determinism)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Real-engine mathematical unit tests
+        shell: bash
+        run: |
+          set +e
+          tests/run_m1_math.sh 2>&1 | tee "$RUNNER_TEMP/m1-math.log"
+          status=${PIPESTATUS[0]}
+          set -e
+          python3 - "$RUNNER_TEMP/m1-math.log" "$status" <<'PYLOG'
+          import re, sys
+          lines = open(sys.argv[1]).read().splitlines()
+          pattern = r"SCRIPT ERROR|ERROR:|FAIL|Parse Error|M1 math foundations:|M1 integration primitives:|M1 primitive total:|M1 acceptance:"
+          for line in [line for line in lines if re.search(pattern, line)][:35]:
+              level = "notice" if sys.argv[2] == "0" else "error"
+              escaped = line.replace("%", "%25").replace("\r", "%0D")
+              print(f"::{level} title=M1 primitive tests only::{escaped}")
+          PYLOG
+          exit "$status"
+
+      - name: Production preset and capsule-contact component tests (NOT FA-5)
+        shell: bash
+        run: |
+          set +e
+          tests/run_m1_contacts.sh 2>&1 | tee "$RUNNER_TEMP/m1-contact-units.log"
+          status=${PIPESTATUS[0]}
+          set -e
+          python3 - "$RUNNER_TEMP/m1-contact-units.log" "$status" <<'PYLOG'
+          import re, sys
+          for line in open(sys.argv[1]).read().splitlines():
+              if re.search(r"SCRIPT ERROR|ERROR:|FAIL|Parse Error|M1 contact primitives:|M1 controlled foot:|M1 contact scope:", line):
+                  level = "notice" if sys.argv[2] == "0" else "error"
+                  print(f"::{level} title=M1 controlled contact units only::" + line.replace("%", "%25").replace("\r", "%0D"))
+          PYLOG
+          exit "$status"
+      - name: Preserve contact UNIT log (not FA-5 stance)
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: m1-contact-unit-log-${{ github.run_id }}
+          path: ${{ runner.temp }}/m1-contact-units.log
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Owner geometry and explicit pending runtime feel plans
+        shell: bash
+        run: |
+          set +e
+          M1_GEOMETRY_REPORT="$RUNNER_TEMP/m1-owner-geometry.json" tests/run_m1_feel.sh 2>&1 | tee "$RUNNER_TEMP/m1-geometry.log"
+          status=${PIPESTATUS[0]}
+          set -e
+          python3 - "$RUNNER_TEMP/m1-geometry.log" "$status" <<'PYLOG'
+          import re, sys
+          for line in open(sys.argv[1]).read().splitlines():
+              if re.search(r"SCRIPT ERROR|ERROR:|FAIL|Parse Error|M1 preset bottoms:|M1 owner geometry:|M1 geometry FA-|M1 feel runtime:", line):
+                  level = "notice" if sys.argv[2] == "0" else "error"
+                  print(f"::{level} title=M1 analytic geometry only::" + line.replace("%", "%25").replace("\r", "%0D"))
+          PYLOG
+          exit "$status"
+      - name: Preserve analytic report (not a runtime artifact)
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: m1-owner-geometry-${{ github.run_id }}
+          path: ${{ runner.temp }}/m1-owner-geometry.json
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Hinged Slug600 load diagnostic (NOT FA acceptance)
+        continue-on-error: true
+        shell: bash
+        run: |
+          set +e
+          M1_LOAD_REPORT_DIR="$RUNNER_TEMP/m1-load" tests/run_m1_load_probe.sh > "$RUNNER_TEMP/m1-load-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-load-console.log" "$status" <<'PYLOG'
+          import re, sys
+          pattern = r"SCRIPT ERROR|ERROR:|FAIL|Parse Error|M1 load-path components:|M1 isolated gravity|M1 Slug (?!tick:)"
+          import json
+          with open(sys.argv[1]) as file:
+              selected = [line for line in file.read().splitlines() if re.search(pattern, line)]
+          for i, line in enumerate(selected):
+              if line.startswith(('M1 Slug first:', 'M1 Slug last:')):
+                  label, raw = line.split(': ', 1)
+                  row = json.loads(raw)
+                  keys = ('part', 'ax', 'ay', 'bx', 'by', 'bottom_start_wu', 'bottom_wu', 'speed_a_wu_s', 'speed_b_wu_s')
+                  compact = {'tick': row['tick'], 'bodies': [{k: b[k] for k in keys} for b in row['feet'] + row['other_bodies']]}
+                  selected[i] = label + ': ' + json.dumps(compact, sort_keys=True)
+          # Raw600 rows remain in the artifact, NOT annotations. GitHub caps both
+          # annotation count and each message (4096 chars). Pack bounded chunks.
+          level = "notice" if sys.argv[2] == "0" else "error"
+          messages = []
+          current = ""
+          for line in selected:
+              for start in range(0, len(line), 3500):
+                  chunk = line[start:start + 3500]
+                  if len(current) + len(chunk) + 1 > 3500:
+                      messages.append(current)
+                      current = ""
+                  current += ("\n" if current else "") + chunk
+          if current:
+              messages.append(current)
+          for message in messages:
+              escaped = message.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+              print(f"::{level} title=M1 Slug diagnostic evidence (not FA acceptance)::" + escaped)
+          PYLOG
+          exit "$status"
+      - name: Preserve full raw Slug diagnostic including failures
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: m1-slug-load-diagnostic-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-load/
+            ${{ runner.temp }}/m1-load-console.log
+          if-no-files-found: warn
+          retention-days: 7
+
+      # Accepted R11 experiment remains manually reproducible; R12 requests only
+      # the three-spawn experiment on normal pushes, not another iteration sweep.
+      - name: R11 isolated position-iteration sensitivity (NOT adoption or FA)
+        if: ${{ always() && (github.event_name == 'workflow_dispatch' && !inputs.r28_source_sha) }}
+        shell: bash
+        run: |
+          set +e
+          M1_SWEEP_REPORT_DIR="$RUNNER_TEMP/m1-sweep" bash tests/run_m1_motion_sweep.sh > "$RUNNER_TEMP/m1-sweep-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-sweep-console.log" "$status" <<'PYLOG'
+          import sys
+          with open(sys.argv[1]) as file:
+              for line in file.read().splitlines():
+                  if line.startswith('M1 sweep') or 'ERROR' in line:
+                      level = 'notice' if sys.argv[2] == '0' else 'error'
+                      escaped = line.replace('%', '%25').replace('\r', '%0D')
+                      print(f'::{level} title=M1 R11 sweep observation ONLY::' + escaped)
+          PYLOG
+          exit "$status"
+      - name: Preserve all iteration traces and per-tick motion profiles
+        if: ${{ always() && (github.event_name == 'workflow_dispatch' && !inputs.r28_source_sha) }}
+        uses: actions/upload-artifact@v5
+        with:
+          name: m1-r11-motion-sweep-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-sweep/
+            ${{ runner.temp }}/m1-sweep-console.log
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: R12 three spawn heights at unchanged configured iterations (NOT rest acceptance)
+        if: ${{ always() && (github.event_name == 'workflow_dispatch' && !inputs.r28_source_sha) }}
+        shell: bash
+        run: |
+          set +e
+          M1_SPAWN_REPORT_DIR="$RUNNER_TEMP/m1-spawn" bash tests/run_m1_spawn_probe.sh > "$RUNNER_TEMP/m1-spawn-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-spawn-console.log" "$status" <<'PYLOG'
+          import sys
+          with open(sys.argv[1]) as file:
+              for line in file.read().splitlines():
+                  if line.startswith('M1 spawn') or 'ERROR' in line:
+                      level = 'notice' if sys.argv[2] == '0' else 'error'
+                      escaped = line.replace('%', '%25').replace('\r', '%0D')
+                      print(f'::{level} title=M1 R12 spawn observation ONLY::' + escaped)
+          PYLOG
+          exit "$status"
+      - name: Preserve all three spawn traces and motion profiles
+        if: ${{ always() && (github.event_name == 'workflow_dispatch' && !inputs.r28_source_sha) }}
+        uses: actions/upload-artifact@v5
+        with:
+          name: m1-r12-spawn-probe-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-spawn/
+            ${{ runner.temp }}/m1-spawn-console.log
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: R13 contact samples and static-slip sensitivity (NOT adoption or sleep interpretation)
+        if: always()
+        shell: bash
+        run: |
+          set +e
+          M1_SLIP_REPORT_DIR="$RUNNER_TEMP/m1-slip" bash tests/run_m1_slip_probe.sh > "$RUNNER_TEMP/m1-slip-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-slip-console.log" "$status" <<'PYLOG'
+          import sys
+          with open(sys.argv[1]) as file:
+              for line in file.read().splitlines():
+                  if line.startswith('M1 slip') or 'ERROR' in line:
+                      level = 'notice' if sys.argv[2] == '0' else 'error'
+                      escaped = line.replace('%', '%25').replace('\r', '%0D')
+                      print(f'::{level} title=M1 R13 contact observation ONLY::' + escaped)
+          PYLOG
+          exit "$status"
+      - name: Preserve both threshold traces and all contact/grounding events
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: m1-r13-contact-probe-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-slip/
+            ${{ runner.temp }}/m1-slip-console.log
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: R14 owner A/A1 exact pre/post600 (NO sleep or retune)
+        if: always()
+        shell: bash
+        run: |
+          set +e
+          M1_POSE_REPORT_DIR="$RUNNER_TEMP/m1-pose" bash tests/run_m1_pose_probe.sh > "$RUNNER_TEMP/m1-pose-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-pose-console.log" "$status" <<'PYLOG'
+          import sys
+          for line in open(sys.argv[1]).read().splitlines():
+              if line.startswith('M1 pose') or 'ERROR' in line:
+                  level = 'notice' if sys.argv[2] == '0' else 'error'
+                  print(f'::{level} title=M1 R14 A/A1 pose only::'+line.replace('%','%25').replace('\r','%0D'))
+          PYLOG
+          exit "$status"
+      - name: Preserve both pose traces and everytick actual supports
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: m1-r14-pose-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-pose/
+            ${{ runner.temp }}/m1-pose-console.log
+          retention-days: 7
+
+      - name: R14 positional sleep and exact restored continuation (NOT creature determinism)
+        if: always()
+        shell: bash
+        run: |
+          set +e
+          M1_SLEEP_REPORT_DIR="$RUNNER_TEMP/m1-sleep" bash tests/run_m1_sleep.sh > "$RUNNER_TEMP/m1-sleep-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-sleep-console.log" "$status" <<'PYLOG'
+          import sys
+          for line in open(sys.argv[1]).read().splitlines():
+              if line.startswith('M1 sleep') or 'ERROR' in line or 'FAIL' in line:
+                  level = 'notice' if sys.argv[2] == '0' else 'error'
+                  print(f'::{level} title=M1 R14 sleep COMPONENT::'+line.replace('%','%25').replace('\r','%0D'))
+          PYLOG
+          exit "$status"
+      - name: Preserve sleep ticks and restored-replay evidence
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: m1-r14-sleep-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-sleep/
+            ${{ runner.temp }}/m1-sleep-console.log
+          retention-days: 7
+
+      - name: R15 mechanics components and derived legal paired600 with main-trace counts
+        if: always()
+        shell: bash
+        run: |
+          set +e
+          M1_MECHANICS_REPORT_DIR="$RUNNER_TEMP/m1-mechanics" bash tests/run_m1_mechanics.sh > "$RUNNER_TEMP/m1-mechanics-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-mechanics-console.log" "$status" <<'PYLOG'
+          import sys
+          for line in open(sys.argv[1]).read().splitlines():
+              if line.startswith(('M1 legal', 'M1 R15 mechanics')) or 'ERROR' in line or 'FAIL' in line:
+                  for start in range(0, len(line), 3500):
+                      level = 'notice' if sys.argv[2] == '0' else 'error'
+                      chunk = line[start:start+3500].replace('%','%25').replace('\r','%0D')
+                      print(f'::{level} title=M1 R15 mechanics engineering ONLY::'+chunk)
+          PYLOG
+          exit "$status"
+      - name: Preserve R15 components and four legal main600 traces
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: m1-r15-mechanics-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-mechanics/
+            ${{ runner.temp }}/m1-mechanics-console.log
+          retention-days: 7
+
+  convergence-observation:
+    if: ${{ (github.event_name == 'workflow_dispatch' && !inputs.r28_source_sha) && !inputs.r22_only }}
+    name: R16 zero-input convergence observation (NOT runtime acceptance)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: R16 F48/F49/F50 live-spring convergence and legal spawn observation
+        if: always()
+        shell: bash
+        run: |
+          set +e
+          M1_CONVERGENCE_REPORT_DIR="$RUNNER_TEMP/m1-convergence" bash tests/run_m1_convergence.sh > "$RUNNER_TEMP/m1-convergence-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-convergence-console.log" "$status" <<'PYLOG'
+          import sys
+          messages=[]
+          current=''
+          for line in open(sys.argv[1]).read().splitlines():
+              if line.startswith(('M1 convergence','M1 zero-input drift','M1 F50')) or 'ERROR' in line or 'FAIL' in line:
+                  for start in range(0,len(line),3500):
+                      chunk=line[start:start+3500]
+                      if len(current)+len(chunk)+1>3500:
+                          messages.append(current);current=''
+                      current+=('\n' if current else '')+chunk
+          if current:messages.append(current)
+          # The full report remains in the artifact; fail visibly rather than drop results.
+          assert len(messages)<=10, 'diagnostic annotation budget exceeded; full raw artifact retained'
+          for message in messages:
+              level='notice' if sys.argv[2]=='0' else 'error'
+              text=message.replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print(f'::{level} title=M1 R16 convergence ONLY::'+text)
+          PYLOG
+          exit "$status"
+      - name: Preserve R16 full raw zero-input traces, pre-fold phases and spawn evidence
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: m1-r16-convergence-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-convergence/
+            ${{ runner.temp }}/m1-convergence-console.log
+          retention-days: 7
+
+  spring-observation:
+    if: ${{ (github.event_name == 'workflow_dispatch' && !inputs.r28_source_sha) && !inputs.r22_only }}
+    name: R17 spring mechanism diagnostic (NOT runtime acceptance)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: R17 authorized passive stiffness sweep ONLY
+        shell: bash
+        run: |
+          set +e
+          M1_SPRING_REPORT_DIR="$RUNNER_TEMP/m1-spring" bash tests/run_m1_spring.sh > "$RUNNER_TEMP/m1-spring-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-spring-console.log" "$status" <<'PYLOG'
+          import sys
+          messages=[];current=''
+          for line in open(sys.argv[1]).read().splitlines():
+              if line.startswith('M1 R17') or 'ERROR' in line or 'FAIL' in line:
+                  for offset in range(0,len(line),3500):
+                      chunk=line[offset:offset+3500]
+                      if len(current)+len(chunk)+1>3500:
+                          messages.append(current);current=''
+                      current+=('\n' if current else '')+chunk
+          if current:messages.append(current)
+          assert len(messages)<=10, 'spring/bucket report annotation budget exceeded'
+          for message in messages:
+              level='notice' if sys.argv[2]=='0' else 'error'
+              escaped=message.replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print(f'::{level} title=M1 R17 diagnostic ONLY::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r17-spring-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-spring/
+            ${{ runner.temp }}/m1-spring-console.log
+          retention-days: 7
+
+  public-sim-runtime:
+    needs: [r26-baseline, r28-baseline]
+    if: ${{ always() && (!inputs.r28_source_sha || needs.r28-baseline.result == 'success') && (needs.r26-baseline.result == 'success' || needs.r26-baseline.result == 'skipped') && !inputs.r22_only && !(github.event_name == 'push' && contains(github.event.head_commit.message, '[R22-once]')) }}
+    name: M1 public Sim replay attempt1 and clock gates
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+      - name: Download explicitly authorised R26 generated baseline (same source)
+        if: ${{ needs.r26-baseline.result == 'success' }}
+        uses: actions/download-artifact@v5
+        with:
+          name: m1-r26-baseline-${{ github.run_id }}
+          path: ${{ runner.temp }}/r26-generated
+      - name: Apply declared baseline/provenance overlay ONLY, never solver edits
+        if: ${{ needs.r26-baseline.result == 'success' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp "$RUNNER_TEMP/r26-generated/r26-baseline/public_sim_baseline.json" tests/fixtures/public_sim_baseline.json
+          cat "$RUNNER_TEMP/r26-generated/r26-baseline/provenance.md" >> DECISIONS.md
+          git diff --name-only
+          test "$(git diff --name-only | wc -l)" -eq 2
+      - name: Download R28 generated baseline on this exact adoption commit
+        if: ${{ needs.r28-baseline.result == 'success' }}
+        uses: actions/download-artifact@v5
+        with:
+          name: m1-r28-baseline-${{ github.run_id }}
+          path: ${{ runner.temp }}/r28-generated
+      - name: Apply ONLY generated R28 baseline and provenance overlay
+        if: ${{ needs.r28-baseline.result == 'success' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp "$RUNNER_TEMP/r28-generated/public_sim_baseline.json" tests/fixtures/public_sim_baseline.json
+          cat "$RUNNER_TEMP/r28-generated/provenance.md" >> DECISIONS.md
+          test "$(git diff --name-only | wc -l)" -eq 2
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Public Sim complete-creature replay and falsification (attempt1)
+        shell: bash
+        run: |
+          set +e
+          M1_PUBLIC_REPORT_DIR="$RUNNER_TEMP/m1-public" bash tests/run_m1_public.sh > "$RUNNER_TEMP/m1-public-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-public-console.log" "$status" <<'PYLOG'
+          import sys
+          lines=open(sys.argv[1]).read().splitlines()
+          # Put measurements first; retain every raw line in uploaded artifact.
+          selected=[l for l in lines if l.startswith('M1 public')]
+          selected += [l for l in lines if ('ERROR' in l or 'FAIL' in l or 'ValueError' in l) and not l.startswith('M1 public')][:4]
+          messages=[];current=''
+          for line in selected:
+              for offset in range(0,len(line),3500):
+                  chunk=line[offset:offset+3500]
+                  if len(current)+len(chunk)+1>3500:
+                      messages.append(current);current=''
+                  current+=('\n' if current else '')+chunk
+          if current:messages.append(current)
+          assert len(messages)<=10, 'public diagnostic annotation budget exceeded'
+          for message in messages:
+              level='notice' if sys.argv[2]=='0' else 'error'
+              escaped=message.replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print(f'::{level} title=M1 public Sim measured::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-public-sim-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-public/
+            ${{ runner.temp }}/m1-public-console.log
+          retention-days: 7
+
+  external-momentum-prerequisite:
+    if: ${{ (github.event_name == 'workflow_dispatch' && !inputs.r28_source_sha) && !inputs.r22_only }}
+    name: R19 F56 complete external prerequisite (literal record retained)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: F56 unchanged actuated-after6000 last300 momentum identity
+        shell: bash
+        run: |
+          set +e
+          M1_EXTERNAL_REPORT_DIR="$RUNNER_TEMP/m1-external" bash tests/run_m1_external.sh --r19-complete > "$RUNNER_TEMP/m1-external-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-external-console.log" "$status" <<'PYLOG'
+          import sys
+          messages=[];current=''
+          for line in open(sys.argv[1]).read().splitlines():
+              if line.startswith(('M1 R18','M1 R19')) or 'ERROR' in line or 'FAIL' in line or 'ValueError' in line:
+                  for offset in range(0,len(line),3500):
+                      chunk=line[offset:offset+3500]
+                      if len(current)+len(chunk)+1>3500:
+                          messages.append(current);current=''
+                      current+=('\n' if current else '')+chunk
+          if current:messages.append(current)
+          assert len(messages)<=10, 'F56 annotation budget exceeded; full raw artifact retained'
+          for message in messages:
+              level='notice' if sys.argv[2]=='0' else 'error'
+              escaped=message.replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print(f'::{level} title=M1 R18 F56 prerequisite::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r18-external-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-external/
+            ${{ runner.temp }}/m1-external-console.log
+          retention-days: 7
+
+  limit-source-diagnostic:
+    if: ${{ (github.event_name == 'workflow_dispatch' && !inputs.r28_source_sha) && !inputs.r22_only }}
+    name: R21 wide stop then bound diagnostic (NOT runtime acceptance)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: F64 stop removal and bound sign, full F56 and F63 teeth
+        shell: bash
+        run: |
+          set +e
+          M1_LIMIT_REPORT_DIR="$RUNNER_TEMP/m1-limit" bash tests/run_m1_limit.sh > "$RUNNER_TEMP/m1-limit-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-limit-console.log" "$status" <<'PYLOG'
+          import sys
+          messages=[];current=''
+          for line in open(sys.argv[1]).read().splitlines():
+              if line.startswith('M1 R21') or 'ERROR' in line or 'FAIL' in line or 'ValueError' in line:
+                  for offset in range(0,len(line),3500):
+                      chunk=line[offset:offset+3500]
+                      if len(current)+len(chunk)+1>3500:
+                          messages.append(current);current=''
+                      current+=('\n' if current else '')+chunk
+          if current:messages.append(current)
+          assert len(messages)<=10, 'F56 annotation budget exceeded; full raw artifact retained'
+          for message in messages:
+              level='notice' if sys.argv[2]=='0' else 'error'
+              escaped=message.replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print(f'::{level} title=M1 R21 stop diagnostic::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r21-limit-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-limit/
+            ${{ runner.temp }}/m1-limit-console.log
+          retention-days: 7
+
+  inert-source-diagnostic:
+    if: ${{ ((github.event_name == 'workflow_dispatch' && !inputs.r28_source_sha) && inputs.r22_only) || (github.event_name == 'push' && contains(github.event.head_commit.message, '[R22-once]')) }}
+    name: R22 single gain0 + wide90 cell (MANDATORY STOP)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: R22 single cell, full F56 and three separate limit columns
+        shell: bash
+        run: |
+          set +e
+          M1_INERT_REPORT_DIR="$RUNNER_TEMP/m1-inert" bash tests/run_m1_inert.sh > "$RUNNER_TEMP/m1-inert-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-inert-console.log" "$status" <<'PYLOG'
+          import sys
+          messages=[];current=''
+          for line in open(sys.argv[1]).read().splitlines():
+              if line.startswith('M1 R22') or 'ERROR' in line or 'FAIL' in line or 'ValueError' in line:
+                  for offset in range(0,len(line),3500):
+                      chunk=line[offset:offset+3500]
+                      if len(current)+len(chunk)+1>3500:
+                          messages.append(current);current=''
+                      current+=('\n' if current else '')+chunk
+          if current:messages.append(current)
+          assert len(messages)<=10, 'F56 annotation budget exceeded; full raw artifact retained'
+          for message in messages:
+              level='notice' if sys.argv[2]=='0' else 'error'
+              escaped=message.replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print(f'::{level} title=M1 R22 single inert-cell diagnostic::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r22-inert-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-inert/
+            ${{ runner.temp }}/m1-inert-console.log
+          retention-days: 7
+
+  d09-proposal-study:
+    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[D09-study]') }}
+    name: D09 three non-adopted proportional proposals (STOP before adoption)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: D09 proposed triples, four cells and diagnostic pulse; no adoption
+        shell: bash
+        run: |
+          set +e
+          M1_D09_REPORT_DIR="$RUNNER_TEMP/m1-d09" bash tests/run_m1_d09.sh > "$RUNNER_TEMP/m1-d09-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-d09-console.log" "$status" <<'PYLOG'
+          import sys
+          selected=[line for line in open(sys.argv[1]).read().splitlines() if line.startswith('M1 D09') or 'ERROR' in line or 'FAIL' in line or 'ValueError' in line]
+          text='\n'.join(selected)
+          messages=[text[i:i+3500] for i in range(0,len(text),3500)]
+          assert len(messages)<=10, 'D09 compact annotation budget exceeded; raw artifact retained'
+          for message in messages:
+              level='notice' if sys.argv[2]=='0' else 'error'
+              escaped=message.replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print(f'::{level} title=M1 D09 non-adopted parametric study::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-d09-proposals-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-d09/
+            ${{ runner.temp }}/m1-d09-console.log
+          retention-days: 7
+
+  r24-final-round:
+    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[R24-round]') }}
+    name: R24 final A/B round + C archive audit (STOP for package)
+    permissions:
+      contents: read
+      actions: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Retrieve accepted D09 archive for C (NO remeasurement)
+        uses: actions/download-artifact@v5
+        with:
+          name: m1-d09-proposals-40885113085
+          run-id: 40885113085
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: ${{ runner.temp }}/r24-old
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: R24 three slip cells and default lurch; no adoption
+        shell: bash
+        run: |
+          set +e
+          M1_R24_REPORT_DIR="$RUNNER_TEMP/m1-r24" M1_R24_OLD_DIR="$RUNNER_TEMP/r24-old" bash tests/run_m1_r24.sh > "$RUNNER_TEMP/m1-r24-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/m1-r24-console.log" "$status" <<'PYLOG'
+          import sys
+          selected=[line for line in open(sys.argv[1]).read().splitlines() if line.startswith('M1 R24') or 'ERROR' in line or 'FAIL' in line or 'ValueError' in line]
+          text='\n'.join(selected)
+          messages=[text[i:i+3500] for i in range(0,len(text),3500)]
+          assert len(messages)<=10, 'R24 compact annotation budget exceeded; raw artifact retained'
+          for message in messages:
+              level='notice' if sys.argv[2]=='0' else 'error'
+              escaped=message.replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print(f'::{level} title=M1 R24 final time-boxed round::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r24-round-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/m1-r24/
+            ${{ runner.temp }}/m1-r24-console.log
+          retention-days: 7
+
+  r26-diagnostics:
+    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[R26-once]') }}
+    name: R26 LAST D1 D2 and independent F77 (one invocation per mode)
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [d1, d2, fa5]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Measure once; no retuning or gate bypass
+        shell: bash
+        run: |
+          set +e
+          M1_R26_REPORT_DIR="$RUNNER_TEMP/r26-${{ matrix.mode }}" bash tests/run_m1_r26.sh '${{ matrix.mode }}' > "$RUNNER_TEMP/r26-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/r26-console.log" "$status" <<'PYLOG'
+          import sys
+          lines=[l for l in open(sys.argv[1]).read().splitlines() if l.startswith('M1 R26') or 'ERROR' in l or 'FAIL' in l or 'ValueError' in l or 'AssertionError' in l]
+          text='\n'.join(lines)
+          assert len(text)<=35000, 'compact annotation budget; raw remains in artifact'
+          for i in range(0,len(text),3500):
+              level='notice' if sys.argv[2]=='0' else 'error'
+              escaped=text[i:i+3500].replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print(f'::{level} title=M1 R26 evidence::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r26-${{ matrix.mode }}-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/r26-${{ matrix.mode }}/
+            ${{ runner.temp }}/r26-console.log
+          retention-days: 7
+
+  r26-baseline:
+    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[R26-once]') }}
+    name: R26 OWNER-authorised baseline generation after brace removal
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Generate independently verified baseline (expected old mismatch only)
+        shell: bash
+        run: |
+          set +e
+          M1_PUBLIC_REPORT_DIR="$RUNNER_TEMP/r26-baseline-raw" bash tests/run_m1_public.sh > "$RUNNER_TEMP/r26-console.log" 2>&1
+          status=$?
+          set -e
+          # A mismatch is expected ONLY in this explicit owner-authorised generator.
+          test "$status" -ne 0
+          python3 tests/r26_regenerate_baseline.py "$RUNNER_TEMP/r26-baseline-raw" "$RUNNER_TEMP/r26-baseline" >> "$RUNNER_TEMP/r26-console.log" 2>&1
+          status=$?
+          python3 - "$RUNNER_TEMP/r26-console.log" "$status" <<'PYLOG'
+          import sys
+          lines=[l for l in open(sys.argv[1]).read().splitlines() if l.startswith('M1 R26') or 'ERROR' in l or 'FAIL' in l or 'ValueError' in l or 'AssertionError' in l]
+          text='\n'.join(lines)
+          assert len(text)<=35000, 'compact annotation budget; raw remains in artifact'
+          for i in range(0,len(text),3500):
+              level='notice' if sys.argv[2]=='0' else 'error'
+              escaped=text[i:i+3500].replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print(f'::{level} title=M1 R26 evidence::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r26-baseline-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/r26-baseline/
+            ${{ runner.temp }}/r26-baseline-raw/
+            ${{ runner.temp }}/r26-console.log
+          retention-days: 7
+
+  r25-archive-audit:
+    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[R25-audit]') }}
+    name: R25 original-archive reporting ONLY (NO physics run)
+    permissions:
+      contents: read
+      actions: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v5
+        with:
+          pattern: m1-r25-*-40895082337
+          run-id: 40895082337
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: ${{ runner.temp }}/r25-archives
+      - name: Audit originals; no Godot/replay/retuning
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/r25-audit"
+          python3 tests/r25_archive_audit.py "$RUNNER_TEMP/r25-archives" "$RUNNER_TEMP/r25-audit" > "$RUNNER_TEMP/r25-audit/console.log"
+          python3 - "$RUNNER_TEMP/r25-audit/console.log" <<'PYLOG'
+          import sys
+          text=open(sys.argv[1]).read()
+          for i in range(0,len(text),3500):
+              escaped=text[i:i+3500].replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print('::notice title=R25 archived reporting only::'+escaped)
+          PYLOG
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r25-archive-audit-${{ github.run_id }}
+          path: ${{ runner.temp }}/r25-audit/
+          retention-days: 7
+
+  r26-archive-audit:
+    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[R26-audit]') }}
+    name: R26 ORIGINAL archive audit ONLY (ZERO new physics)
+    permissions:
+      contents: read
+      actions: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v5
+        with:
+          pattern: m1-r26-*-40901902007
+          run-id: 40901902007
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: ${{ runner.temp }}/r26-archives
+      - name: Interpret original bytes; NO editor, replay, solver or new arms
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tests/r26_archive_audit.py "$RUNNER_TEMP/r26-archives" "$RUNNER_TEMP/r26-audit"
+      - name: Publish bounded D2 evidence and baseline provenance
+        shell: bash
+        run: |
+          python3 - "$RUNNER_TEMP/r26-audit" <<'PYLOG'
+          import sys
+          from pathlib import Path
+          root=Path(sys.argv[1])
+          fields=['source_head','source_run','new_physics_runs','raw_provenance','generated_baseline_byte_equal_committed','generated_baseline_file_sha256','generated_baseline','original_generated_provenance','D2','decision']
+          text=''.join((root/f'console-{k}.log').read_text() for k in fields)
+          assert len(text)<=35000
+          for i in range(0,len(text),3500):
+              escaped=text[i:i+3500].replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print('::notice title=R26 archived D2 and provenance ONLY::'+escaped)
+          PYLOG
+      - name: Publish repaired FA5 event evidence (original archive ONLY)
+        shell: bash
+        run: |
+          python3 - "$RUNNER_TEMP/r26-audit/console-FA5.log" <<'PYLOG'
+          import sys
+          text=open(sys.argv[1]).read()
+          assert len(text)<=35000
+          for i in range(0,len(text),3500):
+              escaped=text[i:i+3500].replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print('::notice title=R26 archived FA5 ONLY::'+escaped)
+          PYLOG
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r26-archive-audit-${{ github.run_id }}
+          path: ${{ runner.temp }}/r26-audit/
+          retention-days: 7
+
+  r27-scenes:
+    needs: [public-sim-runtime]
+    if: ${{ github.sha == '2cf2c9376556feca5698ba176c63514f37284bed' && always() && needs.public-sim-runtime.result == 'success' && github.event_name == 'push' && contains(github.event.head_commit.message, '[R27-once]') }}
+    name: R27 authored stability, ONE AC202 candidate, static600
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        mode: [ac201, ac202, fa3]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Execute preregistered fixture ONCE, no tuning or retry
+        shell: bash
+        run: |
+          set +e
+          M1_R27_REPORT_DIR="$RUNNER_TEMP/r27-${{ matrix.mode }}" bash tests/run_m1_r27.sh '${{ matrix.mode }}' '-1' > "$RUNNER_TEMP/r27-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/r27-console.log" "$status" <<'PYLOG'
+          import sys
+          lines=[l for l in open(sys.argv[1]).read().splitlines() if l.startswith('M1 R27 report:') or 'ERROR' in l or 'ValueError' in l or 'AssertionError' in l]
+          text='\n'.join(lines)
+          if len(text)>35000:
+              text=text[:17000]+'\nANNOTATION abbreviated ONLY; complete report and all failures remain in uploaded artifact\n'+text[-17000:]
+          for i in range(0,len(text),3500):
+              escaped=text[i:i+3500].replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              level='notice' if sys.argv[2]=='0' else 'error'
+              print(f'::{level} title=M1 R27 evidence::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r27-${{ matrix.mode }}-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/r27-${{ matrix.mode }}/
+            ${{ runner.temp }}/r27-console.log
+          retention-days: 7
+
+  r27-soak:
+    needs: [public-sim-runtime]
+    if: ${{ github.sha == '2cf2c9376556feca5698ba176c63514f37284bed' && always() && needs.public-sim-runtime.result == 'success' && github.event_name == 'push' && contains(github.event.head_commit.message, '[R27-once]') }}
+    name: R27 AC204 numerical soak 200 runs (10 per batch)
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        batch: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Execute preregistered fixture ONCE, no tuning or retry
+        shell: bash
+        run: |
+          set +e
+          M1_R27_REPORT_DIR="$RUNNER_TEMP/r27-soak-${{ matrix.batch }}" bash tests/run_m1_r27.sh 'soak' '${{ matrix.batch }}' > "$RUNNER_TEMP/r27-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/r27-console.log" "$status" <<'PYLOG'
+          import sys
+          lines=[l for l in open(sys.argv[1]).read().splitlines() if l.startswith('M1 R27 report:') or 'ERROR' in l or 'ValueError' in l or 'AssertionError' in l]
+          text='\n'.join(lines)
+          if len(text)>35000:
+              text=text[:17000]+'\nANNOTATION abbreviated ONLY; complete report and all failures remain in uploaded artifact\n'+text[-17000:]
+          for i in range(0,len(text),3500):
+              escaped=text[i:i+3500].replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              level='notice' if sys.argv[2]=='0' else 'error'
+              print(f'::{level} title=M1 R27 evidence::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r27-soak-${{ matrix.batch }}-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/r27-soak-${{ matrix.batch }}/
+            ${{ runner.temp }}/r27-console.log
+          retention-days: 7
+
+  r27-soak-summary:
+    needs: [r27-soak]
+    if: ${{ github.sha == '2cf2c9376556feca5698ba176c63514f37284bed' && always() && github.event_name == 'push' && contains(github.event.head_commit.message, '[R27-once]') }}
+    name: R27 AC204 ALL 200-run verdict (no missing runs laundered)
+    permissions:
+      contents: read
+      actions: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/download-artifact@v5
+        with:
+          pattern: m1-r27-soak-*-${{ github.run_id }}
+          path: ${{ runner.temp }}/r27-soak-archives
+      - name: Require all20batches and200unique completed runs
+        shell: bash
+        run: |
+          set +e
+          python3 tests/r27_report.py aggregate "$RUNNER_TEMP/r27-soak-archives" > "$RUNNER_TEMP/r27-soak-summary.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/r27-soak-summary.log" "$status" <<'PYLOG'
+          import sys
+          text=open(sys.argv[1]).read()
+          if len(text)>35000:
+              text=text[:17000]+'\nANNOTATION abbreviated ONLY; full failure list in aggregate artifact\n'+text[-17000:]
+          for i in range(0,len(text),3500):
+              escaped=text[i:i+3500].replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              level='notice' if sys.argv[2]=='0' else 'error'
+              print(f'::{level} title=M1 R27 soak TOTAL::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r27-soak-TOTAL-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/r27-soak-archives/aggregate.json
+            ${{ runner.temp }}/r27-soak-summary.log
+          retention-days: 7
+
+  r28-measure:
+    if: ${{ github.sha == '446d870da5c02ecfc295a19d7f35a8436b3b7fa7' && github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
+    name: R28 adoption-measure (one invocation; exact source pin)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GODOT_VERSION: 4.7.2-stable
+      R28_SOURCE_SHA: ${{ inputs.r28_source_sha }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Execute original arm ONCE and annotate full measured result
+        shell: bash
+        run: |
+          set +e
+          M1_R28_REPORT_DIR="$RUNNER_TEMP/r28-adoption-measure" bash tests/run_m1_r28.sh 'adoption-measure' > "$RUNNER_TEMP/r28-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/r28-console.log" "$status" <<'PYLOG'
+          import sys
+          text='\n'.join(l for l in open(sys.argv[1]).read().splitlines() if l.startswith('M1 R28') or 'ERROR' in l or 'Error' in l)
+          assert len(text)<=35000, 'raw remains uploaded, annotation overflow is not a physics retry'
+          for i in range(0,len(text),3500):
+              level='notice' if sys.argv[2]=='0' else 'error'
+              escaped=text[i:i+3500].replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print(f'::{level} title=M1 R28 measured::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r28-adoption-measure-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/r28-adoption-measure/
+            ${{ runner.temp }}/r28-console.log
+          retention-days: 7
+
+  r28-idle:
+    needs: [r28-measure]
+    if: ${{ github.sha == '446d870da5c02ecfc295a19d7f35a8436b3b7fa7' && github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
+    name: R28 idle-family (one invocation; exact source pin)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GODOT_VERSION: 4.7.2-stable
+      R28_SOURCE_SHA: ${{ inputs.r28_source_sha }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Execute original arm ONCE and annotate full measured result
+        shell: bash
+        run: |
+          set +e
+          M1_R28_REPORT_DIR="$RUNNER_TEMP/r28-idle-family" bash tests/run_m1_r28.sh 'idle-family' > "$RUNNER_TEMP/r28-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/r28-console.log" "$status" <<'PYLOG'
+          import sys
+          text='\n'.join(l for l in open(sys.argv[1]).read().splitlines() if l.startswith('M1 R28') or 'ERROR' in l or 'Error' in l)
+          assert len(text)<=35000, 'raw remains uploaded, annotation overflow is not a physics retry'
+          for i in range(0,len(text),3500):
+              level='notice' if sys.argv[2]=='0' else 'error'
+              escaped=text[i:i+3500].replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print(f'::{level} title=M1 R28 measured::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r28-idle-family-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/r28-idle-family/
+            ${{ runner.temp }}/r28-console.log
+          retention-days: 7
+
+  r28-characterisation:
+    needs: [r28-idle]
+    if: ${{ github.sha == '446d870da5c02ecfc295a19d7f35a8436b3b7fa7' && github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
+    name: R28 ac201a-characterisation (one invocation; exact source pin)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      GODOT_VERSION: 4.7.2-stable
+      R28_SOURCE_SHA: ${{ inputs.r28_source_sha }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Execute original arm ONCE and annotate full measured result
+        shell: bash
+        run: |
+          set +e
+          M1_R28_REPORT_DIR="$RUNNER_TEMP/r28-ac201a-characterisation" bash tests/run_m1_r28.sh 'ac201a-characterisation' > "$RUNNER_TEMP/r28-console.log" 2>&1
+          status=$?
+          set -e
+          python3 - "$RUNNER_TEMP/r28-console.log" "$status" <<'PYLOG'
+          import sys
+          text='\n'.join(l for l in open(sys.argv[1]).read().splitlines() if l.startswith('M1 R28') or 'ERROR' in l or 'Error' in l)
+          assert len(text)<=35000, 'raw remains uploaded, annotation overflow is not a physics retry'
+          for i in range(0,len(text),3500):
+              level='notice' if sys.argv[2]=='0' else 'error'
+              escaped=text[i:i+3500].replace('%','%25').replace('\r','%0D').replace('\n','%0A')
+              print(f'::{level} title=M1 R28 measured::'+escaped)
+          PYLOG
+          exit "$status"
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r28-ac201a-characterisation-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/r28-ac201a-characterisation/
+            ${{ runner.temp }}/r28-console.log
+          retention-days: 7
+
+  r28-baseline:
+    needs: [r28-measure]
+    if: ${{ github.sha == '446d870da5c02ecfc295a19d7f35a8436b3b7fa7' && github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
+    name: R28 generate actual baseline ONLY after penetration PASS
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GODOT_VERSION: 4.7.2-stable
+      R28_SOURCE_SHA: ${{ inputs.r28_source_sha }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Actual public streams, expected old-baseline mismatch, generate with provenance
+        shell: bash
+        run: |
+          set +e
+          M1_PUBLIC_REPORT_DIR="$RUNNER_TEMP/r28-baseline-raw" bash tests/run_m1_public.sh > "$RUNNER_TEMP/r28-baseline-console.log" 2>&1
+          status=$?
+          set -e
+          test "$status" -ne 0
+          python3 tests/r28_baseline.py "$RUNNER_TEMP/r28-baseline-raw" "$RUNNER_TEMP/r28-baseline" > "$RUNNER_TEMP/r28-generated.log"
+          python3 - "$RUNNER_TEMP/r28-generated.log" <<'PYLOG'
+          import sys
+          text=open(sys.argv[1]).read()
+          for i in range(0,len(text),3500):
+              print('::notice title=M1 R28 generated baseline::'+text[i:i+3500].replace('%','%25').replace('\n','%0A'))
+          PYLOG
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r28-baseline-${{ github.run_id }}
+          path: ${{ runner.temp }}/r28-baseline/
+          retention-days: 7
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: m1-r28-baseline-raw-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/r28-baseline-raw/
+            ${{ runner.temp }}/r28-baseline-console.log
+          retention-days: 7
+
+  r28-m0:
+    if: ${{ github.sha == '446d870da5c02ecfc295a19d7f35a8436b3b7fa7' && github.event_name == 'workflow_dispatch' && inputs.r28_source_sha != '' && github.sha == inputs.r28_source_sha }}
+    name: R28 unchanged M0 headless516
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install checksum-verified pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Unchanged M0 command and count guard
+        shell: bash
+        run: |
+          set +e
+          tests/run_tests.sh 2>&1 | tee "$RUNNER_TEMP/m0-headless.log"
+          status=${PIPESTATUS[0]}
+          set -e
+          python3 - "$RUNNER_TEMP/m0-headless.log" "$status" <<'PYLOG'
+          import re, sys
+          lines = open(sys.argv[1]).read().splitlines()
+          if sys.argv[2] != "0":
+              selected = [line for line in lines if re.search(r"SCRIPT ERROR|ERROR:|FAIL:|Parse Error|M0:|Error:", line)]
+              for line in (selected or lines[-20:])[:40]:
+                  escaped = line.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+                  print("::error title=M0 engine diagnostics::" + escaped)
+          else:
+              for line in lines:
+                  if line.startswith("M0:"):
+                      print("::notice title=M0 headless result::" + line)
+          PYLOG
+          if [ "$status" -eq 0 ]; then
+            python3 scripts/check_m0_regression.py "$RUNNER_TEMP/m0-headless.log"
+          fi
+          exit "$status"

@@ -1,0 +1,59 @@
+{
+  "total_count": 2,
+  "jobs": [
+    {
+      "id": 123814811746,
+      "run_id": 40979233978,
+      "workflow_name": "R29 zero-physics measurements",
+      "head_branch": "arena/4cd0a587-clamber",
+      "run_url": "https://api.github.com/repos/sagheerh/clamber/actions/runs/40979233978",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOVZ9P688AAAAc0_AYYg",
+      "head_sha": "bb88cd1b67229ca72dc2b1734d23b58e99e50d1c",
+      "url": "https://api.github.com/repos/sagheerh/clamber/actions/jobs/123814811746",
+      "html_url": "https://github.com/sagheerh/clamber/actions/runs/40979233978/job/123814811746",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-10-30T00:22:04Z",
+      "started_at": "2026-10-30T00:22:04Z",
+      "completed_at": "2026-10-30T00:22:06Z",
+      "name": "measurements",
+      "steps": [],
+      "check_run_url": "https://api.github.com/repos/sagheerh/clamber/check-runs/123814811746",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 0,
+      "runner_name": "",
+      "runner_group_id": 0,
+      "runner_group_name": ""
+    },
+    {
+      "id": 123814813306,
+      "run_id": 40979233978,
+      "workflow_name": "R29 zero-physics measurements",
+      "head_branch": "arena/4cd0a587-clamber",
+      "run_url": "https://api.github.com/repos/sagheerh/clamber/actions/runs/40979233978",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOVZ9P688AAAAc0_Aeeg",
+      "head_sha": "bb88cd1b67229ca72dc2b1734d23b58e99e50d1c",
+      "url": "https://api.github.com/repos/sagheerh/clamber/actions/jobs/123814813306",
+      "html_url": "https://github.com/sagheerh/clamber/actions/runs/40979233978/job/123814813306",
+      "status": "completed",
+      "conclusion": "skipped",
+      "created_at": "2026-10-30T00:22:04Z",
+      "started_at": "2026-10-30T00:22:04Z",
+      "completed_at": "2026-10-30T00:22:04Z",
+      "name": "Parse R29 harness ONLY (zero measurement ticks)",
+      "steps": [],
+      "check_run_url": "https://api.github.com/repos/sagheerh/clamber/check-runs/123814813306",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": null,
+      "runner_name": null,
+      "runner_group_id": null,
+      "runner_group_name": null
+    }
+  ]
+}

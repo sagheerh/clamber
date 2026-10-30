@@ -1,0 +1,403 @@
+{
+  "head": "2ddfe2501cb3f8a5ae9c736c5bc3159ddff293e3",
+  "ci_run": 40816607995,
+  "m0_run": 40816607997,
+  "runtime_gates_passed": 0,
+  "runtime_gate_total": 18,
+  "determinism_attempts": 0,
+  "counts": {
+    "python": 131,
+    "mechanics": 931,
+    "sleep": 4897,
+    "math": 381,
+    "contact": 237,
+    "analytic": 136,
+    "load": 80,
+    "m0": 514
+  },
+  "arms": {
+    "zero-after": {
+      "arm": "zero-after",
+      "drift": {
+        "input_mask": 0,
+        "spring_return_live": true,
+        "power_description": "ZERO INPUT IS NOT UNPOWERED: always-on spring return active",
+        "observation_ticks": [
+          5700,
+          5999
+        ],
+        "mean_label": "TRANSIENT WINDOW MEAN, NOT EQUILIBRIUM",
+        "mean_com_dx_wu_tick": 0.0004371693616756641,
+        "net_drift_wu_s": 0.026230161700539843,
+        "net_drift_px_s_at_150px_wu": 3.9345242550809765,
+        "observed_window_lateral_travel_wu": 0.13115080850269922,
+        "mean_completed_com_vx_wu_s": 0.02676547112300171,
+        "convergence": {
+          "classification": "oscillating transient",
+          "settled": false,
+          "exact_period_ticks": null,
+          "settlement_criterion": "last300 COM(dx,vx) exactly constant/repeating >=2 cycles; NO velocity epsilon; absence is not proof of divergence",
+          "vx_increases": 149,
+          "vx_decreases": 150,
+          "vx_unchanged": 0,
+          "dvx_direction_reversals": 99,
+          "last300_vx_range_wu_s": [
+            0.022195775258306853,
+            0.04314821835302906
+          ],
+          "last300_dx_range_wu_tick": [
+            0.0003625309958852366,
+            0.0007047542330999346
+          ],
+          "settled_mean_dx_wu_tick": null,
+          "settled_mean_vx_wu_s": null
+        },
+        "raw_recurrence_diagnostics": {
+          "count_pattern_period_ticks": 6,
+          "repeat_lag_dx_max_difference_wu_tick": 8.881784197001252e-16,
+          "repeat_lag_vx_max_difference_wu_s": 3.608224830031759e-16,
+          "meaning": "observed recurrence differences ONLY; no settlement tolerance/pass criterion"
+        }
+      },
+      "joints": [
+        {
+          "joint": 0,
+          "kind": "motor",
+          "channel": "L",
+          "mean_abs_q_rad": 0.8425338732724178,
+          "mean_spring_torque": -2022.0812958538024,
+          "mean_damping_torque": -108.72746136803043,
+          "mean_clamped_total_torque": -1260.0
+        }
+      ],
+      "raw_phases": {
+        "scope": "RAW pre-fold; position is max absolute coordinate of net per-tick phase (not sum of magnitudes across iterations)",
+        "angular": {
+          "max_abs_position_delta_wu": 0.008874611801879255,
+          "impulse_unit": "mass*WU^2/s",
+          "max_abs_drive_impulse": 0.04438638495109458,
+          "max_abs_limit_block_impulse": 0.0003400274408216497,
+          "max_abs_impulse": 0.04438638495109458,
+          "max_abs_tick_net_impulse": 0.04438638495109458
+        },
+        "self_contact": {
+          "max_abs_position_delta_wu": 0.0,
+          "scale_validation": "ZERO Slug self-contact impulses: path exercised ONLY by unit tests; scale validation requires an eligible self-hit preset with nonzero impulse",
+          "impulse_unit": "N*s",
+          "max_impulse_magnitude": 0.0,
+          "max_body_net_impulse_magnitude": 0.0
+        }
+      },
+      "passive_stiffness": 0.0,
+      "motor_stiffness": 2400.0
+    },
+    "zero-before": {
+      "arm": "zero-before",
+      "drift": {
+        "input_mask": 0,
+        "spring_return_live": true,
+        "power_description": "ZERO INPUT IS NOT UNPOWERED: always-on spring return active",
+        "observation_ticks": [
+          5700,
+          5999
+        ],
+        "mean_label": "TRANSIENT WINDOW MEAN, NOT EQUILIBRIUM",
+        "mean_com_dx_wu_tick": 0.0003903690062867022,
+        "net_drift_wu_s": 0.023422140377202135,
+        "net_drift_px_s_at_150px_wu": 3.5133210565803203,
+        "observed_window_lateral_travel_wu": 0.11711070188601067,
+        "mean_completed_com_vx_wu_s": 0.023898052702204648,
+        "convergence": {
+          "classification": "oscillating transient",
+          "settled": false,
+          "exact_period_ticks": null,
+          "settlement_criterion": "last300 COM(dx,vx) exactly constant/repeating >=2 cycles; NO velocity epsilon; absence is not proof of divergence",
+          "vx_increases": 200,
+          "vx_decreases": 99,
+          "vx_unchanged": 0,
+          "dvx_direction_reversals": 66,
+          "last300_vx_range_wu_s": [
+            0.02054052008572514,
+            0.04154125326362168
+          ],
+          "last300_dx_range_wu_tick": [
+            0.000335495161399483,
+            0.0006785071366395335
+          ],
+          "settled_mean_dx_wu_tick": null,
+          "settled_mean_vx_wu_s": null
+        },
+        "raw_recurrence_diagnostics": {
+          "count_pattern_period_ticks": 9,
+          "repeat_lag_dx_max_difference_wu_tick": 8.939246912142984e-16,
+          "repeat_lag_vx_max_difference_wu_s": 3.920475055707584e-16,
+          "meaning": "observed recurrence differences ONLY; no settlement tolerance/pass criterion"
+        }
+      },
+      "joints": [
+        {
+          "joint": 0,
+          "kind": "motor",
+          "channel": "L",
+          "mean_abs_q_rad": 0.8428560852916004,
+          "mean_spring_torque": -2022.854604699841,
+          "mean_damping_torque": -141.2507297496081,
+          "mean_clamped_total_torque": -1260.0
+        }
+      ],
+      "raw_phases": {
+        "scope": "RAW pre-fold; position is max absolute coordinate of net per-tick phase (not sum of magnitudes across iterations)",
+        "angular": {
+          "max_abs_position_delta_wu": 0.009223146015561803,
+          "impulse_unit": "mass*WU^2/s",
+          "max_abs_drive_impulse": 0.044444719141974176,
+          "max_abs_limit_block_impulse": 0.00017721591385786578,
+          "max_abs_impulse": 0.044444719141974176,
+          "max_abs_tick_net_impulse": 0.044444719141974176
+        },
+        "self_contact": {
+          "max_abs_position_delta_wu": 0.0,
+          "scale_validation": "ZERO Slug self-contact impulses: path exercised ONLY by unit tests; scale validation requires an eligible self-hit preset with nonzero impulse",
+          "impulse_unit": "N*s",
+          "max_impulse_magnitude": 0.0,
+          "max_body_net_impulse_magnitude": 0.0
+        }
+      },
+      "passive_stiffness": 0.0,
+      "motor_stiffness": 2400.0
+    },
+    "current-after": {
+      "arm": "current-after",
+      "drift": {
+        "input_mask": 0,
+        "spring_return_live": true,
+        "power_description": "ZERO INPUT IS NOT UNPOWERED: always-on spring return active",
+        "observation_ticks": [
+          5700,
+          5999
+        ],
+        "mean_label": "TRANSIENT WINDOW MEAN, NOT EQUILIBRIUM",
+        "mean_com_dx_wu_tick": 0.0004371693616756641,
+        "net_drift_wu_s": 0.026230161700539843,
+        "net_drift_px_s_at_150px_wu": 3.9345242550809765,
+        "observed_window_lateral_travel_wu": 0.13115080850269922,
+        "mean_completed_com_vx_wu_s": 0.02676547112300171,
+        "convergence": {
+          "classification": "oscillating transient",
+          "settled": false,
+          "exact_period_ticks": null,
+          "settlement_criterion": "last300 COM(dx,vx) exactly constant/repeating >=2 cycles; NO velocity epsilon; absence is not proof of divergence",
+          "vx_increases": 149,
+          "vx_decreases": 150,
+          "vx_unchanged": 0,
+          "dvx_direction_reversals": 99,
+          "last300_vx_range_wu_s": [
+            0.022195775258306853,
+            0.04314821835302906
+          ],
+          "last300_dx_range_wu_tick": [
+            0.0003625309958852366,
+            0.0007047542330999346
+          ],
+          "settled_mean_dx_wu_tick": null,
+          "settled_mean_vx_wu_s": null
+        },
+        "raw_recurrence_diagnostics": {
+          "count_pattern_period_ticks": 6,
+          "repeat_lag_dx_max_difference_wu_tick": 8.881784197001252e-16,
+          "repeat_lag_vx_max_difference_wu_s": 3.608224830031759e-16,
+          "meaning": "observed recurrence differences ONLY; no settlement tolerance/pass criterion"
+        }
+      },
+      "joints": [
+        {
+          "joint": 0,
+          "kind": "motor",
+          "channel": "L",
+          "mean_abs_q_rad": 0.8425338732724178,
+          "mean_spring_torque": -2022.0812958538024,
+          "mean_damping_torque": -108.72746136803043,
+          "mean_clamped_total_torque": -1260.0
+        }
+      ],
+      "raw_phases": {
+        "scope": "RAW pre-fold; position is max absolute coordinate of net per-tick phase (not sum of magnitudes across iterations)",
+        "angular": {
+          "max_abs_position_delta_wu": 0.008874611801879255,
+          "impulse_unit": "mass*WU^2/s",
+          "max_abs_drive_impulse": 0.04438638495109458,
+          "max_abs_limit_block_impulse": 0.0003400274408216497,
+          "max_abs_impulse": 0.04438638495109458,
+          "max_abs_tick_net_impulse": 0.04438638495109458
+        },
+        "self_contact": {
+          "max_abs_position_delta_wu": 0.0,
+          "scale_validation": "ZERO Slug self-contact impulses: path exercised ONLY by unit tests; scale validation requires an eligible self-hit preset with nonzero impulse",
+          "impulse_unit": "N*s",
+          "max_impulse_magnitude": 0.0,
+          "max_body_net_impulse_magnitude": 0.0
+        }
+      },
+      "passive_stiffness": 900.0,
+      "motor_stiffness": 2400.0
+    },
+    "current-before": {
+      "arm": "current-before",
+      "drift": {
+        "input_mask": 0,
+        "spring_return_live": true,
+        "power_description": "ZERO INPUT IS NOT UNPOWERED: always-on spring return active",
+        "observation_ticks": [
+          5700,
+          5999
+        ],
+        "mean_label": "TRANSIENT WINDOW MEAN, NOT EQUILIBRIUM",
+        "mean_com_dx_wu_tick": 0.0003903690062867022,
+        "net_drift_wu_s": 0.023422140377202135,
+        "net_drift_px_s_at_150px_wu": 3.5133210565803203,
+        "observed_window_lateral_travel_wu": 0.11711070188601067,
+        "mean_completed_com_vx_wu_s": 0.023898052702204648,
+        "convergence": {
+          "classification": "oscillating transient",
+          "settled": false,
+          "exact_period_ticks": null,
+          "settlement_criterion": "last300 COM(dx,vx) exactly constant/repeating >=2 cycles; NO velocity epsilon; absence is not proof of divergence",
+          "vx_increases": 200,
+          "vx_decreases": 99,
+          "vx_unchanged": 0,
+          "dvx_direction_reversals": 66,
+          "last300_vx_range_wu_s": [
+            0.02054052008572514,
+            0.04154125326362168
+          ],
+          "last300_dx_range_wu_tick": [
+            0.000335495161399483,
+            0.0006785071366395335
+          ],
+          "settled_mean_dx_wu_tick": null,
+          "settled_mean_vx_wu_s": null
+        },
+        "raw_recurrence_diagnostics": {
+          "count_pattern_period_ticks": 9,
+          "repeat_lag_dx_max_difference_wu_tick": 8.939246912142984e-16,
+          "repeat_lag_vx_max_difference_wu_s": 3.920475055707584e-16,
+          "meaning": "observed recurrence differences ONLY; no settlement tolerance/pass criterion"
+        }
+      },
+      "joints": [
+        {
+          "joint": 0,
+          "kind": "motor",
+          "channel": "L",
+          "mean_abs_q_rad": 0.8428560852916004,
+          "mean_spring_torque": -2022.854604699841,
+          "mean_damping_torque": -141.2507297496081,
+          "mean_clamped_total_torque": -1260.0
+        }
+      ],
+      "raw_phases": {
+        "scope": "RAW pre-fold; position is max absolute coordinate of net per-tick phase (not sum of magnitudes across iterations)",
+        "angular": {
+          "max_abs_position_delta_wu": 0.009223146015561803,
+          "impulse_unit": "mass*WU^2/s",
+          "max_abs_drive_impulse": 0.044444719141974176,
+          "max_abs_limit_block_impulse": 0.00017721591385786578,
+          "max_abs_impulse": 0.044444719141974176,
+          "max_abs_tick_net_impulse": 0.044444719141974176
+        },
+        "self_contact": {
+          "max_abs_position_delta_wu": 0.0,
+          "scale_validation": "ZERO Slug self-contact impulses: path exercised ONLY by unit tests; scale validation requires an eligible self-hit preset with nonzero impulse",
+          "impulse_unit": "N*s",
+          "max_impulse_magnitude": 0.0,
+          "max_body_net_impulse_magnitude": 0.0
+        }
+      },
+      "passive_stiffness": 900.0,
+      "motor_stiffness": 2400.0
+    },
+    "baseline-after": {
+      "arm": "baseline-after",
+      "drift": {
+        "input_mask": 0,
+        "spring_return_live": false,
+        "power_description": "free-hinge baseline; no motor spring return",
+        "observation_ticks": [
+          300,
+          599
+        ],
+        "mean_label": "TRANSIENT WINDOW MEAN, NOT EQUILIBRIUM",
+        "mean_com_dx_wu_tick": 9.337328797581247e-06,
+        "net_drift_wu_s": 0.0005602397278548748,
+        "net_drift_px_s_at_150px_wu": 0.08403595917823123,
+        "observed_window_lateral_travel_wu": 0.0028011986392743743,
+        "mean_completed_com_vx_wu_s": 0.0005716731916895804,
+        "convergence": {
+          "classification": "oscillating transient",
+          "settled": false,
+          "exact_period_ticks": null,
+          "settlement_criterion": "last300 COM(dx,vx) exactly constant/repeating >=2 cycles; NO velocity epsilon; absence is not proof of divergence",
+          "vx_increases": 136,
+          "vx_decreases": 162,
+          "vx_unchanged": 1,
+          "dvx_direction_reversals": 218,
+          "last300_vx_range_wu_s": [
+            0.0005716731916895587,
+            0.0005716731916896063
+          ],
+          "last300_dx_range_wu_tick": [
+            9.337328797495804e-06,
+            9.337328797638432e-06
+          ],
+          "settled_mean_dx_wu_tick": null,
+          "settled_mean_vx_wu_s": null
+        },
+        "raw_recurrence_diagnostics": {
+          "count_pattern_period_ticks": 1,
+          "repeat_lag_dx_max_difference_wu_tick": 1.010832178594337e-16,
+          "repeat_lag_vx_max_difference_wu_s": 4.0332320816460765e-17,
+          "meaning": "observed recurrence differences ONLY; no settlement tolerance/pass criterion"
+        }
+      },
+      "joints": [],
+      "passive_stiffness": 900.0,
+      "motor_stiffness": 2400.0
+    }
+  },
+  "F52": [
+    {
+      "after_sleep_tick": -1,
+      "before_sleep_tick": 29,
+      "fixture_wu_tick": 0.0005,
+      "net_30_ticks_wu": 0.015,
+      "observed_ticks": 600,
+      "per_tick_wu": 0.0005,
+      "scope": "translated body fixture, not FA acceptance",
+      "threshold_wu": 0.001
+    },
+    {
+      "after_sleep_tick": 29,
+      "before_sleep_tick": 29,
+      "fixture_wu_tick": 9.337328797581247e-06,
+      "net_30_ticks_wu": 0.0002801198639274374,
+      "observed_ticks": 600,
+      "per_tick_wu": 9.337328797581247e-06,
+      "scope": "translated body fixture, not FA acceptance",
+      "threshold_wu": 0.001
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 12873091332,
+      "name": "m1-r17-spring-40816607995",
+      "size_in_bytes": 108294513,
+      "digest": "sha256:cde29ca485eeb195eac79f0a2d395f97b8034f6685da5c8b046b32faeacb5d76"
+    },
+    {
+      "id": 12872149521,
+      "name": "m1-r14-sleep-40816607995",
+      "size_in_bytes": 15772,
+      "digest": "sha256:0db90bba565a5e5251d9f2841d11c74678628803f815e4db2b17b60dcad4593c"
+    }
+  ]
+}

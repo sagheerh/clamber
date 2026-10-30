@@ -1,0 +1,86 @@
+name: R29 zero-physics measurements
+on: [push]
+permissions:
+  contents: write
+jobs:
+  measurements:
+    if: ${{ github.event_name == 'push' && github.sha == github.event.after && contains(github.event.head_commit.message, '[R29-once-2]') && github.sha == 'bb88cd1b67229ca72dc2b1734d23b58e99e50d1c' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    env:
+      GODOT_VERSION: 4.7.2-stable
+      R29_SOURCE_SHA: ${{ github.sha }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: arena/4cd0a587-clamber
+          fetch-depth: 0
+      - name: Verify immutable launch source
+        run: test "$(git rev-parse HEAD)" = "$R29_SOURCE_SHA"
+      - name: Install checksum-pinned engine
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Compile check then D1-D5 first executions and D7; stop on any failure
+        run: bash tests/run_m1_r29.sh
+      - name: Persist repo evidence even after measurement failure; no artifact uploads
+        if: always()
+        run: python3 tests/r29_publish.py
+
+  parse-only:
+    name: Parse R29 harness ONLY (zero measurement ticks)
+    if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '[R29-once-2]') && !contains(github.event.head_commit.message, '[R29-runner-proof]') }}
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install exact checksum-pinned editor
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Compile only; do not initialize or step a measurement
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$GODOT" --headless --editor --import > "$RUNNER_TEMP/r29-import.log" 2>&1
+          "$GODOT" --headless --check-only --script res://tests/sim/test_r29.gd > "$RUNNER_TEMP/r29-parse.log" 2>&1
+          cat "$RUNNER_TEMP/r29-parse.log"
+          ! grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:' "$RUNNER_TEMP/r29-parse.log"
+          echo '::notice title=R29 parse only::Harness parsed after helper rename; ZERO physical measurement ticks; no arm rerun'
+
+  runner-proof:
+    name: R29 runner proof ONLY (zero physics)
+    if: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[R29-runner-proof]') }}
+    permissions:
+      contents: read
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Prove runner allocation and source identity without physics
+        run: |
+          test "$(git rev-parse HEAD)" = "${{ github.sha }}"
+          echo "::notice title=R29 runner proof::Runner allocated, checkout correct, no engine or measurement ticks; source=${{ github.sha }}"
+          uname -m

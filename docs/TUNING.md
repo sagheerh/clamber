@@ -1,10 +1,11 @@
-# M0 tuning inventory
+# Tuning inventory
 
 All runtime fields are explicit in `core/tuning.tres`. This inventory maps them to the GDD.
 Architecture/schema identities are also centralized to keep numeric literals out of core scripts.
 Example save IDs/timestamps, sample tower geometry/scores, document versions, dates, SDK/build
 requirements, market research and experimental metrics are not runtime tuning. Build requirements
-remain in project/export/CI configuration. No gameplay values have been changed.
+remain in project/export/CI configuration. Existing GDD gameplay values are unchanged. Owner M1-D04 adds provisional contact
+geometry/grip and analytic feel-check inputs; these are not measured feel evidence.
 
 | Group | Field | Source | Value |
 |---|---|---|---|
@@ -21,7 +22,9 @@ remain in project/export/CI configuration. No gameplay values have been changed.
 | Physics | `physics_max_angular_velocity_rad_s` | §4.2 | `24.0` |
 | Physics | `physics_contact_slop_wu` | §4.2 | `0.02` |
 | Physics | `physics_sleep_velocity_wu_s` | §4.2 | `0.05` |
-| Physics | `physics_sleep_grounded_s` | §4.2 | `0.6` |
+| Physics | `physics_sleep_grounded_s` | §4.2 (legacy, not R14 predicate) | `0.6` |
+| Physics | `sleep_still_displacement_wu` | owner R14 Decision2 / M1-D12 | `0.001` |
+| Physics | `sleep_dwell_ticks` | owner R14 Decision2 / M1-D12 | `30` |
 | Physics | `physics_max_children` | §3.1–3.5 | `2` |
 | Physics | `physics_min_motors` | §3.1–3.5 | `1` |
 | Physics | `physics_min_feet` | §3.1–3.5 | `1` |
@@ -62,7 +65,7 @@ remain in project/export/CI configuration. No gameplay values have been changed.
 | Physics | `physics_sdf_cell_wu` | §4.4–4.5 | `0.25` |
 | Physics | `physics_static_slip_wu_s` | §4.4–4.5 | `0.15` |
 | Physics | `physics_foot_grip_bias` | §4.4–4.5 | `1.4` |
-| Physics | `physics_max_constraint_angular_impulse_rad_s` | §4.4–4.5 | `6.0` |
+| Physics | `physics_max_constraint_angular_impulse_rad_s` | R25 owner override (DECISIONS M1-R25); §4.4–4.5 | `30.0` |
 | Physics | `physics_distance_solves_per_iteration` | §4.4–4.5 | `2` |
 | Physics | `physics_limb_reset_residual_wu` | §4.4–4.5 | `0.25` |
 | Physics | `physics_max_projection_wu_tick` | §4.4–4.5 | `0.4` |
@@ -165,9 +168,9 @@ remain in project/export/CI configuration. No gameplay values have been changed.
 | Physics | `physics_codec_mutation_cases` | §10.6; §13.1 validation budgets | `10000` |
 | Physics | `physics_process_kill_trials` | §10.6; §13.1 validation budgets | `30` |
 | Motors | `motors_contraction_deg` | §3.2; §3.4 | `62.0` |
-| Motors | `motors_joint_stiffness` | §3.2; §3.4 | `2400.0` |
-| Motors | `motors_joint_damping` | §3.2; §3.4 | `55.0` |
-| Motors | `motors_max_torque` | §3.2; §3.4 | `1800.0` |
+| Motors | `motors_joint_stiffness` | R25 owner override (DECISIONS M1-R25); §3.2; §3.4 | `10.0` |
+| Motors | `motors_joint_damping` | R25 owner override (DECISIONS M1-R25); §3.2; §3.4 | `0.5443327361211717` |
+| Motors | `motors_max_torque` | R25 owner override (DECISIONS M1-R25); §3.2; §3.4 | `12.0` |
 | Motors | `motors_limit_min_deg` | §3.2; §3.4 | `-140.0` |
 | Motors | `motors_limit_max_deg` | §3.2; §3.4 | `40.0` |
 | Motors | `motors_gain_min` | §3.2; §3.4 | `0.0` |
@@ -384,3 +387,52 @@ remain in project/export/CI configuration. No gameplay values have been changed.
 | Generator | `generator_reference_parts` | §6.1–6.5 | `8` |
 | Generator | `generator_reference_time_multiplier` | §6.1–6.5 | `3.0` |
 | Generator | `generator_reroll_attempts` | §6.1–6.5 | `40` |
+
+## Owner M1-D04 additions (provisional, not retuned)
+
+| Group | Field | Source | Value |
+|---|---|---|---|
+| Owner geometry / feel | `physics_limb_collision_radius_wu` | owner M1-D04 | `0.065` |
+| Owner geometry / feel | `physics_passive_collision_radius_wu` | owner M1-D04 | `0.085` |
+| Owner geometry / feel | `physics_motor_collision_radius_wu` | owner M1-D04 | `0.095` |
+| Owner geometry / feel | `physics_foot_collision_radius_wu` | owner M1-D04 | `0.050` |
+| Owner geometry / feel | `physics_head_collision_radius_wu` | owner M1-D04 | `0.100` |
+| Owner geometry / feel | `art_limb_visual_radius_wu` | owner M1-D04 | `0.065` |
+| Owner geometry / feel | `art_passive_visual_radius_wu` | owner M1-D04 | `0.105` |
+| Owner geometry / feel | `art_motor_visual_radius_wu` | owner M1-D04 | `0.120` |
+| Owner geometry / feel | `art_foot_visual_radius_wu` | owner M1-D04 | `0.065` |
+| Owner geometry / feel | `art_head_visual_radius_wu` | owner M1-D04 | `0.135` |
+| Owner geometry / feel | `physics_head_mass_per_wu` | owner M1-D04 | `2.2` |
+| Owner geometry / feel | `physics_head_length_wu` | owner M1-D04 | `0.35` |
+| Owner geometry / feel | `physics_grip_normal_force_ratio` | owner M1-D04 | `0.40` |
+| Owner geometry / feel | `physics_grip_normal_force_floor` | owner M1-D04 | `5.0` |
+| Owner geometry / feel | `physics_d10_bend_margin_wu` | owner M1-D04 | `0.06` |
+| Owner geometry / feel | `feel_readability_px_per_wu` | owner M1-D04 | `150.0` |
+| Owner geometry / feel | `feel_min_collision_diameter_px` | owner M1-D04 | `15.0` |
+| Owner geometry / feel | `feel_min_head_collision_diameter_px` | owner M1-D04 | `30.0` |
+| Owner geometry / feel | `feel_limb_aspect_ratio_min` | owner M1-D04 | `3.0` |
+| Owner geometry / feel | `feel_limb_aspect_ratio_max` | owner M1-D04 | `12.0` |
+| Owner geometry / feel | `feel_static_scene_ticks` | owner M1-D04 | `600` |
+| Owner geometry / feel | `feel_tutorial_runs` | owner M1-D04 | `10` |
+| Owner geometry / feel | `feel_tutorial_successes_min` | owner M1-D04 | `6` |
+| Owner geometry / feel | `feel_tutorial_successes_max` | owner M1-D04 | `8` |
+
+Head mass is derived (2.2 ×0.35 =0.77), never an independently authored mass.
+Visual fields are art-only, never physics inputs. FA readability scale150px/WU
+is not a camera choice; M1-B04 remains unresolved. Existing foot bias1.4 and static
+slip0.15 are unchanged. Any retuning requires owner approval with measurements.
+
+
+### F45 — superseded legacy sleep constants (owner F38/R14/R17)
+
+`physics_sleep_velocity_wu_s` (0.05) and `physics_sleep_grounded_s` (0.6) are
+legacy, UNUSED and SUPERSEDED for creature sleep. Kept for resource compatibility;
+not deleted, retuned, or an alternate runtime predicate. F38 showed a positional
+fixed point is not velocity rest. The owner-authorized additions are solely
+`sleep_still_displacement_wu` (.001WU) and `sleep_dwell_ticks` (30). F52 now applies
+the SAME displacement threshold per tick AND from the start-of-dwell body COM
+snapshot; either failure/input resets the dwell. Maximum PER BODY, not aggregate
+COM cancellation. Net dwell origin is part of snapshots/replay. No velocity
+epsilon, grounding predicate, hysteresis or added constant. Public Sim composes
+this with real motors and the unchanged live zero-input spring; sleeping is not
+proof that the spring-driven walking mechanism is fixed.

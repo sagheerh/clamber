@@ -1548,6 +1548,13 @@ The prototype is done when, on a mid-range Android device:
 | AC-205 | Frame budget §10.4 met on the reference low-end device | Profiler | P0 |
 | AC-206 | 60 s scripted run is bit-identical on 5 devices | §10.6 | P0 |
 
+Owner decision R27 (2026-10-30): the AC-201 wording above is preserved, not met
+or deleted. Operational stability/parked clauses AC-201a/b are separately
+authored; unmodified F52 AC-201s remains **FAILED**, named M1.1 contact-model
+carry-over. See [DECISIONS M1-R27](../DECISIONS.md#m1-r27--option2-authored-split-and-located-ac202-injector)
+and the [R27 preregistration](../.review/m1_r27_plan.md). This is not a sleep
+tolerance change or an M1/M2 waiver.
+
 **Build**
 
 | ID | Criterion | Method | Phase |

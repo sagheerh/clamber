@@ -1,3 +1,12 @@
 class_name RunResult
 extends RefCounted
-## M0 compile-only stub. Implementation deferred to its assigned milestone.
+## Physics observation only. Scoring, flags and completed-run acceptance not authored.
+var _state: Dictionary = {}
+
+
+func configure(state: Dictionary) -> void:
+	_state = state.duplicate(true)
+
+
+func snapshot() -> Dictionary:
+	return _state.duplicate(true)

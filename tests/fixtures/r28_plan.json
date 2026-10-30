@@ -1,0 +1,38 @@
+{
+  "start_head": "fb890fd5bb8c547d45c96bfa8940eca3a9227b20",
+  "tuning_sha256": "5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666",
+  "change": "D1 only: unconditional same post-contact distance traversal; no runtime flag controls physics",
+  "engine": "4.7.2-stable; checksum verified",
+  "adoption-measure": {
+    "presets": [
+      "Slug",
+      "Hopper",
+      "TwinRoller"
+    ],
+    "ticks": 7200,
+    "input": "R27 identical (tick//60)%4",
+    "fixture": "R27 identical wide plane [-64,64,-4,8], .25cells; legalspawn+.01",
+    "penetration": "completed capsule surface along SDF normal: max(0,radius-distance), all parts/all capsule samples including both endpoints; uniform plane extrema at endpoints",
+    "stop": ">=0.02WU, strict; no epsilon; revert adoption and stop all dependent arms",
+    "limb": "motor/passive/limb completed maxima<=.05WU; same runs, no duplicate arm"
+  },
+  "idle-family": {
+    "ticks": 600,
+    "input": 0,
+    "fixture": "R25Fixture.public_sim Slug, R27 identical fromspawn",
+    "angle": "headcentre to meanfootcentre, continuous signed unwrapped fromspawn; peak-to-peak includes spawn0; report min/max, all-airborne ticks",
+    "COM": "2D mass-weighted net spawn-to-tick599 norm, BL=.90WU,150px/WU, effective displacement/10s",
+    "sleep": "unmodifiedF52 firsttick<600 plus actual sleepingticks",
+    "drift": "300 COM displacement norms ending ticks300..599; boundarypoint tick299,5s. ALSO signed lateral net/5s matching R26 definition; reference8.550150769956836px/s, not a remeasurement"
+  },
+  "ac201a-characterisation": {
+    "ticks": 3600,
+    "input": 0,
+    "rate": "net unwrapped angle/60s",
+    "crossings": "first |unwrapped angle|>=90/180; (tick+1)/60, no extrapolation",
+    "sign_changes": "successive nonzero per-tick angle delta signs, exactzero ignored, no epsilon",
+    "envelope": "max|angle| last600; no new gate or assertion of future/asymptotic boundedness"
+  },
+  "ordering": "adoption-measure FIRST; baseline-generation/public replay/idle/characterisation ONLY on successful penetration gate; no soak; old R27 pinned jobs untouched",
+  "CI_pin": "one workflow_dispatch at adoption branch HEAD, inputr28_source_sha must equal github.sha; each runner verifies exact HEAD and [R28-once] source commit subject. Repository-variable API denied403, so source pin is immutable dispatch input, not an unpinned branch job."
+}

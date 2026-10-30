@@ -1,0 +1,26 @@
+{
+  "name": "Slug",
+  "parts": [
+    {
+      "kind": "head",
+      "parent": -1,
+      "axis": "RIGHT",
+      "channel": "",
+      "length_index": 0
+    },
+    {
+      "kind": "motor",
+      "parent": 0,
+      "axis": "DOWN",
+      "channel": "L",
+      "length_index": 0
+    },
+    {
+      "kind": "foot",
+      "parent": 1,
+      "axis": "DOWN",
+      "channel": "",
+      "length_index": 0
+    }
+  ]
+}

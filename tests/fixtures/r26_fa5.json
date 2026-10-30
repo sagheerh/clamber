@@ -1,0 +1,15 @@
+{
+  "authorization": "R26 F77 test-only airborne fixtures; not product geometry or force/pose injection",
+  "model": "Hopper",
+  "grounded_control": "Same authored stance, .01 WU initial clearance and repeating 60-tick input blocks as archived R25 FA5; independent fresh fixture",
+  "bounds_wu": [-12, 12, -4, 8],
+  "cases": [
+    {"id": "stance", "terrain": "floor", "x": 0.0, "lift": 0.0, "ticks": 600, "input": "blocks60"},
+    {"id": "drop_onto_feet", "terrain": "floor", "x": 0.0, "lift": 2.0, "ticks": 600, "input": "released"},
+    {"id": "ledge_departure", "terrain": "ledge", "x": 0.1, "lift": 0.0, "ticks": 1200, "input": "blocks60"},
+    {"id": "midair_sample", "terrain": "floor", "x": 0.0, "lift": 4.0, "ticks": 12, "input": "released"}
+  ],
+  "ledge": {"edge_x": 0.0, "upper_floor_y": 0.0, "lower_floor_y": -2.5, "solid": "union of x>=0,y<=0 quadrant and y<=-2.5 half-plane; exact primitive SDF sampled onto existing grid"},
+  "events": "Maximal consecutive TICKS per foot/branch; collapse both velocity passes and all capsule samples within a tick. Two-foot branch uses a pair key. Report entry counts and event durations separately from sample and foot/pass counts.",
+  "no_outcome_retuning": true
+}

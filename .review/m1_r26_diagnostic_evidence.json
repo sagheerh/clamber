@@ -1,0 +1,1716 @@
+{
+  "source_head": "114265e0116101a897d8429a2998f4987549f86f",
+  "source_run": 40901902007,
+  "source_jobs": {
+    "D1": 123546155730,
+    "D2": 123546155690,
+    "FA5": 123546155628,
+    "baseline": 123546155675,
+    "public": 123546537887,
+    "static": 123546155494
+  },
+  "D1": {
+    "diagnostic_only": true,
+    "arms": {
+      "mu_0.9": {
+        "window_ticks": [
+          5700,
+          5999
+        ],
+        "mass": 1.55,
+        "drift_px_s": 8.550150769956836,
+        "mean_completed_vx_wu_s": 0.05816429095211169,
+        "mean_completed_vx_px_s": 8.724643642816753,
+        "rectified_friction_impulse_per_tick": 0.0018030930195154671,
+        "mean_thrust_force_n": 0.10818558117092802,
+        "mean_thrust_percent_weight": 0.24927553265190788,
+        "terminal_velocity_prediction_wu_s": 0.058164290952111834,
+        "prediction_minus_completed_vx_wu_s": 1.457167719820518e-16,
+        "mean_normal_support_n": 43.22988614758847,
+        "support_minus_weight_n": -0.1701138524115251,
+        "linear_damping": 0.02,
+        "motor_damping": 0.5443327361211717,
+        "convergence": {
+          "classification": "oscillating transient",
+          "settled": false,
+          "exact_period_ticks": null,
+          "settlement_criterion": "last300 COM(dx,vx) exactly constant/repeating >=2 cycles; NO velocity epsilon; absence is not proof of divergence",
+          "vx_increases": 143,
+          "vx_decreases": 156,
+          "vx_unchanged": 0,
+          "dvx_direction_reversals": 197,
+          "last300_vx_range_wu_s": [
+            0.058164290952111265,
+            0.058164290952112035
+          ],
+          "last300_dx_range_wu_tick": [
+            0.000950016752217174,
+            0.0009500167522178415
+          ],
+          "settled_mean_dx_wu_tick": null,
+          "settled_mean_vx_wu_s": null
+        },
+        "recurrence": {
+          "count_pattern_period_ticks": 1,
+          "repeat_lag_dx_max_difference_wu_tick": 6.675432775993251e-16,
+          "repeat_lag_vx_max_difference_wu_s": 4.3021142204224816e-16,
+          "meaning": "observed recurrence differences ONLY; no settlement tolerance/pass criterion"
+        },
+        "F56_complete_passed": true,
+        "full_window_residual_x_y": [
+          1.0269562977782698e-15,
+          4.374278717023117e-14
+        ],
+        "friction": 0.9,
+        "termination": {
+          "failing_tick": null,
+          "observer_status": 0,
+          "status": 0,
+          "target_ticks": 6000,
+          "termination_reason": "completed",
+          "ticks": 6000
+        },
+        "joints": [
+          {
+            "joint": 0,
+            "kind": "motor",
+            "channel": "L",
+            "mean_abs_q_rad": 0.22316866039209582,
+            "mean_spring_torque": -2.231686603920958,
+            "mean_damping_torque": -0.6462749209835391,
+            "mean_clamped_total_torque": -2.877961524904497
+          }
+        ],
+        "F56_literal_lateral_passed": false,
+        "F56_literal_vector_passed": false,
+        "F56_max_abs_per_tick_complete_residual": 1.5543122344752192e-15,
+        "F56_max_abs_window_complete_residual": 5.240252676230739e-14,
+        "drive": {
+          "unit": "angular impulse mass*WU^2/s; bound*weight is relative rad/s increment",
+          "requested": {
+            "mean": -0.04796602541507495,
+            "mean_abs": 0.04796602541507495,
+            "min": -0.04796602541507584,
+            "max": -0.047966025415074436
+          },
+          "bound": {
+            "mean": 0.19558495337204906,
+            "mean_abs": 0.19558495337204906,
+            "min": 0.1955849533720484,
+            "max": 0.19558495337204973
+          },
+          "applied": {
+            "mean": -0.04796602541507495,
+            "mean_abs": 0.04796602541507495,
+            "min": -0.04796602541507584,
+            "max": -0.047966025415074436
+          },
+          "requested_over_bound": {
+            "mean": 0.24524394432240484,
+            "mean_abs": 0.24524394432240484,
+            "min": 0.24524394432240204,
+            "max": 0.24524394432241023
+          },
+          "saturated_ticks": 0,
+          "window_ticks": 300,
+          "saturated_fraction": 0.0,
+          "constraint_limited_ticks": 0,
+          "body_speed_limited_ticks": 0,
+          "at_constraint_bound_ticks": 0,
+          "definition": "saturated iff reconstructed final applied != requested; constraint/body-speed limits separately counted",
+          "all6000_requested_exact_zero": false,
+          "all6000_applied_exact_zero": false,
+          "all6000_max_abs_applied": 0.12298953172066744
+        },
+        "effective_operator_counts_last300": {
+          "dynamic_unsaturated": 900,
+          "inactive": 2400,
+          "static_override": 1800
+        },
+        "ungripped_dynamic_retention": 0.09999999999999998,
+        "gripping_dynamic_retention": 0.0,
+        "note": "ZERO INPUT internal-load rectification; thrust is signed net friction impulse, not commanded locomotion",
+        "drift_over_reference": 1.0,
+        "thrust_over_reference": 1.0,
+        "coefficient_over_reference": 1.0
+      },
+      "mu_0.3": {
+        "window_ticks": [
+          5700,
+          5999
+        ],
+        "mass": 1.55,
+        "drift_px_s": 9.393416417530442,
+        "mean_completed_vx_wu_s": 0.06390079195600164,
+        "mean_completed_vx_px_s": 9.585118793400246,
+        "rectified_friction_impulse_per_tick": 0.0019809245506360587,
+        "mean_thrust_force_n": 0.11885547303816352,
+        "mean_thrust_percent_weight": 0.2738605369542938,
+        "terminal_velocity_prediction_wu_s": 0.06390079195600189,
+        "prediction_minus_completed_vx_wu_s": 2.498001805406602e-16,
+        "mean_normal_support_n": 43.24165924324079,
+        "support_minus_weight_n": -0.158340756759209,
+        "linear_damping": 0.02,
+        "motor_damping": 0.5443327361211717,
+        "convergence": {
+          "classification": "oscillating transient",
+          "settled": false,
+          "exact_period_ticks": null,
+          "settlement_criterion": "last300 COM(dx,vx) exactly constant/repeating >=2 cycles; NO velocity epsilon; absence is not proof of divergence",
+          "vx_increases": 149,
+          "vx_decreases": 147,
+          "vx_unchanged": 3,
+          "dvx_direction_reversals": 242,
+          "last300_vx_range_wu_s": [
+            0.06390079195600105,
+            0.0639007919560024
+          ],
+          "last300_dx_range_wu_tick": [
+            0.0010437129352810256,
+            0.001043712935281295
+          ],
+          "settled_mean_dx_wu_tick": null,
+          "settled_mean_vx_wu_s": null
+        },
+        "recurrence": {
+          "count_pattern_period_ticks": 1,
+          "repeat_lag_dx_max_difference_wu_tick": 2.693158196453993e-16,
+          "repeat_lag_vx_max_difference_wu_s": 5.551115123125783e-16,
+          "meaning": "observed recurrence differences ONLY; no settlement tolerance/pass criterion"
+        },
+        "F56_complete_passed": true,
+        "full_window_residual_x_y": [
+          -1.970645868709653e-15,
+          3.186340080674199e-14
+        ],
+        "friction": 0.3,
+        "termination": {
+          "failing_tick": null,
+          "observer_status": 0,
+          "status": 0,
+          "target_ticks": 6000,
+          "termination_reason": "completed",
+          "ticks": 6000
+        },
+        "joints": [
+          {
+            "joint": 0,
+            "kind": "motor",
+            "channel": "L",
+            "mean_abs_q_rad": 0.22204390865373497,
+            "mean_spring_torque": -2.2204390865373496,
+            "mean_damping_torque": -0.5055002280031299,
+            "mean_clamped_total_torque": -2.7259393145404793
+          }
+        ],
+        "F56_literal_lateral_passed": false,
+        "F56_literal_vector_passed": false,
+        "F56_max_abs_per_tick_complete_residual": 1.2212453270876722e-15,
+        "F56_max_abs_window_complete_residual": 4.5824455341403336e-14,
+        "drive": {
+          "unit": "angular impulse mass*WU^2/s; bound*weight is relative rad/s increment",
+          "requested": {
+            "mean": -0.04543232190900799,
+            "mean_abs": 0.04543232190900799,
+            "min": -0.04543232190900888,
+            "max": -0.04543232190900716
+          },
+          "bound": {
+            "mean": 0.19572182624431667,
+            "mean_abs": 0.19572182624431667,
+            "min": 0.19572182624431586,
+            "max": 0.1957218262443174
+          },
+          "applied": {
+            "mean": -0.04543232190900799,
+            "mean_abs": 0.04543232190900799,
+            "min": -0.04543232190900888,
+            "max": -0.04543232190900716
+          },
+          "requested_over_bound": {
+            "mean": 0.23212700791119484,
+            "mean_abs": 0.23212700791119484,
+            "min": 0.2321270079111911,
+            "max": 0.2321270079111992
+          },
+          "saturated_ticks": 0,
+          "window_ticks": 300,
+          "saturated_fraction": 0.0,
+          "constraint_limited_ticks": 0,
+          "body_speed_limited_ticks": 0,
+          "at_constraint_bound_ticks": 0,
+          "definition": "saturated iff reconstructed final applied != requested; constraint/body-speed limits separately counted",
+          "all6000_requested_exact_zero": false,
+          "all6000_applied_exact_zero": false,
+          "all6000_max_abs_applied": 0.11486462658158055
+        },
+        "effective_operator_counts_last300": {
+          "dynamic_unsaturated": 900,
+          "inactive": 2400,
+          "static_override": 1800
+        },
+        "ungripped_dynamic_retention": 0.7,
+        "gripping_dynamic_retention": 0.5800000000000001,
+        "note": "ZERO INPUT internal-load rectification; thrust is signed net friction impulse, not commanded locomotion",
+        "drift_over_reference": 1.098625821960548,
+        "thrust_over_reference": 1.0986258219602996,
+        "coefficient_over_reference": 0.3333333333333333
+      },
+      "mu_1.8": {
+        "window_ticks": [
+          5700,
+          5999
+        ],
+        "mass": 1.55,
+        "drift_px_s": 8.482160126141556,
+        "mean_completed_vx_wu_s": 0.057701769565579965,
+        "mean_completed_vx_px_s": 8.655265434836995,
+        "rectified_friction_impulse_per_tick": 0.0017887548565329822,
+        "mean_thrust_force_n": 0.10732529139197892,
+        "mean_thrust_percent_weight": 0.24729329813820028,
+        "terminal_velocity_prediction_wu_s": 0.05770176956558006,
+        "prediction_minus_completed_vx_wu_s": 9.71445146547012e-17,
+        "mean_normal_support_n": 43.22932498742722,
+        "support_minus_weight_n": -0.1706750125727794,
+        "linear_damping": 0.02,
+        "motor_damping": 0.5443327361211717,
+        "convergence": {
+          "classification": "oscillating transient",
+          "settled": false,
+          "exact_period_ticks": null,
+          "settlement_criterion": "last300 COM(dx,vx) exactly constant/repeating >=2 cycles; NO velocity epsilon; absence is not proof of divergence",
+          "vx_increases": 89,
+          "vx_decreases": 193,
+          "vx_unchanged": 17,
+          "dvx_direction_reversals": 140,
+          "last300_vx_range_wu_s": [
+            0.0577017695655797,
+            0.05770176956558018
+          ],
+          "last300_dx_range_wu_tick": [
+            0.0009424622362379508,
+            0.0009424622362379508
+          ],
+          "settled_mean_dx_wu_tick": null,
+          "settled_mean_vx_wu_s": null
+        },
+        "recurrence": {
+          "count_pattern_period_ticks": 1,
+          "repeat_lag_dx_max_difference_wu_tick": 0.0,
+          "repeat_lag_vx_max_difference_wu_s": 3.191891195797325e-16,
+          "meaning": "observed recurrence differences ONLY; no settlement tolerance/pass criterion"
+        },
+        "F56_complete_passed": true,
+        "full_window_residual_x_y": [
+          -1.5265566588595902e-16,
+          3.4389158187764224e-14
+        ],
+        "friction": 1.8,
+        "termination": {
+          "failing_tick": null,
+          "observer_status": 0,
+          "status": 0,
+          "target_ticks": 6000,
+          "termination_reason": "completed",
+          "ticks": 6000
+        },
+        "joints": [
+          {
+            "joint": 0,
+            "kind": "motor",
+            "channel": "L",
+            "mean_abs_q_rad": 0.22279083773546746,
+            "mean_spring_torque": -2.2279083773546744,
+            "mean_damping_torque": -0.6739816356805745,
+            "mean_clamped_total_torque": -2.901890013035249
+          }
+        ],
+        "F56_literal_lateral_passed": false,
+        "F56_literal_vector_passed": false,
+        "F56_max_abs_per_tick_complete_residual": 1.2212453270876722e-15,
+        "F56_max_abs_window_complete_residual": 4.4603210014315664e-14,
+        "drive": {
+          "unit": "angular impulse mass*WU^2/s; bound*weight is relative rad/s increment",
+          "requested": {
+            "mean": -0.04836483355058748,
+            "mean_abs": 0.04836483355058748,
+            "min": -0.04836483355058818,
+            "max": -0.04836483355058721
+          },
+          "bound": {
+            "mean": 0.19554314495691358,
+            "mean_abs": 0.19554314495691358,
+            "min": 0.19554314495691297,
+            "max": 0.19554314495691394
+          },
+          "applied": {
+            "mean": -0.04836483355058748,
+            "mean_abs": 0.04836483355058748,
+            "min": -0.04836483355058818,
+            "max": -0.04836483355058721
+          },
+          "requested_over_bound": {
+            "mean": 0.24733586831307383,
+            "mean_abs": 0.24733586831307383,
+            "min": 0.247335868313072,
+            "max": 0.24733586831307816
+          },
+          "saturated_ticks": 0,
+          "window_ticks": 300,
+          "saturated_fraction": 0.0,
+          "constraint_limited_ticks": 0,
+          "body_speed_limited_ticks": 0,
+          "at_constraint_bound_ticks": 0,
+          "definition": "saturated iff reconstructed final applied != requested; constraint/body-speed limits separately counted",
+          "all6000_requested_exact_zero": false,
+          "all6000_applied_exact_zero": false,
+          "all6000_max_abs_applied": 0.12140466407538608
+        },
+        "effective_operator_counts_last300": {
+          "dynamic_clamped": 900,
+          "inactive": 2400,
+          "static_override": 1800
+        },
+        "ungripped_dynamic_retention": 0.0,
+        "gripping_dynamic_retention": 0.0,
+        "note": "ZERO INPUT internal-load rectification; thrust is signed net friction impulse, not commanded locomotion",
+        "drift_over_reference": 0.9920480181408984,
+        "thrust_over_reference": 0.9920480181403297,
+        "coefficient_over_reference": 2.0
+      },
+      "mu_3.6": {
+        "window_ticks": [
+          5700,
+          5999
+        ],
+        "mass": 1.55,
+        "drift_px_s": 8.482160126141556,
+        "mean_completed_vx_wu_s": 0.057701769565579965,
+        "mean_completed_vx_px_s": 8.655265434836995,
+        "rectified_friction_impulse_per_tick": 0.0017887548565329822,
+        "mean_thrust_force_n": 0.10732529139197892,
+        "mean_thrust_percent_weight": 0.24729329813820028,
+        "terminal_velocity_prediction_wu_s": 0.05770176956558006,
+        "prediction_minus_completed_vx_wu_s": 9.71445146547012e-17,
+        "mean_normal_support_n": 43.22932498742722,
+        "support_minus_weight_n": -0.1706750125727794,
+        "linear_damping": 0.02,
+        "motor_damping": 0.5443327361211717,
+        "convergence": {
+          "classification": "oscillating transient",
+          "settled": false,
+          "exact_period_ticks": null,
+          "settlement_criterion": "last300 COM(dx,vx) exactly constant/repeating >=2 cycles; NO velocity epsilon; absence is not proof of divergence",
+          "vx_increases": 89,
+          "vx_decreases": 193,
+          "vx_unchanged": 17,
+          "dvx_direction_reversals": 140,
+          "last300_vx_range_wu_s": [
+            0.0577017695655797,
+            0.05770176956558018
+          ],
+          "last300_dx_range_wu_tick": [
+            0.0009424622362379508,
+            0.0009424622362379508
+          ],
+          "settled_mean_dx_wu_tick": null,
+          "settled_mean_vx_wu_s": null
+        },
+        "recurrence": {
+          "count_pattern_period_ticks": 1,
+          "repeat_lag_dx_max_difference_wu_tick": 0.0,
+          "repeat_lag_vx_max_difference_wu_s": 3.191891195797325e-16,
+          "meaning": "observed recurrence differences ONLY; no settlement tolerance/pass criterion"
+        },
+        "F56_complete_passed": true,
+        "full_window_residual_x_y": [
+          -1.5265566588595902e-16,
+          3.4389158187764224e-14
+        ],
+        "friction": 3.6,
+        "termination": {
+          "failing_tick": null,
+          "observer_status": 0,
+          "status": 0,
+          "target_ticks": 6000,
+          "termination_reason": "completed",
+          "ticks": 6000
+        },
+        "joints": [
+          {
+            "joint": 0,
+            "kind": "motor",
+            "channel": "L",
+            "mean_abs_q_rad": 0.22279083773546746,
+            "mean_spring_torque": -2.2279083773546744,
+            "mean_damping_torque": -0.6739816356805745,
+            "mean_clamped_total_torque": -2.901890013035249
+          }
+        ],
+        "F56_literal_lateral_passed": false,
+        "F56_literal_vector_passed": false,
+        "F56_max_abs_per_tick_complete_residual": 1.2212453270876722e-15,
+        "F56_max_abs_window_complete_residual": 4.4603210014315664e-14,
+        "drive": {
+          "unit": "angular impulse mass*WU^2/s; bound*weight is relative rad/s increment",
+          "requested": {
+            "mean": -0.04836483355058748,
+            "mean_abs": 0.04836483355058748,
+            "min": -0.04836483355058818,
+            "max": -0.04836483355058721
+          },
+          "bound": {
+            "mean": 0.19554314495691358,
+            "mean_abs": 0.19554314495691358,
+            "min": 0.19554314495691297,
+            "max": 0.19554314495691394
+          },
+          "applied": {
+            "mean": -0.04836483355058748,
+            "mean_abs": 0.04836483355058748,
+            "min": -0.04836483355058818,
+            "max": -0.04836483355058721
+          },
+          "requested_over_bound": {
+            "mean": 0.24733586831307383,
+            "mean_abs": 0.24733586831307383,
+            "min": 0.247335868313072,
+            "max": 0.24733586831307816
+          },
+          "saturated_ticks": 0,
+          "window_ticks": 300,
+          "saturated_fraction": 0.0,
+          "constraint_limited_ticks": 0,
+          "body_speed_limited_ticks": 0,
+          "at_constraint_bound_ticks": 0,
+          "definition": "saturated iff reconstructed final applied != requested; constraint/body-speed limits separately counted",
+          "all6000_requested_exact_zero": false,
+          "all6000_applied_exact_zero": false,
+          "all6000_max_abs_applied": 0.12140466407538608
+        },
+        "effective_operator_counts_last300": {
+          "dynamic_clamped": 900,
+          "inactive": 2400,
+          "static_override": 1800
+        },
+        "ungripped_dynamic_retention": 0.0,
+        "gripping_dynamic_retention": 0.0,
+        "note": "ZERO INPUT internal-load rectification; thrust is signed net friction impulse, not commanded locomotion",
+        "drift_over_reference": 0.9920480181408984,
+        "thrust_over_reference": 0.9920480181403297,
+        "coefficient_over_reference": 4.0
+      }
+    },
+    "operator_caveat": "Static override always retains zero. 1.8 and 3.6 both clamp dynamic retention to zero, and gripping 0.9 already clamps. Flat response of clamped arms alone CANNOT identify an upstream cause. No new intervention is permitted.",
+    "causal_decision": "Evaluate reported drift/thrust together with effective-operator counts; do not equate coefficient with unsaturated Coulomb friction.",
+    "measurement_complete": true,
+    "adopted": false,
+    "verification_passed": true
+  },
+  "public_summary": {
+    "attempt_started": true,
+    "checks": 9053,
+    "determinism_attempt": 1,
+    "engine": "4.7.2-stable (official)",
+    "failures": 0,
+    "falsification": {
+      "after_input": 1,
+      "baseline_digest": "4ec66a1f719135112c28f4e6678d87f4e3c04221d5236816ec02788faa0a6aaa",
+      "before_input": 0,
+      "bit": 1,
+      "changed_digest": "678201d1cc000ae8ea48d500efcda28f90c7128d6fd618db411dc50fbad27acb",
+      "physical_bodies_differ_at_flip": true,
+      "tick": 0
+    },
+    "fixed_tick_hz": 60,
+    "fixture": {
+      "input": "0..59 released; alternating L/R per60 ticks thereafter",
+      "name": "Slug public Sim legal floor",
+      "seed": 305419896,
+      "spawn": "actual authored lowest surface at +.01WU; uniform diagnostic material",
+      "ticks": 600
+    },
+    "live_spring_sleep": {
+      "any_sleep": false,
+      "max_dwell_ticks": 1,
+      "scope": "R25 actual F52 observation with adopted joint brace; deadline/drift in separate adoption gate",
+      "ticks": 600
+    },
+    "replay_final_digests": [
+      "4ec66a1f719135112c28f4e6678d87f4e3c04221d5236816ec02788faa0a6aaa",
+      "4ec66a1f719135112c28f4e6678d87f4e3c04221d5236816ec02788faa0a6aaa",
+      "4ec66a1f719135112c28f4e6678d87f4e3c04221d5236816ec02788faa0a6aaa"
+    ],
+    "replay_final_public_state_hashes": [
+      2748578646,
+      2748578646,
+      2748578646
+    ],
+    "replay_full_stream_bytes": 31112464,
+    "replay_result": {
+      "physics_digest": "cbc264cf97bd843171bcb7875ba5ed600f7351697ac48fc11b8d40e190ba1278",
+      "scope": "physics only; score/flags not implemented",
+      "sleep": {
+        "asleep": false,
+        "dwell_start": [],
+        "last_sleep_tick": -1,
+        "last_wake_tick": -1,
+        "max_body_com_displacement_wu": 0.0004692628150728125,
+        "max_body_dwell_displacement_wu": 0.0004692628150728125,
+        "still_ticks": 0
+      },
+      "ticks": 600
+    },
+    "replay_streams_byte_equal": true,
+    "runtime_gates": {
+      "10": "MEASURED two-second stall; exact solver equality at tick3, delivery-clock difference retained",
+      "12": "MEASURED single left-bit tick0 flip, actual bodies AND final hash differ",
+      "2": "MEASURED held chunks vs fixed ticks + three-step stall/drop, actual accumulator",
+      "3": "MEASURED same/different-seed injection + canonical stream vectors; no random physics perturbation",
+      "9": "MEASURED x3 complete Slug, full tick bytes/hashes/results",
+      "11": "MEASURED real --fixed-fps30/144 callbacks;600 same ticks, streams byte-identical, physics60",
+      "13": "MEASURED committed real baseline matched, linked DECISIONS provenance"
+    },
+    "stall": {
+      "clock_hash_scope": "whole-Sim hashes include delivery clock; compare full solver+RNG at equal ticks, clock differences explicitly retained",
+      "dropped_s": 1.95,
+      "elapsed_s": 2.0,
+      "pending_s": 0.0,
+      "solver_equal_at_tick3": true,
+      "steps": 3
+    },
+    "tuning_sha256": "5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666",
+    "full_stream_sha256": "cf98342cf54a06180a68223fb9aa0cb217209b2adb77c544293348e896e29190",
+    "per_tick_digest_table_sha256": "ab2be178d0dee0da6d6d08e8ac8109fb3598803d2c970ffbb61235ef8c3288af",
+    "delivery": [
+      {
+        "actual_ticks": 601,
+        "checks": 308,
+        "compared_ticks": 600,
+        "condition": 30,
+        "failures": 0,
+        "final_accumulator": {
+          "dropped": 0.0,
+          "pending": 0.008333333333333338
+        },
+        "frames": 301,
+        "scope": "actual SceneTree frame callbacks, --fixed-fps, first600 identical released-input fixed ticks; full extra ticks retained; clock outside tick hash",
+        "stream_bytes": 3219764,
+        "tick_hz": 60,
+        "min_frame_seconds": 0.025,
+        "max_frame_seconds": 0.04166666666666666,
+        "startup_frame_seconds": 0.025,
+        "modal_frame_seconds": 0.03333333333333333
+      },
+      {
+        "actual_ticks": 600,
+        "checks": 1446,
+        "compared_ticks": 600,
+        "condition": 144,
+        "failures": 0,
+        "final_accumulator": {
+          "dropped": 0.0,
+          "pending": 0.0
+        },
+        "frames": 1439,
+        "scope": "actual SceneTree frame callbacks, --fixed-fps, first600 identical released-input fixed ticks; full extra ticks retained; clock outside tick hash",
+        "stream_bytes": 3213172,
+        "tick_hz": 60,
+        "min_frame_seconds": 0.006666666666666667,
+        "max_frame_seconds": 0.008333333333333333,
+        "startup_frame_seconds": 0.008333333333333333,
+        "modal_frame_seconds": 0.006944444444444445
+      }
+    ],
+    "delivery_stream_sha256": "21ad6b5f37ced386a051feb673ad680f42c30d96050b317d10dc9c13df44c100",
+    "baseline_status": "MATCHED committed generated baseline"
+  },
+  "generated_baseline": {
+    "fixture": {
+      "input": "0..59 released; alternating L/R per60 ticks thereafter",
+      "name": "Slug public Sim legal floor",
+      "seed": 305419896,
+      "spawn": "actual authored lowest surface at +.01WU; uniform diagnostic material",
+      "ticks": 600
+    },
+    "tuning_sha256": "5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666",
+    "final_digest": "4ec66a1f719135112c28f4e6678d87f4e3c04221d5236816ec02788faa0a6aaa",
+    "full_stream_sha256": "cf98342cf54a06180a68223fb9aa0cb217209b2adb77c544293348e896e29190",
+    "per_tick_digest_table_sha256": "ab2be178d0dee0da6d6d08e8ac8109fb3598803d2c970ffbb61235ef8c3288af",
+    "decision_id": "M1-R26-BASELINE",
+    "source_head": "114265e0116101a897d8429a2998f4987549f86f",
+    "source_ci_run": 40901902007,
+    "source_job": "r26-baseline",
+    "provenance": "Owner R26 authorised regeneration on brace-removal source. Triple streams independently byte-equal; 30/144 clock streams equal. Normal public job reruns same commit against this explicit baseline overlay; generated baseline then committed without physics changes."
+  },
+  "generated_baseline_file_sha256": "2779456f6a35338a97666bcec813608ae5bda83c612ec1d5b6560df62590f679",
+  "D2_termination": {
+    "baseline": {
+      "ticks": 7067,
+      "failing_tick": 7067,
+      "status": 30,
+      "observer_status": 30,
+      "termination_reason": "step_failure"
+    },
+    "final_distance": {
+      "ticks": 7200,
+      "status": 0,
+      "observer_status": 0,
+      "failing_tick": null,
+      "termination_reason": "completed"
+    }
+  },
+  "FA5_source_reporting_error": "KeyError 'gripping': non-foot trace schema has grounded but no gripping flag; actual foot/per-candidate flags retained. Archive-only parser repair, NO physical rerun.",
+  "D2_source_reporting_error": "Baseline incomplete7200 stopped reporter before diagnostic summary; archive-only parser now reports both arms/completeness honestly, NO physical rerun.",
+  "decision": "Option2: D1 inconclusive for located correctness-shaped cause. OWNER authors AC201 number; no further diagnostic measurement. No .05 widening or silent AC201 rewrite.",
+  "archive_audit": {
+    "run": 40903408711,
+    "job": 123551531542,
+    "conclusion": "success",
+    "new_physics_runs": 0,
+    "evidence": ".review/m1_r26_archive_evidence.json",
+    "original_raw_hashes_matched": true,
+    "full_event_timestamps_retained_in_original_audit_artifact": 12909263530
+  },
+  "matrix": "8/18, no automatic credit",
+  "source_artifacts": [
+    {
+      "id": 12910755491,
+      "node_id": "MDg6QXJ0aWZhY3QxMjkxMDc1NTQ5MQ==",
+      "name": "m1-owner-geometry-40901902007",
+      "size_in_bytes": 1479,
+      "url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12910755491",
+      "archive_download_url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12910755491/zip",
+      "expired": false,
+      "digest": "sha256:d76431ca0a362dbdad37a59ac306798c3be119e1129a066f28b3cabdfd71f8fd",
+      "created_at": "2026-10-29T15:28:45Z",
+      "updated_at": "2026-10-29T15:28:45Z",
+      "expires_at": "2026-11-05T15:28:45Z",
+      "workflow_run": {
+        "id": 40901902007,
+        "repository_id": 1436504043,
+        "head_repository_id": 1436504043,
+        "head_branch": "arena/4cd0a587-clamber",
+        "head_sha": "114265e0116101a897d8429a2998f4987549f86f"
+      }
+    },
+    {
+      "id": 12910360713,
+      "node_id": "MDg6QXJ0aWZhY3QxMjkxMDM2MDcxMw==",
+      "name": "m1-r26-fa5-40901902007",
+      "size_in_bytes": 29762416,
+      "url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12910360713",
+      "archive_download_url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12910360713/zip",
+      "expired": false,
+      "digest": "sha256:36f8bd91571d22818ef67bd46ae535f93a4b407023a0f1829eac7dd07a4cb23e",
+      "created_at": "2026-10-29T15:29:27Z",
+      "updated_at": "2026-10-29T15:29:27Z",
+      "expires_at": "2026-11-05T15:29:23Z",
+      "workflow_run": {
+        "id": 40901902007,
+        "repository_id": 1436504043,
+        "head_repository_id": 1436504043,
+        "head_branch": "arena/4cd0a587-clamber",
+        "head_sha": "114265e0116101a897d8429a2998f4987549f86f"
+      }
+    },
+    {
+      "id": 12910301370,
+      "node_id": "MDg6QXJ0aWZhY3QxMjkxMDMwMTM3MA==",
+      "name": "m1-r26-d1-40901902007",
+      "size_in_bytes": 48225229,
+      "url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12910301370",
+      "archive_download_url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12910301370/zip",
+      "expired": false,
+      "digest": "sha256:6a876fae24f4287940f9b6785eaf5a6873e4162ee6d70b009c9c71fa0f818948",
+      "created_at": "2026-10-29T15:31:48Z",
+      "updated_at": "2026-10-29T15:31:48Z",
+      "expires_at": "2026-11-05T15:31:39Z",
+      "workflow_run": {
+        "id": 40901902007,
+        "repository_id": 1436504043,
+        "head_repository_id": 1436504043,
+        "head_branch": "arena/4cd0a587-clamber",
+        "head_sha": "114265e0116101a897d8429a2998f4987549f86f"
+      }
+    },
+    {
+      "id": 12910206144,
+      "node_id": "MDg6QXJ0aWZhY3QxMjkxMDIwNjE0NA==",
+      "name": "m1-slug-load-diagnostic-40901902007",
+      "size_in_bytes": 3263182,
+      "url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12910206144",
+      "archive_download_url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12910206144/zip",
+      "expired": false,
+      "digest": "sha256:8dbe5dc65fc87940f69343b905058ac54ef642e5920e22b04ad681a2c47e239d",
+      "created_at": "2026-10-29T15:28:56Z",
+      "updated_at": "2026-10-29T15:28:56Z",
+      "expires_at": "2026-11-05T15:28:54Z",
+      "workflow_run": {
+        "id": 40901902007,
+        "repository_id": 1436504043,
+        "head_repository_id": 1436504043,
+        "head_branch": "arena/4cd0a587-clamber",
+        "head_sha": "114265e0116101a897d8429a2998f4987549f86f"
+      }
+    },
+    {
+      "id": 12910091306,
+      "node_id": "MDg6QXJ0aWZhY3QxMjkxMDA5MTMwNg==",
+      "name": "m1-r26-baseline-40901902007",
+      "size_in_bytes": 8101782,
+      "url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12910091306",
+      "archive_download_url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12910091306/zip",
+      "expired": false,
+      "digest": "sha256:65b1da65fe63a2d6b909adfc75ee3a19b5d949d2258540059c19acc23ad60c18",
+      "created_at": "2026-10-29T15:28:57Z",
+      "updated_at": "2026-10-29T15:28:57Z",
+      "expires_at": "2026-11-05T15:28:54Z",
+      "workflow_run": {
+        "id": 40901902007,
+        "repository_id": 1436504043,
+        "head_repository_id": 1436504043,
+        "head_branch": "arena/4cd0a587-clamber",
+        "head_sha": "114265e0116101a897d8429a2998f4987549f86f"
+      }
+    },
+    {
+      "id": 12910007136,
+      "node_id": "MDg6QXJ0aWZhY3QxMjkxMDAwNzEzNg==",
+      "name": "m1-r26-d2-40901902007",
+      "size_in_bytes": 32859915,
+      "url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12910007136",
+      "archive_download_url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12910007136/zip",
+      "expired": false,
+      "digest": "sha256:2df1ee7b240b7586d33148baf8b28df434b748ae7c67c9f7c9aa2acc31e28e2e",
+      "created_at": "2026-10-29T15:32:25Z",
+      "updated_at": "2026-10-29T15:32:25Z",
+      "expires_at": "2026-11-05T15:32:20Z",
+      "workflow_run": {
+        "id": 40901902007,
+        "repository_id": 1436504043,
+        "head_repository_id": 1436504043,
+        "head_branch": "arena/4cd0a587-clamber",
+        "head_sha": "114265e0116101a897d8429a2998f4987549f86f"
+      }
+    },
+    {
+      "id": 12909567539,
+      "node_id": "MDg6QXJ0aWZhY3QxMjkwOTU2NzUzOQ==",
+      "name": "m1-r13-contact-probe-40901902007",
+      "size_in_bytes": 4485382,
+      "url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12909567539",
+      "archive_download_url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12909567539/zip",
+      "expired": false,
+      "digest": "sha256:d2db637fe7f5dfa6316270e2f0a14590495297f6d5987105677825eb294d38f8",
+      "created_at": "2026-10-29T15:29:10Z",
+      "updated_at": "2026-10-29T15:29:10Z",
+      "expires_at": "2026-11-05T15:29:08Z",
+      "workflow_run": {
+        "id": 40901902007,
+        "repository_id": 1436504043,
+        "head_repository_id": 1436504043,
+        "head_branch": "arena/4cd0a587-clamber",
+        "head_sha": "114265e0116101a897d8429a2998f4987549f86f"
+      }
+    },
+    {
+      "id": 12909512472,
+      "node_id": "MDg6QXJ0aWZhY3QxMjkwOTUxMjQ3Mg==",
+      "name": "m1-contact-unit-log-40901902007",
+      "size_in_bytes": 771,
+      "url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12909512472",
+      "archive_download_url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12909512472/zip",
+      "expired": false,
+      "digest": "sha256:be8be907e9f14eb208223a551b53a5e377b84d6afeef7891400c30e8b3dbedcb",
+      "created_at": "2026-10-29T15:28:41Z",
+      "updated_at": "2026-10-29T15:28:41Z",
+      "expires_at": "2026-11-05T15:28:40Z",
+      "workflow_run": {
+        "id": 40901902007,
+        "repository_id": 1436504043,
+        "head_repository_id": 1436504043,
+        "head_branch": "arena/4cd0a587-clamber",
+        "head_sha": "114265e0116101a897d8429a2998f4987549f86f"
+      }
+    },
+    {
+      "id": 12909212497,
+      "node_id": "MDg6QXJ0aWZhY3QxMjkwOTIxMjQ5Nw==",
+      "name": "m1-r14-pose-40901902007",
+      "size_in_bytes": 4831259,
+      "url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12909212497",
+      "archive_download_url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12909212497/zip",
+      "expired": false,
+      "digest": "sha256:c749ba64bc459f327f6800c191570c3c17d6a57ca5474fecaadc1de8d292b21d",
+      "created_at": "2026-10-29T15:29:23Z",
+      "updated_at": "2026-10-29T15:29:23Z",
+      "expires_at": "2026-11-05T15:29:21Z",
+      "workflow_run": {
+        "id": 40901902007,
+        "repository_id": 1436504043,
+        "head_repository_id": 1436504043,
+        "head_branch": "arena/4cd0a587-clamber",
+        "head_sha": "114265e0116101a897d8429a2998f4987549f86f"
+      }
+    },
+    {
+      "id": 12909098598,
+      "node_id": "MDg6QXJ0aWZhY3QxMjkwOTA5ODU5OA==",
+      "name": "m1-r14-sleep-40901902007",
+      "size_in_bytes": 15772,
+      "url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12909098598",
+      "archive_download_url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12909098598/zip",
+      "expired": false,
+      "digest": "sha256:a897e91ad3dcb46080fa8f146a39e1de29d65f4216fcdc73ab484f75a99b40d6",
+      "created_at": "2026-10-29T15:29:29Z",
+      "updated_at": "2026-10-29T15:29:29Z",
+      "expires_at": "2026-11-05T15:29:29Z",
+      "workflow_run": {
+        "id": 40901902007,
+        "repository_id": 1436504043,
+        "head_repository_id": 1436504043,
+        "head_branch": "arena/4cd0a587-clamber",
+        "head_sha": "114265e0116101a897d8429a2998f4987549f86f"
+      }
+    },
+    {
+      "id": 12909068043,
+      "node_id": "MDg6QXJ0aWZhY3QxMjkwOTA2ODA0Mw==",
+      "name": "m1-public-sim-40901902007",
+      "size_in_bytes": 8099738,
+      "url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12909068043",
+      "archive_download_url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12909068043/zip",
+      "expired": false,
+      "digest": "sha256:be8e986172bd61a108bf406968f95b99afd8eb4ca9e66996a5814e04a4c1560c",
+      "created_at": "2026-10-29T15:29:51Z",
+      "updated_at": "2026-10-29T15:29:51Z",
+      "expires_at": "2026-11-05T15:29:49Z",
+      "workflow_run": {
+        "id": 40901902007,
+        "repository_id": 1436504043,
+        "head_repository_id": 1436504043,
+        "head_branch": "arena/4cd0a587-clamber",
+        "head_sha": "114265e0116101a897d8429a2998f4987549f86f"
+      }
+    },
+    {
+      "id": 12908783430,
+      "node_id": "MDg6QXJ0aWZhY3QxMjkwODc4MzQzMA==",
+      "name": "m1-r15-mechanics-40901902007",
+      "size_in_bytes": 8859408,
+      "url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12908783430",
+      "archive_download_url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12908783430/zip",
+      "expired": false,
+      "digest": "sha256:c001c89a2ee0cf3c1ec8323852f42ba3174a32603f8c896cfd11d35f45f577c0",
+      "created_at": "2026-10-29T15:29:54Z",
+      "updated_at": "2026-10-29T15:29:54Z",
+      "expires_at": "2026-11-05T15:29:52Z",
+      "workflow_run": {
+        "id": 40901902007,
+        "repository_id": 1436504043,
+        "head_repository_id": 1436504043,
+        "head_branch": "arena/4cd0a587-clamber",
+        "head_sha": "114265e0116101a897d8429a2998f4987549f86f"
+      }
+    }
+  ],
+  "D2": {
+    "diagnostic_only": true,
+    "preset": "Hopper",
+    "arms": {
+      "baseline": {
+        "ticks": 7067,
+        "completed": false,
+        "awake_ticks": 7067,
+        "parked_ticks": 0,
+        "maxima": {
+          "after_contact_pass_0/all": {
+            "error_wu": 0.1476148698175428,
+            "tick": 7,
+            "part": 5,
+            "kind": "foot"
+          },
+          "after_contact_pass_0/limb": {
+            "error_wu": 0.05334550000967464,
+            "tick": 12,
+            "part": 3,
+            "kind": "limb"
+          },
+          "after_contact_pass_1/all": {
+            "error_wu": 0.1476148698175428,
+            "tick": 7,
+            "part": 5,
+            "kind": "foot"
+          },
+          "after_contact_pass_1/limb": {
+            "error_wu": 0.05334550000967464,
+            "tick": 12,
+            "part": 3,
+            "kind": "limb"
+          },
+          "after_final_angular/all": {
+            "error_wu": 0.018032380396491188,
+            "tick": 17,
+            "part": 2,
+            "kind": "passive"
+          },
+          "after_final_angular/limb": {
+            "error_wu": 0.014927052436045196,
+            "tick": 7,
+            "part": 3,
+            "kind": "limb"
+          },
+          "after_final_hinge/all": {
+            "error_wu": 0.018032380396491188,
+            "tick": 17,
+            "part": 2,
+            "kind": "passive"
+          },
+          "after_final_hinge/limb": {
+            "error_wu": 0.014927052436045196,
+            "tick": 7,
+            "part": 3,
+            "kind": "limb"
+          },
+          "after_final_self_contact/all": {
+            "error_wu": 0.018032380396491132,
+            "tick": 17,
+            "part": 2,
+            "kind": "passive"
+          },
+          "after_final_self_contact/limb": {
+            "error_wu": 0.014927052436045196,
+            "tick": 7,
+            "part": 3,
+            "kind": "limb"
+          },
+          "after_integration/all": {
+            "error_wu": 0.1764048689549318,
+            "tick": 8,
+            "part": 5,
+            "kind": "foot"
+          },
+          "after_integration/limb": {
+            "error_wu": 0.084446601670228,
+            "tick": 13,
+            "part": 3,
+            "kind": "limb"
+          },
+          "after_iteration_distance/all": {
+            "error_wu": 1.7763568394002505e-15,
+            "tick": 4940,
+            "part": 4,
+            "kind": "motor"
+          },
+          "after_iteration_distance/limb": {
+            "error_wu": 1.7763568394002505e-15,
+            "tick": 4949,
+            "part": 6,
+            "kind": "limb"
+          },
+          "completed/all": {
+            "error_wu": 0.1476148698175428,
+            "tick": 7,
+            "part": 5,
+            "kind": "foot"
+          },
+          "completed/limb": {
+            "error_wu": 0.05334550000967464,
+            "tick": 12,
+            "part": 3,
+            "kind": "limb"
+          }
+        },
+        "termination": {
+          "failing_tick": 7067,
+          "observer_status": 30,
+          "status": 30,
+          "target_ticks": 7200,
+          "termination_reason": "step_failure",
+          "ticks": 7067
+        },
+        "true_limb_passed": false,
+        "all_parts_passed": false
+      },
+      "final_distance": {
+        "ticks": 7200,
+        "completed": true,
+        "awake_ticks": 7200,
+        "parked_ticks": 0,
+        "maxima": {
+          "after_contact_pass_0/all": {
+            "error_wu": 0.14264355525719857,
+            "tick": 7,
+            "part": 5,
+            "kind": "foot"
+          },
+          "after_contact_pass_0/limb": {
+            "error_wu": 0.051910617942553194,
+            "tick": 11,
+            "part": 3,
+            "kind": "limb"
+          },
+          "after_contact_pass_1/all": {
+            "error_wu": 0.14264355525719857,
+            "tick": 7,
+            "part": 5,
+            "kind": "foot"
+          },
+          "after_contact_pass_1/limb": {
+            "error_wu": 0.051910617942553194,
+            "tick": 11,
+            "part": 3,
+            "kind": "limb"
+          },
+          "after_diagnostic_final_distance/all": {
+            "error_wu": 1.8041124150158794e-15,
+            "tick": 5161,
+            "part": 7,
+            "kind": "foot"
+          },
+          "after_diagnostic_final_distance/limb": {
+            "error_wu": 1.7763568394002505e-15,
+            "tick": 5209,
+            "part": 6,
+            "kind": "limb"
+          },
+          "after_final_angular/all": {
+            "error_wu": 0.030398860772813896,
+            "tick": 18,
+            "part": 2,
+            "kind": "passive"
+          },
+          "after_final_angular/limb": {
+            "error_wu": 0.015140751632692628,
+            "tick": 7,
+            "part": 3,
+            "kind": "limb"
+          },
+          "after_final_hinge/all": {
+            "error_wu": 0.030398860772813896,
+            "tick": 18,
+            "part": 2,
+            "kind": "passive"
+          },
+          "after_final_hinge/limb": {
+            "error_wu": 0.015140751632692628,
+            "tick": 7,
+            "part": 3,
+            "kind": "limb"
+          },
+          "after_final_self_contact/all": {
+            "error_wu": 0.03039886077281395,
+            "tick": 18,
+            "part": 2,
+            "kind": "passive"
+          },
+          "after_final_self_contact/limb": {
+            "error_wu": 0.015140751632692628,
+            "tick": 7,
+            "part": 3,
+            "kind": "limb"
+          },
+          "after_integration/all": {
+            "error_wu": 0.17151237868271502,
+            "tick": 8,
+            "part": 5,
+            "kind": "foot"
+          },
+          "after_integration/limb": {
+            "error_wu": 0.08711529493913817,
+            "tick": 12,
+            "part": 3,
+            "kind": "limb"
+          },
+          "after_iteration_distance/all": {
+            "error_wu": 1.7763568394002505e-15,
+            "tick": 5017,
+            "part": 7,
+            "kind": "foot"
+          },
+          "after_iteration_distance/limb": {
+            "error_wu": 1.7763568394002505e-15,
+            "tick": 5121,
+            "part": 6,
+            "kind": "limb"
+          },
+          "completed/all": {
+            "error_wu": 0.14264355525719857,
+            "tick": 7,
+            "part": 5,
+            "kind": "foot"
+          },
+          "completed/limb": {
+            "error_wu": 0.051910617942553194,
+            "tick": 11,
+            "part": 3,
+            "kind": "limb"
+          }
+        },
+        "termination": {
+          "failing_tick": null,
+          "observer_status": 0,
+          "status": 0,
+          "target_ticks": 7200,
+          "termination_reason": "completed",
+          "ticks": 7200
+        },
+        "true_limb_passed": false,
+        "all_parts_passed": false
+      }
+    },
+    "phase_semantics": "after_iteration_distance is the last existing distance block BEFORE hinge/angular/self-contact. after_diagnostic_final_distance is ONE added traversal AFTER all position iterations, BEFORE velocity/contact cleanup. Completed-tick true limbs determine the unchanged .05 criterion. No pass is moved after contact cleanup.",
+    "ordering_candidate_meets_limb_criterion": false,
+    "measurement_complete": false,
+    "adopted": false
+  },
+  "FA5": {
+    "gate": "FA5",
+    "totals": {
+      "N0_no_grip": 14,
+      "below": 4731,
+      "at_or_above": 27,
+      "two_foot_grip": 9,
+      "ineligible_not_lowest": 4640,
+      "airborne": 236
+    },
+    "missing_coverage": [],
+    "passed": true,
+    "event_definition": "Maximal consecutive TICKS per foot/branch; collapse both velocity passes and all capsule samples within a tick. Two-foot branch uses a pair key. Report entry counts and event durations separately from sample and foot/pass counts.",
+    "scope": "Natural authored Hopper, no pose/velocity/qualifying-load injection. Coverage is not a claim of long-lived robust grip; independent episode counts/durations expose transient-only coverage. No matrix upgrade automatically.",
+    "cases": {
+      "stance": {
+        "ticks": 600,
+        "completed": true,
+        "ledge_departure_tick": null,
+        "foot_or_pair_pass_counts": {
+          "N0_no_grip": 4,
+          "below": 1319,
+          "at_or_above": 7,
+          "two_foot_grip": 2,
+          "ineligible_not_lowest": 1070
+        },
+        "capsule_candidate_counts": {
+          "N0_no_grip": 8,
+          "below": 3147,
+          "at_or_above": 16,
+          "ineligible_not_lowest": 2651
+        },
+        "capsule_active_counts": {
+          "N0_no_grip": 4,
+          "below": 3121,
+          "at_or_above": 11,
+          "ineligible_not_lowest": 2650
+        },
+        "N_threshold_distribution": [
+          {
+            "branch": "N0_no_grip",
+            "N": 0,
+            "threshold_n": null,
+            "foot_or_pair_passes": 4,
+            "load_n_min": 8.4,
+            "load_n_max": 9.624
+          },
+          {
+            "branch": "at_or_above",
+            "N": 2,
+            "threshold_n": 18.871999999999996,
+            "foot_or_pair_passes": 7,
+            "load_n_min": 19.268961368455294,
+            "load_n_max": 22.303614150117895
+          },
+          {
+            "branch": "below",
+            "N": 2,
+            "threshold_n": 18.871999999999996,
+            "foot_or_pair_passes": 1319,
+            "load_n_min": 0.0,
+            "load_n_max": 18.836037560386337
+          },
+          {
+            "branch": "ineligible_not_lowest",
+            "N": 2,
+            "threshold_n": 18.871999999999996,
+            "foot_or_pair_passes": 1070,
+            "load_n_min": 6.590693283188814,
+            "load_n_max": 12.42333778586522
+          },
+          {
+            "branch": "two_foot_grip",
+            "N": 2,
+            "threshold_n": 18.871999999999996,
+            "foot_or_pair_passes": 2,
+            "load_n_min": null,
+            "load_n_max": null
+          }
+        ],
+        "termination": {
+          "failing_tick": null,
+          "initial_min_clearance_wu": 0.009999999999999606,
+          "observer_status": 0,
+          "status": 0,
+          "target_ticks": 600,
+          "termination_reason": "completed",
+          "ticks": 600
+        },
+        "events": {
+          "below": {
+            "independent_events": 2,
+            "independent_true_grip_events": 0,
+            "event_durations_ticks": [
+              599,
+              599
+            ]
+          },
+          "at_or_above": {
+            "independent_events": 3,
+            "independent_true_grip_events": 3,
+            "event_durations_ticks": [
+              3,
+              2,
+              2
+            ]
+          },
+          "two_foot_grip": {
+            "independent_events": 1,
+            "independent_true_grip_events": 1,
+            "event_durations_ticks": [
+              2
+            ]
+          },
+          "airborne": {
+            "independent_events": 0,
+            "independent_true_grip_events": 0,
+            "event_durations_ticks": []
+          },
+          "N0_no_grip": {
+            "independent_events": 2,
+            "independent_true_grip_events": 0,
+            "event_durations_ticks": [
+              1,
+              1
+            ]
+          }
+        }
+      },
+      "drop_onto_feet": {
+        "ticks": 600,
+        "completed": true,
+        "ledge_departure_tick": null,
+        "foot_or_pair_pass_counts": {
+          "airborne": 92,
+          "N0_no_grip": 4,
+          "at_or_above": 13,
+          "two_foot_grip": 5,
+          "ineligible_not_lowest": 1144,
+          "below": 1147
+        },
+        "capsule_candidate_counts": {
+          "airborne": 184,
+          "N0_no_grip": 8,
+          "at_or_above": 27,
+          "ineligible_not_lowest": 2852,
+          "below": 2575
+        },
+        "capsule_active_counts": {
+          "airborne": 0,
+          "N0_no_grip": 4,
+          "at_or_above": 20,
+          "ineligible_not_lowest": 2844,
+          "below": 2573
+        },
+        "N_threshold_distribution": [
+          {
+            "branch": "N0_no_grip",
+            "N": 0,
+            "threshold_n": null,
+            "foot_or_pair_passes": 4,
+            "load_n_min": 8.4,
+            "load_n_max": 31.914243405644395
+          },
+          {
+            "branch": "airborne",
+            "N": 0,
+            "threshold_n": null,
+            "foot_or_pair_passes": 92,
+            "load_n_min": 8.4,
+            "load_n_max": 8.4
+          },
+          {
+            "branch": "at_or_above",
+            "N": 2,
+            "threshold_n": 18.871999999999996,
+            "foot_or_pair_passes": 13,
+            "load_n_min": 21.41757871487081,
+            "load_n_max": 54.081691681016686
+          },
+          {
+            "branch": "below",
+            "N": 2,
+            "threshold_n": 18.871999999999996,
+            "foot_or_pair_passes": 1147,
+            "load_n_min": 0.0,
+            "load_n_max": 13.55726605818012
+          },
+          {
+            "branch": "ineligible_not_lowest",
+            "N": 2,
+            "threshold_n": 18.871999999999996,
+            "foot_or_pair_passes": 1144,
+            "load_n_min": 7.501591052811255,
+            "load_n_max": 13.244085923365407
+          },
+          {
+            "branch": "two_foot_grip",
+            "N": 2,
+            "threshold_n": 18.871999999999996,
+            "foot_or_pair_passes": 5,
+            "load_n_min": null,
+            "load_n_max": null
+          }
+        ],
+        "termination": {
+          "failing_tick": null,
+          "initial_min_clearance_wu": 2.0100000000000007,
+          "observer_status": 0,
+          "status": 0,
+          "target_ticks": 600,
+          "termination_reason": "completed",
+          "ticks": 600
+        },
+        "events": {
+          "below": {
+            "independent_events": 3,
+            "independent_true_grip_events": 0,
+            "event_durations_ticks": [
+              2,
+              572,
+              570
+            ]
+          },
+          "at_or_above": {
+            "independent_events": 2,
+            "independent_true_grip_events": 2,
+            "event_durations_ticks": [
+              3,
+              4
+            ]
+          },
+          "two_foot_grip": {
+            "independent_events": 1,
+            "independent_true_grip_events": 1,
+            "event_durations_ticks": [
+              3
+            ]
+          },
+          "airborne": {
+            "independent_events": 2,
+            "independent_true_grip_events": 0,
+            "event_durations_ticks": [
+              23,
+              23
+            ]
+          },
+          "N0_no_grip": {
+            "independent_events": 2,
+            "independent_true_grip_events": 0,
+            "event_durations_ticks": [
+              1,
+              1
+            ]
+          }
+        }
+      },
+      "ledge_departure": {
+        "ticks": 1200,
+        "completed": true,
+        "ledge_departure_tick": 83,
+        "foot_or_pair_pass_counts": {
+          "N0_no_grip": 6,
+          "below": 2265,
+          "at_or_above": 7,
+          "two_foot_grip": 2,
+          "ineligible_not_lowest": 2426,
+          "airborne": 96
+        },
+        "capsule_candidate_counts": {
+          "N0_no_grip": 14,
+          "below": 5127,
+          "at_or_above": 16,
+          "ineligible_not_lowest": 5816,
+          "airborne": 272
+        },
+        "capsule_active_counts": {
+          "N0_no_grip": 6,
+          "below": 5077,
+          "at_or_above": 11,
+          "ineligible_not_lowest": 5606,
+          "airborne": 0
+        },
+        "N_threshold_distribution": [
+          {
+            "branch": "N0_no_grip",
+            "N": 0,
+            "threshold_n": null,
+            "foot_or_pair_passes": 6,
+            "load_n_min": 0.0,
+            "load_n_max": 9.624
+          },
+          {
+            "branch": "airborne",
+            "N": 0,
+            "threshold_n": null,
+            "foot_or_pair_passes": 74,
+            "load_n_min": 0.0,
+            "load_n_max": 10.134540927119408
+          },
+          {
+            "branch": "airborne",
+            "N": 1,
+            "threshold_n": 37.74399999999999,
+            "foot_or_pair_passes": 20,
+            "load_n_min": 0.0,
+            "load_n_max": 6.52303270478256
+          },
+          {
+            "branch": "airborne",
+            "N": 2,
+            "threshold_n": 18.871999999999996,
+            "foot_or_pair_passes": 2,
+            "load_n_min": 8.156592264259476,
+            "load_n_max": 8.758275396132683
+          },
+          {
+            "branch": "at_or_above",
+            "N": 2,
+            "threshold_n": 18.871999999999996,
+            "foot_or_pair_passes": 7,
+            "load_n_min": 19.26896136845429,
+            "load_n_max": 22.303614150117983
+          },
+          {
+            "branch": "below",
+            "N": 1,
+            "threshold_n": 37.74399999999999,
+            "foot_or_pair_passes": 2,
+            "load_n_min": 0.0,
+            "load_n_max": 25.769234379251102
+          },
+          {
+            "branch": "below",
+            "N": 2,
+            "threshold_n": 18.871999999999996,
+            "foot_or_pair_passes": 2263,
+            "load_n_min": 0.0,
+            "load_n_max": 18.836037560386636
+          },
+          {
+            "branch": "ineligible_not_lowest",
+            "N": 1,
+            "threshold_n": 37.74399999999999,
+            "foot_or_pair_passes": 18,
+            "load_n_min": 0.0,
+            "load_n_max": 16.40670471597292
+          },
+          {
+            "branch": "ineligible_not_lowest",
+            "N": 2,
+            "threshold_n": 18.871999999999996,
+            "foot_or_pair_passes": 2408,
+            "load_n_min": 0.0,
+            "load_n_max": 16.034814037915297
+          },
+          {
+            "branch": "two_foot_grip",
+            "N": 2,
+            "threshold_n": 18.871999999999996,
+            "foot_or_pair_passes": 2,
+            "load_n_min": null,
+            "load_n_max": null
+          }
+        ],
+        "termination": {
+          "failing_tick": null,
+          "initial_min_clearance_wu": 0.009999999999999606,
+          "observer_status": 0,
+          "status": 0,
+          "target_ticks": 1200,
+          "termination_reason": "completed",
+          "ticks": 1200
+        },
+        "events": {
+          "below": {
+            "independent_events": 6,
+            "independent_true_grip_events": 0,
+            "event_durations_ticks": [
+              12,
+              19,
+              19,
+              3,
+              1097,
+              1097
+            ]
+          },
+          "at_or_above": {
+            "independent_events": 3,
+            "independent_true_grip_events": 3,
+            "event_durations_ticks": [
+              3,
+              2,
+              2
+            ]
+          },
+          "two_foot_grip": {
+            "independent_events": 1,
+            "independent_true_grip_events": 1,
+            "event_durations_ticks": [
+              2
+            ]
+          },
+          "airborne": {
+            "independent_events": 2,
+            "independent_true_grip_events": 0,
+            "event_durations_ticks": [
+              28,
+              20
+            ]
+          },
+          "N0_no_grip": {
+            "independent_events": 3,
+            "independent_true_grip_events": 0,
+            "event_durations_ticks": [
+              1,
+              1,
+              1
+            ]
+          }
+        }
+      },
+      "midair_sample": {
+        "ticks": 12,
+        "completed": true,
+        "ledge_departure_tick": null,
+        "foot_or_pair_pass_counts": {
+          "airborne": 48
+        },
+        "capsule_candidate_counts": {
+          "airborne": 96
+        },
+        "capsule_active_counts": {
+          "airborne": 0
+        },
+        "N_threshold_distribution": [
+          {
+            "branch": "airborne",
+            "N": 0,
+            "threshold_n": null,
+            "foot_or_pair_passes": 48,
+            "load_n_min": 8.4,
+            "load_n_max": 8.4
+          }
+        ],
+        "termination": {
+          "failing_tick": null,
+          "initial_min_clearance_wu": 4.009999999999999,
+          "observer_status": 0,
+          "status": 0,
+          "target_ticks": 12,
+          "termination_reason": "completed",
+          "ticks": 12
+        },
+        "events": {
+          "below": {
+            "independent_events": 0,
+            "independent_true_grip_events": 0,
+            "event_durations_ticks": []
+          },
+          "at_or_above": {
+            "independent_events": 0,
+            "independent_true_grip_events": 0,
+            "event_durations_ticks": []
+          },
+          "two_foot_grip": {
+            "independent_events": 0,
+            "independent_true_grip_events": 0,
+            "event_durations_ticks": []
+          },
+          "airborne": {
+            "independent_events": 2,
+            "independent_true_grip_events": 0,
+            "event_durations_ticks": [
+              12,
+              12
+            ]
+          },
+          "N0_no_grip": {
+            "independent_events": 0,
+            "independent_true_grip_events": 0,
+            "event_durations_ticks": []
+          }
+        }
+      }
+    }
+  },
+  "committed_baseline_checks": {
+    "head": "ddefbbabc557be955ce348632f027ed84527f51d",
+    "push_run": 40903408711,
+    "pr_run": 40903423314,
+    "push_public_job": 123551532000,
+    "pr_public_job": 123551591430,
+    "strict_public_push_pr": "success,9053+308+1446 checks,0failures",
+    "full_push_pr_summaries_identical": true,
+    "source_summary_diff_only": "correct obsolete human-readable live_spring_sleep.scope brace label; all physical/replay/clock metrics identical",
+    "static_push_pr": "success,201 Python controls",
+    "M0": {
+      "push_run": 40903408840,
+      "pr_run": 40903423810,
+      "push_and_pr_headless_and_android": "success",
+      "engine_checks": 516,
+      "engine_failures": 0
+    },
+    "M1_overall": "FAIL only unchanged Hinged Slug600/F47 step, NOT WAIVED"
+  },
+  "postprocess_publication": {
+    "head": "559e929",
+    "push_run": 40904855466,
+    "pr_run": 40904864867,
+    "archive_job": 123556709209,
+    "archive_conclusion": "success,0newphysicalruns,exact first-audit results",
+    "artifact": {
+      "id": 12910322894,
+      "node_id": "MDg6QXJ0aWZhY3QxMjkxMDMyMjg5NA==",
+      "name": "m1-r26-archive-audit-40904855466",
+      "size_in_bytes": 1419652,
+      "url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12910322894",
+      "archive_download_url": "https://api.github.com/repos/sagheerh/clamber/actions/artifacts/12910322894/zip",
+      "expired": false,
+      "digest": "sha256:f58510b89dacd00645eb76016f11b3a4f9bdd38869f0959aca2a7670eddb2148",
+      "created_at": "2026-10-29T15:46:27Z",
+      "updated_at": "2026-10-29T15:46:27Z",
+      "expires_at": "2026-11-05T15:46:25Z",
+      "workflow_run": {
+        "id": 40904855466,
+        "repository_id": 1436504043,
+        "head_repository_id": 1436504043,
+        "head_branch": "arena/4cd0a587-clamber",
+        "head_sha": "559e929eaebf9eb87ec38a85a75d212e43012530"
+      }
+    },
+    "derived_per_tick_reports": [
+      "baseline-phase-maxima.jsonl:7067raw-completed ticks",
+      "final_distance-phase-maxima.jsonl:7200ticks"
+    ],
+    "public_push_job": 123556709294,
+    "public_pr_job": 123556743027,
+    "public_results": "SUCCESS,fullsummaryEXACT baselinecommit push+PR",
+    "static_push_job": 123556708934,
+    "static_pr_job": 123556743003,
+    "static_results": "202controlsSUCCESS",
+    "M0_push": 40904855470,
+    "M0_pr": 40904864938,
+    "M0_results": "516/0+AndroidPUSH/PRSUCCESS",
+    "M1_overall": "FAIL onlyunchangedF47,notwaived",
+    "core_data_identical_since": "114265e"
+  }
+}

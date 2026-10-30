@@ -1,0 +1,22 @@
+[
+  [
+    "core/tuning.tres",
+    "3a32dd3d2d719ed28220ed531fee05c8d2a799140d3f06e3aeed4d28d6e6f60c"
+  ],
+  [
+    "data/creatures/.gitkeep",
+    "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  [
+    "data/creatures/preset_hopper.json",
+    "0644f08c8b033d76c1b83bcf4b597c5b0a42931e4dc01bcc8e49529194836e99"
+  ],
+  [
+    "data/creatures/preset_slug.json",
+    "218036e40502480552f81f0514de232d0acf8d459038b22cdb1c1241045e6f7c"
+  ],
+  [
+    "data/creatures/preset_twinroller.json",
+    "3776dc442316f13b27b76d77e4f270bbe0546fca27a38be663f3624d2e5e2715"
+  ]
+]
