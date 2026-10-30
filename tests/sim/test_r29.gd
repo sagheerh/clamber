@@ -186,86 +186,91 @@ func _capture() -> bool:
 
 
 func _benchmark() -> bool:
-	var metadata := {
-		"warmup": 1000,
-		"samples": 10000,
-		"batch": 10,
-		"bodies": 30,
-		"structural": {},
-		"max_contact_candidates_per_pass": 0,
-		"max_active_contact_samples_per_pass": 0,
-		"max_self_pairs": 0,
-		"method":
-		"ten independent real production Slugs; direct transactional CreatureTickSolver.step and public Sim.step (nested outer+tick transactions); not one coupled30body creature; no frame-only optimized mode"
-	}
-	var f := FileAccess.open(_folder + "/D2-timings.csv", FileAccess.WRITE)
-	f.store_line(
-		"mode,sample,elapsed_us,active_contact_samples_max_pass,candidate_samples_max_pass"
-	)
-	for mode in ["direct_tick", "public_frame_plus_tick"]:
-		var sims: Array[Sim] = []
-		for i in range(10):
-			var sim := _sim("Slug", true)
-			if sim == null:
-				return false
-			sims.append(sim)
-		var probe := sims[0]._solver._rig._probe as ActuatedLoadProbe
-		metadata.structural = {
-			"distance_objects": probe._links.size() * 10,
-			"coincident_hinge_objects": probe._hinges.size() * 10,
-			"angular_objects": probe._joints.size() * 10,
-			"structural_objects":
-			(probe._links.size() + probe._hinges.size() + probe._joints.size()) * 10,
-			"scalar_structural_rows":
-			(probe._links.size() + 2 * probe._hinges.size() + probe._joints.size()) * 10,
-			"self_pair_candidates": probe._pairs.size() * 10
+	var all_metadata := {}
+	for workload in ["Hopper", "SlugAggregate"]:
+		var batch := 1 if workload == "Hopper" else 10
+		var metadata := {
+			"warmup": 1000,
+			"samples": 10000,
+			"batch": batch,
+			"bodies": 0,
+			"structural": {},
+			"max_contact_candidates_per_pass": 0,
+			"max_active_contact_samples_per_pass": 0,
+			"max_self_pairs": 0,
+			"method":
+			"Hopper alone or ten independent production Slugs as labelled aggregate; direct transactional CreatureTickSolver.step and public Sim.step (nested outer+tick transactions); not one coupled30body creature; no frame-only optimized mode"
 		}
-		for tick in range(11000):
-			var mask := _mask(tick)
-			var start := Time.get_ticks_usec()
-			for sim in sims:
-				if mode == "direct_tick":
-					if sim._solver.set_input(mask) != OK or sim._solver.step() != OK:
-						f.close()
-						return false
-				else:
-					sim.step(mask)
-					if sim.last_status != OK:
-						f.close()
-						return false
-			var elapsed := Time.get_ticks_usec() - start
-			var active := [0, 0]
-			var candidates := [0, 0]
-			for sim in sims:
-				var rig: SleepingLoadProbe = sim._solver._rig
-				_bad = []
-				_finite(rig.snapshot(), "state")
-				_finite(rig.constraint_snapshot(), "constraints")
-				if not _bad.is_empty():
-					_write(
-						"D2-failure.json",
-						{"mode": mode, "tick": tick, "nonfinite": _bad, "state": rig.snapshot()}
-					)
-					f.close()
+		var f := FileAccess.open(_folder + "/D2-" + workload + "-timings.csv", FileAccess.WRITE)
+		f.store_line(
+			"mode,sample,elapsed_us,active_contact_samples_max_pass,candidate_samples_max_pass"
+		)
+		for mode in ["direct_tick", "public_frame_plus_tick"]:
+			var sims: Array[Sim] = []
+			for i in range(batch):
+				var sim := _sim("Hopper" if workload == "Hopper" else "Slug", true)
+				if sim == null:
 					return false
-				for c in rig._probe._contact_counts:
-					active[c.velocity_pass] += c.active_count
-					candidates[c.velocity_pass] += c.candidate_count
-				# Clear diagnostic delivery queue outside timed region, no physical state edits.
-				sim._frame_ticks = []
-			var a: int = maxi(active[0], active[1])
-			var c: int = maxi(candidates[0], candidates[1])
-			metadata.max_active_contact_samples_per_pass = maxi(
-				metadata.max_active_contact_samples_per_pass, a
-			)
-			metadata.max_contact_candidates_per_pass = maxi(
-				metadata.max_contact_candidates_per_pass, c
-			)
-			if tick >= 1000:
-				f.store_line("%s,%d,%d,%d,%d" % [mode, tick - 1000, elapsed, a, c])
-		f.flush()
-	f.close()
-	_write("D2.json", metadata)
+				sims.append(sim)
+			var probe := sims[0]._solver._rig._probe as ActuatedLoadProbe
+			metadata.bodies = probe.bodies.size() * batch
+			metadata.structural = {
+				"distance_objects": probe._links.size() * batch,
+				"coincident_hinge_objects": probe._hinges.size() * batch,
+				"angular_objects": probe._joints.size() * batch,
+				"structural_objects":
+				(probe._links.size() + probe._hinges.size() + probe._joints.size()) * batch,
+				"scalar_structural_rows":
+				(probe._links.size() + 2 * probe._hinges.size() + probe._joints.size()) * batch,
+				"self_pair_candidates": probe._pairs.size() * batch
+			}
+			for tick in range(11000):
+				var mask := _mask(tick)
+				var start := Time.get_ticks_usec()
+				for sim in sims:
+					if mode == "direct_tick":
+						if sim._solver.set_input(mask) != OK or sim._solver.step() != OK:
+							f.close()
+							return false
+					else:
+						sim.step(mask)
+						if sim.last_status != OK:
+							f.close()
+							return false
+				var elapsed := Time.get_ticks_usec() - start
+				var active := [0, 0]
+				var candidates := [0, 0]
+				for sim in sims:
+					var rig: SleepingLoadProbe = sim._solver._rig
+					_bad = []
+					_finite(rig.snapshot(), "state")
+					_finite(rig.constraint_snapshot(), "constraints")
+					if not _bad.is_empty():
+						_write(
+							"D2-failure.json",
+							{"mode": mode, "tick": tick, "nonfinite": _bad, "state": rig.snapshot()}
+						)
+						f.close()
+						return false
+					for c in rig._probe._contact_counts:
+						active[c.velocity_pass] += c.active_count
+						candidates[c.velocity_pass] += c.candidate_count
+					# Clear diagnostic delivery queue outside timed region, no physical state edits.
+					sim._frame_ticks = []
+				var a: int = maxi(active[0], active[1])
+				var c: int = maxi(candidates[0], candidates[1])
+				metadata.max_active_contact_samples_per_pass = maxi(
+					metadata.max_active_contact_samples_per_pass, a
+				)
+				metadata.max_contact_candidates_per_pass = maxi(
+					metadata.max_contact_candidates_per_pass, c
+				)
+				if tick >= 1000:
+					f.store_line("%s,%d,%d,%d,%d" % [mode, tick - 1000, elapsed, a, c])
+			f.flush()
+		f.close()
+		all_metadata[workload] = metadata
+	_write("D2.json", all_metadata)
 	return true
 
 
@@ -287,6 +292,8 @@ func _repeatability() -> bool:
 		var digest := JSON.stringify(sim.snapshot(), "", true, true).sha256_text()
 		f.store_line("%d,10000,%s" % [run, digest])
 		f.flush()
+		print("R29 D3 completed local repeat %d/100" % (run + 1))
+	f.close()
 	return true
 
 

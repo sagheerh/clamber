@@ -4,7 +4,7 @@
 
 Zero core/tuning changes from4796ec6. D0CI40974609556/source819cefc all3×7200:
 maxpenetration.020000000000000823WUeach, head0/u0,ticksSlug22/Hopper33/Twin15.
-PreexistingF79; AC202staysFAILEDforM1/no-readoption independent of attribution.
+CONTROL AT SLOP; F79 WITHDRAWN; AC202staysFAILEDforM1/no-readoption independent of attribution.
 D1–D5CI40976842113/source8dfe959NOTRUN: helper_checked conflicts inheritedint,
 GDScriptparseerrorline111, ZEROmeasurementticks. Logs preserved; no retry or
 reference/window substitution. Separate corrected-helper --check-only passed

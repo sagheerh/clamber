@@ -4,9 +4,9 @@ permissions:
   contents: write
 jobs:
   measurements:
-    if: ${{ github.event_name == 'push' && github.sha == github.event.after && contains(github.event.head_commit.message, '[R29-once]') && (github.sha == '819cefc4ce9b66e6f8725d1ed24694e85e8f5154' || github.sha == '8dfe959fe3587cd4f1cbf978c9c28f7186352689') }}
+    if: ${{ github.event_name == 'push' && github.sha == github.event.after && contains(github.event.head_commit.message, '[R29-once-2]') }}
     runs-on: ubuntu-24.04
-    timeout-minutes: 55
+    timeout-minutes: 150
     env:
       GODOT_VERSION: 4.7.2-stable
       R29_SOURCE_SHA: ${{ github.sha }}
@@ -29,7 +29,7 @@ jobs:
           grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
           unzip -q "$archive" -d "$RUNNER_TEMP/godot"
           echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
-      - name: Verify six facts then D0 then D1-D5 then D7 exactly once
+      - name: Compile check then D1-D5 first executions and D7; stop on any failure
         run: bash tests/run_m1_r29.sh
       - name: Persist repo evidence even after measurement failure; no artifact uploads
         if: always()
@@ -37,7 +37,7 @@ jobs:
 
   parse-only:
     name: Parse R29 harness ONLY (zero measurement ticks)
-    if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '[R29-once]') }}
+    if: ${{ github.event_name == 'push' && !contains(github.event.head_commit.message, '[R29-once-2]') }}
     permissions:
       contents: read
     runs-on: ubuntu-24.04

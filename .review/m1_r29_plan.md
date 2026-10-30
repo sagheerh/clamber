@@ -23,7 +23,7 @@ Sixfacts fresh verified: start4796ec6,tuning5f4d..666,core=f b890fd,226/0,M0516/
 engine4.7.2.stable.official.ed1daf0bf/checksumverified. All3controlmaxima
 .020000000000000823WU (Slug22/Hopper33/Twin15,head0/u0). Ratio to adopted
 .2845678404364825/.2141329242656268/.3940695785060293. Same WUorder as adopted;
-preexisting penetration, no assertion reprojection cannot increase its maximum.
+control at designed slop+roundoff, F79 WITHDRAWN; no assertion reprojection cannot increase its maximum.
 Ownerdecision AC202FAILEDforM1 immutable; no readoption.
 
 Remaining arms one next push-worker, D0 NEVER rerun. D1all3realpresets600ticks,
@@ -45,3 +45,20 @@ successesnull/FA6NOTRUN, never0/10fabricated. Variance NONE: insensitivebyconstr
 No historicalvaryingonset list silently substituted. No new successcondition.
 Any nonfinite: firsttick/pre/post/ongoing trace retained, stop later physicalarms.
 D7afterall prescribedarms: >=226controls/0,M0516/0, corestartdiffEMPTY/tuningsame.
+
+
+## Reviewer5ed8fca correction and authorized L2
+D0control is CONTROL AT SLOP, notFAIL: .020000000000000823 versus .02slop.
+Only defect comparison >.02*(1+1e-9); this is report interpretation, not a solver
+epsilon/tuning edit. F79 WITHDRAWN. Adopted/control3.514/4.670/2.538, adoptiondead.
+L1CI40976842113 is launchincident/zero ticks, not an executed measurement.
+Ownerauthorizes first executions D1–D5 under[R29-once-2], sourceHEADasserted.
+Corrected helper passed --check-only previously; explicit --check-only nowbefore
+measurements too. Any second execution/launchfailure stops laterarms, logs kept.
+L1rawfiles NEVER overwritten; L2outputs in m1_r29_execution. D0 NEVER rerun.
+D2mandatoryHopperalone plus10Slugaggregate,1000warmup/10000samples/path each;
+actualcounts,median,P95; ALLrows NOT MEASURABLE AS SPECIFIED,3ms NOTapplied
+asPASS/FAIL; D07NOTMEASURED. Optional14partfixture notrun. D3local100×10000,
+all100hashes; notsoak/RNGdeterminism. D4same540tickprotocol;1BLownerquestion.
+D5same10identical300ticks,varianceNONE, flatplanesubstitute; insensitivefinding
+is notfailure. No tutorialsuccesspredicate invented. No P3/readoption/coreedit.

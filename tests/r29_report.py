@@ -21,13 +21,13 @@ def control():
    assert all(len(b)==6 for b in row['pose'])
   maximum=max(row['peak']['penetration_wu'] for row in rows);assert maximum==r['max_penetration_wu']
   r['adopted_R28_max_wu']=adopted[name];r['ratio_control_to_adopted']=maximum/adopted[name]
-  # No invented quantitative definition of "similar magnitude".
-  r['attribution']='the reprojection causes it; AC-202 as adopted is dead' if maximum<=.005 else 'partially causative; conclude nothing stronger' if maximum<.02 else '>=.02; similarity must be evaluated from reported pair/ratio, not a new threshold'
-  e['gates'].append(dict(gate='D0/'+name,metric='completed post-pass maximum capsule surface penetration WU; same R28 sampling',value=r,threshold=.02,verdict='FAIL' if maximum>=.02 else 'PASS',artifact=str(P/f'D0-{name}.jsonl.gz'),not_measured=False,blocker=None))
+  r['ratio_adopted_to_control']=adopted[name]/maximum
+  r['attribution']='the reprojection multiplies penetration2.5–4.7× above designed slop; AC202as adopted is dead on the evidence; F79 WITHDRAWN'
+  e['gates'].append(dict(gate='D0/'+name,metric='completed post-pass maximum capsule surface penetration WU; same R28 sampling',value=r,threshold=.02,verdict='BEYOND SLOP' if maximum>.02*(1+1e-9) else 'CONTROL — AT SLOP (0.02 + roundoff)',artifact=str(P/f'D0-{name}.jsonl.gz'),not_measured=False,blocker=None))
  if failed:e['gates'].append(dict(gate='D0',metric='penetration control',value=None,threshold=.02,verdict='NOT RUN',artifact=str(P/'D0-engine.log'),not_measured=True,blocker='Engine failure/nonfinite or missing result; no retry; inspect engine log and first failure JSON'))
  for p in P.glob('D0-*.jsonl'):
   target=p.with_suffix('.jsonl.gz');target.write_bytes(gzip.compress(p.read_bytes(),mtime=0));p.unlink()
- e['attribution_rule']={'>=.02 at similar magnitude':'penetration is PRE-EXISTING; the reprojection is not demonstrated to cause it; F79 stands as its own defect','<=.005':'the reprojection causes it; AC-202 as adopted is dead','in between':'partially causative; report both numbers, conclude nothing stronger'}
+ e['attribution_rule']={'roundoff_aware_defect':'>0.02*(1+1e-9), never bare >=.02','at_slop':'CONTROL — AT SLOP (0.02 + roundoff); F79 WITHDRAWN; no preexisting penetration defect'}
  e['AC202_owner_disposition']='FAILED for M1; no readoption; reevaluate inside M1.1 after contact rectifier fix, independent of D0 result'
  save(e);print('R29 D0: '+json.dumps(data,separators=(',',':')))
 if __name__=='__main__':(start if sys.argv[1]=='start' else control)()

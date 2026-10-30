@@ -13,7 +13,7 @@ scaffold/PR; no M1 implementation or gate completion is claimed by this closeout
 Zero core/tuning change from4796ec6; startfacts fresh226/0,M0516/0,checksumGodot
 4.7.2.stable.official.ed1daf0bf. D6push-only path restoredFIRST. D0source819cefc /
 CI40974609556SUCCESS: all3×7200, maxpenetrationWU .020000000000000823each,
-worstSlug22/Hopper33/Twin15, head0/u0. PRE-EXISTING, F79own defect; adopted
+worstSlug22/Hopper33/Twin15, head0/u0. CONTROL AT SLOP; F79 WITHDRAWN; adopted
 maxima .07028201067739755/.0933999293597247/.05075245867956493 remain larger;
 no proof projection cannot increase max. AC202FAILEDforM1/no-readoption unchanged.
 

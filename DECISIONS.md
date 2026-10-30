@@ -2111,7 +2111,7 @@ D0source819cefc4ce9b66e6f8725d1ed24694e85e8f5154 /CI40974609556SUCCESS,
 all3×7200. Slug/Hopper/Twin eachmax.020000000000000823WU; worsthead0/u0,
 ticks22/33/15. ExactpairedR28adopted .07028201067739755/.0933999293597247/
 .05075245867956493WU, ratios.2845678404364825/.2141329242656268/.3940695785060293.
-PRE-EXISTINGpenetration; F79independentexistingdefect; no demonstration projection
+CONTROL AT SLOP; F79 WITHDRAWN; no pre-existing penetration defect; no demonstration projection
 caused its existence, no proof it cannot increase max. No invented similarity
 cutoff. Strict.02limit/noepsilon. OwnerAC202FAILEDforM1/no-readoption remains;
 projection reevaluation only insideM1.1aftercontactrectifierfix. No fix attempted.

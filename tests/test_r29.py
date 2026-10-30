@@ -8,7 +8,8 @@ class R29Controls(unittest.TestCase):
   self.assertEqual(hashlib.sha256(Path('core/tuning.tres').read_bytes()).hexdigest(),'5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666')
  def test_push_gate_no_upload_before_measurements(self):
   s=Path('.github/workflows/r29.yml').read_text()
-  self.assertIn("github.event_name == 'push'",s);self.assertIn('github.sha == github.event.after',s);self.assertIn('[R29-once]',s);self.assertNotIn('upload-artifact',s);self.assertNotIn('workflow_dispatch',s);self.assertIn("github.sha == '819cefc4ce9b66e6f8725d1ed24694e85e8f5154'",s);self.assertIn("github.sha == '8dfe959fe3587cd4f1cbf978c9c28f7186352689'",s)
+  self.assertIn("github.event_name == 'push'",s);self.assertIn('github.sha == github.event.after',s);self.assertIn('[R29-once-2]',s);self.assertNotIn('upload-artifact',s);self.assertNotIn('workflow_dispatch',s)
+
  def test_d0_no_readoption_and_same_sampler(self):
   s=Path('tests/sim/test_r29.gd').read_text();self.assertIn('extends "res://tests/sim/test_r28.gd"',s);self.assertIn('_penetration(probe)',s);self.assertNotIn('diagnostic_final_distance_pass =',s);self.assertIn('range(7200)',s)
  def test_d0_original_numbers_and_all_ticks(self):

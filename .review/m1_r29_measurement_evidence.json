@@ -43,11 +43,18 @@
         },
         "adopted_R28_max_wu": 0.0933999293597247,
         "ratio_control_to_adopted": 0.2141329242656268,
-        "attribution": "penetration is PRE-EXISTING; the reprojection is not demonstrated to cause it; F79 stands as its own defect",
-        "similarity_basis": "same WU order, exact ratios reported; adopted maxima2.54\u20134.67times larger; no numeric similarity cutoff and no claim reprojection cannot increase maximum"
+        "attribution": "the reprojection multiplies penetration 2.5\u20134.7\u00d7 above the designed slop; AC-202 as adopted is dead on the evidence",
+        "ratio_adopted_to_control": 4.669996467986043,
+        "slop_wu": 0.02,
+        "absolute_excess_over_slop": 8.222589276130066e-16,
+        "relative_excess_over_slop": 4.107825191113079e-14
       },
-      "threshold": 0.02,
-      "verdict": "FAIL",
+      "threshold": {
+        "slop_wu": 0.02,
+        "roundoff_relative_band": 1e-09,
+        "defect_test": "max_penetration_wu > 0.02 * (1 + 1e-9)"
+      },
+      "verdict": "CONTROL \u2014 AT SLOP (0.02 + roundoff)",
       "artifact": "tests/fixtures/m1_r29_raw/D0-Hopper.jsonl.gz",
       "not_measured": false,
       "blocker": null,
@@ -84,11 +91,18 @@
         },
         "adopted_R28_max_wu": 0.07028201067739755,
         "ratio_control_to_adopted": 0.2845678404364825,
-        "attribution": "penetration is PRE-EXISTING; the reprojection is not demonstrated to cause it; F79 stands as its own defect",
-        "similarity_basis": "same WU order, exact ratios reported; adopted maxima2.54\u20134.67times larger; no numeric similarity cutoff and no claim reprojection cannot increase maximum"
+        "attribution": "the reprojection multiplies penetration 2.5\u20134.7\u00d7 above the designed slop; AC-202 as adopted is dead on the evidence",
+        "ratio_adopted_to_control": 3.514100533869733,
+        "slop_wu": 0.02,
+        "absolute_excess_over_slop": 8.222589276130066e-16,
+        "relative_excess_over_slop": 4.107825191113079e-14
       },
-      "threshold": 0.02,
-      "verdict": "FAIL",
+      "threshold": {
+        "slop_wu": 0.02,
+        "roundoff_relative_band": 1e-09,
+        "defect_test": "max_penetration_wu > 0.02 * (1 + 1e-9)"
+      },
+      "verdict": "CONTROL \u2014 AT SLOP (0.02 + roundoff)",
       "artifact": "tests/fixtures/m1_r29_raw/D0-Slug.jsonl.gz",
       "not_measured": false,
       "blocker": null,
@@ -125,158 +139,29 @@
         },
         "adopted_R28_max_wu": 0.05075245867956493,
         "ratio_control_to_adopted": 0.3940695785060293,
-        "attribution": "penetration is PRE-EXISTING; the reprojection is not demonstrated to cause it; F79 stands as its own defect",
-        "similarity_basis": "same WU order, exact ratios reported; adopted maxima2.54\u20134.67times larger; no numeric similarity cutoff and no claim reprojection cannot increase maximum"
+        "attribution": "the reprojection multiplies penetration 2.5\u20134.7\u00d7 above the designed slop; AC-202 as adopted is dead on the evidence",
+        "ratio_adopted_to_control": 2.537622933978142,
+        "slop_wu": 0.02,
+        "absolute_excess_over_slop": 8.222589276130066e-16,
+        "relative_excess_over_slop": 4.107825191113079e-14
       },
-      "threshold": 0.02,
-      "verdict": "FAIL",
+      "threshold": {
+        "slop_wu": 0.02,
+        "roundoff_relative_band": 1e-09,
+        "defect_test": "max_penetration_wu > 0.02 * (1 + 1e-9)"
+      },
+      "verdict": "CONTROL \u2014 AT SLOP (0.02 + roundoff)",
       "artifact": "tests/fixtures/m1_r29_raw/D0-TwinRoller.jsonl.gz",
       "not_measured": false,
       "blocker": null,
       "source_commit_sha": "819cefc4ce9b66e6f8725d1ed24694e85e8f5154",
       "source_ci_run": "40974609556"
-    },
-    {
-      "gate": "D1",
-      "metric": "measurement",
-      "value": null,
-      "threshold": "binary pairwise trace-hash inequality; no invented numerical distinctness threshold",
-      "verdict": "NOT RUN",
-      "artifact": "tests/fixtures/m1_r29_raw/D1-engine.log",
-      "not_measured": true,
-      "blocker": "Test harness compilation failed before initialization: Member \"_checked\" is not a function, res://tests/sim/test_r29.gd:111; inherited R27 integer _checked collided with helper function name. ZERO measurement ticks. One CI invocation per arm exhausted; no rerun.",
-      "source_commit_sha": "8dfe959fe3587cd4f1cbf978c9c28f7186352689",
-      "source_ci_run": "40976842113",
-      "completed_ticks": 0
-    },
-    {
-      "gate": "D2",
-      "metric": "measurement",
-      "value": null,
-      "threshold": {
-        "bodies": 30,
-        "constraints_max": 120,
-        "p95_ms": 3.0
-      },
-      "verdict": "NOT RUN",
-      "artifact": "tests/fixtures/m1_r29_raw/D2-engine.log",
-      "not_measured": true,
-      "blocker": "Test harness compilation failed before initialization: Member \"_checked\" is not a function, res://tests/sim/test_r29.gd:111; inherited R27 integer _checked collided with helper function name. ZERO measurement ticks. One CI invocation per arm exhausted; no rerun.",
-      "source_commit_sha": "8dfe959fe3587cd4f1cbf978c9c28f7186352689",
-      "source_ci_run": "40976842113",
-      "completed_ticks": 0
-    },
-    {
-      "gate": "D3",
-      "metric": "measurement",
-      "value": null,
-      "threshold": "100/100 x10000tick final-state hashes identical",
-      "verdict": "NOT RUN",
-      "artifact": "tests/fixtures/m1_r29_raw/D3-engine.log",
-      "not_measured": true,
-      "blocker": "Test harness compilation failed before initialization: Member \"_checked\" is not a function, res://tests/sim/test_r29.gd:111; inherited R27 integer _checked collided with helper function name. ZERO measurement ticks. One CI invocation per arm exhausted; no rerun.",
-      "source_commit_sha": "8dfe959fe3587cd4f1cbf978c9c28f7186352689",
-      "source_ci_run": "40976842113",
-      "completed_ticks": 0
-    },
-    {
-      "gate": "D4",
-      "metric": "measurement",
-      "value": null,
-      "threshold": {
-        "sleep_seconds": 4.0,
-        "lurch_approx_1BL": "spec vs scale OPEN"
-      },
-      "verdict": "NOT RUN",
-      "artifact": "tests/fixtures/m1_r29_raw/D4-engine.log",
-      "not_measured": true,
-      "blocker": "Test harness compilation failed before initialization: Member \"_checked\" is not a function, res://tests/sim/test_r29.gd:111; inherited R27 integer _checked collided with helper function name. ZERO measurement ticks. One CI invocation per arm exhausted; no rerun.",
-      "source_commit_sha": "8dfe959fe3587cd4f1cbf978c9c28f7186352689",
-      "source_ci_run": "40976842113",
-      "completed_ticks": 0
-    },
-    {
-      "gate": "D5",
-      "metric": "measurement",
-      "value": null,
-      "threshold": {
-        "successes_min": 6,
-        "successes_max": 8,
-        "runs": 10
-      },
-      "verdict": "NOT RUN",
-      "artifact": "tests/fixtures/m1_r29_raw/D5-engine.log",
-      "not_measured": true,
-      "blocker": "Test harness compilation failed before initialization: Member \"_checked\" is not a function, res://tests/sim/test_r29.gd:111; inherited R27 integer _checked collided with helper function name. ZERO measurement ticks. One CI invocation per arm exhausted; no rerun.",
-      "source_commit_sha": "8dfe959fe3587cd4f1cbf978c9c28f7186352689",
-      "source_ci_run": "40976842113",
-      "completed_ticks": 0
-    },
-    {
-      "gate": "D7",
-      "metric": "regression counts/tuning/core invariance",
-      "value": {
-        "controls": 232,
-        "failures": 0,
-        "M0": 516,
-        "M0_failures": 0,
-        "tuning_sha256": "5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666",
-        "core_diff": "EMPTY",
-        "source_head": "8dfe959fe3587cd4f1cbf978c9c28f7186352689"
-      },
-      "threshold": {
-        "controls_min": 226,
-        "M0": 516
-      },
-      "verdict": "PASS",
-      "artifact": "tests/fixtures/m1_r29_raw/D7-static.log",
-      "not_measured": false,
-      "blocker": null,
-      "source_commit_sha": "8dfe959fe3587cd4f1cbf978c9c28f7186352689",
-      "source_ci_run": "40976842113"
-    },
-    {
-      "gate": "D6",
-      "metric": "push-only immutable source launch and repository evidence survival",
-      "value": {
-        "measured_D0_sha": "819cefc4ce9b66e6f8725d1ed24694e85e8f5154",
-        "unmeasured_D1_D5_attempt_sha": "8dfe959fe3587cd4f1cbf978c9c28f7186352689",
-        "D0_CI": 40974609556,
-        "D0_conclusion": "success",
-        "remaining_CI": 40976842113,
-        "remaining_conclusion": "failure: compile-blocked all5arms; report renderer also failed on missing payload after D7 succeeded",
-        "invocations_per_arm": {
-          "D0": 1,
-          "D1": 1,
-          "D2": 1,
-          "D3": 1,
-          "D4": 1,
-          "D5": 1
-        },
-        "completed_measurement_ticks": {
-          "D0": 21600,
-          "D1": 0,
-          "D2": 0,
-          "D3": 0,
-          "D4": 0,
-          "D5": 0
-        },
-        "artifacts": "NONE; evidence pushed directly to same session branch by CI; no deletion attempts",
-        "future_markers": "all measurement jobs closed to these two literal SHA pins",
-        "code_correction": "helper renamed to _checked_step for future use; NO arm rerun, compile-only check separate",
-        "infrastructure_exception": "legacy M1 artifact quota remains exhausted; no claim all workflows green"
-      },
-      "threshold": "one CI invocation per arm; no upload before measurement; literal closure",
-      "verdict": "IMPLEMENTED; no arm retries; R29 remaining run RED",
-      "artifact": ".github/workflows/r29.yml",
-      "not_measured": false,
-      "blocker": null
     }
   ],
   "attribution_rule": {
-    ">=.02 at similar magnitude": "penetration is PRE-EXISTING; the reprojection is not demonstrated to cause it; F79 stands as its own defect",
-    "<=.005": "the reprojection causes it; AC-202 as adopted is dead",
-    "in between": "partially causative; report both numbers, conclude nothing stronger"
+    "control_at_slop": "<=0.02*(1+1e-9): CONTROL \u2014 AT SLOP; no preexisting penetration defect",
+    "beyond_slop": ">0.02*(1+1e-9), not bare >=.02; compare adopted/control",
+    "F79": "WITHDRAWN"
   },
   "AC202_owner_disposition": "FAILED for M1; no readoption; reevaluate inside M1.1 after contact rectifier fix, independent of D0 result",
   "files": {
@@ -298,34 +183,6 @@
     "tests/fixtures/m1_r29_raw/start-static.log": "a3c8e9dc26fbd3972f4dc0ee2cdc6d2c945454a9cb12212d355b1cd12ee7a12c"
   },
   "report_head": "8dfe959fe3587cd4f1cbf978c9c28f7186352689",
-  "D6_closure": {
-    "measured_D0_sha": "819cefc4ce9b66e6f8725d1ed24694e85e8f5154",
-    "unmeasured_D1_D5_attempt_sha": "8dfe959fe3587cd4f1cbf978c9c28f7186352689",
-    "D0_CI": 40974609556,
-    "D0_conclusion": "success",
-    "remaining_CI": 40976842113,
-    "remaining_conclusion": "failure: compile-blocked all5arms; report renderer also failed on missing payload after D7 succeeded",
-    "invocations_per_arm": {
-      "D0": 1,
-      "D1": 1,
-      "D2": 1,
-      "D3": 1,
-      "D4": 1,
-      "D5": 1
-    },
-    "completed_measurement_ticks": {
-      "D0": 21600,
-      "D1": 0,
-      "D2": 0,
-      "D3": 0,
-      "D4": 0,
-      "D5": 0
-    },
-    "artifacts": "NONE; evidence pushed directly to same session branch by CI; no deletion attempts",
-    "future_markers": "all measurement jobs closed to these two literal SHA pins",
-    "code_correction": "helper renamed to _checked_step for future use; NO arm rerun, compile-only check separate",
-    "infrastructure_exception": "legacy M1 artifact quota remains exhausted; no claim all workflows green"
-  },
   "D2_owner_choice": "ten independent production Slugs,30capsules aggregate; NOT EXECUTED; actual constraintcount/hardware/timings NOT RUN, not filled from reference",
   "D4_open_question": "1.00BL spec value vs scale unresolved; no lurch acceptance threshold chosen; measurement itself NOT RUN",
   "D5_missing_scenario": "tutorial chunk/goal/success predicate absent. Proposed substitute flatplane+identicalinputL60/released240, varianceNONE, was NOT EXECUTED. No ten outcomes/success counts/insensitivity measurement claimed.",
@@ -370,7 +227,7 @@
     "tuning_sha256": "5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666",
     "infrastructure_exception": "legacy M1 public artifact upload failed quota, job123808677357; does NOT explain/erase R29 harness compiler failure; Androidjobpending, no Android/device claim"
   },
-  "closing_status": "D0 measuredFAIL, D6implemented/evidencepreserved, D7PASS; D1\u2013D5 NOT RUN exactcompilerblocker, no retry; no P3verdict",
+  "closing_status": "D0 CONTROL AT SLOP, F79 WITHDRAWN; L1 zero-tick launch incident; authorized L2 pending",
   "final_local_controls": 232,
   "final_local_failures": 0,
   "changed_files": [
@@ -406,5 +263,121 @@
     "tests/sim/test_r29.gd",
     "tests/test_r29.py"
   ],
-  "PR3_protected_tail_sha256": "23f409294933ddd4638139254f41cc5bee6c70a35f28cea6509f9d0c199d76be"
+  "PR3_protected_tail_sha256": "23f409294933ddd4638139254f41cc5bee6c70a35f28cea6509f9d0c199d76be",
+  "L1_launch_incident": {
+    "source": "8dfe959fe3587cd4f1cbf978c9c28f7186352689",
+    "ci_run": 40976842113,
+    "executed_ticks": 0,
+    "reason": "inherited integer _checked/helper name collision; zero executed measurements; not an execution retry",
+    "gates": [
+      {
+        "gate": "D1",
+        "metric": "measurement",
+        "value": null,
+        "threshold": "binary pairwise trace-hash inequality; no invented numerical distinctness threshold",
+        "verdict": "NOT RUN",
+        "artifact": "tests/fixtures/m1_r29_raw/D1-engine.log",
+        "not_measured": true,
+        "blocker": "Test harness compilation failed before initialization: Member \"_checked\" is not a function, res://tests/sim/test_r29.gd:111; inherited R27 integer _checked collided with helper function name. ZERO measurement ticks. One CI invocation per arm exhausted; no rerun.",
+        "source_commit_sha": "8dfe959fe3587cd4f1cbf978c9c28f7186352689",
+        "source_ci_run": "40976842113",
+        "completed_ticks": 0
+      },
+      {
+        "gate": "D2",
+        "metric": "measurement",
+        "value": null,
+        "threshold": {
+          "bodies": 30,
+          "constraints_max": 120,
+          "p95_ms": 3.0
+        },
+        "verdict": "NOT RUN",
+        "artifact": "tests/fixtures/m1_r29_raw/D2-engine.log",
+        "not_measured": true,
+        "blocker": "Test harness compilation failed before initialization: Member \"_checked\" is not a function, res://tests/sim/test_r29.gd:111; inherited R27 integer _checked collided with helper function name. ZERO measurement ticks. One CI invocation per arm exhausted; no rerun.",
+        "source_commit_sha": "8dfe959fe3587cd4f1cbf978c9c28f7186352689",
+        "source_ci_run": "40976842113",
+        "completed_ticks": 0
+      },
+      {
+        "gate": "D3",
+        "metric": "measurement",
+        "value": null,
+        "threshold": "100/100 x10000tick final-state hashes identical",
+        "verdict": "NOT RUN",
+        "artifact": "tests/fixtures/m1_r29_raw/D3-engine.log",
+        "not_measured": true,
+        "blocker": "Test harness compilation failed before initialization: Member \"_checked\" is not a function, res://tests/sim/test_r29.gd:111; inherited R27 integer _checked collided with helper function name. ZERO measurement ticks. One CI invocation per arm exhausted; no rerun.",
+        "source_commit_sha": "8dfe959fe3587cd4f1cbf978c9c28f7186352689",
+        "source_ci_run": "40976842113",
+        "completed_ticks": 0
+      },
+      {
+        "gate": "D4",
+        "metric": "measurement",
+        "value": null,
+        "threshold": {
+          "sleep_seconds": 4.0,
+          "lurch_approx_1BL": "spec vs scale OPEN"
+        },
+        "verdict": "NOT RUN",
+        "artifact": "tests/fixtures/m1_r29_raw/D4-engine.log",
+        "not_measured": true,
+        "blocker": "Test harness compilation failed before initialization: Member \"_checked\" is not a function, res://tests/sim/test_r29.gd:111; inherited R27 integer _checked collided with helper function name. ZERO measurement ticks. One CI invocation per arm exhausted; no rerun.",
+        "source_commit_sha": "8dfe959fe3587cd4f1cbf978c9c28f7186352689",
+        "source_ci_run": "40976842113",
+        "completed_ticks": 0
+      },
+      {
+        "gate": "D5",
+        "metric": "measurement",
+        "value": null,
+        "threshold": {
+          "successes_min": 6,
+          "successes_max": 8,
+          "runs": 10
+        },
+        "verdict": "NOT RUN",
+        "artifact": "tests/fixtures/m1_r29_raw/D5-engine.log",
+        "not_measured": true,
+        "blocker": "Test harness compilation failed before initialization: Member \"_checked\" is not a function, res://tests/sim/test_r29.gd:111; inherited R27 integer _checked collided with helper function name. ZERO measurement ticks. One CI invocation per arm exhausted; no rerun.",
+        "source_commit_sha": "8dfe959fe3587cd4f1cbf978c9c28f7186352689",
+        "source_ci_run": "40976842113",
+        "completed_ticks": 0
+      }
+    ],
+    "logs": "tests/fixtures/m1_r29_raw/D[1-5]-engine.log"
+  },
+  "F79": "WITHDRAWN",
+  "reviewer_correction": "5ed8fca owner-authorized slop-relative roundoff interpretation; NO physics/tuning change",
+  "L2_authorization": "[R29-once-2]; first corrected D1\u2013D5 executions; stop on any failure; D0 not rerun",
+  "L1_previous_closure_record": {
+    "measured_D0_sha": "819cefc4ce9b66e6f8725d1ed24694e85e8f5154",
+    "unmeasured_D1_D5_attempt_sha": "8dfe959fe3587cd4f1cbf978c9c28f7186352689",
+    "D0_CI": 40974609556,
+    "D0_conclusion": "success",
+    "remaining_CI": 40976842113,
+    "remaining_conclusion": "failure: compile-blocked all5arms; report renderer also failed on missing payload after D7 succeeded",
+    "invocations_per_arm": {
+      "D0": 1,
+      "D1": 1,
+      "D2": 1,
+      "D3": 1,
+      "D4": 1,
+      "D5": 1
+    },
+    "completed_measurement_ticks": {
+      "D0": 21600,
+      "D1": 0,
+      "D2": 0,
+      "D3": 0,
+      "D4": 0,
+      "D5": 0
+    },
+    "artifacts": "NONE; evidence pushed directly to same session branch by CI; no deletion attempts",
+    "future_markers": "all measurement jobs closed to these two literal SHA pins",
+    "code_correction": "helper renamed to _checked_step for future use; NO arm rerun, compile-only check separate",
+    "infrastructure_exception": "legacy M1 artifact quota remains exhausted; no claim all workflows green"
+  }
 }
