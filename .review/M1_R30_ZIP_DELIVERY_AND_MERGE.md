@@ -90,3 +90,36 @@ runtime gates remain `NOT RUN` until the owner's local run produces numbers. **M
 
 Then I verify the numbers and finish **P3**: the 18-row verdict from the frozen ledger in
 `.review/M1_R29D_INFRA_FREEZE_AND_LEDGER.md` §3 — **10 PASS, 2 FAILED, 1 STATIC, 5 pending.**
+
+---
+
+## 5. Post-merge verification — the owner's exact path, executed end to end
+
+```
+PR #3  → ready for review → merged         state MERGED, mergedAt 2026-10-30T02:41:32Z
+main   → 7d86dd5
+git diff 0bf73c9 origin/main               → EMPTY  (content identical)
+git diff 4796ec6 origin/main -- core/      → EMPTY
+main:core/tuning.tres sha256               → 5f4d0d06…0666  (unchanged)
+tag    m1-blocked-2026-10-30 → 7d86dd5     annotated, pushed (8598bc6)
+```
+
+Then I downloaded the **real tag ZIP** the owner will use and ran it:
+
+```
+curl -L codeload.github.com/sagheerh/clamber/zip/refs/tags/m1-blocked-2026-10-30
+→ HTTP 200, 4.7 MB, 310 entries
+unzip → clamber-m1-blocked-2026-10-30/   (no .git — a true ZIP)
+CLAMBER_LOCAL=1 bash scripts/review_checks.sh
+→ 232 controls, 0 failures, exit 0
+```
+
+So the download → unzip → verify path is proven, not promised. **The only unproven step is the one that needs
+the engine**, which is exactly what the owner's machine is for.
+
+### What remains, precisely
+
+- The five arms (`D1`–`D5`) on the owner's machine with Godot `4.7.2.stable.official.ed1daf0bf`.
+- Then P3: the 18-row verdict from the frozen ledger (10 PASS, 2 FAILED, 1 STATIC, 5 pending).
+- Open owner items unchanged: **D07** reference-device tick cost, **FA-4's 1.00 BL** spec-vs-scale,
+  **§10.4's 30-body/120-constraint** spec-vs-scale, and **M1.1 scope** (the contact rectifier).
