@@ -2,33 +2,33 @@
 
 ## Current milestone: M0 — APPROVED / COMPLETE (owner override); M1 — IN PROGRESS / 8 of 18 runtime gates with accepted evidence; creature feel acceptance incomplete
 
-Session date: 2026-10-29. Normative inputs: `docs/GDD.md` and
+Session date: 2026-10-30. Normative inputs: `docs/GDD.md` and
 `docs/ui/CLAMBER_UI.jpeg`. M0 is accepted by the GDD owner under M0-D07, dated 2026-10-28. Verdict:
 **APPROVE — HUMAN OVERRIDE**. Missing device evidence and measured FPS/P95 are
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-### Current R29 — D0 measured, D1–D5 compiler-blocked, no P3
+### Current R29 — reviewer correction applied; L2blocked; STOP/no P3
 
-Zero core/tuning change from4796ec6; startfacts fresh226/0,M0516/0,checksumGodot
-4.7.2.stable.official.ed1daf0bf. D6push-only path restoredFIRST. D0source819cefc /
-CI40974609556SUCCESS: all3×7200, maxpenetrationWU .020000000000000823each,
-worstSlug22/Hopper33/Twin15, head0/u0. CONTROL AT SLOP; F79 WITHDRAWN; adopted
-maxima .07028201067739755/.0933999293597247/.05075245867956493 remain larger;
-no proof projection cannot increase max. AC202FAILEDforM1/no-readoption unchanged.
+D0unchangedrawdata: .020000000000000823WUeach on designed .02slop. Verdict
+CONTROL AT SLOP(0.02+roundoff), notFAIL; relativeexcess4.1e-14. Defectcomparison
+>.02*(1+1e-9), REPORTONLY/no tuningedit. F79WITHDRAWN/no preexistingdefect.
+Adopted/controlSlug3.514/Hopper4.670/Twin2.538: reprojectionmultiplies penetration
+above designedslop, AC202as adopteddead/no-readoption. Caveatretained.
 
-Remainingarmssource8dfe959/CI40976842113FAILED: helperfunction_checked collided
-with inheritedinteger_checked. Testscript failedtoload atline111; D1–D5ZERO
-measurementticks, NOT RUN exactblockers/logs committed. No reference/window/
-value substitution. No arm retry. Renamedhelper_checked_step ONLY and tested
---check-only CI40977382604job123808676345SUCCESS; zero measurementticks and
-measurementjobSKIPPED. D7source2041793static232/0 andM0516/0SUCCESS.
+L1source8dfe959/CI40976842113 is zero-tick compilerlaunchincident, logsretained.
+Ownerauthorized correctedfirst D1–D5 executions under[R29-once-2]. L2source
+bb88cd1/CI40979233978job123814811746 NEVERSTARTED, steps[], zero ticks:
+GitHubrecentpaymentsfailed OR spendinglimitneedsincrease (exactannotation in
+fixtures/m1_r29_launch_incidents). Per second-failure instruction STOP, no further
+launch/localworkaround. D1–D5NOTRUN with exactbillingblocker. Hoppermandatory
+D2row+labelled10Slugaggregate planned, timings/countsNOTRUN; no3msPASS/FAIL.
 
-Both worker outputs committed directlytosamebranch[skipci], no artifactupload
-or deletion attempt. LiteralclosedSHA819cefc4ce9b66e6f8725d1ed24694e85e8f5154 /
-8dfe959fe3587cd4f1cbf978c9c28f7186352689. No physics/adoption/retune/threshold/
-iteration/slop/epsilon change. FA3uncredited,FA5caveat,AC204notrerun/determinism
-state unchanged. No P3verdict/M1completeclaim. See R29report/evidence under.review.
+Localcontrols232/0, core/startdiffEMPTY, tuning5f4d..666byteidentical. FreshM0
+currentheadNOTRUN/billing; lastverified516/0 source2041793 is historicalproof.
+Compile-only2041793success is NOT measurement. No P3/adoption/physicschange/
+thresholdretune/soakrerun/FA3credit/M1complete. Sourcebb88literalclosed; L1logs,
+D0gzip and L2checkannotations preserved. Report/evidence in.review/m1_r29_*.
 
 ### Historical R28 — adoption attempted, FAILED penetration, REVERTED
 

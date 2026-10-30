@@ -156,6 +156,123 @@
       "blocker": null,
       "source_commit_sha": "819cefc4ce9b66e6f8725d1ed24694e85e8f5154",
       "source_ci_run": "40974609556"
+    },
+    {
+      "gate": "D1",
+      "metric": "three preset captures/plots/hash distinctness",
+      "value": null,
+      "threshold": "binary trace-hash inequality, no authored numeric distinctness threshold",
+      "verdict": "NOT RUN",
+      "artifact": "tests/fixtures/m1_r29_launch_incidents/L2-annotations.json",
+      "not_measured": true,
+      "blocker": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings No runner allocated, no steps or ticks. Stopped after second launch failure.",
+      "source_commit_sha": "bb88cd1b67229ca72dc2b1734d23b58e99e50d1c",
+      "source_ci_run": 40979233978,
+      "executed_ticks": 0
+    },
+    {
+      "gate": "D2",
+      "metric": "Hopper mandatory real row and ten independent Slugs labelled aggregate; median/P95/actual counts",
+      "value": null,
+      "threshold": {
+        "reference_ms": 3.0,
+        "applied_as_pass_fail": false,
+        "row": "NOT MEASURABLE AS SPECIFIED",
+        "D07": "NOT MEASURED"
+      },
+      "verdict": "NOT RUN",
+      "artifact": "tests/fixtures/m1_r29_launch_incidents/L2-annotations.json",
+      "not_measured": true,
+      "blocker": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings No runner allocated, no steps or ticks. Stopped after second launch failure.",
+      "source_commit_sha": "bb88cd1b67229ca72dc2b1734d23b58e99e50d1c",
+      "source_ci_run": 40979233978,
+      "executed_ticks": 0
+    },
+    {
+      "gate": "D3",
+      "metric": "100 local repeats x10000 ticks, all hashes",
+      "value": null,
+      "threshold": "100/100 final hashes identical",
+      "verdict": "NOT RUN",
+      "artifact": "tests/fixtures/m1_r29_launch_incidents/L2-annotations.json",
+      "not_measured": true,
+      "blocker": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings No runner allocated, no steps or ticks. Stopped after second launch failure.",
+      "source_commit_sha": "bb88cd1b67229ca72dc2b1734d23b58e99e50d1c",
+      "source_ci_run": 40979233978,
+      "executed_ticks": 0
+    },
+    {
+      "gate": "D4",
+      "metric": "settle/sleep and lurch WU/BL/px",
+      "value": null,
+      "threshold": "sleep within4s;1BL interpretation ownercall",
+      "verdict": "NOT RUN",
+      "artifact": "tests/fixtures/m1_r29_launch_incidents/L2-annotations.json",
+      "not_measured": true,
+      "blocker": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings No runner allocated, no steps or ticks. Stopped after second launch failure.",
+      "source_commit_sha": "bb88cd1b67229ca72dc2b1734d23b58e99e50d1c",
+      "source_ci_run": 40979233978,
+      "executed_ticks": 0
+    },
+    {
+      "gate": "D5",
+      "metric": "ten outcomes, variance NONE",
+      "value": null,
+      "threshold": "6..8successes; no invented tutorial predicate",
+      "verdict": "NOT RUN",
+      "artifact": "tests/fixtures/m1_r29_launch_incidents/L2-annotations.json",
+      "not_measured": true,
+      "blocker": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings No runner allocated, no steps or ticks. Stopped after second launch failure.",
+      "source_commit_sha": "bb88cd1b67229ca72dc2b1734d23b58e99e50d1c",
+      "source_ci_run": 40979233978,
+      "executed_ticks": 0
+    },
+    {
+      "gate": "D6",
+      "metric": "authorized corrected-source push launch, literal closure, evidence survival",
+      "value": {
+        "source_commit_sha": "bb88cd1b67229ca72dc2b1734d23b58e99e50d1c",
+        "ci_run": 40979233978,
+        "job": 123814811746,
+        "conclusion": "failure before job start",
+        "runner_steps": 0,
+        "executed_ticks": 0,
+        "blocker": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+        "artifact": "tests/fixtures/m1_r29_launch_incidents/L2-annotations.json",
+        "stop": "Second launch failure: STOP; no further launch or alternative execution",
+        "L1": "remains distinct: original inherited-member parse collision, zero ticks, committed engine logs retained"
+      },
+      "threshold": "[R29-once-2]; exactSHA; stop on further failure",
+      "verdict": "LAUNCHED; INFRASTRUCTURE BLOCKED; STOPPED",
+      "artifact": ".github/workflows/r29.yml",
+      "not_measured": false,
+      "blocker": null
+    },
+    {
+      "gate": "D7",
+      "metric": "local static controls/core/tuning invariance; current-head M0 cannot start",
+      "value": {
+        "local_controls": 232,
+        "local_failures": 0,
+        "core_diff_4796ec6": "EMPTY",
+        "tuning_sha256": "5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666",
+        "M0_current_head": "NOT RUN: billing; CI40979233773 headless123814811476 has steps[]",
+        "M0_last_verified": {
+          "checks": 516,
+          "failures": 0,
+          "source": "2041793dca4b16abc19c52e6a3e2ce7c572f23c0",
+          "job": 123808676727
+        }
+      },
+      "threshold": {
+        "controls_min": 226,
+        "M0": 516,
+        "core_diff": "EMPTY"
+      },
+      "verdict": "LOCAL STATIC PASS; FRESH ENGINE REGRESSION NOT RUN",
+      "artifact": "tests/fixtures/m1_r29_launch_incidents/L2-jobs.json",
+      "not_measured": true,
+      "blocker": "Current-head CI engine/M0 checks could not start because account billing/spending limit blocked runners; last516/0 is historical proof, not a fresh run."
     }
   ],
   "attribution_rule": {
@@ -180,9 +297,12 @@
     "tests/fixtures/m1_r29_raw/import.log": "1dd2f4efd5965874d797b1a96876a75f8e8585c16aa5b8ea2476c39e75bd188a",
     "tests/fixtures/m1_r29_raw/remaining-import.log": "1dd2f4efd5965874d797b1a96876a75f8e8585c16aa5b8ea2476c39e75bd188a",
     "tests/fixtures/m1_r29_raw/start-m0.log": "8fcf02e486acfb37543c61ab26069b1821892ca6471ebc33453e2e9256ce64ab",
-    "tests/fixtures/m1_r29_raw/start-static.log": "a3c8e9dc26fbd3972f4dc0ee2cdc6d2c945454a9cb12212d355b1cd12ee7a12c"
+    "tests/fixtures/m1_r29_raw/start-static.log": "a3c8e9dc26fbd3972f4dc0ee2cdc6d2c945454a9cb12212d355b1cd12ee7a12c",
+    "tests/fixtures/m1_r29_launch_incidents/L2-annotations.json": "1dd65409b00d2bbf072c60f62ae73bbf5ed7a33c2c06dafc35b71c7b2fae3dd2",
+    "tests/fixtures/m1_r29_launch_incidents/L2-jobs.json": "861e8cb9fe24304f5638070ceb6a4b9aeadff7293deb98e62e305da9880338f8",
+    "tests/fixtures/m1_r29_launch_incidents/L2-run.json": "bbbd34d95ce16e7253d57c934d020832f4a4b1a17421bc48b4cf436187cda067"
   },
-  "report_head": "8dfe959fe3587cd4f1cbf978c9c28f7186352689",
+  "report_head": "bb88cd1b67229ca72dc2b1734d23b58e99e50d1c",
   "D2_owner_choice": "ten independent production Slugs,30capsules aggregate; NOT EXECUTED; actual constraintcount/hardware/timings NOT RUN, not filled from reference",
   "D4_open_question": "1.00BL spec value vs scale unresolved; no lurch acceptance threshold chosen; measurement itself NOT RUN",
   "D5_missing_scenario": "tutorial chunk/goal/success predicate absent. Proposed substitute flatplane+identicalinputL60/released240, varianceNONE, was NOT EXECUTED. No ten outcomes/success counts/insensitivity measurement claimed.",
@@ -227,7 +347,7 @@
     "tuning_sha256": "5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666",
     "infrastructure_exception": "legacy M1 public artifact upload failed quota, job123808677357; does NOT explain/erase R29 harness compiler failure; Androidjobpending, no Android/device claim"
   },
-  "closing_status": "D0 CONTROL AT SLOP, F79 WITHDRAWN; L1 zero-tick launch incident; authorized L2 pending",
+  "closing_status": "D0 CONTROL AT SLOP; F79 WITHDRAWN. L1zero-tick compiler launch incident. L2zero-step billing launch incident; STOP. D1\u2013D5 NOT RUN, no P3.",
   "final_local_controls": 232,
   "final_local_failures": 0,
   "changed_files": [
@@ -379,5 +499,32 @@
     "future_markers": "all measurement jobs closed to these two literal SHA pins",
     "code_correction": "helper renamed to _checked_step for future use; NO arm rerun, compile-only check separate",
     "infrastructure_exception": "legacy M1 artifact quota remains exhausted; no claim all workflows green"
+  },
+  "L2_launch_incident": {
+    "source_commit_sha": "bb88cd1b67229ca72dc2b1734d23b58e99e50d1c",
+    "ci_run": 40979233978,
+    "job": 123814811746,
+    "conclusion": "failure before job start",
+    "runner_steps": 0,
+    "executed_ticks": 0,
+    "blocker": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+    "artifact": "tests/fixtures/m1_r29_launch_incidents/L2-annotations.json",
+    "stop": "Second launch failure: STOP; no further launch or alternative execution",
+    "L1": "remains distinct: original inherited-member parse collision, zero ticks, committed engine logs retained"
+  },
+  "D6_closure": {
+    "marker": "[R29-once-2]",
+    "literal_source_sha": "bb88cd1b67229ca72dc2b1734d23b58e99e50d1c",
+    "ci_run": 40979233978,
+    "job": 123814811746,
+    "execution_counts": {
+      "D1": 0,
+      "D2": 0,
+      "D3": 0,
+      "D4": 0,
+      "D5": 0
+    },
+    "closed": true,
+    "reason": "owner second-failure stop; no automatic retry"
   }
 }

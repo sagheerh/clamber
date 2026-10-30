@@ -1,18 +1,16 @@
 # M1 acceptance matrix — scoped measured evidence, NOT milestone approval
 
-## Current R29 — D0 measured; D1–D5 NOT RUN, no P3
+## Current R29 — CONTROL AT SLOP; F79 WITHDRAWN; L2STOP
 
-Zero core/tuning changes from4796ec6. D0CI40974609556/source819cefc all3×7200:
-maxpenetration.020000000000000823WUeach, head0/u0,ticksSlug22/Hopper33/Twin15.
-CONTROL AT SLOP; F79 WITHDRAWN; AC202staysFAILEDforM1/no-readoption independent of attribution.
-D1–D5CI40976842113/source8dfe959NOTRUN: helper_checked conflicts inheritedint,
-GDScriptparseerrorline111, ZEROmeasurementticks. Logs preserved; no retry or
-reference/window substitution. Separate corrected-helper --check-only passed
-CI40977382604, ZEROmeasurementticks. D7finalcode2041793static232/0,M0516/0.
-DedicatedR29workflowhad no uploads; directrepoCIpush preservedallevidence.
-LegacyartifactquotaRED exception doesnotexplainR29compilerfailure. No P3verdict,
-newacceptancecredit, physicsfix, retune, adoption, acceptedsoak rerun or M1complete.
-See `.review/m1_r29_measurement_{evidence.json,report.md}` for pergateNOTRUN/blockers.
+D0rawnumbers unchanged: .020000000000000823WU on designed.02slop, roundoff,
+not preexistingdefect. Reportdefecttest>.02*(1+1e-9). Adopted/control3.514/4.670/
+2.538; AC202as adopteddead/no-readoption; no P3. L1zero-tick compileincident
+retained. AuthorizedL2bb88cd1/CI40979233978 didnotstart: accountpaymentsfailed
+OR spendinglimitneedsincrease; job123814811746steps[]. D1–D5NOTRUN/zero ticks,
+stopaftersecondfailure, no rerun. D2mandatoryHopper+30capsuleaggregate notexecuted,
+3msnotappliedPASS/FAIL, rowNOTMEASURABLEASSPECIFIED. Localcontrols232/0; current
+M0NOTRUN/billing (last516/0source2041793 notfresh). core/tuningunchanged, no
+newacceptancecredit. Exactpergateblockers/checkannotations inR29report/evidence.
 
 ## Historical R28 — adoption REVERTED: penetration hard stop
 

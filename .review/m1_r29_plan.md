@@ -62,3 +62,9 @@ asPASS/FAIL; D07NOTMEASURED. Optional14partfixture notrun. D3local100×10000,
 all100hashes; notsoak/RNGdeterminism. D4same540tickprotocol;1BLownerquestion.
 D5same10identical300ticks,varianceNONE, flatplanesubstitute; insensitivefinding
 is notfailure. No tutorialsuccesspredicate invented. No P3/readoption/coreedit.
+
+
+L2disposition: sourcebb88cd1/CI40979233978 neverstarted, job123814811746steps[].
+GitHubbilling/payment/spendinglimit blockedrunner; no engine or measurements.
+SecondfailureSTOP as instructed; no rerun. L1logs retained; L2annotations/jobs
+committed separately. No newD1–D5metrics; D0CONTROLATSLOP/F79WITHDRAWN stands.

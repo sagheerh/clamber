@@ -2111,9 +2111,12 @@ D0source819cefc4ce9b66e6f8725d1ed24694e85e8f5154 /CI40974609556SUCCESS,
 all3×7200. Slug/Hopper/Twin eachmax.020000000000000823WU; worsthead0/u0,
 ticks22/33/15. ExactpairedR28adopted .07028201067739755/.0933999293597247/
 .05075245867956493WU, ratios.2845678404364825/.2141329242656268/.3940695785060293.
-CONTROL AT SLOP; F79 WITHDRAWN; no pre-existing penetration defect; no demonstration projection
-caused its existence, no proof it cannot increase max. No invented similarity
-cutoff. Strict.02limit/noepsilon. OwnerAC202FAILEDforM1/no-readoption remains;
+CONTROL AT SLOP; F79 WITHDRAWN; no pre-existing penetration defect. Reviewer
+5ed8fca corrects the label: excess8.2e-16absolute/4.1e-14relative is roundoff
+at designed.02slop; compare >.02*(1+1e-9), NOT bare>=.02. Adopted/control3.514/
+4.670/2.538; projection multiplies penetration2.5–4.7xabove designedslop,
+AC202as adopteddead. Caveat: no proof projection cannot increase max. This is
+REPORTONLY interpretation; no solver slop/epsilon/tolerance edit. OwnerAC202FAILEDforM1/no-readoption remains;
 projection reevaluation only insideM1.1aftercontactrectifierfix. No fix attempted.
 
 D1–D5source8dfe959fe3587cd4f1cbf978c9c28f7186352689/CI40976842113FAILED:
@@ -2141,3 +2144,25 @@ historicalmarkerjobs untouched/unrun. No P3/retune/sweep/brace/slop/epsilon/
 tolerance/iteration/adoption/acceptedsoak rerun/deviceperformance/M1complete.
 AcceptedFA3vacuous/uncredited,FA5transient2–4tickcaveat, samebuildattempt1 and
 crossarchitecture0 unchanged; no repetition-as-determinism credit.
+
+
+## M1-R29 reviewer5ed8fca — L1launchincident; authorizedL2 blocked; STOP
+
+D0verdict CONTROL AT SLOP, F79WITHDRAWN, rawtraces/metrics unchanged. Defecttest
+>.02*(1+1e-9), not>=.02; no physics/tuning epsilon/threshold edits. Existing
+AC202FAILED/no-readoption ownerdisposition stands, no P3.
+L1CI40976842113/source8dfe959 is launchincident: integer_checked/helpercollision,
+zero executedticks, logs kept. It didnotconsume measurementexecutions. Owner
+explicitly authorized corrected D1–D5 firstexecutions [R29-once-2], noD0rerun.
+L2sourcebb88cd1b67229ca72dc2b1734d23b58e99e50d1c/CI40979233978,
+job123814811746 had steps[]: GitHubrefusedstart because recentaccountpayments
+failed OR spendinglimit needsincrease (exactcheckannotation committed). ZERO
+runnersteps/ticks, no captures/timings/hashes/lurch/outcomes. This is NOT compiler
+or physicsfailure and NOT artifactquota. Persecondfailureinstruction STOP,
+D1–D5NOTRUN, no morelaunches/alternateexecution. Workflow closed toliteralbb88.
+D2mandatoryHopperalone plus tenSlugs30capsules labelledaggregate prepared;
+3msNOTappliedpassfail, rowsNOTMEASURABLEASSPECIFIED; no actualnumbers/hardware
+fabricated. D4oneBLownerquestion, D5varianceNONEplannednotobserved; tutorial
+predicateabsent. CurrentheadM0engineCI NOTRUN/billing, previous516/0source2041793
+is historynotfreshproof. Localcontrols232/0, core/startdiffEMPTY, tuningbyteequal.
+No P3/retune/readoption/physicsfix/soakrerun/FA3credit/mobile/M1complete claim.

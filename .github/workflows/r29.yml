@@ -4,7 +4,7 @@ permissions:
   contents: write
 jobs:
   measurements:
-    if: ${{ github.event_name == 'push' && github.sha == github.event.after && contains(github.event.head_commit.message, '[R29-once-2]') }}
+    if: ${{ github.event_name == 'push' && github.sha == github.event.after && contains(github.event.head_commit.message, '[R29-once-2]') && github.sha == 'bb88cd1b67229ca72dc2b1734d23b58e99e50d1c' }}
     runs-on: ubuntu-24.04
     timeout-minutes: 150
     env:

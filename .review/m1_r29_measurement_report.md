@@ -1,54 +1,116 @@
-# R29 measurement report — head 534f5f53966be38b9cae171ba11e223403e8fbc4
+# R29 measurement report — head bb88cd1b67229ca72dc2b1734d23b58e99e50d1c
 
-D0 corrected by reviewer5ed8fca; F79 WITHDRAWN. L1 is a launch incident, zero ticks; logs retained. This report contains L2 first executions, not compile-only measurements. No P3 or adoption.
+Reviewer5ed8fca corrections applied. **D0 is CONTROL AT SLOP, F79 WITHDRAWN.**
+L1was a zero-tick launch incident, not an executed measurement. AuthorizedL2
+was attempted once under[R29-once-2], but GitHub refused to start its job.
+**Second launch failure → STOP. No arm execution or further launch. No P3.**
 
-Start facts: {"tuning_sha256": "5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666", "core_diff_fb890fd": "EMPTY", "controls": 226, "control_failures": 0, "M0": 516, "M0_failures": 0, "engine": "4.7.2.stable.official.ed1daf0bf", "engine_checksum": "SHA512-SUMS release manifest verified in CI"}
+Original startingfacts remain recorded:4796ec6, productioncorebyteequalfb890fd,
+tuningSHA2565f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666,
+controls226/0, M0516/0, checksumGodot4.7.2.stable.official.ed1daf0bf.
+These were verified before originalD0, NOT fresh CI results from this blockedlaunch.
 
 ## D0 penetration control (reverted build)
-| preset | control WU | adopted WU | adopted/control | verdict |
-|---|---:|---:|---:|---|
-|Slug|0.020000000000000823|0.07028201067739755|3.514100533869733|CONTROL — AT SLOP (0.02 + roundoff)|
-|Hopper|0.020000000000000823|0.0933999293597247|4.669996467986043|CONTROL — AT SLOP (0.02 + roundoff)|
-|TwinRoller|0.020000000000000823|0.05075245867956493|2.537622933978142|CONTROL — AT SLOP (0.02 + roundoff)|
-Roundoff-aware comparison: >0.02*(1+1e-9). The reprojection multiplies penetration2.5–4.7× above designed slop; AC202as adopted is dead on evidence. No preexisting penetration defect; F79 WITHDRAWN. The control does not establish that reprojection cannot increase its maximum.
+
+D0was NOT rerun. Source819cefc / CI40974609556,7200ticks/preset, unchangedrawdata.
+
+| preset | reverted max WU | adopted max WU (R28) | adopted/control | worst control tick / part/kind/u | verdict |
+|---|---:|---:|---:|---|---|
+|Slug|0.020000000000000823|0.07028201067739755|3.514100533869733|22 / 0/head/0|CONTROL — AT SLOP (0.02 + roundoff)|
+|Hopper|0.020000000000000823|0.0933999293597247|4.669996467986043|33 / 0/head/0|CONTROL — AT SLOP (0.02 + roundoff)|
+|TwinRoller|0.020000000000000823|0.05075245867956493|2.537622933978142|15 / 0/head/0|CONTROL — AT SLOP (0.02 + roundoff)|
+
+Designed physics_contact_slop_wu=.02. Absolute excess8.22e-16WU, relative4.11e-14:
+roundoff at the designed slop, **not a pre-existing penetration defect**.
+Corrected report-only defect test is **>0.02*(1+1e-9)**, never bare>=.02.
+No physics slop/epsilon/tolerance/tuning value was changed.
+
+**The reprojection multiplies penetration2.5–4.7× above the designed slop;
+AC-202 as adopted is dead on the evidence. F79 is WITHDRAWN.**
+Keep the earlier caveat: the control does not establish that the reprojection
+cannot increase its maximum. AC202remainsFAILEDforM1, no readoption; reevaluate
+only insideM1.1aftercontactrectifierfix, not this session.
 
 ## D1 presets / captures
-|preset|trace sha256|distinct?|10s COM path WU|final COM / pose|plot|
-|---|---|---|---:|---|---|
-Pairwise mean COM separation WU: {}
-Capture bytes: None; shared seed305419896,600ticks; full pose/input/digests in committed manifest. Hash inequality binary, no numeric distinctness threshold authored.
 
-## D2 tick cost (3.0 ms NOT applied as pass/fail)
-All rows NOT MEASURABLE AS SPECIFIED; reference-device leg NOT MEASURED (owner D07). Hopper alone mandatory; SlugAggregate = ten independent real Slugs, not one coupled30body creature. Both existing entrypaths measured; frame-only optimized mode absent.
-|workload / path|bodies|structural constraints|median ms|P95 ms|hardware|
-|---|---:|---|---:|---:|---|
-1000warmup discarded;10000samples/path/workload; nearest-rankP95. Raw CSVs and CPU/build committed;3ms is not a PASS/FAIL gate for these rows. Optional14partfixture NOT RUN/not needed.
+|preset|trace sha256|distinct?|10s COM path|final pose|plot|
+|---|---|---|---|---|---|
+|Slug|NOT RUN|NOT RUN|NOT RUN|NOT RUN|NOT RUN|
+|Hopper|NOT RUN|NOT RUN|NOT RUN|NOT RUN|NOT RUN|
+|TwinRoller|NOT RUN|NOT RUN|NOT RUN|NOT RUN|NOT RUN|
+
+L2job never started: no captures/manifest/plots generated; no reference or window
+substitution. Capture footprint0 is NOT a completed capture deliverable.
+
+## D2 tick cost (3.0 ms not applied as pass/fail)
+
+|row|actual bodies / constraints|median / P95|status|
+|---|---|---|---|
+|Hopper alone, mandatory real row|NOT RUN / NOT RUN|NOT RUN / NOT RUN|NOT MEASURABLE AS SPECIFIED; execution NOT RUN|
+|Ten independent Slugs, labelled30capsule aggregate|NOT RUN / NOT RUN|NOT RUN / NOT RUN|NOT MEASURABLE AS SPECIFIED; execution NOT RUN|
+
+No timing file/hardware/build measurement exists: no runner started. Planned
+1000warmupdiscarded/10000samples for both existing directtick/publicframe+tick
+entrypaths was not executed. Actual constraint counts must not be filled from
+reference.3.0ms is NOT a PASS/FAIL predicate. **Reference-device leg NOT MEASURED
+(D07).** Optional14part test-only fixture not run; no product geometry authored.
 
 ## D3 §10.6 step 1
-NOT RUN; see blocker below.
-All100 hashes logged if completed; local repeatability only, NOT independent RNG/crossarchitecture determinism evidence. Steps2–3 NOT RUN/nohardware; acceptedsoak not rerun.
+
+**100/100 identical: NOT RUN | hash NOT RUN | steps2–3 NOT RUN**.
+L2executed0repeats/0ticks; no hashlog exists. Steps2–3 lack crossarchitecture/
+five-device hardware. No soak rerun or repetition-as-independent-determinism claim.
 
 ## D4 FA-4 | D5 FA-6
-### D4/sleep — NOT RUN
-```json
-null
-```
-### D4/lurch — NOT RUN
-```json
-null
-```
-### D5 — NOT RUN
-```json
-null
-```
-1.00BL spec vs scale remains ownercall; no approximate lurch threshold/ceiling authored. FA6 variance source NONE, existing flatplane substitute for absent tutorial; no invented success predicate.
+
+|measurement|value|status|
+|---|---|---|
+|FA4settle/sleep within4s|NOT RUN|no runner/ticks|
+|FA4lurch WU / BL / px|NOT RUN / NOT RUN / NOT RUN|no runner/ticks|
+|FA6ten outcomes/input execution|NOT RUN (0executed)|no runner/ticks|
+
+D4protocol remains zero240/L60/released240; 1.00BL spec-vs-scale is the owner's
+call, no new tolerance or ceiling. AcceptedAC201sleep counts are not substituted.
+D5planned identicalL60/released240, seed305419896/spawn/pose identical, variance
+source **NONE**. The authored tutorial chunk/goal/successpredicate is absent;
+flatplane was the explicit substitute. If executed it would be insensitive by
+construction: an insensitive finding is not a failure. Here no ten-run finding
+was measured; all outcomes/success_count remainnull, not0or10 fabricated.
 
 ## Regression
-null
-Zero core/tuning changes, no preset/save/M0expectation edits. No artifactuploads/deletion. L1logs retained; any further arm failure stops later arms. No all-workflows-green claim (legacy artifactquota).
+
+- Local reviewcontrols **232/0**; no existing assertion/floor weakened.
+- `git diff4796ec6..HEAD -- core/`: **EMPTY**. Tuning byteidentical SHA256
+  `5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666`.
+- No presets/save/M0expectation edits. Changes are docs/tests/workflow/fixtures/
+  testregistration only; no physics/adoption/retune.
+- Fresh current-head M0 **NOT RUN**: CI40979233773 headlessjob123814811476
+  has steps[]. Lastverified **516/0**, source2041793/job123808676727, is historical
+  proof—not relabelled as a fresh test. CI all-green is NOT claimed.
+
+Launchaccounting:
+- **L1:** source8dfe959/CI40976842113, inherited_checked/helper collision,
+  zero ticks; committed `m1_r29_raw/D[1-5]-engine.log` retained unchanged.
+- Correctedhelper compile-only source2041793/CI40977382604 succeeded. This is
+  compile evidence ONLY, never a measurement or validation of newHopper timings.
+- **L2:** sourcebb88cd1 / CI40979233978, measurementsjob123814811746,
+  **steps[], zero runnersteps, zero ticks**. Check annotation:
+  > The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings
+- No runner/engine log exists forL2. The actual check annotation/job/run metadata
+  are committed under `tests/fixtures/m1_r29_launch_incidents/`.
+- Both failedlaunches are distinct. L2is billing/spending-limit infrastructure,
+  NOT another compiler or physics failure and NOT artifactstoragequota.
+- Per second-failure instruction: stopped, no alternative local/CI path, no
+  further launch, no artifact deletion. [R29-once-2] closed to literalbb88cd1SHA.
 
 ## Not measured
-- D07/referencehardware; crossarchitecture/five-device legs: nohardware.
-- Authored tutorial success band: chunk/goal predicate absent; ten substitute outcomes are a finding, not fabricated successes.
-- Frame-only optimized transaction mode absent; optional14part fixture not run.
-No P3, adoption, retune, physics/slop/solver epsilon/tolerance/iteration edits, acceptedsoak rerun, FA3credit or M1complete claim.
+
+D1–D5 and fresh current-head engine/M0regression: exact L2billing/spending-limit
+annotation above; job never started. No captures/timings/hashes/lurch/outcomes or
+hardware string fabricated. D07/crossarchitecture/five-device legs: no hardware.
+Tutorialsuccesspredicate and 1BLinterpretation remain open. No frame-only optimized
+transactionmode exists; no corechange authorized to create it.
+
+No P3, AC202readoption, retune/sweep/brace, physics slop/epsilon/tolerance/iteration
+edit, acceptedsoak rerun, FA3credit, penetration/creepfix, mobileperformance or
+M1complete claim. **STOPPED after second launch failure.**
