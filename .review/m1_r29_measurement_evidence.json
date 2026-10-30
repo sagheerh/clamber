@@ -135,6 +135,89 @@
       "blocker": null,
       "source_commit_sha": "819cefc4ce9b66e6f8725d1ed24694e85e8f5154",
       "source_ci_run": "40974609556"
+    },
+    {
+      "gate": "D1",
+      "metric": "measurement",
+      "value": null,
+      "threshold": null,
+      "verdict": "NOT RUN",
+      "artifact": "tests/fixtures/m1_r29_raw/D1-engine.log",
+      "not_measured": true,
+      "blocker": "Engine failure/nonfinite/schema failure; no retry; first failing tick/state file retained",
+      "source_commit_sha": "8dfe959fe3587cd4f1cbf978c9c28f7186352689",
+      "source_ci_run": "40976842113"
+    },
+    {
+      "gate": "D2",
+      "metric": "measurement",
+      "value": null,
+      "threshold": null,
+      "verdict": "NOT RUN",
+      "artifact": "tests/fixtures/m1_r29_raw/D2-engine.log",
+      "not_measured": true,
+      "blocker": "Engine failure/nonfinite/schema failure; no retry; first failing tick/state file retained",
+      "source_commit_sha": "8dfe959fe3587cd4f1cbf978c9c28f7186352689",
+      "source_ci_run": "40976842113"
+    },
+    {
+      "gate": "D3",
+      "metric": "measurement",
+      "value": null,
+      "threshold": null,
+      "verdict": "NOT RUN",
+      "artifact": "tests/fixtures/m1_r29_raw/D3-engine.log",
+      "not_measured": true,
+      "blocker": "Engine failure/nonfinite/schema failure; no retry; first failing tick/state file retained",
+      "source_commit_sha": "8dfe959fe3587cd4f1cbf978c9c28f7186352689",
+      "source_ci_run": "40976842113"
+    },
+    {
+      "gate": "D4",
+      "metric": "measurement",
+      "value": null,
+      "threshold": null,
+      "verdict": "NOT RUN",
+      "artifact": "tests/fixtures/m1_r29_raw/D4-engine.log",
+      "not_measured": true,
+      "blocker": "Engine failure/nonfinite/schema failure; no retry; first failing tick/state file retained",
+      "source_commit_sha": "8dfe959fe3587cd4f1cbf978c9c28f7186352689",
+      "source_ci_run": "40976842113"
+    },
+    {
+      "gate": "D5",
+      "metric": "measurement",
+      "value": null,
+      "threshold": null,
+      "verdict": "NOT RUN",
+      "artifact": "tests/fixtures/m1_r29_raw/D5-engine.log",
+      "not_measured": true,
+      "blocker": "Engine failure/nonfinite/schema failure; no retry; first failing tick/state file retained",
+      "source_commit_sha": "8dfe959fe3587cd4f1cbf978c9c28f7186352689",
+      "source_ci_run": "40976842113"
+    },
+    {
+      "gate": "D7",
+      "metric": "regression counts/tuning/core invariance",
+      "value": {
+        "controls": 232,
+        "failures": 0,
+        "M0": 516,
+        "M0_failures": 0,
+        "tuning_sha256": "5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666",
+        "core_diff": "EMPTY",
+        "source_head": "8dfe959fe3587cd4f1cbf978c9c28f7186352689"
+      },
+      "threshold": {
+        "controls_min": 226,
+        "M0": 516
+      },
+      "verdict": "PASS",
+      "artifact": "tests/fixtures/m1_r29_raw/D7-static.log",
+      "not_measured": false,
+      "blocker": null,
+      "source_commit_sha": "8dfe959fe3587cd4f1cbf978c9c28f7186352689",
+      "source_ci_run": "40976842113"
     }
   ],
   "attribution_rule": {
@@ -142,5 +225,23 @@
     "<=.005": "the reprojection causes it; AC-202 as adopted is dead",
     "in between": "partially causative; report both numbers, conclude nothing stronger"
   },
-  "AC202_owner_disposition": "FAILED for M1; no readoption; reevaluate inside M1.1 after contact rectifier fix, independent of D0 result"
+  "AC202_owner_disposition": "FAILED for M1; no readoption; reevaluate inside M1.1 after contact rectifier fix, independent of D0 result",
+  "files": {
+    "tests/fixtures/m1_r29_raw/D0-Hopper.jsonl.gz": "27672983c6875fe83da6f0e563ee32c23d31e832a9eaad2508c89858ac4793ab",
+    "tests/fixtures/m1_r29_raw/D0-Slug.jsonl.gz": "ea09b2d9f925d6414b3b5939d3e257bf8d28e16ad567366eb6da3281d2298c16",
+    "tests/fixtures/m1_r29_raw/D0-TwinRoller.jsonl.gz": "9b4689d74c8a564e35426dfa520fc5259a7f531694eb1d61f750776fb5f33488",
+    "tests/fixtures/m1_r29_raw/D0-engine.log": "6d1c065383a27c36804949b6ffa4b09714470b112e5dacc0bd5aeb7b9c147c4e",
+    "tests/fixtures/m1_r29_raw/D0.json": "ebc6de6907348e692f182f5b54076739f26a440252d9c82b7c3539dedba79ae2",
+    "tests/fixtures/m1_r29_raw/D1-engine.log": "bf73aef54d3263b1b750b3e9bccf307ebb3a783d830e1c9a119f9ee9a126f7df",
+    "tests/fixtures/m1_r29_raw/D2-engine.log": "bf73aef54d3263b1b750b3e9bccf307ebb3a783d830e1c9a119f9ee9a126f7df",
+    "tests/fixtures/m1_r29_raw/D3-engine.log": "bf73aef54d3263b1b750b3e9bccf307ebb3a783d830e1c9a119f9ee9a126f7df",
+    "tests/fixtures/m1_r29_raw/D4-engine.log": "bf73aef54d3263b1b750b3e9bccf307ebb3a783d830e1c9a119f9ee9a126f7df",
+    "tests/fixtures/m1_r29_raw/D5-engine.log": "bf73aef54d3263b1b750b3e9bccf307ebb3a783d830e1c9a119f9ee9a126f7df",
+    "tests/fixtures/m1_r29_raw/D7-m0.log": "c0070108b9ee6e1fed691fb2adcce304b67d7b8ac15280e003da67f9efe92cf7",
+    "tests/fixtures/m1_r29_raw/D7-static.log": "e2461381592cafe2e44ed2e58db86168ad7d10278ad6e1bf46d44b31a93f8a66",
+    "tests/fixtures/m1_r29_raw/import.log": "1dd2f4efd5965874d797b1a96876a75f8e8585c16aa5b8ea2476c39e75bd188a",
+    "tests/fixtures/m1_r29_raw/remaining-import.log": "1dd2f4efd5965874d797b1a96876a75f8e8585c16aa5b8ea2476c39e75bd188a",
+    "tests/fixtures/m1_r29_raw/start-m0.log": "8fcf02e486acfb37543c61ab26069b1821892ca6471ebc33453e2e9256ce64ab",
+    "tests/fixtures/m1_r29_raw/start-static.log": "a3c8e9dc26fbd3972f4dc0ee2cdc6d2c945454a9cb12212d355b1cd12ee7a12c"
+  }
 }
