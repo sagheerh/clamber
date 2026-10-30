@@ -22,11 +22,20 @@ e=dict(scope='unadopted primitive candidate ONLY; NOT assembled-creature accepta
 (Path(os.environ['M1_CONTACT_CANDIDATE_REPORT_DIR'])/'source.json').write_text(json.dumps(e,indent=2)+'\n')
 PY
 "$GODOT" --headless --editor --import > "$folder/import.log" 2>&1
-! grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/import.log"
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/import.log"; then
+ echo 'STOP: import log contains an error; no further execution.' >&2
+ exit 1
+fi
 "$GODOT" --headless --check-only --script res://tests/physics_fix/test_rigid_contact_candidate.gd > "$folder/compile.log" 2>&1
-! grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/compile.log"
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/compile.log"; then
+ echo 'STOP: compile log contains an error; no further execution.' >&2
+ exit 1
+fi
 "$GODOT" --headless --script res://tests/physics_fix/test_rigid_contact_candidate.gd > "$folder/units.log" 2>&1
 cat "$folder/units.log"
-! grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|FAIL' "$folder/units.log"
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|FAIL' "$folder/units.log"; then
+ echo 'STOP: units log contains an error; no further execution.' >&2
+ exit 1
+fi
 grep -Eq '^Unadopted rigid contact units: 31 checks, 0 failures$' "$folder/units.log"
 echo 'Primitive candidate only. No production adoption or AC verdict.'

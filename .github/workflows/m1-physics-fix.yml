@@ -1,0 +1,51 @@
+name: M1 contact candidate primitives (not acceptance)
+on: [push]
+permissions:
+  contents: read
+jobs:
+  contact-primitives:
+    if: ${{ github.ref == 'refs/heads/arena/f43f36ab-clamber' && github.sha == github.event.after && contains(github.event.head_commit.message, '[M1-contact-units]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+      - name: Runner/source proof before any engine operation
+        run: |
+          test "$(git rev-parse HEAD)" = "${{ github.sha }}"
+          echo '::notice title=Source proof::Allocated runner; exact event SHA; no creature ticks'
+      - name: Install checksum-verified exact engine
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Compile barriers then isolated primitive tests ONLY
+        shell: bash
+        run: |
+          set +e
+          bash tests/run_m1_contact_candidate.sh
+          status=$?
+          set -e
+          echo "::notice title=Engine build::$($GODOT --version)"
+          python3 - "$status" <<'PY'
+          import re,sys
+          from pathlib import Path
+          level='notice' if sys.argv[1]=='0' else 'error'
+          for name in ('import','compile','units'):
+              p=Path('exports/contact-candidate-units')/(name+'.log')
+              if not p.exists():continue
+              for line in [s for s in p.read_text().splitlines() if re.search(r'SCRIPT ERROR|ERROR:|Parse Error|FAIL|Unadopted|Scope:',s)][:40]:
+                  escaped=line.replace('%','%25').replace('\r','%0D')
+                  print(f'::{level} title=Candidate {name}::{escaped}')
+          PY
+          exit "$status"
