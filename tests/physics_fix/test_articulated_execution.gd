@@ -2,6 +2,7 @@
 extends "res://tests/sim/test_r28.gd"
 ## Fresh NEW unadopted articulated candidate, NOT a historical R27/R29 run or M1 verdict.
 const CANDIDATE = preload("res://tests/physics_fix/assembly_damped_candidate.gd")
+const CAPTURE_POLICY = preload("res://tests/physics_fix/articulated_capture_policy.gd")
 var _results: Dictionary = {
 	"scope": "NEW unadopted articulated candidate",
 	"arms": {},
@@ -182,7 +183,7 @@ func _candidate_run(name: String, target: int, idle: bool) -> bool:
 					"input_mask": mask,
 					"state": state,
 					"constraints": constraints,
-					"awake_solver_trace": candidate.last_step_trace,
+					"awake_solver_trace": CAPTURE_POLICY.select(candidate.last_step_trace, idle),
 					"length_peak_wu": length_peak,
 					"penetration_peak_wu": peak,
 					"attitude_deg": angle

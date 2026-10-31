@@ -63,3 +63,20 @@ persisted worktree matched every remote5edfb80 blob. Fetched fixed branch, verif
 all remote-tracked file hashes, then mixed-reset metadata to that SAME branch tip
 without changing any worktree file. Native engine/tool environments were absent;
 local grammar/rational/double checks are not engine evidence.
+
+Source79d26b2/run41162337794: prior42+8+20+12+36 native PASS; new module and
+candidate check-only compile PASS. New component script check-only stops on
+Variant-inferred bool `rest`; explicit bool annotation fixes this TEST declaration.
+New24 NOT RUN, ZERO world ticks. Publisher83c954e preserves the compile incident.
+No physical attempt, posture or angular-loss outcome credited to that source.
+
+Before any V9 world tick, also bound LONG capture verbosity: all7200 per-tick
+physical states (including flags, loads, sleep, every endpoint/velocity), constraints,
+input and length/penetration metrics remain. Keep awake status/tick/frozen-N/global
+momentum budget; omit redundant iteration/contact debug from LONG transport ONLY.
+Idle600 remains full; full trace finite scanner executes BEFORE this selection;
+first failure Variant retains full work/before/after, never a subset. This avoids
+known risk of three unbounded full-debug traces exceeding existing32MiB publisher
+budget. Physics, sample count, arms, gates and publisher quota are unchanged.
+Add two native transport-only controls: required new tally26 before world.
+No long geometry run is substituted for detailed force/adoption coverage later.

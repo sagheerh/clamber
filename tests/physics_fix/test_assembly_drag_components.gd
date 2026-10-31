@@ -130,7 +130,7 @@ func _initialize() -> void:
 		result.status != OK and before == _bits(rig.bodies), "invalid topology rejected atomically"
 	)
 	result = DRAG.apply(rig.bodies, rig._parents, 1.0)
-	var rest := result.status == OK
+	var rest: bool = result.status == OK
 	for body in rig.bodies:
 		rest = (
 			rest
@@ -198,6 +198,29 @@ func _initialize() -> void:
 	)
 	result = DRAG.apply(rig.bodies, rig._parents, 1.1)
 	_check(result.status != OK, "out-of-range resource rejected, never clamped")
+	const CAPTURE = preload("res://tests/physics_fix/articulated_capture_policy.gd")
+	var full := {
+		"status": OK,
+		"tick": 3,
+		"input_mask": 2,
+		"momentum_budget": {"a": 1.0},
+		"contact_samples": [1, 2, 3]
+	}
+	var full_bits := var_to_bytes(full)
+	_check(
+		var_to_bytes(CAPTURE.select(full, true)) == full_bits,
+		"idle600 transport preserves full diagnostic trace bitwise"
+	)
+	var compact := CAPTURE.select(full, false)
+	_check(
+		(
+			compact.momentum_budget == full.momentum_budget
+			and compact.status == full.status
+			and not compact.has("contact_samples")
+			and var_to_bytes(full) == full_bits
+		),
+		"long geometry transport keeps budget/status without mutating full scanned trace"
+	)
 	print("Assembly angular drag components: %d checks, %d failures" % [_checks, _failures])
 	print("Scope: constrained damping COMPONENTS ONLY; ZERO world ticks; NOT acceptance")
 	quit(1 if _failures else 0)
