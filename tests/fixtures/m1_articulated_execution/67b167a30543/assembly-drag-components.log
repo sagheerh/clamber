@@ -1,0 +1,5 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+Assembly drag diagnostic: {"authored_target":0.2,"hinge_force_residual":5.204170427930421e-18,"legacy_final_motor_omega":0.7870017771007871,"new_motor_omega":0.19999999999999996}
+Assembly angular drag components: 26 checks, 0 failures
+Scope: constrained damping COMPONENTS ONLY; ZERO world ticks; NOT acceptance
