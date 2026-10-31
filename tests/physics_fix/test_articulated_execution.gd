@@ -1,11 +1,11 @@
 # gdlint: disable=max-line-length,max-returns
 extends "res://tests/sim/test_r28.gd"
 ## Fresh NEW unadopted articulated candidate, NOT a historical R27/R29 run or M1 verdict.
-const CANDIDATE = preload("res://tests/physics_fix/manifold_candidate.gd")
+const CANDIDATE = preload("res://tests/physics_fix/coplanar_pad_candidate.gd")
 const AUTHORED_MODELS = preload("res://tests/physics_fix/rigid_pad_models.gd")
 const CAPTURE_POLICY = preload("res://tests/physics_fix/articulated_capture_policy.gd")
 var _results: Dictionary = {
-	"scope": "NEW owner-authorized rigid-pad stance; NOT historical pose acceptance",
+	"scope": "NEW radius-derived coplanar toe stance; NOT V17/V18 or historical geometry",
 	"arms": {},
 	"not_run_arms": ["idle-Slug", "length-Slug", "length-Hopper", "length-TwinRoller"],
 	"status": "NOT RUN"
