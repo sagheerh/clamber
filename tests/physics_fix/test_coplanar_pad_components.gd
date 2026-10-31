@@ -72,7 +72,7 @@ func _initialize() -> void:
 			),
 			name + " actual strict coupled gravity/contact stage; original frozen N0"
 		)
-		var material := result.status == OK
+		var material: bool = result.status == OK
 		if material:
 			for observed in result.contact_samples:
 				material = material and not observed.may_grip

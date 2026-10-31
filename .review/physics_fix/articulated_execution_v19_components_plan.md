@@ -31,3 +31,7 @@ Known manifold broader negative work remains before generic adoption: stronger
 coincident normal targets; preserve distinct coincident material policies; zero
 material+static override and explicit empty-contact angular-scope certification.
 No claim these generic input classes are all covered by current authored run.
+
+07431d9/run41206368850 is a compile-only incident, ZERO public ticks:
+Godot cannot infer `material` from Variant Dictionary.status. Explicit bool type
+fix; original42passed. Preserve first annotations; never call this world evidence.
