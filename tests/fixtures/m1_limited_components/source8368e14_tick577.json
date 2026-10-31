@@ -1,0 +1,112 @@
+{
+  "scope": "Derived native V7 penetration counterexample; component only; no replay",
+  "source_commit": "8368e14f716ffebfb64052c715d0dda3eecee9b3",
+  "source_row_sha256": "932e18762597007455e812a9c49aae49eb92c48c67ec63e8dde1db4c9188a2a9",
+  "physical": {
+    "angular_joints": [
+      {
+        "impulse": -0.11752314227691242,
+        "lower": -2.4434609527920603,
+        "rest_angle": -1.5707963267948968,
+        "upper": 0.6981317007977316
+      }
+    ],
+    "bodies": [
+      {
+        "a": {
+          "configured": true,
+          "inverse_mass": 2.5974025974025974,
+          "previous_x": -0.06045515329473256,
+          "previous_y": 0.07993174834013392,
+          "velocity_x": 0.007360418468139497,
+          "velocity_y": 0.004743176812116815,
+          "x": -0.0605845958147657,
+          "y": 0.07993153588229135
+        },
+        "applied_load_n": 18.213227217457916,
+        "b": {
+          "configured": true,
+          "inverse_mass": 2.5974025974025974,
+          "previous_x": 0.2629846373011302,
+          "previous_y": 0.2136729232239544,
+          "velocity_x": -0.004378401059739659,
+          "velocity_y": 0.033132335399161016,
+          "x": 0.2628551710664208,
+          "y": 0.21367276811769403
+        },
+        "gripping": false,
+        "grounded": true,
+        "kind": "head",
+        "length": 0.35,
+        "mass": 0.77,
+        "measured_reaction_n": 19.88815088634244,
+        "positional_cleanup_n": 19.178042885297483,
+        "radius": 0.1
+      },
+      {
+        "a": {
+          "configured": true,
+          "inverse_mass": 4.166666666666667,
+          "previous_x": 0.26311810850138834,
+          "previous_y": 0.21368789569291274,
+          "velocity_x": -0.004378401059739662,
+          "velocity_y": 0.033132335399161016,
+          "x": 0.2629888109440648,
+          "y": 0.21368784940620345
+        },
+        "applied_load_n": 19.01062330329395,
+        "b": {
+          "configured": true,
+          "inverse_mass": 4.166666666666667,
+          "previous_x": 0.5291364859676028,
+          "previous_y": 0.07500039499352436,
+          "velocity_x": -0.004678116715816581,
+          "velocity_y": 0.03255744648259224,
+          "x": 0.5290072130020171,
+          "y": 0.07500039587657144
+        },
+        "gripping": false,
+        "grounded": true,
+        "kind": "motor",
+        "length": 0.3,
+        "mass": 0.48,
+        "measured_reaction_n": 19.56148690339711,
+        "positional_cleanup_n": 20.828469137351394,
+        "radius": 0.095
+      },
+      {
+        "a": {
+          "configured": true,
+          "inverse_mass": 6.666666666666667,
+          "previous_x": 0.529030317024322,
+          "previous_y": 0.0749488111410467,
+          "velocity_x": -0.004678116715816584,
+          "velocity_y": 0.032557446482592234,
+          "x": 0.5289009583917758,
+          "y": 0.07494882661181944
+        },
+        "applied_load_n": 6.176149479248139,
+        "b": {
+          "configured": true,
+          "inverse_mass": 6.666666666666667,
+          "previous_x": 0.2831043029676142,
+          "previous_y": 0.030000000142534542,
+          "velocity_x": 4.336808689942018e-19,
+          "velocity_y": 0.006962327001845811,
+          "x": 0.28297494716260896,
+          "y": 0.030000000143137077
+        },
+        "gripping": false,
+        "grounded": true,
+        "kind": "foot",
+        "length": 0.25,
+        "mass": 0.3,
+        "measured_reaction_n": 6.941363535545052,
+        "positional_cleanup_n": 4.207413832029692,
+        "radius": 0.05
+      }
+    ],
+    "ticks": 578
+  },
+  "tick": 577
+}

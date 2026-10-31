@@ -175,6 +175,7 @@ func _initialize() -> void:
 		"lower stop has mirrored unilateral sign"
 	)
 	_inactive_identity(limits)
+	_finite_position_controls(limits)
 	print("Angular limited components: %d checks, %d failures" % [_checks, _failures])
 	print("Scope: saved/constructed component states ONLY; ZERO world ticks; NOT acceptance")
 	quit(1 if _failures else 0)
@@ -295,3 +296,89 @@ func _inactive_identity(limits: Array) -> void:
 			),
 			"inactive authored limits preserve original " + operation + " bit for bit"
 		)
+
+
+func _finite_position_controls(limits: Array) -> void:
+	const GEOMETRY = preload("res://tests/physics_fix/tree_position_publication.gd")
+	const SAVED_PENETRATION = "res://tests/fixtures/m1_limited_components/source8368e14_tick577.json"
+	_check(
+		(
+			FileAccess.get_sha256(SAVED_PENETRATION)
+			== "0a9ee903912566d59a97c7a6284b433f8a0fc4ba05ff524d1ad8e821c85b59d7"
+		),
+		"immutable new penetration counterexample"
+	)
+	var saved: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(SAVED_PENETRATION))
+	var bodies := _restore(saved.physical.bodies)
+	var network := NEW.new()
+	network.limits = limits.duplicate(true)
+	network.position_terrain = R25Fixture.floor_grid()
+	var valid := network.configure(bodies, _parents) == OK
+	var before: Array = []
+	for body in bodies:
+		before.append(body.snapshot())
+	var depth: float = bodies[0].radius - CONFIG.physics_contact_slop_wu - bodies[0].a.y
+	var result := network.contact_position(bodies, 0, 0.0, 0.0, 1.0, depth, CONFIG)
+	_check(
+		valid and depth > 0.0 and not result.is_empty(),
+		"finite angular/hinge/ALL terrain position publication succeeds"
+	)
+	var hinges := true
+	var floor_clear := true
+	var velocities := true
+	for i in range(bodies.size()):
+		if i > 0:
+			hinges = (
+				hinges
+				and bodies[_parents[i]].b.x == bodies[i].a.x
+				and bodies[_parents[i]].b.y == bodies[i].a.y
+			)
+		floor_clear = (
+			floor_clear
+			and (
+				bodies[i].radius - minf(bodies[i].a.y, bodies[i].b.y)
+				<= CONFIG.physics_contact_slop_wu * (1.0 + 1e-9)
+			)
+		)
+		for endpoint in ["a", "b"]:
+			velocities = (
+				velocities
+				and bodies[i].get(endpoint).velocity_x == before[i][endpoint].velocity_x
+				and bodies[i].get(endpoint).velocity_y == before[i][endpoint].velocity_y
+			)
+	_check(hinges, "finite coordinate publication makes every tree hinge bitwise coincident")
+	_check(floor_clear, "all capsule bottoms obey ORIGINAL penetration reporting bound")
+	_check(
+		_q(bodies, limits[0].rest_angle) <= limits[0].upper + 1e-12,
+		"finite terrain feasibility does not reopen angular limit"
+	)
+	_check(
+		velocities, "configuration feasibility never erases motion or manufactures contact velocity"
+	)
+	var corner := GEOMETRY.closest_translation(
+		[{"x": 1.0, "y": 0.0, "rhs": 0.2}, {"x": 0.0, "y": 1.0, "rhs": 0.3}]
+	)
+	_check(corner == [0.2, 0.3], "two-plane finite active set solves both normals together")
+	_check(
+		(
+			GEOMETRY
+			. closest_translation(
+				[{"x": 1.0, "y": 0.0, "rhs": 1.0}, {"x": -1.0, "y": 0.0, "rhs": 0.0}]
+			)
+			. is_empty()
+		),
+		"infeasible terrain constraints reject, never squeeze/regularize"
+	)
+	bodies = _restore(saved.physical.bodies)
+	network = NEW.new()
+	network.limits = limits.duplicate(true)
+	network.position_terrain = R25Fixture.floor_grid()
+	valid = network.configure(bodies, _parents) == OK
+	var bits := _bits(bodies)
+	var tiny: Tuning = CONFIG.duplicate(true)
+	tiny.physics_max_projection_wu_tick = 1e-10
+	result = network.contact_position(bodies, 0, 0.0, 0.0, 1.0, depth, tiny)
+	_check(
+		valid and result.is_empty() and bits == _bits(bodies),
+		"original total-motion bound retained atomically after finite publication"
+	)

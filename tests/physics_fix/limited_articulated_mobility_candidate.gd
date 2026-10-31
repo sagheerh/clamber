@@ -3,7 +3,10 @@ extends "res://tests/physics_fix/articulated_mobility_candidate.gd"
 ## UNADOPTED finite active-set block. Authored angular inequalities join H in the
 ## SAME solve. Active-set pivots are algebraic factorization, not extra PBD ticks
 ## or position/velocity sweeps. Original strict publication guards are inherited.
+const FINITE_POSITION = preload("res://tests/physics_fix/tree_position_publication.gd")
+var position_terrain: SdfGrid
 var limits: Array = []
+var _tree_parents: Array[int] = []
 var _limits_key := PackedByteArray()
 
 
@@ -37,6 +40,7 @@ func configure(bodies: Array[CapsuleBody], parents: Array[int]) -> Error:
 	var status := super.configure(bodies, parents)
 	if status == OK:
 		_limits_key = var_to_bytes(limits)
+		_tree_parents = parents.duplicate()
 	return status
 
 
@@ -53,7 +57,10 @@ func project_hinge_positions(
 	var trial := super.project_hinge_positions(free, parents, tuning)
 	if trial.is_empty():
 		return {}
-	if _angles_feasible(free):
+	if (
+		_angles_feasible(free)
+		and (position_terrain == null or FINITE_POSITION.clear(free, position_terrain, tuning))
+	):
 		_copy_positions(free, bodies)
 		return trial
 	var rhs := _zero(_hinges.size())
@@ -84,7 +91,10 @@ func contact_position(
 	var trial := super.contact_position(free, part, u, nx, ny, depth, tuning)
 	if trial.is_empty():
 		return {}
-	if _angles_feasible(free):
+	if (
+		_angles_feasible(free)
+		and (position_terrain == null or FINITE_POSITION.clear(free, position_terrain, tuning))
+	):
 		_copy_positions(free, bodies)
 		return trial
 	return _position_block(bodies, _zero(_hinges.size()), row, depth, tuning)
@@ -99,8 +109,18 @@ func _position_block(
 	if not contact.is_empty():
 		inequalities.append({"row": contact, "rhs": depth})
 	var solved := _active_solve(_hinges, rhs, inequalities)
-	if solved.is_empty() or _publish(bodies, solved.delta, true, tuning) != OK:
+	if solved.is_empty():
 		return {}
+	var finite_publication: Dictionary = {}
+	if position_terrain == null:
+		if _publish(bodies, solved.delta, true, tuning) != OK:
+			return {}
+	else:
+		finite_publication = FINITE_POSITION.publish(
+			self, bodies, _tree_parents, solved.delta, position_terrain, tuning
+		)
+		if finite_publication.is_empty():
+			return {}
 	var normal_multiplier := 0.0
 	if not contact.is_empty():
 		var index: int = solved.active.find(inequalities.size() - 1)
@@ -110,7 +130,8 @@ func _position_block(
 		"delta": solved.delta,
 		"position_multipliers_kg_wu": solved.multipliers,
 		"position_multiplier_kg_wu": normal_multiplier,
-		"active_angular_rows": solved.active
+		"active_angular_rows": solved.active,
+		"finite_position_publication": finite_publication
 	}
 
 

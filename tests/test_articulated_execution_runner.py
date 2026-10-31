@@ -21,7 +21,7 @@ class ArticulatedExecutionRunner(previous.CompositionRunnerTests):
         component="""if any('test_articulated_cap_identity.gd' in a or 'test_staged_articulated_components.gd' in a or 'test_staged_contact_identity.gd' in a or 'test_limited_articulated_components.gd' in a for a in args):
  if os.environ.get('DOUBLE_COMPONENT_ERROR')=='1': print('SCRIPT ERROR: TEST DOUBLE component failure')
  if '--check-only' not in args and os.environ.get('DOUBLE_COMPONENT_NO_SUMMARY')!='1':
-  if any('test_limited_articulated_components.gd' in a for a in args): print('Angular limited components: '+os.environ.get('DOUBLE_LIMITED_COUNT','27')+' checks, 0 failures')
+  if any('test_limited_articulated_components.gd' in a for a in args): print('Angular limited components: '+os.environ.get('DOUBLE_LIMITED_COUNT','36')+' checks, 0 failures')
   elif any('test_staged_contact_identity.gd' in a for a in args): print('Staged contact identity: 12 checks, 0 failures')
   else: print('Staged articulated components: '+os.environ.get('DOUBLE_STAGED_COUNT','20')+' checks, 0 failures' if any('test_staged_articulated_components.gd' in a for a in args) else 'Articulated cap identity: 8 checks, 0 failures')
  if any('test_limited_articulated_components.gd' in a for a in args) and '--check-only' not in args:
@@ -100,7 +100,7 @@ class ArticulatedExecutionRunner(previous.CompositionRunnerTests):
         self.assertEqual(stages,['import','compile'])
 
     def test_limited_incomplete_count_blocks_world(self):
-        result,stages=self.run_double(DOUBLE_LIMITED_COUNT='26')
+        result,stages=self.run_double(DOUBLE_LIMITED_COUNT='35')
         self.assertNotEqual(result.returncode,0)
         self.assertEqual(stages,['import','compile'])
 

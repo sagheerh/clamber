@@ -118,6 +118,7 @@ static func resolve_tick(
 				continue
 			var position_network := NETWORK.new()
 			position_network.limits = limits
+			position_network.position_terrain = terrain
 			if position_network.configure(work, parents) != OK:
 				return _fail("position factor", work)
 			var event := position_network.contact_position(

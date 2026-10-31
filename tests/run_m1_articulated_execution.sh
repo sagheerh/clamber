@@ -86,7 +86,7 @@ if ! grep -Fxq 'Staged contact identity: 12 checks, 0 failures' "$folder/contact
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/limited-compile.log"; then exit 1; fi
 timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_limited_articulated_components.gd > "$folder/limited-components.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/limited-components.log"; then exit 1; fi
-if ! grep -Fxq 'Angular limited components: 27 checks, 0 failures' "$folder/limited-components.log"; then exit 1; fi
+if ! grep -Fxq 'Angular limited components: 36 checks, 0 failures' "$folder/limited-components.log"; then exit 1; fi
 "$GODOT" --headless --script res://tests/physics_fix/test_articulated_execution.gd -- --report-dir="$folder" > "$folder/engine.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/engine.log"; then
  echo 'STOP: runtime errors; inspect first failure.' >&2
