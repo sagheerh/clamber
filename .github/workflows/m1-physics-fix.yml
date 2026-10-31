@@ -88,3 +88,50 @@ jobs:
         if: ${{ always() }}
         shell: bash
         run: python3 scripts/publish_m1_contact_composition.py
+
+  articulated-primitives:
+    if: ${{ github.ref == 'refs/heads/arena/f43f36ab-clamber' && github.sha == github.event.after && contains(github.event.head_commit.message, '[M1-articulated-units]') }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GODOT_VERSION: 4.7.2-stable
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.sha }}
+      - name: Verify exact committed source before engine operations
+        run: test "$(git rev-parse HEAD)" = "${{ github.sha }}"
+      - name: Install checksum-verified exact engine
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Compile then isolated articulated primitives ONLY
+        shell: bash
+        run: |
+          set +e
+          bash tests/run_m1_articulated_units.sh
+          status=$?
+          set -e
+          python3 - <<'PY'
+          import json,re
+          from pathlib import Path
+          folder=Path('exports/articulated-mobility-units')
+          for name in ('import','compile','units'):
+              p=folder/(name+'.log')
+              if not p.exists():continue
+              for row in [r for r in p.read_text().splitlines() if re.search(r'SCRIPT ERROR|ERROR:|Parse Error|FAIL|M1 articulated mobility units:|Scope:',r)][:30]:
+                  row=row.replace('%','%25').replace('\r','%0D')
+                  print(f'::notice title=Articulated {name}::{row}')
+          if (folder/'source.json').exists():
+              r=json.loads((folder/'source.json').read_text())
+              print('::notice title=Articulated source::'+json.dumps(r,separators=(',',':')))
+          PY
+          exit "$status"

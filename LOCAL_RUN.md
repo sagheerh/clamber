@@ -106,3 +106,23 @@ authored tutorial success predicate; do not invent a success count.
 - Wrong build: install the checksum-verified pinned release. Do not substitute.
 - Local hardware/CPU details may need manual supplementation on macOS/Windows;
   missing CPU identification is reported as NOT REPORTED, never as a phone result.
+
+
+## New articulated component gate (not assembled acceptance)
+
+The whole-chain hinge/contact mobility kernel is a new **unadopted** component.
+It does not select the failed old composition or rerun a historical measurement.
+After obtaining checksum-verified officialGodot4.7.2.ed1daf0bf:
+
+```bash
+export GODOT=/absolute/path/to/verified-godot
+bash tests/run_m1_articulated_units.sh
+```
+
+Output goes to fresh `exports/articulated-mobility-units/`; existing evidence is
+never overwritten. Expected42 component assertions must all execute. Engine
+errors/nonzero exits stop immediately, before any later stage. No world ticks,
+M1 signature or AC pass is inferred. Dirty/ZIP checkouts are explicitly recorded
+without inventing a source commit. Full integration/world acceptance remains open;
+see `.review/m1_articulated_operator.md`. A new CI job is opt-in via the exact
+branch/event SHA plus `[M1-articulated-units]`; it does not retry the old candidate.

@@ -1,0 +1,15 @@
+test_add (__main__.ZipProvenance.test_add) ... ok
+test_clean (__main__.ZipProvenance.test_clean) ... ok
+test_delete (__main__.ZipProvenance.test_delete) ... ok
+test_edit (__main__.ZipProvenance.test_edit) ... ok
+test_editor_uid_sidecar_is_not_source (__main__.ZipProvenance.test_editor_uid_sidecar_is_not_source) ... ok
+test_missing_manifest (__main__.ZipProvenance.test_missing_manifest) ... ok
+test_orphan_uid_is_rejected (__main__.ZipProvenance.test_orphan_uid_is_rejected) ... ok
+test_rename (__main__.ZipProvenance.test_rename) ... ok
+test_symlink (__main__.ZipProvenance.test_symlink) ... ok
+test_tuning_field_independently_verified (__main__.ZipProvenance.test_tuning_field_independently_verified) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.008s
+
+OK

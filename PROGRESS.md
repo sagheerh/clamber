@@ -8,6 +8,39 @@ Session date: 2026-10-30. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
+## Current continuation — network coupling code added; M1 still incomplete (2026-10-30)
+
+The owner requests completing the remaining implementation. Added an unadopted
+**tree-wide articulated mobility** operator, not another local foot-only response:
+`Wc = W - W H^T (H W H^T)^-1 H W`. Every x/y hinge row participates in a strict
+SPD block solve. Normal/tangent contact increments preserve hinge velocity rows;
+initial hinge projection and contact publish atomically across all bodies. Real
+internal hinge impulses are exposed separately; no qualifying load/grip/sleep
+policy is invented. Rigid pose/contact-position increments preserve bone extent,
+but finite-angle hinge residuals and manifolds still require a new adapter/testing.
+
+Actual checks in this continuation: exact-rational/source18/0 (including offline
+algebra on the last archived failed frame), labelled runner routing12/0, grammar/
+lint clean, prior evidence audit12/0, prior contact analysis12/0, provenance10/0,
+no-.git ZIP controls232/0. **42 new native Godot component checks NOT RUN.**
+No new world ticks. The failed prior candidate and all historical captures remain
+unchanged. Production/core/tuning/source manifest unchanged; no adoption/signature.
+
+**Previous workspace blocker (now partly cleared):** no local pinned engine; binary fetch failed;
+GitHub authentication was invalid. Owner has now reconnected it; auth and branch
+fetch succeed. Local engine asset redirect still fails, so native CI is the next gate. Earlier CI successes are historical, not proof
+of this new operator. Prior continuation launched no push/dispatch. The restored7d86dd5 working tree
+was re-associated with remote9618b06 on this SAME branch without changing files; new source provenance explicitly
+marks this dirty state rather than attributing the new code to an old commit.
+
+The `[M1-articulated-units]` opt-in job and
+`bash tests/run_m1_articulated_units.sh` are prepared for native components only;
+they do NOT rerun old failed composition or once-only arms. Real terrain/manifold
+adapter integration, native validation, full posture/sleep/length+penetration,
+public provenance/baseline and remaining device/FA gates are still open.
+**M1 NOT COMPLETE / BLOCKED / NOT SIGNED; AC-201/202 production failures remain.**
+See `.review/m1_articulated_operator.md` for code, actual checks and remaining work.
+
 ## Active physics-fix investigation — owner authorisation granted (2026-10-30)
 
 Owner now explicitly requests AC-201/AC-202 fixes after project/game analysis.

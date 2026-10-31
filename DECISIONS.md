@@ -3,6 +3,27 @@
 The GDD's existing D-01–D-17, CD-01, and A-xx decisions remain normative.
 New implementation decisions use M0-Dxx to avoid colliding with those IDs.
 
+## M1-PHYSICS-FIX-D03 — Constrain contact through the whole hinge network
+
+2026-10-30 continuation: implement a separate unadopted articulated mobility
+kernel with actual `m*extent²/4` inertia and all tree hinge rows in the constrained
+inverse mass. A per-body rigid contact impulse cannot preserve neighbour hinge
+velocity constraints. Use a direct SPD block factorization, not extra solver
+iterations, a regularizing epsilon or a new force/controller. Atomic shadow
+publication, strict passivity/projection guards and exact geometry binding remain.
+
+Return true internal hinge impulses for a later F24/F31 adapter, but never overwrite
+qualifying load with raw contact reaction or alter frozen prior N, grip or sleep.
+Finite position rotations preserve bone lengths; their hinge nullspace result is
+linearized only, not an exact nonlinear/world convergence guarantee. No production
+selection and no automatic retry of the rejected candidate or historical arms.
+
+18 rational/source checks and12 test-double routing checks passed. Native42 and
+world integration remain NOT RUN/unimplemented respectively. Current workspace
+lacks Godot and GitHub authentication is invalid; reconnect in Arena, no credential
+sharing. No new engine/push result claimed. M1 remains BLOCKED/NOT SIGNED, with
+no AC repair verdict or FA3/M2 credit. See `.review/m1_articulated_operator.md`.
+
 ## M1-PHYSICS-FIX-D01 — Root-cause repair authorised; no unverified adoption
 
 2026-10-30: owner explicitly authorises fixing AC-201/AC-202 after understanding

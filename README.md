@@ -20,6 +20,11 @@ Recheck: real pinned-engine primitives31/0; a new composed Slug candidate ran600
 actual ticks but failed posture/sleep and was **rejected**, not adopted. Full
 results and preserved evidence: [recheck report](.review/m1_physics_fix_recheck.md).
 
+New continuation: the missing network-level hinge/contact mobility code and
+component gate are in [the articulated operator note](.review/m1_articulated_operator.md).
+This is not selected by the lab or production. Native42 checks and assembled
+integration remain pending; reconnect GitHub in Arena to unblock pinned-engine CI.
+
 ## Exact toolchain
 
 - **Godot 4.7.2-stable**, standard GDScript build (not .NET), pinned in

@@ -1,0 +1,23 @@
+test_archived_failed_frame_hinge_residual_is_projected_not_hidden (__main__.ArticulatedMobilityAnalysis.test_archived_failed_frame_hinge_residual_is_projected_not_hidden) ... ok
+test_branched_tree_keeps_all_constraints (__main__.ArticulatedMobilityAnalysis.test_branched_tree_keeps_all_constraints) ... ok
+test_constrained_mobility_is_symmetric (__main__.ArticulatedMobilityAnalysis.test_constrained_mobility_is_symmetric) ... ok
+test_contact_effective_matrix_positive_definite (__main__.ArticulatedMobilityAnalysis.test_contact_effective_matrix_positive_definite) ... ok
+test_contact_targets_momentum_hinges_and_energy_together (__main__.ArticulatedMobilityAnalysis.test_contact_targets_momentum_hinges_and_energy_together) ... ok
+test_global_contact_increment_preserves_all_hinges (__main__.ArticulatedMobilityAnalysis.test_global_contact_increment_preserves_all_hinges) ... ok
+test_internal_projection_preserves_angular_momentum_at_coincident_anchors (__main__.ArticulatedMobilityAnalysis.test_internal_projection_preserves_angular_momentum_at_coincident_anchors) ... ok
+test_internal_projection_preserves_linear_momentum (__main__.ArticulatedMobilityAnalysis.test_internal_projection_preserves_linear_momentum) ... ok
+test_mobility_nonnegative_quadratic_form (__main__.ArticulatedMobilityAnalysis.test_mobility_nonnegative_quadratic_form) ... ok
+test_native_cholesky_algebra_matches_independent_exact_oracle (__main__.ArticulatedMobilityAnalysis.test_native_cholesky_algebra_matches_independent_exact_oracle) ... ok
+test_old_local_contact_reopens_hinge (__main__.ArticulatedMobilityAnalysis.test_old_local_contact_reopens_hinge) ... ok
+test_position_contact_increment_is_in_hinge_nullspace (__main__.ArticulatedMobilityAnalysis.test_position_contact_increment_is_in_hinge_nullspace) ... ok
+test_production_and_old_candidate_not_selected (__main__.ArticulatedMobilityAnalysis.test_production_and_old_candidate_not_selected) ... ok
+test_projection_annihilates_all_hinge_residuals (__main__.ArticulatedMobilityAnalysis.test_projection_annihilates_all_hinge_residuals) ... ok
+test_projection_is_idempotent (__main__.ArticulatedMobilityAnalysis.test_projection_is_idempotent) ... ok
+test_single_body_reduces_to_original_rigid_mass (__main__.ArticulatedMobilityAnalysis.test_single_body_reduces_to_original_rigid_mass) ... ok
+test_source_keeps_transaction_stale_frame_and_passivity_barriers (__main__.ArticulatedMobilityAnalysis.test_source_keeps_transaction_stale_frame_and_passivity_barriers) ... ok
+test_translation_is_not_silently_frozen (__main__.ArticulatedMobilityAnalysis.test_translation_is_not_silently_frozen) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.040s
+
+OK
