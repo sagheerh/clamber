@@ -3,7 +3,7 @@ extends RefCounted
 ## UNADOPTED algebraic precision escalation ONLY on an ordinary rank rejection.
 ## No rank waiver, diagonal regularizer, epsilon, physical sweep or energy allowance.
 ## Twofold LDL^T solves the SAME binary64 rows/RHS/weights. Ordinary strict rank
-## guard still applies to every active matrix; a truly singular system never publishes.
+## guard still applies to every active matrix; a rank-rejected matrix never publishes.
 ## Fixed twofold precision is NOT exact rational arithmetic or a universal QP solver.
 
 
@@ -99,12 +99,14 @@ static func _linear(rows: Array, rhs: Array, weights: Array) -> Dictionary:
 static func solve(
 	kernel: RefCounted, equalities: Array, rhs: Array, inequalities: Array
 ) -> Dictionary:
-	var active: Array[int] = []
+	var pending: Array = [[]]
 	var visited: Dictionary = {}
-	while true:
+	while not pending.is_empty():
+		var active: Array = pending.pop_front()
+		active.sort()  # A face has one canonical key, independent of pivot order.
 		var key := var_to_bytes(active).hex_encode()
 		if visited.has(key):
-			return {}
+			continue
 		visited[key] = true
 		var rows := equalities.duplicate()
 		var values := rhs.duplicate()
@@ -113,7 +115,15 @@ static func solve(
 			values.append(float(inequalities[index].rhs))
 		# Preserve original rank/finite barrier, never accept its rejected matrix.
 		if not rows.is_empty() and kernel._factor_rows(rows).is_empty():
-			return {}
+			# A violated dependent row cannot coexist with this entire active
+			# face. Explore one-row exchanges, NOT a singular factor or rank
+			# waiver. Every neighbor must independently meet strict primal AND
+			# dual conditions before publication. Finite visited faces, no budget.
+			for remove in range(active.size()):
+				var neighbor := active.duplicate()
+				neighbor.remove_at(remove)
+				pending.append(neighbor)
+			continue
 		var result := _linear(rows, values, kernel._weights)
 		if result.is_empty():
 			return {}
@@ -124,6 +134,7 @@ static func solve(
 				break
 		if pivot >= 0:
 			active.remove_at(pivot)
+			pending.push_front(active)
 			continue
 		for i in range(inequalities.size()):
 			if i in active:
@@ -138,6 +149,7 @@ static func solve(
 				break
 		if pivot >= 0:
 			active.append(pivot)
+			pending.push_front(active)
 			continue
 		var delta: Array[float] = []
 		var multipliers: Array[float] = []
@@ -151,6 +163,7 @@ static func solve(
 			"delta": delta,
 			"multipliers": multipliers,
 			"active": active,
-			"algebra": "twofold SAME rows; original rank/finite/strict publisher retained"
+			"algebra":
+			"twofold SAME rows + finite independent face exchanges; original rank/finite/strict publisher retained"
 		}
 	return {}

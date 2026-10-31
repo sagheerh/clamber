@@ -266,3 +266,23 @@ reproduced with input bytes unchanged. Dense diagnostic annotation hit4096byte
 message bound; cannot infer missing calls/publisher data. Emit summary separately
 and sparse row/RHS records to preserve actual diagnosis, no new physical solve
 recipe or creature ticks. Do not claim precise cause from truncated transport.
+
+## V27 genuine rank-exchange component proposal, NOT new world
+925668d/run41221568046 native42+4PASS/ZEROticks, bounded sparse diagnostics
+fully retained. First normal18eq/4ineqactive[0,1,2] succeeds; material20eq/4ineq
+fails BEFORE strict publisher. Exact Fraction on native saved rows proves DIFFERENT
+cause from285: active[0,1,2] allpositive multipliers but fourth gap NEGATIVE
+-2.5042492949506632e-17 (real at same binary64 inputs). All4 exactly singular;
+sole KKT face[1,2,3] has nonnegative multipliers/all inequalities feasible. Need
+release/exchange existing normal0 while admitting3, not epsilon or more precision.
+
+Propose finite canonical active-face exchanges ONLY after rank rejection inside
+existing twofold escalation. Never factor/publish a rank-rejected matrix. Every
+neighbor independently satisfies original rank+finite and strict primal/dual tests,
+then original actual-energy publication. Finite visited faces prevent cycles;
+these are algebraic KKT pivots, NOT added physical position/velocity sweeps. No
+budget/diagonal regularizer/epsilon/material or controller adjustment. Frozen V26
+kernel+twofold control retains old rejection. Independent exact2D trap x>=1,y>=1,
+x+y>=3: positive old multipliers, dependent augmentation; correct optimum(1.5,1.5)
+active[2]. Native6 archived369 momentum/unchanged poses/strict-energy plus 2D old
+negative/new positive controls preregistered. No new runtime/world yet; gates first.

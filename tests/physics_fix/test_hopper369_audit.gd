@@ -2,8 +2,79 @@
 extends "res://tests/physics_fix/test_final_manifold_audit.gd"
 
 
-class FrameProbe:
+class V26Probe:
 	extends Probe
+
+	func _active_solve(equalities: Array, rhs: Array[float], inequalities: Array) -> Dictionary:
+		var result: Dictionary = _frozen(equalities, rhs, inequalities)
+		calls.append(
+			{
+				"equalities": equalities.size(),
+				"inequalities": inequalities.size(),
+				"failed": result.is_empty(),
+				"active": result.get("active", [])
+			}
+		)
+		return result
+
+	func _frozen(equalities: Array, rhs: Array[float], inequalities: Array) -> Dictionary:
+		var active: Array[int] = []
+		var visited: Dictionary = {}
+		while true:
+			var key := var_to_bytes(active).hex_encode()
+			if visited.has(key):
+				return {}  # Degenerate/cycling active sets fail closed, never regularize.
+			visited[key] = true
+			var rows := equalities.duplicate()
+			var values := rhs.duplicate()
+			for index in active:
+				rows.append(inequalities[index].row)
+				values.append(float(inequalities[index].rhs))
+			var factor := _factor_rows(rows)
+			if factor.is_empty() and not rows.is_empty():
+				# A binary64 false violation can add a dependent row. Restart SAME
+				# finite algebra at twofold precision, NOT the rejected singular matrix.
+				# The helper independently retains the original rank/visited guards.
+				return preload("res://tests/physics_fix/twofold_v26_control.gd").solve(
+					self, equalities, rhs, inequalities
+				)
+			var saved := _factor
+			_factor = factor
+			var multipliers := _solve(values)
+			_factor = saved
+			if multipliers.size() != rows.size():
+				return {}
+			var delta := _zero(_weights.size())
+			for d in range(delta.size()):
+				for i in range(rows.size()):
+					delta[d] += _weights[d] * rows[i][d] * multipliers[i]
+			if not _finite(delta):
+				return {}
+			# A negative active normal multiplier is a tensile contact, hence not
+			# dual-feasible. Remove it BEFORE adding another violated constraint;
+			# otherwise a known-invalid contact can create a singular supersystem.
+			# Strict signs/order/visited-set failclosed policy remain unchanged.
+			var pivot := -1
+			for i in range(active.size()):
+				if multipliers[equalities.size() + i] < 0.0:
+					pivot = i
+					break
+			if pivot >= 0:
+				active.remove_at(pivot)
+				continue
+			for i in range(inequalities.size()):
+				if i not in active and _dot(inequalities[i].row, delta) < inequalities[i].rhs:
+					pivot = i
+					break
+			if pivot >= 0:
+				active.append(pivot)
+				continue
+			return {"delta": delta, "multipliers": multipliers, "active": active}
+		return {}
+
+
+class FrameProbe:
+	extends V26Probe
 	var algebra: Array = []
 
 	func _active_solve(equalities: Array, rhs: Array[float], inequalities: Array) -> Dictionary:
