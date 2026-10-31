@@ -183,3 +183,9 @@ Exact285 archived read-only manifold diagnostic preregistered next: same physica
 kernel,history/limits/terrain/raw precontact work, original strict publisher and
 active factor trace;4checks, ZERO public OR private ticks. No unchanged world or
 runtime retry. Both requested items must NOT be called jointly complete.
+
+Twofold first native7a4a1e0/run41220529564 compiled original42PASS, but new test
+compile STOPPED: lowercase scalar reference after preload rename toSCALAR on
+wrapped line72. ZERO creature/component ticks for that test; not physical failure.
+Correct test identifier only, retain incident annotations; same preregistered10
+native controls follow before any new runtime/world. No acceptance claim.

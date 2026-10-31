@@ -69,7 +69,7 @@ func _initialize() -> void:
 	)
 	_check(
 		(
-			scalar
+			SCALAR
 			. solve(
 				bad, [], [], [{"row": [1.0, 0.0], "rhs": 1.0}, {"row": [-1.0, 0.0], "rhs": 0.0}]
 			)
