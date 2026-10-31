@@ -1,0 +1,16 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: FAIL staged articulated component: restore before prescribed damping control
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://tests/physics_fix/test_staged_articulated_components.gd:147)
+       [1] _initialize (res://tests/physics_fix/test_staged_articulated_components.gd:81)
+ERROR: FAIL staged articulated component: existing angular resource applied without advancing clock
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://tests/physics_fix/test_staged_articulated_components.gd:147)
+       [1] _initialize (res://tests/physics_fix/test_staged_articulated_components.gd:84)
+SCRIPT ERROR: Out of bounds get index '0' (on base: 'Array')
+          at: _initialize (res://tests/physics_fix/test_staged_articulated_components.gd:93)
+          GDScript backtrace (most recent call first):
+              [0] _initialize (res://tests/physics_fix/test_staged_articulated_components.gd:93)
