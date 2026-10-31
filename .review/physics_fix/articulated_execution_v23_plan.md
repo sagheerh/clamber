@@ -21,3 +21,22 @@ Launch note: bdc0d5f used unknown `[M1-articulated-world]` marker; GH41217182843
 skipped every job, ZERO engine/world ticks. Correct existing marker is
 `[M1-articulated-execution]`; next source is real registered launch, not retry
 of a physics failure or second measurement.
+
+## CLOSED measurement (67b167a / run41217228165 / publisher b848ad9)
+399 native controls PASS; original600 PASS (posture0/air0/penetration0/net0,
+sleep29); Slug7200 PASS; Hopper263 FINAL status30; Twin NOTRUN. First failure
+STOP. Moving-pin fix repairs exact256 but does not complete Hopper. No unchanged
+rerun. Independent reconstruction263 suggests rounding of the mathematically
+passive solution still raises actual endpoint energy. Preregister exact native
+read-only263 audit (two solves/publication/atomic inputs), ZERO world ticks.
+
+Separate TEST-ONLY candidate factory contract now drafted: inherited public
+advance_frame/clock/signals/sleep, typed restore constructors; explicit injected
+partial-frame failure mutates live body after one tick then must restore complete
+state/RNG/held/clock/constraints/no leaked signals and continue on SAME candidate.
+All held masks/release/real natural sleep+wake and sleeping restore across3
+creatures. Independent endpoint/controller/gravity/clamp/normal-N and per-contact
+linear/angular ledgers, eight deliberately bad ledger variants. 183 expected
+checks if complete; FIRST unexpected failure stops. NOT production factories,
+full resource/material/angular-loss law proof or FA3. Current full validation
+still pending, do not credit draft as PASS or use it to bypass physics STOP.
