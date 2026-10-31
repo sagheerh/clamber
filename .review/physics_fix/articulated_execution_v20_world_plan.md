@@ -15,3 +15,10 @@ opens sequential Slug/Hopper/Twin7200. Same actual derived-stance spawn, physica
 parameters, original15deg/noairborne/.90WU/4s/F52.001/30. First error STOP/later
 NOTRUN. Generic nonzero/coincident target controls, full independent F31, adoption,
 force/wake/restore, runtime/capture/device/performance/replay/signature stay separate.
+
+CLOSED8496abf/run41207335136/publisher005ba7e:391nativePASS, original600 full
+predicatePASS (posture0/airborne0/penetration0/net0/sleep29); Slug now247/status30,
+Hopper/TwinNOTRUN. Tick247 has head prior vn=-6.071532165918825e-18 so genuine
+normal_target=1.214306433183765e-19, not zero. Old zero-target-only dependency
+certificate no longer prunes redundant motor midpoint. Do not round target to0,
+add pivot tolerance or replay unchanged. Original600 success is not M1 signature.

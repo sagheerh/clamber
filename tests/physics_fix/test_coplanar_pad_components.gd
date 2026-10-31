@@ -1,5 +1,6 @@
 # gdlint: disable=max-line-length
 extends "res://tests/physics_fix/test_support_manifold_components.gd"
+const COPLANAR_CONSTITUTIVE = preload("res://tests/physics_fix/surface_constitutive_kernel.gd")
 const COPLANAR = preload("res://tests/physics_fix/coplanar_pad_candidate.gd")
 
 
@@ -139,7 +140,8 @@ func _initialize() -> void:
 		"entire derived model snapshot atomically restored after injected gain"
 	)
 	_archived_shared_pin_normals()
-	_check(_checks == 20, "complete native derived geometry tally")
+	_archived_restitution_chord()
+	_check(_checks == 24, "complete native derived geometry tally")
 	print("Coplanar pad components: %d checks, %d failures" % [_checks, _failures])
 	print("Scope: new radius-derived real capsule stance units; ZERO public clock; NOT acceptance")
 	quit(1 if _failures else 0)
@@ -156,7 +158,7 @@ func _archived_shared_pin_normals() -> void:
 	)
 	var bodies := _restore(raw)
 	var history: Array = full.before.accumulator.solver.rig.physical.bodies
-	var kernel := preload("res://tests/physics_fix/surface_constitutive_kernel.gd").new()
+	var kernel := COPLANAR_CONSTITUTIVE.new()
 	kernel.history = history.duplicate(true)
 	kernel.angular_retention = 1.0 - CONFIG.physics_angular_damping
 	kernel.limits = (
@@ -222,3 +224,84 @@ func _archived_shared_pin_normals() -> void:
 		valid and not response.is_empty() and response.contacts[0].tangent != 0.0,
 		"zero dynamic material does NOT bypass the existing static-slip branch"
 	)
+
+
+func _archived_restitution_chord() -> void:
+	var saved: Dictionary = JSON.parse_string(
+		FileAccess.get_file_as_string(
+			"res://tests/fixtures/m1_articulated_execution/8496abfa354a/length-Slug-failure.json"
+		)
+	)
+	var full: Dictionary = bytes_to_var(Marshalls.base64_to_raw(saved.full_state_variant_base64))
+	var raw: Array = bytes_to_var(
+		Marshalls.base64_to_raw(full.awake_trace.full_work_variant_base64)
+	)
+	var history: Array = full.before.accumulator.solver.rig.physical.bodies
+	var bodies := _restore(raw)
+	var kernel := COPLANAR_CONSTITUTIVE.new()
+	kernel.angular_retention = 1.0 - CONFIG.physics_angular_damping
+	kernel.history = history.duplicate(true)
+	kernel.limits = (
+		[
+			{
+				"parent": 0,
+				"child": 1,
+				"rest_angle": full.awake_trace.work_state.angular_joints[0].rest_angle,
+				"lower": full.awake_trace.work_state.angular_joints[0].lower,
+				"upper": full.awake_trace.work_state.angular_joints[0].upper
+			}
+		]
+		+ full.awake_trace.rigid_connectors
+	)
+	var parents: Array[int] = [-1, 0, 1]
+	var valid: bool = saved.tick == 247 and kernel.configure(bodies, parents) == OK
+	var contacts: Array = []
+	for pair in [[0, 1.0], [1, 0.5], [1, 1.0]]:
+		contacts.append(
+			{
+				"part": int(pair[0]),
+				"u": pair[1],
+				"nx": 0.0,
+				"ny": 1.0,
+				"restitution": 0.02,
+				"damping": 0.9,
+				"static_threshold": 0.15
+			}
+		)
+	var target: float = kernel.normal_target(0, 1.0, 0.0, 1.0, 0.02)
+	_check(
+		valid and target > 0.0,
+		"archived247 has genuine small positive history target; never rounded/waived to zero"
+	)
+	var response: Dictionary = BLOCK.solve(kernel, bodies, contacts)
+	_check(
+		not response.is_empty() and _energy(bodies) < _energy(_restore(raw)),
+		"archived247 affine target chord avoids singular interior normal with strict actual dissipation"
+	)
+	for reverse in [false, true]:
+		bodies = _restore(history)
+		var previous := _states(bodies)
+		for b in bodies:
+			b.a.velocity_y = -1.0
+			b.b.velocity_y = -1.0
+		for b in previous:
+			b.a.velocity_y = -1.0
+			b.b.velocity_y = -1.0
+		var physical := FINAL.new()
+		physical.history = previous
+		physical.limits = kernel.limits
+		valid = physical.configure(bodies, parents) == OK
+		var first: Dictionary = contacts[2].duplicate(true)
+		first.restitution = 0.02
+		var second: Dictionary = first.duplicate(true)
+		second.restitution = 0.1
+		var pair: Array = [second, first] if reverse else [first, second]
+		response = BLOCK.solve(physical, bodies, pair)
+		_check(
+			(
+				valid
+				and not response.is_empty()
+				and absf(SKIN_ROW.frame(bodies[1], 1.0, 0.0, 1.0).normal_velocity - 0.1) < 1e-12
+			),
+			"coincident stronger normal history target survives either input order"
+		)

@@ -74,38 +74,42 @@ static func solve(kernel: RefCounted, bodies: Array[CapsuleBody], contacts: Arra
 		# Coincident normal lines in one rigid cluster are one support constraint.
 		# Keep an actual material point; no pooled body load or manufactured N.
 		var duplicate := false
-		for previous in normal:
+		for j in range(normal.size()):
+			var previous: Dictionary = normal[j]
 			if (
 				previous.group == record.group
 				and previous.nx == record.nx
 				and previous.ny == record.ny
 				and previous.coordinate == record.coordinate
-				and previous.target >= record.target
 			):
+				if record.target > previous.target:
+					normal[j] = record
 				duplicate = true
 				break
 		if not duplicate:
 			normal.append(record)
-	# On one rigid cluster, flat zero-target normal speed is affine in its
-	# tangential coordinate. Interior zero-target rows are certified redundant:
-	# the two extreme nonnegative speeds imply every convex combination >=0.
-	# This also covers shared pin normals without a singular third active row.
+	# On one rigid cluster normal speed is affine in tangential coordinate.
+	# An interior target below the extreme targets' chord is redundant. Compare
+	# cross-products (positive span), never divide by or waive a small target.
 	var irredundant: Array = []
 	for item in normal:
 		var redundant := false
-		if item.target == 0.0 and item.nx == 0.0 and item.ny == 1.0:
-			var low: float = item.coordinate
-			var high: float = item.coordinate
+		if item.nx == 0.0 and item.ny == 1.0:
+			var low: Dictionary = item
+			var high: Dictionary = item
 			for other in normal:
-				if (
-					other.group == item.group
-					and other.target == 0.0
-					and other.nx == item.nx
-					and other.ny == item.ny
-				):
-					low = minf(low, other.coordinate)
-					high = maxf(high, other.coordinate)
-			redundant = low < item.coordinate and item.coordinate < high
+				if other.group == item.group and other.nx == item.nx and other.ny == item.ny:
+					if other.coordinate < low.coordinate:
+						low = other
+					if other.coordinate > high.coordinate:
+						high = other
+			if low.coordinate < item.coordinate and item.coordinate < high.coordinate:
+				var required: float = item.target * (high.coordinate - low.coordinate)
+				var implied: float = (
+					low.target * (high.coordinate - item.coordinate)
+					+ high.target * (item.coordinate - low.coordinate)
+				)
+				redundant = required <= implied
 		if not redundant:
 			irredundant.append(item)
 	normal = irredundant
