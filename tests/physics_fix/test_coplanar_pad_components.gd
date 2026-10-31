@@ -72,6 +72,15 @@ func _initialize() -> void:
 			),
 			name + " actual strict coupled gravity/contact stage; original frozen N0"
 		)
+		if name == "Slug":
+			_check(
+				(
+					result.status == OK
+					and _energy(rig.bodies) == 0.0
+					and PlanarBasis.frame(rig.bodies[0]).x == 0.0
+				),
+				"neutral exact static modal moment stays zero; no artificial head momentum"
+			)
 		var material: bool = result.status == OK
 		if material:
 			for observed in result.contact_samples:
@@ -129,7 +138,7 @@ func _initialize() -> void:
 		saved == var_to_bytes(fault.snapshot()),
 		"entire derived model snapshot atomically restored after injected gain"
 	)
-	_check(_checks == 16, "complete native derived geometry tally")
+	_check(_checks == 17, "complete native derived geometry tally")
 	print("Coplanar pad components: %d checks, %d failures" % [_checks, _failures])
 	print("Scope: new radius-derived real capsule stance units; ZERO public clock; NOT acceptance")
 	quit(1 if _failures else 0)

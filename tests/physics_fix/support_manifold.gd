@@ -143,6 +143,7 @@ static func solve(kernel: RefCounted, bodies: Array[CapsuleBody], contacts: Arra
 	var final_patches: Array[int] = _static_patches(
 		kernel, bodies, normal, solved, constraints.size(), groups
 	)
+	var fixed_bodies: Dictionary = {}
 	for tangent in tangent_records:
 		if tangent.target != 0.0 or chosen[tangent.item.patch].coefficient != 1.0:
 			continue
@@ -164,8 +165,33 @@ static func solve(kernel: RefCounted, bodies: Array[CapsuleBody], contacts: Arra
 					final_patches[i] == final_patches[contacts[tangent.item.contact].part]
 					and final_patches[i] <= bodies.size()
 				):
+					fixed_bodies[i] = true
 					for axis in range(3):
 						delta[3 * i + axis] = -incoming[3 * i + axis]
+	# Slug's remaining DOF is a genuinely FREE head rotating about its supported
+	# B pin. Parameterize it directly in the SAME M+C metric rather than leaving
+	# a KKT cancellation residue. Neutral vertical gravity has EXACT zero modal
+	# moment; a tilted head or actual drive retains its physical nonzero motion.
+	if (
+		bodies.size() == 3
+		and kernel._tree_parents == [-1, 0, 1]
+		and groups[0] != groups[1]
+		and fixed_bodies.has(1)
+		and fixed_bodies.has(2)
+		and constraints.is_empty()
+	):
+		var head: Dictionary = PlanarBasis.frame(bodies[0])
+		var mode_x: float = head.y / 2.0
+		var mode_y: float = -head.x / 2.0
+		var mass: float = 1.0 / kernel._weights[0]
+		var inertia: float = 1.0 / kernel._weights[2]
+		var omega: float = (
+			(mass * (mode_x * incoming[0] + mode_y * incoming[1]) + inertia * incoming[2])
+			/ (mass * (mode_x * mode_x + mode_y * mode_y) + inertia)
+		)
+		delta[0] = mode_x * omega - incoming[0]
+		delta[1] = mode_y * omega - incoming[1]
+		delta[2] = omega - incoming[2]
 	var before: Array[CapsuleBody] = kernel._copies(bodies)
 	if kernel._publish(bodies, delta, false, null) != OK:
 		return {}

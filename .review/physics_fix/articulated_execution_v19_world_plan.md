@@ -20,3 +20,10 @@ and new error/missing tally/nonzero exit failclosed. ONE new original600,
 F52anchored.001/30. First strict/nonfinite failureSTOP; full original600PASS
 alone opens sequential Slug/Hopper/TwinRoller7200. No production adoption,
 phone/performance/determinism/five-gate or M1 signature until separately proven.
+
+CLOSED51017cb/run41206539454/publisher8317b35:387nativePASS,14 committed
+new-stance ticks; no measurable posture (max3.179040852486143e-14deg), noairborne/
+penetration0, firstsleepNOTREACHED. Tick14fails LOCAL angular drag's strict
+complete physical energy: before.16877777777777775/after.16877777777777778.
+It is NOT a contact normal penetration failure. No 600PASS or later7200; no
+ULP energy allowance/nudge/rounding tolerance or unchanged replay permitted.

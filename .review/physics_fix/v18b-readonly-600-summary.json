@@ -1,0 +1,15 @@
+{
+  "scope": "read-only archived600 transport and F52 diagnostics; NOT F31/acceptance/replay",
+  "source_commit": "9dfc42061a8a938c7204a88950c71558721839e4",
+  "source_ci_run": "41205937516",
+  "rows": 600,
+  "raw_sha256": "36c2f71f3fd549ed9cf60510bb663ae3e06d323b77848dd1aaf00f554b40bd8e",
+  "first_sleep_tick": 245,
+  "still_ticks_at239": 24,
+  "original4s_pass": false,
+  "anchored_rows_reconstructed": 539,
+  "max_anchor_reconstruction_error_wu": 1.3010426069826053e-17,
+  "all_asleep_velocities_exact_zero": true,
+  "posture_max_deg": 9.91830360490353,
+  "airborne_ticks": 0
+}
