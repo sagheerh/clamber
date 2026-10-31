@@ -61,7 +61,12 @@ func _new_runtime(name: String) -> RUNTIME:
 func _contract(name: String) -> bool:
 	var sim := _new_runtime(name)
 	if not _require(
-		sim != null and sim.last_status == OK and sim.candidate_survives(),
+		(
+			sim != null
+			and sim.last_status == OK
+			and sim.candidate_survives()
+			and _spawn_matches_standalone(sim)
+		),
 		name + " typed configured candidate factory"
 	):
 		return false
@@ -566,3 +571,22 @@ func _contact_ok(trace: Dictionary, bodies: Array) -> bool:
 		if absf(actual_x - reported_x) > 1e-12 or absf(actual_y - reported_y) > 1e-12:
 			return false
 	return true
+
+
+func _spawn_matches_standalone(sim: RUNTIME) -> bool:
+	var actual := preload("res://tests/physics_fix/final_geometry_constitutive_candidate.gd").new()
+	var spec := sim._tower.snapshot()
+	if (
+		actual.setup(
+			sim._creature,
+			sim._tower.terrain(TUNING),
+			spec.x,
+			spec.y,
+			spec.friction,
+			spec.restitution,
+			TUNING
+		)
+		!= OK
+	):
+		return false
+	return var_to_bytes(actual.snapshot()) == var_to_bytes(sim._solver._rig._probe.snapshot())

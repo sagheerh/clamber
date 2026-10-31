@@ -91,6 +91,8 @@ jobs:
 
   articulated-primitives:
     if: ${{ github.ref == 'refs/heads/arena/f43f36ab-clamber' && github.sha == github.event.after && (contains(github.event.head_commit.message, '[M1-final-geometry-units]') || contains(github.event.head_commit.message, '[M1-runtime-contract]') || contains(github.event.head_commit.message, '[M1-hopper263-audit]') || contains(github.event.head_commit.message, '[M1-articulated-units]') || contains(github.event.head_commit.message, '[M1-articulated-execution]')) }}
+    permissions:
+      contents: write # Same fixed-branch bounded evidence recorder as world job.
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     env:

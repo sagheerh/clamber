@@ -59,3 +59,28 @@ Typed factory/partial-frame live mutation rollback/no leaked signals and natural
 input wake/release cases retained. Exact success/first failure stored as bounded
 Variant evidence, source manifest and logs on same branch without upload quota.
 Full runtime and long world still pending; no fullF31/FA3/determinism signoff.
+
+## Contract factory defect found; earlier physics/input credit WITHDRAWN
+V25a89bbe3/run41218837826 CLOSED84/1,24awake; same Hopper mask2 tick1; TwinNOTRUN.
+No V25 long world ran. Recorder failed (job contents permission read only);
+full logs unavailable through permitted hosts; do NOT pretend full failure was
+captured. Existing annotations retained. No unchanged public retry.
+
+SOURCE diagnosis: CandidateSim._configure called base Sim._configure then
+_restore(snapshot()) on BASELINE initial snapshot. Although restore rebuilt the
+right candidate TYPE, it overwrote its derived toe geometry with cardinal
+baseline coordinates. That invalidates earlier Slug physics/input/wake coverage
+as evidence for the actual candidate stance; type/atomicity controls were real
+but NOT correct-geometry integration. Public ordered worlds injected the fresh
+candidate directly and do not contain this harness setup defect.
+
+Actual fix: initialize typed solver/fresh public accumulator DIRECTLY after
+identity/RNG setup, NEVER restore baseline initial physics. Candidate identity
+is explicitly test-only recipe; normal restore/rollback still reconstructs typed
+candidate from its own valid snapshots. New setup assertion byte-compares FULL
+physical snapshot against independent standalone same candidate setup, not just
+get_script/type. Fix is a real observed factory defect, so new corrected contract
+is authorized validation of CHANGED setup, not blind retry of failed physics.
+Job gets same fixed-branch bounded evidence write permission as world publisher.
+No scanner relaxation. Expected195 if3complete; first failure STOP. No world
+marker until corrected native contract passes. Production untouched.

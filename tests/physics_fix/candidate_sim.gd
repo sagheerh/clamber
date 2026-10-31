@@ -80,7 +80,19 @@ class CandidateSolver:
 
 func _configure(creature: CreatureModel, tower: TowerData, seed: int, tuning: Tuning) -> Error:
 	var status := super._configure(creature, tower, seed, tuning)
-	return _restore(snapshot()) if status == OK else status
+	if status != OK:
+		return status
+	# Never restore the BASELINE initial snapshot onto a new candidate: that
+	# overwrites its radius-derived toe placement with cardinal baseline geometry.
+	var solver := CandidateSolver.new()
+	var clock := FixedStepAccumulator.new()
+	if solver.configure(_creature, _tower, _tuning) != OK or clock.setup(solver) != OK:
+		return ERR_INVALID_DATA
+	_solver = solver
+	_clock = clock
+	_identity["test_only_candidate_recipe"] = AWAKE.resource_path
+	_solver.tick_completed.connect(_record_tick)
+	return OK
 
 
 func _restore(state: Dictionary) -> Error:
