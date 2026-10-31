@@ -20,3 +20,14 @@ its overall runFAILED. Independent offline98analysis controls include archived
 actual600/source+transport proof, .001/30 anchored/actual zero velocities, posture,
 noairborne/actualspawn, plus7200 realinput masks/nonvacuous firstwake60. Changed
 sources/repeated idle data are NOT determinism attempts or full FA3/F31 evidence.
+
+CLOSEDc49fcc66ee9f09a1ebb225a5de8dcc6a41cda734/run41208462933/publisherbe0ed65:
+397nativePASS, original600 full predicatePASS, sequential Slug7200 full geometry
+PASS (same source-specific maxlen2.22e-16/pen0/netCOM.4596459637805838WU).
+Hopper now256/status30, all bounds within gate before failure; TwinRollerNOTRUN.
+First complete drag/support at failing tick PASSED actual endpoint energy
+.36898995024244435 ->2.2615868935345803e-12. Failure is FINAL support after six
+position sweeps; underlying factor/target/publication suboperation NOT diagnosed.
+Do not label it ULP, waive it, or replay source. Exact failure Variant preserved
+for read-only native diagnosis. No more world registration in this closure.
+Exact-source M0/foundations/R29 completedSUCCESS. OverallFAIL/NOTADOPTED.

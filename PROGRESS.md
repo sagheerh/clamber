@@ -2401,3 +2401,59 @@ Closure `.review/physics_fix/articulated_execution_v11_closure.md`, full pinned
 captures/Variant failures preserved. Offline closure10/Variant10/routing33/rational
 support6 controlsPASS, ZERO new engine ticks. Rational support composition is next
 research, not a selected/validated new creature model. Real device/feel gates remain.
+
+### Owner-authorized support redesign — real idle and Slug long-run breakthrough
+
+D08 permission retained; original presets/core/tuning/manifest remain untouched.
+V17 rigid horizontal capsule pads: native341/full600 solverOK, posture12.850817deg,
+noairborne, netCOM.0776663WU; sleepFAIL. V18 simultaneous normal/material manifold
+fixes serial complementarity and preserves real per-body forces/frozenN. V18b
+source9dfc420/run41205937516 native370/full600 solverOK, posture9.918304deg,
+noairborne/net.0617381WU; real firstsleep245 but ORIGINAL4sFAIL. No waiver/retry.
+
+New radius-derived coplanar toe stance removes geometric .045WU motor/toe skin
+mismatch using existing radii/length, not angle tuning or a fake collider. All pins,
+masses, materials and thresholds preserved. Exact supported free-head modal
+projection preserves actual motion under tilt/drive, not a global upright lock.
+V19 first14 failed strict local drag actual ULP gain; retained, never excused.
+V19b f101721 native388: ORIGINAL600 full predicatePASS (posture0/noairborne/
+penetration0/netCOM0, firstsleep29 =30 actual ticks), but Slug7200 stops214.
+V20 8496abf native391: same original600PASS, Slug stops247. Shared-pin normal
+and affine target hull controls use exact archived work/history without replay.
+
+V21 bccae29d24ad9e7aa13148ac2b864db5a323cc45/run41207843989/publisher16135e2:
+native395PASS; ORIGINAL600 full predicatePASS AND sequential Slug7200 full geometry
+PASS (maxlength2.220446049250313e-16WU, penetration0). Then Hopper5/status30;
+TwinRollerNOTRUN. Long posture/airborne/sleep fields honestly null/unmeasured,
+not zero-PASS. Exact source M0/foundations/R29 SUCCESS. Immutable complete states,
+source/build/transport hashes and failure Variant preserved. Source-specific
+original600/Slug results are NOT determinism, production adoption or M1 signoff.
+
+Independent offline analysis98controlsPASS (including actual anchored .001/30,
+source/transport/full600, posture/airborne/true-spawn, real7200 input stream,
+nonvacuous sleep-to-held-input wake60). FA3/F31 NOT credited: partial actual
+492batch impulse audit closes linear residual3.33e-16Ns/C-drag5.20e-17NsWU,
+shared events counted ONCE; full force/resource/clamp mutation coverage absent.
+See `tests/coplanar_idle_analysis.py` and `.review/physics_fix/` pinned evidence.
+
+V22 new native27 clean source7f39bf3/run41208272288: distinguish fixed affine
+normal VARIATION from actual target0. Only homogeneous facts permit zero-state
+publication. Archived eight-body Hopper5 now solves/dissipates/actual momentum
+closes without rounding its positive target. New sourcec49fcc6 registers original600
+then sequential allthree7200 behind all397native/57failclosed runner checks.
+Result must be closed separately; no result presumed here. ProductionAC201/202
+remain FAILED, M1BLOCKED/NOTSIGNED/M2blocked. Full generic force/rank/replay,
+five runtime gates and actual device/performance/layout/signoff remain unproven.
+
+V22 CLOSURE: c49fcc66ee9f09a1ebb225a5de8dcc6a41cda734/run41208462933 /
+publisherbe0ed65: all397nativePASS; original600 full predicatePASS; sequential
+Slug7200 full geometryPASS. Hopper improves from5 to256 but FINAL support rejects
+status30 after same6position sweeps; TwinNOTRUN. Failing first complete stage
+strict actual energyPASS .36898995024244435 ->2.2615868935345803e-12. Underlying
+final factor/target/publication failure is NOT yet diagnosed; never assume ULP.
+No unchanged source retry, later arm, production adoption or signature. Full pinned
+captures and annotations retained. Exact-source M0/foundations/R29 SUCCESS.
+Independent offline98analysis controlsPASS including sourcec49 complete idle and
+Slug7200 data, real firstwake60 and any-input sleep rearm. This is NOT full FA3,
+force audit, feel, determinism or a device/performance gate. Next physics action
+must inspect archived Hopper256 FINAL phase read-only before proposing a change.

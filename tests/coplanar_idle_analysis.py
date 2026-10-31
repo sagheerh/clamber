@@ -14,6 +14,7 @@ SOURCES = {
     'f101721f17cf': 'f101721f17cfaa82db5446106f544cd51da3dc78',
     '8496abfa354a': '8496abfa354ac084a463d2c177b6d6a9318198cc',
     'bccae29d24ad': 'bccae29d24ad9e7aa13148ac2b864db5a323cc45',
+    'c49fcc66ee9f': 'c49fcc66ee9f09a1ebb225a5de8dcc6a41cda734',
 }
 
 
@@ -147,4 +148,5 @@ def audit_geometry_rows(rows):
 if __name__ == '__main__':
     for name in SOURCES:
         print(json.dumps(audit(ROOT/'tests/fixtures/m1_articulated_execution'/name), sort_keys=True))
-    print(json.dumps(audit_slug_geometry(ROOT/'tests/fixtures/m1_articulated_execution/bccae29d24ad'), sort_keys=True))
+    for name in ['bccae29d24ad', 'c49fcc66ee9f']:
+        print(json.dumps(audit_slug_geometry(ROOT/'tests/fixtures/m1_articulated_execution'/name), sort_keys=True))

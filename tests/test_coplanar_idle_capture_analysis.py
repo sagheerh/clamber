@@ -21,17 +21,17 @@ class CoplanarIdleCaptureAnalysis(unittest.TestCase):
                 self.assertEqual(result['first_sleep_tick'], 29)
                 self.assertEqual(result['max_attitude_deg'], 0.0)
                 self.assertEqual(result['net_com_wu'], 0.0)
-                if name == 'bccae29d24ad':
+                if name in ['bccae29d24ad', 'c49fcc66ee9f']:
                     self.assertIsNone(result['subsequent_slug_failure'])
-                    self.assertEqual(result['subsequent_hopper_failure'], 5)
+                    self.assertEqual(result['subsequent_hopper_failure'], 5 if name == 'bccae29d24ad' else 256)
                 else:
                     self.assertIn(result['subsequent_slug_failure'], [214, 247])
 
     def test_complete_slug_geometry_real_input_and_wake(self):
-        folder = ROOT/'tests/fixtures/m1_articulated_execution/bccae29d24ad'
-        result = audit_slug_geometry(folder)
-        self.assertEqual(result['ticks'], 7200)
-        self.assertEqual(result['first_actual_wake_tick'], 60)
+        for name in ['bccae29d24ad', 'c49fcc66ee9f']:
+            result = audit_slug_geometry(ROOT/'tests/fixtures/m1_articulated_execution'/name)
+            self.assertEqual(result['ticks'], 7200)
+            self.assertEqual(result['first_actual_wake_tick'], 60)
 
     def test_long_incomplete_is_not7200(self):
         with self.assertRaisesRegex(ValueError, 'full7200'):

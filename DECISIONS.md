@@ -2421,3 +2421,28 @@ capsule stance prototype. RootDOWN head alignment avoids a fixed horizontal-head
 spring/gravity sag. Preserve all masses/materials/thresholds, actual new-spawn
 measurement, snapshot/rollback and strict math; native proof before new world,
 validation before adoption. This is NOT old pose PASS or an M1 signature.
+
+## M1-PHYSICS-FIX-D09 — Credit scoped physical proof, never substitute for adoption
+
+D08 permits radius-derived real toe stance and necessary axes, retaining all
+masses/materials and original15deg/.90WU/4s/F52.001/30. V21 measured original600
+full predicate AND Slug7200 geometryPASS are genuine first scoped successes,
+not historical geometry claims, determinism or an M1 signature. Hopper5STOP
+means TwinNOTRUN and overall runFAIL. Preserve every prior failure/positive arm.
+No original-sleep relaxation, pivot epsilon, small-velocity threshold, fabricated
+force, per-sample duplicate shared impulse summation or global head orientation.
+
+Real nonzero restitution target must survive dependency handling, even1e-33.
+For flat rigid normals, target-chord dominance is an algebraic sufficiency proof;
+stronger coincident target survives either order. Material points remain distinct.
+Fixed affine normal values imply zero VARIATION, not absolute zero: material DOF
+mapping may use this; exact-zero publication needs homogeneous physical facts.
+A singleton supported free head is parameterized in its real rotational mode;
+actual head contact and angular boundaries still constrain it. Rigid root-attached
+masses are not falsely treated as singleton. New native controls precede each
+separately registered changed-source world run, failed source never replayed.
+
+No production adoption until complete creature/force/rollback/runtime/replay and
+physical-device/performance/layout evidence passes independent review. Native,
+headless CI, partial audits, one idle arm or one complete geometry arm cannot
+waive missing requirements. Original production core/preset provenance unchanged.
