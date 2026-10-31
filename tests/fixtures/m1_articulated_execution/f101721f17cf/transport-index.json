@@ -1,0 +1,17 @@
+{
+  "source_commit": "f101721f17cfaa82db5446106f544cd51da3dc78",
+  "raw_traces": {
+    "idle-Slug.jsonl": {
+      "raw_bytes": 18626194,
+      "raw_sha256": "e699cb25026609ba5d996186978eade2f1c6747722f50ce1e1feaaeac86d436a",
+      "gzip_bytes": 143173,
+      "gzip_sha256": "314cd0fa46074da0ed8302161ae93dfd7b86d6e258193e511dc87a6317514f91"
+    },
+    "length-Slug.jsonl": {
+      "raw_bytes": 981341,
+      "raw_sha256": "4eaff612110fc91680bf47deea38eb03bb6ef3997cd35418fc481cf9e8dc0cb7",
+      "gzip_bytes": 83558,
+      "gzip_sha256": "7ad2f4742a3c585b4eace299d3a1fadf6a683dda5f62d6c6f07d1bb394022d8a"
+    }
+  }
+}
