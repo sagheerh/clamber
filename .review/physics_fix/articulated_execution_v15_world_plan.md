@@ -18,3 +18,7 @@ sleep/load/N/bottoms and exact source retained. Stop immediately on solver failu
 complete600 on metric-only failure then block all later arms. No unchanged retry,
 production adoption or M1 verdict/device evidence inferred. No broad damping or
 force-order sweep: local per-body angular resistance is the ONE corrected law.
+
+CLOSEDc867e60/run41169324109/publisher05ebef8: native293PASS,99 committed ticks,
+posturefirst44/max38.81533669697097deg/no airborne/no sleep. Tick99status30 final
+contact; all7200NOTRUN. Correct local material law is not alone a posture fix.

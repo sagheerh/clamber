@@ -1,0 +1,11 @@
+test_actual_slip (__main__.Surface.test_actual_slip) ... ok
+test_complete_local_drag_skin_law (__main__.Surface.test_complete_local_drag_skin_law) ... ok
+test_normal_arm_unchanged (__main__.Surface.test_normal_arm_unchanged) ... ok
+test_pure_spin_friction (__main__.Surface.test_pure_spin_friction) ... ok
+test_rolling_is_identity (__main__.Surface.test_rolling_is_identity) ... ok
+test_tangent_arm_radius (__main__.Surface.test_tangent_arm_radius) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.000s
+
+OK

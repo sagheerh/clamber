@@ -137,16 +137,20 @@ jobs:
           exit "$status"
 
       - name: Complete constitutive components ONLY (ZERO public world ticks)
-        if: ${{ contains(github.event.head_commit.message, '[M1-constitutive-units]') || contains(github.event.head_commit.message, '[M1-local-angular-units]') }}
+        if: ${{ contains(github.event.head_commit.message, '[M1-constitutive-units]') || contains(github.event.head_commit.message, '[M1-local-angular-units]') || contains(github.event.head_commit.message, '[M1-surface-units]') }}
         env:
           LOCAL_ANGULAR_COMPONENTS: ${{ contains(github.event.head_commit.message, '[M1-local-angular-units]') }}
+          SURFACE_COMPONENTS: ${{ contains(github.event.head_commit.message, '[M1-surface-units]') }}
         shell: bash
         run: |
           set -euo pipefail
-          sha256sum tests/physics_fix/constitutive_*.gd tests/physics_fix/test_constitutive_stage_components.gd tests/physics_fix/local_angular_*.gd tests/physics_fix/test_local_angular_components.gd
+          sha256sum tests/physics_fix/constitutive_*.gd tests/physics_fix/test_constitutive_stage_components.gd tests/physics_fix/local_angular_*.gd tests/physics_fix/test_local_angular_components.gd tests/physics_fix/capsule_surface_frame.gd tests/physics_fix/surface_*.gd tests/physics_fix/test_capsule_surface_components.gd
           script=res://tests/physics_fix/test_constitutive_stage_components.gd
           expected='Constitutive stage components: 30 checks, 0 failures'
-          if [[ "$LOCAL_ANGULAR_COMPONENTS" == true ]]; then
+          if [[ "$SURFACE_COMPONENTS" == true ]]; then
+            script=res://tests/physics_fix/test_capsule_surface_components.gd
+            expected='Capsule surface components: 24 checks, 0 failures'
+          elif [[ "$LOCAL_ANGULAR_COMPONENTS" == true ]]; then
             script=res://tests/physics_fix/test_local_angular_components.gd
             expected='Local angular components: 26 checks, 0 failures'
           fi
