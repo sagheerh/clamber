@@ -1,0 +1,5 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+Dual feasible components: 6 checks, 0 failures
+Dual feasible archive diagnostic: {"calls":[{"active":[1,2],"equalities":18,"failed":false,"inequalities":4},{"active":[1,2],"equalities":20,"failed":false,"inequalities":4}],"published":{"actual_before":1.8934617031071723,"actual_proposed":0.11578328148333986,"gain":-1.7776784216238324,"status":0}}
+Scope: one exact archived support solve and algebraic counterexample; ZERO creature ticks; not acceptance

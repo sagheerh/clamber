@@ -1,0 +1,23 @@
+{
+  "source_commit": "9343fb06296f4325e2c67516e711ac6f57ab3808",
+  "raw_traces": {
+    "idle-Slug.jsonl": {
+      "raw_bytes": 20151394,
+      "raw_sha256": "c46d948453f316a9151e001322f25e6145f112d869212e7ab97c5f03ed0aaa0e",
+      "gzip_bytes": 1331297,
+      "gzip_sha256": "a4819ca0d9b2f6c41c8c296ed4efe91e0e7304c8a375fdab5721e6b92b11dc15"
+    },
+    "length-Hopper.jsonl": {
+      "raw_bytes": 2727100,
+      "raw_sha256": "7ce3de638b59cce62e1d5db712c15797da34490f3cef18f80acc996639ed4164",
+      "gzip_bytes": 240235,
+      "gzip_sha256": "3fcc188b672c48b6ba750190f463a9b90bacc0854d1f6b795d235a4e084861f1"
+    },
+    "length-Slug.jsonl": {
+      "raw_bytes": 33907357,
+      "raw_sha256": "5e043fb4f311221d783c608047699df877e29c7b6d624398a89ea77a237bedd8",
+      "gzip_bytes": 3709128,
+      "gzip_sha256": "b0d7d0fa2ee4084bf4e0472b885e90ef7d706eef2bb8e8cfd4f822e3e961635f"
+    }
+  }
+}
