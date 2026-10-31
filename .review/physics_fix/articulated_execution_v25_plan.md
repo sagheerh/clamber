@@ -107,3 +107,23 @@ expected failure, all inputs atomic, active solve entered), print factor/actual
 energy diagnosis. ZERO public OR private clock ticks. No unchanged runtime-suite
 retry or long world. Resourcefakes/geometry observations must not be weakened to
 make this case pass. Production and original acceptance thresholds unchanged.
+
+## Targeted second blocker fix: dual-feasible normal pivots
+Read-only40b26ad/run41219433113 SUCCESS/native4 ZERO creature ticks: first normal
+solve succeeds, second material solve FAILS, publisher NOT reached. Independent
+binary64 reconstruction of exact archive identifies sequence second:
+active[0,1] lambda0=-.8527806036673949, nextnormal2 violated; adds it anyway;
+active[0,1,2] lambda0=-.7516712369667986, normal3 violated; adds it ->rankfail[0,1,2,3].
+Known tensile contact must have been removed FIRST. Dual-feasible ordering removes
+normal0 at[0,1], then finishesactive[1,2],lambda[.6578958667967969,.8901006825767206].
+This is NOT tiny-energy rejection, rank tolerance or extra iteration budget.
+
+Change generic test candidate active solver to discard strict negative active
+multipliers BEFORE adding another violated inequality. Deterministic first index,
+strict signs, finite/visited-cycle/factor/publisher guards unchanged. No epsilon,
+regularization, rank waiver, normal target rounding or changed constraint set.
+Frozen primal-first method in diagnostic control preserves expected old failure.
+New native6: real archive strict publisher/momentum/pose plus exact2D counterexample
+(old adds3rows for2DOF and fails, new active[2] gives[1.1,2.2],all constraints).
+ONLY component proof requested; no new runtime/world until green. All prior
+458 native barriers must remain for eventual ordered world.

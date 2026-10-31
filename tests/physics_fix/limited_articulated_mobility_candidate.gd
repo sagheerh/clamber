@@ -314,20 +314,24 @@ func _active_solve(equalities: Array, rhs: Array[float], inequalities: Array) ->
 				delta[d] += _weights[d] * rows[i][d] * multipliers[i]
 		if not _finite(delta):
 			return {}
+		# A negative active normal multiplier is a tensile contact, hence not
+		# dual-feasible. Remove it BEFORE adding another violated constraint;
+		# otherwise a known-invalid contact can create a singular supersystem.
+		# Strict signs/order/visited-set failclosed policy remain unchanged.
 		var pivot := -1
-		for i in range(inequalities.size()):
-			if i not in active and _dot(inequalities[i].row, delta) < inequalities[i].rhs:
-				pivot = i
-				break
-		if pivot >= 0:
-			active.append(pivot)
-			continue
 		for i in range(active.size()):
 			if multipliers[equalities.size() + i] < 0.0:
 				pivot = i
 				break
 		if pivot >= 0:
 			active.remove_at(pivot)
+			continue
+		for i in range(inequalities.size()):
+			if i not in active and _dot(inequalities[i].row, delta) < inequalities[i].rhs:
+				pivot = i
+				break
+		if pivot >= 0:
+			active.append(pivot)
 			continue
 		return {"delta": delta, "multipliers": multipliers, "active": active}
 	return {}

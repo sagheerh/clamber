@@ -1,0 +1,19 @@
+FIRST
+ACTIVE [] lambda [] violated [0, 1, 2, 3] neg []
+ACTIVE [0] lambda [0.5260429801977357] violated [1, 2, 3] neg []
+ACTIVE [0, 1] lambda [-0.2259561445109015, 0.7910711921298005] violated [2, 3] neg [0]
+ACTIVE [0, 1, 2] lambda [-0.18890585730101317, 0.7540773198874722, 0.8926306757168574] violated [] neg [0]
+ACTIVE [1, 2] lambda [0.6403162239785909, 0.8947328830826136] violated [] neg []
+TANGENT [-0.0, 0.0] [1.734723475976807e-18, 1.0408340855860843e-17]
+SECOND
+ACTIVE [] lambda [] violated [0, 1, 2, 3] neg []
+ACTIVE [0] lambda [0.5495125925378002] violated [1, 2, 3] neg []
+ACTIVE [0, 1] lambda [-0.8527806036673949, 1.418077049398269] violated [2, 3] neg [0]
+ACTIVE [0, 1, 2] lambda [-0.7516712369667986, 1.3169939937978397, 0.8829103975388822] violated [3] neg [0]
+RANKFAIL [0, 1, 2, 3]
+DUAL-FIRST SECOND
+ACTIVE [] lambda [] violated [0, 1, 2, 3] neg []
+ACTIVE [0] lambda [0.5495125925378002] violated [1, 2, 3] neg []
+ACTIVE [0, 1] lambda [-0.8527806036673949, 1.418077049398269] violated [2, 3] neg [0]
+ACTIVE [1] lambda [0.6704367524335878] violated [2, 3] neg []
+ACTIVE [1, 2] lambda [0.6578958667967969, 0.8901006825767206] violated [] neg []
