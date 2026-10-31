@@ -2,6 +2,7 @@
 extends "res://tests/physics_fix/actuated_articulated_candidate.gd"
 ## UNADOPTED stage-dependency correction. Old rejected candidate is unchanged.
 ## No epsilon, energy guard change, added iteration, or cross-tick hidden state.
+const STAGED_CONTACT = preload("res://tests/physics_fix/staged_terrain_candidate.gd")
 
 
 func _velocity_contacts(
@@ -79,7 +80,7 @@ func _velocity_contacts(
 		var before_contact_x := _momentum_x()
 		var before_contact_positions := _positions()
 		var recorder := _record_contact.bind(velocity_pass, contact_samples)
-		var status := CONTACT.resolve_tick(
+		var status := STAGED_CONTACT.resolve_tick(
 			bodies, _parents, _terrain, _mass, lowest, _friction, _restitution, _tuning, recorder
 		)
 		if status.status != OK:
