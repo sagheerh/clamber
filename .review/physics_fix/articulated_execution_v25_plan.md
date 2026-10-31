@@ -31,3 +31,13 @@ Archived inputs have old stage history: applying final constitutive operator is
 ONLY a component stress check, NOT a full new tick or evidence of no-double-drag
 in an old world. New real component steps prove one phase per NEW tick. No new
 world, runtime-suite retry, production adoption or full validation credit here.
+
+e7cb805/run41218469555: native57/0 assertions passed but scanner correctly
+REJECTED three expected negative material controls calling the logging public
+probe door. ZERO public Sim ticks; do not credit jobSUCCESS. Negative material
+control now calls SAME real adapter's silent checked-outcome entry directly and
+asserts byte-identical bodies. No log scanner suppression/relaxation or physics
+change. Runtime/full-frame rollback is separately covered by typed contract.
+Runner has new mandatory57 gate plus old401;60 failclosed double controls.
+World/runtime selection points at NEW explicitly versioned subclass only, no
+world or runtime selector on this proof commit. Require green exact-engine job.

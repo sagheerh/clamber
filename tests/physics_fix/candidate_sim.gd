@@ -3,7 +3,7 @@ extends Sim
 ## Test-only factories. Inherited PUBLIC advance_frame, signals, accumulator,
 ## sleeping/awake implementation and codecs are not replaced. Base Sim's hardcoded
 ## restore factories otherwise silently swap candidate physics back to baseline.
-const AWAKE = preload("res://tests/physics_fix/coplanar_pad_candidate.gd")
+const AWAKE = preload("res://tests/physics_fix/final_geometry_constitutive_candidate.gd")
 var fail_at_tick := -1  # Explicit test fault; NOT serialized physical state.
 var last_failure: Dictionary = {}
 

@@ -85,8 +85,31 @@ func _initialize() -> void:
 		var before := var_to_bytes(bad.snapshot())
 		bad._friction[0] = INF
 		_check(
-			bad.advance(1).status != OK and var_to_bytes(bad.snapshot()) == before,
-			name + " invalid actual material rejects and atomically restores"
+			(
+				(
+					(
+						preload("res://tests/physics_fix/manifold_final_terrain.gd")
+						. resolve_tick(
+							bad.bodies,
+							bad._parents,
+							bad._terrain,
+							bad._mass,
+							CoupledLoadProbe.lowest_mask(bad.bodies, CONFIG),
+							bad._friction,
+							bad._restitution,
+							CONFIG,
+							Callable(),
+							PackedByteArray(),
+							bad._limit_definitions(),
+							bad.snapshot().bodies
+						)
+						. status
+					)
+					!= OK
+				)
+				and var_to_bytes(bad.snapshot()) == before
+			),
+			name + " invalid actual material adapter rejects without mutating input"
 		)
 	for source in ["c49fcc66ee9f", "67b167a30543", "a2a900fe2b29"]:
 		var frame: Dictionary = ARCHIVE.final_frame(

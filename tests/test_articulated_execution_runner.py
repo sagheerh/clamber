@@ -24,15 +24,17 @@ class ArticulatedExecutionRunner(previous.CompositionRunnerTests):
                      'tests/physics_fix/test_capsule_surface_components.gd',
                      'tests/physics_fix/test_rigid_pad_components.gd',
                      'tests/physics_fix/test_support_manifold_components.gd',
-                     'tests/physics_fix/test_coplanar_pad_components.gd']:
+                     'tests/physics_fix/test_coplanar_pad_components.gd',
+                     'tests/physics_fix/test_final_geometry_components.gd']:
             target=self.root/name;target.parent.mkdir(parents=True,exist_ok=True)
             shutil.copy2(previous.primitive.ROOT/name,target)
         fake=self.fake.read_text().replace('M1_CONTACT_COMPOSITION_REPORT_DIR','M1_ARTICULATED_EXECUTION_REPORT_DIR')
         marker="stage='import' if '--import' in args"
-        component="""if any('test_articulated_cap_identity.gd' in a or 'test_staged_articulated_components.gd' in a or 'test_staged_contact_identity.gd' in a or 'test_limited_articulated_components.gd' in a or 'test_assembly_drag_components.gd' in a or 'test_preintegrated_components.gd' in a or 'test_force_order_components.gd' in a or 'test_damped_support_components.gd' in a or 'test_impact_history_components.gd' in a or 'test_constitutive_stage_components.gd' in a or 'test_local_angular_components.gd' in a or 'test_capsule_surface_components.gd' in a or 'test_rigid_pad_components.gd' in a or 'test_support_manifold_components.gd' in a or 'test_coplanar_pad_components.gd' in a for a in args):
+        component="""if any('test_articulated_cap_identity.gd' in a or 'test_staged_articulated_components.gd' in a or 'test_staged_contact_identity.gd' in a or 'test_limited_articulated_components.gd' in a or 'test_assembly_drag_components.gd' in a or 'test_preintegrated_components.gd' in a or 'test_force_order_components.gd' in a or 'test_damped_support_components.gd' in a or 'test_impact_history_components.gd' in a or 'test_constitutive_stage_components.gd' in a or 'test_local_angular_components.gd' in a or 'test_capsule_surface_components.gd' in a or 'test_rigid_pad_components.gd' in a or 'test_support_manifold_components.gd' in a or 'test_coplanar_pad_components.gd' in a or 'test_final_geometry_components.gd' in a for a in args):
  if os.environ.get('DOUBLE_COMPONENT_ERROR')=='1': print('SCRIPT ERROR: TEST DOUBLE component failure')
  if '--check-only' not in args and os.environ.get('DOUBLE_COMPONENT_NO_SUMMARY')!='1':
-  if any('test_coplanar_pad_components.gd' in a for a in args): print('Coplanar pad components: '+os.environ.get('DOUBLE_COPLANAR_COUNT','31')+' checks, 0 failures')
+  if any('test_final_geometry_components.gd' in a for a in args): print('Final geometry components: '+os.environ.get('DOUBLE_FINAL_GEOMETRY_COUNT','57')+' checks, 0 failures')
+  elif any('test_coplanar_pad_components.gd' in a for a in args): print('Coplanar pad components: '+os.environ.get('DOUBLE_COPLANAR_COUNT','31')+' checks, 0 failures')
   elif any('test_support_manifold_components.gd' in a for a in args): print('Support manifold components: '+os.environ.get('DOUBLE_MANIFOLD_COUNT','29')+' checks, 0 failures')
   elif any('test_rigid_pad_components.gd' in a for a in args): print('Rigid pad components: '+os.environ.get('DOUBLE_RIGID_PAD_COUNT','24')+' checks, 0 failures')
   elif any('test_capsule_surface_components.gd' in a for a in args): print('Capsule surface components: '+os.environ.get('DOUBLE_CAPSULE_SURFACE_COUNT','24')+' checks, 0 failures')
@@ -46,6 +48,9 @@ class ArticulatedExecutionRunner(previous.CompositionRunnerTests):
   elif any('test_limited_articulated_components.gd' in a for a in args): print('Angular limited components: '+os.environ.get('DOUBLE_LIMITED_COUNT','36')+' checks, 0 failures')
   elif any('test_staged_contact_identity.gd' in a for a in args): print('Staged contact identity: 12 checks, 0 failures')
   else: print('Staged articulated components: '+os.environ.get('DOUBLE_STAGED_COUNT','20')+' checks, 0 failures' if any('test_staged_articulated_components.gd' in a for a in args) else 'Articulated cap identity: 8 checks, 0 failures')
+ if any('test_final_geometry_components.gd' in a for a in args) and '--check-only' not in args:
+  if os.environ.get('DOUBLE_FINAL_GEOMETRY_ERROR')=='1': print('SCRIPT ERROR: TEST DOUBLE final geometry error')
+  if os.environ.get('DOUBLE_FINAL_GEOMETRY_EXIT')=='1': sys.exit(20)
  if any('test_coplanar_pad_components.gd' in a for a in args) and '--check-only' not in args:
   if os.environ.get('DOUBLE_COPLANAR_ERROR')=='1': print('SCRIPT ERROR: TEST DOUBLE coplanar error')
   if os.environ.get('DOUBLE_COPLANAR_EXIT')=='1': sys.exit(19)
@@ -95,8 +100,23 @@ class ArticulatedExecutionRunner(previous.CompositionRunnerTests):
         env.update(extra)
         result=subprocess.run(['bash','tests/run_m1_articulated_execution.sh'],cwd=self.root,env=env,text=True,capture_output=True)
         calls=[json.loads(line) for line in self.calls.read_text().splitlines()]
-        stages=['import' if '--import' in a else 'compile' if '--check-only' in a else 'units' for a in calls if '--version' not in a and not any('test_articulated_cap_identity.gd' in v or 'test_staged_articulated_components.gd' in v or 'test_staged_contact_identity.gd' in v or 'test_limited_articulated_components.gd' in v or 'test_assembly_drag_components.gd' in v or 'test_preintegrated_components.gd' in v or 'test_force_order_components.gd' in v or 'test_damped_support_components.gd' in v or 'test_impact_history_components.gd' in v or 'test_constitutive_stage_components.gd' in v or 'test_local_angular_components.gd' in v or 'test_capsule_surface_components.gd' in v or 'test_rigid_pad_components.gd' in v or 'test_support_manifold_components.gd' in v or 'test_coplanar_pad_components.gd' in v for v in a)]
+        stages=['import' if '--import' in a else 'compile' if '--check-only' in a else 'units' for a in calls if '--version' not in a and not any('test_articulated_cap_identity.gd' in v or 'test_staged_articulated_components.gd' in v or 'test_staged_contact_identity.gd' in v or 'test_limited_articulated_components.gd' in v or 'test_assembly_drag_components.gd' in v or 'test_preintegrated_components.gd' in v or 'test_force_order_components.gd' in v or 'test_damped_support_components.gd' in v or 'test_impact_history_components.gd' in v or 'test_constitutive_stage_components.gd' in v or 'test_local_angular_components.gd' in v or 'test_capsule_surface_components.gd' in v or 'test_rigid_pad_components.gd' in v or 'test_support_manifold_components.gd' in v or 'test_coplanar_pad_components.gd' in v or 'test_final_geometry_components.gd' in v for v in a)]
         return result,stages
+
+    def test_final_geometry_error_stops_before_world(self):
+        result,stages=self.run_double(DOUBLE_FINAL_GEOMETRY_ERROR='1')
+        self.assertNotEqual(result.returncode,0)
+        self.assertEqual(stages,['import','compile'])
+
+    def test_final_geometry_count_stops_before_world(self):
+        result,stages=self.run_double(DOUBLE_FINAL_GEOMETRY_COUNT='56')
+        self.assertNotEqual(result.returncode,0)
+        self.assertEqual(stages,['import','compile'])
+
+    def test_final_geometry_exit_stops_before_world(self):
+        result,stages=self.run_double(DOUBLE_FINAL_GEOMETRY_EXIT='1')
+        self.assertEqual(result.returncode,20)
+        self.assertEqual(stages,['import','compile'])
 
     def test_impact_history_error_stops_before_world(self):
         result,stages=self.run_double(DOUBLE_IMPACT_ERROR='1')
@@ -225,7 +245,7 @@ class ArticulatedExecutionRunner(previous.CompositionRunnerTests):
         self.assertEqual(result.returncode,0,result.stderr)
         calls=[json.loads(line) for line in self.calls.read_text().splitlines()]
         scripts=[a[a.index('--script')+1:] for a in calls if '--script' in a]
-        self.assertEqual(len(scripts),32)
+        self.assertEqual(len(scripts),34)
         self.assertIn('test_articulated_execution.gd',scripts[0][0])
         self.assertIn('test_articulated_cap_identity.gd',scripts[1][0])
         self.assertIn('test_articulated_cap_identity.gd',scripts[2][0])
@@ -257,7 +277,9 @@ class ArticulatedExecutionRunner(previous.CompositionRunnerTests):
         self.assertIn('test_support_manifold_components.gd',scripts[28][0])
         self.assertIn('test_coplanar_pad_components.gd',scripts[29][0])
         self.assertIn('test_coplanar_pad_components.gd',scripts[30][0])
-        self.assertIn('test_articulated_execution.gd',scripts[31][0])
+        self.assertIn('test_final_geometry_components.gd',scripts[31][0])
+        self.assertIn('test_final_geometry_components.gd',scripts[32][0])
+        self.assertIn('test_articulated_execution.gd',scripts[33][0])
 
     def test_staged_runtime_error_stops_before_world(self):
         result,stages=self.run_double(DOUBLE_STAGED_ERROR='1')

@@ -153,6 +153,12 @@ if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/c
 timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_coplanar_pad_components.gd > "$folder/coplanar-pad-components.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/coplanar-pad-components.log"; then exit 1; fi
 if ! grep -Fxq 'Coplanar pad components: 31 checks, 0 failures' "$folder/coplanar-pad-components.log"; then exit 1; fi
+# NEW single final-geometry constitutive phase gate, before ANY public world tick.
+"$GODOT" --headless --check-only --script res://tests/physics_fix/test_final_geometry_components.gd > "$folder/final-geometry-compile.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/final-geometry-compile.log"; then exit 1; fi
+timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_final_geometry_components.gd > "$folder/final-geometry-components.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/final-geometry-components.log"; then exit 1; fi
+if ! grep -Fxq 'Final geometry components: 57 checks, 0 failures' "$folder/final-geometry-components.log"; then exit 1; fi
 "$GODOT" --headless --script res://tests/physics_fix/test_articulated_execution.gd -- --report-dir="$folder" > "$folder/engine.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/engine.log"; then
  echo 'STOP: runtime errors; inspect first failure.' >&2
