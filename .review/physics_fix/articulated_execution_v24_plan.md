@@ -31,3 +31,9 @@ native4PASS. This commit requests these ONLY. Revisit full runtime/force contrac
 ONLY on actually changed physics, preserve first full failure in bounded files
 instead of relying on truncated console annotations. Still no production adoption,
 FA3/determinism/runtime/device/M1 signoff. Scope stays requested remaining items.
+
+38c464d/run41217888063: compile FAILED before components/public ticks (local
+`axes` identifier should be existing root `head` frame; endpoint is bodies[0].a,
+not a frame dictionary member). Correct names only; ZERO-clock launch incident,
+not physical measurement. Read-only scalar derivation remains same. No public
+world requested by correction; native proof gates still mandatory.

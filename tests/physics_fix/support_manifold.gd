@@ -258,10 +258,12 @@ static func solve(kernel: RefCounted, bodies: Array[CapsuleBody], contacts: Arra
 			# the unit tangent. Project the actual A endpoint, not the difference
 			# between nearly cancelling COM/spin energy terms. The constitutive
 			# M+C metric above is distinct and must retain its authored retention.
-			var extent: float = sqrt(axes.x * axes.x + axes.y * axes.y)
-			var tx: float = axes.y / extent
-			var ty: float = -axes.x / extent
-			var speed: float = tx * (head.a.velocity_x - pin_x) + ty * (head.a.velocity_y - pin_y)
+			var extent: float = sqrt(head.x * head.x + head.y * head.y)
+			var tx: float = head.y / extent
+			var ty: float = -head.x / extent
+			var speed: float = (
+				tx * (bodies[0].a.velocity_x - pin_x) + ty * (bodies[0].a.velocity_y - pin_y)
+			)
 			omega = speed / extent
 		var mode: Array[float] = kernel._zero(incoming.size())
 		mode[0] = mode_x
