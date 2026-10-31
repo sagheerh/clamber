@@ -1,0 +1,5 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+Twofold active components: 10 checks, 0 failures
+Twofold archive diagnostic: {"calls":[{"active":[0,1,2],"equalities":18,"failed":false,"inequalities":4},{"active":[0,1,2],"equalities":20,"failed":false,"inequalities":4}],"published":{"actual_before":1.2157209960538857,"actual_proposed":0.1827241817815083,"gain":-1.0329968142723773,"status":0}}
+Scope: one exact archived support solve and arithmetic/rank controls; ZERO creature ticks; not acceptance

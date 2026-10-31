@@ -1,0 +1,5 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+Rank exchange components: 6 checks, 0 failures
+Rank exchange archive diagnostic: {"calls":[{"active":[0,1,2],"equalities":18,"failed":false,"inequalities":4},{"active":[1,2,3],"equalities":20,"failed":false,"inequalities":4}],"published":{"actual_before":1.1980127917498142,"actual_proposed":0.1433451186509247,"gain":-1.0546676730988895,"status":0}}
+Scope: exact archived369 solve + independent rational2D rank-exchange trap; ZERO creature ticks; not acceptance
