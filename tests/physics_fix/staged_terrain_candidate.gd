@@ -288,7 +288,13 @@ static func _constrained_contact_response(
 	var frame := ROW.frame(bodies[part], u, nx, ny)
 	if frame.is_empty():
 		return {}
-	if frame.normal_velocity >= 0.0 and (frame.tangent_velocity == 0.0 or retained == 1.0):
+	# Match the original CapsuleContact observer: sample authoritative endpoint
+	# velocities, not another COM/spin reconstruction that invents tiny slip.
+	var vx: float = (1.0 - u) * bodies[part].a.velocity_x + u * bodies[part].b.velocity_x
+	var vy: float = (1.0 - u) * bodies[part].a.velocity_y + u * bodies[part].b.velocity_y
+	var normal_velocity: float = vx * frame.nx + vy * frame.ny
+	var tangent_velocity: float = -vx * frame.ny + vy * frame.nx
+	if normal_velocity >= 0.0 and (tangent_velocity == 0.0 or retained == 1.0):
 		var hinges: Array[float] = []
 		hinges.resize(2 * (bodies.size() - 1))
 		hinges.fill(0.0)
@@ -297,6 +303,6 @@ static func _constrained_contact_response(
 			"tangential_impulse_ns": 0.0,
 			"hinge_impulses": hinges,
 			"normal_target": 0.0,
-			"tangent_target": frame.tangent_velocity * retained
+			"tangent_target": tangent_velocity * retained
 		}
 	return network.contact_velocity(bodies, part, u, nx, ny, retained, restitution)

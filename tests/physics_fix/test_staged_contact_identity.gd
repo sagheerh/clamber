@@ -27,6 +27,24 @@ func _initialize() -> void:
 	var parents: Array[int] = [-1, 0, 1]
 	_check(network.configure(bodies, parents) == OK, "valid final geometry/SPD factor")
 	var before := _bits(bodies)
+	var row := preload("res://tests/physics_fix/rigid_contact_candidate.gd").frame(
+		bodies[2], 1.0, 0.0, 1.0
+	)
+	print(
+		(
+			"Contact input distinction: "
+			+ JSON.stringify(
+				{
+					"endpoint_vx": bodies[2].b.velocity_x,
+					"endpoint_vy": bodies[2].b.velocity_y,
+					"reconstructed_tangent": row.tangent_velocity
+				},
+				"",
+				true,
+				true
+			)
+		)
+	)
 	_check(
 		network.contact_velocity(bodies, 2, 1.0, 0.0, 1.0, 0.0, 0.02).is_empty(),
 		"original API reproduces saved contact rejection"
