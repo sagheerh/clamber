@@ -171,6 +171,12 @@ if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/t
 timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_twofold_components.gd > "$folder/twofold-components.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/twofold-components.log"; then exit 1; fi
 if ! grep -Fxq 'Twofold active components: 10 checks, 0 failures' "$folder/twofold-components.log"; then exit 1; fi
+# Genuine369 rank-exchange trap; finite independent KKT faces, ZERO ticks.
+"$GODOT" --headless --check-only --script res://tests/physics_fix/test_rank_exchange_components.gd > "$folder/rank-exchange-compile.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/rank-exchange-compile.log"; then exit 1; fi
+timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_rank_exchange_components.gd > "$folder/rank-exchange-components.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/rank-exchange-components.log"; then exit 1; fi
+if ! grep -Fxq 'Rank exchange components: 6 checks, 0 failures' "$folder/rank-exchange-components.log"; then exit 1; fi
 "$GODOT" --headless --script res://tests/physics_fix/test_articulated_execution.gd -- --report-dir="$folder" > "$folder/engine.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/engine.log"; then
  echo 'STOP: runtime errors; inspect first failure.' >&2

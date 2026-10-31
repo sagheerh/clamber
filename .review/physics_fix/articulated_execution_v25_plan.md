@@ -286,3 +286,10 @@ kernel+twofold control retains old rejection. Independent exact2D trap x>=1,y>=1
 x+y>=3: positive old multipliers, dependent augmentation; correct optimum(1.5,1.5)
 active[2]. Native6 archived369 momentum/unchanged poses/strict-energy plus 2D old
 negative/new positive controls preregistered. No new runtime/world yet; gates first.
+
+V27 source09f3fc23c71f/run41221766321: native42+6PASS/ZERO ticks. Exact369
+archive succeeds under ORIGINAL strict energy, terrain momentum and unchanged
+poses; independent2D positive-multiplier rank trap also fixed, frozenV26 rejects.
+Register fresh207 full input/release/wake/force/typed rollback matrix on new solver,
+NOT a new world yet. Runner gate adds6→480native prerequisites;72failclosed mocks
+PASS67.876s. All previous counters/force classification and acceptance unchanged.

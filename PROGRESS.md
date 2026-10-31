@@ -34,8 +34,13 @@ FIRST V26 source5d6c4409a19e/run41221098908/publishere793363 CLOSEDFAIL.
 (339fresh/30parked), no prior metric violation; FIRST physical pass0 status30;
 final constitutiveNOTRUN/status3. Exact before/after rollback snapshots equal.
 TwinNOTRUN;7539fresh successful awake force audits is prefix/Slug credit ONLY.
-No unchanged retry. Exact369 ZERO-tick component diagnostic registered, cause
-not yet distinguished beyond simultaneous material support block.
+No unchanged retry. Native925668d/run41221568046 and exact rational analysis
+now prove genuine positive-multiplier rank exchange needed at369, not merely
+roundoff: fourth gap-2.5042492949506632e-17; feasible face[1,2,3].
+Changed finite independent-face search native09f3fc2/run41221766321:42+6PASS,
+including exact369 original strict-energy/momentum/pose controls and independent
+2D negative/positive trap. Fresh runtime207 next; NO new world until PASS.
+Runner480native gates/72failclosed mocksPASS.
 Shared independent force arithmetic now registered for EVERY fresh awake long-run
 tick, asleep solves explicitly NOTRUN. Runner474 native prereqs/69mocktestsPASS; fresh trace.tick (not clock alone)
 separates actual30awake from570parked original600 archived ticks.

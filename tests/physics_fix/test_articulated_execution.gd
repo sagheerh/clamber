@@ -7,7 +7,7 @@ const AUTHORED_MODELS = preload("res://tests/physics_fix/rigid_pad_models.gd")
 const CAPTURE_POLICY = preload("res://tests/physics_fix/articulated_capture_policy.gd")
 var _results: Dictionary = {
 	"scope":
-	"V26 strict twofold rank-trap algebra + full live force audit + single final-geometry constitutive stage + radius-derived stance; NOT historical recipe or production adoption",
+	"V27 strict finite rank exchange + twofold algebra + full live force audit + single final-geometry constitutive stage + radius-derived stance; NOT historical recipe or production adoption",
 	"arms": {},
 	"not_run_arms": ["idle-Slug", "length-Slug", "length-Hopper", "length-TwinRoller"],
 	"status": "NOT RUN"

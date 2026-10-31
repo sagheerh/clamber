@@ -27,17 +27,19 @@ class ArticulatedExecutionRunner(previous.CompositionRunnerTests):
                      'tests/physics_fix/test_coplanar_pad_components.gd',
                      'tests/physics_fix/test_final_geometry_components.gd',
                      'tests/physics_fix/test_dual_feasible_components.gd',
-                     'tests/physics_fix/test_twofold_components.gd']:
+                     'tests/physics_fix/test_twofold_components.gd',
+                     'tests/physics_fix/test_rank_exchange_components.gd']:
             target=self.root/name;target.parent.mkdir(parents=True,exist_ok=True)
             shutil.copy2(previous.primitive.ROOT/name,target)
         fake=self.fake.read_text().replace('M1_CONTACT_COMPOSITION_REPORT_DIR','M1_ARTICULATED_EXECUTION_REPORT_DIR')
         fake=fake.replace("termination='completed; candidate metrics satisfied')","termination='completed; candidate metrics satisfied',awake_force_audits=600 if k=='idle-Slug' else 7200,asleep_no_fresh_force_ticks=0)")
         fake=fake.replace(" summary=dict(scope="," if os.environ.get('DOUBLE_NO_FORCE_AUDITS')=='1': arms['length-Hopper'].pop('awake_force_audits')\n if os.environ.get('DOUBLE_STALE_FORCE_AUDITS')=='1': arms['length-Hopper']['awake_force_audits']=7199\n if os.environ.get('DOUBLE_VACUOUS_FORCE_AUDITS')=='1': arms['length-Hopper'].update(awake_force_audits=0,asleep_no_fresh_force_ticks=7200)\n summary=dict(scope=")
         marker="stage='import' if '--import' in args"
-        component="""if any('test_articulated_cap_identity.gd' in a or 'test_staged_articulated_components.gd' in a or 'test_staged_contact_identity.gd' in a or 'test_limited_articulated_components.gd' in a or 'test_assembly_drag_components.gd' in a or 'test_preintegrated_components.gd' in a or 'test_force_order_components.gd' in a or 'test_damped_support_components.gd' in a or 'test_impact_history_components.gd' in a or 'test_constitutive_stage_components.gd' in a or 'test_local_angular_components.gd' in a or 'test_capsule_surface_components.gd' in a or 'test_rigid_pad_components.gd' in a or 'test_support_manifold_components.gd' in a or 'test_coplanar_pad_components.gd' in a or 'test_final_geometry_components.gd' in a or 'test_dual_feasible_components.gd' in a or 'test_twofold_components.gd' in a for a in args):
+        component="""if any('test_articulated_cap_identity.gd' in a or 'test_staged_articulated_components.gd' in a or 'test_staged_contact_identity.gd' in a or 'test_limited_articulated_components.gd' in a or 'test_assembly_drag_components.gd' in a or 'test_preintegrated_components.gd' in a or 'test_force_order_components.gd' in a or 'test_damped_support_components.gd' in a or 'test_impact_history_components.gd' in a or 'test_constitutive_stage_components.gd' in a or 'test_local_angular_components.gd' in a or 'test_capsule_surface_components.gd' in a or 'test_rigid_pad_components.gd' in a or 'test_support_manifold_components.gd' in a or 'test_coplanar_pad_components.gd' in a or 'test_final_geometry_components.gd' in a or 'test_dual_feasible_components.gd' in a or 'test_twofold_components.gd' in a or 'test_rank_exchange_components.gd' in a for a in args):
  if os.environ.get('DOUBLE_COMPONENT_ERROR')=='1': print('SCRIPT ERROR: TEST DOUBLE component failure')
  if '--check-only' not in args and os.environ.get('DOUBLE_COMPONENT_NO_SUMMARY')!='1':
-  if any('test_twofold_components.gd' in a for a in args): print('Twofold active components: '+os.environ.get('DOUBLE_TWOFOLD_COUNT','10')+' checks, 0 failures')
+  if any('test_rank_exchange_components.gd' in a for a in args): print('Rank exchange components: '+os.environ.get('DOUBLE_RANK_EXCHANGE_COUNT','6')+' checks, 0 failures')
+  elif any('test_twofold_components.gd' in a for a in args): print('Twofold active components: '+os.environ.get('DOUBLE_TWOFOLD_COUNT','10')+' checks, 0 failures')
   elif any('test_dual_feasible_components.gd' in a for a in args): print('Dual feasible components: '+os.environ.get('DOUBLE_DUAL_FEASIBLE_COUNT','6')+' checks, 0 failures')
   elif any('test_final_geometry_components.gd' in a for a in args): print('Final geometry components: '+os.environ.get('DOUBLE_FINAL_GEOMETRY_COUNT','57')+' checks, 0 failures')
   elif any('test_coplanar_pad_components.gd' in a for a in args): print('Coplanar pad components: '+os.environ.get('DOUBLE_COPLANAR_COUNT','31')+' checks, 0 failures')
@@ -54,6 +56,9 @@ class ArticulatedExecutionRunner(previous.CompositionRunnerTests):
   elif any('test_limited_articulated_components.gd' in a for a in args): print('Angular limited components: '+os.environ.get('DOUBLE_LIMITED_COUNT','36')+' checks, 0 failures')
   elif any('test_staged_contact_identity.gd' in a for a in args): print('Staged contact identity: 12 checks, 0 failures')
   else: print('Staged articulated components: '+os.environ.get('DOUBLE_STAGED_COUNT','20')+' checks, 0 failures' if any('test_staged_articulated_components.gd' in a for a in args) else 'Articulated cap identity: 8 checks, 0 failures')
+ if any('test_rank_exchange_components.gd' in a for a in args) and '--check-only' not in args:
+  if os.environ.get('DOUBLE_RANK_EXCHANGE_ERROR')=='1': print('SCRIPT ERROR: TEST DOUBLE rank exchange error')
+  if os.environ.get('DOUBLE_RANK_EXCHANGE_EXIT')=='1': sys.exit(23)
  if any('test_twofold_components.gd' in a for a in args) and '--check-only' not in args:
   if os.environ.get('DOUBLE_TWOFOLD_ERROR')=='1': print('SCRIPT ERROR: TEST DOUBLE twofold error')
   if os.environ.get('DOUBLE_TWOFOLD_EXIT')=='1': sys.exit(22)
@@ -112,7 +117,7 @@ class ArticulatedExecutionRunner(previous.CompositionRunnerTests):
         env.update(extra)
         result=subprocess.run(['bash','tests/run_m1_articulated_execution.sh'],cwd=self.root,env=env,text=True,capture_output=True)
         calls=[json.loads(line) for line in self.calls.read_text().splitlines()]
-        stages=['import' if '--import' in a else 'compile' if '--check-only' in a else 'units' for a in calls if '--version' not in a and not any('test_articulated_cap_identity.gd' in v or 'test_staged_articulated_components.gd' in v or 'test_staged_contact_identity.gd' in v or 'test_limited_articulated_components.gd' in v or 'test_assembly_drag_components.gd' in v or 'test_preintegrated_components.gd' in v or 'test_force_order_components.gd' in v or 'test_damped_support_components.gd' in v or 'test_impact_history_components.gd' in v or 'test_constitutive_stage_components.gd' in v or 'test_local_angular_components.gd' in v or 'test_capsule_surface_components.gd' in v or 'test_rigid_pad_components.gd' in v or 'test_support_manifold_components.gd' in v or 'test_coplanar_pad_components.gd' in v or 'test_final_geometry_components.gd' in v or 'test_dual_feasible_components.gd' in v or 'test_twofold_components.gd' in v for v in a)]
+        stages=['import' if '--import' in a else 'compile' if '--check-only' in a else 'units' for a in calls if '--version' not in a and not any('test_articulated_cap_identity.gd' in v or 'test_staged_articulated_components.gd' in v or 'test_staged_contact_identity.gd' in v or 'test_limited_articulated_components.gd' in v or 'test_assembly_drag_components.gd' in v or 'test_preintegrated_components.gd' in v or 'test_force_order_components.gd' in v or 'test_damped_support_components.gd' in v or 'test_impact_history_components.gd' in v or 'test_constitutive_stage_components.gd' in v or 'test_local_angular_components.gd' in v or 'test_capsule_surface_components.gd' in v or 'test_rigid_pad_components.gd' in v or 'test_support_manifold_components.gd' in v or 'test_coplanar_pad_components.gd' in v or 'test_final_geometry_components.gd' in v or 'test_dual_feasible_components.gd' in v or 'test_twofold_components.gd' in v or 'test_rank_exchange_components.gd' in v for v in a)]
         return result,stages
 
     def test_missing_live_force_count_not_a_pass(self):
@@ -126,6 +131,21 @@ class ArticulatedExecutionRunner(previous.CompositionRunnerTests):
     def test_vacuous_all_asleep_force_count_not_a_pass(self):
         result,_=self.run_double(DOUBLE_VACUOUS_FORCE_AUDITS='1')
         self.assertNotEqual(result.returncode,0)
+
+    def test_rank_exchange_error_stops_before_world(self):
+        result,stages=self.run_double(DOUBLE_RANK_EXCHANGE_ERROR='1')
+        self.assertNotEqual(result.returncode,0)
+        self.assertEqual(stages,['import','compile'])
+
+    def test_rank_exchange_count_stops_before_world(self):
+        result,stages=self.run_double(DOUBLE_RANK_EXCHANGE_COUNT='5')
+        self.assertNotEqual(result.returncode,0)
+        self.assertEqual(stages,['import','compile'])
+
+    def test_rank_exchange_exit_stops_before_world(self):
+        result,stages=self.run_double(DOUBLE_RANK_EXCHANGE_EXIT='1')
+        self.assertEqual(result.returncode,23)
+        self.assertEqual(stages,['import','compile'])
 
     def test_twofold_error_stops_before_world(self):
         result,stages=self.run_double(DOUBLE_TWOFOLD_ERROR='1')
@@ -299,7 +319,7 @@ class ArticulatedExecutionRunner(previous.CompositionRunnerTests):
         self.assertEqual(result.returncode,0,result.stderr)
         calls=[json.loads(line) for line in self.calls.read_text().splitlines()]
         scripts=[a[a.index('--script')+1:] for a in calls if '--script' in a]
-        self.assertEqual(len(scripts),38)
+        self.assertEqual(len(scripts),40)
         self.assertIn('test_articulated_execution.gd',scripts[0][0])
         self.assertIn('test_articulated_cap_identity.gd',scripts[1][0])
         self.assertIn('test_articulated_cap_identity.gd',scripts[2][0])
@@ -337,7 +357,9 @@ class ArticulatedExecutionRunner(previous.CompositionRunnerTests):
         self.assertIn('test_dual_feasible_components.gd',scripts[34][0])
         self.assertIn('test_twofold_components.gd',scripts[35][0])
         self.assertIn('test_twofold_components.gd',scripts[36][0])
-        self.assertIn('test_articulated_execution.gd',scripts[37][0])
+        self.assertIn('test_rank_exchange_components.gd',scripts[37][0])
+        self.assertIn('test_rank_exchange_components.gd',scripts[38][0])
+        self.assertIn('test_articulated_execution.gd',scripts[39][0])
 
     def test_staged_runtime_error_stops_before_world(self):
         result,stages=self.run_double(DOUBLE_STAGED_ERROR='1')
