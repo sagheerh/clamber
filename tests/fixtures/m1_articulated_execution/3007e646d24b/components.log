@@ -1,0 +1,9 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: FAIL cap identity: restore archived committed frame, no replay
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://tests/physics_fix/test_articulated_cap_identity.gd:68)
+       [1] _initialize (res://tests/physics_fix/test_articulated_cap_identity.gd:37)
+Articulated cap identity: 7 checks, 1 failures
+Scope: archived component frame only; ZERO world ticks; NOT acceptance
