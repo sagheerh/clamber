@@ -184,7 +184,7 @@ jobs:
             args=()
             if [[ "$stage" == compile ]]; then args+=(--check-only); fi
             status=0
-            timeout 60s "$GODOT" --headless --quit-after 1 "${args[@]}" --script "$script" > "$folder/$stage.log" 2>&1 || status=$?
+            timeout 60s "$GODOT" --headless --quit-after 1 "${args[@]}" --script "$script" -- --report-dir="tests/fixtures/m1_candidate_runtime/${GITHUB_SHA:0:12}" > "$folder/$stage.log" 2>&1 || status=$?
             cat "$folder/$stage.log"
             python3 - "$folder/$stage.log" <<'PYNOTICE'
           import sys
@@ -200,6 +200,29 @@ jobs:
           done
           grep -Fxq "$expected" "$folder/units.log"
 
+      - name: Preserve candidate runtime contract success or exact first failure
+        if: ${{ always() && contains(github.event.head_commit.message, '[M1-runtime-contract]') }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          folder="tests/fixtures/m1_candidate_runtime/${GITHUB_SHA:0:12}"
+          mkdir -p "$folder"
+          cp exports/constitutive-components/*.log "$folder/"
+          python3 - "$folder" <<'PYREPORT'
+          import hashlib,json,os,subprocess,sys
+          from pathlib import Path
+          p=Path(sys.argv[1]);source=os.environ['GITHUB_SHA']
+          assert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()==source
+          data={'source_commit':source,'ci_run':os.environ['GITHUB_RUN_ID'],'scope':'TEST-ONLY candidate runtime contracts; NOT production/FA3/determinism',
+                'candidate_sha256':{str(f):hashlib.sha256(f.read_bytes()).hexdigest() for f in sorted(Path('tests/physics_fix').glob('*.gd'))}}
+          (p/'source.json').write_text(json.dumps(data,indent=2)+'\n')
+          assert sum(f.stat().st_size for f in p.iterdir())<4*1024*1024,'bounded first-failure evidence exceeded; STOP'
+          PYREPORT
+          git config user.name 'M1 candidate evidence recorder'
+          git config user.email 'candidate-evidence@users.noreply.github.com'
+          git add -- "$folder"
+          git commit -m 'docs: preserve candidate runtime contract evidence [skip ci]'
+          git push origin arena/f43f36ab-clamber
       - name: Frozen Hopper263 negative control after changed component proof
         if: ${{ contains(github.event.head_commit.message, '[M1-coplanar-units]') && contains(github.event.head_commit.message, '[M1-hopper263-control]') }}
         shell: bash

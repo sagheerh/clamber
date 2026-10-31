@@ -5,12 +5,14 @@ extends Sim
 ## restore factories otherwise silently swap candidate physics back to baseline.
 const AWAKE = preload("res://tests/physics_fix/coplanar_pad_candidate.gd")
 var fail_at_tick := -1  # Explicit test fault; NOT serialized physical state.
+var last_failure: Dictionary = {}
 
 
 class CandidateSolver:
 	extends CreatureTickSolver
 	var fail_at_tick := -1
 	var last_row: Dictionary = {}
+	var last_failure: Dictionary = {}
 
 	func configure(model: CreatureModel, tower: TowerData, tuning: Tuning) -> Error:
 		if super.configure(model, tower, tuning) != OK:
@@ -67,6 +69,12 @@ class CandidateSolver:
 		last_row = _rig.step(_held)
 		if last_row.status == OK:
 			tick_completed.emit(snapshot())
+		else:
+			last_failure = {
+				"mask": _held,
+				"tick": tick_count(),
+				"awake_trace": _rig._probe.last_step_trace.duplicate(true)
+			}
 		return last_row.status
 
 
@@ -83,6 +91,11 @@ func _restore(state: Dictionary) -> Error:
 		or not state.get("accumulator") is Dictionary
 	):
 		return ERR_INVALID_DATA
+	if _solver is CandidateSolver and not (_solver as CandidateSolver).last_failure.is_empty():
+		last_failure = {
+			"before_frame": state.duplicate(true),
+			"failed": (_solver as CandidateSolver).last_failure.duplicate(true)
+		}
 	var solver := CandidateSolver.new()
 	solver.fail_at_tick = fail_at_tick
 	var clock := FixedStepAccumulator.new()

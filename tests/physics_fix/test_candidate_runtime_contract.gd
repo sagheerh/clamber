@@ -6,17 +6,45 @@ var _checks := 0
 var _failures := 0
 var _audited_awake := 0
 var _signals: Array = []
+var _active_sim: RUNTIME
+var _completed_cases: Array = []
+var _failure_evidence: Dictionary = {}
 
 
 func _initialize() -> void:
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--report-dir="):
+			_folder = arg.trim_prefix("--report-dir=")
 	for name in ["Slug", "Hopper", "TwinRoller"]:
 		if not _contract(name):
 			break  # Even this validation suite stops at FIRST unexpected failure.
+		_completed_cases.append(name)
 	print("Candidate runtime contract: %d checks, %d failures" % [_checks, _failures])
 	print("Candidate runtime audited awake ticks: %d" % _audited_awake)
 	print(
 		"Scope: TEST-ONLY candidate factories; real public inherited frame/clock/sleep/input paths; NOT production acceptance, FA3 or cross-architecture determinism"
 	)
+	if not _folder.is_empty():
+		DirAccess.make_dir_recursive_absolute(_folder)
+		var report := {
+			"checks": _checks,
+			"failures": _failures,
+			"awake_force_audits": _audited_awake,
+			"completed_cases": _completed_cases,
+			"scope": "TEST-ONLY candidate runtime contract, not production or FA3",
+			"failure_variant_base64":
+			(
+				Marshalls.raw_to_base64(var_to_bytes(_failure_evidence))
+				if not _failure_evidence.is_empty()
+				else null
+			)
+		}
+		var file := FileAccess.open(_folder + "/summary.json", FileAccess.WRITE)
+		if file == null:
+			_failures += 1
+		else:
+			file.store_string(JSON.stringify(report, "", true, true))
+			file.close()
 	quit(1 if _failures else 0)
 
 
@@ -26,6 +54,7 @@ func _new_runtime(name: String) -> RUNTIME:
 		return null
 	var sim := RUNTIME.new()
 	sim.setup(source._creature, source._tower, 305419896, TUNING)
+	_active_sim = sim
 	return sim
 
 
@@ -333,6 +362,13 @@ func _require(ok: bool, label: String) -> bool:
 	_checks += 1
 	if not ok:
 		_failures += 1
+		if _failure_evidence.is_empty() and _active_sim != null:
+			_failure_evidence = {
+				"label": label,
+				"snapshot": _active_sim.snapshot(),
+				"physics_failure": _active_sim.last_failure.duplicate(true),
+				"last_row": _active_sim.last_row().duplicate(true)
+			}
 		push_error("FAIL " + label)
 	return ok
 

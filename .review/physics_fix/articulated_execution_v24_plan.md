@@ -37,3 +37,18 @@ FA3/determinism/runtime/device/M1 signoff. Scope stays requested remaining items
 not a frame dictionary member). Correct names only; ZERO-clock launch incident,
 not physical measurement. Read-only scalar derivation remains same. No public
 world requested by correction; native proof gates still mandatory.
+
+## Native prerequisite PASS
+f945c08/run41217957853 SUCCESS: original42 + coplanar31 + frozen263 audit4,
+ZERO public ticks. Both exact256/263 changed physical unit-tangent proposals pass
+the UNCHANGED original actual-energy publisher and real terrain impulse/pose
+controls. Frozen263 both solves succeed and original strict gain reproduced.
+
+Register ONE NEW ordered world on this actually changed, native-proven solver:
+401native before original600, then Slug/Hopper/Twin7200; first failure STOP.
+Existing acceptance thresholds unchanged. Runtime capture tooling also committed
+but no runtime-contract selector here: full public input/restore suite remains a
+separate gate, never credited from long geometry metrics. New bounded runtime
+failure recorder saves full binary Variant independently of truncated console.
+No production/core/tuning changes. No global RNG, extra iteration, epsilon or
+energy-based numerical selection introduced.
