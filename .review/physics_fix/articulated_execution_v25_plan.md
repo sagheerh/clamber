@@ -127,3 +127,18 @@ New native6: real archive strict publisher/momentum/pose plus exact2D counterexa
 (old adds3rows for2DOF and fails, new active[2] gives[1.1,2.2],all constraints).
 ONLY component proof requested; no new runtime/world until green. All prior
 458 native barriers must remain for eventual ordered world.
+
+ba66c3e/run41219569109 SUCCESS: native42+new6/ZERO creature ticks; archived
+physical rejection fixed, ORIGINAL actual energy publisher PASS and real terrain
+momentum/unchanged poses; exact counterexample distinguishes old/new ordering.
+Next corrected runtime contract is NEW physically changed kernel, not retry of
+failed source. Independent angular law now verifies BOTH local -C*omega and
+contact response -C*deltaOmega (C=I*d/(1-d)) on actual per-observation geometry,
+not merely summing reported torques. Compensated fake drag/hinge pair must fail
+although the old circular net ledger would close. Real positive linear-cap force
+components seed uniform100WU/s (labelled test initial condition, NOT tuning) and
+verify exact42 resource plus full fresh gravity and actual clamp impulses; fake
+omitted clamp must fail. These components DO NOT advance any creature tick.
+Expect207:69percreature, first unexpected failureSTOP; first actual full force
+sample and positive clamp sample per creature persist in bounded Variant report.
+Full ordered world remains NOTRUN for V25 until this gate green; no adoption.

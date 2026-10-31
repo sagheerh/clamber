@@ -9,6 +9,8 @@ var _signals: Array = []
 var _active_sim: RUNTIME
 var _completed_cases: Array = []
 var _failure_evidence: Dictionary = {}
+var _force_samples: Array = []
+var _clamp_samples: Array = []
 
 
 func _initialize() -> void:
@@ -32,6 +34,8 @@ func _initialize() -> void:
 			"awake_force_audits": _audited_awake,
 			"completed_cases": _completed_cases,
 			"scope": "TEST-ONLY candidate runtime contract, not production or FA3",
+			"force_samples_variant_base64": Marshalls.raw_to_base64(var_to_bytes(_force_samples)),
+			"clamp_samples_variant_base64": Marshalls.raw_to_base64(var_to_bytes(_clamp_samples)),
 			"failure_variant_base64":
 			(
 				Marshalls.raw_to_base64(var_to_bytes(_failure_evidence))
@@ -98,6 +102,7 @@ func _contract(name: String) -> bool:
 	):
 		return false
 	var actual_trace: Dictionary = sim.last_row().awake_solver_trace_before_sleep_parking
+	_force_samples.append({"name": name, "trace": actual_trace.duplicate(true)})
 	for mutation in [
 		"gravity",
 		"endpoint",
@@ -110,7 +115,9 @@ func _contract(name: String) -> bool:
 		"raw_material",
 		"raw_load",
 		"raw_grip",
-		"raw_bound"
+		"raw_bound",
+		"raw_local_drag",
+		"compensated_contact_drag"
 	]:
 		var fake: Dictionary = actual_trace.duplicate(true)
 		match mutation:
@@ -136,6 +143,17 @@ func _contract(name: String) -> bool:
 				fake.contact_samples[0].may_grip = not fake.contact_samples[0].may_grip
 			"raw_bound":
 				fake.drive_events[0].speed_maximum_impulse += 0.01
+			"raw_local_drag":
+				fake.authored_angular_damping[0].omega_after += 0.01
+			"compensated_contact_drag":
+				for sample in fake.contact_samples:
+					if (
+						sample.has("angular_drag_events")
+						and not sample.angular_drag_events.is_empty()
+					):
+						sample.angular_drag_events[0].angular_impulse += 0.01
+						sample.angular_drag_events[0].hinge_angular_impulse -= 0.01
+						break
 			"raw_damping":
 				for sample in fake.contact_samples:
 					if (
@@ -294,6 +312,51 @@ func _contract(name: String) -> bool:
 			name + " release after wake uses prescribed return law"
 		):
 			return false
+	var clamp_rig := (
+		preload("res://tests/physics_fix/final_geometry_constitutive_candidate.gd").new()
+	)
+	var model := AUTHORED_MODELS.load_model(name, TUNING)
+	if (
+		clamp_rig.setup(
+			model,
+			_grid(false),
+			0.0,
+			R25Fixture.spawn_y(model),
+			R25Fixture.materials(model),
+			R25Fixture.materials(model, true),
+			TUNING
+		)
+		!= OK
+	):
+		return _require(false, name + " clamp component setup")
+	for body in clamp_rig.bodies:
+		body.a.velocity_x = 100.0
+		body.b.velocity_x = 100.0
+	var budget := {}
+	for stage in ["drive_internal", "damping", "gravity", "internal", "contact_velocity", "clamp"]:
+		for axis in ["x", "y"]:
+			budget[stage + "_impulse_" + axis + "_ns"] = 0.0
+	var status: Error = clamp_rig._begin_tick()
+	if status == OK:
+		status = clamp_rig._apply_forces(1.0 / 60.0, budget)
+	if not _require(
+		status == OK and clamp_rig.snapshot().ticks == 0 and _clamp_force_ok(clamp_rig, budget),
+		(
+			name
+			+ " actual nonzero linear clamp follows fixed resource and full fresh gravity; force component, no integration"
+		)
+	):
+		return false
+	_clamp_samples.append(
+		{"name": name, "bodies": clamp_rig.snapshot().bodies, "budget": budget.duplicate(true)}
+	)
+	var fake_budget: Dictionary = budget.duplicate(true)
+	fake_budget.clamp_impulse_x_ns = 0.0
+	if not _require(
+		not _clamp_force_ok(clamp_rig, fake_budget),
+		name + " real positive-clamp audit rejects omitted clamp impulse"
+	):
+		return false
 	return true
 
 
@@ -448,6 +511,20 @@ func _contact_ok(trace: Dictionary, bodies: Array) -> bool:
 			)
 			if absf(load - part.applied_load_n) > 1e-12:
 				return false
+		if batch.velocity_pass == trace.constitutive_velocity_pass:
+			for drag in trace.authored_angular_damping:
+				var pose: Dictionary = batch.parts[drag.part]
+				var dx: float = pose.b[0] - pose.a[0]
+				var dy: float = pose.b[1] - pose.a[1]
+				var c: float = (
+					by_part[drag.part].mass
+					* (dx * dx + dy * dy)
+					/ 4.0
+					* TUNING.physics_angular_damping
+					/ (1.0 - TUNING.physics_angular_damping)
+				)
+				if absf(drag.external_angular_impulse + c * drag.omega_after) > 1e-12:
+					return false
 		var events := {}
 		var terrain := {}
 		var shared: Dictionary = {}
@@ -560,6 +637,13 @@ func _contact_ok(trace: Dictionary, bodies: Array) -> bool:
 			if not shared.is_empty():
 				for event in shared.angular_drag_events:
 					if event.part == part:
+						var c: float = (
+							TUNING.physics_angular_damping / (1.0 - TUNING.physics_angular_damping)
+							if batch.velocity_pass == trace.constitutive_velocity_pass
+							else 0.0
+						)
+						if absf(event.angular_impulse + c * actual_angular) > 1e-12:
+							return false
 						reported_angular += (
 							event.angular_impulse
 							+ event.connector_angular_impulse
@@ -590,3 +674,23 @@ func _spawn_matches_standalone(sim: RUNTIME) -> bool:
 	):
 		return false
 	return var_to_bytes(actual.snapshot()) == var_to_bytes(sim._solver._rig._probe.snapshot())
+
+
+func _clamp_force_ok(rig: RefCounted, budget: Dictionary) -> bool:
+	var vx: float = 100.0 * (1.0 - TUNING.physics_linear_damping)
+	var vy: float = TUNING.physics_gravity_wu_s2 / 60.0
+	var scale: float = TUNING.physics_max_linear_velocity_wu_s / sqrt(vx * vx + vy * vy)
+	var mass := 0.0
+	for body in rig.bodies:
+		mass += body.mass
+		for point in [body.a, body.b]:
+			if (
+				absf(point.velocity_x - vx * scale) > 1e-12
+				or absf(point.velocity_y - vy * scale) > 1e-12
+			):
+				return false
+	return (
+		absf(budget.clamp_impulse_x_ns - mass * (vx * scale - vx)) < 1e-12
+		and absf(budget.clamp_impulse_y_ns - mass * (vy * scale - vy)) < 1e-12
+		and budget.clamp_impulse_x_ns < 0.0
+	)
