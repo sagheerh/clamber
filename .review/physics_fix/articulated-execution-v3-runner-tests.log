@@ -12,11 +12,15 @@ test_missing_summary_not_a_pass (__main__.ArticulatedExecutionRunner.test_missin
 test_nonzero_compile_stops_before_units (__main__.ArticulatedExecutionRunner.test_nonzero_compile_stops_before_units) ... ok
 test_nonzero_import_stops_before_compile (__main__.ArticulatedExecutionRunner.test_nonzero_import_stops_before_compile) ... ok
 test_nonzero_unit_exit_preserved (__main__.ArticulatedExecutionRunner.test_nonzero_unit_exit_preserved) ... ok
+test_staged_incomplete_count_stops_before_world (__main__.ArticulatedExecutionRunner.test_staged_incomplete_count_stops_before_world) ... ok
+test_staged_nonzero_exit_is_preserved (__main__.ArticulatedExecutionRunner.test_staged_nonzero_exit_is_preserved) ... ok
+test_staged_runtime_error_stops_before_world (__main__.ArticulatedExecutionRunner.test_staged_runtime_error_stops_before_world) ... ok
+test_staged_runtime_has_quit_bound (__main__.ArticulatedExecutionRunner.test_staged_runtime_has_quit_bound) ... ok
 test_stop_status_not_a_pass (__main__.ArticulatedExecutionRunner.test_stop_status_not_a_pass) ... ok
 test_success_route_only_not_engine_evidence (__main__.ArticulatedExecutionRunner.test_success_route_only_not_engine_evidence) ... ok
 test_wrong_engine_rejected_before_import (__main__.ArticulatedExecutionRunner.test_wrong_engine_rejected_before_import) ... ok
 
 ----------------------------------------------------------------------
-Ran 17 tests in 4.108s
+Ran 21 tests in 5.857s
 
 OK

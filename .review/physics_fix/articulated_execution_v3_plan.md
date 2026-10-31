@@ -68,3 +68,27 @@ Native20 and new world outcome NOT RUN at preregistration. If this hypothesis
 fails, reject/preserve/analyse, not secretly change parameters or keep retrying.
 M1 remains BLOCKED/NOT SIGNED; production AC201/202 FAILED, FA3 uncredited,
 M2 blocked; device/layout/feel/default-performance gates not waived.
+
+## Pre-world fixture incident, preserved before any corrected-source execution
+
+Source6ff0a0d611d1dfccf4cd58a0a32c824ff55675c7, CI41155248026:
+native42 PASS, original8 cap controls PASS, semantic compile PASS. New component
+stage failed at fixture recovery after deliberately setting mass0: Coupled.restore
+validates its current body first, so it correctly rejected the still-invalid
+control. Later empty damping-event access caused a SCRIPT ERROR/hang; job timed
+out15m. Preserve step SUCCESS, publisher23ee2f8 committed all existing logs/source
+in `tests/fixtures/m1_articulated_execution/6ff0a0d611d1/`. NO engine.log, spawn,
+summary or world trace: ZERO world ticks. No exit-code.txt was emitted by the
+killed shell; job timeout and raw error annotations are retained, not invented.
+Cancel API returned403 (integration lacks that action); waited for preservation,
+did not advance branch while publisher was active. No credential changes.
+
+Fixture-only correction: repair the deliberately invalidated component body from
+the immutable work snapshot before whole-rig restore. Strict production restore
+and all candidate physics unchanged. New component invocation --quit-after1 plus
+60s timeout prevents an uncaught assertion error from hanging the engine; logged
+errors and missing20-count still FAIL CLOSED before world. EXIT diagnostics print
+stage logs in CI as well. Labelled routing21/0 verifies logged staged errors,
+nonzero status7, incomplete count, stage order and engine quit bound. No real
+world ticks in those controls. Corrected source may execute the still-unrun v3
+world protocol once, only after42+8+20 native prerequisites succeed.

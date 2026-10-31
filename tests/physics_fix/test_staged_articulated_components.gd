@@ -78,7 +78,10 @@ func _initialize() -> void:
 		"invalid mass never bypasses validation"
 	)
 
-	_check(rig.restore(work) == OK, "restore before prescribed damping control")
+	_check(
+		rig.bodies[0].restore(work.bodies[0]) == OK and rig.restore(work) == OK,
+		"restore deliberately invalidated component before damping control"
+	)
 	var original: Dictionary = rig.snapshot()
 	var budget := {"damping_impulse_x_ns": 0.0, "damping_impulse_y_ns": 0.0}
 	_check(

@@ -21,7 +21,18 @@ PYCTX
 folder="$M1_ARTICULATED_EXECUTION_REPORT_DIR"
 mkdir -p "$(dirname "$folder")"
 mkdir "$folder"
-trap 'code=$?; printf "%s\n" "$code" > "$folder/exit-code.txt"' EXIT
+finish() {
+ local code=$?
+ printf '%s\n' "$code" > "$folder/exit-code.txt"
+ if [[ "$code" != 0 ]]; then
+  for log in "$folder"/*.log; do
+   [[ -f "$log" ]] || continue
+   echo "=== preserved stage: $(basename "$log") ==="
+   tail -n 35 "$log"
+  done
+ fi
+}
+trap finish EXIT
 python3 - <<'PY'
 import hashlib,json,os,subprocess
 from pathlib import Path
@@ -62,7 +73,7 @@ if ! grep -Fxq 'Articulated cap identity: 8 checks, 0 failures' "$folder/compone
 fi
 "$GODOT" --headless --check-only --script res://tests/physics_fix/test_staged_articulated_components.gd > "$folder/staged-compile.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/staged-compile.log"; then exit 1; fi
-"$GODOT" --headless --script res://tests/physics_fix/test_staged_articulated_components.gd > "$folder/staged-components.log" 2>&1
+timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_staged_articulated_components.gd > "$folder/staged-components.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/staged-components.log"; then exit 1; fi
 if ! grep -Fxq 'Staged articulated components: 20 checks, 0 failures' "$folder/staged-components.log"; then exit 1; fi
 "$GODOT" --headless --script res://tests/physics_fix/test_articulated_execution.gd -- --report-dir="$folder" > "$folder/engine.log" 2>&1

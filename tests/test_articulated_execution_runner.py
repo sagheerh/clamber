@@ -19,7 +19,10 @@ class ArticulatedExecutionRunner(previous.CompositionRunnerTests):
         component="""if any('test_articulated_cap_identity.gd' in a or 'test_staged_articulated_components.gd' in a for a in args):
  if os.environ.get('DOUBLE_COMPONENT_ERROR')=='1': print('SCRIPT ERROR: TEST DOUBLE component failure')
  if '--check-only' not in args and os.environ.get('DOUBLE_COMPONENT_NO_SUMMARY')!='1':
-  print('Staged articulated components: 20 checks, 0 failures' if any('test_staged_articulated_components.gd' in a for a in args) else 'Articulated cap identity: 8 checks, 0 failures')
+  print('Staged articulated components: '+os.environ.get('DOUBLE_STAGED_COUNT','20')+' checks, 0 failures' if any('test_staged_articulated_components.gd' in a for a in args) else 'Articulated cap identity: 8 checks, 0 failures')
+ if any('test_staged_articulated_components.gd' in a for a in args) and '--check-only' not in args:
+  if os.environ.get('DOUBLE_STAGED_ERROR')=='1': print('SCRIPT ERROR: TEST DOUBLE staged runtime error')
+  if os.environ.get('DOUBLE_STAGED_EXIT')=='1': sys.exit(7)
  sys.exit(0)
 """
         self.fake.write_text(fake.replace(marker,component+marker))
@@ -62,5 +65,29 @@ class ArticulatedExecutionRunner(previous.CompositionRunnerTests):
         self.assertIn('test_staged_articulated_components.gd',scripts[3][0])
         self.assertIn('test_staged_articulated_components.gd',scripts[4][0])
         self.assertIn('test_articulated_execution.gd',scripts[5][0])
+
+    def test_staged_runtime_error_stops_before_world(self):
+        result,stages=self.run_double(DOUBLE_STAGED_ERROR='1')
+        self.assertNotEqual(result.returncode,0)
+        self.assertEqual(stages,['import','compile'])
+        self.assertFalse((self.root/'exports/contact-candidate-units/engine.log').exists())
+
+    def test_staged_nonzero_exit_is_preserved(self):
+        result,stages=self.run_double(DOUBLE_STAGED_EXIT='1')
+        self.assertEqual(result.returncode,7)
+        self.assertEqual(stages,['import','compile'])
+        self.assertEqual((self.root/'exports/contact-candidate-units/exit-code.txt').read_text(),'7\n')
+
+    def test_staged_incomplete_count_stops_before_world(self):
+        result,stages=self.run_double(DOUBLE_STAGED_COUNT='19')
+        self.assertNotEqual(result.returncode,0)
+        self.assertEqual(stages,['import','compile'])
+
+    def test_staged_runtime_has_quit_bound(self):
+        result,_=self.run_double()
+        self.assertEqual(result.returncode,0,result.stderr)
+        calls=[json.loads(line) for line in self.calls.read_text().splitlines()]
+        call=next(a for a in calls if any('test_staged_articulated_components.gd' in v for v in a) and '--check-only' not in a)
+        self.assertEqual(call[call.index('--quit-after')+1],'1')
 
 if __name__=='__main__':unittest.main(verbosity=2)
