@@ -185,4 +185,7 @@ assert set(r['arms'])=={'idle-Slug','length-Slug','length-Hopper','length-TwinRo
 for k,a in r['arms'].items():
  assert a['ticks']==a['target_ticks']==(600 if k=='idle-Slug' else 7200)
  assert a['termination']=='completed; candidate metrics satisfied'
+ assert type(a['awake_force_audits']) is int and a['awake_force_audits']>0
+ assert type(a['asleep_no_fresh_force_ticks']) is int and a['asleep_no_fresh_force_ticks']>=0
+ assert a['awake_force_audits']+a['asleep_no_fresh_force_ticks']==a['ticks']
 PY

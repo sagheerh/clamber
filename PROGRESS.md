@@ -1,6 +1,6 @@
 # CLAMBER progress
 
-## Latest V25 — runtime207 PASS; long-run Hopper285 STOP (2026-10-31)
+## Latest V26 candidate — changed runtime207 PASS; first new long run registered (2026-10-31)
 
 Correct fresh geometry native runtime source93b2f1fb0cd7/run41219732497:
 **207checks/0failures/66awake force audits**, all Slug/Hopper/TwinRoller cases.
@@ -26,9 +26,12 @@ Changed narrowly scoped unadopted algebraic fix: precision escalation only upon 
 rejection; twofold LDL solve of SAME rows/RHS/weights, original rank/visited/finite
 and strict actual energy publisher kept. Native10 components now PASS source28b5430/run41220650456 (ZERO ticks),
 exact285 actual energy1.2157209960538857→.1827241817815083; no pose change.
-Fresh runtime matrix and any separately preregistered changed-source ordered world remain pending.
+Fresh changed-solver runtime207PASS/66awake/sourceee6f7841fc98/run41220897674,
+publisher576fb71; all three input/release/wake/force/rollback cases complete.
+FIRST V26 changed-source ordered world preregistered; result PENDING, not PASS.
 Shared independent force arithmetic now registered for EVERY fresh awake long-run
-tick, asleep solves explicitly NOTRUN. Runner474 native prereqs/66mocktestsPASS.
+tick, asleep solves explicitly NOTRUN. Runner474 native prereqs/69mocktestsPASS; fresh trace.tick (not clock alone)
+separates actual30awake from570parked original600 archived ticks.
 No unchanged-world retry, material/mass/tuning/threshold/physical iteration change.
 **Both requested items are not jointly complete. M1BLOCKED/NOTSIGNED; production
 AC201/202FAILED, FA3uncredited, five runtime gates NOTRUN, M2blocked.**

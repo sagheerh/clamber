@@ -213,3 +213,26 @@ failure stops the world and saves full before/after/work Variant just like physi
 failure. All previous geometry/600/sleep/energy gates remain. Runner adds native10
 before world:474prerequisites;66failclosed mock testsPASS57.482s. No world now;
 first changed-source ordered run requires fresh runtime207 PASS first.
+
+## FIRST V26 ordered world preregistration (changed solver, no unchanged retry)
+Fresh sourceee6f7841fc98/run41220897674/publisher576fb71 runtime207PASS/0failures/
+66awake audits/all3 complete, including all existing negative/compensated-force,
+actual clamp, natural wake, typed restore and mutated rollback controls. Twofold
+solver and shared arithmetic hashes are the same for this next world. This is
+supporting proof, not long-run signoff.
+
+Before first new world, audit provenance corrected from inspection (ZERO ticks):
+sleeping_load_probe increments physical.ticks even when PARKED. Therefore fresh
+means trace.tick==before physical tick plus expected clock increment and actual
+held mask; parked means prior AND resulting sleep, released mask, clock+1 and
+STALE trace.tick. Immutable original600 independently shows30fresh +570parked.
+Never infer a fresh solve from physical clock alone. Original207 uses live returned
+awake trace, unaffected. Runner also rejects missing/partial/vacuous force counts;
+69mocktestsPASS62.600s. This is validation correction, not changed physical rows.
+
+Register ONCE original600 then Slug/Hopper/Twin7200,474native gates first. SAME
+original15deg/noair/.90WU/4s/F52, length/penetration, strict energy, masses/materials,
+no epsilon/iteration increase. Every actual fresh awake tick must pass shared live
+independent force equations before geometry/capture; each parked tick explicitly
+NOTRUN forces. Any physical/independent-force failure STOP/later NOTRUN; preserve
+exact failure/transport/source. No adoption/signoff/determinism/FA3 credit promised.

@@ -31,6 +31,8 @@ class ArticulatedExecutionRunner(previous.CompositionRunnerTests):
             target=self.root/name;target.parent.mkdir(parents=True,exist_ok=True)
             shutil.copy2(previous.primitive.ROOT/name,target)
         fake=self.fake.read_text().replace('M1_CONTACT_COMPOSITION_REPORT_DIR','M1_ARTICULATED_EXECUTION_REPORT_DIR')
+        fake=fake.replace("termination='completed; candidate metrics satisfied')","termination='completed; candidate metrics satisfied',awake_force_audits=600 if k=='idle-Slug' else 7200,asleep_no_fresh_force_ticks=0)")
+        fake=fake.replace(" summary=dict(scope="," if os.environ.get('DOUBLE_NO_FORCE_AUDITS')=='1': arms['length-Hopper'].pop('awake_force_audits')\n if os.environ.get('DOUBLE_STALE_FORCE_AUDITS')=='1': arms['length-Hopper']['awake_force_audits']=7199\n if os.environ.get('DOUBLE_VACUOUS_FORCE_AUDITS')=='1': arms['length-Hopper'].update(awake_force_audits=0,asleep_no_fresh_force_ticks=7200)\n summary=dict(scope=")
         marker="stage='import' if '--import' in args"
         component="""if any('test_articulated_cap_identity.gd' in a or 'test_staged_articulated_components.gd' in a or 'test_staged_contact_identity.gd' in a or 'test_limited_articulated_components.gd' in a or 'test_assembly_drag_components.gd' in a or 'test_preintegrated_components.gd' in a or 'test_force_order_components.gd' in a or 'test_damped_support_components.gd' in a or 'test_impact_history_components.gd' in a or 'test_constitutive_stage_components.gd' in a or 'test_local_angular_components.gd' in a or 'test_capsule_surface_components.gd' in a or 'test_rigid_pad_components.gd' in a or 'test_support_manifold_components.gd' in a or 'test_coplanar_pad_components.gd' in a or 'test_final_geometry_components.gd' in a or 'test_dual_feasible_components.gd' in a or 'test_twofold_components.gd' in a for a in args):
  if os.environ.get('DOUBLE_COMPONENT_ERROR')=='1': print('SCRIPT ERROR: TEST DOUBLE component failure')
@@ -112,6 +114,18 @@ class ArticulatedExecutionRunner(previous.CompositionRunnerTests):
         calls=[json.loads(line) for line in self.calls.read_text().splitlines()]
         stages=['import' if '--import' in a else 'compile' if '--check-only' in a else 'units' for a in calls if '--version' not in a and not any('test_articulated_cap_identity.gd' in v or 'test_staged_articulated_components.gd' in v or 'test_staged_contact_identity.gd' in v or 'test_limited_articulated_components.gd' in v or 'test_assembly_drag_components.gd' in v or 'test_preintegrated_components.gd' in v or 'test_force_order_components.gd' in v or 'test_damped_support_components.gd' in v or 'test_impact_history_components.gd' in v or 'test_constitutive_stage_components.gd' in v or 'test_local_angular_components.gd' in v or 'test_capsule_surface_components.gd' in v or 'test_rigid_pad_components.gd' in v or 'test_support_manifold_components.gd' in v or 'test_coplanar_pad_components.gd' in v or 'test_final_geometry_components.gd' in v or 'test_dual_feasible_components.gd' in v or 'test_twofold_components.gd' in v for v in a)]
         return result,stages
+
+    def test_missing_live_force_count_not_a_pass(self):
+        result,_=self.run_double(DOUBLE_NO_FORCE_AUDITS='1')
+        self.assertNotEqual(result.returncode,0)
+
+    def test_partial_live_force_count_not_a_pass(self):
+        result,_=self.run_double(DOUBLE_STALE_FORCE_AUDITS='1')
+        self.assertNotEqual(result.returncode,0)
+
+    def test_vacuous_all_asleep_force_count_not_a_pass(self):
+        result,_=self.run_double(DOUBLE_VACUOUS_FORCE_AUDITS='1')
+        self.assertNotEqual(result.returncode,0)
 
     def test_twofold_error_stops_before_world(self):
         result,stages=self.run_double(DOUBLE_TWOFOLD_ERROR='1')

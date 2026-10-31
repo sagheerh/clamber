@@ -114,13 +114,27 @@ func _candidate_run(name: String, target: int, idle: bool) -> bool:
 		_finite(constraints, "constraints")
 		_finite(candidate.last_step_trace, "awake_trace")
 		var force_ok := true
+		var fresh_force := false
 		if sim.last_status == OK and _bad.is_empty():
 			var prior_tick: int = before.accumulator.solver.rig.physical.ticks
-			if state.physical.ticks == prior_tick + 1:
-				force_ok = FULL_FORCE_AUDIT.validate(candidate.last_step_trace)
+			if (
+				state.physical.ticks == prior_tick + 1
+				and candidate.last_step_trace.get("tick", -1) == prior_tick
+			):
+				fresh_force = true
+				force_ok = (
+					candidate.last_step_trace.get("input_mask", -1) == mask
+					and FULL_FORCE_AUDIT.validate(candidate.last_step_trace)
+				)
 				if force_ok:
 					result.awake_force_audits += 1
-			elif state.physical.ticks == prior_tick and state.sleep.asleep:
+			elif (
+				state.physical.ticks == prior_tick + 1
+				and before.accumulator.solver.rig.sleep.asleep
+				and state.sleep.asleep
+				and mask == 0
+				and candidate.last_step_trace.get("tick", prior_tick) < prior_tick
+			):
 				result.asleep_no_fresh_force_ticks += 1
 			else:
 				force_ok = false  # No stale-force or skipped-awake credit.
@@ -201,11 +215,7 @@ func _candidate_run(name: String, target: int, idle: bool) -> bool:
 					"tick": tick,
 					"input_mask": mask,
 					"force_audit":
-					(
-						"PASS fresh awake"
-						if state.physical.ticks > before.accumulator.solver.rig.physical.ticks
-						else "NOTRUN asleep; no new force solve"
-					),
+					"PASS fresh awake" if fresh_force else "NOTRUN asleep; no new force solve",
 					"state": state,
 					"constraints": constraints,
 					"awake_solver_trace": CAPTURE_POLICY.select(candidate.last_step_trace, idle),
