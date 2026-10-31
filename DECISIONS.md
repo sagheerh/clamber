@@ -3,6 +3,18 @@
 The GDD's existing D-01–D-17, CD-01, and A-xx decisions remain normative.
 New implementation decisions use M0-Dxx to avoid colliding with those IDs.
 
+## M1-PHYSICS-FIX-D05 — Separate numerical rejection from measured posture failure
+
+2026-10-31: sourcef7b8fd2 native42+8 PASS, but v2 world posture FAIL at tick8
+(max38.98deg), solver FAIL at tick14, second-pass pre-contact hinge projection.
+First failure preserved byc6eae50, all7200 arms NOT RUN. Reject the candidate;
+small partial length residual is not AC202 acceptance. Native READ-ONLY inspection
+of the saved work frame is allowed for diagnosis, not another world run/replay.
+Offline2-ULP energy observation is not permission to relax strict math guards,
+add epsilon/rescale motion, force sleep or ignore the separate posture failure.
+No new tuning/threshold/iteration/controller permission or production adoption.
+See `.review/physics_fix/articulated_execution_v2_result.md`.
+
 ## M1-PHYSICS-FIX-D04 — Inactive cap is identity, not another hinge solve
 
 2026-10-31: native42/0 validated the network kernel; source6b48e63 assembled

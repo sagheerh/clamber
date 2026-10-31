@@ -24,8 +24,9 @@ New continuation: the missing network-level hinge/contact mobility code and
 component gate are in [the articulated operator note](.review/m1_articulated_operator.md).
 This is not selected by the lab or production. Native42/0 PASS in pinned-engine CI.
 The new assembled candidate compiled but FAILED at tick index2; first-failure
-evidence is preserved. The inactive-cap identity correction and NEW test protocol:
-[execution v2 plan](.review/physics_fix/articulated_execution_v2_plan.md).
+evidence is preserved. The inactive-cap identity correction passed8 native checks, but its new world
+run failed posture at tick8 and aborted at tick14; all7200 arms NOT RUN.
+[Actual v2 result](.review/physics_fix/articulated_execution_v2_result.md).
 GitHub is connected. M1 is not complete or signed.
 
 ## Exact toolchain

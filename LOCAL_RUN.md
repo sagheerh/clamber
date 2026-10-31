@@ -139,3 +139,8 @@ world ticks, and stronger pre-rollback observations. Its frozen protocol is
 and preserves success OR first failure on this same branch without uploads.
 The runner requires a NEW `M1_ARTICULATED_EXECUTION_REPORT_DIR` and exact `$GODOT`.
 Never infer M1/AC acceptance from component/routing success.
+
+V2 has now executed and FAILED (tick8 posture, index14 solver); do not rerun it.
+See `.review/physics_fix/articulated_execution_v2_result.md`. Read-only saved-frame
+inspection uses `res://tests/physics_fix/inspect_articulated_failure.gd`; it never
+advances a world and is not acceptance or an alternative stability test.

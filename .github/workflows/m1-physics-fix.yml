@@ -136,6 +136,34 @@ jobs:
           PY
           exit "$status"
 
+      - name: Inspect archived first failure ONLY (ZERO world ticks)
+        if: ${{ contains(github.event.head_commit.message, '[M1-articulated-inspect]') }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          folder=exports/articulated-failure-inspection
+          mkdir "$folder"
+          run_stage() {
+            local stage="$1"
+            shift
+            local status=0
+            "$@" > "$folder/$stage.log" 2>&1 || status=$?
+            cat "$folder/$stage.log"
+            python3 - "$folder/$stage.log" <<'PYNOTICE'
+          import sys
+          from pathlib import Path
+          for row in Path(sys.argv[1]).read_text().splitlines():
+              if any(s in row for s in ('inspection:', 'ERROR:', 'FAIL')):
+                  row=row.replace('%','%25').replace('\r','%0D')
+                  print('::notice title=READ ONLY native inspection::'+row)
+          PYNOTICE
+            if [[ "$status" != 0 ]]; then exit "$status"; fi
+            if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script|FAIL' "$folder/$stage.log"; then exit 1; fi
+          }
+          run_stage compile "$GODOT" --headless --check-only --script res://tests/physics_fix/inspect_articulated_failure.gd
+          run_stage inspection "$GODOT" --headless --script res://tests/physics_fix/inspect_articulated_failure.gd
+          grep -Fxq 'Physics-failure inspection: 10 checks, 0 failures' "$folder/inspection.log"
+
   articulated-execution:
     if: ${{ github.ref == 'refs/heads/arena/f43f36ab-clamber' && github.sha == github.event.after && contains(github.event.head_commit.message, '[M1-articulated-execution]') }}
     needs: articulated-primitives

@@ -9,8 +9,10 @@ FAILED at tick index2 after TWO committed Slug frames, post-cap reconciliation.
 First failure is immutable in `tests/fixtures/m1_articulated_execution/6b48e638c368/`;
 all7200 arms NOT RUN. See [v2 diagnosis/protocol](physics_fix/articulated_execution_v2_plan.md).
 The new inactive-cap identity correction does not modify the kernel or its strict
-passivity guard. Native8 archived-frame checks and a new world invocation are
-pending; local labelled runner17/0 and rational18/0 PASS, not world evidence.
+passivity guard. Native8 archived-frame checks now PASS. The new v2 world invocation failed
+posture at tick8, max38.98deg, and solver at tick14; all7200 arms NOT RUN.
+See [actual result](physics_fix/articulated_execution_v2_result.md).
+Read-only native first-failure inspection10 is pending; local labelled runner17/0 and rational18/0 PASS, not world evidence.
 GitHub works; local binary unavailable. No signature, FA3 credit, M2 or device waiver.
 
 ## Why a different operator is needed

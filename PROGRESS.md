@@ -23,15 +23,20 @@ hinge reconciliation. First failure is preserved byee809141 under
 No600/7200 stability claim; no adoption. M0, independent M1 foundations and R29
 compile-only CI on this source succeeded, not acceptance/performance credit.
 
-The next source isolates inactive-cap identity (no extra hinge solve when no cap
-changed motion), preserves every original bound/strict guard, adds8 archived-frame
-native component assertions and better pre-rollback failure observations. Local
-17/0 runner routing doubles, rational18/0 and GD grammar/lint PASS; native42 re-PASS. Source3007e64 then stopped BEFORE world execution:7 adapter
-checks/1 failure from the archived JSON float clock counter. This is a fixture
-schema incident, ZERO world ticks, preserved byabbdcaf. Normalize only known2.0
-to integer2 in the test; now8 native adapter checks, new world still NOT RUN.
-Offline immutable first-failure audit10/0 PASS (not engine/world evidence). See
-`.review/physics_fix/articulated_execution_v2_plan.md`. No unchanged failed retry.
+Inactive-cap identity correction passed8/0 native archived-frame checks after a
+zero-tick JSON fixture-schema incident (source3007e64, preserved byabbdcaf).
+Sourcef7b8fd2/run41150933157 repeated native42/0, compiled and actually executed
+v2: **14 committed Slug ticks; posture first FAIL tick8, max38.97992391219688deg;
+solver FAIL index14**, pre-contact hinge projection in second velocity pass.
+All three7200 arms NOT RUN. Immutable evidence saved byc6eae50. Candidate
+REJECTED/NOT ADOPTED. Partial geometry does not establish AC202/120s stability.
+
+New read-only native inspection of the EXACT saved failing component frame is
+prepared, ten assertions and ZERO world ticks. Offline mirror indicates a2-ULP
+kinetic-energy increase at the strict guard; do not infer native proof yet or
+weaken it. Posture already independently failed. See
+`.review/physics_fix/articulated_execution_v2_result.md`. Local routing17/0,
+immutable first-failure audit10/0, rational18/0 and grammar/lint PASS.
 
 Actual posture/sleep,7200 length+penetration, held inputs/release/rollback,
 validated production adoption/provenance, physical layout/device/performance/FA
