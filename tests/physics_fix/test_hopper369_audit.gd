@@ -28,8 +28,11 @@ func _initialize() -> void:
 	)
 	_check(
 		not frame.is_empty(),
-		"exact corrected-geometry Hopper released mask0 tick369 FIRST physical pass; not a world replay"
+		"exact corrected-geometry Hopper RIGHT mask2 tick369 FIRST physical pass; not a world replay"
 	)
+	if frame.is_empty():
+		quit(1)
+		return
 	var original := var_to_bytes(_states(frame.bodies))
 	var response: Dictionary = BLOCK.solve(kernel, frame.bodies, frame.contacts)
 	_check(response.is_empty(), "exact archived unexpected physical rejection reproduced")
@@ -37,7 +40,10 @@ func _initialize() -> void:
 		original == var_to_bytes(_states(frame.bodies)),
 		"failed raw manifold solve leaves ALL original endpoints unchanged"
 	)
-	_check(kernel.publication.is_empty(), "rank failure occurs before strict publisher")
+	_check(
+		not kernel.calls.is_empty(),
+		"actual support algebra reached; publication/rank outcome logged without assuming cause"
+	)
 	print(
 		(
 			"Hopper369 manifold diagnostic: "

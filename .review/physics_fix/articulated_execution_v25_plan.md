@@ -252,3 +252,11 @@ log SAME weighted rows/RHS/inequalities on actual changed kernel to distinguish
 rank/active-cycle/material/strict-publisher cause. No new solver patch or world
 registered. Native285 fixed is not universal success. Both requested items not
 jointly complete; broad adoption/FA3/device/determinism/signature still absent.
+
+Exact369 initial read-only diagnostic2c55e0e/run41221402941 failed fixture guard
+before physical component solve (ZERO ticks): JSON numeric tick is float while
+Array membership [285,369] is type-sensitive. Replace with explicit numeric
+comparisons as old285 guard did; prevent empty-frame follow-on body access. Also
+correct description actualmaskRIGHT2 (369//60%4), not released0. Fourth check
+requires actual algebra reached, not an unproved prepublisher/rank diagnosis.
+Preserve incident annotations; this is diagnostic harness correction ONLY.
