@@ -1,0 +1,11 @@
+{
+  "source_commit": "6249662e170dc2630be0149268ecec3892b8af60",
+  "raw_traces": {
+    "idle-Slug.jsonl": {
+      "raw_bytes": 277083,
+      "raw_sha256": "0443adb0a54115fca3b83a408f24b28c1310700946aad1fa4bf5ce88a3e2021f",
+      "gzip_bytes": 33887,
+      "gzip_sha256": "2e4881692e5d7e5eb462beed33f69206b53bb83fa2c2d035e5280941cb602c41"
+    }
+  }
+}

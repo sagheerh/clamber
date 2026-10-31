@@ -1,0 +1,5 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+Contact input distinction: {"endpoint_vx":0.0,"endpoint_vy":0.011912254630663517,"reconstructed_tangent":-1.3877787807814457e-17}
+Staged contact identity: 8 checks, 0 failures
+Scope: saved contact component ONLY; ZERO world ticks; NOT acceptance
