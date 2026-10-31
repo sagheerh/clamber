@@ -92,3 +92,11 @@ stage logs in CI as well. Labelled routing21/0 verifies logged staged errors,
 nonzero status7, incomplete count, stage order and engine quit bound. No real
 world ticks in those controls. Corrected source may execute the still-unrun v3
 world protocol once, only after42+8+20 native prerequisites succeed.
+
+Second pre-world incident: sourceee248c3/run41156544598, job124404553702,
+publisher18b3818. The new bounds worked:24s failure, all logs and exit1 preserved,
+ZERO world ticks. Body.restore ALSO rejects changing immutable mass on an existing
+body, so repairing via body.restore is not valid. Use fresh component setup then
+restore the saved work for independent damping controls; preserve both original
+restore guards. Native42+8 and all semantic compiles pass;20 suite incomplete.
+No change to the v3 physics hypothesis; its world protocol still UNRUN.

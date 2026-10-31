@@ -79,8 +79,22 @@ func _initialize() -> void:
 	)
 
 	_check(
-		rig.bodies[0].restore(work.bodies[0]) == OK and rig.restore(work) == OK,
-		"restore deliberately invalidated component before damping control"
+		(
+			(
+				rig.setup(
+					model,
+					R25Fixture.floor_grid(),
+					0.0,
+					0.0,
+					R25Fixture.materials(model),
+					R25Fixture.materials(model, true),
+					TUNING
+				)
+				== OK
+			)
+			and rig.restore(work) == OK
+		),
+		"fresh independent component for damping; immutable mass guard retained"
 	)
 	var original: Dictionary = rig.snapshot()
 	var budget := {"damping_impulse_x_ns": 0.0, "damping_impulse_y_ns": 0.0}
