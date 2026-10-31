@@ -13,6 +13,8 @@ var _constitutive_report: Dictionary = {}
 # and common gravity commute with it. Controller still executes once before it.
 func _apply_authored_angular_damping(_budget: Dictionary) -> Error:
 	_drag_hinges = []
+	_drag_hinges.resize(2 * (bodies.size() - 1))
+	_drag_hinges.fill(0.0)
 	_drag_failure = {}
 	angular_damping_events = []
 	return OK
@@ -174,6 +176,8 @@ func _velocity_pass(
 
 
 func _step(before: Dictionary) -> Dictionary:
+	_constitutive_origin = []
+	_constitutive_report = {}
 	var result := super._step(before)
 	result.support_scope = "single complete dissipative constitutive stage; original strict final contact"
 	result.constitutive_stage = _constitutive_report.duplicate(true)

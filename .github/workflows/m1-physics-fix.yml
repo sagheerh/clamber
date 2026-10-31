@@ -153,9 +153,11 @@ jobs:
             python3 - "$folder/$stage.log" <<'PYNOTICE'
           import sys
           from pathlib import Path
-          for row in Path(sys.argv[1]).read_text().splitlines():
+          rows=Path(sys.argv[1]).read_text().splitlines()
+          for i,row in enumerate(rows):
               if any(s in row for s in ('components:', 'ERROR:', 'FAIL')):
-                  print('::notice title=Complete constitutive COMPONENTS ONLY::'+row.replace('%','%25').replace('\r','%0D'))
+                  context='\n'.join(rows[i:i+9]) if 'ERROR:' in row else row
+                  print('::notice title=Complete constitutive COMPONENTS ONLY::'+context.replace('%','%25').replace('\r','%0D').replace('\n','%0A'))
           PYNOTICE
             if [[ "$status" != 0 ]]; then exit "$status"; fi
             if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script|FAIL' "$folder/$stage.log"; then exit 1; fi

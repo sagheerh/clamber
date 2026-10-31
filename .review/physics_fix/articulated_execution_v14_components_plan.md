@@ -52,3 +52,11 @@ boundaries with exact geometry/strict complete energy. Old components42 also run
 No claims from source grammar alone. Any component failure means ZERO public ticks.
 A future world preregistration must separately select exact source and retain all
 old237 +new30 prerequisites and original600 -> sequentialthree7200 gates.
+
+First component source688bf9d/run41168647122 is FAILED despite printing30/0:
+scanner catches FOUR native out-of-bounds errors. ZERO public ticks. Original
+step_impl unconditionally consumes an edge-sized force-drag hinge vector after
+forces; deferred identity door returned empty instead of exact zero edge vector.
+Supply correctly sized zeros for the no-op (no physical impulse fabricated) and
+reset complete-stage diagnostics before every step. Add full stack context to CI
+annotations, rather than accepting summary30 in presence of script errors.
