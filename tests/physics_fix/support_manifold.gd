@@ -76,6 +76,26 @@ static func solve(kernel: RefCounted, bodies: Array[CapsuleBody], contacts: Arra
 				break
 		if not duplicate:
 			normal.append(record)
+	var zero_request := true
+	for item in normal:
+		var contact: Dictionary = contacts[item.contact]
+		if (
+			kernel._dot(item.row, incoming) < item.target
+			or (kernel._dot(item.tangent, incoming) != 0.0 and contact.damping != 0.0)
+		):
+			zero_request = false
+	if zero_request:
+		var hinges: Array[float] = kernel._zero(2 * (bodies.size() - 1))
+		var impulses: Array = []
+		for _contact in contacts:
+			impulses.append({"normal": 0.0, "tangent": 0.0})
+		return {
+			"status": OK,
+			"hinge_impulses": hinges,
+			"angular_drag_events": [],
+			"contacts": impulses,
+			"external_linear_residual": {"x": 0.0, "y": 0.0}
+		}
 	var base: Array = kernel._hinges.duplicate()
 	var rhs: Array[float] = kernel._zero(base.size())
 	for i in range(base.size()):
@@ -93,10 +113,9 @@ static func solve(kernel: RefCounted, bodies: Array[CapsuleBody], contacts: Arra
 	for item in normal:
 		item.patch = patches[contacts[item.contact].part]
 	var chosen: Dictionary = {}
-	for index in first.active:
-		if index < constraints.size():
-			continue
-		var item: Dictionary = normal[index - constraints.size()]
+	# Material damping uses geometric contact eligibility, as before. A zero
+	# incremental normal impulse in the final pass is NOT an extra friction gate.
+	for item in normal:
 		var contact: Dictionary = contacts[item.contact]
 		var coefficient: float = contact.damping
 		# Existing min(material), foot bias, and static threshold, not force tuning.
@@ -108,6 +127,8 @@ static func solve(kernel: RefCounted, bodies: Array[CapsuleBody], contacts: Arra
 	for group in chosen:
 		var choice: Dictionary = chosen[group]
 		var item: Dictionary = choice.item
+		if choice.coefficient == 0.0:
+			continue
 		var target: float = (1.0 - choice.coefficient) * kernel._dot(item.tangent, after_normal)
 		base.append(item.tangent)
 		rhs.append(target - kernel._dot(item.tangent, incoming))

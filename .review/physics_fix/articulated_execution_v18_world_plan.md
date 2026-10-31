@@ -29,3 +29,8 @@ Full raw600; first nonfinite/solver error STOP. Original15deg/no airborne/.90WU
 and4s/F52anchored.001/30 remain. MetricFAIL blocks all later arms; full600PASS
 alone opens sequential Slug/Hopper/TwinRoller7200. No old failed source rerun,
 production adoption, determinism/phone/runtime gates or milestone signature credit.
+
+CLOSED28fa6de/run41205589036/publisher87984d5:368nativePASS,13 committed ticks,
+failure13status30 FINAL support, complete first phase energyPASS. Posturemax
+1.6844097581972797deg/airborne0/penetration0. All7200NOTRUN. Immutable38 files,
+full lossless input/work preserved. No unchanged replay or adopted rest result.

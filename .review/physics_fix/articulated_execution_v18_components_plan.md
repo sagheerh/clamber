@@ -55,3 +55,16 @@ also continues when new endpoint-normal facts appear, not just new body rotation
 facts; otherwise Hopper's bridge is missed by order. Registration now27: add real
 finite gain/atomic entire-rig restore and real angular boundary outward/inward
 release, while keeping original14 and allthree integration checks. No world yet.
+
+Read-only failure13 diagnosis: final motor skin vn=.00018786216955523488WU/s
+already separating, yet vt=2.7587055436345542e-5WU/s requests existing static
+friction. Requiring a NEW positive normal impulse before material response was
+an erroneous extra predicate, particularly in the correction pass after genuine
+first-stage support. Remove that predicate: original geometric material eligibility
+applies, frozenF24 unchanged. Without it, unnecessary second H projection also
+attempted zero material response and hit strict publication. New units read the
+EXACT archived failed work/history Variant without any clock/replay; verify real
+nonzero friction request and strict actual energy decay. Native total29 registered.
+Exact zero-request response (including no terrain contacts) returns byte identity
+on the already-certified private batch; no damping adds no equality row. No epsilon,
+force inventing, sleep edit, unconditional retry or relaxed energy comparison.

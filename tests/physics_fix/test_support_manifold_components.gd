@@ -238,7 +238,8 @@ func _initialize() -> void:
 	)
 	for side in [-1.0, 1.0]:
 		_manifold_boundary(history, rig._limit_definitions(), contacts, side)
-	_check(_checks == 26, "complete native manifold tally")
+	_archived_final_frame()
+	_check(_checks == 28, "complete native manifold tally")
 	print("Support manifold components: %d checks, %d failures" % [_checks, _failures])
 	print(
 		"Scope: isolated two-support physical complementarity; ZERO public world ticks; NOT acceptance"
@@ -269,4 +270,65 @@ func _manifold_boundary(history: Array, limits: Array, contacts: Array, side: fl
 	_check(
 		valid and not response.is_empty() and (omega <= 1e-12 if side > 0.0 else omega < -0.1),
 		"real lower-boundary support blocks outward but freely releases inward"
+	)
+
+
+func _archived_final_frame() -> void:
+	var text := FileAccess.get_file_as_string(
+		"res://tests/fixtures/m1_articulated_execution/28fa6de101e2/idle-Slug-failure.json"
+	)
+	var saved: Dictionary = JSON.parse_string(text)
+	var full: Dictionary = bytes_to_var(Marshalls.base64_to_raw(saved.full_state_variant_base64))
+	var raw: Array = bytes_to_var(
+		Marshalls.base64_to_raw(full.awake_trace.full_work_variant_base64)
+	)
+	var bodies := _restore(raw)
+	var history: Array = full.before.accumulator.solver.rig.physical.bodies
+	var limits: Array = (
+		[
+			{
+				"parent": 0,
+				"child": 1,
+				"rest_angle": full.awake_trace.work_state.angular_joints[0].rest_angle,
+				"lower": full.awake_trace.work_state.angular_joints[0].lower,
+				"upper": full.awake_trace.work_state.angular_joints[0].upper
+			}
+		]
+		+ full.awake_trace.rigid_connectors
+	)
+	var parents: Array[int] = [-1, 0, 1]
+	var kernel := FINAL.new()
+	kernel.history = history.duplicate(true)
+	kernel.limits = limits
+	var valid: bool = (
+		saved.tick == 13 and saved.status == 30 and kernel.configure(bodies, parents) == OK
+	)
+	var frame: Dictionary = SKIN_ROW.frame(bodies[1], 1.0, 0.0, 1.0)
+	_check(
+		valid and frame.normal_velocity > 0.0 and frame.tangent_velocity != 0.0,
+		"archived exact failing frame requests friction with no new normal collision"
+	)
+	var before: float = _energy(bodies)
+	var response: Dictionary = BLOCK.solve(
+		kernel,
+		bodies,
+		[
+			{
+				"part": 1,
+				"u": 1.0,
+				"nx": 0.0,
+				"ny": 1.0,
+				"restitution": 0.02,
+				"damping": 0.9,
+				"static_threshold": 0.15
+			}
+		]
+	)
+	_check(
+		(
+			not response.is_empty()
+			and response.contacts[0].tangent != 0.0
+			and _energy(bodies) < before
+		),
+		"archived final physical response dissipates without a fake normal-impulse friction predicate"
 	)
