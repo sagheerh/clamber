@@ -1,12 +1,13 @@
 # gdlint: disable=max-line-length,max-returns
 extends "res://tests/sim/test_r28.gd"
 ## Fresh NEW unadopted articulated candidate, NOT a historical R27/R29 run or M1 verdict.
+const FULL_FORCE_AUDIT = preload("res://tests/physics_fix/candidate_force_audit.gd")
 const CANDIDATE = preload("res://tests/physics_fix/final_geometry_constitutive_candidate.gd")
 const AUTHORED_MODELS = preload("res://tests/physics_fix/rigid_pad_models.gd")
 const CAPTURE_POLICY = preload("res://tests/physics_fix/articulated_capture_policy.gd")
 var _results: Dictionary = {
 	"scope":
-	"V25 dual-feasible pivots + single final-geometry constitutive stage + radius-derived stance; NOT historical recipe or production adoption",
+	"V26 strict twofold rank-trap algebra + full live force audit + single final-geometry constitutive stage + radius-derived stance; NOT historical recipe or production adoption",
 	"arms": {},
 	"not_run_arms": ["idle-Slug", "length-Slug", "length-Hopper", "length-TwinRoller"],
 	"status": "NOT RUN"
@@ -51,6 +52,8 @@ func _candidate_run(name: String, target: int, idle: bool) -> bool:
 	var result := {
 		"ticks": 0,
 		"target_ticks": target,
+		"awake_force_audits": 0,
+		"asleep_no_fresh_force_ticks": 0,
 		"max_length_wu": 0.0,
 		"max_penetration_wu": 0.0,
 		"max_attitude_deg": 0.0 if idle else null,
@@ -110,8 +113,21 @@ func _candidate_run(name: String, target: int, idle: bool) -> bool:
 		_finite(state, "state")
 		_finite(constraints, "constraints")
 		_finite(candidate.last_step_trace, "awake_trace")
-		if sim.last_status != OK or not _bad.is_empty():
-			result.termination = "step/nonfinite failure"
+		var force_ok := true
+		if sim.last_status == OK and _bad.is_empty():
+			var prior_tick: int = before.accumulator.solver.rig.physical.ticks
+			if state.physical.ticks == prior_tick + 1:
+				force_ok = FULL_FORCE_AUDIT.validate(candidate.last_step_trace)
+				if force_ok:
+					result.awake_force_audits += 1
+			elif state.physical.ticks == prior_tick and state.sleep.asleep:
+				result.asleep_no_fresh_force_ticks += 1
+			else:
+				force_ok = false  # No stale-force or skipped-awake credit.
+		if sim.last_status != OK or not _bad.is_empty() or not force_ok:
+			result.termination = (
+				"step/nonfinite failure" if force_ok else "independent live force audit failure"
+			)
 			result.failing_tick = tick
 			result.solver_status = sim.last_status
 			_store_candidate(
@@ -120,6 +136,7 @@ func _candidate_run(name: String, target: int, idle: bool) -> bool:
 					"tick": tick,
 					"status": sim.last_status,
 					"nonfinite": _bad,
+					"independent_force_ok": force_ok,
 					"full_state_variant_base64":
 					Marshalls.raw_to_base64(
 						var_to_bytes(
@@ -183,6 +200,12 @@ func _candidate_run(name: String, target: int, idle: bool) -> bool:
 				{
 					"tick": tick,
 					"input_mask": mask,
+					"force_audit":
+					(
+						"PASS fresh awake"
+						if state.physical.ticks > before.accumulator.solver.rig.physical.ticks
+						else "NOTRUN asleep; no new force solve"
+					),
 					"state": state,
 					"constraints": constraints,
 					"awake_solver_trace": CAPTURE_POLICY.select(candidate.last_step_trace, idle),

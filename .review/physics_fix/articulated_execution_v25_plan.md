@@ -196,3 +196,20 @@ endpoint momentum/poses pass. Native10 overall FAIL1: exact long-decimal low-wor
 assertion. Fix that test's operand/expectation construction using exact power-of-2
 division, retaining exact equality, not epsilon. No new world or adoption. Full
 5test Python rational analysis retained; no ticks. Subsequent10 must all pass.
+
+## V26 changed algebra native proof, then fresh runtime gate
+28b543067953/run41220650456:42+10PASS, ZERO creature ticks. Exact285 physical
+response solves active[0,1,2], actual energy1.2157209960538857→.1827241817815083
+under ORIGINAL publisher; terrain momentum/unchanged poses pass. Genuine singular,
+inconsistent, overflow and exact twofold arithmetic controls pass. Neither CI
+incident (compile-only7a4a or test literal fbf6) was a new physical world attempt.
+
+Preregister fresh unchanged207 runtime matrix after extracting its EXACT existing
+force/contact arithmetic into shared candidate_force_audit.gd (no threshold change).
+This extraction makes the next ordered world audit EVERY actually advanced awake
+physical tick, not just66 sampled live runtime checks. Asleep no-solve ticks get
+explicit NOTRUN/count, never repeated stale force credit. First independent force
+failure stops the world and saves full before/after/work Variant just like physical
+failure. All previous geometry/600/sleep/energy gates remain. Runner adds native10
+before world:474prerequisites;66failclosed mock testsPASS57.482s. No world now;
+first changed-source ordered run requires fresh runtime207 PASS first.

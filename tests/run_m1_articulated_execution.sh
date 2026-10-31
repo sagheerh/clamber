@@ -165,6 +165,12 @@ if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/d
 timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_dual_feasible_components.gd > "$folder/dual-feasible-components.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/dual-feasible-components.log"; then exit 1; fi
 if ! grep -Fxq 'Dual feasible components: 6 checks, 0 failures' "$folder/dual-feasible-components.log"; then exit 1; fi
+# Exact285 false-violation rank trap and arithmetic negatives, ZERO ticks.
+"$GODOT" --headless --check-only --script res://tests/physics_fix/test_twofold_components.gd > "$folder/twofold-compile.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/twofold-compile.log"; then exit 1; fi
+timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_twofold_components.gd > "$folder/twofold-components.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/twofold-components.log"; then exit 1; fi
+if ! grep -Fxq 'Twofold active components: 10 checks, 0 failures' "$folder/twofold-components.log"; then exit 1; fi
 "$GODOT" --headless --script res://tests/physics_fix/test_articulated_execution.gd -- --report-dir="$folder" > "$folder/engine.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/engine.log"; then
  echo 'STOP: runtime errors; inspect first failure.' >&2

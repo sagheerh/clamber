@@ -22,10 +22,13 @@ violates fourth normal by -2.609e-15 while exact SAME-input residual+9.595e-17;
 adding it makes a truly singular system. Neither an energy allowance nor the
 earlier negative-multiplier ordering fix addresses this roundoff rank trap.
 
-Next narrowly scoped unadopted algebraic fix: precision escalation only upon rank
+Changed narrowly scoped unadopted algebraic fix: precision escalation only upon rank
 rejection; twofold LDL solve of SAME rows/RHS/weights, original rank/visited/finite
-and strict actual energy publisher kept. Native10 components must pass before
-new runtime matrix and any separately preregistered changed-source ordered world.
+and strict actual energy publisher kept. Native10 components now PASS source28b5430/run41220650456 (ZERO ticks),
+exact285 actual energy1.2157209960538857→.1827241817815083; no pose change.
+Fresh runtime matrix and any separately preregistered changed-source ordered world remain pending.
+Shared independent force arithmetic now registered for EVERY fresh awake long-run
+tick, asleep solves explicitly NOTRUN. Runner474 native prereqs/66mocktestsPASS.
 No unchanged-world retry, material/mass/tuning/threshold/physical iteration change.
 **Both requested items are not jointly complete. M1BLOCKED/NOTSIGNED; production
 AC201/202FAILED, FA3uncredited, five runtime gates NOTRUN, M2blocked.**
