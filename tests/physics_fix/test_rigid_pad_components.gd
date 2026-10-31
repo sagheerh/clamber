@@ -171,7 +171,7 @@ func _setup_pad(rig: RefCounted, name: String) -> Error:
 		return ERR_INVALID_DATA
 	return rig.setup(
 		model,
-		_grid(),
+		R25Fixture.floor_grid(),
 		0.0,
 		R25Fixture.spawn_y(model),
 		R25Fixture.materials(model),

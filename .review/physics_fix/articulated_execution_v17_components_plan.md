@@ -33,3 +33,7 @@ allthree isolated new model configuration, snapshot identity, complete strict
 physical-stage pass, actual momentum/frozen previousN0. No public clock in these.
 A full original317 prerequisites + new24 precede any separately selected world.
 Any errors/partial tally FAIL; no unconditional public retry or claimed posture fix.
+
+First353d82f/run41203967622 STOP native compile at nonexistent inherited `_grid()`;
+zero new component/world ticks. Correct fixture reference to R25Fixture.floor_grid;
+no physical change. Error annotations preserved; original42 passed alone.
