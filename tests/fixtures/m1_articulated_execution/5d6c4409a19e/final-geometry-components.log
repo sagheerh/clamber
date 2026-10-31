@@ -1,0 +1,4 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+Final geometry components: 57 checks, 0 failures
+Scope: private component steps and archived final-frame stress inputs; ZERO public Sim world ticks; not 7200 or acceptance
