@@ -157,14 +157,18 @@ func _measured_reaction(
 			if i == part
 			else 0.0
 		)
+		var connector := 0.0
+		for row in range(2 * (before.size() - 1), _hinges.size()):
+			connector += _hinges[row][3 * i + 2] * result.hinge_impulses[row]
 		var actual: float = (PlanarBasis.frame(after[i]).omega - axes.omega) / axes.inverse_inertia
 		events.append(
 			{
 				"part": i,
-				"angular_impulse": actual - internal - terrain - angular_limit,
+				"angular_impulse": actual - internal - terrain - angular_limit - connector,
 				"hinge_angular_impulse": internal,
 				"terrain_angular_impulse": terrain,
 				"limit_angular_impulse": angular_limit,
+				"connector_angular_impulse": connector,
 				"body_internal_x_ns": changes[i].x,
 				"body_internal_y_ns": changes[i].y
 			}

@@ -2410,3 +2410,14 @@ energy budget, bypass strict guard, sweep order or rerun unchanged. Coupled
 constitutive composition requires new independent physical justification before
 another source/measurement. Restitution-only fix is not established. Preserve
 failed source, two zero-world setup incidents and all original acceptance gates.
+
+## M1-PHYSICS-FIX-D08 — Owner authorizes support/stance redesign, not gate changes
+
+2026-10-31: after explicit explanation of V16full600/posture38.50/no sleep and
+locked support definitions, owner answered "Apko jo behter lgta hai wo kro" to
+permission for targeted foot support/attachment and necessary preset axes.
+Proceed with separately labelled structural rigid pads/bones and real horizontal
+capsule stance prototype. RootDOWN head alignment avoids a fixed horizontal-head
+spring/gravity sag. Preserve all masses/materials/thresholds, actual new-spawn
+measurement, snapshot/rollback and strict math; native proof before new world,
+validation before adoption. This is NOT old pose PASS or an M1 signature.

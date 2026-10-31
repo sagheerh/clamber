@@ -50,6 +50,11 @@ static func publish(
 		var parent := work[parents[child]]
 		var x := body.b.x - body.a.x
 		var y := body.b.y - body.a.y
+		if network.has_method("rigid_axis"):
+			var axis: Array[float] = network.rigid_axis(work, child)
+			if not axis.is_empty():
+				x = axis[0]
+				y = axis[1]
 		body.a.x = parent.b.x
 		body.a.y = parent.b.y
 		body.b.x = body.a.x + x
@@ -63,7 +68,7 @@ static func publish(
 	var cy := (target_y - actual_y) / total_mass
 	_translate(work, cx, cy)
 	var planes: Array = []
-	for body in work:
+	for body in work if terrain != null else []:
 		var count := SAMPLE._intervals(body, terrain, tuning)
 		if count < 1:
 			return {}

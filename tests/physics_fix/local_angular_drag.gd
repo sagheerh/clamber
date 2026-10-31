@@ -100,7 +100,12 @@ static func apply(
 				inequalities[solved.active[j]].row[3 * i + 2]
 				* solved.multipliers[kernel._hinges.size() + j]
 			)
-		var actual_drag: float = (after.omega - axes.omega) / axes.inverse_inertia - internal - stop
+		var connector := 0.0
+		for row in range(2 * (bodies.size() - 1), kernel._hinges.size()):
+			connector += kernel._hinges[row][3 * i + 2] * solved.multipliers[row]
+		var actual_drag: float = (
+			(after.omega - axes.omega) / axes.inverse_inertia - internal - stop - connector
+		)
 		events.append(
 			{
 				"part": i,
@@ -111,6 +116,7 @@ static func apply(
 				"external_angular_impulse": actual_drag,
 				"hinge_angular_impulse": internal,
 				"limit_angular_impulse": stop,
+				"connector_angular_impulse": connector,
 				"body_linear_impulse_x_ns": impulses[i].x,
 				"body_linear_impulse_y_ns": impulses[i].y,
 				"energy_before": ENERGY.kinetic_energy(bodies[i]),

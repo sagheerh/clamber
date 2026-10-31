@@ -36,11 +36,34 @@ func configure(bodies: Array[CapsuleBody], parents: Array[int]) -> Error:
 			or limit.upper > PI
 		):
 			return ERR_INVALID_DATA
+		if limit.has("rigid_connector_quarters"):
+			var quarters = limit.rigid_connector_quarters
+			if (
+				typeof(quarters) != TYPE_INT
+				or quarters < -2
+				or quarters > 1
+				or bodies[c].kind not in ["foot", "limb"]
+			):
+				return ERR_INVALID_DATA
 		seen.append(c)
 	var status := super.configure(bodies, parents)
 	if status == OK:
 		_limits_key = var_to_bytes(limits)
 		_tree_parents = parents.duplicate()
+		var appended := false
+		for limit in limits:
+			if limit.has("rigid_connector_quarters"):
+				var row := _zero(_weights.size())
+				row[3 * int(limit.parent) + 2] = -1.0
+				row[3 * int(limit.child) + 2] = 1.0
+				_hinges.append(row)
+				appended = true
+		if appended:
+			var factor := _factor_rows(_hinges)
+			if factor.is_empty():
+				_configured = false
+				return ERR_INVALID_DATA
+			_factor = factor
 	return status
 
 
@@ -112,7 +135,7 @@ func _position_block(
 	if solved.is_empty():
 		return {}
 	var finite_publication: Dictionary = {}
-	if position_terrain == null:
+	if position_terrain == null and _hinges.size() == 2 * (bodies.size() - 1):
 		if _publish(bodies, solved.delta, true, tuning) != OK:
 			return {}
 	else:
@@ -316,6 +339,14 @@ func _factor_rows(rows: Array) -> Array:
 
 
 func _angles_feasible(bodies: Array[CapsuleBody]) -> bool:
+	for child in range(1, bodies.size()):
+		var axis := rigid_axis(bodies, child)
+		if not axis.is_empty():
+			if (
+				bodies[child].b.x != bodies[child].a.x + axis[0]
+				or bodies[child].b.y != bodies[child].a.y + axis[1]
+			):
+				return false
 	for inequality in _angular_inequalities(bodies, false):
 		if inequality.rhs > 0.0:
 			return false
@@ -338,3 +369,26 @@ func _copy_positions(source: Array[CapsuleBody], target: Array[CapsuleBody]) -> 
 		target[i].a.y = source[i].a.y
 		target[i].b.x = source[i].b.x
 		target[i].b.y = source[i].b.y
+
+
+## Authored rigid attachment, never a world/upright target or stiffness knob.
+func rigid_axis(bodies: Array[CapsuleBody], child: int) -> Array[float]:
+	for limit in limits:
+		if limit.child != child or not limit.has("rigid_connector_quarters"):
+			continue
+		var parent := PlanarBasis.frame(bodies[int(limit.parent)])
+		if parent.is_empty():
+			return []
+		var scale: float = bodies[child].rest_length / sqrt(parent.squared)
+		var x: float = parent.x * scale
+		var y: float = parent.y * scale
+		match int(limit.rigid_connector_quarters):
+			-2:
+				return [-x, -y]
+			-1:
+				return [y, -x]
+			0:
+				return [x, y]
+			1:
+				return [-y, x]
+	return []
