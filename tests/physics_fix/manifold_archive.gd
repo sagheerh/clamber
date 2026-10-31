@@ -1,0 +1,71 @@
+# gdlint: disable=max-line-length
+extends RefCounted
+const TUNING = preload("res://core/tuning.tres")
+const ADAPTER = preload("res://tests/physics_fix/manifold_terrain.gd")
+
+
+static func final_frame(path: String) -> Dictionary:
+	var saved: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(path))
+	var full: Dictionary = bytes_to_var(Marshalls.base64_to_raw(saved.full_state_variant_base64))
+	var raw: Array = bytes_to_var(
+		Marshalls.base64_to_raw(full.awake_trace.full_work_variant_base64)
+	)
+	var bodies: Array[CapsuleBody] = []
+	for state in raw:
+		var body := CapsuleBody.new()
+		if body.restore(state) != OK:
+			return {}
+		bodies.append(body)
+	var history: Array = full.before.accumulator.solver.rig.physical.bodies
+	var parts: Array = full.before.identity.creature.parts
+	var parents: Array[int] = []
+	var limits: Array = []
+	var joint_index := 0
+	for child in range(parts.size()):
+		parents.append(int(parts[child].parent))
+		if parts[child].kind in ["motor", "passive"]:
+			var source: Dictionary = full.awake_trace.work_state.angular_joints[joint_index]
+			limits.append(
+				{
+					"parent": int(parts[child].parent),
+					"child": child,
+					"rest_angle": source.rest_angle,
+					"lower": source.lower,
+					"upper": source.upper
+				}
+			)
+			joint_index += 1
+	limits.append_array(full.awake_trace.rigid_connectors)
+	var kernel := preload("res://tests/physics_fix/surface_impact_kernel.gd").new()
+	kernel.history = history.duplicate(true)
+	kernel.limits = limits
+	var terrain: Dictionary = full.before.identity.tower.terrain
+	var grid := SdfGrid.new()
+	var valid: bool = (
+		saved.tick == 256
+		and saved.status == 30
+		and full.awake_trace.stage_order[-1] == "velocity_pass_1"
+		and grid.configure(terrain.rows, terrain.x, terrain.y, terrain.friction, TUNING) == OK
+		and kernel.configure(bodies, parents) == OK
+	)
+	if not valid:
+		return {}
+	var contacts: Array = []
+	for part in range(bodies.size()):
+		var count: int = ADAPTER._intervals(bodies[part], grid, TUNING)
+		for index in range(count + 1):
+			var u := float(index) / count
+			var sample: Dictionary = ADAPTER._sample(bodies[part], grid, u, TUNING)
+			if sample.distance <= bodies[part].radius + TUNING.physics_contact_slop_wu:
+				contacts.append(
+					{
+						"part": part,
+						"u": u,
+						"nx": sample.nx,
+						"ny": sample.ny,
+						"restitution": 0.02,
+						"damping": 0.9,
+						"static_threshold": 0.15
+					}
+				)
+	return {"bodies": bodies, "kernel": kernel, "contacts": contacts}

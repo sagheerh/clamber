@@ -215,20 +215,39 @@ static func solve(kernel: RefCounted, bodies: Array[CapsuleBody], contacts: Arra
 	# a KKT cancellation residue. Neutral vertical gravity has EXACT zero modal
 	# moment; a tilted head or actual drive retains its physical nonzero motion.
 	var free_root := true
-	var supported_pin := false
+	var root_child := -1
 	for i in range(1, bodies.size()):
 		if groups[i] == groups[0]:
 			free_root = false
-		if kernel._tree_parents[i] == 0 and fixed_bodies.has(i):
-			supported_pin = true
-	if free_root and supported_pin and constraints.is_empty():
+		if kernel._tree_parents[i] == 0 and root_child < 0:
+			root_child = i
+	if free_root and root_child > 0 and constraints.is_empty():
+		# Eliminate the genuinely free root rotation CONDITIONAL on the solved
+		# pin velocity. Do this for every supported/moving pin, never conditional
+		# on energy, size of velocity or a failed publication.
+		var pin_x := 0.0
+		var pin_y := 0.0
+		if not fixed_bodies.has(root_child):
+			var child_axes: Dictionary = PlanarBasis.frame(bodies[root_child])
+			var child_omega: float = incoming[3 * root_child + 2] + delta[3 * root_child + 2]
+			pin_x = (
+				incoming[3 * root_child] + delta[3 * root_child] + child_omega * child_axes.y / 2.0
+			)
+			pin_y = (
+				incoming[3 * root_child + 1]
+				+ delta[3 * root_child + 1]
+				- child_omega * child_axes.x / 2.0
+			)
 		var head: Dictionary = PlanarBasis.frame(bodies[0])
 		var mode_x: float = head.y / 2.0
 		var mode_y: float = -head.x / 2.0
 		var mass: float = 1.0 / kernel._weights[0]
 		var inertia: float = 1.0 / kernel._weights[2]
 		var omega: float = (
-			(mass * (mode_x * incoming[0] + mode_y * incoming[1]) + inertia * incoming[2])
+			(
+				mass * (mode_x * (incoming[0] - pin_x) + mode_y * (incoming[1] - pin_y))
+				+ inertia * incoming[2]
+			)
 			/ (mass * (mode_x * mode_x + mode_y * mode_y) + inertia)
 		)
 		# If this same physical head has an actual selected skin tangent or
@@ -240,16 +259,23 @@ static func solve(kernel: RefCounted, bodies: Array[CapsuleBody], contacts: Arra
 		for tangent in tangent_records:
 			var coefficient: float = kernel._dot(tangent.item.tangent, mode)
 			if coefficient != 0.0:
-				omega = tangent.target / coefficient
+				omega = (
+					(
+						tangent.target
+						- tangent.item.tangent[0] * pin_x
+						- tangent.item.tangent[1] * pin_y
+					)
+					/ coefficient
+				)
 		for j in range(solved.active.size()):
 			var index: int = solved.active[j]
 			if index >= constraints.size() and solved.multipliers[base.size() + j] > 0.0:
 				var item: Dictionary = normal[index - constraints.size()]
 				var coefficient: float = kernel._dot(item.row, mode)
 				if coefficient != 0.0:
-					omega = item.target / coefficient
-		delta[0] = mode_x * omega - incoming[0]
-		delta[1] = mode_y * omega - incoming[1]
+					omega = (item.target - item.row[0] * pin_x - item.row[1] * pin_y) / coefficient
+		delta[0] = pin_x + mode_x * omega - incoming[0]
+		delta[1] = pin_y + mode_y * omega - incoming[1]
 		delta[2] = omega - incoming[2]
 	var before: Array[CapsuleBody] = kernel._copies(bodies)
 	if kernel._publish(bodies, delta, false, null) != OK:

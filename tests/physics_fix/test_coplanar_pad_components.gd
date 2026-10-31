@@ -143,7 +143,8 @@ func _initialize() -> void:
 	_archived_shared_pin_normals()
 	_archived_restitution_chord()
 	_archived_hopper_affine_patch()
-	_check(_checks == 26, "complete native derived geometry tally")
+	_moving_pin_projection()
+	_check(_checks == 28, "complete native derived geometry tally")
 	print("Coplanar pad components: %d checks, %d failures" % [_checks, _failures])
 	print("Scope: new radius-derived real capsule stance units; ZERO public clock; NOT acceptance")
 	quit(1 if _failures else 0)
@@ -405,3 +406,48 @@ func _archived_hopper_affine_patch() -> void:
 		balanced and _energy(bodies) < _energy(_restore(raw)),
 		"actual eight-body Hopper archived response dissipates and terrain impulses close total momentum"
 	)
+
+
+func _moving_pin_projection() -> void:
+	var frame: Dictionary = preload("res://tests/physics_fix/manifold_archive.gd").final_frame(
+		"res://tests/fixtures/m1_articulated_execution/c49fcc66ee9f/length-Hopper-failure.json"
+	)
+	var before: float = _energy(frame.bodies)
+	var states := _states(frame.bodies)
+	var response: Dictionary = BLOCK.solve(frame.kernel, frame.bodies, frame.contacts)
+	_check(
+		not response.is_empty() and _energy(frame.bodies) <= before,
+		"exact Hopper256 final physical projection passes ORIGINAL strict actual energy comparison"
+	)
+	var honest := not response.is_empty()
+	if honest:
+		for axis in ["x", "y"]:
+			var momentum := 0.0
+			var impulse := 0.0
+			for i in range(frame.bodies.size()):
+				var body: CapsuleBody = frame.bodies[i]
+				momentum += (
+					body.mass
+					* (
+						body.a.get("velocity_" + axis)
+						+ body.b.get("velocity_" + axis)
+						- states[i].a["velocity_" + axis]
+						- states[i].b["velocity_" + axis]
+					)
+					/ 2.0
+				)
+			for i in range(frame.contacts.size()):
+				var c: Dictionary = frame.contacts[i]
+				impulse += (
+					response.contacts[i].normal * c["n" + axis]
+					+ response.contacts[i].tangent * (-c.ny if axis == "x" else c.nx)
+				)
+			honest = honest and absf(momentum - impulse) < 1e-12
+		for i in range(frame.bodies.size()):
+			for endpoint in ["a", "b"]:
+				for axis in ["x", "y"]:
+					honest = (
+						honest
+						and frame.bodies[i].get(endpoint).get(axis) == states[i][endpoint][axis]
+					)
+	_check(honest, "moving-pin response preserves real terrain momentum and all original positions")

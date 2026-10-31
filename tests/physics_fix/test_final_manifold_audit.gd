@@ -1,5 +1,6 @@
 # gdlint: disable=max-line-length
 extends "res://tests/physics_fix/test_coplanar_pad_components.gd"
+const V22_CONTROL = preload("res://tests/physics_fix/support_manifold_v22_control.gd")
 ## Read exact failure only. Never creates Sim, calls step, or advances any clock.
 
 
@@ -113,7 +114,7 @@ func _initialize() -> void:
 					}
 				)
 	var bits := _bits(bodies)
-	var response: Dictionary = BLOCK.solve(kernel, bodies, contacts)
+	var response: Dictionary = V22_CONTROL.solve(kernel, bodies, contacts)
 	_check(response.is_empty(), "exact failed response reproduced without advancing clock")
 	_check(bits == _bits(bodies), "failed response leaves input bytes intact")
 	_check(

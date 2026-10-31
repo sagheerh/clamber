@@ -156,7 +156,7 @@ jobs:
             expected='Final manifold archive audit: 4 checks, 0 failures'
           elif [[ "$COPLANAR_COMPONENTS" == true ]]; then
             script=res://tests/physics_fix/test_coplanar_pad_components.gd
-            expected='Coplanar pad components: 27 checks, 0 failures'
+            expected='Coplanar pad components: 29 checks, 0 failures'
           elif [[ "$MANIFOLD_COMPONENTS" == true ]]; then
             script=res://tests/physics_fix/test_support_manifold_components.gd
             expected='Support manifold components: 29 checks, 0 failures'
