@@ -79,3 +79,32 @@ capsule, correctly rejected by original contract. Fixture now restores its test
 state into a FRESH CapsuleBody. No resource/core guard change; add immediate stop
 on missing fixture to avoid secondary dictionary access errors. ZERO public world
 ticks; this is component setup correction, not a world posture/support outcome.
+
+## Closed measured source / read-only diagnostic registration
+Source a45a2b50eb67bd0f6ca0ee4940553965bdfddafb / run41167162511 / publisher32d7e4f:
+ALL native214=185+29 PASS. ONE public attempt commits37/600 ticks (0..36), then
+status30 at37 in second velocity/contact pass. Max posture3.5962402248733243deg,
+no airborne in ONLY the37 committed ticks. No complete600, no qualifying sleep,
+all7200 NOTRUN, not adopted. Partial prefix MUST NOT be compared as a full600 PASS.
+
+Offline exact archived work analysis: static tangential slip, separating normal
+vn=.008157907402260967, vt=.0024927788320336097, Jn0, Jt=-.0014274575037939953.
+Endpoint kinetic energy .06146263064834831 -> .061705010156499936, real positive
+gain .00024237950815162584, NOT a roundoff/identity repair. SPD Kd and no-slip do
+NOT prove incremental M-energy passivity on already damped velocities. The strict
+barrier correctly stops this candidate. DO NOT add an energy allowance or bypass.
+
+Stronger independent exact rational counterexample: unit mass, endpoints(+/-1,
++/-1), I=2, COM(vx,vy)=(-3/2,3), omega2, r1/5; at endpointa normal+y/tangent-x,
+vn1/vt-1/2. Free normal remains separating, Jn0/Jt5/11 cancels slip but vx=-43/22,
+omega43/22 makes E grow by EXACT293/484. Original r1 response is passive instead.
+Thus V12 has a constitutive, not merely floating-point, defect. Preserve evidence.
+
+Next registered operation is ONLY native archived single-contact inspection on
+checksum4.7.2. No Sim clock/step or new world. Probe duplicates endpoint arithmetic
+for observation then calls inherited publication unchanged: prove exact failure,
+finite gain, atomic rejection, undamped-component negative control, independent
+inclined-rod counterexample/atomic rejection. New12 controls plus original old10
+inspector. Marker ONLY articulated-units+articulated-inspect, NOT execution. If
+inspection fails, report failure and do not launch a creature. This diagnoses the
+closed source; it does not select an alternative force order/model or adopt one.
