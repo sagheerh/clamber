@@ -1,0 +1,50 @@
+[
+  {
+    "path": ".github",
+    "blob_href": "https://github.com/sagheerh/clamber/blob/9e8b8d19ea70e86d88234c11e1de711eb550250f/.github",
+    "start_line": 41,
+    "start_column": null,
+    "end_line": 41,
+    "end_column": null,
+    "annotation_level": "notice",
+    "title": "Complete constitutive COMPONENTS ONLY",
+    "message": "Constitutive stage components: 30 checks, 0 failures",
+    "raw_details": ""
+  },
+  {
+    "path": ".github",
+    "blob_href": "https://github.com/sagheerh/clamber/blob/9e8b8d19ea70e86d88234c11e1de711eb550250f/.github",
+    "start_line": 34,
+    "start_column": null,
+    "end_line": 34,
+    "end_column": null,
+    "annotation_level": "notice",
+    "title": "Articulated source",
+    "message": "{\"scope\":\"UNADOPTED component algebra ONLY; no world ticks or AC verdict\",\"source_commit\":\"9e8b8d19ea70e86d88234c11e1de711eb550250f\",\"checkout_head\":\"9e8b8d19ea70e86d88234c11e1de711eb550250f\",\"checkout_dirty\":false,\"core_manifest\":{\"source_commit\":\"0c1d3f875af8a9ddee1b3f6d10d0784060db4f1d\",\"tuning_sha256\":\"5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666\",\"core_tree_sha256\":\"557524202efe109074f692a56240ca6b50fcd422db4ed38888aed1b4476704df\"},\"candidate_sha256\":{\"tests/physics_fix/articulated_mobility_candidate.gd\":\"59a70d4b92018198fe1bdf5fb774c6ed04683dc7bfeed0eeaf3d000046445952\",\"tests/physics_fix/test_articulated_mobility_candidate.gd\":\"9992c962f8069d7ee1c207c14b06d7f57b9bfaaef94583e3ffe3b961ae544181\",\"tests/physics_fix/rigid_contact_candidate.gd\":\"4755e992fdcd364fe7598a25e25126b487129ddd95f3b82d4414ba4802692026\",\"tests/run_m1_articulated_units.sh\":\"70acbb83e21e656594636de4dc8654dd293b5273c23f975a4d78e195ecabfecf\"},\"engine_build\":\"4.7.2.stable.official.ed1daf0bf\"}",
+    "raw_details": ""
+  },
+  {
+    "path": ".github",
+    "blob_href": "https://github.com/sagheerh/clamber/blob/9e8b8d19ea70e86d88234c11e1de711eb550250f/.github",
+    "start_line": 33,
+    "start_column": null,
+    "end_line": 33,
+    "end_column": null,
+    "annotation_level": "notice",
+    "title": "Articulated units",
+    "message": "Scope: component algebra ONLY; assembled AC-201/202 NOT MEASURED",
+    "raw_details": ""
+  },
+  {
+    "path": ".github",
+    "blob_href": "https://github.com/sagheerh/clamber/blob/9e8b8d19ea70e86d88234c11e1de711eb550250f/.github",
+    "start_line": 32,
+    "start_column": null,
+    "end_line": 32,
+    "end_column": null,
+    "annotation_level": "notice",
+    "title": "Articulated units",
+    "message": "M1 articulated mobility units: 42 checks, 0 failures",
+    "raw_details": ""
+  }
+]

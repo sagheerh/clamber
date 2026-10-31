@@ -117,6 +117,12 @@ if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/i
 timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_impact_history_components.gd > "$folder/impact-history-components.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/impact-history-components.log"; then exit 1; fi
 if ! grep -Fxq 'Impact history components: 23 checks, 0 failures' "$folder/impact-history-components.log"; then exit 1; fi
+# New complete physical operator gate; any error/partial tally forbids world.
+"$GODOT" --headless --check-only --script res://tests/physics_fix/test_constitutive_stage_components.gd > "$folder/constitutive-compile.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/constitutive-compile.log"; then exit 1; fi
+timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_constitutive_stage_components.gd > "$folder/constitutive-components.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/constitutive-components.log"; then exit 1; fi
+if ! grep -Fxq 'Constitutive stage components: 30 checks, 0 failures' "$folder/constitutive-components.log"; then exit 1; fi
 "$GODOT" --headless --script res://tests/physics_fix/test_articulated_execution.gd -- --report-dir="$folder" > "$folder/engine.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/engine.log"; then
  echo 'STOP: runtime errors; inspect first failure.' >&2
