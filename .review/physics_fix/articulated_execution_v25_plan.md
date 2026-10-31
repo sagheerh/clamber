@@ -91,3 +91,19 @@ versioned string. No corrected-geometry runtime measurement occurred on this
 source; next is launch correction, not a retry of a failed physics measurement.
 Recorder checkout is exact SHA/detached: push committed HEAD explicitly to ONLY
 refs/heads/arena/f43f36ab-clamber, never a different branch or force push.
+
+## Correct-geometry runtime CLOSEDFAIL (actual evidence now preserved)
+00f33495a75c/run41219237028/publisher47e8071:88checks/1failure/26awake audits;
+Slug65completed with matching fresh candidate geometry; Hopper maskBOTH tick4
+(mask3/tick0 in case) fails FIRST UNDAMPED physical support; TwinNOTRUN.
+Full source/logs and failure Variant saved `tests/fixtures/m1_candidate_runtime/00f33495a75c/`.
+This is REAL physics failure, not the old wrong-geometry setup or launch incident.
+Final constitutive stage truthfully NOTRUN (status3), not misreported PASS.
+No V25 600/7200 world registered. Full requested items still INCOMPLETE.
+
+Read-only nextgate: reconstruct exact archived before-contact raw bodies/history/
+limits/terrain, run original physical BLOCK through probe (4 assertions: frame,
+expected failure, all inputs atomic, active solve entered), print factor/actual
+energy diagnosis. ZERO public OR private clock ticks. No unchanged runtime-suite
+retry or long world. Resourcefakes/geometry observations must not be weakened to
+make this case pass. Production and original acceptance thresholds unchanged.
