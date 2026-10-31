@@ -40,3 +40,22 @@ linear/angular ledgers, eight deliberately bad ledger variants. 183 expected
 checks if complete; FIRST unexpected failure stops. NOT production factories,
 full resource/material/angular-loss law proof or FA3. Current full validation
 still pending, do not credit draft as PASS or use it to bypass physics STOP.
+
+Contract source964793b/run41217701213 CLOSEDFAIL: 76 checks,1failure,24 awake
+force audits. Slug completed all61 checks (including typed factory preservation,
+partial-frame live mutation rollback, no leaked signals, continuation and3 real
+wake masks); Hopper failed heldmask2/tick1 after first heldmask1 and restore.
+Twin NOTRUN. No unchanged retry. Error annotation's original failed-work JSON
+was truncated to4060 characters by transport. Native full logs are inaccessible
+(results-receiver.actions.githubusercontent.com EOF); no physics claim can be
+based on a truncated Variant. This is a REAL failure, not launch incident.
+
+263 exact scalar experiment: exact physical-metric rational active projection
+changes energy by -2.866572077264266e-37, but rounding even that solution to
+binary64 endpoints increases actual physical energy by +1.505293950408717e-32.
+Thus simply increasing solver accuracy is NOT a general fix. A unit tangent
+conditional free-root projection (dot in orthonormal endpoint coordinates)
+reconstructs both256 and263 with original strict guard and negative exact gain;
+not yet adopted or natively verified. No ULP adjustment, energy allowance or
+failed-publication fallback is authorized. First finish native zero-clock263
+control. Full world/input/force validation remains BLOCKED, not complete.
