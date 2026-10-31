@@ -1,0 +1,38 @@
+[
+  {
+    "path": ".github",
+    "blob_href": "https://github.com/sagheerh/clamber/blob/80e9f52e96452b3f2b9e6fa9d55c6082e2603ae1/.github",
+    "start_line": 12,
+    "start_column": null,
+    "end_line": 12,
+    "end_column": null,
+    "annotation_level": "failure",
+    "title": "Candidate contact-identity.log",
+    "message": "ERROR: FAIL contact identity: exact zero physical response",
+    "raw_details": ""
+  },
+  {
+    "path": ".github",
+    "blob_href": "https://github.com/sagheerh/clamber/blob/80e9f52e96452b3f2b9e6fa9d55c6082e2603ae1/.github",
+    "start_line": 10,
+    "start_column": null,
+    "end_line": 10,
+    "end_column": null,
+    "annotation_level": "notice",
+    "title": "NEW articulated execution exit-code.txt",
+    "message": "1\n",
+    "raw_details": ""
+  },
+  {
+    "path": ".github",
+    "blob_href": "https://github.com/sagheerh/clamber/blob/80e9f52e96452b3f2b9e6fa9d55c6082e2603ae1/.github",
+    "start_line": 79,
+    "start_column": null,
+    "end_line": 79,
+    "end_column": null,
+    "annotation_level": "failure",
+    "title": "",
+    "message": "Process completed with exit code 1.",
+    "raw_details": ""
+  }
+]

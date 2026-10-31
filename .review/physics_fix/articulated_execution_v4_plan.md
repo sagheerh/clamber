@@ -34,3 +34,16 @@ publication unchanged. Neither5 ticks nor any native test is acceptance.
 
 Native new8 and v4 world NOT RUN at preregistration. M1 BLOCKED/NOT SIGNED,
 production AC201/202 FAILED, FA3 uncredited, device/performance gates not waived.
+
+Pre-world control result80e9f52/run41156907377, publisherb6eda4b:
+native42+8+20 PASS, new8 contact controls1 failure, NO world ticks. The helper
+still asked ROW.frame for a COM/spin-reconstructed tangent rather than sampling
+the authoritative saved endpoint velocities. That reconstruction creates the
+phantom nonzero slip we are trying to avoid, so the exact identity did not engage.
+Fix ONLY identity detection to interpolate endpoint velocities at u (the original
+CapsuleContact observer's convention), with the same validated normalized normal.
+No epsilon or small-slip coercion. u=1 with saved endpointvx exactly0 must stay0.
+Print both endpoint and reconstructed velocities in the native regression log.
+Strict cold operator and all material/geometry guards retained; all new8 must
+pass before the still-unrun v4 whole-creature protocol. First-failure source80e9f52
+and logs are preserved. This is component evidence, not a physical-arm retry.
