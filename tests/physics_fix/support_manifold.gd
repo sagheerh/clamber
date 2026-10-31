@@ -10,6 +10,7 @@ static func solve(kernel: RefCounted, bodies: Array[CapsuleBody], contacts: Arra
 		return {}
 	var incoming: Array[float] = kernel._velocities(bodies)
 	var normal: Array = []
+	var material_points: Array = []
 	var groups: Array[int] = []
 	for i in range(bodies.size()):
 		groups.append(i)
@@ -61,6 +62,15 @@ static func solve(kernel: RefCounted, bodies: Array[CapsuleBody], contacts: Arra
 			"ny": frame.ny,
 			"coordinate": x * frame.ny - y * frame.nx
 		}
+		material_points.append(record.duplicate(true))
+		# A parent's B normal velocity is exactly its child's A normal velocity
+		# under the existing pin equality. Only normal ownership changes; skin
+		# tangent policy remains on the actual body's own material point.
+		if contact.u == 1.0:
+			for child in range(contact.part + 1, bodies.size()):
+				if kernel._tree_parents[child] == contact.part:
+					record.group = groups[child]
+					break
 		# Coincident normal lines in one rigid cluster are one support constraint.
 		# Keep an actual material point; no pooled body load or manufactured N.
 		var duplicate := false
@@ -76,13 +86,41 @@ static func solve(kernel: RefCounted, bodies: Array[CapsuleBody], contacts: Arra
 				break
 		if not duplicate:
 			normal.append(record)
-	var zero_request := true
+	# On one rigid cluster, flat zero-target normal speed is affine in its
+	# tangential coordinate. Interior zero-target rows are certified redundant:
+	# the two extreme nonnegative speeds imply every convex combination >=0.
+	# This also covers shared pin normals without a singular third active row.
+	var irredundant: Array = []
 	for item in normal:
+		var redundant := false
+		if item.target == 0.0 and item.nx == 0.0 and item.ny == 1.0:
+			var low: float = item.coordinate
+			var high: float = item.coordinate
+			for other in normal:
+				if (
+					other.group == item.group
+					and other.target == 0.0
+					and other.nx == item.nx
+					and other.ny == item.ny
+				):
+					low = minf(low, other.coordinate)
+					high = maxf(high, other.coordinate)
+			redundant = low < item.coordinate and item.coordinate < high
+		if not redundant:
+			irredundant.append(item)
+	normal = irredundant
+	var zero_request := true
+	for item in constraints:
+		if kernel._dot(item.row, incoming) < 0.0:
+			zero_request = false
+	for item in normal:
+		if kernel._dot(item.row, incoming) < item.target:
+			zero_request = false
+	for item in material_points:
 		var contact: Dictionary = contacts[item.contact]
-		if (
-			kernel._dot(item.row, incoming) < item.target
-			or (kernel._dot(item.tangent, incoming) != 0.0 and contact.damping != 0.0)
-		):
+		var speed: float = kernel._dot(item.tangent, incoming)
+		var coefficient: float = 1.0 if absf(speed) < contact.static_threshold else contact.damping
+		if speed != 0.0 and coefficient != 0.0:
 			zero_request = false
 	if zero_request:
 		var hinges: Array[float] = kernel._zero(2 * (bodies.size() - 1))
@@ -110,12 +148,12 @@ static func solve(kernel: RefCounted, bodies: Array[CapsuleBody], contacts: Arra
 	var patches: Array[int] = _static_patches(
 		kernel, bodies, normal, first, constraints.size(), groups
 	)
-	for item in normal:
+	for item in material_points:
 		item.patch = patches[contacts[item.contact].part]
 	var chosen: Dictionary = {}
 	# Material damping uses geometric contact eligibility, as before. A zero
 	# incremental normal impulse in the final pass is NOT an extra friction gate.
-	for item in normal:
+	for item in material_points:
 		var contact: Dictionary = contacts[item.contact]
 		var coefficient: float = contact.damping
 		# Existing min(material), foot bias, and static threshold, not force tuning.
@@ -189,6 +227,23 @@ static func solve(kernel: RefCounted, bodies: Array[CapsuleBody], contacts: Arra
 			(mass * (mode_x * incoming[0] + mode_y * incoming[1]) + inertia * incoming[2])
 			/ (mass * (mode_x * mode_x + mode_y * mode_y) + inertia)
 		)
+		# If this same physical head has an actual selected skin tangent or
+		# active normal, it is NOT a free mode: honor that row's scalar target.
+		var mode: Array[float] = kernel._zero(incoming.size())
+		mode[0] = mode_x
+		mode[1] = mode_y
+		mode[2] = 1.0
+		for tangent in tangent_records:
+			var coefficient: float = kernel._dot(tangent.item.tangent, mode)
+			if coefficient != 0.0:
+				omega = tangent.target / coefficient
+		for j in range(solved.active.size()):
+			var index: int = solved.active[j]
+			if index >= constraints.size() and solved.multipliers[base.size() + j] > 0.0:
+				var item: Dictionary = normal[index - constraints.size()]
+				var coefficient: float = kernel._dot(item.row, mode)
+				if coefficient != 0.0:
+					omega = item.target / coefficient
 		delta[0] = mode_x * omega - incoming[0]
 		delta[1] = mode_y * omega - incoming[1]
 		delta[2] = omega - incoming[2]

@@ -1,0 +1,17 @@
+{
+  "scope": "independent partial impulse audit of zero-position-cleanup flat actual batches ONLY; NOT full F31 or acceptance",
+  "source_commit": "9dfc42061a8a938c7204a88950c71558721839e4",
+  "actual_batches": 492,
+  "shared_events_counted_once_per_batch": true,
+  "max_absolute_observed_residuals": {
+    "linear_ns": 3.3306690738754696e-16,
+    "constitutive_angular_ns_wu": 5.204170427930421e-17,
+    "internal_connector_ns_wu": 0.0
+  },
+  "omitted_full_F31_requirements": [
+    "resource and full controller/clamp budgets",
+    "mutation controls",
+    "nonflat or position-corrected per-observation pose",
+    "other complete creatures"
+  ]
+}

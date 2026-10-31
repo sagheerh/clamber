@@ -138,7 +138,87 @@ func _initialize() -> void:
 		saved == var_to_bytes(fault.snapshot()),
 		"entire derived model snapshot atomically restored after injected gain"
 	)
-	_check(_checks == 17, "complete native derived geometry tally")
+	_archived_shared_pin_normals()
+	_check(_checks == 20, "complete native derived geometry tally")
 	print("Coplanar pad components: %d checks, %d failures" % [_checks, _failures])
 	print("Scope: new radius-derived real capsule stance units; ZERO public clock; NOT acceptance")
 	quit(1 if _failures else 0)
+
+
+func _archived_shared_pin_normals() -> void:
+	var text := FileAccess.get_file_as_string(
+		"res://tests/fixtures/m1_articulated_execution/f101721f17cf/length-Slug-failure.json"
+	)
+	var saved: Dictionary = JSON.parse_string(text)
+	var full: Dictionary = bytes_to_var(Marshalls.base64_to_raw(saved.full_state_variant_base64))
+	var raw: Array = bytes_to_var(
+		Marshalls.base64_to_raw(full.awake_trace.full_work_variant_base64)
+	)
+	var bodies := _restore(raw)
+	var history: Array = full.before.accumulator.solver.rig.physical.bodies
+	var kernel := preload("res://tests/physics_fix/surface_constitutive_kernel.gd").new()
+	kernel.history = history.duplicate(true)
+	kernel.angular_retention = 1.0 - CONFIG.physics_angular_damping
+	kernel.limits = (
+		[
+			{
+				"parent": 0,
+				"child": 1,
+				"rest_angle": full.awake_trace.work_state.angular_joints[0].rest_angle,
+				"lower": full.awake_trace.work_state.angular_joints[0].lower,
+				"upper": full.awake_trace.work_state.angular_joints[0].upper
+			}
+		]
+		+ full.awake_trace.rigid_connectors
+	)
+	var parents: Array[int] = [-1, 0, 1]
+	var valid: bool = (
+		saved.tick == 214 and saved.status == 30 and kernel.configure(bodies, parents) == OK
+	)
+	var contacts: Array = []
+	for pair in [[0, 1.0], [1, 0.5], [1, 1.0]]:
+		contacts.append(
+			{
+				"part": int(pair[0]),
+				"u": pair[1],
+				"nx": 0.0,
+				"ny": 1.0,
+				"restitution": 0.02,
+				"damping": 0.9,
+				"static_threshold": 0.15
+			}
+		)
+	var response: Dictionary = BLOCK.solve(kernel, bodies, contacts)
+	_check(
+		valid and not response.is_empty(),
+		"archived actual long-run214 shared-pin redundant normal patch factors without a pivot epsilon"
+	)
+	var admissible := not response.is_empty()
+	if admissible:
+		for c in contacts:
+			admissible = (
+				admissible
+				and absf(SKIN_ROW.frame(bodies[c.part], c.u, c.nx, c.ny).normal_velocity) < 1e-12
+			)
+	_check(
+		admissible and _energy(bodies) < _energy(_restore(raw)),
+		"archived three actual normal constraints honored with strict actual dissipation and real head tangent"
+	)
+	# Original static branch overrides even zero dynamic material coefficient.
+	bodies = _restore(history)
+	for body in bodies:
+		body.a.velocity_x = 0.1
+		body.b.velocity_x = 0.1
+		body.a.velocity_y = 0.5
+		body.b.velocity_y = 0.5
+	var physical := FINAL.new()
+	physical.history = history.duplicate(true)
+	physical.limits = kernel.limits
+	valid = physical.configure(bodies, parents) == OK
+	var contact: Dictionary = contacts[2].duplicate(true)
+	contact.damping = 0.0
+	response = BLOCK.solve(physical, bodies, [contact])
+	_check(
+		valid and not response.is_empty() and response.contacts[0].tangent != 0.0,
+		"zero dynamic material does NOT bypass the existing static-slip branch"
+	)

@@ -20,3 +20,9 @@ original600 actual new spawn,15deg/no whole airborne/.90WU/original4s/F52.001/30
 Only full predicatePASS opens sequential three7200. Any failure stops later arms;
 full lossless evidence pinned. Generic negative/F31/force/replay/device/feel/
 performance/adoption and signature remain separate requirements, NOT waived.
+
+CLOSEDf101721/run41206896579/publisherd852ec1:388nativePASS; ORIGINAL600 ALL
+predicatePASS: posture0deg/noairborne/penetration0/netCOM0, firstsleep29 (30 actual
+ticks), original4sPASS, actualF52 anchored30. This is real new-stance acceptance
+of that ONE idle arm, NOT milestone/adoption/determinism. Sequential Slug7200
+thenstops214status30, first phase material support. Hopper/TwinNOTRUN; no retry.
