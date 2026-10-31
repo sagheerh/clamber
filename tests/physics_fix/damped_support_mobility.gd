@@ -179,7 +179,7 @@ func _measured_reaction(
 		var angular_limit := 0.0
 		for a in range(result.get("angular_rows", []).size()):
 			angular_limit += result.angular_rows[a][3 * i + 2] * result.angular_impulses[a]
-		var terrain := ((u - 0.5) * (axes.x * fy - axes.y * fx)) if i == part else 0.0
+		var terrain: float = ((u - 0.5) * (axes.x * fy - axes.y * fx)) if i == part else 0.0
 		var actual: float = (PlanarBasis.frame(after[i]).omega - axes.omega) / axes.inverse_inertia
 		events.append(
 			{

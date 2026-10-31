@@ -66,3 +66,9 @@ adoption, physical-device/feel/performance/FA3/M1 signature from components.
 
 Local gdlint/gdformat, exact8 and runner36 PASS are not native; native/world
 outcomes NOT RUN at preregistration. Source pin generated before CI execution.
+
+V12 first source28e96bc / run41167017247: original42 native PASS, world harness
+check-only dependency compile stops on Variant-inferred `terrain` scalar in new
+observer torque reconstruction. Explicit float annotation corrects this semantic
+compile defect. New29 and ALL new public ticks NOT RUN. Publisher preserves exact
+incident; this is not a physical attempt, posture result or an unchanged retry.
