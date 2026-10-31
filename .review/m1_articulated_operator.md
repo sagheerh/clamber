@@ -9,7 +9,7 @@ FAILED at tick index2 after TWO committed Slug frames, post-cap reconciliation.
 First failure is immutable in `tests/fixtures/m1_articulated_execution/6b48e638c368/`;
 all7200 arms NOT RUN. See [v2 diagnosis/protocol](physics_fix/articulated_execution_v2_plan.md).
 The new inactive-cap identity correction does not modify the kernel or its strict
-passivity guard. Native7 archived-frame checks and a new world invocation are
+passivity guard. Native8 archived-frame checks and a new world invocation are
 pending; local labelled runner17/0 and rational18/0 PASS, not world evidence.
 GitHub works; local binary unavailable. No signature, FA3 credit, M2 or device waiver.
 
@@ -119,7 +119,7 @@ Passing it is a prerequisite to—not a replacement for—assembly and acceptanc
 
 ## Still needed, without pretending the task is done
 
-1. Validate the narrow inactive-cap identity correction with7 native archived-frame
+1. Validate the narrow inactive-cap identity correction with8 native archived-frame
    component checks; preserve all original rejection/physics bounds.
 2. NEW registered full-creature execution: posture/rest then7200 per creature
    length+penetration. The implemented adapter accounts for real hinge impulses

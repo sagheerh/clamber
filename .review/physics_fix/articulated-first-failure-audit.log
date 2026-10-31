@@ -1,0 +1,15 @@
+test_candidate_hashes_match_historical_git_source_not_current_code (__main__.FirstFailureAudit.test_candidate_hashes_match_historical_git_source_not_current_code) ... ok
+test_compile_success_and_specific_post_cap_error (__main__.FirstFailureAudit.test_compile_success_and_specific_post_cap_error) ... ok
+test_finite_full_partial_trace (__main__.FirstFailureAudit.test_finite_full_partial_trace) ... ok
+test_full_variant_failure_is_retained_not_json_null (__main__.FirstFailureAudit.test_full_variant_failure_is_retained_not_json_null) ... ok
+test_geometry_metrics_and_all_bodies_present (__main__.FirstFailureAudit.test_geometry_metrics_and_all_bodies_present) ... ok
+test_last_committed_speeds_below_original_cap_not_failing_work_state (__main__.FirstFailureAudit.test_last_committed_speeds_below_original_cap_not_failing_work_state) ... ok
+test_later_arms_not_run (__main__.FirstFailureAudit.test_later_arms_not_run) ... ok
+test_source_clean_and_exact (__main__.FirstFailureAudit.test_source_clean_and_exact) ... ok
+test_transport_integrity (__main__.FirstFailureAudit.test_transport_integrity) ... ok
+test_two_frames_not_600_or_determinism_evidence (__main__.FirstFailureAudit.test_two_frames_not_600_or_determinism_evidence) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.035s
+
+OK

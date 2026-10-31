@@ -132,7 +132,7 @@ branch/event SHA plus `[M1-articulated-units]`; it does not retry the old candid
 Native42/0 has passed in CI. The first assembled source6b48e63 compiled but
 failed at tick index2; evidence under `tests/fixtures/m1_articulated_execution/`.
 Do not rerun that source or a historical arm. The next source has the narrow
-inactive-cap identity correction,7 archived-frame native assertions before any
+inactive-cap identity correction,8 archived-frame native assertions before any
 world ticks, and stronger pre-rollback observations. Its frozen protocol is
 `.review/physics_fix/articulated_execution_v2_plan.md`. The opt-in marker
 `[M1-articulated-execution]` runs native42 first, then compile/components/world,

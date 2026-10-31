@@ -24,10 +24,13 @@ No600/7200 stability claim; no adoption. M0, independent M1 foundations and R29
 compile-only CI on this source succeeded, not acceptance/performance credit.
 
 The next source isolates inactive-cap identity (no extra hinge solve when no cap
-changed motion), preserves every original bound/strict guard, adds7 archived-frame
+changed motion), preserves every original bound/strict guard, adds8 archived-frame
 native component assertions and better pre-rollback failure observations. Local
-17/0 runner routing doubles, rational18/0 and GD grammar/lint PASS; new native7
-and world result NOT RUN at preregistration. See
+17/0 runner routing doubles, rational18/0 and GD grammar/lint PASS; native42 re-PASS. Source3007e64 then stopped BEFORE world execution:7 adapter
+checks/1 failure from the archived JSON float clock counter. This is a fixture
+schema incident, ZERO world ticks, preserved byabbdcaf. Normalize only known2.0
+to integer2 in the test; now8 native adapter checks, new world still NOT RUN.
+Offline immutable first-failure audit10/0 PASS (not engine/world evidence). See
 `.review/physics_fix/articulated_execution_v2_plan.md`. No unchanged failed retry.
 
 Actual posture/sleep,7200 length+penetration, held inputs/release/rollback,

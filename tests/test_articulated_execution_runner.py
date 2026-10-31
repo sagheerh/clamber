@@ -18,7 +18,7 @@ class ArticulatedExecutionRunner(previous.CompositionRunnerTests):
         component="""if any('test_articulated_cap_identity.gd' in a for a in args):
  if os.environ.get('DOUBLE_COMPONENT_ERROR')=='1': print('SCRIPT ERROR: TEST DOUBLE component failure')
  if '--check-only' not in args and os.environ.get('DOUBLE_COMPONENT_NO_SUMMARY')!='1':
-  print('Articulated cap identity: 7 checks, 0 failures')
+  print('Articulated cap identity: 8 checks, 0 failures')
  sys.exit(0)
 """
         self.fake.write_text(fake.replace(marker,component+marker))

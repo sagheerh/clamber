@@ -12,7 +12,7 @@ was not captured, so no invented numerical diagnosis. Last committed body speeds
 are below the unchanged24rad/s bound. An inactive cap must be an identity;
 perform one reconciliation only if the actual cap changes motion. Keep invalid
 frame rejection, strict energy/passivity checks and all tuning/iteration/grip/sleep
-bounds. Seven archived-frame component checks precede new world ticks. Fresh
+bounds. Eight archived-frame component checks precede new world ticks. Fresh
 source-pinned protocol and first-failure stop remain; no old-arm replay/adoption.
 See `.review/physics_fix/articulated_execution_v2_plan.md`. M1 NOT SIGNED.
 

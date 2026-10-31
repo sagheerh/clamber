@@ -1,6 +1,6 @@
 # gdlint: disable=max-line-length
 extends SceneTree
-## Seven adapter checks, ZERO world ticks. Reads, never regenerates, old evidence.
+## Eight adapter checks, ZERO world ticks. Reads, never regenerates, old evidence.
 const CANDIDATE = preload("res://tests/physics_fix/actuated_articulated_candidate.gd")
 const TUNING = preload("res://core/tuning.tres")
 const ARCHIVE := "res://tests/fixtures/m1_articulated_execution/6b48e638c368/idle-Slug.jsonl.gz"
@@ -34,10 +34,14 @@ func _initialize() -> void:
 		),
 		"construct component, no advance"
 	)
-	_check(
-		candidate.restore(record.get("state", {}).get("physical", {})) == OK,
-		"restore archived committed frame, no replay"
-	)
+	var archived: Dictionary = record.get("state", {}).get("physical", {})
+	# Godot JSON numbers are floats. Restore requires an integer clock counter.
+	# Normalize ONLY this exact known fixture counter; NEVER cast coordinates or
+	# accept a fractional/unknown tick. This does not advance/replay the archive.
+	_check(archived.get("ticks") == 2.0, "JSON fixture has exactly two committed ticks")
+	if archived.get("ticks") == 2.0:
+		archived.ticks = 2
+	_check(candidate.restore(archived) == OK, "restore archived committed frame, no replay")
 	_check(not candidate._angular_cap_required(), "archived sub-cap motion does not activate cap")
 	var before: PackedByteArray = var_to_bytes(candidate.snapshot())
 	var x: Array[float] = [0.0, 0.0, 0.0]
@@ -54,7 +58,7 @@ func _initialize() -> void:
 		),
 		"bitwise unchanged state and impulse accounts"
 	)
-	if _checks != 7:
+	if _checks != 8:
 		_failures += 1
 	print("Articulated cap identity: %d checks, %d failures" % [_checks, _failures])
 	print("Scope: archived component frame only; ZERO world ticks; NOT acceptance")

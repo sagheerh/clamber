@@ -56,7 +56,7 @@ if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/c
  echo 'STOP: adapter component errors; zero creature ticks.' >&2
  exit 1
 fi
-if ! grep -Fxq 'Articulated cap identity: 7 checks, 0 failures' "$folder/components.log"; then
+if ! grep -Fxq 'Articulated cap identity: 8 checks, 0 failures' "$folder/components.log"; then
  echo 'STOP: incomplete adapter suite; zero creature ticks.' >&2
  exit 1
 fi

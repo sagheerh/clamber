@@ -56,3 +56,24 @@ No retry of6b48e63/36313ad or any R27/R28/R29/D0 historical capture.
 
 Native7 and new world outcome are NOT RUN at this preregistration. M1 remains
 BLOCKED/NOT SIGNED; production AC201/202 FAILED, FA3 uncredited, M2 blocked.
+
+## Zero-world-tick fixture incident and schema-only correction
+
+Source3007e646d24b63cc09cc048b0f1853bb0c305709, CI41150796249:
+native42 PASS (124386569346), semantic world + component compile PASS; component
+suite7 checks/1 failure (124386630066): strict restore rejects JSON float `ticks`
+where an integer is required. No engine.log, spawn, world trace or summary;
+ZERO new world ticks. Preserved byabbdcaf in source3007e646d24b folder. The
+barrier correctly stopped before the world invocation. This is NOT a physical
+candidate measurement or a completed-creature attempt. No failed arm is replayed.
+
+Schema-only test correction: require the exact archived counter2.0 and convert
+ONLY it to integer2 before existing strict restore. No rounding/casting physical
+coordinates, no fractional counters, no change to restore validation or solver.
+One additional native assertion verifies the fixture counter: now EIGHT native
+adapter checks before world execution. All42 operator checks must again pass.
+Source3007e64 did not execute the v2 world protocol; the next clean source may
+execute the still-unrun v2 protocol ONCE, subject to both component barriers.
+First physical/numerical failure still terminal, no historical run repeated.
+Offline immutable-evidence audit10/0 verifies hashes against historical git source,
+two partial frames, status30, finite trace and NOT RUN arms; zero engine ticks.
