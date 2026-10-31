@@ -6,6 +6,30 @@ const SKIN_ROW = preload("res://tests/physics_fix/capsule_surface_frame.gd")
 const SERIAL = preload("res://tests/physics_fix/surface_impact_terrain.gd")
 
 
+class ManifoldFault:
+	extends "res://tests/physics_fix/manifold_candidate.gd"
+
+	func _velocity_pass(
+		before: Dictionary,
+		hx: Array[float],
+		hy: Array[float],
+		reaction: Array[float],
+		cleanup: Array[float],
+		budget: Dictionary,
+		positions: Array,
+		samples: Array,
+		pass_index: int,
+		certificate: PackedByteArray
+	) -> Dictionary:
+		var result: Dictionary = super._velocity_pass(
+			before, hx, hy, reaction, cleanup, budget, positions, samples, pass_index, certificate
+		)
+		if result.status == OK and pass_index == 0:
+			bodies[0].a.velocity_x = 100.0
+			return STAGE_GUARD.validate(_constitutive_origin, bodies)
+		return result
+
+
 func _initialize() -> void:
 	var rig := PAD.new()
 	_check(_setup_pad(rig, "Slug") == OK, "authorized rigid-pad model configuration")  #1
@@ -200,9 +224,49 @@ func _initialize() -> void:
 					)
 				)
 		_check(honest, name + " actual momentum and frozen previousN0 flags")
-	_check(_checks == 22, "complete native manifold tally")
+	var fault := ManifoldFault.new()
+	var setup: Error = _setup_pad(fault, "Slug")
+	bits = var_to_bytes(fault.snapshot())
+	var rejected: Dictionary = fault.step()
+	_check(
+		setup == OK and rejected.status != OK,
+		"injected finite gain rejected by same real strict outer guard"
+	)
+	_check(
+		bits == var_to_bytes(fault.snapshot()),
+		"entire manifold rig state atomically restored; never parked"
+	)
+	for side in [-1.0, 1.0]:
+		_manifold_boundary(history, rig._limit_definitions(), contacts, side)
+	_check(_checks == 26, "complete native manifold tally")
 	print("Support manifold components: %d checks, %d failures" % [_checks, _failures])
 	print(
 		"Scope: isolated two-support physical complementarity; ZERO public world ticks; NOT acceptance"
 	)
 	quit(1 if _failures else 0)
+
+
+func _manifold_boundary(history: Array, limits: Array, contacts: Array, side: float) -> void:
+	var bodies := _restore(history)
+	var joint := AngularJoint.new()
+	var valid: bool = joint.setup(bodies[0], bodies[1], CONFIG) == OK
+	var bounds: Array = limits.duplicate(true)
+	bounds[0].rest_angle = joint.rest_angle
+	bounds[0].lower = 0.0
+	var axes: Dictionary = PlanarBasis.frame(bodies[0])
+	bodies[0].a.velocity_x = side * axes.y
+	bodies[0].a.velocity_y = -side * axes.x
+	for body in bodies:
+		body.a.velocity_y -= 28.0 / 60.0
+		body.b.velocity_y -= 28.0 / 60.0
+	var parents: Array[int] = [-1, 0, 1]
+	var kernel := FINAL.new()
+	kernel.history = history.duplicate(true)
+	kernel.limits = bounds
+	valid = valid and kernel.configure(bodies, parents) == OK
+	var response: Dictionary = BLOCK.solve(kernel, bodies, contacts)
+	var omega: float = PlanarBasis.frame(bodies[0]).omega
+	_check(
+		valid and not response.is_empty() and (omega <= 1e-12 if side > 0.0 else omega < -0.1),
+		"real lower-boundary support blocks outward but freely releases inward"
+	)

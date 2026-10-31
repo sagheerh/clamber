@@ -149,7 +149,7 @@ static func resolve_tick(
 		certified_velocity.is_empty()
 		or certified_velocity != _velocity_key(work, parents) + var_to_bytes(limits)
 	):
-		var projected := network.project_velocity(work)
+		var projected: Dictionary = network.project_velocity(work)
 		if projected.is_empty():
 			return _fail("initial network velocity projection", work)
 		_add(reactions, projected.hinge_impulses)

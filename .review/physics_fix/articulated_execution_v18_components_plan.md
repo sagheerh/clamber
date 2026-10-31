@@ -47,3 +47,11 @@ connecting bar using endpoint kinematics (not pivot epsilon): two endpoint norma
 velocities0 plus nonzero tangential extent imply angular velocity0. Free root
 endpoint/angle remains a DOF. Recompute certificate on FINAL positive supports
 before exact nullspace publication. Earlier14 results are not broadened to23.
+
+47427ed/run41205342979 STOP before new components, ZERO world: dynamic RefCounted
+factory made inferred `projected` return type unavailable. Explicit Dictionary
+binding corrects semantics. Preserved annotations. Static dependency propagation
+also continues when new endpoint-normal facts appear, not just new body rotation
+facts; otherwise Hopper's bridge is missed by order. Registration now27: add real
+finite gain/atomic entire-rig restore and real angular boundary outward/inward
+release, while keeping original14 and allthree integration checks. No world yet.

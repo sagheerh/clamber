@@ -291,6 +291,8 @@ static func _static_patches(
 			var a: int = n if i == 0 else kernel._tree_parents[i]
 			var b := i
 			if zero_rotation.has(groups[i]):
+				if not node_zero.has(a) or not node_zero.has(b):
+					changed = true
 				node_zero[a] = true
 				node_zero[b] = true
 				var ra := _root(parent, a)
