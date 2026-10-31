@@ -1,0 +1,50 @@
+[
+  {
+    "path": ".github",
+    "blob_href": "https://github.com/sagheerh/clamber/blob/5d5806e04a2a28536be51e7fd0dee1e70bbd74dc/.github",
+    "start_line": 13,
+    "start_column": null,
+    "end_line": 13,
+    "end_column": null,
+    "annotation_level": "failure",
+    "title": "Candidate contact-identity-compile.log",
+    "message": "ERROR: Failed to load script \"res://tests/physics_fix/test_staged_contact_identity.gd\" with error \"Parse error\".",
+    "raw_details": ""
+  },
+  {
+    "path": ".github",
+    "blob_href": "https://github.com/sagheerh/clamber/blob/5d5806e04a2a28536be51e7fd0dee1e70bbd74dc/.github",
+    "start_line": 12,
+    "start_column": null,
+    "end_line": 12,
+    "end_column": null,
+    "annotation_level": "failure",
+    "title": "Candidate contact-identity-compile.log",
+    "message": "SCRIPT ERROR: Parse Error: Identifier \"tuning\" not declared in the current scope.",
+    "raw_details": ""
+  },
+  {
+    "path": ".github",
+    "blob_href": "https://github.com/sagheerh/clamber/blob/5d5806e04a2a28536be51e7fd0dee1e70bbd74dc/.github",
+    "start_line": 10,
+    "start_column": null,
+    "end_line": 10,
+    "end_column": null,
+    "annotation_level": "notice",
+    "title": "NEW articulated execution exit-code.txt",
+    "message": "1\n",
+    "raw_details": ""
+  },
+  {
+    "path": ".github",
+    "blob_href": "https://github.com/sagheerh/clamber/blob/5d5806e04a2a28536be51e7fd0dee1e70bbd74dc/.github",
+    "start_line": 73,
+    "start_column": null,
+    "end_line": 73,
+    "end_column": null,
+    "annotation_level": "failure",
+    "title": "",
+    "message": "Process completed with exit code 1.",
+    "raw_details": ""
+  }
+]

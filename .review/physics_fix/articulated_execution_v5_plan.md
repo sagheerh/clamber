@@ -32,3 +32,10 @@ implementing the advertised change. Actual endpoint code change is6249662, never
 attribute it to889205c. Record that run's zero-tick preflight/component outcome
 separately. No physical credit. Editing commands now use explicit set-e/checked
 replacement assertions. No historical evidence deleted.
+
+Source5d5806e/run41157242302 stopped in new native test check-only: a remaining
+multiline argument still named `tuning` after its preload was renamed CONFIG for
+lint. Native42+8+20 PASS; new12 NOT RUN, ZERO world ticks. Publisherf01e39b preserves
+compile error/source/exit1. Fix only the undeclared test identifier, not physics,
+resource values or guards. V5 world protocol remains UNRUN. Grammar/lint alone
+was not semantic proof; actual check-only barrier correctly prevented ticks.

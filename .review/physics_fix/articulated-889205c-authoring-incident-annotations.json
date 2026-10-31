@@ -1,0 +1,32 @@
+[
+  {
+    "id": 124406005637,
+    "conclusion": "failure",
+    "annotations": [
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/889205ca62fbff622a94f491bc4c28d086ece697/.github",
+        "start_line": 9,
+        "start_column": null,
+        "end_line": 9,
+        "end_column": null,
+        "annotation_level": "failure",
+        "title": "",
+        "message": "Process completed with exit code 1.",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/889205ca62fbff622a94f491bc4c28d086ece697/.github",
+        "start_line": 9,
+        "start_column": null,
+        "end_line": 9,
+        "end_column": null,
+        "annotation_level": "failure",
+        "title": "",
+        "message": "Process completed with exit code 1.",
+        "raw_details": ""
+      }
+    ]
+  }
+]

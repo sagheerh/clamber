@@ -144,7 +144,7 @@ func _batch_projection_control() -> void:
 		lowest,
 		friction,
 		bounce,
-		tuning,
+		CONFIG,
 		Callable(),
 		certificate
 	)
