@@ -16,3 +16,8 @@ source digest generated from this clean commit. Full input/force/rollback suite
 is a separate pending gate: injected candidate currently not preserved by base
 public-Sim restore, so world stops at failure and never claims restore coverage.
 Not production adoption, full M1/FA3/determinism/device/runtime signoff.
+
+Launch note: bdc0d5f used unknown `[M1-articulated-world]` marker; GH41217182843
+skipped every job, ZERO engine/world ticks. Correct existing marker is
+`[M1-articulated-execution]`; next source is real registered launch, not retry
+of a physics failure or second measurement.
