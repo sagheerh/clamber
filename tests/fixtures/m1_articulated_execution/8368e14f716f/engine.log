@@ -1,0 +1,3 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+M1 articulated execution: {"arms":{"idle-Slug":{"airborne_ticks":0,"first_metric_violation_tick":14,"first_sleep_tick":-1,"max_attitude_deg":50.42405874018188,"max_length_wu":6.106226635438361e-16,"max_penetration_wu":0.02006846411770838,"net_com_wu":0.3537680379848081,"sleep_by_original_4s":false,"target_ticks":600,"termination":"completed; candidate metrics FAILED; stop later arms","ticks":600}},"not_run_arms":["length-Slug","length-Hopper","length-TwinRoller"],"scanner_control":"detected both nonphysical NaN/Inf; not qualifying data","scope":"NEW unadopted articulated candidate","status":"STOP; inspect first failure; NOT ADOPTED"}

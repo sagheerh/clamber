@@ -1,0 +1,5 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+Angular limited diagnostic: {"hinge_linear_residual":1.0842021724855044e-19,"new_q":0.6981317007977315,"old_q":0.7053165237037202,"upper":0.6981317007977316}
+Angular limited components: 27 checks, 0 failures
+Scope: saved/constructed component states ONLY; ZERO world ticks; NOT acceptance
