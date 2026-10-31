@@ -136,6 +136,32 @@ jobs:
           PY
           exit "$status"
 
+      - name: Complete constitutive components ONLY (ZERO public world ticks)
+        if: ${{ contains(github.event.head_commit.message, '[M1-constitutive-units]') }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          sha256sum tests/physics_fix/constitutive_*.gd tests/physics_fix/test_constitutive_stage_components.gd
+          folder=exports/constitutive-components
+          mkdir "$folder"
+          for stage in compile units; do
+            args=()
+            if [[ "$stage" == compile ]]; then args+=(--check-only); fi
+            status=0
+            timeout 60s "$GODOT" --headless --quit-after 1 "${args[@]}" --script res://tests/physics_fix/test_constitutive_stage_components.gd > "$folder/$stage.log" 2>&1 || status=$?
+            cat "$folder/$stage.log"
+            python3 - "$folder/$stage.log" <<'PYNOTICE'
+          import sys
+          from pathlib import Path
+          for row in Path(sys.argv[1]).read_text().splitlines():
+              if any(s in row for s in ('components:', 'ERROR:', 'FAIL')):
+                  print('::notice title=Complete constitutive COMPONENTS ONLY::'+row.replace('%','%25').replace('\r','%0D'))
+          PYNOTICE
+            if [[ "$status" != 0 ]]; then exit "$status"; fi
+            if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script|FAIL' "$folder/$stage.log"; then exit 1; fi
+          done
+          grep -Fxq 'Constitutive stage components: 30 checks, 0 failures' "$folder/units.log"
+
       - name: Inspect archived first failure ONLY (ZERO world ticks)
         if: ${{ contains(github.event.head_commit.message, '[M1-articulated-inspect]') }}
         shell: bash

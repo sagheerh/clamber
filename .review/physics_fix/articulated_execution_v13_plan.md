@@ -39,3 +39,7 @@ Then exactly ONE NEW original600 with full per-body raw trace. Any solver failur
 stops immediately; metric-only failure completes600 then blocks later arms.
 No unchanged rerun/adoption. Device/reference-performance/layout/signoff still
 require actual hardware/human evidence, not substituting CI for a phone.
+
+CLOSED069ad4b/run41168169876/publisher53aceea: native237PASS,25 committed ticks,
+posturefirst16/max34.30085367424188deg,airborne0. Tick25status30, all7200NOTRUN.
+No unchanged retry/adoption. History-only law demonstrably NOT a posture fix.
