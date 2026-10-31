@@ -8,32 +8,47 @@ Session date: 2026-10-31. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-## Active causal repair — new candidate, no acceptance yet (2026-10-31)
+## Active causal repair — numerical run complete, posture/rest FAIL (2026-10-31)
 
-Read-only saved-trace audit8/0: first15deg crossing at tick8 is already present
-at integration (18.36637192151201deg), final18.41374748886769deg. Angular position
-corrections and self-contact are zero through this crossing. Endpoint and linear
-momentum ledgers reconstruct; aggregate iteration ledgers are not exact phase
-poses. Existing angular damping0.8 is declared but unused anywhere in core/sim.
+Latest executed source **813e3ef6e6d34ba76911f2f26b1dcc340e4b0702**, CI
+**41157323700**, immutable publisher **f3da173**. Native prerequisites **42+8+20+12
+PASS**. NEW unadopted Slug completes **600/600 ticks with solver status OK**.
+Original acceptance FAILS: first posture violation **tick14**, max
+**51.5092822123154deg** (>15); no sleep by original4s or at all through600;
+maximum qualifying still streak14 (<30). COM net .3568142297851864WU;
+length max5.551115123125783e-16WU; penetration max.019999982972719904WU.
+All three7200 arms **NOT RUN**, as required after the600 gate failure.
+This is NOT production AC202, adoption, determinism, sleep or M1 acceptance.
 
-Added separate unadopted staged and damped candidates: exact byte certificate
-avoids unchanged second-pass projection while keeping cold/invalid strict guards;
-existing angular damping interpreted as per-step fractional spin loss, no tuning
-change. Actual angular drag and momentum effects exposed, not qualifying loads.
-Native20 component controls precede any NEW world execution. Preregistered in
-`.review/physics_fix/articulated_execution_v3_plan.md`. Local runner21 routing
-controls PASS, ZERO real world ticks in those controls.
+Implemented numerical remedies: exact unchanged-state projection certificates
+across caller/terrain, and exact endpoint-zero contact identity. No energy epsilon,
+new iteration or motion erasure; cold/changed-state guards still strict. Candidate
+angular damping0.8 interpretation remains unadopted, not a proven posture fix.
+Earlier V3/V4 stopped after5/9 ticks; V5 fixes those specific numerical stoppages.
+Preserved fixture/compile incidents (ZERO world ticks), including source5d5806e's
+undeclared test argument; corrected by813e3ef before the native12/world run.
 
-Source6ff0a0d/run41155248026 native42 and original8 PASS; execution stopped
-BEFORE world in a component-fixture error (15m timeout, logs preserved23ee2f8): after the
-intentional invalid-mass rejection, full-rig restore first validates the CURRENT
-invalid body. Repair the component body before restoring the whole fixture.
-Correction also bounds the component engine with --quit-after1 +60s timeout
-and prints failure logs on EXIT. No engine/spawn/summary/world files were created;
-ZERO world ticks. New native20 and v3 world remain NOT RUN pending corrected source.
-Production/core/tuning/manifest remain unchanged; M1 NOT SIGNED, no adoption.
+Read-only hash-pinned600 audit **9/0**, ZERO new ticks:
+`tests/articulated_complete_trace_audit.py`, report
+`.review/physics_fix/articulated-complete-trace-audit.json`. First15deg crossing is
+already present at tick14 integration, not first caused by angular-limit cleanup.
+A SEPARATE later defect: native final joint q exceeds upper40deg from tick46 on
+554 frames. At tick100, recorded last angular pass reconstructs q=.6981317007977315
+(upper=.6981317007977316), but final native q=.7578008772383322. Later aggregate
+hinge/contact operations reopen the corrected angular constraint. This is not
+roundoff; max upper excess .060670178674278374rad. Do NOT misattribute the earlier
+posture crossing to this late defect or assert fixing it alone will pass M1.
 
-## Current continuation — native network PASS, assembled failure isolated (2026-10-31)
+Next physics work must prove simultaneous angular/hinge/contact feasibility on
+saved component states and separately explain the early fall and sustained rest
+motion; no blind damping/order tuning, upright controller or unchanged world replay.
+No next candidate/world capture registered yet. Original600 -> three7200 ->
+input/release/wake/rollback/force coverage -> adoption/provenance/device gates remain.
+M0/foundations/R29 for source813e3ef all SUCCESS (IDs in saved regression JSON).
+Production/core/tuning/manifest unchanged; **M1 BLOCKED/NOT SIGNED**, production
+AC201/202 remain FAILED, FA3 uncredited; M2 blocked and phone/layout gates unwaived.
+
+## Historical pre-V3 continuation — native network PASS, assembled failure isolated (2026-10-31)
 
 Whole-tree articulated mobility passed **42/0 native checks**, official pinned
 Godot4.7.2.ed1daf0bf, sourcebc800ca/run41149770549/job124383257583;

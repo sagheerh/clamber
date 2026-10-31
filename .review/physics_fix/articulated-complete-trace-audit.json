@@ -1,0 +1,263 @@
+{
+  "scope": "OFFLINE saved600 FAILURE; ZERO new world ticks; NOT acceptance",
+  "source": "813e3ef6e6d34ba76911f2f26b1dcc340e4b0702",
+  "raw_sha256": "5811c86f17ffcbdcf579557a1f6fc0220b4c7ec65c3ca2a58026f0843c54e024",
+  "gzip_sha256": "98eb92414021d2d5e32b87d634289d32461b338f74e520fe57975a68bd528b3f",
+  "summary": {
+    "arms": {
+      "idle-Slug": {
+        "airborne_ticks": 0,
+        "first_metric_violation_tick": 14,
+        "first_sleep_tick": -1,
+        "max_attitude_deg": 51.5092822123154,
+        "max_length_wu": 5.551115123125783e-16,
+        "max_penetration_wu": 0.019999982972719904,
+        "net_com_wu": 0.3568142297851864,
+        "sleep_by_original_4s": false,
+        "target_ticks": 600,
+        "termination": "completed; candidate metrics FAILED; stop later arms",
+        "ticks": 600
+      }
+    },
+    "not_run_arms": [
+      "length-Slug",
+      "length-Hopper",
+      "length-TwinRoller"
+    ],
+    "scanner_control": "detected both nonphysical NaN/Inf; not qualifying data",
+    "scope": "NEW unadopted articulated candidate",
+    "status": "STOP; inspect first failure; NOT ADOPTED"
+  },
+  "tick_count": 600,
+  "all_solver_status_ok": true,
+  "first_integration_violation": 14,
+  "first_final_violation": 14,
+  "first_native_angular_limit_violation": 46,
+  "native_angular_limit_violation_ticks": 554,
+  "max_native_upper_excess_rad": 0.060670178674278374,
+  "max_still_ticks": 14,
+  "any_sleep": false,
+  "samples": [
+    {
+      "tick": 0,
+      "status": 0,
+      "integration_deg": 0.0,
+      "final_deg": 0.0,
+      "final_q_native_rad": 0.0,
+      "last_angular_q_reconstructed_rad": 0.0,
+      "lower_rad": -2.4434609527920603,
+      "upper_rad": 0.6981317007977316,
+      "still_ticks": 0,
+      "asleep": false,
+      "foot_applied_n": 33.104400000000005,
+      "gripping": false,
+      "foot_b_final_vx": 0.0,
+      "foot_b_step_dx": 0.0,
+      "foot_b_phase_dx": {
+        "angular": 0.0,
+        "contact": 0.0,
+        "distance": 0.0,
+        "hinge": 0.0,
+        "integration": 0.0,
+        "self_contact": 0.0
+      }
+    },
+    {
+      "tick": 8,
+      "status": 0,
+      "integration_deg": 4.7578720762550075,
+      "final_deg": 4.685458477073937,
+      "final_q_native_rad": -0.14770046234554624,
+      "last_angular_q_reconstructed_rad": -0.14115696850494297,
+      "lower_rad": -2.4434609527920603,
+      "upper_rad": 0.6981317007977316,
+      "still_ticks": 0,
+      "asleep": false,
+      "foot_applied_n": 37.96547949939256,
+      "gripping": true,
+      "foot_b_final_vx": 5.551115123125783e-17,
+      "foot_b_step_dx": -0.0034822205281793694,
+      "foot_b_phase_dx": {
+        "angular": 0.0,
+        "contact": -0.006147180616242531,
+        "distance": 2.0967562691653896e-07,
+        "hinge": -0.00024428959797584415,
+        "integration": 0.0029090400104120895,
+        "self_contact": 0.0
+      }
+    },
+    {
+      "tick": 14,
+      "status": 0,
+      "integration_deg": 15.555326556445825,
+      "final_deg": 15.173559772582456,
+      "final_q_native_rad": 0.04865949371372347,
+      "last_angular_q_reconstructed_rad": 0.030638650115464294,
+      "lower_rad": -2.4434609527920603,
+      "upper_rad": 0.6981317007977316,
+      "still_ticks": 0,
+      "asleep": false,
+      "foot_applied_n": 20.561213807870118,
+      "gripping": true,
+      "foot_b_final_vx": 0.0,
+      "foot_b_step_dx": -0.005897384376893411,
+      "foot_b_phase_dx": {
+        "angular": 0.0,
+        "contact": -0.010943020337927267,
+        "distance": 1.2465613007217602e-05,
+        "hinge": -0.0026096085924027235,
+        "integration": 0.007642778940429362,
+        "self_contact": 0.0
+      }
+    },
+    {
+      "tick": 30,
+      "status": 0,
+      "integration_deg": 43.32980018202845,
+      "final_deg": 43.773926922041944,
+      "final_q_native_rad": 0.37432077155779897,
+      "last_angular_q_reconstructed_rad": 0.33983328252586453,
+      "lower_rad": -2.4434609527920603,
+      "upper_rad": 0.6981317007977316,
+      "still_ticks": 0,
+      "asleep": false,
+      "foot_applied_n": 6.627085791884981,
+      "gripping": false,
+      "foot_b_final_vx": 8.673617379884035e-19,
+      "foot_b_step_dx": 0.001619106298144768,
+      "foot_b_phase_dx": {
+        "angular": 0.0,
+        "contact": 0.0029381186639841905,
+        "distance": 3.548707788736394e-08,
+        "hinge": -0.0012504153413317454,
+        "integration": -6.86325115855646e-05,
+        "self_contact": 0.0
+      }
+    },
+    {
+      "tick": 46,
+      "status": 0,
+      "integration_deg": 50.1356745397255,
+      "final_deg": 50.44663068234593,
+      "final_q_native_rad": 0.6991581460418312,
+      "last_angular_q_reconstructed_rad": 0.6497563287116654,
+      "lower_rad": -2.4434609527920603,
+      "upper_rad": 0.6981317007977316,
+      "still_ticks": 0,
+      "asleep": false,
+      "foot_applied_n": 6.494855710280214,
+      "gripping": false,
+      "foot_b_final_vx": 4.336808689942018e-19,
+      "foot_b_step_dx": 0.0011966706743202216,
+      "foot_b_phase_dx": {
+        "angular": 0.0,
+        "contact": 0.0034962554005090185,
+        "distance": 4.134341202721714e-10,
+        "hinge": -0.0023069918887202445,
+        "integration": 7.406749097327303e-06,
+        "self_contact": 0.0
+      }
+    },
+    {
+      "tick": 60,
+      "status": 0,
+      "integration_deg": 51.49785442866406,
+      "final_deg": 51.49220661909557,
+      "final_q_native_rad": 0.7578319152742787,
+      "last_angular_q_reconstructed_rad": 0.698131700797731,
+      "lower_rad": -2.4434609527920603,
+      "upper_rad": 0.6981317007977316,
+      "still_ticks": 7,
+      "asleep": false,
+      "foot_applied_n": 6.478791162829513,
+      "gripping": false,
+      "foot_b_final_vx": 0.0,
+      "foot_b_step_dx": 4.8269333338679665e-05,
+      "foot_b_phase_dx": {
+        "angular": 0.0,
+        "contact": 0.004192030396610369,
+        "distance": 3.6558045479750945e-10,
+        "hinge": -0.00415072617661999,
+        "integration": 6.964747767845836e-06,
+        "self_contact": 0.0
+      }
+    },
+    {
+      "tick": 100,
+      "status": 0,
+      "integration_deg": 51.49618377081612,
+      "final_deg": 51.49166025229167,
+      "final_q_native_rad": 0.7578008772383322,
+      "last_angular_q_reconstructed_rad": 0.6981317007977315,
+      "lower_rad": -2.4434609527920603,
+      "upper_rad": 0.6981317007977316,
+      "still_ticks": 6,
+      "asleep": false,
+      "foot_applied_n": 6.478844656279352,
+      "gripping": false,
+      "foot_b_final_vx": -4.336808689942018e-19,
+      "foot_b_step_dx": 5.22434892030188e-05,
+      "foot_b_phase_dx": {
+        "angular": 0.0,
+        "contact": 0.004189439787460836,
+        "distance": 3.655103997246556e-10,
+        "hinge": -0.004144160743634606,
+        "integration": 6.964079866389472e-06,
+        "self_contact": 0.0
+      }
+    },
+    {
+      "tick": 239,
+      "status": 0,
+      "integration_deg": 51.506017561360494,
+      "final_deg": 51.49485241043689,
+      "final_q_native_rad": 0.7579822075153815,
+      "last_angular_q_reconstructed_rad": 0.698131700797731,
+      "lower_rad": -2.4434609527920603,
+      "upper_rad": 0.6981317007977316,
+      "still_ticks": 10,
+      "asleep": false,
+      "foot_applied_n": 6.478569463165865,
+      "gripping": false,
+      "foot_b_final_vx": 0.0,
+      "foot_b_step_dx": 2.8976973158845176e-05,
+      "foot_b_phase_dx": {
+        "angular": 0.0,
+        "contact": 0.004204498710438653,
+        "distance": 3.668728654204756e-10,
+        "hinge": -0.004182499182663668,
+        "integration": 6.977078510994605e-06,
+        "self_contact": 0.0
+      }
+    },
+    {
+      "tick": 599,
+      "status": 0,
+      "integration_deg": 51.50772751903129,
+      "final_deg": 51.46742925724689,
+      "final_q_native_rad": 0.756423681583301,
+      "last_angular_q_reconstructed_rad": 0.6981317007977315,
+      "lower_rad": -2.4434609527920603,
+      "upper_rad": 0.6981317007977316,
+      "still_ticks": 1,
+      "asleep": false,
+      "foot_applied_n": 4.416996072101524,
+      "gripping": false,
+      "foot_b_final_vx": 3.2526065174565133e-19,
+      "foot_b_step_dx": -0.0001526635526222231,
+      "foot_b_phase_dx": {
+        "angular": 0.0,
+        "contact": 0.004062445458398345,
+        "distance": 6.775793759405957e-09,
+        "hinge": -0.004185128695624263,
+        "integration": -2.9987091190064596e-05,
+        "self_contact": 0.0
+      }
+    }
+  ],
+  "limitations": [
+    "Posture first fails BEFORE angular-limit reopening; the late defect does not explain the first crossing.",
+    "Last angular pass versus final pose isolates later aggregate operations, not an exact individual contact substep.",
+    "Angular drag units/order remain an unadopted interpretation; no damping-order candidate or new world run selected."
+  ]
+}

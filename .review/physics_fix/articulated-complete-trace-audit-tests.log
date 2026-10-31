@@ -1,0 +1,14 @@
+test_exact_full_horizon_without_solver_failure (__main__.CompleteTraceAudit.test_exact_full_horizon_without_solver_failure) ... ok
+test_first_posture_failure_not_fixed (__main__.CompleteTraceAudit.test_first_posture_failure_not_fixed) ... ok
+test_full600_not_production_ac202_or_acceptance (__main__.CompleteTraceAudit.test_full600_not_production_ac202_or_acceptance) ... ok
+test_last_angular_pass_corrected_then_later_operations_reopened (__main__.CompleteTraceAudit.test_last_angular_pass_corrected_then_later_operations_reopened) ... ok
+test_late_foot_load_does_not_qualify_grip (__main__.CompleteTraceAudit.test_late_foot_load_does_not_qualify_grip) ... ok
+test_native_joint_bounds_reopen_late_not_first_posture_cause (__main__.CompleteTraceAudit.test_native_joint_bounds_reopen_late_not_first_posture_cause) ... ok
+test_original_stop_blocks_every_long_arm (__main__.CompleteTraceAudit.test_original_stop_blocks_every_long_arm) ... ok
+test_quiet_velocity_does_not_erase_recorded_position_creep (__main__.CompleteTraceAudit.test_quiet_velocity_does_not_erase_recorded_position_creep) ... ok
+test_rest_not_fixed (__main__.CompleteTraceAudit.test_rest_not_fixed) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.404s
+
+OK
