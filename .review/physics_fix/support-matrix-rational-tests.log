@@ -1,0 +1,13 @@
+test_contact_gram_spd (__main__.Matrix.test_contact_gram_spd) ... ok
+test_hinge_nullspace (__main__.Matrix.test_hinge_nullspace) ... ok
+test_nonnegative (__main__.Matrix.test_nonnegative) ... ok
+test_real_impact_keeps_authored_restitution (__main__.Matrix.test_real_impact_keeps_authored_restitution) ... ok
+test_rest_not_restituted_from_gravity (__main__.Matrix.test_rest_not_restituted_from_gravity) ... ok
+test_symmetric (__main__.Matrix.test_symmetric) ... ok
+test_total_contact_impulse_preserved (__main__.Matrix.test_total_contact_impulse_preserved) ... ok
+test_zero_and_full_loss_limits (__main__.Matrix.test_zero_and_full_loss_limits) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.015s
+
+OK

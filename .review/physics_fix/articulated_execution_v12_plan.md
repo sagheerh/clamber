@@ -1,0 +1,68 @@
+# V12 preregistration BEFORE native components / world execution
+
+User priority: first fix <=15deg posture and no all-airborne tick. NO upright
+controller, altered geometry/spawn, resource/tolerance/iteration or sleep waiver.
+M1 still BLOCKED/NOTSIGNED; failed candidates not adopted or rerun unchanged.
+
+## Evidence and hypothesis
+Latest closed V11 source30a2205/run41164232428: full600 finite/solver0 but first
+posture16/max49.1818408224deg, airborne18, no sleep. Native185 is NOT acceptance.
+RawSHA14c57e6a8ed4b5bc1b7d5289c595a0d07ed83b1a2921a4a00a891cd12c306e5e.
+At0: gravity creates closing foot vy=-.4666667, native restitution returns+.0092836.
+At17 bottom=.019961902120223474, at18=.021134711502983586 > original+.02 contact
+window, losing grounding. No capture repeated. This implicates restitution of
+fresh support acceleration, not proof it is the sole airborne/posture cause.
+
+Existing angular operator retains r=.2 in hinge nullspace, but terrain reaction
+still uses undamped W_H. Independent exact rod controls (already6PASS) show support
+regenerates rotation: split omega-.6 vs simultaneous-1/3, r0 split regenerates-.5.
+New exact network8 controls verify Kd symmetry/nonnegative form, H nullspace,
+common-translation momentum, contact2x2SPD, original zero/full limits and impact
+vs supported rest. These are NOT normative/creature/native proof.
+
+## One contact constitutive correction
+New test-only damped_support_mobility: Kd = r*W_H+(1-r)*T, same authored r=1-.8;
+T is inverse total mass common translation. SAME inverse mass/inertia, constraints,
+normal/friction law, active angular inequalities and finite positional publication.
+Position mobility stays original; no rotation/position repair or extra PBD/velocity
+sweep. New contact feedback uses the same damping law as free articulated motion,
+not an undamped support kick. Actual body deltaP minus actual terrain J gives tree
+hinge Ns; measured body spin delta minus terrain/hinge/angular-limit torque gives
+constitutive angular torque. These actual impulses enter existing load channel,
+not undamped factor multipliers mislabeled as physical force. Residual global
+linear impulse is reported, never invented/zeroed. Per-contact strict actual
+kinetic energy barrier is INHERITED UNCHANGED; no combined allowance/repair/epsilon.
+If this stronger barrier rejects, STOP and inspect; do not loosen it for metrics.
+
+Impact target uses same e=.02 times PRE-FORCE incoming material-point closing
+velocity. Common gravity support of an already resting body has target0, whereas
+real incoming impact retains e=.02. No velocity epsilon, grounded hysteresis,
+extra grip predicate or synthetic support force. Old-motion history is immutable
+and per tick, not persistent model state, and is checked against original mass /
+shape plus stale-factor key. Missing/mutated history/nonfinite inputs fail closed.
+
+Candidate extends V10b preintegrated step, NOT the failed V11 full-force bypass:
+original motor -> free angular drag -> existing linear drag/full gravity -> first
+contact -> integrate / SAME6 position sweeps -> second contact. This is a coupled
+implicit constitutive interpretation, NOT a new force-order sweep or motor retune;
+all original MotorDrive numbers/targets/bounds stay. V11 bypass was not acceptance
+and is inappropriate when response mobility itself is now damped. No production
+core/tuning/manifest edits. Original kernels/classes and all pinned fixtures intact.
+
+## Barriers / single new measurement
+Prior native185 MUST PASS, then NEW29 (28 functional+complete tally): exact rod
+support, energy/geometry, real torque ledger, zero/full damping, resting gravity vs
+real impact, separating identity, missing/mutated history, invalid coefficient /
+stale geometry, unchanged strict positive-energy rejection; all3 preset setup/step/
+frozenN0bothpasses/actual momentum; upper AND lower active-contact boundaries.
+No public Sim/clock or old full-world replay in this suite.
+
+Then ONE NEW original600, full all-body state/channels/flags/N/sleep/position/bottom
+capture. Existing scanner and guard barriers unchanged. Solver failure stops at
+first failing tick. Metric-only failure still completes600, then blocks later arms.
+Only complete original600 PASS permits existing sequentialthree7200. No threshold,
+4s/F52 .001anchored30, displacement, penetration or no-airborne relaxation. No
+adoption, physical-device/feel/performance/FA3/M1 signature from components.
+
+Local gdlint/gdformat, exact8 and runner36 PASS are not native; native/world
+outcomes NOT RUN at preregistration. Source pin generated before CI execution.

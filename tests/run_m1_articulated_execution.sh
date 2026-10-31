@@ -105,6 +105,12 @@ if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/f
 timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_force_order_components.gd > "$folder/force-order-components.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/force-order-components.log"; then exit 1; fi
 if ! grep -Fxq 'Force-order components: 14 checks, 0 failures' "$folder/force-order-components.log"; then exit 1; fi
+# Coupled support constitutive and impact-history controls, no public clock.
+"$GODOT" --headless --check-only --script res://tests/physics_fix/test_damped_support_components.gd > "$folder/damped-support-compile.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/damped-support-compile.log"; then exit 1; fi
+timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_damped_support_components.gd > "$folder/damped-support-components.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/damped-support-components.log"; then exit 1; fi
+if ! grep -Fxq 'Damped support components: 29 checks, 0 failures' "$folder/damped-support-components.log"; then exit 1; fi
 "$GODOT" --headless --script res://tests/physics_fix/test_articulated_execution.gd -- --report-dir="$folder" > "$folder/engine.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/engine.log"; then
  echo 'STOP: runtime errors; inspect first failure.' >&2
