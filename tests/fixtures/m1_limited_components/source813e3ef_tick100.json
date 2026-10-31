@@ -1,0 +1,137 @@
+{
+  "scope": "Derived saved tick100 component input ONLY; JSON poses, not binary Variant/world replay",
+  "source_commit": "813e3ef6e6d34ba76911f2f26b1dcc340e4b0702",
+  "raw_trace_sha256": "5811c86f17ffcbdcf579557a1f6fc0220b4c7ec65c3ca2a58026f0843c54e024",
+  "source_row_sha256": "9ae493c54e3557a87249227cd70ac0452a319d559c70a05008800a2f9b27b803",
+  "tick": 100,
+  "physical": {
+    "angular_joints": [
+      {
+        "impulse": -0.13259516227740067,
+        "lower": -2.4434609527920603,
+        "rest_angle": -1.5707963267948968,
+        "upper": 0.6981317007977316
+      }
+    ],
+    "bodies": [
+      {
+        "a": {
+          "configured": true,
+          "inverse_mass": 2.5974025974025974,
+          "previous_x": -0.016991281494339455,
+          "previous_y": 0.08000004216574458,
+          "velocity_x": 0.00029853521754672624,
+          "velocity_y": 0.0014618513593851034,
+          "x": -0.017189909065847424,
+          "y": 0.08000004540256295
+        },
+        "applied_load_n": 18.143767856095273,
+        "b": {
+          "configured": true,
+          "inverse_mass": 2.5974025974025974,
+          "previous_x": 0.3097876807437383,
+          "previous_y": 0.20536155874322165,
+          "velocity_x": -0.008084637221758811,
+          "velocity_y": 0.02336946419598039,
+          "x": 0.309694712095024,
+          "y": 0.2050857937854767
+        },
+        "gripping": false,
+        "grounded": true,
+        "kind": "head",
+        "length": 0.35,
+        "mass": 0.77,
+        "measured_reaction_n": 19.324102055483564,
+        "positional_cleanup_n": 18.616719148431553,
+        "radius": 0.1
+      },
+      {
+        "a": {
+          "configured": true,
+          "inverse_mass": 4.166666666666667,
+          "previous_x": 0.30996143958042266,
+          "previous_y": 0.2053531070847025,
+          "velocity_x": -0.008084637221758811,
+          "velocity_y": 0.02336946419598039,
+          "x": 0.309880093792467,
+          "y": 0.20507553809206563
+        },
+        "applied_load_n": 18.777387487625376,
+        "b": {
+          "configured": true,
+          "inverse_mass": 4.166666666666667,
+          "previous_x": 0.5802798919010688,
+          "previous_y": 0.07524571169546757,
+          "velocity_x": -0.004594650013300496,
+          "velocity_y": 0.030640160058537126,
+          "x": 0.5803362390909877,
+          "y": 0.07525460961647085
+        },
+        "gripping": false,
+        "grounded": true,
+        "kind": "motor",
+        "length": 0.3,
+        "mass": 0.48,
+        "measured_reaction_n": 19.225828734195094,
+        "positional_cleanup_n": 20.343840161326014,
+        "radius": 0.095
+      },
+      {
+        "a": {
+          "configured": true,
+          "inverse_mass": 6.666666666666667,
+          "previous_x": 0.5802035887504081,
+          "previous_y": 0.07517099400774711,
+          "velocity_x": -0.004594650013300495,
+          "velocity_y": 0.030640160058537126,
+          "x": 0.5802553711859487,
+          "y": 0.07517415186903832
+        },
+        "applied_load_n": 6.478844656279352,
+        "b": {
+          "configured": true,
+          "inverse_mass": 6.666666666666667,
+          "previous_x": 0.33431572664366,
+          "previous_y": 0.030013942857647125,
+          "velocity_x": -4.336808689942018e-19,
+          "velocity_y": 0.005622943091799358,
+          "x": 0.334367970132863,
+          "y": 0.030014590275073166
+        },
+        "gripping": false,
+        "grounded": true,
+        "kind": "foot",
+        "length": 0.25,
+        "mass": 0.3,
+        "measured_reaction_n": 6.905962487420659,
+        "positional_cleanup_n": 4.205341359806286,
+        "radius": 0.05
+      }
+    ],
+    "ticks": 101
+  },
+  "native_joint": {
+    "angle": -0.8129954495565646,
+    "child": {
+      "inverse_inertia": 92.59259259259252,
+      "omega": 0.026883086182166706,
+      "squared": 0.09000000000000007,
+      "x": 0.27045614529852074,
+      "y": -0.1298209284755948
+    },
+    "impulse": -0.13259516227740067,
+    "lower": -2.4434609527920603,
+    "omega": -0.04013631888740913,
+    "parent": {
+      "inverse_inertia": 42.406573018817895,
+      "omega": 0.06701940506957584,
+      "squared": 0.12250000000000007,
+      "x": 0.32688462116087147,
+      "y": 0.12508574838291375
+    },
+    "q": 0.7578008772383322,
+    "rest_angle": -1.5707963267948968,
+    "upper": 0.6981317007977316,
+    "weight": 134.99916561141043
+  }
+}

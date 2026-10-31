@@ -81,6 +81,12 @@ if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/c
 timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_staged_contact_identity.gd > "$folder/contact-identity.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/contact-identity.log"; then exit 1; fi
 if ! grep -Fxq 'Staged contact identity: 12 checks, 0 failures' "$folder/contact-identity.log"; then exit 1; fi
+# NEW simultaneous angular/hinge/contact component gate: ZERO world ticks.
+"$GODOT" --headless --check-only --script res://tests/physics_fix/test_limited_articulated_components.gd > "$folder/limited-compile.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/limited-compile.log"; then exit 1; fi
+timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_limited_articulated_components.gd > "$folder/limited-components.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/limited-components.log"; then exit 1; fi
+if ! grep -Fxq 'Angular limited components: 24 checks, 0 failures' "$folder/limited-components.log"; then exit 1; fi
 "$GODOT" --headless --script res://tests/physics_fix/test_articulated_execution.gd -- --report-dir="$folder" > "$folder/engine.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/engine.log"; then
  echo 'STOP: runtime errors; inspect first failure.' >&2
