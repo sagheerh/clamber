@@ -1,0 +1,34 @@
+{
+  "scope": "NEW articulated test-only awake-row substitution in public clock/Sim; not production acceptance or determinism",
+  "source_commit": "80e9f52e96452b3f2b9e6fa9d55c6082e2603ae1",
+  "checkout_head": "80e9f52e96452b3f2b9e6fa9d55c6082e2603ae1",
+  "checkout_dirty": false,
+  "source_ci_run": "41156907377",
+  "core_manifest": {
+    "source_commit": "0c1d3f875af8a9ddee1b3f6d10d0784060db4f1d",
+    "tuning_sha256": "5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666",
+    "core_tree_sha256": "557524202efe109074f692a56240ca6b50fcd422db4ed38888aed1b4476704df"
+  },
+  "engine_build": "4.7.2.stable.official.ed1daf0bf",
+  "candidate_sha256": {
+    "tests/physics_fix/actuated_articulated_candidate.gd": "266659bde4e5f621901a1d6c88c76876111f6098e0176522d5e2607c3da9a9c1",
+    "tests/physics_fix/actuated_contact_composition.gd": "ab2ce1c220049c99143a647791b5ac90b41ba56ed86d2bb837b2d9301c52474b",
+    "tests/physics_fix/articulated_mobility_candidate.gd": "59a70d4b92018198fe1bdf5fb774c6ed04683dc7bfeed0eeaf3d000046445952",
+    "tests/physics_fix/articulated_terrain_candidate.gd": "f53000fdd941ccf90ea2a7c6d438ea1a81b986553288f398e315f08d54c56c23",
+    "tests/physics_fix/capsule_contact_composition.gd": "177e09d8646870ad1cde7dc7ddb1e5a7a02582ec06cb1b8a9398f898ff0de202",
+    "tests/physics_fix/damped_staged_articulated_candidate.gd": "09feeaf782b82bec81d36ae6912163639a678e15dbb71d65843e644289a6f247",
+    "tests/physics_fix/inspect_articulated_failure.gd": "38cbfa4e20cb9529cc8daaa609e2293401a8f5d45d234c7e8e0e0c521786cf79",
+    "tests/physics_fix/rigid_contact_candidate.gd": "4755e992fdcd364fe7598a25e25126b487129ddd95f3b82d4414ba4802692026",
+    "tests/physics_fix/staged_articulated_candidate.gd": "8f7e1f81dd9e5c1e7617d6ba81087235028e3108ba62869abd18888e371ec72e",
+    "tests/physics_fix/staged_terrain_candidate.gd": "02e571d4f666074f55e1cb1326d35e572d0321576ce3ae5508c6629f3a5c4f0d",
+    "tests/physics_fix/test_articulated_cap_identity.gd": "9a56685539b86bf80d98feef0e43e9746c3e5de4dc79b2a039f34b47681b24ee",
+    "tests/physics_fix/test_articulated_execution.gd": "f93b65bf37445b58e3615e60982ed3a72c8d052978c52aed44d566abcf2838b0",
+    "tests/physics_fix/test_articulated_mobility_candidate.gd": "9992c962f8069d7ee1c207c14b06d7f57b9bfaaef94583e3ffe3b961ae544181",
+    "tests/physics_fix/test_contact_composition.gd": "f39dfbeb42c52e07979d018b67a550f0781dff15bee253f9df7c3bb9f542b548",
+    "tests/physics_fix/test_rigid_contact_candidate.gd": "77167e7ee02141583c20fa68651fb4a3dd6d0adcc2291606f921520c57692958",
+    "tests/physics_fix/test_staged_articulated_components.gd": "fb1900807d26af8a61722722e4ac5c5fbd27fa7b57f480d89113cba6e7e64919",
+    "tests/physics_fix/test_staged_contact_identity.gd": "9e804467be7224cbf30178b4eb983f5942a209ed36333256d1195e257cdc97c7",
+    "tests/run_m1_articulated_execution.sh": "ccd11e2b7de6176a91f8c4f78008d3ad6bd08a99a5ab56874c5314e0fa2bbe2b",
+    "scripts/publish_m1_articulated_execution.py": "eb754a43e989f54faf38cda375ff4b0683cc0eaf531bd5f35c6a390473a29104"
+  }
+}
