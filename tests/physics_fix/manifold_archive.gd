@@ -42,7 +42,7 @@ static func final_frame(path: String) -> Dictionary:
 	var terrain: Dictionary = full.before.identity.tower.terrain
 	var grid := SdfGrid.new()
 	var valid: bool = (
-		(saved.tick == 256 or saved.tick == 263)
+		(saved.tick == 256 or saved.tick == 263 or saved.tick == 227)
 		and saved.status == 30
 		and full.awake_trace.stage_order[-1] == "velocity_pass_1"
 		and grid.configure(terrain.rows, terrain.x, terrain.y, terrain.friction, TUNING) == OK
@@ -68,4 +68,4 @@ static func final_frame(path: String) -> Dictionary:
 						"static_threshold": 0.15
 					}
 				)
-	return {"bodies": bodies, "kernel": kernel, "contacts": contacts}
+	return {"bodies": bodies, "kernel": kernel, "contacts": contacts, "terrain": grid}

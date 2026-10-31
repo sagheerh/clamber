@@ -90,7 +90,7 @@ jobs:
         run: python3 scripts/publish_m1_contact_composition.py
 
   articulated-primitives:
-    if: ${{ github.ref == 'refs/heads/arena/f43f36ab-clamber' && github.sha == github.event.after && (contains(github.event.head_commit.message, '[M1-runtime-contract]') || contains(github.event.head_commit.message, '[M1-hopper263-audit]') || contains(github.event.head_commit.message, '[M1-articulated-units]') || contains(github.event.head_commit.message, '[M1-articulated-execution]')) }}
+    if: ${{ github.ref == 'refs/heads/arena/f43f36ab-clamber' && github.sha == github.event.after && (contains(github.event.head_commit.message, '[M1-final-geometry-units]') || contains(github.event.head_commit.message, '[M1-runtime-contract]') || contains(github.event.head_commit.message, '[M1-hopper263-audit]') || contains(github.event.head_commit.message, '[M1-articulated-units]') || contains(github.event.head_commit.message, '[M1-articulated-execution]')) }}
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     env:
@@ -137,11 +137,12 @@ jobs:
           exit "$status"
 
       - name: Complete constitutive components ONLY (ZERO public world ticks)
-        if: ${{ contains(github.event.head_commit.message, '[M1-runtime-contract]') || contains(github.event.head_commit.message, '[M1-hopper263-audit]') || contains(github.event.head_commit.message, '[M1-constitutive-units]') || contains(github.event.head_commit.message, '[M1-local-angular-units]') || contains(github.event.head_commit.message, '[M1-surface-units]') || contains(github.event.head_commit.message, '[M1-rigid-pad-units]') || contains(github.event.head_commit.message, '[M1-manifold-units]') || contains(github.event.head_commit.message, '[M1-coplanar-units]') || contains(github.event.head_commit.message, '[M1-final-audit]') }}
+        if: ${{ contains(github.event.head_commit.message, '[M1-final-geometry-units]') || contains(github.event.head_commit.message, '[M1-runtime-contract]') || contains(github.event.head_commit.message, '[M1-hopper263-audit]') || contains(github.event.head_commit.message, '[M1-constitutive-units]') || contains(github.event.head_commit.message, '[M1-local-angular-units]') || contains(github.event.head_commit.message, '[M1-surface-units]') || contains(github.event.head_commit.message, '[M1-rigid-pad-units]') || contains(github.event.head_commit.message, '[M1-manifold-units]') || contains(github.event.head_commit.message, '[M1-coplanar-units]') || contains(github.event.head_commit.message, '[M1-final-audit]') }}
         env:
           LOCAL_ANGULAR_COMPONENTS: ${{ contains(github.event.head_commit.message, '[M1-local-angular-units]') }}
           SURFACE_COMPONENTS: ${{ contains(github.event.head_commit.message, '[M1-surface-units]') }}
           RIGID_PAD_COMPONENTS: ${{ contains(github.event.head_commit.message, '[M1-rigid-pad-units]') }}
+          FINAL_GEOMETRY: ${{ contains(github.event.head_commit.message, '[M1-final-geometry-units]') }}
           RUNTIME_CONTRACT: ${{ contains(github.event.head_commit.message, '[M1-runtime-contract]') }}
           HOPPER263_AUDIT: ${{ contains(github.event.head_commit.message, '[M1-hopper263-audit]') }}
           FINAL_AUDIT: ${{ contains(github.event.head_commit.message, '[M1-final-audit]') }}
@@ -153,7 +154,10 @@ jobs:
           sha256sum tests/physics_fix/constitutive_*.gd tests/physics_fix/test_constitutive_stage_components.gd tests/physics_fix/local_angular_*.gd tests/physics_fix/test_local_angular_components.gd tests/physics_fix/capsule_surface_frame.gd tests/physics_fix/surface_*.gd tests/physics_fix/test_capsule_surface_components.gd tests/physics_fix/rigid_pad_*.gd tests/physics_fix/test_rigid_pad_components.gd tests/physics_fix/support_manifold.gd tests/physics_fix/manifold_*.gd tests/physics_fix/test_support_manifold_components.gd tests/physics_fix/coplanar_pad_candidate.gd tests/physics_fix/test_coplanar_pad_components.gd
           script=res://tests/physics_fix/test_constitutive_stage_components.gd
           expected='Constitutive stage components: 30 checks, 0 failures'
-          if [[ "$RUNTIME_CONTRACT" == true ]]; then
+          if [[ "$FINAL_GEOMETRY" == true ]]; then
+            script=res://tests/physics_fix/test_final_geometry_components.gd
+            expected='Final geometry components: 57 checks, 0 failures'
+          elif [[ "$RUNTIME_CONTRACT" == true ]]; then
             script=res://tests/physics_fix/test_candidate_runtime_contract.gd
             expected='Candidate runtime contract: 183 checks, 0 failures'
           elif [[ "$HOPPER263_AUDIT" == true ]]; then

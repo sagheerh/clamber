@@ -17,6 +17,10 @@ func _apply_authored_angular_damping(_budget: Dictionary) -> Error:
 	return OK
 
 
+func _constitutive_velocity_pass() -> int:
+	return 0
+
+
 func _velocity_pass(
 	before: Dictionary,
 	hinge_x: Array[float],
@@ -31,14 +35,16 @@ func _velocity_pass(
 ) -> Dictionary:
 	var dt := float(TUNING.physics_one) / _tuning.physics_tick_hz
 	_stage_order.append("velocity_pass_%d" % velocity_pass)
+	var constitutive_pass := _constitutive_velocity_pass()
 	var lowest: Array[bool] = []
 	var before_internal := _momentum_y()
 	var before_internal_x := _momentum_x()
 	if _extra_velocities() != OK:
 		return {"status": ERR_INVALID_DATA}
-	if velocity_pass == 0:
+	if velocity_pass == 0 or constitutive_pass == 1:
 		budget.internal_impulse_y_ns += _momentum_y() - before_internal
 		budget.internal_impulse_x_ns += _momentum_x() - before_internal_x
+	if velocity_pass == constitutive_pass:
 		_constitutive_origin = []
 		_constitutive_report = {}
 		for body in bodies:
@@ -61,7 +67,7 @@ func _velocity_pass(
 			and network._angular_inequalities(bodies, true).is_empty()
 		):
 			certified_velocity = _hinge_velocity_key()
-	if velocity_pass == 0:
+	if velocity_pass == 0 or constitutive_pass == 1:
 		before_internal = _momentum_y()
 		before_internal_x = _momentum_x()
 	var projection := _project_changed_velocity(certified_velocity, hinge_x, hinge_y)
@@ -120,7 +126,7 @@ func _velocity_pass(
 	var before_contact_x := _momentum_x()
 	var before_contact_positions := _positions()
 	var recorder := _record_contact.bind(velocity_pass, contact_samples)
-	var contact: GDScript = MANIFOLD_TRIAL if velocity_pass == 0 else MANIFOLD_FINAL
+	var contact: GDScript = MANIFOLD_TRIAL if velocity_pass == constitutive_pass else MANIFOLD_FINAL
 	var status: Dictionary = contact.resolve_tick(
 		bodies,
 		_parents,
@@ -155,7 +161,7 @@ func _velocity_pass(
 			"cap_input": cap_input,
 			"work_state": snapshot()
 		}
-	if velocity_pass == 0:
+	if velocity_pass == constitutive_pass:
 		_constitutive_report = STAGE_GUARD.validate(_constitutive_origin, bodies)
 		if _constitutive_report.status != OK:
 			return _constitutive_report.merged(
@@ -174,6 +180,7 @@ func _velocity_pass(
 
 func _step(before: Dictionary) -> Dictionary:
 	var result := super._step(before)
+	result.constitutive_velocity_pass = _constitutive_velocity_pass()
 	result.support_scope = "simultaneous skin support complementarity; same physical drag/energy/sleep guards"
 	last_step_trace = result.duplicate(true)
 	return result
