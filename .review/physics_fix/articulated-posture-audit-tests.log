@@ -1,0 +1,13 @@
+test_exact_partial_horizon (__main__.PostureAudit.test_exact_partial_horizon) ... ok
+test_existing_angular_resource_omitted_from_original_path (__main__.PostureAudit.test_existing_angular_resource_omitted_from_original_path) ... ok
+test_first_crossing_is_integration (__main__.PostureAudit.test_first_crossing_is_integration) ... ok
+test_grip_really_lost_before_crossing (__main__.PostureAudit.test_grip_really_lost_before_crossing) ... ok
+test_ledger_closes_unit_roundoff_only (__main__.PostureAudit.test_ledger_closes_unit_roundoff_only) ... ok
+test_linear_momentum_ledger (__main__.PostureAudit.test_linear_momentum_ledger) ... ok
+test_no_angular_or_self_position_push_before_first_violation (__main__.PostureAudit.test_no_angular_or_self_position_push_before_first_violation) ... ok
+test_reconstructed_crossing (__main__.PostureAudit.test_reconstructed_crossing) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.068s
+
+OK

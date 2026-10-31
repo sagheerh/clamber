@@ -60,6 +60,11 @@ if ! grep -Fxq 'Articulated cap identity: 8 checks, 0 failures' "$folder/compone
  echo 'STOP: incomplete adapter suite; zero creature ticks.' >&2
  exit 1
 fi
+"$GODOT" --headless --check-only --script res://tests/physics_fix/test_staged_articulated_components.gd > "$folder/staged-compile.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/staged-compile.log"; then exit 1; fi
+"$GODOT" --headless --script res://tests/physics_fix/test_staged_articulated_components.gd > "$folder/staged-components.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/staged-components.log"; then exit 1; fi
+if ! grep -Fxq 'Staged articulated components: 20 checks, 0 failures' "$folder/staged-components.log"; then exit 1; fi
 "$GODOT" --headless --script res://tests/physics_fix/test_articulated_execution.gd -- --report-dir="$folder" > "$folder/engine.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/engine.log"; then
  echo 'STOP: runtime errors; inspect first failure.' >&2
