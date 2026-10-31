@@ -1,0 +1,12 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCRIPT ERROR: Parse Error: Cannot infer the type of "terrain" variable because the value doesn't have a set type.
+          at: GDScript::reload (res://tests/physics_fix/damped_support_mobility.gd:182)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://tests/physics_fix/damped_support_terrain.gd:0)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://tests/physics_fix/damped_support_candidate.gd:0)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://tests/physics_fix/test_articulated_execution.gd:0)
+ERROR: Failed to load script "res://tests/physics_fix/test_articulated_execution.gd" with error "Compilation failed".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
