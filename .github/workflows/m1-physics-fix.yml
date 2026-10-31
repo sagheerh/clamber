@@ -137,18 +137,26 @@ jobs:
           exit "$status"
 
       - name: Complete constitutive components ONLY (ZERO public world ticks)
-        if: ${{ contains(github.event.head_commit.message, '[M1-constitutive-units]') }}
+        if: ${{ contains(github.event.head_commit.message, '[M1-constitutive-units]') || contains(github.event.head_commit.message, '[M1-local-angular-units]') }}
+        env:
+          LOCAL_ANGULAR_COMPONENTS: ${{ contains(github.event.head_commit.message, '[M1-local-angular-units]') }}
         shell: bash
         run: |
           set -euo pipefail
-          sha256sum tests/physics_fix/constitutive_*.gd tests/physics_fix/test_constitutive_stage_components.gd
+          sha256sum tests/physics_fix/constitutive_*.gd tests/physics_fix/test_constitutive_stage_components.gd tests/physics_fix/local_angular_*.gd tests/physics_fix/test_local_angular_components.gd
+          script=res://tests/physics_fix/test_constitutive_stage_components.gd
+          expected='Constitutive stage components: 30 checks, 0 failures'
+          if [[ "$LOCAL_ANGULAR_COMPONENTS" == true ]]; then
+            script=res://tests/physics_fix/test_local_angular_components.gd
+            expected='Local angular components: 26 checks, 0 failures'
+          fi
           folder=exports/constitutive-components
           mkdir "$folder"
           for stage in compile units; do
             args=()
             if [[ "$stage" == compile ]]; then args+=(--check-only); fi
             status=0
-            timeout 60s "$GODOT" --headless --quit-after 1 "${args[@]}" --script res://tests/physics_fix/test_constitutive_stage_components.gd > "$folder/$stage.log" 2>&1 || status=$?
+            timeout 60s "$GODOT" --headless --quit-after 1 "${args[@]}" --script "$script" > "$folder/$stage.log" 2>&1 || status=$?
             cat "$folder/$stage.log"
             python3 - "$folder/$stage.log" <<'PYNOTICE'
           import sys
@@ -162,7 +170,7 @@ jobs:
             if [[ "$status" != 0 ]]; then exit "$status"; fi
             if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script|FAIL' "$folder/$stage.log"; then exit 1; fi
           done
-          grep -Fxq 'Constitutive stage components: 30 checks, 0 failures' "$folder/units.log"
+          grep -Fxq "$expected" "$folder/units.log"
 
       - name: Inspect archived first failure ONLY (ZERO world ticks)
         if: ${{ contains(github.event.head_commit.message, '[M1-articulated-inspect]') }}

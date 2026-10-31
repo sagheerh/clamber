@@ -1,0 +1,13 @@
+test_derivative_spd (__main__.Local.test_derivative_spd) ... ok
+test_derivative_symmetric (__main__.Local.test_derivative_symmetric) ... ok
+test_energy_nonincrease (__main__.Local.test_energy_nonincrease) ... ok
+test_hinge_constraints (__main__.Local.test_hinge_constraints) ... ok
+test_identity_no_uniform_linear_drag (__main__.Local.test_identity_no_uniform_linear_drag) ... ok
+test_local_torque_law (__main__.Local.test_local_torque_law) ... ok
+test_momentum_preserved (__main__.Local.test_momentum_preserved) ... ok
+test_not_shape_damping (__main__.Local.test_not_shape_damping) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.010s
+
+OK

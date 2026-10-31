@@ -26,3 +26,7 @@ Complete600PASS only permits sequential Slug/Hopper/TwinRoller7200. Solver error
 terminates immediately; metric failure completes600 but blocks later arms. Keep
 full raw source-pinned states; do not rerun unchanged or adopt a failed candidate.
 M1/signoff/hardware/runtime acceptance NOT inferred from component success.
+
+CLOSED e7233e0/run41168877663/publisheraef92fb: native267 PASS;86 committed ticks,
+firstposture75/max20.68877707230014deg/no airborne/no sleep. Tick86/status30 final
+contact, all7200NOTRUN. Complete drag-stage operator does not solve posture.
