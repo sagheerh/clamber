@@ -1,0 +1,135 @@
+# gdlint: disable=max-line-length
+extends "res://tests/physics_fix/test_support_manifold_components.gd"
+const COPLANAR = preload("res://tests/physics_fix/coplanar_pad_candidate.gd")
+
+
+class CoplanarFault:
+	extends "res://tests/physics_fix/coplanar_pad_candidate.gd"
+
+	func _velocity_pass(
+		before: Dictionary,
+		hx: Array[float],
+		hy: Array[float],
+		reaction: Array[float],
+		cleanup: Array[float],
+		budget: Dictionary,
+		positions: Array,
+		samples: Array,
+		pass_index: int,
+		certificate: PackedByteArray
+	) -> Dictionary:
+		var result: Dictionary = super._velocity_pass(
+			before, hx, hy, reaction, cleanup, budget, positions, samples, pass_index, certificate
+		)
+		if result.status == OK and pass_index == 0:
+			bodies[0].a.velocity_x = 100.0
+			return STAGE_GUARD.validate(_constitutive_origin, bodies)
+		return result
+
+
+func _initialize() -> void:
+	for name in ["Slug", "Hopper", "TwinRoller"]:
+		var rig := COPLANAR.new()
+		var valid: bool = _setup_pad(rig, name) == OK
+		var original := CreaturePresets.load_model(name, CONFIG)
+		var old_bodies := original.create_bodies(0.0, 0.0)
+		var shape := valid
+		for i in range(rig.bodies.size()):
+			shape = (
+				shape
+				and rig.bodies[i].mass == old_bodies[i].mass
+				and rig.bodies[i].radius == old_bodies[i].radius
+				and rig.bodies[i].rest_length == old_bodies[i].rest_length
+			)
+			if rig.bodies[i].kind == "foot":
+				var parent: int = rig._parents[i]
+				shape = (
+					shape
+					and (
+						absf(
+							(
+								(rig.bodies[i].b.y - rig.bodies[i].radius)
+								- (rig.bodies[parent].b.y - rig.bodies[parent].radius)
+							)
+						)
+						< 1e-12
+					)
+				)
+		_check(
+			shape,
+			(
+				name
+				+ " real toe and parent skins coplanar from unchanged radii/length/mass, no angle knob"
+			)
+		)
+		rig.collect_contact_samples = true
+		var result: Dictionary = rig.step()
+		_check(
+			(
+				result.status == OK
+				and result.constitutive_stage.status == OK
+				and result.previous_grounded_feet == 0
+			),
+			name + " actual strict coupled gravity/contact stage; original frozen N0"
+		)
+		var material := result.status == OK
+		if material:
+			for observed in result.contact_samples:
+				material = material and not observed.may_grip
+			for axis in ["x", "y"]:
+				var impulse := 0.0
+				for stage in [
+					"drive_internal", "damping", "gravity", "internal", "contact_velocity", "clamp"
+				]:
+					impulse += result.momentum_budget[stage + "_impulse_" + axis + "_ns"]
+				material = (
+					material
+					and (
+						absf(impulse - result.momentum_budget["momentum_change_" + axis + "_ns"])
+						< 1e-12
+					)
+				)
+		_check(material, name + " genuine complete momentum and no manufactured grip/load")
+		var kernel := FINAL.new()
+		kernel.limits = rig._limit_definitions()
+		kernel.history = _states(rig.bodies)
+		valid = kernel.configure(rig.bodies, rig._parents) == OK
+		var torque: Array[float] = kernel._zero(3 * rig.bodies.size())
+		torque[2] = 1.0
+		var response: Dictionary = kernel.mobility(torque)
+		_check(
+			valid and not response.is_empty() and response.delta[2] != 0.0,
+			name + " actual root angular DOF free, not world fixed/upright"
+		)
+	var rig := COPLANAR.new()
+	var valid: bool = _setup_pad(rig, "Slug") == OK
+	var bits := _bits(rig.bodies)
+	var kernel := FINAL.new()
+	kernel.limits = rig._limit_definitions()
+	kernel.limits[-1].rigid_connector_inset_ratio = 1.0
+	kernel.history = _states(rig.bodies)
+	_check(
+		valid and kernel.configure(rig.bodies, rig._parents) != OK and bits == _bits(rig.bodies),
+		"degenerate derived connector fails closed without body edits"
+	)
+	var driven: Dictionary = rig.advance(CONFIG.motors_input_left_mask)
+	_check(
+		driven.status == OK and _energy(rig.bodies) > 0.0,
+		"actual held input produces physical motion; not an equilibrium park"
+	)
+	var fault := CoplanarFault.new()
+	valid = _setup_pad(fault, "Slug") == OK
+	var saved: PackedByteArray = var_to_bytes(fault.snapshot())
+	var failure: Dictionary = fault.step()
+	_check(
+		valid and failure.status == ERR_INVALID_DATA,
+		"actual finite energy gain rejected in derived model"
+	)
+	_check(
+		saved == var_to_bytes(fault.snapshot()),
+		"entire derived model snapshot atomically restored after injected gain"
+	)
+	_check(_checks == 16, "complete native derived geometry tally")
+	print("Coplanar pad components: %d checks, %d failures" % [_checks, _failures])
+	print("Scope: new radius-derived real capsule stance units; ZERO public clock; NOT acceptance")
+	quit(1 if _failures else 0)

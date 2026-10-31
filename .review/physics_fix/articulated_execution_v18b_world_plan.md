@@ -15,3 +15,9 @@ native before clock (old341+new29). First numerical/solver errorSTOP. Only full
 predicatePASS permits sequential allthree7200; metricFAIL stops later arms.
 No production adoption, determinism, phone/performance/five-runtime-gate or M1
 signature claim. Full per-tick lossless trace/source+engine provenance preserved.
+
+CLOSED9dfc420/run41205937516/publisher142c24a:370nativePASS,all600solverOK,
+posture9.91830360490353deg/noairborne/penetration0/netCOM.06173810376439811WU.
+First sleep245 -> original4s FAIL. Later three7200NOTRUN. Actual F52 anchor216
+qualifies245, no anchored-window change or4.1s waiver. New contact physics really
+dissipates and eventually sleeps; this is not full acceptance. No unchanged replay.

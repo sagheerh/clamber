@@ -45,6 +45,18 @@ func configure(bodies: Array[CapsuleBody], parents: Array[int]) -> Error:
 				or bodies[c].kind not in ["foot", "limb"]
 			):
 				return ERR_INVALID_DATA
+		if limit.has("rigid_connector_inset_ratio"):
+			var ratio = limit.rigid_connector_inset_ratio
+			if (
+				not limit.has("rigid_connector_quarters")
+				or limit.rigid_connector_quarters not in [-1, 1]
+				or typeof(ratio) not in [TYPE_INT, TYPE_FLOAT]
+				or not is_finite(float(ratio))
+				or ratio < 0.0
+				or ratio >= 1.0
+				or bodies[c].kind != "foot"
+			):
+				return ERR_INVALID_DATA
 		seen.append(c)
 	var status := super.configure(bodies, parents)
 	if status == OK:
@@ -382,6 +394,12 @@ func rigid_axis(bodies: Array[CapsuleBody], child: int) -> Array[float]:
 		var scale: float = bodies[child].rest_length / sqrt(parent.squared)
 		var x: float = parent.x * scale
 		var y: float = parent.y * scale
+		if limit.has("rigid_connector_inset_ratio"):
+			var longitudinal: float = limit.rigid_connector_inset_ratio
+			var transverse: float = (
+				limit.rigid_connector_quarters * sqrt(1.0 - longitudinal * longitudinal)
+			)
+			return [x * longitudinal - y * transverse, y * longitudinal + x * transverse]
 		match int(limit.rigid_connector_quarters):
 			-2:
 				return [-x, -y]
