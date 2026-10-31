@@ -1,0 +1,5 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+Candidate runtime contract: 207 checks, 0 failures
+Candidate runtime audited awake ticks: 66
+Scope: TEST-ONLY candidate factories; real public inherited frame/clock/sleep/input paths; NOT production acceptance, FA3 or cross-architecture determinism
