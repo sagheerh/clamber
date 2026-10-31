@@ -26,6 +26,29 @@ static func final_frame(path: String) -> Dictionary:
 	)
 
 
+static func first_frame(path: String, kernel: RefCounted) -> Dictionary:
+	var saved: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(path))
+	var full: Dictionary = bytes_to_var(Marshalls.base64_to_raw(saved.full_state_variant_base64))
+	if (
+		saved.tick != 285
+		or saved.status != 30
+		or full.awake_trace.stage_order[-1] != "velocity_pass_0"
+	):
+		return {}
+	var raw: Array = bytes_to_var(
+		Marshalls.base64_to_raw(full.awake_trace.full_work_variant_base64)
+	)
+	return _assemble(
+		raw,
+		full.before.accumulator.solver.rig.physical.bodies,
+		full.before.identity.creature.parts,
+		full.awake_trace.work_state.angular_joints,
+		full.awake_trace.rigid_connectors,
+		full.before.identity.tower.terrain,
+		kernel
+	)
+
+
 static func runtime_frame(path: String, kernel: RefCounted) -> Dictionary:
 	var saved: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(path))
 	var record: Dictionary = bytes_to_var(Marshalls.base64_to_raw(saved.failure_variant_base64))

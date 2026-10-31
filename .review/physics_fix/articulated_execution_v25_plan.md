@@ -164,3 +164,22 @@ Hopper7200,Twin7200, firstfailureSTOP. No thresholds/materials/masses/iterations
 changed. Test-only result scope explicitly states V25 rather than historical
 first-support wording. No other public world selected/rerun. Full M1/signature
 and production adoption remain blocked even if this requested scoped matrix passes.
+
+## FIRST V25 world CLOSEDFAIL — do not claim completion
+9343fb06296f/run41219891289/publisherffe57e4: all464nativePASS; original600FULL
+PASS (posture0,air0,penetration0,net0,sleep29/original4s), Slug7200 geometryPASS
+(length2.220446049250313e-16WU,peakpenetration.012012090780530296WU,netCOM.3586042012433926WU).
+Hopper285 FIRST PHYSICAL velocity_pass_0 status30; TwinNOTRUN; later arms STOP.
+Final constitutive stage status3/NOTRUN, not failed or PASS. One stale scope label
+claimed "complete FINAL support" despite status3; fix reporting ONLY when statusOK,
+leave actual NOTRUN wording otherwise. No solver/acceptance change or new world.
+
+207/0 full registered runtime/input/wake/force/rollback matrix remains real scoped
+PASS on all3, but is NOT all7200/dynamic-state coverage or production adoption.
+Independent archived arithmetic confirms saved3first-awake and3positiveclamp
+samples; maxlinear2.64e-16Ns/contactangular4.16e-17NsWU/material3.47e-17NsWU,
+positiveclampNs8.53e-14,velocity0.0. Sampled qualifyinggrip0 so FA3 uncredited.
+Exact285 archived read-only manifold diagnostic preregistered next: same physical
+kernel,history/limits/terrain/raw precontact work, original strict publisher and
+active factor trace;4checks, ZERO public OR private ticks. No unchanged world or
+runtime retry. Both requested items must NOT be called jointly complete.
