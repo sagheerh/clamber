@@ -16,3 +16,10 @@ misleading legacy zeros/-1: those summaries are only measured for idle600; raw
 physical states remain complete. This is telemetry honesty, NOT a guard change.
 No generic rank completeness/forceF31/replay/device/performance/feel/adoption/
 M1signature claimed by new source or any native/one-arm success.
+
+CLOSEDbccae29/run41207843989/publisher16135e2:395nativePASS, ORIGINAL600 full
+predicatePASS AND sequential Slug7200 full geometryPASS/maxlength2.22e-16/
+penetration0/netCOM.4596459637805838WU (long displacement is not idle .90 gate).
+Then Hopper stops5status30 during first support; TwinRollerNOTRUN. Original600
+firstsleep29/posture0/noairborne/penetration0/net0. M0/foundations/R29 exactsource
+SUCCESS. Overall runFAIL/NOTADOPTED, no milestone/determinism or device credit.

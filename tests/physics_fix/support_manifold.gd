@@ -150,7 +150,7 @@ static func solve(kernel: RefCounted, bodies: Array[CapsuleBody], contacts: Arra
 	for d in range(incoming.size()):
 		after_normal[d] += first.delta[d]
 	var patches: Array[int] = _static_patches(
-		kernel, bodies, normal, first, constraints.size(), groups
+		kernel, bodies, normal, first, constraints.size(), groups, false
 	)
 	for item in material_points:
 		item.patch = patches[contacts[item.contact].part]
@@ -210,18 +210,18 @@ static func solve(kernel: RefCounted, bodies: Array[CapsuleBody], contacts: Arra
 					fixed_bodies[i] = true
 					for axis in range(3):
 						delta[3 * i + axis] = -incoming[3 * i + axis]
-	# Slug's remaining DOF is a genuinely FREE head rotating about its supported
+	# A singleton root's remaining DOF is a genuinely FREE head about its supported
 	# B pin. Parameterize it directly in the SAME M+C metric rather than leaving
 	# a KKT cancellation residue. Neutral vertical gravity has EXACT zero modal
 	# moment; a tilted head or actual drive retains its physical nonzero motion.
-	if (
-		bodies.size() == 3
-		and kernel._tree_parents == [-1, 0, 1]
-		and groups[0] != groups[1]
-		and fixed_bodies.has(1)
-		and fixed_bodies.has(2)
-		and constraints.is_empty()
-	):
+	var free_root := true
+	var supported_pin := false
+	for i in range(1, bodies.size()):
+		if groups[i] == groups[0]:
+			free_root = false
+		if kernel._tree_parents[i] == 0 and fixed_bodies.has(i):
+			supported_pin = true
+	if free_root and supported_pin and constraints.is_empty():
 		var head: Dictionary = PlanarBasis.frame(bodies[0])
 		var mode_x: float = head.y / 2.0
 		var mode_y: float = -head.x / 2.0
@@ -357,7 +357,10 @@ static func solve(kernel: RefCounted, bodies: Array[CapsuleBody], contacts: Arra
 	}
 
 
-## Exact geometric dependency certificate for zero-normal-velocity support.
+## Geometric dependency certificate. For material DOF grouping, a fixed normal
+## target implies ZERO NORMAL VARIATION even when its actual target is nonzero.
+## Only homogeneous_only=true may certify absolute zero for publication.
+## This separates affine DOF equivalence from zero-state claims.
 ## A body with both endpoint normal velocities zero and nonzero tangential
 ## extent has omega=0; its endpoint tangential velocities are the SAME DOF.
 ## This removes redundant tangent rows in a two-foot closed ground loop without
@@ -368,7 +371,8 @@ static func _static_patches(
 	normal: Array,
 	solved: Dictionary,
 	angular_count: int,
-	groups: Array[int]
+	groups: Array[int],
+	homogeneous_only: bool = true
 ) -> Array[int]:
 	var zero_rotation: Dictionary = {}
 	var node_zero: Dictionary = {}
@@ -384,7 +388,7 @@ static func _static_patches(
 			and solved.multipliers[solved.multipliers.size() - solved.active.size() + j] > 0.0
 		):
 			var item: Dictionary = normal[index - angular_count]
-			if item.target == 0.0 and item.nx == 0.0 and item.ny == 1.0:
+			if (not homogeneous_only or item.target == 0.0) and item.nx == 0.0 and item.ny == 1.0:
 				supports.append(item)
 	for a in supports:
 		for b in supports:

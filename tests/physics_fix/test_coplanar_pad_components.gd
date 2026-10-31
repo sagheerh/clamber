@@ -1,6 +1,7 @@
 # gdlint: disable=max-line-length
 extends "res://tests/physics_fix/test_support_manifold_components.gd"
 const COPLANAR_CONSTITUTIVE = preload("res://tests/physics_fix/surface_constitutive_kernel.gd")
+const COPLANAR_ADAPTER = preload("res://tests/physics_fix/manifold_terrain.gd")
 const COPLANAR = preload("res://tests/physics_fix/coplanar_pad_candidate.gd")
 
 
@@ -141,7 +142,8 @@ func _initialize() -> void:
 	)
 	_archived_shared_pin_normals()
 	_archived_restitution_chord()
-	_check(_checks == 24, "complete native derived geometry tally")
+	_archived_hopper_affine_patch()
+	_check(_checks == 26, "complete native derived geometry tally")
 	print("Coplanar pad components: %d checks, %d failures" % [_checks, _failures])
 	print("Scope: new radius-derived real capsule stance units; ZERO public clock; NOT acceptance")
 	quit(1 if _failures else 0)
@@ -305,3 +307,101 @@ func _archived_restitution_chord() -> void:
 			),
 			"coincident stronger normal history target survives either input order"
 		)
+
+
+func _archived_hopper_affine_patch() -> void:
+	var saved: Dictionary = JSON.parse_string(
+		FileAccess.get_file_as_string(
+			"res://tests/fixtures/m1_articulated_execution/bccae29d24ad/length-Hopper-failure.json"
+		)
+	)
+	var full: Dictionary = bytes_to_var(Marshalls.base64_to_raw(saved.full_state_variant_base64))
+	var raw: Array = bytes_to_var(
+		Marshalls.base64_to_raw(full.awake_trace.full_work_variant_base64)
+	)
+	var bodies := _restore(raw)
+	var history: Array = full.before.accumulator.solver.rig.physical.bodies
+	var parts: Array = full.before.identity.creature.parts
+	var parents: Array[int] = []
+	var limits: Array = []
+	var joint_index := 0
+	for child in range(parts.size()):
+		parents.append(int(parts[child].parent))
+		if parts[child].kind in ["motor", "passive"]:
+			var source: Dictionary = full.awake_trace.work_state.angular_joints[joint_index]
+			limits.append(
+				{
+					"parent": int(parts[child].parent),
+					"child": child,
+					"rest_angle": source.rest_angle,
+					"lower": source.lower,
+					"upper": source.upper
+				}
+			)
+			joint_index += 1
+	limits.append_array(full.awake_trace.rigid_connectors)
+	var kernel := COPLANAR_CONSTITUTIVE.new()
+	kernel.history = history.duplicate(true)
+	kernel.angular_retention = 1.0 - CONFIG.physics_angular_damping
+	kernel.limits = limits
+	var terrain: Dictionary = full.before.identity.tower.terrain
+	var grid := SdfGrid.new()
+	var valid: bool = (
+		saved.tick == 5
+		and saved.status == 30
+		and grid.configure(terrain.rows, terrain.x, terrain.y, terrain.friction, CONFIG) == OK
+		and kernel.configure(bodies, parents) == OK
+	)
+	var contacts: Array = []
+	for part in range(bodies.size()):
+		var count: int = COPLANAR_ADAPTER._intervals(bodies[part], grid, CONFIG)
+		for index in range(count + 1):
+			var u := float(index) / count
+			var sample: Dictionary = COPLANAR_ADAPTER._sample(bodies[part], grid, u, CONFIG)
+			if sample.distance <= bodies[part].radius + CONFIG.physics_contact_slop_wu:
+				contacts.append(
+					{
+						"part": part,
+						"u": u,
+						"nx": sample.nx,
+						"ny": sample.ny,
+						"restitution": 0.02,
+						"damping": 0.9,
+						"static_threshold": 0.15
+					}
+				)
+	var response: Dictionary = BLOCK.solve(kernel, bodies, contacts)
+	_check(
+		valid and kernel.normal_target(7, 1.0, 0.0, 1.0, 0.02) > 0.0 and not response.is_empty(),
+		"exact Hopper5 affine normal patch uses one material DOF without rounding real positive target"
+	)
+	var balanced := not response.is_empty()
+	if balanced:
+		for axis in ["x", "y"]:
+			var dp := 0.0
+			var external := 0.0
+			for part in range(bodies.size()):
+				var b: CapsuleBody = bodies[part]
+				dp += (
+					b.mass
+					* (
+						b.a.get("velocity_" + axis)
+						+ b.b.get("velocity_" + axis)
+						- raw[part].a["velocity_" + axis]
+						- raw[part].b["velocity_" + axis]
+					)
+					/ 2.0
+				)
+			for i in range(contacts.size()):
+				external += (
+					response.contacts[i].normal * contacts[i]["n" + axis]
+					+ (
+						response.contacts[i].tangent
+						* (-contacts[i].ny if axis == "x" else contacts[i].nx)
+					)
+				)
+			balanced = balanced and absf(dp - external) < 1e-12
+	_check(
+		balanced and _energy(bodies) < _energy(_restore(raw)),
+		"actual eight-body Hopper archived response dissipates and terrain impulses close total momentum"
+	)
