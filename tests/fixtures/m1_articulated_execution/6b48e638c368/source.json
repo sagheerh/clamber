@@ -1,0 +1,27 @@
+{
+  "scope": "NEW articulated test-only awake-row substitution in public clock/Sim; not production acceptance or determinism",
+  "source_commit": "6b48e638c368579abcef1a59289809d6b8b7a158",
+  "checkout_head": "6b48e638c368579abcef1a59289809d6b8b7a158",
+  "checkout_dirty": false,
+  "source_ci_run": "41150287513",
+  "core_manifest": {
+    "source_commit": "0c1d3f875af8a9ddee1b3f6d10d0784060db4f1d",
+    "tuning_sha256": "5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666",
+    "core_tree_sha256": "557524202efe109074f692a56240ca6b50fcd422db4ed38888aed1b4476704df"
+  },
+  "engine_build": "4.7.2.stable.official.ed1daf0bf",
+  "candidate_sha256": {
+    "tests/physics_fix/actuated_articulated_candidate.gd": "ad53f8249ead4050f66148f588310bd28fe21a86ab287ea2b1a27acd164d1ef2",
+    "tests/physics_fix/actuated_contact_composition.gd": "ab2ce1c220049c99143a647791b5ac90b41ba56ed86d2bb837b2d9301c52474b",
+    "tests/physics_fix/articulated_mobility_candidate.gd": "59a70d4b92018198fe1bdf5fb774c6ed04683dc7bfeed0eeaf3d000046445952",
+    "tests/physics_fix/articulated_terrain_candidate.gd": "f53000fdd941ccf90ea2a7c6d438ea1a81b986553288f398e315f08d54c56c23",
+    "tests/physics_fix/capsule_contact_composition.gd": "177e09d8646870ad1cde7dc7ddb1e5a7a02582ec06cb1b8a9398f898ff0de202",
+    "tests/physics_fix/rigid_contact_candidate.gd": "4755e992fdcd364fe7598a25e25126b487129ddd95f3b82d4414ba4802692026",
+    "tests/physics_fix/test_articulated_execution.gd": "fb07318e9b271514ffb0f5beafc5df3577971973429499ea5cada62aeee6a759",
+    "tests/physics_fix/test_articulated_mobility_candidate.gd": "9992c962f8069d7ee1c207c14b06d7f57b9bfaaef94583e3ffe3b961ae544181",
+    "tests/physics_fix/test_contact_composition.gd": "f39dfbeb42c52e07979d018b67a550f0781dff15bee253f9df7c3bb9f542b548",
+    "tests/physics_fix/test_rigid_contact_candidate.gd": "77167e7ee02141583c20fa68651fb4a3dd6d0adcc2291606f921520c57692958",
+    "tests/run_m1_articulated_execution.sh": "4dabe1efff28e9c869b5cb2b63c2d5cf90e13e2888952bda21ccef0886acddd4",
+    "scripts/publish_m1_articulated_execution.py": "eb754a43e989f54faf38cda375ff4b0683cc0eaf531bd5f35c6a390473a29104"
+  }
+}
