@@ -14,7 +14,10 @@ func _initialize() -> void:
 		"exact V23 Hopper263 FINAL frame configured without clock"
 	)
 	var original := var_to_bytes(_states(frame.bodies))
-	var response: Dictionary = BLOCK.solve(kernel, frame.bodies, frame.contacts)
+	var response: Dictionary = (
+		preload("res://tests/physics_fix/support_manifold_v23_control.gd")
+		. solve(kernel, frame.bodies, frame.contacts)
+	)
 	_check(
 		response.is_empty() and kernel.publication.status == ERR_INVALID_DATA,
 		"strict original publisher rejects exact archived proposal"

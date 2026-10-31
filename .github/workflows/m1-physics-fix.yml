@@ -164,7 +164,7 @@ jobs:
             expected='Final manifold archive audit: 4 checks, 0 failures'
           elif [[ "$COPLANAR_COMPONENTS" == true ]]; then
             script=res://tests/physics_fix/test_coplanar_pad_components.gd
-            expected='Coplanar pad components: 29 checks, 0 failures'
+            expected='Coplanar pad components: 31 checks, 0 failures'
           elif [[ "$MANIFOLD_COMPONENTS" == true ]]; then
             script=res://tests/physics_fix/test_support_manifold_components.gd
             expected='Support manifold components: 29 checks, 0 failures'
@@ -200,6 +200,26 @@ jobs:
           done
           grep -Fxq "$expected" "$folder/units.log"
 
+      - name: Frozen Hopper263 negative control after changed component proof
+        if: ${{ contains(github.event.head_commit.message, '[M1-coplanar-units]') && contains(github.event.head_commit.message, '[M1-hopper263-control]') }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          for stage in compile units; do
+            args=()
+            if [[ "$stage" == compile ]]; then args+=(--check-only); fi
+            timeout 60s "$GODOT" --headless --quit-after 1 "${args[@]}" --script res://tests/physics_fix/test_hopper263_audit.gd > "$RUNNER_TEMP/hopper263-$stage.log" 2>&1
+            cat "$RUNNER_TEMP/hopper263-$stage.log"
+            if grep -Eq 'SCRIPT ERROR:|ERROR:|FAIL' "$RUNNER_TEMP/hopper263-$stage.log"; then exit 1; fi
+          done
+          grep -Fxq 'Hopper263 audit: 4 checks, 0 failures' "$RUNNER_TEMP/hopper263-units.log"
+          python3 - "$RUNNER_TEMP/hopper263-units.log" <<'PYNOTICE'
+          import sys
+          from pathlib import Path
+          for row in Path(sys.argv[1]).read_text().splitlines():
+              if 'Hopper263' in row:
+                  print('::notice title=Frozen exact Hopper263 control::'+row.replace('%','%25').replace('\r','%0D'))
+          PYNOTICE
       - name: Inspect archived first failure ONLY (ZERO world ticks)
         if: ${{ contains(github.event.head_commit.message, '[M1-articulated-inspect]') }}
         shell: bash

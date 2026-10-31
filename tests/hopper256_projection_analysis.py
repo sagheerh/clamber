@@ -1,8 +1,13 @@
-"""Read-only native-matched scalar reconstruction; NOT a world/replay verdict."""
+"""Read-only dyadic physical-energy audit. No engine, new ticks or acceptance verdict.
+Alternative formulations printed are diagnosis ONLY, not all adopted.
+The final NORMONLY computation uses legacy RHS (no stable-RHS change).
+"""
 import json,sys,base64,math,copy
 from fractions import Fraction as F
 sys.path.insert(0,'tests');from godot_capture_variant import decode
-f=json.load(open('tests/fixtures/m1_articulated_execution/c49fcc66ee9f/length-Hopper-failure.json'));full=decode(base64.b64decode(f['full_state_variant_base64']));b=decode(base64.b64decode(full['awake_trace']['full_work_variant_base64']));old=full['before']['accumulator']['solver']['rig']['physical']['bodies'];parents=[x['parent']for x in full['before']['identity']['creature']['parts']];N=len(b);D=N*3
+archive=sys.argv[1] if len(sys.argv)>1 else '67b167a30543'
+assert archive in ['c49fcc66ee9f','67b167a30543']
+f=json.load(open('tests/fixtures/m1_articulated_execution/'+archive+'/length-Hopper-failure.json'));full=decode(base64.b64decode(f['full_state_variant_base64']));b=decode(base64.b64decode(full['awake_trace']['full_work_variant_base64']));old=full['before']['accumulator']['solver']['rig']['physical']['bodies'];parents=[x['parent']for x in full['before']['identity']['creature']['parts']];N=len(b);D=N*3
 
 def frame(x):
  dx=x['b']['x']-x['a']['x'];dy=x['b']['y']-x['a']['y'];sq=dx*dx+dy*dy
@@ -64,6 +69,8 @@ def energy(bs,exact=False):
  return result
 out=publish(d)
 print('native-match energy',energy(b),energy(out),energy(out)-energy(b),'exactgain',float(energy(out,True)-energy(b,True)))
+LEGACY_D=d.copy()
+LEGACY_PIN=[out[1]["a"]["velocity_"+ax]for ax in ["x","y"]]
 # Recompute free-root conditional in admissible mode for actual moving pin.
 x=b[0];dx,dy,sq,w=frames[0];pin=[out[1]['a']['velocity_'+ax]for ax in ['x','y']];M=1/W[0];I=1/W[2];mx=dy/2;my=-dx/2
 omega=(M*(mx*(v[0]-pin[0])+my*(v[1]-pin[1]))+I*v[2])/(M*(mx*mx+my*my)+I)
@@ -78,3 +85,47 @@ p3[0]['a']['velocity_x']=x['a']['velocity_x']-rad*dx;p3[0]['a']['velocity_y']=x[
 p3[0]['b']['velocity_x']=pin[0];p3[0]['b']['velocity_y']=pin[1]
 print('headendpoint-radial',energy(p3)-energy(b),float(energy(p3,True)-energy(b,True)))
 # Orthogonalize root free tangent from entire RHS/pin choices: project full M using QR?
+def cpvel(i,endpoint):
+ x=b[i];dx,dy,sq,w=frames[i];q=((x['b']['velocity_x']-x['a']['velocity_x'])*dx+(x['b']['velocity_y']-x['a']['velocity_y'])*dy)/sq/2
+ sg=1 if endpoint=='a'else -1
+ return [x[endpoint]['velocity_x']+sg*q*dx,x[endpoint]['velocity_y']+sg*q*dy]
+for c in range(1,N):
+ p=parents[c];pa=cpvel(p,'b');ca=cpvel(c,'a');rhs[2*(c-1)]=pa[0]-ca[0];rhs[2*(c-1)+1]=pa[1]-ca[1]
+values=rhs+[-dot(tang[0],v),-dot(tang[2],v),targets[2]-dot(norm[2],v)];d,m=solve(rows,values);out=publish(d);pin=[out[1]['a']['velocity_'+ax]for ax in ['x','y']];x=b[0];dx,dy,sq,w=frames[0];mx=dy/2;my=-dx/2;M=1/W[0];I=1/W[2];omega=(M*(mx*(v[0]-pin[0])+my*(v[1]-pin[1]))+I*v[2])/(M*(mx*mx+my*my)+I);d[0]=pin[0]+mx*omega-v[0];d[1]=pin[1]+my*omega-v[1];d[2]=omega-v[2];out=publish(d);print('stable rhs',energy(out)-energy(b),float(energy(out,True)-energy(b,True)),pin)
+p3=copy.deepcopy(out);rad=((x['a']['velocity_x']-pin[0])*dx+(x['a']['velocity_y']-pin[1])*dy)/sq
+p3[0]['a']['velocity_x']=x['a']['velocity_x']-rad*dx;p3[0]['a']['velocity_y']=x['a']['velocity_y']-rad*dy;p3[0]['b']['velocity_x']=pin[0];p3[0]['b']['velocity_y']=pin[1]
+print('stable rhs + direct',energy(p3)-energy(b),float(energy(p3,True)-energy(b,True)),rad)
+# Exact physical-metric counterpart of the same active rows, for diagnosis only.
+VF=[];WF=[]
+for x,fr in zip(b,frames):
+ dx,dy=map(F,fr[:2]);sq=dx*dx+dy*dy;m=F(x['mass']);avx,avy,bvx,bvy=[F(x[e]['velocity_'+a])for e in['a','b']for a in ['x','y']];VF.extend([(avx+bvx)/2,(avy+bvy)/2,(dx*(bvy-avy)-dy*(bvx-avx))/sq]);WF.extend([1/m,1/m,4/(m*sq)])
+RF=[[F(q)for q in r]for r in rows];B=[F(0)]*len(H)+[F(0),F(0),F(targets[2])];Q=[[sum(a[k]*WF[k]*z[k]for k in range(D))for z in RF]+[B[i]-sum(a[k]*VF[k]for k in range(D))]for i,a in enumerate(RF)]
+for i in range(len(Q)):
+ pivot=Q[i][i];Q[i]=[q/pivot for q in Q[i]]
+ for j in range(i+1,len(Q)):
+  c=Q[j][i]
+  if c:Q[j]=[a-c*z for a,z in zip(Q[j],Q[i])]
+LF=[F(0)]*len(Q)
+for i in reversed(range(len(Q))):LF[i]=Q[i][-1]-sum(Q[i][j]*LF[j]for j in range(i+1,len(Q)))
+OF=[VF[k]+WF[k]*sum(RF[i][k]*LF[i]for i in range(len(RF)))for k in range(D)];E=F(0)
+for i,x in enumerate(b):
+ dx,dy=map(F,frames[i][:2]);cx,cy,om=OF[3*i:3*i+3];E+=F(x['mass'])*((cx+om*dy/2)**2+(cy-om*dx/2)**2+(cx-om*dy/2)**2+(cy+om*dx/2)**2)/4
+print('EXACT physical active projection gain',float(E-energy(b,True)))
+EX=copy.deepcopy(b)
+for i,x in enumerate(b):
+ dx,dy=map(F,frames[i][:2]);cx,cy,om=OF[3*i:3*i+3]
+ for e,vals in [('a',[cx+om*dy/2,cy-om*dx/2]),('b',[cx-om*dy/2,cy+om*dx/2])]:
+  for a,val in zip(['x','y'],vals):EX[i][e]['velocity_'+a]=float(val)
+print('rounded exact gain',energy(EX)-energy(b),float(energy(EX,True)-energy(b,True)))
+print('exact in-out head',[(a, b[0]['a']['velocity_'+a],EX[0]['a']['velocity_'+a],float(F(EX[0]['a']['velocity_'+a])-F(b[0]['a']['velocity_'+a])))for a in ['x','y']]);print('exactpin',EX[0]['b']['velocity_x'],EX[0]['b']['velocity_y'])
+for name in ['norm-dot','scaled-dot','givens']:
+ P=copy.deepcopy(out);dx,dy,sq,w=frames[0];L=math.sqrt(sq)
+ if name=='norm-dot':tx=dy/L;ty=-dx/L
+ elif name=='scaled-dot':t=dx/dy;c=1/math.sqrt(1+t*t);tx=c;ty=-t*c
+ else:t=dx/dy;ty=-t/math.sqrt(1+t*t);tx=math.sqrt(1-ty*ty)
+ scalar=tx*(b[0]['a']['velocity_x']-pin[0])+ty*(b[0]['a']['velocity_y']-pin[1]);P[0]['a']['velocity_x']=pin[0]+tx*scalar;P[0]['a']['velocity_y']=pin[1]+ty*scalar;P[0]['b']['velocity_x']=pin[0];P[0]['b']['velocity_y']=pin[1];print(name,'t²',tx*tx+ty*ty,'gain',energy(P)-energy(b),float(energy(P,True)-energy(b,True)))
+L=math.sqrt(sq);tx=dy/L;ty=-dx/L;scalar=tx*(b[0]['a']['velocity_x']-pin[0])+ty*(b[0]['a']['velocity_y']-pin[1]);om=scalar/L
+d[0]=pin[0]+dy/2*om-v[0];d[1]=pin[1]-dx/2*om-v[1];d[2]=om-v[2];P=publish(d);print('norm scalar original publisher',energy(P)-energy(b),float(energy(P,True)-energy(b,True)))
+d=LEGACY_D.copy();pin=LEGACY_PIN;dx,dy,sq,w=frames[0];L=math.sqrt(sq);tx=dy/L;ty=-dx/L;scalar=tx*(b[0]["a"]["velocity_x"]-pin[0])+ty*(b[0]["a"]["velocity_y"]-pin[1]);om=scalar/L
+d[0]=pin[0]+dy/2*om-v[0];d[1]=pin[1]-dx/2*om-v[1];d[2]=om-v[2];P=publish(d);print("NORMONLY original strict gain",energy(P)-energy(b),float(energy(P,True)-energy(b,True)))
+assert energy(P)<=energy(b) and energy(P,True)<=energy(b,True)

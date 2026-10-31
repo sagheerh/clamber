@@ -144,7 +144,7 @@ func _initialize() -> void:
 	_archived_restitution_chord()
 	_archived_hopper_affine_patch()
 	_moving_pin_projection()
-	_check(_checks == 28, "complete native derived geometry tally")
+	_check(_checks == 30, "complete native derived geometry tally")
 	print("Coplanar pad components: %d checks, %d failures" % [_checks, _failures])
 	print("Scope: new radius-derived real capsule stance units; ZERO public clock; NOT acceptance")
 	quit(1 if _failures else 0)
@@ -409,15 +409,20 @@ func _archived_hopper_affine_patch() -> void:
 
 
 func _moving_pin_projection() -> void:
+	for source in ["c49fcc66ee9f", "67b167a30543"]:
+		_moving_pin_frame(source)
+
+
+func _moving_pin_frame(source: String) -> void:
 	var frame: Dictionary = preload("res://tests/physics_fix/manifold_archive.gd").final_frame(
-		"res://tests/fixtures/m1_articulated_execution/c49fcc66ee9f/length-Hopper-failure.json"
+		"res://tests/fixtures/m1_articulated_execution/" + source + "/length-Hopper-failure.json"
 	)
 	var before: float = _energy(frame.bodies)
 	var states := _states(frame.bodies)
 	var response: Dictionary = BLOCK.solve(frame.kernel, frame.bodies, frame.contacts)
 	_check(
 		not response.is_empty() and _energy(frame.bodies) <= before,
-		"exact Hopper256 final physical projection passes ORIGINAL strict actual energy comparison"
+		source + " exact final physical projection passes ORIGINAL strict actual energy comparison"
 	)
 	var honest := not response.is_empty()
 	if honest:

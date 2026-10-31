@@ -252,6 +252,17 @@ static func solve(kernel: RefCounted, bodies: Array[CapsuleBody], contacts: Arra
 		)
 		# If this same physical head has an actual selected skin tangent or
 		# active normal, it is NOT a free mode: honor that row's scalar target.
+		if not ("angular_retention" in kernel):
+			# Physical conditional minimum in ORTHONORMAL endpoint coordinates.
+			# A rigid root with prescribed B velocity has vA=pin+t*s, where t is
+			# the unit tangent. Project the actual A endpoint, not the difference
+			# between nearly cancelling COM/spin energy terms. The constitutive
+			# M+C metric above is distinct and must retain its authored retention.
+			var extent: float = sqrt(axes.x * axes.x + axes.y * axes.y)
+			var tx: float = axes.y / extent
+			var ty: float = -axes.x / extent
+			var speed: float = tx * (head.a.velocity_x - pin_x) + ty * (head.a.velocity_y - pin_y)
+			omega = speed / extent
 		var mode: Array[float] = kernel._zero(incoming.size())
 		mode[0] = mode_x
 		mode[1] = mode_y
