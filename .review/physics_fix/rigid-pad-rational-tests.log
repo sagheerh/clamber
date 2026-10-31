@@ -1,0 +1,11 @@
+test_actual_local_drag_and_connector_torque_close (__main__.RigidPad.test_actual_local_drag_and_connector_torque_close) ... ok
+test_bilateral_angular_compatibility (__main__.RigidPad.test_bilateral_angular_compatibility) ... ok
+test_connector_root_unconstrained (__main__.RigidPad.test_connector_root_unconstrained) ... ok
+test_neutral_vertical_head_has_positive_restoring_stiffness (__main__.RigidPad.test_neutral_vertical_head_has_positive_restoring_stiffness) ... ok
+test_real_angular_momentum_not_external_weld (__main__.RigidPad.test_real_angular_momentum_not_external_weld) ... ok
+test_zero_branch_free_foot_negative (__main__.RigidPad.test_zero_branch_free_foot_negative) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.010s
+
+OK

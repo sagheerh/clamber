@@ -25,3 +25,10 @@ barriers; full raw states all600. Same original metrics from actual new spawn;
 first solver/nonfinite error STOP, metricFAIL completes600 then blocks later arms.
 Only full600PASS allows sequential Slug/Hopper/TwinRoller7200. No unchanged retry,
 production adoption, physical-device/runtime/determinism/signoff credit implied.
+
+CLOSED0b6c44d/run41204369524/publisherce2dff1:341nativePASS;600/600solverOK,
+posturemax12.850816797424777deg/no violations, airborne0, penetration0,
+length1.6653345369377348e-16WU, actualspawnCOMnet.07766628597192357WU.
+FIRST successful full posture/no-airborne prefix under authorized NEW model.
+But no original4s/F52 sleep, maximum stillstreak2, so overallmetricFAIL and all
+three7200NOTRUN. Preserve36immutable files; no unchanged retry/productionadoption.
