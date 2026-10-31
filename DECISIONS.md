@@ -2469,3 +2469,17 @@ No epsilon, diagonal regularization, energy allowance, arbitrary physical sweep,
 unchanged retry or historical provenance relabel. New strict native controls,
 fresh full runtime matrix and separately registered ordered run precede credit.
 Neither requested pair nor M1 is complete until remaining actual runs validate.
+
+
+## M1-PHYSICS-FIX-D11 — V26 fixes archived285, not all Hopper states
+
+Native28b5430/run41220650456:10strict componentPASS. Changed runtimeee6f784/
+run41220897674:207PASS/66awake audits. V26 world5d6c4409a19e/run41221098908
+CLOSEDFAIL:474native/original600/Slug7200PASS, Hopper369physicalpass0STOP,
+TwinNOTRUN. Full independent force arithmetic now runs on EVERY actual fresh
+awake tick, keeping parked stale trace explicit NOTRUN (physical clock alone
+advances even asleep).7539live successful audits do not replace missing Hopper/
+Twin7200 or production acceptance. No epsilon/rank waiver/energy allowance, no
+unchanged retry. Preserve all variants/source/transport and inspect exact369
+components before any further solver change. Both selected tasks remain jointly
+incomplete; M1BLOCKED/NOTSIGNED, FA3uncredited, M2blocked.

@@ -236,3 +236,19 @@ no epsilon/iteration increase. Every actual fresh awake tick must pass shared li
 independent force equations before geometry/capture; each parked tick explicitly
 NOTRUN forces. Any physical/independent-force failure STOP/later NOTRUN; preserve
 exact failure/transport/source. No adoption/signoff/determinism/FA3 credit promised.
+
+## FIRST V26 CLOSEDFAIL — tick369, NOT final-stage failure
+5d6c4409a19e/run41221098908/publishere793363:474nativePASS; original600PASS
+(30freshforce audits/570parked; posture0/air0/net0/sleep29/original4strue),
+Slug7200PASS (7170fresh/30parked; length2.22e-16WU/penetration.012012090780530296WU/
+netCOM.3586042012433926WU). Hopper369completed/7200,339fresh/30parked, no earlier
+metric violation, length4.44e-16WU/penetration0; physical pass0 support status30,
+final constitutive status3NOTRUN. BEFORE==AFTER snapshots exact rollback values.
+TwinNOTRUN.7539successful live fresh-awake audits across all completed prefixes,
+not full Hopper/Twin force acceptance; first failing tick not credited. No retry.
+
+Separate exact369 component reconstruction registered4checks, ZERO creature ticks;
+log SAME weighted rows/RHS/inequalities on actual changed kernel to distinguish
+rank/active-cycle/material/strict-publisher cause. No new solver patch or world
+registered. Native285 fixed is not universal success. Both requested items not
+jointly complete; broad adoption/FA3/device/determinism/signature still absent.

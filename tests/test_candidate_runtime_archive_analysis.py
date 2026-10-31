@@ -1,5 +1,5 @@
 import unittest
-from candidate_runtime_archive_analysis import audit, SOURCE
+from candidate_runtime_archive_analysis import audit, SOURCE, CHANGED_SOURCE
 
 
 class CandidateRuntimeArchiveAnalysis(unittest.TestCase):
@@ -37,6 +37,17 @@ class CandidateRuntimeArchiveAnalysis(unittest.TestCase):
         self.assertEqual(self.report["sampled_grip_eligible_observations"], 0)
         self.assertIn("No FA3", " ".join(self.report["limitations"]))
         self.assertIn("ZERO new ticks", self.report["scope"])
+
+
+class ChangedCandidateRuntimeArchiveAnalysis(CandidateRuntimeArchiveAnalysis):
+    @classmethod
+    def setUpClass(cls):
+        cls.report = audit(CHANGED_SOURCE)
+
+    def test_pinned_complete_native_matrix(self):
+        self.assertEqual(self.report["source_commit"], CHANGED_SOURCE)
+        self.assertEqual(self.report["native_checks"], 207)
+        self.assertEqual(self.report["native_awake_audits"], 66)
 
 
 if __name__ == "__main__":

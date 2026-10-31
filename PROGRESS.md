@@ -1,6 +1,6 @@
 # CLAMBER progress
 
-## Latest V26 candidate — changed runtime207 PASS; first new long run registered (2026-10-31)
+## Latest V26 — runtime207 PASS; full-force Slug7200 PASS; Hopper369 STOP (2026-10-31)
 
 Correct fresh geometry native runtime source93b2f1fb0cd7/run41219732497:
 **207checks/0failures/66awake force audits**, all Slug/Hopper/TwinRoller cases.
@@ -28,7 +28,14 @@ and strict actual energy publisher kept. Native10 components now PASS source28b5
 exact285 actual energy1.2157209960538857→.1827241817815083; no pose change.
 Fresh changed-solver runtime207PASS/66awake/sourceee6f7841fc98/run41220897674,
 publisher576fb71; all three input/release/wake/force/rollback cases complete.
-FIRST V26 changed-source ordered world preregistered; result PENDING, not PASS.
+FIRST V26 source5d6c4409a19e/run41221098908/publishere793363 CLOSEDFAIL.
+474nativePASS; original600PASS (30fresh/570parked force ticks); Slug7200PASS
+(7170fresh/30parked), SAME geometry metrics as V25. Hopper369/7200FAIL
+(339fresh/30parked), no prior metric violation; FIRST physical pass0 status30;
+final constitutiveNOTRUN/status3. Exact before/after rollback snapshots equal.
+TwinNOTRUN;7539fresh successful awake force audits is prefix/Slug credit ONLY.
+No unchanged retry. Exact369 ZERO-tick component diagnostic registered, cause
+not yet distinguished beyond simultaneous material support block.
 Shared independent force arithmetic now registered for EVERY fresh awake long-run
 tick, asleep solves explicitly NOTRUN. Runner474 native prereqs/69mocktestsPASS; fresh trace.tick (not clock alone)
 separates actual30awake from570parked original600 archived ticks.

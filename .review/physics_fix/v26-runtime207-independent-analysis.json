@@ -1,0 +1,23 @@
+{
+  "scope": "OFFLINE immutable native207, ZERO new ticks; not production/FA3/determinism",
+  "source_commit": "ee6f7841fc98bb7cbd452ffe1b0a02c0f41b030a",
+  "native_checks": 207,
+  "native_awake_audits": 66,
+  "saved_first_awake_samples": 3,
+  "saved_positive_clamp_samples": 3,
+  "sampled_grip_eligible_observations": 0,
+  "max_absolute_residuals": {
+    "linear_tick_ns": 2.636779683484747e-16,
+    "contact_linear_ns": 1.249000902703301e-16,
+    "contact_angular_ns_wu": 4.163336342344337e-17,
+    "angular_material_ns_wu": 3.469446951953614e-17,
+    "positive_clamp_ns": 8.526512829121202e-14,
+    "positive_clamp_velocity_wu_s": 0.0
+  },
+  "limitations": [
+    "Three saved first-awake traces are not all66 live audits.",
+    "Controlled100WU/s clamp initial condition is not a gameplay/integration run.",
+    "Native factory/input/wake controls do not adopt production factories.",
+    "No FA3, long-run verdict, cross-architecture or device claim."
+  ]
+}

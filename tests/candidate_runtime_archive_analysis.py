@@ -17,15 +17,24 @@ SUMMARY_SHA256 = "c462b32df03e5724bb90fce10b506bd55386973157141a5462cb5eed2e2edb
 NAMES = ["Slug", "Hopper", "TwinRoller"]
 
 
-def audit():
-    raw = (FOLDER / "summary.json").read_bytes()
-    if hashlib.sha256(raw).hexdigest() != SUMMARY_SHA256:
+CHANGED_SOURCE = "ee6f7841fc98bb7cbd452ffe1b0a02c0f41b030a"
+PINNED = {
+    SOURCE: (SUMMARY_SHA256, "41219732497"),
+    CHANGED_SOURCE: ("3c7523465b2ec01440f58b0e640f1a36f21aad8dc12914a05fc9f51aef4a1e8b", "41220897674"),
+}
+
+
+def audit(requested=SOURCE):
+    expected_hash, expected_run = PINNED[requested]
+    folder = ROOT / "tests/fixtures/m1_candidate_runtime" / requested[:12]
+    raw = (folder / "summary.json").read_bytes()
+    if hashlib.sha256(raw).hexdigest() != expected_hash:
         raise ValueError("immutable runtime summary changed")
     summary = json.loads(raw)
-    source = json.loads((FOLDER / "source.json").read_text())
-    if source["source_commit"] != SOURCE or source["ci_run"] != "41219732497":
+    source = json.loads((folder / "source.json").read_text())
+    if source["source_commit"] != requested or source["ci_run"] != expected_run:
         raise ValueError("wrong native runtime source")
-    if "4.7.2.stable.official.ed1daf0bf" not in (FOLDER / "units.log").read_text():
+    if "4.7.2.stable.official.ed1daf0bf" not in (folder / "units.log").read_text():
         raise ValueError("wrong engine")
     if (summary["checks"] != 207 or summary["failures"] != 0
             or summary["completed_cases"] != NAMES or summary["awake_force_audits"] != 66
@@ -102,7 +111,7 @@ def audit():
         if b["clamp_impulse_x_ns"] >= 0:
             raise ValueError("positive clamp control vacuous")
     return dict(scope="OFFLINE immutable native207, ZERO new ticks; not production/FA3/determinism",
-                source_commit=SOURCE, native_checks=207, native_awake_audits=66,
+                source_commit=requested, native_checks=207, native_awake_audits=66,
                 saved_first_awake_samples=3, saved_positive_clamp_samples=3,
                 sampled_grip_eligible_observations=grip_eligible,
                 max_absolute_residuals=residuals,

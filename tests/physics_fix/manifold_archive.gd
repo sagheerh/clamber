@@ -30,7 +30,7 @@ static func first_frame(path: String, kernel: RefCounted) -> Dictionary:
 	var saved: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(path))
 	var full: Dictionary = bytes_to_var(Marshalls.base64_to_raw(saved.full_state_variant_base64))
 	if (
-		saved.tick != 285
+		saved.tick not in [285, 369]
 		or saved.status != 30
 		or full.awake_trace.stage_order[-1] != "velocity_pass_0"
 	):

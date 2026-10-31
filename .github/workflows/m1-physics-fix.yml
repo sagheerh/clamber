@@ -90,7 +90,7 @@ jobs:
         run: python3 scripts/publish_m1_contact_composition.py
 
   articulated-primitives:
-    if: ${{ github.ref == 'refs/heads/arena/f43f36ab-clamber' && github.sha == github.event.after && (contains(github.event.head_commit.message, '[M1-twofold-units]') || contains(github.event.head_commit.message, '[M1-hopper285-audit]') || contains(github.event.head_commit.message, '[M1-dual-feasible-units]') || contains(github.event.head_commit.message, '[M1-runtime-manifold-audit]') || contains(github.event.head_commit.message, '[M1-final-geometry-units]') || contains(github.event.head_commit.message, '[M1-runtime-contract]') || contains(github.event.head_commit.message, '[M1-hopper263-audit]') || contains(github.event.head_commit.message, '[M1-articulated-units]') || contains(github.event.head_commit.message, '[M1-articulated-execution]')) }}
+    if: ${{ github.ref == 'refs/heads/arena/f43f36ab-clamber' && github.sha == github.event.after && (contains(github.event.head_commit.message, '[M1-twofold-units]') || contains(github.event.head_commit.message, '[M1-hopper369-audit]') || contains(github.event.head_commit.message, '[M1-hopper285-audit]') || contains(github.event.head_commit.message, '[M1-dual-feasible-units]') || contains(github.event.head_commit.message, '[M1-runtime-manifold-audit]') || contains(github.event.head_commit.message, '[M1-final-geometry-units]') || contains(github.event.head_commit.message, '[M1-runtime-contract]') || contains(github.event.head_commit.message, '[M1-hopper263-audit]') || contains(github.event.head_commit.message, '[M1-articulated-units]') || contains(github.event.head_commit.message, '[M1-articulated-execution]')) }}
     permissions:
       contents: write # Same fixed-branch bounded evidence recorder as world job.
     runs-on: ubuntu-24.04
@@ -139,12 +139,13 @@ jobs:
           exit "$status"
 
       - name: Complete constitutive components ONLY (ZERO public world ticks)
-        if: ${{ contains(github.event.head_commit.message, '[M1-twofold-units]') || contains(github.event.head_commit.message, '[M1-hopper285-audit]') || contains(github.event.head_commit.message, '[M1-dual-feasible-units]') || contains(github.event.head_commit.message, '[M1-runtime-manifold-audit]') || contains(github.event.head_commit.message, '[M1-final-geometry-units]') || contains(github.event.head_commit.message, '[M1-runtime-contract]') || contains(github.event.head_commit.message, '[M1-hopper263-audit]') || contains(github.event.head_commit.message, '[M1-constitutive-units]') || contains(github.event.head_commit.message, '[M1-local-angular-units]') || contains(github.event.head_commit.message, '[M1-surface-units]') || contains(github.event.head_commit.message, '[M1-rigid-pad-units]') || contains(github.event.head_commit.message, '[M1-manifold-units]') || contains(github.event.head_commit.message, '[M1-coplanar-units]') || contains(github.event.head_commit.message, '[M1-final-audit]') }}
+        if: ${{ contains(github.event.head_commit.message, '[M1-twofold-units]') || contains(github.event.head_commit.message, '[M1-hopper369-audit]') || contains(github.event.head_commit.message, '[M1-hopper285-audit]') || contains(github.event.head_commit.message, '[M1-dual-feasible-units]') || contains(github.event.head_commit.message, '[M1-runtime-manifold-audit]') || contains(github.event.head_commit.message, '[M1-final-geometry-units]') || contains(github.event.head_commit.message, '[M1-runtime-contract]') || contains(github.event.head_commit.message, '[M1-hopper263-audit]') || contains(github.event.head_commit.message, '[M1-constitutive-units]') || contains(github.event.head_commit.message, '[M1-local-angular-units]') || contains(github.event.head_commit.message, '[M1-surface-units]') || contains(github.event.head_commit.message, '[M1-rigid-pad-units]') || contains(github.event.head_commit.message, '[M1-manifold-units]') || contains(github.event.head_commit.message, '[M1-coplanar-units]') || contains(github.event.head_commit.message, '[M1-final-audit]') }}
         env:
           LOCAL_ANGULAR_COMPONENTS: ${{ contains(github.event.head_commit.message, '[M1-local-angular-units]') }}
           SURFACE_COMPONENTS: ${{ contains(github.event.head_commit.message, '[M1-surface-units]') }}
           RIGID_PAD_COMPONENTS: ${{ contains(github.event.head_commit.message, '[M1-rigid-pad-units]') }}
           TWOFOLD: ${{ contains(github.event.head_commit.message, '[M1-twofold-units]') }}
+          HOPPER369_AUDIT: ${{ contains(github.event.head_commit.message, '[M1-hopper369-audit]') }}
           HOPPER285_AUDIT: ${{ contains(github.event.head_commit.message, '[M1-hopper285-audit]') }}
           DUAL_FEASIBLE: ${{ contains(github.event.head_commit.message, '[M1-dual-feasible-units]') }}
           RUNTIME_MANIFOLD_AUDIT: ${{ contains(github.event.head_commit.message, '[M1-runtime-manifold-audit]') }}
@@ -163,6 +164,9 @@ jobs:
           if [[ "$TWOFOLD" == true ]]; then
             script=res://tests/physics_fix/test_twofold_components.gd
             expected='Twofold active components: 10 checks, 0 failures'
+          elif [[ "$HOPPER369_AUDIT" == true ]]; then
+            script=res://tests/physics_fix/test_hopper369_audit.gd
+            expected='Hopper369 manifold audit: 4 checks, 0 failures'
           elif [[ "$HOPPER285_AUDIT" == true ]]; then
             script=res://tests/physics_fix/test_hopper285_audit.gd
             expected='Hopper285 manifold audit: 4 checks, 0 failures'
@@ -213,7 +217,7 @@ jobs:
           from pathlib import Path
           rows=Path(sys.argv[1]).read_text().splitlines()
           for i,row in enumerate(rows):
-              if any(s in row for s in ('components:', 'Twofold archive', 'Hopper285 manifold', 'Dual feasible', 'Runtime manifold', 'Candidate runtime', 'Hopper263', 'Final manifold', 'ERROR:', 'FAIL')):
+              if any(s in row for s in ('components:', 'Twofold archive', 'Hopper369 manifold', 'Hopper285 manifold', 'Dual feasible', 'Runtime manifold', 'Candidate runtime', 'Hopper263', 'Final manifold', 'ERROR:', 'FAIL')):
                   context='\n'.join(rows[i:i+9]) if 'ERROR:' in row else row
                   print('::notice title=Complete constitutive COMPONENTS ONLY::'+context.replace('%','%25').replace('\r','%0D').replace('\n','%0A'))
           PYNOTICE
