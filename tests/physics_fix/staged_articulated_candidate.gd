@@ -81,7 +81,16 @@ func _velocity_contacts(
 		var before_contact_positions := _positions()
 		var recorder := _record_contact.bind(velocity_pass, contact_samples)
 		var status := STAGED_CONTACT.resolve_tick(
-			bodies, _parents, _terrain, _mass, lowest, _friction, _restitution, _tuning, recorder
+			bodies,
+			_parents,
+			_terrain,
+			_mass,
+			lowest,
+			_friction,
+			_restitution,
+			_tuning,
+			recorder,
+			_hinge_velocity_key()
 		)
 		if status.status != OK:
 			push_error("Articulated contact failure: " + JSON.stringify(status, "", true, true))

@@ -15,7 +15,8 @@ static func resolve_tick(
 	friction: Array[float],
 	restitution: Array[float],
 	tuning: Tuning,
-	observer: Callable = Callable()
+	observer: Callable = Callable(),
+	certified_velocity: PackedByteArray = PackedByteArray()
 ) -> Dictionary:
 	if (
 		bodies.is_empty()
@@ -126,10 +127,11 @@ static func resolve_tick(
 	var network := NETWORK.new()
 	if network.configure(work, parents) != OK:
 		return _fail("velocity factor", work)
-	var projected := network.project_velocity(work)
-	if projected.is_empty():
-		return _fail("initial network velocity projection", work)
-	_add(reactions, projected.hinge_impulses)
+	if certified_velocity.is_empty() or certified_velocity != _velocity_key(work, parents):
+		var projected := network.project_velocity(work)
+		if projected.is_empty():
+			return _fail("initial network velocity projection", work)
+		_add(reactions, projected.hinge_impulses)
 	for part in range(work.size()):
 		var body := work[part]
 		var count := _intervals(body, terrain, tuning)
@@ -306,3 +308,28 @@ static func _constrained_contact_response(
 			"tangent_target": tangent_velocity * retained
 		}
 	return network.contact_velocity(bodies, part, u, nx, ny, retained, restitution)
+
+
+static func _velocity_key(bodies: Array[CapsuleBody], parents: Array[int]) -> PackedByteArray:
+	var key := PackedFloat64Array()
+	for i in range(bodies.size()):
+		var body := bodies[i]
+		key.append_array(
+			PackedFloat64Array(
+				[
+					float(parents[i]),
+					body.mass,
+					body.a.inverse_mass,
+					body.b.inverse_mass,
+					body.a.x,
+					body.a.y,
+					body.b.x,
+					body.b.y,
+					body.a.velocity_x,
+					body.a.velocity_y,
+					body.b.velocity_x,
+					body.b.velocity_y
+				]
+			)
+		)
+	return key.to_byte_array()

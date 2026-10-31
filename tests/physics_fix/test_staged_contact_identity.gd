@@ -79,7 +79,8 @@ func _initialize() -> void:
 		),
 		"stale geometry cannot reuse identity"
 	)
-	if _checks != 8:
+	_batch_projection_control()
+	if _checks != 12:
 		_failures += 1
 	print("Staged contact identity: %d checks, %d failures" % [_checks, _failures])
 	print("Scope: saved contact component ONLY; ZERO world ticks; NOT acceptance")
@@ -98,3 +99,65 @@ func _check(value: bool, label: String) -> void:
 	if not value:
 		_failures += 1
 		push_error("FAIL contact identity: " + label)
+
+
+func _batch_projection_control() -> void:
+	var archived: Dictionary = JSON.parse_string(
+		FileAccess.get_file_as_string(
+			"res://tests/fixtures/m1_articulated_execution/6249662e170d/idle-Slug-failure.json"
+		)
+	)
+	var decoded: Dictionary = bytes_to_var(
+		Marshalls.base64_to_raw(archived.full_state_variant_base64)
+	)
+	var states: Array = bytes_to_var(
+		Marshalls.base64_to_raw(decoded.awake_trace.full_work_variant_base64)
+	)
+	var bodies: Array[CapsuleBody] = []
+	var valid := true
+	for state in states:
+		var body := CapsuleBody.new()
+		valid = body.restore(state) == OK and valid
+		bodies.append(body)
+	_check(valid and bodies.size() == 3, "restore exact second saved batch projection failure")
+	var before := _bits(bodies)
+	var parents: Array[int] = [-1, 0, 1]
+	var lowest: Array[bool] = [false, false, true]
+	const CONFIG = preload("res://core/tuning.tres")
+	var model := CreaturePresets.load_model("Slug", CONFIG)
+	var friction := R25Fixture.materials(model)
+	var bounce := R25Fixture.materials(model, true)
+	var grid := R25Fixture.floor_grid()
+	var cold := CONTACT.resolve_tick(
+		bodies, parents, grid, model.total_mass(), lowest, friction, bounce, CONFIG
+	)
+	_check(
+		cold.status != OK and before == _bits(bodies),
+		"uncertified batch retains strict projection rejection atomically"
+	)
+	var certificate := CONTACT._velocity_key(bodies, parents)
+	var warm := CONTACT.resolve_tick(
+		bodies,
+		parents,
+		grid,
+		model.total_mass(),
+		lowest,
+		friction,
+		bounce,
+		tuning,
+		Callable(),
+		certificate
+	)
+	_check(warm.status == OK, "certified unchanged final geometry avoids duplicate projection")
+	var positions_ok := true
+	for i in range(bodies.size()):
+		for endpoint in ["a", "b"]:
+			positions_ok = (
+				positions_ok
+				and bodies[i].get(endpoint).x == states[i][endpoint].x
+				and bodies[i].get(endpoint).y == states[i][endpoint].y
+			)
+	_check(
+		positions_ok and certificate != CONTACT._velocity_key(bodies, parents),
+		"no pose cleanup; real nonzero material response still changes velocities"
+	)
