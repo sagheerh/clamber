@@ -14,6 +14,9 @@ var _failures := 0
 func _initialize() -> void:
 	var bodies := _one(-1.0, -0.2)
 	_check(bodies.size() == 1, "unit rod: mass/inertia1, length2")
+	if bodies.is_empty():
+		quit(1)
+		return
 	var history := _states(_one(-1.0, -1.0))
 	var network := NEW.new()
 	network.history = history.duplicate(true)
@@ -260,6 +263,7 @@ func _boundary(side: float) -> void:
 func _one(vy: float, omega: float) -> Array[CapsuleBody]:
 	var b := CreaturePresets.load_model("Slug", CONFIG).create_bodies(0.0, 0.0)[0]
 	var state := b.snapshot()
+	b = CapsuleBody.new()
 	state.mass = 1.0
 	state.length = 2.0
 	state.a.x = 0.0

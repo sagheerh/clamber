@@ -72,3 +72,10 @@ check-only dependency compile stops on Variant-inferred `terrain` scalar in new
 observer torque reconstruction. Explicit float annotation corrects this semantic
 compile defect. New29 and ALL new public ticks NOT RUN. Publisher preserves exact
 incident; this is not a physical attempt, posture result or an unchanged retry.
+
+Source383c937/run41167078697: all prior185 native PASS, new29 starts but UNIT rod
+fixture tries to change immutable mass/shape via restore on an already configured
+capsule, correctly rejected by original contract. Fixture now restores its test
+state into a FRESH CapsuleBody. No resource/core guard change; add immediate stop
+on missing fixture to avoid secondary dictionary access errors. ZERO public world
+ticks; this is component setup correction, not a world posture/support outcome.
