@@ -1,0 +1,11 @@
+test_both_are_passive_and_support_compatible (__main__.SupportAnalysis.test_both_are_passive_and_support_compatible) ... ok
+test_free_authored_fraction (__main__.SupportAnalysis.test_free_authored_fraction) ... ok
+test_full_drag_limit_distinguishes_splitting (__main__.SupportAnalysis.test_full_drag_limit_distinguishes_splitting) ... ok
+test_simultaneous_impulse_and_constitutive_ledger (__main__.SupportAnalysis.test_simultaneous_impulse_and_constitutive_ledger) ... ok
+test_simultaneous_supported_solve (__main__.SupportAnalysis.test_simultaneous_supported_solve) ... ok
+test_split_support_restores_rotation (__main__.SupportAnalysis.test_split_support_restores_rotation) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+OK

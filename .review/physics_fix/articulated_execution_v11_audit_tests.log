@@ -1,0 +1,15 @@
+test_airborne_failure (__main__.Closure.test_airborne_failure) ... ok
+test_controller_once (__main__.Closure.test_controller_once) ... ok
+test_finite_status (__main__.Closure.test_finite_status) ... ok
+test_full600 (__main__.Closure.test_full600) ... ok
+test_geometry (__main__.Closure.test_geometry) ... ok
+test_later_arms_blocked (__main__.Closure.test_later_arms_blocked) ... ok
+test_ledger (__main__.Closure.test_ledger) ... ok
+test_phase_order (__main__.Closure.test_phase_order) ... ok
+test_posture_failure (__main__.Closure.test_posture_failure) ... ok
+test_sleep_not_credited (__main__.Closure.test_sleep_not_credited) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.532s
+
+OK

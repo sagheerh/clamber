@@ -1,0 +1,57 @@
+{
+  "scope": "OFFLINE immutable600 closure; ZERO new world ticks; NOT acceptance",
+  "source": "30a220585b67a41f751ed786f698760b1d7b717b",
+  "raw_sha256": "14c57e6a8ed4b5bc1b7d5289c595a0d07ed83b1a2921a4a00a891cd12c306e5e",
+  "gzip_sha256": "8c47764b30ad92d5e8b29d5cee76e5ec5b41c3352e59f39098f6f15b7f8babbc",
+  "ticks": 600,
+  "tick_sequence": [
+    0,
+    599
+  ],
+  "every_status_ok": true,
+  "every_row_finite": true,
+  "exact_actual_stage_order_all600": true,
+  "one_original_controller_event_per_tick": true,
+  "first_posture_violation": 16,
+  "max_attitude_deg": 49.18184082241252,
+  "final_attitude_deg": 48.35918598133963,
+  "airborne_ticks": [
+    18
+  ],
+  "any_sleep": false,
+  "max_still_ticks": 4,
+  "penetration_violations": 0,
+  "max_length_wu": 1.6653345369377348e-16,
+  "max_momentum_ledger_residual_ns": 5.551115123125783e-16,
+  "summary": {
+    "arms": {
+      "idle-Slug": {
+        "airborne_ticks": 1,
+        "first_metric_violation_tick": 16,
+        "first_sleep_tick": -1,
+        "max_attitude_deg": 49.18184082241252,
+        "max_length_wu": 1.6653345369377348e-16,
+        "max_penetration_wu": 0.01497062583425049,
+        "net_com_wu": 0.3184761493371776,
+        "sleep_by_original_4s": false,
+        "target_ticks": 600,
+        "termination": "completed; candidate metrics FAILED; stop later arms",
+        "ticks": 600
+      }
+    },
+    "not_run_arms": [
+      "length-Slug",
+      "length-Hopper",
+      "length-TwinRoller"
+    ],
+    "scanner_control": "detected both nonphysical NaN/Inf; not qualifying data",
+    "scope": "NEW unadopted articulated candidate",
+    "status": "STOP; inspect first failure; NOT ADOPTED"
+  },
+  "limitations": [
+    "Constitutive identity and full fresh motor controls pass, but original posture/no-airborne/rest still FAIL. No adoption.",
+    "No native/runtime/device/performance/determinism gate can be credited from this offline audit.",
+    "Do not retry this source or sweep force/damping order. Need a new independently justified physical correction, not threshold/tuning/sleep relaxation.",
+    "This is not an impossibility proof or evidence that contact/damping/rest coupling has been fully diagnosed."
+  ]
+}

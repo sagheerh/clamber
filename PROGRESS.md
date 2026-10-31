@@ -2334,3 +2334,17 @@ New V10 moves first of same2 contacts before integration, same6 position sweeps;
 new20 native components gate any public600. See preregistration
 `.review/physics_fix/articulated_execution_v10_plan.md`. No core/tuning/manifest
 change, threshold waiver, manufactured phone evidence, M1 signature or FA3 credit.
+
+### V9–V11 physics continuation closed — no acceptance/adoption
+
+V10 native164PASS/world5stop; V10b native171PASS/world155stop, posture18/max55.03°.
+V11 source30a2205/CI41164232428/publisher65107d7: native185PASS; ONE new600
+finite/solver0 and originalgeometryPASS, but posture16/max49.18184°/airborne18/
+no4sor600sleep/maxstill4. Three7200NOTRUN. ExactsourceM0/foundations/R29SUCCESS.
+New full-force and projection-identity component controls are NOT world acceptance.
+All original thresholds/core/tuning/manifest unchanged. M1BLOCKED/NOTSIGNED,
+AC201/202productionFAILED/FA3uncredited/M2blocked. No unchanged repeat/adoption.
+Closure `.review/physics_fix/articulated_execution_v11_closure.md`, full pinned
+captures/Variant failures preserved. Offline closure10/Variant10/routing33/rational
+support6 controlsPASS, ZERO new engine ticks. Rational support composition is next
+research, not a selected/validated new creature model. Real device/feel gates remain.

@@ -1,0 +1,38 @@
+[
+  {
+    "path": ".github",
+    "blob_href": "https://github.com/sagheerh/clamber/blob/30a220585b67a41f751ed786f698760b1d7b717b/.github",
+    "start_line": 12,
+    "start_column": null,
+    "end_line": 12,
+    "end_column": null,
+    "annotation_level": "notice",
+    "title": "NEW articulated execution summary.json",
+    "message": "{\"arms\":{\"idle-Slug\":{\"airborne_ticks\":1,\"first_metric_violation_tick\":16,\"first_sleep_tick\":-1,\"max_attitude_deg\":49.18184082241252,\"max_length_wu\":1.6653345369377348e-16,\"max_penetration_wu\":0.01497062583425049,\"net_com_wu\":0.3184761493371776,\"sleep_by_original_4s\":false,\"target_ticks\":600,\"termination\":\"completed; candidate metrics FAILED; stop later arms\",\"ticks\":600}},\"not_run_arms\":[\"length-Slug\",\"length-Hopper\",\"length-TwinRoller\"],\"scanner_control\":\"detected both nonphysical NaN/Inf; not qualifying data\",\"scope\":\"NEW unadopted articulated candidate\",\"status\":\"STOP; inspect first failure; NOT ADOPTED\"}",
+    "raw_details": ""
+  },
+  {
+    "path": ".github",
+    "blob_href": "https://github.com/sagheerh/clamber/blob/30a220585b67a41f751ed786f698760b1d7b717b/.github",
+    "start_line": 10,
+    "start_column": null,
+    "end_line": 10,
+    "end_column": null,
+    "annotation_level": "notice",
+    "title": "NEW articulated execution exit-code.txt",
+    "message": "1\n",
+    "raw_details": ""
+  },
+  {
+    "path": ".github",
+    "blob_href": "https://github.com/sagheerh/clamber/blob/30a220585b67a41f751ed786f698760b1d7b717b/.github",
+    "start_line": 115,
+    "start_column": null,
+    "end_line": 115,
+    "end_column": null,
+    "annotation_level": "failure",
+    "title": "",
+    "message": "Process completed with exit code 1.",
+    "raw_details": ""
+  }
+]

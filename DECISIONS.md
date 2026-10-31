@@ -2368,3 +2368,12 @@ integration, second after6 position sweeps), not a sweep/retune or force/sleep
 waiver. Require prior144+new20 native then original600 before any7200. Preserve
 real momenta, frozen previousN, full per-body idle evidence, guards and atomic
 rollback. Production AC201/202 remain FAILED, M1BLOCKED/NOTSIGNED/M2blocked.
+
+### Close V10/V11 without adoption or an order sweep
+
+V10b status30 at155 after posture alreadyfailed; V11 full600 solverOK stillfails
+posture/no-airborne/rest. Native185 is component proof only; NOT a physics/M1 PASS.
+No unchanged retry, source adoption, tuning/threshold/energy/sleep waiver or7200.
+Preserve failures and full provenance. Contact/damping coupling needs independently
+justified native work; exact unit-rod comparison is not normative/creature evidence.
+M1BLOCKED/NOTSIGNED and physical acceptance/device requirements remain unchanged.
