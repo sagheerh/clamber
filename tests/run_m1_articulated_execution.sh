@@ -146,7 +146,7 @@ if ! grep -Fxq 'Rigid pad components: 24 checks, 0 failures' "$folder/rigid-pad-
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/support-manifold-compile.log"; then exit 1; fi
 timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_support_manifold_components.gd > "$folder/support-manifold-components.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/support-manifold-components.log"; then exit 1; fi
-if ! grep -Fxq 'Support manifold components: 27 checks, 0 failures' "$folder/support-manifold-components.log"; then exit 1; fi
+if ! grep -Fxq 'Support manifold components: 29 checks, 0 failures' "$folder/support-manifold-components.log"; then exit 1; fi
 "$GODOT" --headless --script res://tests/physics_fix/test_articulated_execution.gd -- --report-dir="$folder" > "$folder/engine.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/engine.log"; then
  echo 'STOP: runtime errors; inspect first failure.' >&2
