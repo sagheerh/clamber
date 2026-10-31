@@ -90,7 +90,7 @@ jobs:
         run: python3 scripts/publish_m1_contact_composition.py
 
   articulated-primitives:
-    if: ${{ github.ref == 'refs/heads/arena/f43f36ab-clamber' && github.sha == github.event.after && contains(github.event.head_commit.message, '[M1-articulated-units]') }}
+    if: ${{ github.ref == 'refs/heads/arena/f43f36ab-clamber' && github.sha == github.event.after && (contains(github.event.head_commit.message, '[M1-articulated-units]') || contains(github.event.head_commit.message, '[M1-articulated-execution]')) }}
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     env:
@@ -135,3 +135,42 @@ jobs:
               print('::notice title=Articulated source::'+json.dumps(r,separators=(',',':')))
           PY
           exit "$status"
+
+  articulated-execution:
+    if: ${{ github.ref == 'refs/heads/arena/f43f36ab-clamber' && github.sha == github.event.after && contains(github.event.head_commit.message, '[M1-articulated-execution]') }}
+    needs: articulated-primitives
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    env:
+      GODOT_VERSION: 4.7.2-stable
+      SOURCE_SHA: ${{ github.sha }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: arena/f43f36ab-clamber
+      - name: Exact source preflight (stop if branch has advanced)
+        shell: bash
+        run: |
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
+          echo "M1_ARTICULATED_EXECUTION_REPORT_DIR=tests/fixtures/m1_articulated_execution/${SOURCE_SHA:0:12}" >> "$GITHUB_ENV"
+      - name: Install checksum-verified exact engine
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/$GODOT_VERSION"
+          archive="Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 3 "$base/$archive" -o "$archive"
+          curl --fail --location --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          grep -F " $archive" SHA512-SUMS.txt | sha512sum --check --strict
+          unzip -q "$archive" -d "$RUNNER_TEMP/godot"
+          echo "GODOT=$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}_linux.x86_64" >> "$GITHUB_ENV"
+      - name: Compile before ticks, then ONE NEW registered articulated candidate
+        shell: bash
+        run: bash tests/run_m1_articulated_execution.sh
+      - name: Preserve success OR first failure without artifact-upload dependency
+        if: ${{ always() }}
+        shell: bash
+        run: python3 scripts/publish_m1_articulated_execution.py
