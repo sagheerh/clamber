@@ -81,7 +81,7 @@ func _initialize() -> void:
 			)
 		var dx: float = bodies[i].b.x - bodies[i].a.x
 		var dy: float = bodies[i].b.y - bodies[i].a.y
-		rigid = rigid and absf(sqrt(dx * dx + dy * dy) - bodies[i].length) < 1e-12
+		rigid = rigid and absf(sqrt(dx * dx + dy * dy) - bodies[i].rest_length) < 1e-12
 	_check(unchanged_velocity, "position multiplier never becomes a velocity/load")
 	_check(rigid, "all capsule extents remain rigid")
 	var residual := 0.0

@@ -1,0 +1,38 @@
+[
+  {
+    "path": ".github",
+    "blob_href": "https://github.com/sagheerh/clamber/blob/fe1cf864e80b036eceb80ffb6f7493e65456017d/.github",
+    "start_line": 12,
+    "start_column": null,
+    "end_line": 12,
+    "end_column": null,
+    "annotation_level": "failure",
+    "title": "Candidate limited-components.log",
+    "message": "SCRIPT ERROR: Invalid access to property or key 'length' on a base object of type 'RefCounted (CapsuleBody)'.",
+    "raw_details": ""
+  },
+  {
+    "path": ".github",
+    "blob_href": "https://github.com/sagheerh/clamber/blob/fe1cf864e80b036eceb80ffb6f7493e65456017d/.github",
+    "start_line": 10,
+    "start_column": null,
+    "end_line": 10,
+    "end_column": null,
+    "annotation_level": "notice",
+    "title": "NEW articulated execution exit-code.txt",
+    "message": "1\n",
+    "raw_details": ""
+  },
+  {
+    "path": ".github",
+    "blob_href": "https://github.com/sagheerh/clamber/blob/fe1cf864e80b036eceb80ffb6f7493e65456017d/.github",
+    "start_line": 85,
+    "start_column": null,
+    "end_line": 85,
+    "end_column": null,
+    "annotation_level": "failure",
+    "title": "",
+    "message": "Process completed with exit code 1.",
+    "raw_details": ""
+  }
+]

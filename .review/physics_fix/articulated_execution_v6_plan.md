@@ -45,3 +45,10 @@ Local gdlint/gdformat PASS; routing doubles24/24 PASS (ZERO actual engine ticks)
 Native24 and new world NOT RUN at this preregistration. CI check-only/timeout60s/
 quit-after1/error scanning/exact24 tally must stop BEFORE world on any component
 failure. M1 remains BLOCKED/NOT SIGNED regardless of push/merge/tooling.
+
+Component incident sourcefe1cf864e80b/run41159649791: prior42+8+20+12 PASS;
+new scripts/check-only compile PASS. New component test then accessed runtime
+CapsuleBody.length (snapshot name) instead of rest_length (runtime field), at the
+rigidity assertion. No preceding assertion FAIL logged. New24 NOT complete;
+ZERO world ticks, no posture/physics-run credit. Publisherf61eef2 preserves logs.
+Fix test field only; no kernel/resource change or failed-world replay.
