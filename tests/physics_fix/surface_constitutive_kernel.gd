@@ -150,7 +150,12 @@ func _measured_reaction(
 		for a in range(result.get("angular_rows", []).size()):
 			angular_limit += result.angular_rows[a][3 * i + 2] * result.angular_impulses[a]
 		var terrain: float = (
-			((u - 0.5) * (axes.x * fy - axes.y * fx) - before[i].radius * jt) if i == part else 0.0
+			(
+				(u - 0.5) * (axes.x * fy - axes.y * fx)
+				- before[i].radius * result.tangential_impulse_ns
+			)
+			if i == part
+			else 0.0
 		)
 		var actual: float = (PlanarBasis.frame(after[i]).omega - axes.omega) / axes.inverse_inertia
 		events.append(

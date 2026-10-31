@@ -33,3 +33,8 @@ frozen previousN0 / actual momentum, both angular/contact boundaries with same
 complete strict energy+exact geometry. Any script error/partial count fails.
 Grammar alone not proof. Later world source must separately preregister original
 600 -> sequentialthree7200 and require old293+new24=317 before any public tick.
+
+First4477bb2/run41169609117 STOP at native compile, ZERO new components/world:
+new skin torque observer referenced `jt` instead of event.tangential_impulse_ns.
+Correct identifier only. Preserve error annotations; no physical metric result
+or unchanged-world retry is implied. GDScript grammar did not prove semantics.
