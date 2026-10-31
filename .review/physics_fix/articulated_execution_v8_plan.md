@@ -49,3 +49,25 @@ posture15deg/4s rest/length/penetration gates unchanged; fail -> no later7200.
 Only full600 PASS permits sequential three7200. No unchanged V7 replay; no
 production/core/manifest changes; M1 BLOCKED/NOT SIGNED, AC201/202 FAILED,
 FA3 uncredited, M2 blocked, device/layout/performance/adoption gates remain.
+
+## Executed outcome — CLOSED; constraint correction, NOT posture/rest acceptance
+Sourced0af122528f4fadcb85584c75beb85119aec1c3c/run41160503517:
+native42+8+20+12+36 PASS. NEW600/600 all solverstatus0; maxlength
+2.220446049250313e-16WU, maxpenetration.02000000000000071WU inside ORIGINAL
+.02*(1+1e-9). No native positive angular bound excess in this world run; angular
+stop was never reached, so active-stop proof belongs ONLY to native36 components.
+Physical states first differ from V5 at20, after unchanged posture failure14.
+Maxposture36.82450412336463deg, no4s or600 sleep, maxstillstreak4/30, COMnet
+.3189581467166967WU. All7200 NOT RUN. No adoption, M1 signature or productionAC202.
+Publisher051e4b7 preserves immutabled0af122528f4/raw SHA
+773aa49d8df56258d39821d7d67598fd9b1045dd476708141a271f50d685c97e,
+gzip SHAe1e6772f9d7a99d9e85ede88ec6b46c24ec14e21be1c19c549256d60c68736bb.
+M0/foundations/R29 exact-source regressions SUCCESS; saved metadata retained.
+
+Offline comparison10/0 hashes all V5/V7/V8 traces and preserves limitations:
+old free geometry still has nonlinear hinge residuals (V8 max.0004663574476392047WU,
+terminal0), so do not claim every world hinge is bitwise coincident. New finite
+publication's exact hinge guarantee is exercised separately in native components.
+Saved early rotational audit8/0 covers only force integration through first14
+crossing, not unsaved contact intermediate phases or an impossibility theorem.
+No next world run/candidate registered; early posture and true rest remain OPEN.

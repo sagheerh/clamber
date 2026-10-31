@@ -1,0 +1,15 @@
+test_all_three_are_complete_saved_horizons (__main__.ConstraintFixAudit.test_all_three_are_complete_saved_horizons) ... ok
+test_final_candidate_angles_in_authored_range (__main__.ConstraintFixAudit.test_final_candidate_angles_in_authored_range) ... ok
+test_final_metrics_are_not_acceptance (__main__.ConstraintFixAudit.test_final_metrics_are_not_acceptance) ... ok
+test_first_early_failure_not_fixed_by_late_limit_constraint (__main__.ConstraintFixAudit.test_first_early_failure_not_fixed_by_late_limit_constraint) ... ok
+test_no_fake_exact_world_hinge_claim (__main__.ConstraintFixAudit.test_no_fake_exact_world_hinge_claim) ... ok
+test_no_vacuous_whole_run_angular_stop_credit (__main__.ConstraintFixAudit.test_no_vacuous_whole_run_angular_stop_credit) ... ok
+test_original_long_arm_stop_honored_every_time (__main__.ConstraintFixAudit.test_original_long_arm_stop_honored_every_time) ... ok
+test_penetration_regression_was_not_waived (__main__.ConstraintFixAudit.test_penetration_regression_was_not_waived) ... ok
+test_prior_late_angular_defect_and_correction (__main__.ConstraintFixAudit.test_prior_late_angular_defect_and_correction) ... ok
+test_stillness_not_invented_from_lower_penetration (__main__.ConstraintFixAudit.test_stillness_not_invented_from_lower_penetration) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 1.338s
+
+OK

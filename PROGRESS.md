@@ -8,7 +8,56 @@ Session date: 2026-10-31. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
-## Active causal repair — numerical run complete, posture/rest FAIL (2026-10-31)
+## Active causal repair — coupled constraint correction verified; posture/rest STILL FAIL (2026-10-31)
+
+Latest executed source **d0af122528f4fadcb85584c75beb85119aec1c3c**, CI
+**41160503517**, immutable publisher **051e4b7**. Native prerequisites
+**42+8+20+12+36 PASS**. NEW unadopted Slug completes600/600 ticks, every solver
+statusOK. Bone-length max2.220446049250313e-16WU; penetration max
+**.02000000000000071WU**, inside ORIGINAL **.02*(1+1e-9)** reporting bound.
+No material angular limit violation; actual V8 never reaches the upper stop.
+Native36 separately exercises active upper/lower angular stops, contact coupling,
+finite all-floor feasibility, exact hinge coordinates, motion bounds and atomicity.
+Do not credit inactive whole-world upper-stop coverage or three7200 from this.
+
+Implemented test-only coupled angular/hinge/contact block; inactive free operator
+preserved bitwise. Finite position publication constructs tree coordinates BEFORE
+solving all sampled terrain halfspaces for global translation. No rotation/hinge
+repair after terrain, extra PBD sweep, upright target, motion erasure, manufactured
+normal/grip load or core/tuning/manifest change. Position-only translations remain
+unqualified; original strict velocity energy and displacement guards unchanged.
+Free old proposal is retained where feasible; not ALL world hinges are bitwise
+coincident (maxgap.0004663574476392047WU before finite path; terminal gap0).
+
+**Original acceptance STILL FAILS**: first posture violation14, maximum
+**36.82450412336463deg** (>15), no original4s sleep and none by600. Maximum still
+streak4/30; continuing motion is real, not improved rest. COM net.3189581467166967WU.
+All three7200 arms NOT RUN. This is NOT adoption, production AC202, determinism,
+FA3 or an M1 signature. Physical input/release/wake/rollback/force, adoption,
+provenance and layout/device/default-performance gates remain.
+
+Closed attempts: V6source6fffadd native24 PASS, 7 ticks then strict contact response
+rejection; V7source8368e14 native27 PASS/600 completed, material angular reopening
+removed but penetration regression .02006846411770838 starts47. Preserve both;
+no unchanged replay. V8 addresses finite nonlinear hinge/contact geometry, and
+removes that penetration regression on Slug600 without changing the reporting bound.
+No production adoption. See v6/v8 preregistration and immutable source folders.
+
+Offline capture comparison10/0 (ZERO new ticks) pins V5/V7/V8. Physical states
+first differ from V5 at46 forV7,20 forV8: early14 posture failure is NOT fixed by
+these later corrections. Separate saved early rotational audit8/0 closes the
+force-integration angular ledger to roundoff: initial COMx.2630645161290322 vs toe
+x.35, gravity torque3.773N*m, motor pair net angular impulse roundoff-scale. This
+is real early angular momentum, NOT proof the authored pose is impossible or
+permission for an upright controller, tuning change or speculative order sweep.
+Reports: `.review/physics_fix/articulated-{constraint-fix,rotation}-audit.json`.
+
+M0run41160503567, foundations41160503549, R2941160503520 SUCCESS for exactd0af122.
+Local routing doubles24 PASS (ZERO engine ticks). New candidate is unadopted;
+**M1 BLOCKED/NOT SIGNED**, production AC201/202 FAILED, FA3 uncredited; M2 blocked.
+No next candidate or new world attempt registered after this failed600 gate.
+
+## Historical V5 — numerical run complete, posture/rest FAIL (2026-10-31)
 
 Latest executed source **813e3ef6e6d34ba76911f2f26b1dcc340e4b0702**, CI
 **41157323700**, immutable publisher **f3da173**. Native prerequisites **42+8+20+12

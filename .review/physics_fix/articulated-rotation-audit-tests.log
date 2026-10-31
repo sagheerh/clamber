@@ -1,0 +1,13 @@
+test_first_full_gravity_impulse (__main__.RotationAudit.test_first_full_gravity_impulse) ... ok
+test_initial_com_not_over_toe (__main__.RotationAudit.test_initial_com_not_over_toe) ... ok
+test_measured_internal_motor_pair_not_net_upright_torque (__main__.RotationAudit.test_measured_internal_motor_pair_not_net_upright_torque) ... ok
+test_no_active_limit_self_or_clamp_explains_first_crossing (__main__.RotationAudit.test_no_active_limit_self_or_clamp_explains_first_crossing) ... ok
+test_not_a_design_impossibility_or_acceptance_claim (__main__.RotationAudit.test_not_a_design_impossibility_or_acceptance_claim) ... ok
+test_predicted_momentum_is_not_zeroed (__main__.RotationAudit.test_predicted_momentum_is_not_zeroed) ... ok
+test_rotation_ledger_closes (__main__.RotationAudit.test_rotation_ledger_closes) ... ok
+test_saved_exact_horizon_through_first_posture_failure (__main__.RotationAudit.test_saved_exact_horizon_through_first_posture_failure) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.429s
+
+OK

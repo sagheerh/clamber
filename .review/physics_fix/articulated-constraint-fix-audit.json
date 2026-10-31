@@ -1,0 +1,132 @@
+{
+  "scope": "OFFLINE immutable capture comparison; ZERO new ticks; NOT acceptance",
+  "results": {
+    "V5": {
+      "source": "813e3ef6e6d34ba76911f2f26b1dcc340e4b0702",
+      "raw_sha256": "5811c86f17ffcbdcf579557a1f6fc0220b4c7ec65c3ca2a58026f0843c54e024",
+      "count": 600,
+      "every_solver_status_ok": true,
+      "summary": {
+        "arms": {
+          "idle-Slug": {
+            "airborne_ticks": 0,
+            "first_metric_violation_tick": 14,
+            "first_sleep_tick": -1,
+            "max_attitude_deg": 51.5092822123154,
+            "max_length_wu": 5.551115123125783e-16,
+            "max_penetration_wu": 0.019999982972719904,
+            "net_com_wu": 0.3568142297851864,
+            "sleep_by_original_4s": false,
+            "target_ticks": 600,
+            "termination": "completed; candidate metrics FAILED; stop later arms",
+            "ticks": 600
+          }
+        },
+        "not_run_arms": [
+          "length-Slug",
+          "length-Hopper",
+          "length-TwinRoller"
+        ],
+        "scanner_control": "detected both nonphysical NaN/Inf; not qualifying data",
+        "scope": "NEW unadopted articulated candidate",
+        "status": "STOP; inspect first failure; NOT ADOPTED"
+      },
+      "max_positive_upper_excess_rad": 0.060670178674278374,
+      "max_positive_lower_excess_rad": 0.0,
+      "material_upper_excess_frames": 554,
+      "penetration_report_violation_frames": 0,
+      "max_still_ticks": 14,
+      "any_sleep": false,
+      "max_hinge_gap_wu": 0.0004663574476392047,
+      "final_hinge_gap_wu": 0.00017717415934092305
+    },
+    "V7": {
+      "source": "8368e14f716ffebfb64052c715d0dda3eecee9b3",
+      "raw_sha256": "8c4af7f7ab4eefc6f6b8d4d32bd2385e80beee2d8c32d12561058f40f3e0523f",
+      "count": 600,
+      "every_solver_status_ok": true,
+      "summary": {
+        "arms": {
+          "idle-Slug": {
+            "airborne_ticks": 0,
+            "first_metric_violation_tick": 14,
+            "first_sleep_tick": -1,
+            "max_attitude_deg": 50.42405874018188,
+            "max_length_wu": 6.106226635438361e-16,
+            "max_penetration_wu": 0.02006846411770838,
+            "net_com_wu": 0.3537680379848081,
+            "sleep_by_original_4s": false,
+            "target_ticks": 600,
+            "termination": "completed; candidate metrics FAILED; stop later arms",
+            "ticks": 600
+          }
+        },
+        "not_run_arms": [
+          "length-Slug",
+          "length-Hopper",
+          "length-TwinRoller"
+        ],
+        "scanner_control": "detected both nonphysical NaN/Inf; not qualifying data",
+        "scope": "NEW unadopted articulated candidate",
+        "status": "STOP; inspect first failure; NOT ADOPTED"
+      },
+      "max_positive_upper_excess_rad": 5.551115123125783e-16,
+      "max_positive_lower_excess_rad": 0.0,
+      "material_upper_excess_frames": 0,
+      "penetration_report_violation_frames": 553,
+      "max_still_ticks": 17,
+      "any_sleep": false,
+      "max_hinge_gap_wu": 0.0004663574476392047,
+      "final_hinge_gap_wu": 0.00013085983975978129
+    },
+    "V8": {
+      "source": "d0af122528f4fadcb85584c75beb85119aec1c3c",
+      "raw_sha256": "773aa49d8df56258d39821d7d67598fd9b1045dd476708141a271f50d685c97e",
+      "count": 600,
+      "every_solver_status_ok": true,
+      "summary": {
+        "arms": {
+          "idle-Slug": {
+            "airborne_ticks": 0,
+            "first_metric_violation_tick": 14,
+            "first_sleep_tick": -1,
+            "max_attitude_deg": 36.82450412336463,
+            "max_length_wu": 2.220446049250313e-16,
+            "max_penetration_wu": 0.02000000000000071,
+            "net_com_wu": 0.3189581467166967,
+            "sleep_by_original_4s": false,
+            "target_ticks": 600,
+            "termination": "completed; candidate metrics FAILED; stop later arms",
+            "ticks": 600
+          }
+        },
+        "not_run_arms": [
+          "length-Slug",
+          "length-Hopper",
+          "length-TwinRoller"
+        ],
+        "scanner_control": "detected both nonphysical NaN/Inf; not qualifying data",
+        "scope": "NEW unadopted articulated candidate",
+        "status": "STOP; inspect first failure; NOT ADOPTED"
+      },
+      "max_positive_upper_excess_rad": 0.0,
+      "max_positive_lower_excess_rad": 0.0,
+      "material_upper_excess_frames": 0,
+      "penetration_report_violation_frames": 0,
+      "max_still_ticks": 4,
+      "any_sleep": false,
+      "max_hinge_gap_wu": 0.0004663574476392047,
+      "final_hinge_gap_wu": 0.0
+    }
+  },
+  "first_state_difference_from_v5": {
+    "V7": 46,
+    "V8": 20
+  },
+  "limitations": [
+    "V8 whole run never reaches the angular upper stop; active-limit behavior is exercised by the separate native36 component suite, not inferred from this run.",
+    "V8 removes material angular/penetration failures on this flat Slug600, NOT certification of three7200 or production AC202.",
+    "Old free proposal remains in inactive feasible cases; not every published world hinge is bitwise coincident. Exact coincidence belongs to finite-coordinate publication controls.",
+    "Posture still first fails14, sleep fails and later arms remain NOT RUN. No determinism, adoption, device, performance or FA3 credit."
+  ]
+}

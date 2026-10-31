@@ -3,6 +3,30 @@
 The GDD's existing D-01–D-17, CD-01, and A-xx decisions remain normative.
 New implementation decisions use M0-Dxx to avoid colliding with those IDs.
 
+## M1-PHYSICS-FIX-D06 — Couple angular inequalities and finite tree/contact coordinates
+
+2026-10-31: saved V5 native q reopened after angular correction. Test-only direct
+active-set block includes authored relative-angle inequalities with hinge/contact
+rows; inward release remains legal. Inactive constraints preserve original free
+response bitwise, not a refactorization with a new roundoff trajectory. Keep
+original strict passivity, atomicity and motion bounds; no new PBD sweeps/tuning.
+
+V7 fixed material angular reopening but failed original penetration bound. V8
+finite position publication constructs tree coordinates first, then solves the
+remaining global translation against all sampled terrain halfspaces simultaneously.
+No post-terrain hinge/angular repair, controller, qualifying position load, velocity
+edit or forced sleep. Atomic position publication retains original total-motion
+cap. Native36 includes active-angle and exact finite geometry counterexamples.
+Local halfspaces/flat component success is NOT all-slope/platform certification.
+
+Sourced0af122/run41160503517 completed600 solverOK, length2.220446049250313e-16WU,
+penetration.02000000000000071WU within original.02*(1+1e-9). But posture first
+fails14/max36.82450412336463deg, no original4s rest/600 sleep. All7200 NOT RUN;
+no adoption/AC202/M1 verdict. Early rotational ledger is evidence of real gravity
+and angular momentum, NOT a proof of impossible design or authority to tune away
+failure. M1 remains BLOCKED/NOT SIGNED; production core/tuning/manifest unchanged.
+See `.review/physics_fix/articulated_execution_v8_plan.md` and saved audits.
+
 ## M1-PHYSICS-FIX-D05 — Separate numerical rejection from measured posture failure
 
 2026-10-31: sourcef7b8fd2 native42+8 PASS, but v2 world posture FAIL at tick8
