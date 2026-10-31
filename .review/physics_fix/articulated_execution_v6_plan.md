@@ -52,3 +52,23 @@ CapsuleBody.length (snapshot name) instead of rest_length (runtime field), at th
 rigidity assertion. No preceding assertion FAIL logged. New24 NOT complete;
 ZERO world ticks, no posture/physics-run credit. Publisherf61eef2 preserves logs.
 Fix test field only; no kernel/resource change or failed-world replay.
+
+## V6 CLOSED outcome and V7 preregistration
+Source6fffadd4a428/run41159738187: native42+8+20+12+24 PASS. Component native
+oldq=.7053165237037202, coupledq=.6981317007977315, upper=.6981317007977316;
+linear hinge residual1.0842021724855044e-19. This proves the constructed saved-pose
+contact/angle defect, NOT complete-creature success. Actual world stopped after
+7 ticks, attempting7/status30 `network contact velocity response`; no600/rest/
+posture credit; all7200 NOT RUN. Publisherf09bf34 preserves exact failure Variants.
+
+V7 hypothesis: inactive inequality rows must preserve the established free operator
+BIT FOR BIT, not refactor an equivalent contact-position KKT and perturb roundoff.
+Try original guarded position proposal on detached bodies. If all actual authored
+angles remain in range, publish that exact free pose; ONLY an actual proposed
+angular violation enters the coupled block. Velocity/contact with no eligible
+angular stop directly call the original strict kernel. No epsilon/guard relaxation,
+no inward rounding, scaling, new PBD sweep or tuning change. Active limit behavior
+retains native24 proof. Add three bitwise inactive-authoring controls, native27
+now required before ONE new600. Same original gates/first-failure stop. Old7-tick
+source never replayed unchanged. This hypothesis/new27 remain native-unverified
+at preregistration. Prior V5 numeric/metric results cannot be carried into V7.

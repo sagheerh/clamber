@@ -1,0 +1,50 @@
+[
+  {
+    "path": ".github",
+    "blob_href": "https://github.com/sagheerh/clamber/blob/6fffadd4a428cbcadfcb791ad8d141cbe8f0ae7f/.github",
+    "start_line": 13,
+    "start_column": null,
+    "end_line": 13,
+    "end_column": null,
+    "annotation_level": "failure",
+    "title": "Candidate engine.log",
+    "message": "ERROR: Articulated contact failure: {\"full_work_variant_base64\":\"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\",\"reason\":\"network contact velocity response\",\"status\":30}",
+    "raw_details": ""
+  },
+  {
+    "path": ".github",
+    "blob_href": "https://github.com/sagheerh/clamber/blob/6fffadd4a428cbcadfcb791ad8d141cbe8f0ae7f/.github",
+    "start_line": 12,
+    "start_column": null,
+    "end_line": 12,
+    "end_column": null,
+    "annotation_level": "notice",
+    "title": "NEW articulated execution summary.json",
+    "message": "{\"arms\":{\"idle-Slug\":{\"airborne_ticks\":0,\"failing_tick\":7,\"first_metric_violation_tick\":-1,\"first_sleep_tick\":-1,\"max_attitude_deg\":2.771337379586173,\"max_length_wu\":1.1102230246251565e-16,\"max_penetration_wu\":0.01999980093352001,\"solver_status\":30,\"target_ticks\":600,\"termination\":\"step/nonfinite failure\",\"ticks\":7}},\"not_run_arms\":[\"length-Slug\",\"length-Hopper\",\"length-TwinRoller\"],\"scanner_control\":\"detected both nonphysical NaN/Inf; not qualifying data\",\"scope\":\"NEW unadopted articulated candidate\",\"status\":\"STOP; inspect first failure; NOT ADOPTED\"}",
+    "raw_details": ""
+  },
+  {
+    "path": ".github",
+    "blob_href": "https://github.com/sagheerh/clamber/blob/6fffadd4a428cbcadfcb791ad8d141cbe8f0ae7f/.github",
+    "start_line": 10,
+    "start_column": null,
+    "end_line": 10,
+    "end_column": null,
+    "annotation_level": "notice",
+    "title": "NEW articulated execution exit-code.txt",
+    "message": "1\n",
+    "raw_details": ""
+  },
+  {
+    "path": ".github",
+    "blob_href": "https://github.com/sagheerh/clamber/blob/6fffadd4a428cbcadfcb791ad8d141cbe8f0ae7f/.github",
+    "start_line": 106,
+    "start_column": null,
+    "end_line": 106,
+    "end_column": null,
+    "annotation_level": "failure",
+    "title": "",
+    "message": "Process completed with exit code 1.",
+    "raw_details": ""
+  }
+]

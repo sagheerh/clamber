@@ -174,6 +174,7 @@ func _initialize() -> void:
 		valid and not projected.is_empty() and _omega(velocity_bodies) >= -1e-12,
 		"lower stop has mirrored unilateral sign"
 	)
+	_inactive_identity(limits)
 	print("Angular limited components: %d checks, %d failures" % [_checks, _failures])
 	print("Scope: saved/constructed component states ONLY; ZERO world ticks; NOT acceptance")
 	quit(1 if _failures else 0)
@@ -251,3 +252,46 @@ func _check(ok: bool, label: String) -> void:
 	if not ok:
 		_failures += 1
 		push_error("FAIL " + label)
+
+
+func _inactive_identity(limits: Array) -> void:
+	var spawn: Dictionary = JSON.parse_string(
+		FileAccess.get_file_as_string(
+			"res://tests/fixtures/m1_articulated_execution/813e3ef6e6d3/idle-Slug-spawn.json"
+		)
+	)
+	for operation in ["position", "velocity", "contact"]:
+		var old_bodies := _restore(spawn.rig.physical.bodies)
+		var new_bodies := _restore(spawn.rig.physical.bodies)
+		for group in [old_bodies, new_bodies]:
+			_clear_velocities(group)
+			for body in group:
+				body.a.velocity_y = -1.0
+				body.b.velocity_y = -1.0
+		var old := OLD.new()
+		var network := NEW.new()
+		network.limits = limits.duplicate(true)
+		var valid := (
+			old.configure(old_bodies, _parents) == OK
+			and network.configure(new_bodies, _parents) == OK
+		)
+		var old_result: Dictionary
+		var new_result: Dictionary
+		if operation == "position":
+			old_result = old.contact_position(old_bodies, 0, 0.0, 0.0, 1.0, 0.001, CONFIG)
+			new_result = network.contact_position(new_bodies, 0, 0.0, 0.0, 1.0, 0.001, CONFIG)
+		elif operation == "velocity":
+			old_result = old.project_velocity(old_bodies)
+			new_result = network.project_velocity(new_bodies)
+		else:
+			old_result = old.contact_velocity(old_bodies, 2, 1.0, 0.0, 1.0, 0.0, 0.0)
+			new_result = network.contact_velocity(new_bodies, 2, 1.0, 0.0, 1.0, 0.0, 0.0)
+		_check(
+			(
+				valid
+				and not old_result.is_empty()
+				and not new_result.is_empty()
+				and _bits(old_bodies) == _bits(new_bodies)
+			),
+			"inactive authored limits preserve original " + operation + " bit for bit"
+		)

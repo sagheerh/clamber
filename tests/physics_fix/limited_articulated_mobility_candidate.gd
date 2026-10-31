@@ -49,6 +49,13 @@ func project_hinge_positions(
 ) -> Dictionary:
 	if not _matches(bodies) or parents.size() != bodies.size():
 		return {}
+	var free := _copies(bodies)
+	var trial := super.project_hinge_positions(free, parents, tuning)
+	if trial.is_empty():
+		return {}
+	if _angles_feasible(free):
+		_copy_positions(free, bodies)
+		return trial
 	var rhs := _zero(_hinges.size())
 	for c in range(1, bodies.size()):
 		var p := parents[c]
@@ -73,6 +80,13 @@ func contact_position(
 	var row := _contact_row(bodies, part, u, nx, ny)
 	if row.is_empty():
 		return {}
+	var free := _copies(bodies)
+	var trial := super.contact_position(free, part, u, nx, ny, depth, tuning)
+	if trial.is_empty():
+		return {}
+	if _angles_feasible(free):
+		_copy_positions(free, bodies)
+		return trial
 	return _position_block(bodies, _zero(_hinges.size()), row, depth, tuning)
 
 
@@ -103,6 +117,8 @@ func _position_block(
 func project_velocity(bodies: Array[CapsuleBody]) -> Dictionary:
 	if not _matches(bodies):
 		return {}
+	if _angular_inequalities(bodies, true).is_empty():
+		return super.project_velocity(bodies)
 	var incoming := _velocities(bodies)
 	var rhs := _zero(_hinges.size())
 	for i in range(rhs.size()):
@@ -132,6 +148,8 @@ func contact_velocity(
 	if not _matches(bodies):
 		return {}
 	var constraints := _angular_inequalities(bodies, true)
+	if constraints.is_empty():
+		return super.contact_velocity(bodies, part, u, nx, ny, retention, restitution)
 	var original_rows := _hinges
 	var original_factor := _factor
 	var active: Array[int] = []
@@ -274,3 +292,28 @@ func _factor_rows(rows: Array) -> Array:
 			row[j] = sqrt(value) if i == j else value / factor[j][j]
 		factor.append(row)
 	return factor
+
+
+func _angles_feasible(bodies: Array[CapsuleBody]) -> bool:
+	for inequality in _angular_inequalities(bodies, false):
+		if inequality.rhs > 0.0:
+			return false
+	return true
+
+
+func _copies(bodies: Array[CapsuleBody]) -> Array[CapsuleBody]:
+	var work: Array[CapsuleBody] = []
+	for body in bodies:
+		var copy := CapsuleBody.new()
+		if copy.restore(body.snapshot()) != OK:
+			return []
+		work.append(copy)
+	return work
+
+
+func _copy_positions(source: Array[CapsuleBody], target: Array[CapsuleBody]) -> void:
+	for i in range(source.size()):
+		target[i].a.x = source[i].a.x
+		target[i].a.y = source[i].a.y
+		target[i].b.x = source[i].b.x
+		target[i].b.y = source[i].b.y
