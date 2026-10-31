@@ -1,5 +1,6 @@
 # gdlint: disable=max-line-length
 extends "res://tests/physics_fix/test_rigid_pad_components.gd"
+const MANIFOLD_RIG = preload("res://tests/physics_fix/manifold_candidate.gd")
 const BLOCK = preload("res://tests/physics_fix/support_manifold.gd")
 const SKIN_ROW = preload("res://tests/physics_fix/capsule_surface_frame.gd")
 const SERIAL = preload("res://tests/physics_fix/surface_impact_terrain.gd")
@@ -171,7 +172,35 @@ func _initialize() -> void:
 		BLOCK.solve(kernel, single, invalid).is_empty() and bits == _bits(single),
 		"invalid material rejects atomically before touching state"
 	)  #13
-	_check(_checks == 13, "complete native manifold tally")
+	for name in ["Slug", "Hopper", "TwinRoller"]:
+		var combined := MANIFOLD_RIG.new()
+		_check(_setup_pad(combined, name) == OK, name + " actual manifold adapter setup")
+		combined.collect_contact_samples = true
+		var trace: Dictionary = combined.step()
+		_check(
+			trace.status == OK and trace.constitutive_stage.status == OK,
+			name + " complete strict manifold stage"
+		)
+		var honest: bool = trace.status == OK
+		if honest:
+			honest = trace.previous_grounded_feet == 0 and trace.contact_batches.size() == 2
+			for sample in trace.contact_samples:
+				honest = honest and not sample.may_grip
+			for axis in ["x", "y"]:
+				var impulse: float = 0.0
+				for stage in [
+					"drive_internal", "damping", "gravity", "internal", "contact_velocity", "clamp"
+				]:
+					impulse += trace.momentum_budget[stage + "_impulse_" + axis + "_ns"]
+				honest = (
+					honest
+					and (
+						absf(impulse - trace.momentum_budget["momentum_change_" + axis + "_ns"])
+						< 1e-12
+					)
+				)
+		_check(honest, name + " actual momentum and frozen previousN0 flags")
+	_check(_checks == 22, "complete native manifold tally")
 	print("Support manifold components: %d checks, %d failures" % [_checks, _failures])
 	print(
 		"Scope: isolated two-support physical complementarity; ZERO public world ticks; NOT acceptance"

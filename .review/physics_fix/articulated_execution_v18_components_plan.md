@@ -38,3 +38,12 @@ invalid material atomicity, tally. Any errors/partial tally FAIL. Need genuine
 native proof, broader manifold/limit/material/rollback controls and integration
 BEFORE selecting another public world. Current kernel is a prototype, not a
 production adoption, solved sleep claim, all-manifold proof or milestone verdict.
+
+964b079/run41205016311 native14/0 and original42/0, scanner clean, zero world.
+Next registration extends to23: allthree actual adapters/modelsetup, complete
+strict stage and real momentum/frozenN0. Still ZERO public selection. Parallel
+zero-normal support patches also certify redundant tangents across a horizontal
+connecting bar using endpoint kinematics (not pivot epsilon): two endpoint normal
+velocities0 plus nonzero tangential extent imply angular velocity0. Free root
+endpoint/angle remains a DOF. Recompute certificate on FINAL positive supports
+before exact nullspace publication. Earlier14 results are not broadened to23.

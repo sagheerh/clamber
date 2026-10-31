@@ -87,6 +87,11 @@ static func solve(kernel: RefCounted, bodies: Array[CapsuleBody], contacts: Arra
 	var after_normal: Array[float] = incoming.duplicate()
 	for d in range(incoming.size()):
 		after_normal[d] += first.delta[d]
+	var patches: Array[int] = _static_patches(
+		kernel, bodies, normal, first, constraints.size(), groups
+	)
+	for item in normal:
+		item.patch = patches[contacts[item.contact].part]
 	var chosen: Dictionary = {}
 	for index in first.active:
 		if index < constraints.size():
@@ -97,8 +102,8 @@ static func solve(kernel: RefCounted, bodies: Array[CapsuleBody], contacts: Arra
 		# Existing min(material), foot bias, and static threshold, not force tuning.
 		if absf(kernel._dot(item.tangent, incoming)) < contact.static_threshold:
 			coefficient = 1.0
-		if not chosen.has(item.group) or coefficient > chosen[item.group].coefficient:
-			chosen[item.group] = {"item": item, "coefficient": coefficient}
+		if not chosen.has(item.patch) or coefficient > chosen[item.patch].coefficient:
+			chosen[item.patch] = {"item": item, "coefficient": coefficient}
 	var tangent_records: Array = []
 	for group in chosen:
 		var choice: Dictionary = chosen[group]
@@ -114,8 +119,11 @@ static func solve(kernel: RefCounted, bodies: Array[CapsuleBody], contacts: Arra
 	# Exact parameterization of a fully constrained static rigid patch: two
 	# distinct parallel supports at target0 plus actual static tangent target0
 	# mathematically have vx=vy=omega=0. This is NOT a velocity epsilon/parking.
+	var final_patches: Array[int] = _static_patches(
+		kernel, bodies, normal, solved, constraints.size(), groups
+	)
 	for tangent in tangent_records:
-		if tangent.target != 0.0 or chosen[tangent.item.group].coefficient != 1.0:
+		if tangent.target != 0.0 or chosen[tangent.item.patch].coefficient != 1.0:
 			continue
 		var support: Array = []
 		for j in range(solved.active.size()):
@@ -131,7 +139,10 @@ static func solve(kernel: RefCounted, bodies: Array[CapsuleBody], contacts: Arra
 					fixed = true
 		if fixed:
 			for i in range(bodies.size()):
-				if groups[i] == tangent.item.group:
+				if (
+					final_patches[i] == final_patches[contacts[tangent.item.contact].part]
+					and final_patches[i] <= bodies.size()
+				):
 					for axis in range(3):
 						delta[3 * i + axis] = -incoming[3 * i + axis]
 	var before: Array[CapsuleBody] = kernel._copies(bodies)
@@ -238,3 +249,64 @@ static func solve(kernel: RefCounted, bodies: Array[CapsuleBody], contacts: Arra
 		"contacts": impulses,
 		"external_linear_residual": subtree[0]
 	}
+
+
+## Exact geometric dependency certificate for zero-normal-velocity support.
+## A body with both endpoint normal velocities zero and nonzero tangential
+## extent has omega=0; its endpoint tangential velocities are the SAME DOF.
+## This removes redundant tangent rows in a two-foot closed ground loop without
+## an epsilon/near-zero pivot, fake stiffness or a root angular constraint.
+static func _static_patches(
+	kernel: RefCounted,
+	bodies: Array[CapsuleBody],
+	normal: Array,
+	solved: Dictionary,
+	angular_count: int,
+	groups: Array[int]
+) -> Array[int]:
+	var zero_rotation: Dictionary = {}
+	var node_zero: Dictionary = {}
+	var n := bodies.size()
+	var parent: Array[int] = []
+	for i in range(n + 1):
+		parent.append(i)
+	var supports: Array = []
+	for j in range(solved.active.size()):
+		var index: int = solved.active[j]
+		if (
+			index >= angular_count
+			and solved.multipliers[solved.multipliers.size() - solved.active.size() + j] > 0.0
+		):
+			var item: Dictionary = normal[index - angular_count]
+			if item.target == 0.0 and item.nx == 0.0 and item.ny == 1.0:
+				supports.append(item)
+	for a in supports:
+		for b in supports:
+			if a.group == b.group and a.coordinate != b.coordinate:
+				zero_rotation[a.group] = true
+	var changed := true
+	while changed:
+		changed = false
+		for i in range(n):
+			var a: int = n if i == 0 else kernel._tree_parents[i]
+			var b := i
+			if zero_rotation.has(groups[i]):
+				node_zero[a] = true
+				node_zero[b] = true
+				var ra := _root(parent, a)
+				var rb := _root(parent, b)
+				parent[rb] = ra
+			elif node_zero.has(a) and node_zero.has(b) and bodies[i].a.x != bodies[i].b.x:
+				zero_rotation[groups[i]] = true
+				changed = true
+	var result: Array[int] = []
+	for i in range(n):
+		var a: int = n if i == 0 else kernel._tree_parents[i]
+		result.append(_root(parent, a) if zero_rotation.has(groups[i]) else n + 1 + groups[i])
+	return result
+
+
+static func _root(parent: Array[int], node: int) -> int:
+	while parent[node] != node:
+		node = parent[node]
+	return node
