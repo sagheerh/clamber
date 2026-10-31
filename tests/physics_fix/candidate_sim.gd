@@ -90,7 +90,7 @@ func _configure(creature: CreatureModel, tower: TowerData, seed: int, tuning: Tu
 		return ERR_INVALID_DATA
 	_solver = solver
 	_clock = clock
-	_identity["test_only_candidate_recipe"] = AWAKE.resource_path
+	_identity["test_only_candidate_recipe"] = "V25-final-geometry-radius-derived-coplanar"
 	_solver.tick_completed.connect(_record_tick)
 	return OK
 

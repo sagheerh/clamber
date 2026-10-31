@@ -84,3 +84,10 @@ is authorized validation of CHANGED setup, not blind retry of failed physics.
 Job gets same fixed-branch bounded evidence write permission as world publisher.
 No scanner relaxation. Expected195 if3complete; first failure STOP. No world
 marker until corrected native contract passes. Production untouched.
+
+559bfe9/run41219084856 compile FAILED/ZERO public ticks: GDScript constant is
+class-like, `AWAKE.resource_path` not a static member. Identity now uses explicit
+versioned string. No corrected-geometry runtime measurement occurred on this
+source; next is launch correction, not a retry of a failed physics measurement.
+Recorder checkout is exact SHA/detached: push committed HEAD explicitly to ONLY
+refs/heads/arena/f43f36ab-clamber, never a different branch or force push.
