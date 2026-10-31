@@ -2322,3 +2322,15 @@ AllnewR28jobs closedliteral446d870 and skipped; historicalR27/soak not rerun.
 PR3stilldraft/protectedtail59421chars SHA23f409294933ddd4638139254f41cc5bee6c70a35f28cea6509f9d0c199d76be unchanged.
 No productionphysicschange remains; rawartifactdelivery and allCIgreen blocked
 byquota. Stop/waitowner. Do not retryphysicalmeasurements to repair artifacts.
+
+### New physics work — V9 closed, V10 dependency candidate preregistered
+
+V9 sourcefb9ff2c/run41162545941: native144PASS; complete new600 but postureFAIL
+(t26/max36.0588°), no original4s/600sleep/maxstill4/30. Numeric/length/penetration
+within original bounds; all7200NOTRUN. Unadopted/closed, no unchanged replay.
+Offline phaseaudit7PASS identifies first violation after integration14.2636° ->
+final15.5751°; true endpoint ledgers, not unsaved chronology/impossibility proof.
+New V10 moves first of same2 contacts before integration, same6 position sweeps;
+new20 native components gate any public600. See preregistration
+`.review/physics_fix/articulated_execution_v10_plan.md`. No core/tuning/manifest
+change, threshold waiver, manufactured phone evidence, M1 signature or FA3 credit.

@@ -1,0 +1,84 @@
+{
+  "scope": "OFFLINE immutable V9 audit; ZERO new world ticks; NOT acceptance",
+  "source": "fb9ff2c58b44ed30e1f916c87b0764a25d4fdc4b",
+  "raw_sha256": "05334bbd0fa61309297cb3bd92eff9a4f56ca62e922c9ae161f47d55b4837f2a",
+  "ticks": 600,
+  "first_posture_failure": {
+    "tick": 26,
+    "start_deg": 13.83550904607684,
+    "integration_deg": 14.263581853937943,
+    "final_deg": 15.575072880818224
+  },
+  "max_position_reconstruction_residual_wu": 3.469446951953614e-18,
+  "max_drag_rate_arithmetic_residual": 4.440892098500626e-16,
+  "drag_total_energy_increases": 0,
+  "max_still_ticks": 4,
+  "sample_rows": [
+    {
+      "tick": 0,
+      "start_deg": 0.0,
+      "integration_deg": 0.0,
+      "final_deg": 0.0
+    },
+    {
+      "tick": 1,
+      "start_deg": 0.0,
+      "integration_deg": 0.06270191234349227,
+      "final_deg": 0.06269443635136404
+    },
+    {
+      "tick": 9,
+      "start_deg": 2.1853623853845994,
+      "integration_deg": 2.38395088485549,
+      "final_deg": 2.5060284413920173
+    },
+    {
+      "tick": 19,
+      "start_deg": 6.914868213918785,
+      "integration_deg": 7.0828223958038885,
+      "final_deg": 8.206059616200166
+    },
+    {
+      "tick": 25,
+      "start_deg": 12.817912086281583,
+      "integration_deg": 13.25110912336632,
+      "final_deg": 13.83550904607684
+    },
+    {
+      "tick": 26,
+      "start_deg": 13.83550904607684,
+      "integration_deg": 14.263581853937943,
+      "final_deg": 15.575072880818224
+    },
+    {
+      "tick": 39,
+      "start_deg": 26.985939498477226,
+      "integration_deg": 27.556850296520597,
+      "final_deg": 28.57117280453676
+    },
+    {
+      "tick": 99,
+      "start_deg": 35.303848490224844,
+      "integration_deg": 35.24414739217315,
+      "final_deg": 35.25089740995467
+    },
+    {
+      "tick": 239,
+      "start_deg": 35.026545246204954,
+      "integration_deg": 34.961668577757855,
+      "final_deg": 34.92536478652813
+    },
+    {
+      "tick": 599,
+      "start_deg": 34.55722320520762,
+      "integration_deg": 34.4898495303513,
+      "final_deg": 34.48115368619772
+    }
+  ],
+  "limitations": [
+    "Integration and final poses are reconstructable; interleaved correction phases are aggregate, not chronological.",
+    "Authored angular loss holds at its phase; it does not prove the later contact solve retains it.",
+    "Both real integrated motion and later corrections contribute. No proof an upright pose is impossible.",
+    "Next isolated hypothesis is force/contact timing: constrain velocity before integrating supported points, not new damping/tuning."
+  ]
+}

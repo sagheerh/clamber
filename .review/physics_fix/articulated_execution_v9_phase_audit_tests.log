@@ -1,0 +1,12 @@
+test_authored_fraction (__main__.Audit.test_authored_fraction) ... ok
+test_complete (__main__.Audit.test_complete) ... ok
+test_energy (__main__.Audit.test_energy) ... ok
+test_full_reconstruction (__main__.Audit.test_full_reconstruction) ... ok
+test_no_rest_claim (__main__.Audit.test_no_rest_claim) ... ok
+test_phase (__main__.Audit.test_phase) ... ok
+test_source (__main__.Audit.test_source) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.467s
+
+OK

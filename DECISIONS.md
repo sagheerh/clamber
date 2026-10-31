@@ -2358,3 +2358,13 @@ no cause chosen between its alternatives. Requiredproof didnotpass; no marker3
 activation/repin/measurementlaunch. No retry/alternateexecution, no D0rerun or
 newphysics/M1verdict. Oldmarker2pin remainsclosed. D1–D5NOTRUN/preflightblocked.
 Proofis NOTarmfailure. Need a functioning runnerproof before authorizedarms.
+
+### V9 closure and isolated V10 force/contact dependency
+
+V9 angular-loss native26PASS is NOT a posture fix: new600fails originalposture and
+sleep; sourcefb9ff2c/CI41162545941/publisherb0ed71a immutable. Do not replay/adopt.
+V10 preregisters one causal ordering change (first of2 velocity contacts before
+integration, second after6 position sweeps), not a sweep/retune or force/sleep
+waiver. Require prior144+new20 native then original600 before any7200. Preserve
+real momenta, frozen previousN, full per-body idle evidence, guards and atomic
+rollback. Production AC201/202 remain FAILED, M1BLOCKED/NOTSIGNED/M2blocked.
