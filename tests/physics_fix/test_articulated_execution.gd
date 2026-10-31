@@ -52,9 +52,9 @@ func _candidate_run(name: String, target: int, idle: bool) -> bool:
 		"target_ticks": target,
 		"max_length_wu": 0.0,
 		"max_penetration_wu": 0.0,
-		"max_attitude_deg": 0.0,
-		"airborne_ticks": 0,
-		"first_sleep_tick": -1,
+		"max_attitude_deg": 0.0 if idle else null,
+		"airborne_ticks": 0 if idle else null,
+		"first_sleep_tick": -1 if idle else null,
 		"first_metric_violation_tick": -1,
 		"termination": "NOT RUN"
 	}
