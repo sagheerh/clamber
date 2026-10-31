@@ -98,7 +98,7 @@ if ! grep -Fxq 'Assembly angular drag components: 26 checks, 0 failures' "$folde
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/preintegrated-compile.log"; then exit 1; fi
 timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_preintegrated_components.gd > "$folder/preintegrated-components.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/preintegrated-components.log"; then exit 1; fi
-if ! grep -Fxq 'Preintegrated components: 20 checks, 0 failures' "$folder/preintegrated-components.log"; then exit 1; fi
+if ! grep -Fxq 'Preintegrated components: 27 checks, 0 failures' "$folder/preintegrated-components.log"; then exit 1; fi
 "$GODOT" --headless --script res://tests/physics_fix/test_articulated_execution.gd -- --report-dir="$folder" > "$folder/engine.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/engine.log"; then
  echo 'STOP: runtime errors; inspect first failure.' >&2

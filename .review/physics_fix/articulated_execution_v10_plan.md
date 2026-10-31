@@ -61,3 +61,36 @@ Local runner initially failed because the new test-double path printed the old
 assembly tally; original failed log retained. Precise new routing corrected; final
 30 routing tests PASS. These are NOT engine/native evidence. Native compilation
 and all new component/world results NOT RUN at preregistration; no inferred outcome.
+
+## V10 source797a856 / run41163311758 closed; V10b BEFORE new execution
+
+Publisher12513e7 preserves native144+20PASS and five successful public ticks;
+tick5 stops status30 at velocity pass0, `pre-contact hinge velocity`. No 600,
+posture/rest verdict or7200 credited. Not an unchanged replay and not a determinism
+attempt. Full Variant preserved with JSON-file SHA
+c41be0285b624d70d00d84e1bedf8b1e935b07beaa7aebd3b1e0d39736365289.
+
+Offline byte inspection identifies bitwise matching parent/child endpoint velocities
+after successful D and common linear loss/gravity. Re-solving the same mathematical
+hinge identity can change reconstruction roundoff and trip the STRICT energy guard.
+This is a hypothesis requiring native reproduction BEFORE another world execution:
+new controls restore the exact work, reproduce old rejection/strict positive energy
+delta atomically, reconstruct the exact producer from the pre-failure snapshot using
+_begin_tick + _apply_forces ONLY (no step/Sim/clock), then test identity preservation.
+
+V10b adds a tick-local successful-producer witness, NOT velocity zeroing/epsilon or
+an energy allowance. D>0 publishes canonical tree velocities (or uniform translation
+already is canonical); common linear scalar loss and gravity preserve compatibility.
+Issue full geometry/velocity/mass/parent/limit key ONLY if no actual point speed cap
+and no angular boundary. d0 nonuniform input is NOT certified. Consumer still builds
+and validates the network, then compares full exact key AFTER angular/self-contact
+work. Any geometry/velocity/definition edit invalidates it and executes the original
+strict projection. Existing post-contact certificate behavior remains unchanged.
+Witness clears each tick, is not snapshot state and never crosses integration.
+
+New component tally27 = old20 plus immutable fixture/strict energy reproduction,
+exact producer reconstruction, bitwise identity, real changed-velocity solve,
+actual speed-cap invalidation and d0 nonuniform exclusion. All must PASS before
+one new600 with unchanged original gates. No component result is assumed here;
+local routing30PASS/lint/provenance are NOT native. Existing kernel/guards/core/
+tuning/manifest remain unchanged. No original runtime/device gate is waived.

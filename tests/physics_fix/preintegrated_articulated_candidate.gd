@@ -3,10 +3,12 @@ extends "res://tests/physics_fix/assembly_damped_candidate.gd"
 ## UNADOPTED: first of the SAME two contact passes precedes position integration.
 ## No extra pass/iteration, altered material, position-to-load feedback or sleep rule.
 var _stage_order: Array = []
+var _force_certificate := PackedByteArray()
 
 
 func _step(before: Dictionary) -> Dictionary:
 	_stage_order = []
+	_force_certificate = PackedByteArray()
 	_drag_hinges = []
 	_drag_failure = {}
 	angular_damping_events = []
@@ -29,6 +31,7 @@ func _step(before: Dictionary) -> Dictionary:
 			result.work_state = snapshot()
 	result.authored_angular_damping = angular_damping_events.duplicate(true)
 	result.stage_order = _stage_order.duplicate()
+	result.force_projection_certificate_issued = not _force_certificate.is_empty()
 	if not _drag_failure.is_empty():
 		result.drag_failure = _drag_failure.duplicate(true)
 		result.work_state = snapshot()
@@ -105,7 +108,7 @@ func _step_impl(before: Dictionary) -> Dictionary:
 		positions,
 		contact_samples,
 		0,
-		PackedByteArray()
+		_force_certificate
 	)
 	if response.status != OK:
 		return response
@@ -137,6 +140,18 @@ func _step_impl(before: Dictionary) -> Dictionary:
 
 func _apply_forces(dt: float, budget: Dictionary) -> Error:
 	_stage_order.append("forces")
+	_force_certificate = PackedByteArray()
+	var uniform := true
+	for body in bodies:
+		for point in [body.a, body.b]:
+			uniform = (
+				uniform
+				and point.velocity_x == bodies[0].a.velocity_x
+				and point.velocity_y == bodies[0].a.velocity_y
+			)
+	# D>0 publishes canonical tree/rod velocities; d0 is identity, not projection.
+	var canonical: bool = _tuning.physics_angular_damping > 0.0 or uniform
+	var capped := false
 	angular_damping_events = []
 	var damping_status := _apply_authored_angular_damping(budget)
 	if damping_status != OK:
@@ -163,8 +178,20 @@ func _apply_forces(dt: float, budget: Dictionary) -> Error:
 			var before_clamp_x: float = point.velocity_x
 			if not _clamp_velocity(point):
 				return ERR_INVALID_DATA
+			capped = (
+				capped or point.velocity_x != before_clamp_x or point.velocity_y != before_clamp
+			)
 			budget.clamp_impulse_y_ns += mass * (point.velocity_y - before_clamp)
 			budget.clamp_impulse_x_ns += mass * (point.velocity_x - before_clamp_x)
+	# Uniform scalar linear loss and common gravity preserve rigid/hinge velocity
+	# compatibility. Never certify an actual point cap, a d0 nonrigid input, or an
+	# angular boundary. Consumer still validates tree/masses/geometry and the full
+	# exact key AFTER angular/self-contact work; any edit invalidates this witness.
+	var network := _limited_network()
+	if network.configure(bodies, _parents) != OK:
+		return ERR_INVALID_DATA
+	if canonical and not capped and network._angular_inequalities(bodies, true).is_empty():
+		_force_certificate = _hinge_velocity_key()
 	return OK
 
 

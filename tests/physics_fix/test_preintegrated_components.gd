@@ -71,6 +71,89 @@ func _initialize() -> void:
 			frozen and preintegration_reaction,
 			name + " fresh physical support before integration; N0 stays disabled in BOTH passes"
 		)
+	# Saved first failure is a COMPONENT fixture, never a world replay.
+	var failure_text := FileAccess.get_file_as_string(
+		"res://tests/fixtures/m1_articulated_execution/797a85674f31/idle-Slug-failure.json"
+	)
+	var failed: Dictionary = JSON.parse_string(failure_text)
+	var full: Dictionary = bytes_to_var(Marshalls.base64_to_raw(failed.full_state_variant_base64))
+	_check(
+		(
+			(
+				failure_text.sha256_text()
+				== "c41be0285b624d70d00d84e1bedf8b1e935b07beaa7aebd3b1e0d39736365289"
+			)
+			and failed.tick == 5
+			and full.awake_trace.phase == "pre-contact hinge velocity"
+		),
+		"exact immutable first-failure fixture; no new clock"
+	)
+	var probe := _rig("Slug")
+	var restored: bool = probe.restore(full.awake_trace.work_state) == OK
+	var old_network := probe._limited_network()
+	restored = restored and old_network.configure(probe.bodies, probe._parents) == OK
+	var old_bits := var_to_bytes(probe.snapshot())
+	var energies := _projection_energies(old_network, probe.bodies)
+	var old_projection: Dictionary = old_network.project_velocity(probe.bodies)
+	_check(
+		(
+			restored
+			and old_projection.is_empty()
+			and old_bits == var_to_bytes(probe.snapshot())
+			and energies.after > energies.before
+		),
+		"redundant re-solve of canonical velocities rejects strict roundoff energy gain atomically"
+	)
+	print("Preintegrated exact identity control: " + JSON.stringify(energies, "", true, true))
+	var producer := _rig("Slug")
+	var produced: bool = producer.restore(full.candidate) == OK and producer._begin_tick() == OK
+	var force_budget := _force_budget()
+	produced = produced and producer._apply_forces(1.0 / CONFIG.physics_tick_hz, force_budget) == OK
+	_check(
+		(
+			produced
+			and var_to_bytes(producer.snapshot()) == old_bits
+			and not producer._force_certificate.is_empty()
+		),
+		"successful actual constitutive producer plus common forces exactly reconstructs failing work and issues a tick-local witness"
+	)
+	var xs: Array[float] = [0.0, 0.0, 0.0]
+	var ys: Array[float] = [0.0, 0.0, 0.0]
+	var unchanged: Error = producer._project_changed_velocity(producer._force_certificate, xs, ys)
+	_check(
+		unchanged == OK and var_to_bytes(producer.snapshot()) == old_bits,
+		"known projection identity remains BITWISE identity; no ULP velocity repair"
+	)
+	producer.bodies[0].a.velocity_x += 0.125
+	var changed_bits := var_to_bytes(producer.snapshot())
+	var changed: Error = producer._project_changed_velocity(producer._force_certificate, xs, ys)
+	_check(
+		changed == OK and var_to_bytes(producer.snapshot()) != changed_bits,
+		"changed velocity invalidates witness and executes real constraint projection"
+	)
+	var capped := _rig("Slug")
+	for body in capped.bodies:
+		for point in [body.a, body.b]:
+			point.velocity_x = 2.0 * CONFIG.physics_max_linear_velocity_wu_s
+	force_budget = _force_budget()
+	var cap_status: Error = capped._apply_forces(1.0 / CONFIG.physics_tick_hz, force_budget)
+	_check(
+		(
+			cap_status == OK
+			and capped._force_certificate.is_empty()
+			and force_budget.clamp_impulse_x_ns != 0.0
+		),
+		"actual point speed cap cannot issue a canonical producer witness"
+	)
+	var zero := _rig("Slug")
+	var zero_restored: bool = zero.restore(full.candidate) == OK
+	zero._tuning.physics_angular_damping = 0.0
+	force_budget = _force_budget()
+	var zero_status: Error = zero._apply_forces(1.0 / CONFIG.physics_tick_hz, force_budget)
+	_check(
+		zero_restored and zero_status == OK and zero._force_certificate.is_empty(),
+		"d0 nonuniform identity is NOT falsely certified as a hinge projection"
+	)
 	var invalid := _rig("Slug")
 	invalid._tuning.physics_velocity_passes = 3
 	var before := var_to_bytes(invalid.snapshot())
@@ -107,3 +190,48 @@ func _check(ok: bool, label: String) -> void:
 	if not ok:
 		_failures += 1
 		push_error("FAIL " + label)
+
+
+func _force_budget() -> Dictionary:
+	return {
+		"damping_impulse_x_ns": 0.0,
+		"damping_impulse_y_ns": 0.0,
+		"gravity_impulse_x_ns": 0.0,
+		"gravity_impulse_y_ns": 0.0,
+		"clamp_impulse_x_ns": 0.0,
+		"clamp_impulse_y_ns": 0.0
+	}
+
+
+func _projection_energies(network: RefCounted, bodies: Array[CapsuleBody]) -> Dictionary:
+	# Same native publication arithmetic, on detached bodies; no allowance/repair.
+	const ENERGY = preload("res://tests/physics_fix/rigid_contact_candidate.gd")
+	var velocity: Array = network._velocities(bodies)
+	var rhs: Array[float] = []
+	for row in network._hinges:
+		rhs.append(-network._dot(row, velocity))
+	var impulse: Array = network._solve(rhs)
+	var delta: Array[float] = []
+	for d in range(velocity.size()):
+		var value := 0.0
+		for i in range(impulse.size()):
+			value += network._weights[d] * network._hinges[i][d] * impulse[i]
+		delta.append(value)
+	var before := 0.0
+	var after := 0.0
+	for i in range(bodies.size()):
+		var body := bodies[i]
+		var shadow := CapsuleBody.new()
+		if shadow.restore(body.snapshot()) != OK:
+			return {"before": NAN, "after": NAN}
+		var axes := PlanarBasis.frame(body)
+		var vx: float = (body.a.velocity_x + body.b.velocity_x) / 2.0 + delta[3 * i]
+		var vy: float = (body.a.velocity_y + body.b.velocity_y) / 2.0 + delta[3 * i + 1]
+		var omega: float = axes.omega + delta[3 * i + 2]
+		shadow.a.velocity_x = vx + omega * axes.y / 2.0
+		shadow.a.velocity_y = vy - omega * axes.x / 2.0
+		shadow.b.velocity_x = vx - omega * axes.y / 2.0
+		shadow.b.velocity_y = vy + omega * axes.x / 2.0
+		before += ENERGY.kinetic_energy(body)
+		after += ENERGY.kinetic_energy(shadow)
+	return {"before": before, "after": after, "gain": after - before}

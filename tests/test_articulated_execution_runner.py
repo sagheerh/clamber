@@ -23,7 +23,7 @@ class ArticulatedExecutionRunner(previous.CompositionRunnerTests):
         component="""if any('test_articulated_cap_identity.gd' in a or 'test_staged_articulated_components.gd' in a or 'test_staged_contact_identity.gd' in a or 'test_limited_articulated_components.gd' in a or 'test_assembly_drag_components.gd' in a or 'test_preintegrated_components.gd' in a for a in args):
  if os.environ.get('DOUBLE_COMPONENT_ERROR')=='1': print('SCRIPT ERROR: TEST DOUBLE component failure')
  if '--check-only' not in args and os.environ.get('DOUBLE_COMPONENT_NO_SUMMARY')!='1':
-  if any('test_preintegrated_components.gd' in a for a in args): print('Preintegrated components: '+os.environ.get('DOUBLE_PREINTEGRATED_COUNT','20')+' checks, 0 failures')
+  if any('test_preintegrated_components.gd' in a for a in args): print('Preintegrated components: '+os.environ.get('DOUBLE_PREINTEGRATED_COUNT','27')+' checks, 0 failures')
   elif any('test_assembly_drag_components.gd' in a for a in args): print('Assembly angular drag components: '+os.environ.get('DOUBLE_ASSEMBLY_COUNT','26')+' checks, 0 failures')
   elif any('test_limited_articulated_components.gd' in a for a in args): print('Angular limited components: '+os.environ.get('DOUBLE_LIMITED_COUNT','36')+' checks, 0 failures')
   elif any('test_staged_contact_identity.gd' in a for a in args): print('Staged contact identity: 12 checks, 0 failures')
@@ -129,7 +129,7 @@ class ArticulatedExecutionRunner(previous.CompositionRunnerTests):
         self.assertEqual(stages,['import','compile'])
 
     def test_preintegrated_count_blocks_world(self):
-        result,stages=self.run_double(DOUBLE_PREINTEGRATED_COUNT='19')
+        result,stages=self.run_double(DOUBLE_PREINTEGRATED_COUNT='26')
         self.assertNotEqual(result.returncode,0)
         self.assertEqual(stages,['import','compile'])
 
