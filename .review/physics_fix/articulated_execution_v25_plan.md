@@ -260,3 +260,9 @@ comparisons as old285 guard did; prevent empty-frame follow-on body access. Also
 correct description actualmaskRIGHT2 (369//60%4), not released0. Fourth check
 requires actual algebra reached, not an unproved prepublisher/rank diagnosis.
 Preserve incident annotations; this is diagnostic harness correction ONLY.
+
+Corrected b238947/run41221476603 native42+4PASS/ZEROticks: actual369 rejection
+reproduced with input bytes unchanged. Dense diagnostic annotation hit4096byte
+message bound; cannot infer missing calls/publisher data. Emit summary separately
+and sparse row/RHS records to preserve actual diagnosis, no new physical solve
+recipe or creature ticks. Do not claim precise cause from truncated transport.

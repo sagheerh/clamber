@@ -51,8 +51,7 @@ func _initialize() -> void:
 				{
 					"calls": kernel.calls,
 					"published": kernel.publication,
-					"contacts": frame.contacts,
-					"algebra": kernel.algebra
+					"contacts": frame.contacts
 				},
 				"",
 				true,
@@ -60,8 +59,44 @@ func _initialize() -> void:
 			)
 		)
 	)
+	# CI annotation messages are bounded; emit independently parseable sparse
+	# row/RHS blocks instead of one silently truncated dense diagnostic.
+	for index in range(kernel.algebra.size()):
+		var data: Dictionary = kernel.algebra[index]
+		var rows: Array = []
+		for row in data.equalities:
+			rows.append(_sparse(row))
+		var constraints: Array = []
+		for item in data.inequalities:
+			constraints.append({"row": _sparse(item.row), "rhs": item.rhs})
+		print(
+			(
+				"Hopper369 manifold rows%d: " % index
+				+ JSON.stringify({"equalities": rows, "weights": data.weights}, "", true, true)
+			)
+		)
+		print(
+			(
+				"Hopper369 manifold rhs%d: " % index
+				+ JSON.stringify(
+					{"rhs": data.rhs, "inequalities": constraints, "result": data.result},
+					"",
+					true,
+					true
+				)
+			)
+		)
+
 	print("Hopper369 manifold audit: %d checks, %d failures" % [_checks, _failures])
 	print(
 		"Scope: EXACT archived first support pass, ZERO public OR private creature ticks; expected error component diagnosis NOT acceptance"
 	)
 	quit(1 if _failures else 0)
+
+
+func _sparse(row: Array) -> Array:
+	var result: Array = []
+	for i in range(row.size()):
+		if row[i] != 0.0:
+			result.append([i, row[i]])
+	return result
