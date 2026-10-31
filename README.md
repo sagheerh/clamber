@@ -22,8 +22,11 @@ results and preserved evidence: [recheck report](.review/m1_physics_fix_recheck.
 
 New continuation: the missing network-level hinge/contact mobility code and
 component gate are in [the articulated operator note](.review/m1_articulated_operator.md).
-This is not selected by the lab or production. Native42 checks and assembled
-integration remain pending; reconnect GitHub in Arena to unblock pinned-engine CI.
+This is not selected by the lab or production. Native42/0 PASS in pinned-engine CI.
+The new assembled candidate compiled but FAILED at tick index2; first-failure
+evidence is preserved. The inactive-cap identity correction and NEW test protocol:
+[execution v2 plan](.review/physics_fix/articulated_execution_v2_plan.md).
+GitHub is connected. M1 is not complete or signed.
 
 ## Exact toolchain
 

@@ -3,6 +3,19 @@
 The GDD's existing D-01–D-17, CD-01, and A-xx decisions remain normative.
 New implementation decisions use M0-Dxx to avoid colliding with those IDs.
 
+## M1-PHYSICS-FIX-D04 — Inactive cap is identity, not another hinge solve
+
+2026-10-31: native42/0 validated the network kernel; source6b48e63 assembled
+candidate compiled but failed at tick index2 in unconditional post-cap projection.
+First failure preserved byee809141; no later arms. Exact failing energy/cap input
+was not captured, so no invented numerical diagnosis. Last committed body speeds
+are below the unchanged24rad/s bound. An inactive cap must be an identity;
+perform one reconciliation only if the actual cap changes motion. Keep invalid
+frame rejection, strict energy/passivity checks and all tuning/iteration/grip/sleep
+bounds. Seven archived-frame component checks precede new world ticks. Fresh
+source-pinned protocol and first-failure stop remain; no old-arm replay/adoption.
+See `.review/physics_fix/articulated_execution_v2_plan.md`. M1 NOT SIGNED.
+
 ## M1-PHYSICS-FIX-D03 — Constrain contact through the whole hinge network
 
 2026-10-30 continuation: implement a separate unadopted articulated mobility
@@ -18,10 +31,10 @@ Finite position rotations preserve bone lengths; their hinge nullspace result is
 linearized only, not an exact nonlinear/world convergence guarantee. No production
 selection and no automatic retry of the rejected candidate or historical arms.
 
-18 rational/source checks and12 test-double routing checks passed. Native42 and
-world integration remain NOT RUN/unimplemented respectively. Current workspace
-lacks Godot and GitHub authentication is invalid; reconnect in Arena, no credential
-sharing. No new engine/push result claimed. M1 remains BLOCKED/NOT SIGNED, with
+Original implementation check:18 rational/source and12 test-double routing passed.
+Update2026-10-31: native42/0 passed in CI; GitHub authentication works. New
+whole-creature integration exists but failed at tick index2; D04 records the next
+narrow change. No production adoption or successful full-horizon evidence. M1 remains BLOCKED/NOT SIGNED, with
 no AC repair verdict or FA3/M2 credit. See `.review/m1_articulated_operator.md`.
 
 ## M1-PHYSICS-FIX-D01 — Root-cause repair authorised; no unverified adoption

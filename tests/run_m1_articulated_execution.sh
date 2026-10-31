@@ -45,6 +45,21 @@ if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/c
  echo 'STOP: compile errors; zero creature ticks.' >&2
  exit 1
 fi
+# Archived-frame adapter regression first; never advances a creature clock.
+"$GODOT" --headless --check-only --script res://tests/physics_fix/test_articulated_cap_identity.gd > "$folder/component-compile.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/component-compile.log"; then
+ echo 'STOP: component compile errors; zero creature ticks.' >&2
+ exit 1
+fi
+"$GODOT" --headless --script res://tests/physics_fix/test_articulated_cap_identity.gd > "$folder/components.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/components.log"; then
+ echo 'STOP: adapter component errors; zero creature ticks.' >&2
+ exit 1
+fi
+if ! grep -Fxq 'Articulated cap identity: 7 checks, 0 failures' "$folder/components.log"; then
+ echo 'STOP: incomplete adapter suite; zero creature ticks.' >&2
+ exit 1
+fi
 "$GODOT" --headless --script res://tests/physics_fix/test_articulated_execution.gd -- --report-dir="$folder" > "$folder/engine.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/engine.log"; then
  echo 'STOP: runtime errors; inspect first failure.' >&2

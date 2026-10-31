@@ -126,3 +126,16 @@ M1 signature or AC pass is inferred. Dirty/ZIP checkouts are explicitly recorded
 without inventing a source commit. Full integration/world acceptance remains open;
 see `.review/m1_articulated_operator.md`. A new CI job is opt-in via the exact
 branch/event SHA plus `[M1-articulated-units]`; it does not retry the old candidate.
+
+### Registered NEW articulated execution (not production adoption)
+
+Native42/0 has passed in CI. The first assembled source6b48e63 compiled but
+failed at tick index2; evidence under `tests/fixtures/m1_articulated_execution/`.
+Do not rerun that source or a historical arm. The next source has the narrow
+inactive-cap identity correction,7 archived-frame native assertions before any
+world ticks, and stronger pre-rollback observations. Its frozen protocol is
+`.review/physics_fix/articulated_execution_v2_plan.md`. The opt-in marker
+`[M1-articulated-execution]` runs native42 first, then compile/components/world,
+and preserves success OR first failure on this same branch without uploads.
+The runner requires a NEW `M1_ARTICULATED_EXECUTION_REPORT_DIR` and exact `$GODOT`.
+Never infer M1/AC acceptance from component/routing success.

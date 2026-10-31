@@ -124,6 +124,7 @@ func _candidate_run(name: String, target: int, idle: bool) -> bool:
 								"before": before,
 								"after": sim.snapshot(),
 								"candidate": candidate.snapshot(),
+								"awake_trace": candidate.last_step_trace,
 								"constraints": constraints
 							}
 						)

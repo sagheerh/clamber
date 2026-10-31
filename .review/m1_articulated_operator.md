@@ -1,12 +1,17 @@
 # Remaining M1 coupling work — implementation increment, not completion
 
-2026-10-30 · `arena/f43f36ab-clamber`
+2026-10-31 update · `arena/f43f36ab-clamber`
 
-**M1 is NOT complete; production AC-201/AC-202 remain FAILED.** This increment
-implements the missing *network-level* hinge/contact inverse-mass operator. It is
-not selected by production or the previously rejected candidate. Native semantic
-compilation, assembled integration, posture/sleep,7200 length+penetration and
-physical-device/performance gates are still open. No signature, FA3 credit or M2.
+**M1 is NOT complete; production AC201/202 remain FAILED.** Native42/0 now
+PASS in official4.7.2.ed1daf0bf CI (41149770549 and41150287513). A new full
+terrain/hinge-force adapter is implemented, unadopted. Source6b48e63 compiled but
+FAILED at tick index2 after TWO committed Slug frames, post-cap reconciliation.
+First failure is immutable in `tests/fixtures/m1_articulated_execution/6b48e638c368/`;
+all7200 arms NOT RUN. See [v2 diagnosis/protocol](physics_fix/articulated_execution_v2_plan.md).
+The new inactive-cap identity correction does not modify the kernel or its strict
+passivity guard. Native7 archived-frame checks and a new world invocation are
+pending; local labelled runner17/0 and rational18/0 PASS, not world evidence.
+GitHub works; local binary unavailable. No signature, FA3 credit, M2 or device waiver.
 
 ## Why a different operator is needed
 
@@ -66,7 +71,7 @@ invented compliance, diagonal regularizer, mass change or acceptance epsilon.
 | sealed prior failure audit |12/0| old trace/evidence untouched, no replay |
 | provenance controls |10/0| production tree/manifest unchanged |
 | no-.git ZIP review controls |232/0| original assertions unchanged; no old engine arms |
-| **new Godot component suite** |**42 planned, NOT RUN**| includes chain-wide contact, hinge velocity closure, momentum/energy, rigid pose and atomic rejection |
+| **new Godot component suite** |**42/0 PASS, pinned CI**| includes chain-wide contact, hinge velocity closure, momentum/energy, rigid pose and atomic rejection |
 | new complete-creature acceptance |**NOT RUN**| no prototype world measurement or production adoption |
 
 The rational oracle also reads the **last frame** of the sealed prior failed
@@ -114,17 +119,15 @@ Passing it is a prerequisite to—not a replacement for—assembly and acceptanc
 
 ## Still needed, without pretending the task is done
 
-1. Native semantic compile/component execution of this operator. Diagnose any
-   failed primitive before attempting another world candidate.
-2. A **new** articulated terrain adapter must combine real sweep/manifold samples,
-   original frozen-N/lowest/grip policy, actual returned hinge/motor force budgets,
-   angular/self-contact constraints and existing caps. This adapter is **not yet
-   implemented or selected**. Do not feed the new mobility into the old local
-   denominator or continue a failed public step after rollback.
-3. Registered source-pinned full-creature posture/rest/release and length+
-   penetration tests; preserve first failure and don't infer120s from idle600.
-4. Only validated production selection with new explained source provenance and
-   public baseline/regressions, then outstanding device/layout/FA/performance gates.
+1. Validate the narrow inactive-cap identity correction with7 native archived-frame
+   component checks; preserve all original rejection/physics bounds.
+2. NEW registered full-creature execution: posture/rest then7200 per creature
+   length+penetration. The implemented adapter accounts for real hinge impulses
+   with original frozen-N/grip policy. First candidate failed, not adopted.
+3. Held inputs/release/wake, independent budgets/default performance and atomic
+   restore/rollback coverage of the actual new assembly; no historical replay.
+4. Only after physical correctness: explained production selection/provenance and
+   public baseline/regressions, then remaining physical device/layout/FA/performance.
 
-The implementation is progress on the demonstrated coupling defect, **not a claim
-that posture15°, sleep4s or the whole M1 implementation is now complete**.
+Historical environment notes above are dated snapshots; authentication now works
+and native42 execution PASSED. Local binary availability is not a CI blocker.

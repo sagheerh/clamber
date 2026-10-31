@@ -88,7 +88,12 @@ func _velocity_contacts(
 		var projected := network.project_velocity(bodies)
 		if projected.is_empty():
 			push_error("Articulated pre-contact velocity block failure")
-			return {"status": ERR_INVALID_DATA}
+			return {
+				"status": ERR_INVALID_DATA,
+				"phase": "pre-contact hinge velocity",
+				"velocity_pass": velocity_pass,
+				"work_state": snapshot()
+			}
 		_accumulate_hinges(projected.hinge_impulses, hinge_x, hinge_y)
 		budget.internal_impulse_y_ns += _momentum_y() - before_internal
 		budget.internal_impulse_x_ns += _momentum_x() - before_internal_x
@@ -151,29 +156,56 @@ func _velocity_contacts(
 		budget.contact_velocity_impulse_x_ns += _momentum_x() - before_contact_x
 		var before_clamp := _momentum_y()
 		var before_clamp_x := _momentum_x()
-		if _finish_velocities() != OK:
-			return {"status": ERR_INVALID_DATA}
-		# Existing speed cap is still enforced, but an independent endpoint cap
-		# must not silently reopen hinge velocity constraints. Reconcile once;
-		# if bounds conflict, FAIL rather than add iterations or scale motion.
-		if network.configure(bodies, _parents) != OK:
-			return {"status": ERR_INVALID_DATA}
-		var reconciled := network.project_velocity(bodies)
-		if reconciled.is_empty():
-			push_error("Articulated post-cap reconciliation failure")
-			return {"status": ERR_INVALID_DATA}
-		_accumulate_hinges(reconciled.hinge_impulses, hinge_x, hinge_y)
-		for body in bodies:
-			var axes := PlanarBasis.frame(body)
-			if absf(axes.omega) > _tuning.physics_max_angular_velocity_rad_s:
-				push_error("Articulated cap/hinge conflict")
-				return {"status": ERR_PARAMETER_RANGE_ERROR}
+		var cap_input: Dictionary = snapshot() if collect_contact_samples else {}
+		var cap_status := _finish_network_caps(hinge_x, hinge_y)
+		if cap_status != OK:
+			return {
+				"status": cap_status,
+				"phase": "active-cap reconciliation",
+				"velocity_pass": velocity_pass,
+				"cap_input": cap_input,
+				"work_state": snapshot()
+			}
 		budget.clamp_impulse_y_ns += _momentum_y() - before_clamp
 		budget.clamp_impulse_x_ns += _momentum_x() - before_clamp_x
 		for index in range(bodies.size()):
 			reaction[index] += bodies[index].measured_reaction_n
 			cleanup[index] += bodies[index].positional_cleanup_n
 	return {"status": OK, "lowest": lowest}
+
+
+func _angular_cap_required() -> bool:
+	for body in bodies:
+		var axes := PlanarBasis.frame(body)
+		if axes.is_empty() or not is_finite(axes.omega):
+			return true  # Invalid frames must still enter the existing error path.
+		if absf(axes.omega) > _tuning.physics_max_angular_velocity_rad_s:
+			return true
+	return false
+
+
+func _finish_network_caps(hinge_x: Array[float], hinge_y: Array[float]) -> Error:
+	# With no active cap this stage is the identity, NOT another hinge solve.
+	# Contact already used constrained mobility. Do not repeatedly project its
+	# roundoff residual, or attribute those numerical impulses to a speed cap.
+	if not _angular_cap_required():
+		return OK
+	if _finish_velocities() != OK:
+		return ERR_INVALID_DATA
+	# An ACTUAL independent angular cap can reopen hinge velocity constraints.
+	# Reconcile once; retain all original strict guards and fail on conflict.
+	var network := NETWORK.new()
+	if network.configure(bodies, _parents) != OK:
+		return ERR_INVALID_DATA
+	var reconciled := network.project_velocity(bodies)
+	if reconciled.is_empty():
+		push_error("Articulated post-cap reconciliation failure")
+		return ERR_INVALID_DATA
+	_accumulate_hinges(reconciled.hinge_impulses, hinge_x, hinge_y)
+	if _angular_cap_required():
+		push_error("Articulated cap/hinge conflict")
+		return ERR_PARAMETER_RANGE_ERROR
+	return OK
 
 
 func _accumulate_hinges(values: Array, x: Array[float], y: Array[float]) -> void:
