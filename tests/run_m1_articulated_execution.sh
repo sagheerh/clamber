@@ -135,6 +135,12 @@ if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/c
 timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_capsule_surface_components.gd > "$folder/capsule-surface-components.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/capsule-surface-components.log"; then exit 1; fi
 if ! grep -Fxq 'Capsule surface components: 24 checks, 0 failures' "$folder/capsule-surface-components.log"; then exit 1; fi
+# Owner-authorized structural-pad controls, before public clock.
+"$GODOT" --headless --check-only --script res://tests/physics_fix/test_rigid_pad_components.gd > "$folder/rigid-pad-compile.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/rigid-pad-compile.log"; then exit 1; fi
+timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_rigid_pad_components.gd > "$folder/rigid-pad-components.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/rigid-pad-components.log"; then exit 1; fi
+if ! grep -Fxq 'Rigid pad components: 24 checks, 0 failures' "$folder/rigid-pad-components.log"; then exit 1; fi
 "$GODOT" --headless --script res://tests/physics_fix/test_articulated_execution.gd -- --report-dir="$folder" > "$folder/engine.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/engine.log"; then
  echo 'STOP: runtime errors; inspect first failure.' >&2

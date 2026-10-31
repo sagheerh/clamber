@@ -1,10 +1,11 @@
 # gdlint: disable=max-line-length,max-returns
 extends "res://tests/sim/test_r28.gd"
 ## Fresh NEW unadopted articulated candidate, NOT a historical R27/R29 run or M1 verdict.
-const CANDIDATE = preload("res://tests/physics_fix/surface_constitutive_candidate.gd")
+const CANDIDATE = preload("res://tests/physics_fix/rigid_pad_candidate.gd")
+const AUTHORED_MODELS = preload("res://tests/physics_fix/rigid_pad_models.gd")
 const CAPTURE_POLICY = preload("res://tests/physics_fix/articulated_capture_policy.gd")
 var _results: Dictionary = {
-	"scope": "NEW unadopted articulated candidate",
+	"scope": "NEW owner-authorized rigid-pad stance; NOT historical pose acceptance",
 	"arms": {},
 	"not_run_arms": ["idle-Slug", "length-Slug", "length-Hopper", "length-TwinRoller"],
 	"status": "NOT RUN"
@@ -63,7 +64,7 @@ func _candidate_run(name: String, target: int, idle: bool) -> bool:
 	if sim == null or sim.last_status != OK:
 		result.termination = "setup failed"
 		return false
-	var model := CreaturePresets.load_model(name, TUNING)
+	var model := AUTHORED_MODELS.load_model(name, TUNING)
 	var candidate := CANDIDATE.new()
 	if (
 		candidate.setup(
@@ -252,3 +253,25 @@ func _store_candidate(name: String, value: Variant) -> bool:
 	var ok := file.get_error() == OK
 	file.close()
 	return ok
+
+
+func _sim(name: String, wide: bool) -> Sim:
+	var model := AUTHORED_MODELS.load_model(name, TUNING)
+	if model == null:
+		return null
+	var tower := TowerData.new()
+	if (
+		tower.configure(
+			_grid(wide),
+			0.0,
+			R25Fixture.spawn_y(model),
+			R25Fixture.materials(model),
+			R25Fixture.materials(model, true),
+			TUNING
+		)
+		!= OK
+	):
+		return null
+	var sim := Sim.new()
+	sim.setup(model, tower, 305419896, TUNING)
+	return sim
