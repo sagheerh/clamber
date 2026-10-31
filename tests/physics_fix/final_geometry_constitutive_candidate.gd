@@ -19,6 +19,8 @@ func _begin_tick() -> Error:
 
 func _step(before: Dictionary) -> Dictionary:
 	var result := super._step(before)
+	if result.get("constitutive_stage", {}).has("scope"):
+		result.constitutive_stage.scope = "V25 complete angular drag plus FINAL support; actual endpoint energy, no allowance"
 	result.constitutive_phase_scope = "V25: ONE full authored angular/support constitutive stage AFTER positions, not V24 first-pass recipe"
 	last_step_trace = result.duplicate(true)
 	return result

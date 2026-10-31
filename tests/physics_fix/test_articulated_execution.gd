@@ -5,7 +5,8 @@ const CANDIDATE = preload("res://tests/physics_fix/final_geometry_constitutive_c
 const AUTHORED_MODELS = preload("res://tests/physics_fix/rigid_pad_models.gd")
 const CAPTURE_POLICY = preload("res://tests/physics_fix/articulated_capture_policy.gd")
 var _results: Dictionary = {
-	"scope": "NEW radius-derived coplanar toe stance; NOT V17/V18 or historical geometry",
+	"scope":
+	"V25 dual-feasible pivots + single final-geometry constitutive stage + radius-derived stance; NOT historical recipe or production adoption",
 	"arms": {},
 	"not_run_arms": ["idle-Slug", "length-Slug", "length-Hopper", "length-TwinRoller"],
 	"status": "NOT RUN"

@@ -159,6 +159,12 @@ if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/f
 timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_final_geometry_components.gd > "$folder/final-geometry-components.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/final-geometry-components.log"; then exit 1; fi
 if ! grep -Fxq 'Final geometry components: 57 checks, 0 failures' "$folder/final-geometry-components.log"; then exit 1; fi
+# Exact tensile-normal rank trap regression; final new gate before public clock.
+"$GODOT" --headless --check-only --script res://tests/physics_fix/test_dual_feasible_components.gd > "$folder/dual-feasible-compile.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/dual-feasible-compile.log"; then exit 1; fi
+timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_dual_feasible_components.gd > "$folder/dual-feasible-components.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/dual-feasible-components.log"; then exit 1; fi
+if ! grep -Fxq 'Dual feasible components: 6 checks, 0 failures' "$folder/dual-feasible-components.log"; then exit 1; fi
 "$GODOT" --headless --script res://tests/physics_fix/test_articulated_execution.gd -- --report-dir="$folder" > "$folder/engine.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/engine.log"; then
  echo 'STOP: runtime errors; inspect first failure.' >&2

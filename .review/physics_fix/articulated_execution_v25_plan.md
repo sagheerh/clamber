@@ -142,3 +142,25 @@ omitted clamp must fail. These components DO NOT advance any creature tick.
 Expect207:69percreature, first unexpected failureSTOP; first actual full force
 sample and positive clamp sample per creature persist in bounded Variant report.
 Full ordered world remains NOTRUN for V25 until this gate green; no adoption.
+
+## Corrected full registered runtime matrix PASS
+93b2f1fb0cd7/run41219732497 SUCCESS/publisher67be347:207checks/0failures,
+66 actual awake force audits; complete cases Slug/Hopper/TwinRoller. Positive force
+and clamp Variants retained with exact source manifest.69checks per creature:
+all held bits/release + actual natural input wake3masks + sleeping/awake restore,
+byte identity/typed geometry, malformed restore5, live body-mutating partialframe
+failure/no leaked signals/all-state rollback and candidate continuation+3cap/drop;
+independent per-observation force/angular/resource/controller/contact closure,
+14 bad force variants including compensated drag/hinge; actual positive linear
+clamp component plus omitted-clamp negative. These force-only clamp cases have
+ZERO integration ticks and are NOT motion/FA3 captures. Candidate namespace only;
+no claim production Sim factories changed, crossarch determinism, phone or FA3.
+
+Register FIRST V25 ordered world ONLY NOW, same physically proved recipe and
+corrected dual-feasible kernel.63failclosed runner controlsPASS (62.462s).
+All464native prerequisites required before any public tick; then original600
+complete predicate (15deg/noallair/.90actualspawn/4s/F52.001anchored30), Slug7200,
+Hopper7200,Twin7200, firstfailureSTOP. No thresholds/materials/masses/iterations
+changed. Test-only result scope explicitly states V25 rather than historical
+first-support wording. No other public world selected/rerun. Full M1/signature
+and production adoption remain blocked even if this requested scoped matrix passes.

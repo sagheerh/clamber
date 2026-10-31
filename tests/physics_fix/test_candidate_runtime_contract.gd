@@ -2,6 +2,7 @@
 extends "res://tests/physics_fix/test_articulated_execution.gd"
 ## NEW test-only typed-factory validation, not production Sim adoption/signoff.
 const RUNTIME = preload("res://tests/physics_fix/candidate_sim.gd")
+const VALIDATED_AWAKE = preload("res://tests/physics_fix/final_geometry_constitutive_candidate.gd")
 var _checks := 0
 var _failures := 0
 var _audited_awake := 0
@@ -312,9 +313,7 @@ func _contract(name: String) -> bool:
 			name + " release after wake uses prescribed return law"
 		):
 			return false
-	var clamp_rig := (
-		preload("res://tests/physics_fix/final_geometry_constitutive_candidate.gd").new()
-	)
+	var clamp_rig := VALIDATED_AWAKE.new()
 	var model := AUTHORED_MODELS.load_model(name, TUNING)
 	if (
 		clamp_rig.setup(
@@ -658,7 +657,7 @@ func _contact_ok(trace: Dictionary, bodies: Array) -> bool:
 
 
 func _spawn_matches_standalone(sim: RUNTIME) -> bool:
-	var actual := preload("res://tests/physics_fix/final_geometry_constitutive_candidate.gd").new()
+	var actual := VALIDATED_AWAKE.new()
 	var spec := sim._tower.snapshot()
 	if (
 		actual.setup(
