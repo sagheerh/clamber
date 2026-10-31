@@ -1,5 +1,37 @@
 # CLAMBER progress
 
+## Latest V16 — complete numerical Slug600, original posture/rest still FAIL (2026-10-31)
+
+Source **253102b4750d42cbe8780fc72c61f4b1749ad83d**, CI **41169768318**,
+publisher **523c181**; immutable34 files `tests/fixtures/m1_articulated_execution/253102b4750d/`.
+**317 native prerequisites PASS; 600/600 solverOK; airborne0; penetration0;
+length1.6653345369377348e-16WU; actualspawnCOMnet.3322757068994543WU.**
+Original posture firstfails43, maximum **38.504759454769165deg** (>15); no sleep
+by original4s or600. All three7200 **NOT RUN**; no adoption/AC202/FA3/signature.
+
+V16 corrects a proven skin-contact defect: lever = centreline(u)-radius*n,
+physical skin slip = centreline slip-omega*radius; actual terrain torque includes
+-radius*Jt. BOTH existing contact passes and material/static/identity decisions
+use that same physical point. Radius, silhouette, masses, material, thresholds,
+iterations and previousN unchanged. Fraction6 / native24 pure-spin, true rolling,
+old-law negative, torque, momentum, boundary and template controls PASS. First
+4477bb2 native compile incident preserved; corrected82649c9/run41169679309 clean.
+Local runner48 PASS (26 script invocations), plus independent analyses; no local
+Godot/device claim. Exact world-source M0/foundations/R29 companions SUCCESS.
+
+V13/V14/V15 remain CLOSED failed / no adoption, immutable evidence retained;
+V15 local angular law independently proved but did not fix posture. V16 completes
+600 without their final-contact stoppage, not an acceptance cure. A separate
+Fraction5 STATIC free-foot support diagnosis identifies no single-support static
+equilibrium in the original +/-15deg pose box; explicitly NOT a 600-tick or F52
+impossibility proof, nor authority to weld, retune or alter fixed geometry.
+See `.review/physics_fix/slug-static-support-analysis.md` before selecting changes.
+
+**M1 BLOCKED/NOT SIGNED; M2 blocked.** Production input/release/wake/rollback,
+adoption, five runtime gates, determinism/replay, phone/performance/layout and
+final review remain uncredited. No new world proposal selected after failedV16.
+
+
 ## Current milestone: M0 — APPROVED / COMPLETE (owner override); M1 — BLOCKED / NOT SIGNED; M2 blocked
 
 Session date: 2026-10-31. Normative inputs: `docs/GDD.md` and

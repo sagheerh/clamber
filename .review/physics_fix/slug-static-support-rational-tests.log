@@ -1,0 +1,10 @@
+test_actual_pinned_geometry_and_free_foot (__main__.StaticSupport.test_actual_pinned_geometry_and_free_foot) ... ok
+test_free_foot_static_moment_requires_vertical_axis (__main__.StaticSupport.test_free_foot_static_moment_requires_vertical_axis) ... ok
+test_only_lower_foot_sample_can_contact_within_15deg (__main__.StaticSupport.test_only_lower_foot_sample_can_contact_within_15deg) ... ok
+test_trigonometric_enclosures_are_exact (__main__.StaticSupport.test_trigonometric_enclosures_are_exact) ... ok
+test_vertical_free_foot_cannot_balance_upper_mass_inside_15deg (__main__.StaticSupport.test_vertical_free_foot_cannot_balance_upper_mass_inside_15deg) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.046s
+
+OK

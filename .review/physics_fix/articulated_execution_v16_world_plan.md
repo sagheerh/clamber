@@ -16,3 +16,11 @@ acceptance. Only complete600PASS allows sequentialthree7200, in original order.
 First solver error stops immediately; metric failure completes600 then blocks all
 later arms. No unchanged retry/threshold/energy allowance/pose correction/forced
 sleep, new production adoption or physical-device/runtime/signoff credit.
+
+CLOSED253102b/run41169768318/publisher523c181: ALL317native PASS and600 committed
+ticks/solverOK, zero public airborne, length1.6653345369377348e-16WU, penetration0,
+net actualspawnCOM.3322757068994543WU. But firstposture43/max38.504759454769165deg,
+no sleep by4s or600. Full metricFAIL, all3x7200NOTRUN. No unchanged retry/adoption.
+Exact-source M0/foundations/R29 companions all SUCCESS. Final contact no longer
+stops this capture; correct skin law still does NOT fix posture/rest. See separate
+static support diagnosis for assumptions and explicit non-impossibility limits.

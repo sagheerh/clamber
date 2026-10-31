@@ -3,6 +3,27 @@
 The GDD's existing D-01–D-17, CD-01, and A-xx decisions remain normative.
 New implementation decisions use M0-Dxx to avoid colliding with those IDs.
 
+## M1-PHYSICS-FIX-D07 — Actual capsule skin contact, not a new support model
+
+2026-10-31: native82649c9/run41169679309 proves24 skin controls; original42 also
+PASS, no script errors, zero public clock. Skin tangent arm differs by -radius;
+pure spin at centreline midpoint really slips, true rolling must be identity.
+V16 corrects both contact stages, static-slip policy and actual torque ledger;
+normal arm/history remains mathematically unchanged. Same local angular law,
+complete strict phase guard and original final physical-W response. NO radius,
+material, F24, shape/mass, slop, motion bound, sleep or acceptance retuning.
+
+New selected253102b/run41169768318 completes600/solverOK after317native, but
+posture first43/max38.504759454769165deg and no original4s/600 sleep. Airborne0,
+penetration0, length1.6653345369377348e-16WU, netCOM.3322757068994543WU. CLOSED
+metricFAIL, three7200NOTRUN; no unchanged retry/adoption. Source companions green.
+
+Separate read-only STATIC free-foot analysis pins actual geometry and torque
+balance; it is NOT a finite-time impossibility proof or permission to invent an
+upright controller, foot weld, support shape, new pose or sleep criterion. Author
+must resolve locked support/stance intent before physical-definition changes.
+Preserve immutable failed evidence and all original gates. M1 NOT SIGNED.
+
 ## M1-PHYSICS-FIX-D06 — Couple angular inequalities and finite tree/contact coordinates
 
 2026-10-31: saved V5 native q reopened after angular correction. Test-only direct
