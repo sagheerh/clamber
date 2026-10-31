@@ -105,4 +105,91 @@ class FirstFailureAudit(unittest.TestCase):
         self.assertEqual(max(r['penetration_peak_wu'] for r in self.rows), self.summary['arms']['idle-Slug']['max_penetration_wu'])
 
 
+class V2FailureAudit(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.source_id = 'f7b8fd24d6b89cd4644e7ca559619c20a55f26cd'
+        cls.folder = ROOT/'tests/fixtures/m1_articulated_execution'/cls.source_id[:12]
+        cls.source = json.loads((cls.folder/'source.json').read_text())
+        cls.summary = json.loads((cls.folder/'summary.json').read_text())
+        cls.packed = (cls.folder/'idle-Slug.jsonl.gz').read_bytes()
+        cls.raw = gzip.decompress(cls.packed)
+        cls.rows = [json.loads(s) for s in cls.raw.splitlines()]
+        cls.annotations = json.loads((ROOT/'.review/physics_fix/articulated-inspection-41151408137-annotations.json').read_text())
+        prefix = 'Archived first-failure inspection: '
+        cls.inspection = json.loads(next(a['message'][len(prefix):] for a in cls.annotations if a['message'].startswith(prefix)))
+
+    def test_exact_source_and_unchanged_production_manifest(self):
+        self.assertEqual(self.source['source_commit'], self.source_id)
+        self.assertIs(self.source['checkout_dirty'], False)
+        self.assertEqual(self.source['source_ci_run'], '41150933157')
+        self.assertEqual(self.source['core_manifest'], json.loads((ROOT/'tests/fixtures/source_manifest.json').read_text()))
+
+    def test_candidate_hashes_bound_to_historical_source(self):
+        for name, expected in self.source['candidate_sha256'].items():
+            value = subprocess.check_output(['git', 'show', f'{self.source_id}:{name}'], cwd=ROOT)
+            self.assertEqual(hashlib.sha256(value).hexdigest(), expected, name)
+
+    def test_transport_hashes_and_byte_counts(self):
+        index = json.loads((self.folder/'transport-index.json').read_text())
+        self.assertEqual(index['source_commit'], self.source_id)
+        entry = index['raw_traces']['idle-Slug.jsonl']
+        for data, prefix in [(self.raw, 'raw'), (self.packed, 'gzip')]:
+            self.assertEqual(entry[prefix+'_bytes'], len(data))
+            self.assertEqual(entry[prefix+'_sha256'], hashlib.sha256(data).hexdigest())
+
+    def test_fourteen_committed_ticks_then_terminal_failure(self):
+        arm = self.summary['arms']['idle-Slug']
+        self.assertEqual([r['tick'] for r in self.rows], list(range(14)))
+        self.assertEqual((arm['ticks'], arm['failing_tick'], arm['solver_status']), (14, 14, 30))
+        self.assertEqual(arm['target_ticks'], 600)
+        self.assertEqual(arm['termination'], 'step/nonfinite failure')
+        self.assertEqual((self.folder/'exit-code.txt').read_text(), '1\n')
+
+    def test_posture_failed_before_numerical_rejection(self):
+        angles = [r['attitude_deg'] for r in self.rows]
+        self.assertEqual(next(i for i, a in enumerate(angles) if a > 15.0), 8)
+        self.assertEqual(angles[8], 18.41374748886769)
+        self.assertEqual(max(angles), 38.97992391219688)
+        self.assertEqual(self.summary['arms']['idle-Slug']['max_attitude_deg'], max(angles))
+
+    def test_partial_geometry_is_not_7200_tick_acceptance(self):
+        arm = self.summary['arms']['idle-Slug']
+        self.assertEqual(max(r['length_peak_wu'] for r in self.rows), arm['max_length_wu'])
+        self.assertEqual(max(r['penetration_peak_wu'] for r in self.rows), arm['max_penetration_wu'])
+        self.assertFalse(any(r['penetration_peak_wu'] > .02*(1+1e-9) for r in self.rows))
+        self.assertEqual(set(self.summary['arms']), {'idle-Slug'})
+        self.assertEqual(self.summary['not_run_arms'], ['length-Slug', 'length-Hopper', 'length-TwinRoller'])
+        self.assertEqual(arm['first_sleep_tick'], -1)
+
+    def test_native_eight_components_passed_before_world(self):
+        self.assertIn('Articulated cap identity: 8 checks, 0 failures', (self.folder/'components.log').read_text())
+        self.assertIn('ERROR: Articulated pre-contact velocity block failure', (self.folder/'engine.log').read_text())
+        failure = json.loads((self.folder/'idle-Slug-failure.json').read_text())
+        self.assertGreater(len(base64.b64decode(failure['full_state_variant_base64'], validate=True)), 10000)
+        self.assertEqual(failure['nonfinite'], [])
+
+    def test_native_inspection_not_another_world_run(self):
+        jobs = json.loads((ROOT/'.review/physics_fix/articulated-inspection-41151408137-jobs.json').read_text())['jobs']
+        self.assertEqual(next(j['conclusion'] for j in jobs if j['name']=='articulated-primitives'), 'success')
+        self.assertTrue(all(j['conclusion']=='skipped' for j in jobs if j['name']!='articulated-primitives'))
+        self.assertTrue(any(a['message']=='Physics-failure inspection: 10 checks, 0 failures' for a in self.annotations))
+        self.assertTrue(any(a['message']=='M1 articulated mobility units: 42 checks, 0 failures' for a in self.annotations))
+        self.assertEqual(self.inspection['archived_source'], self.source_id)
+        self.assertIn('ZERO WORLD TICKS', self.inspection['scope'])
+
+    def test_native_binary64_guard_subcondition_not_an_epsilon_waiver(self):
+        import struct
+        report = self.inspection
+        e0, e1, change = struct.unpack('<3d', bytes.fromhex(report['energy_f64_le_hex']))
+        self.assertEqual((e0, e1, change), (report['before_energy'], report['after_energy'], report['energy_change']))
+        self.assertGreater(e1, e0)
+        self.assertEqual(change, e1-e0)
+        self.assertEqual(change/math.ulp(e0), 2.0)
+        self.assertEqual(report['phase'], 'pre-contact hinge velocity')
+        self.assertEqual(report['velocity_pass'], 1)
+        self.assertEqual(report['max_abs_omega'], .057997757374956584)
+        self.assertIn('after_energy > before_energy', (ROOT/'tests/physics_fix/articulated_mobility_candidate.gd').read_text())
+
+
 if __name__ == '__main__': unittest.main(verbosity=2)

@@ -2,7 +2,7 @@
 
 ## Current milestone: M0 — APPROVED / COMPLETE (owner override); M1 — BLOCKED / NOT SIGNED; M2 blocked
 
-Session date: 2026-10-30. Normative inputs: `docs/GDD.md` and
+Session date: 2026-10-31. Normative inputs: `docs/GDD.md` and
 `docs/ui/CLAMBER_UI.jpeg`. M0 is accepted by the GDD owner under M0-D07, dated 2026-10-28. Verdict:
 **APPROVE — HUMAN OVERRIDE**. Missing device evidence and measured FPS/P95 are
 waived for M0 only, not represented as measured. Land M0 before the separate M1
@@ -31,12 +31,18 @@ solver FAIL index14**, pre-contact hinge projection in second velocity pass.
 All three7200 arms NOT RUN. Immutable evidence saved byc6eae50. Candidate
 REJECTED/NOT ADOPTED. Partial geometry does not establish AC202/120s stability.
 
-New read-only native inspection of the EXACT saved failing component frame is
-prepared, ten assertions and ZERO world ticks. Offline mirror indicates a2-ULP
-kinetic-energy increase at the strict guard; do not infer native proof yet or
-weaken it. Posture already independently failed. See
+Read-only native inspection of the EXACT saved failing component frame now
+PASSED10/0 (source730b2b2/run41151408137/job124388545483), ZERO new world
+ticks; native42 re-PASS, all world jobs skipped. It confirms the2-ULP kinetic
+energy increase triggers the unchanged strict guard, with valid finite/SPD
+geometry and bitwise atomic rejection. No epsilon or guard relaxation. Posture already independently failed. See
 `.review/physics_fix/articulated_execution_v2_result.md`. Local routing17/0,
-immutable first-failure audit10/0, rational18/0 and grammar/lint PASS.
+immutable first-failure audit19/0, rational18/0 and grammar/lint PASS.
+
+Source730b2b2 regressions also PASS: M0 run41151408189 (516/0 plus Android
+arm64/min26/target36/portrait/16KB alignment export checks); independent M1
+foundations41151408079 PASS; R2941151408199 compile-only PASS. No phone install,
+frame timing or actual M1 acceptance inferred. Saved job/annotation records.
 
 Actual posture/sleep,7200 length+penetration, held inputs/release/rollback,
 validated production adoption/provenance, physical layout/device/performance/FA

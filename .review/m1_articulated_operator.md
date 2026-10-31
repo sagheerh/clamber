@@ -12,7 +12,8 @@ The new inactive-cap identity correction does not modify the kernel or its stric
 passivity guard. Native8 archived-frame checks now PASS. The new v2 world invocation failed
 posture at tick8, max38.98deg, and solver at tick14; all7200 arms NOT RUN.
 See [actual result](physics_fix/articulated_execution_v2_result.md).
-Read-only native first-failure inspection10 is pending; local labelled runner17/0 and rational18/0 PASS, not world evidence.
+Read-only native first-failure inspection10/0 now PASS (41151408137),
+ZERO new world ticks, confirming the strict2-ULP energy rejection; local labelled runner17/0 and rational18/0 PASS, not world evidence.
 GitHub works; local binary unavailable. No signature, FA3 credit, M2 or device waiver.
 
 ## Why a different operator is needed

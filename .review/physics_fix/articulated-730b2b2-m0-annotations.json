@@ -1,0 +1,52 @@
+[
+  {
+    "id": 124388545929,
+    "name": "headless",
+    "conclusion": "success",
+    "annotations": [
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 170,
+        "start_column": null,
+        "end_line": 170,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M0 headless result",
+        "message": "M0: 516 checks, 0 failures",
+        "raw_details": ""
+      }
+    ]
+  },
+  {
+    "id": 124388546201,
+    "name": "android",
+    "conclusion": "success",
+    "annotations": [
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 3,
+        "start_column": null,
+        "end_line": 3,
+        "end_column": null,
+        "annotation_level": "warning",
+        "title": "",
+        "message": "Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/upload-artifact@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 314,
+        "start_column": null,
+        "end_line": 314,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M0 Android build",
+        "message": "Debug AAB exported; bundle validated; arm64/minSdk26/targetSdk36/portrait/native 16KB and APK zip alignment checked. Physical installation and frame timing NOT measured.",
+        "raw_details": ""
+      }
+    ]
+  }
+]

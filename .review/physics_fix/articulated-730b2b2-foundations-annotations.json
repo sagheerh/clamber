@@ -1,0 +1,581 @@
+[
+  {
+    "id": 124388545888,
+    "name": "M1 point/link unit tests (NOT creature determinism)",
+    "conclusion": "success",
+    "annotations": [
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 25,
+        "start_column": null,
+        "end_line": 25,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R15 mechanics engineering ONLY",
+        "message": "M1 legal zero-input drift baseline-after: {\"convergence\": {\"classification\": \"oscillating transient\", \"dvx_direction_reversals\": 218, \"exact_period_ticks\": null, \"last300_dx_range_wu_tick\": [9.337328797495804e-06, 9.337328797638432e-06], \"last300_vx_range_wu_s\": [0.0005716731916895587, 0.0005716731916896063], \"settled\": false, \"settled_mean_dx_wu_tick\": null, \"settled_mean_vx_wu_s\": null, \"settlement_criterion\": \"last300 COM(dx,vx) exactly constant/repeating >=2 cycles; NO velocity epsilon; absence is not proof of divergence\", \"vx_decreases\": 162, \"vx_increases\": 136, \"vx_unchanged\": 1}, \"input_mask\": 0, \"mean_com_dx_wu_tick\": 9.337328797581247e-06, \"mean_completed_com_vx_wu_s\": 0.0005716731916895804, \"mean_label\": \"TRANSIENT WINDOW MEAN, NOT EQUILIBRIUM\", \"net_drift_px_s_at_150px_wu\": 0.08403595917823123, \"net_drift_wu_s\": 0.0005602397278548748, \"observation_ticks\": [300, 599], \"observed_window_lateral_travel_wu\": 0.0028011986392743743, \"power_description\": \"free-hinge baseline; no motor spring return\", \"raw_recurrence_diagnostics\": {\"count_pattern_period_ticks\": 1, \"meaning\": \"observed recurrence differences ONLY; no settlement tolerance/pass criterion\", \"repeat_lag_dx_max_difference_wu_tick\": 1.010832178594337e-16, \"repeat_lag_vx_max_difference_wu_s\": 4.0332320816460765e-17}, \"spring_return_live\": false}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 24,
+        "start_column": null,
+        "end_line": 24,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R15 mechanics engineering ONLY",
+        "message": "M1 legal baseline-after: {\"counts\": {\"part0/pass0\": {\"all600\": {\"2,3,0\": 11, \"2,3,1\": 11, \"2,3,2\": 2, \"2,3,3\": 576}, \"last300\": {\"2,3,3\": 300}}, \"part0/pass1\": {\"all600\": {\"2,3,0\": 11, \"2,3,1\": 11, \"2,3,2\": 2, \"2,3,3\": 576}, \"last300\": {\"2,3,3\": 300}}, \"part1/pass0\": {\"all600\": {\"2,3,0\": 9, \"2,3,1\": 12, \"2,3,2\": 3, \"2,3,3\": 576}, \"last300\": {\"2,3,3\": 300}}, \"part1/pass1\": {\"all600\": {\"2,3,0\": 9, \"2,3,1\": 13, \"2,3,2\": 2, \"2,3,3\": 576}, \"last300\": {\"2,3,3\": 300}}, \"part2/pass0\": {\"all600\": {\"1,2,1\": 11, \"2,3,2\": 1, \"2,3,3\": 588}, \"last300\": {\"2,3,3\": 300}}, \"part2/pass1\": {\"all600\": {\"1,2,1\": 12, \"1,2,2\": 580, \"2,3,3\": 8}, \"last300\": {\"1,2,2\": 300}}}, \"first_grip_tick\": 4, \"grip_ticks\": 5, \"grip_toggle_ticks\": [4, 9], \"grounded_sets\": [[0, 1, 2]], \"internal_position_phase_adapter\": false, \"last300_com_dx_wu_tick\": 9.337328797581247e-06, \"last300_com_vx_range_wu_s\": [0.0005716731916895587, 0.0005716731916896063], \"last300_foot_support_share\": 0.22240637932820798, \"last300_grip_fraction\": 0.0, \"lowest_initial_surface_wu\": 0.010000000000000009, \"momentum_and_position_verifiers\": true, \"raw_phase_magnitudes\": \"not actuated\", \"rows\": 600, \"spawn_root_y_wu\": 0.6100000000000001, \"status\": \"OBSERVED\", \"sustained_support_gate\": {\"definition\": \"last300 grip fraction>0 AND same-tick grounded gripping positive-reaction single-foot share>0.50\", \"grip_fraction\": 0.0, \"loaded_majority_grip_ticks\": [], \"max_single_foot_grounded_support_share\": 0.22240637932820803, \"passed\": false, \"window_ticks\": [300, 599]}, \"zero_input_drift\": {\"convergence\": {\"classification\": \"oscillating transient\", \"dvx_direction_reversals\": 218, \"exact_period_ticks\": null, \"last300_dx_range_wu_tick\": [9.337328797495804e-06, 9.337328797638432e-06], \"last300_vx_range_wu_s\": [0.0005716731916895587, 0.0005716731916896063], \"settled\": false, \"settled_mean_dx_wu_tick\": null, \"settled_mean_vx_wu_s\": null, \"settlement_criterion\": \"last300 COM(dx,vx) exactly constant/repeating >=2 cycles; NO velocity epsilon; absence is not proof of divergence\", \"vx_decreases\": 162, \"vx_increases\": 136, \"vx_unchanged\": 1}, \"input_mask\": 0, \"mean_com_dx_wu_tick\": 9.337328797581247e-06, \"mean_completed_com_vx_wu_s\": 0.0005716731916895804, \"mean_label\": \"TRANSIENT WINDOW MEAN, NOT EQUILIBRIUM\", \"net_drift_px_s_at_150px_wu\": 0.08403595917823123, \"net_drift_wu_s\": 0.0005602397278548748, \"observation_ticks\": [300, 599], \"observed_window_lateral_travel_wu\": 0.0028011986392743743, \"power_description\": \"free-hinge baseline; no motor spring return\", \"raw_recurrence_diagnostics\": {\"count_pattern_period_ticks\": 1, \"meaning\": \"observed recurrence differences ONLY; no settlement tolerance/pass criterion\", \"repeat_lag_dx_max_difference_wu_tick\": 1.010832178594337e-16, \"repeat_lag_vx_max_difference_wu_s\": 4.0332320816460765e-17}, \"spring_return_live\": false}}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 23,
+        "start_column": null,
+        "end_line": 23,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R15 mechanics engineering ONLY",
+        "message": "M1 legal zero-input drift baseline-before: {\"convergence\": {\"classification\": \"oscillating transient\", \"dvx_direction_reversals\": 208, \"exact_period_ticks\": null, \"last300_dx_range_wu_tick\": [-7.175187723451022e-06, -7.175187723329254e-06], \"last300_vx_range_wu_s\": [-0.0004392972075547317, -0.0004392972075546808], \"settled\": false, \"settled_mean_dx_wu_tick\": null, \"settled_mean_vx_wu_s\": null, \"settlement_criterion\": \"last300 COM(dx,vx) exactly constant/repeating >=2 cycles; NO velocity epsilon; absence is not proof of divergence\", \"vx_decreases\": 130, \"vx_increases\": 168, \"vx_unchanged\": 1}, \"input_mask\": 0, \"mean_com_dx_wu_tick\": -7.1751877234127456e-06, \"mean_completed_com_vx_wu_s\": -0.00043929720755470645, \"mean_label\": \"TRANSIENT WINDOW MEAN, NOT EQUILIBRIUM\", \"net_drift_px_s_at_150px_wu\": -0.06457668951071471, \"net_drift_wu_s\": -0.00043051126340476475, \"observation_ticks\": [300, 599], \"observed_window_lateral_travel_wu\": -0.0021525563170238238, \"power_description\": \"free-hinge baseline; no motor spring return\", \"raw_recurrence_diagnostics\": {\"count_pattern_period_ticks\": 1, \"meaning\": \"observed recurrence differences ONLY; no settlement tolerance/pass criterion\", \"repeat_lag_dx_max_difference_wu_tick\": 1.0323298747956511e-16, \"repeat_lag_vx_max_difference_wu_s\": 4.412702842016003e-17}, \"spring_return_live\": false}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 22,
+        "start_column": null,
+        "end_line": 22,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R15 mechanics engineering ONLY",
+        "message": "M1 legal baseline-before: {\"counts\": {\"part0/pass0\": {\"all600\": {\"2,3,0\": 8, \"2,3,1\": 22, \"2,3,2\": 2, \"2,3,3\": 568}, \"last300\": {\"2,3,3\": 300}}, \"part0/pass1\": {\"all600\": {\"2,3,0\": 8, \"2,3,1\": 22, \"2,3,2\": 2, \"2,3,3\": 568}, \"last300\": {\"2,3,3\": 300}}, \"part1/pass0\": {\"all600\": {\"2,3,1\": 29, \"2,3,2\": 3, \"2,3,3\": 568}, \"last300\": {\"2,3,3\": 300}}, \"part1/pass1\": {\"all600\": {\"1,2,1\": 8, \"2,3,1\": 22, \"2,3,2\": 2, \"2,3,3\": 568}, \"last300\": {\"2,3,3\": 300}}, \"part2/pass0\": {\"all600\": {\"1,2,0\": 2, \"1,2,1\": 1, \"1,2,2\": 36, \"2,3,3\": 561}, \"last300\": {\"2,3,3\": 300}}, \"part2/pass1\": {\"all600\": {\"1,2,0\": 2, \"1,2,1\": 1, \"1,2,2\": 597}, \"last300\": {\"1,2,2\": 300}}}, \"first_grip_tick\": null, \"grip_ticks\": 0, \"grip_toggle_ticks\": [], \"grounded_sets\": [[0, 1, 2]], \"internal_position_phase_adapter\": false, \"last300_com_dx_wu_tick\": -7.1751877234127456e-06, \"last300_com_vx_range_wu_s\": [-0.0004392972075547317, -0.0004392972075546808], \"last300_foot_support_share\": 0.2223925379546886, \"last300_grip_fraction\": 0.0, \"lowest_initial_surface_wu\": 0.010000000000000009, \"momentum_and_position_verifiers\": true, \"raw_phase_magnitudes\": \"not actuated\", \"rows\": 600, \"spawn_root_y_wu\": 0.405, \"status\": \"OBSERVED\", \"sustained_support_gate\": {\"definition\": \"last300 grip fraction>0 AND same-tick grounded gripping positive-reaction single-foot share>0.50\", \"grip_fraction\": 0.0, \"loaded_majority_grip_ticks\": [], \"max_single_foot_grounded_support_share\": 0.22239253795468863, \"passed\": false, \"window_ticks\": [300, 599]}, \"zero_input_drift\": {\"convergence\": {\"classification\": \"oscillating transient\", \"dvx_direction_reversals\": 208, \"exact_period_ticks\": null, \"last300_dx_range_wu_tick\": [-7.175187723451022e-06, -7.175187723329254e-06], \"last300_vx_range_wu_s\": [-0.0004392972075547317, -0.0004392972075546808], \"settled\": false, \"settled_mean_dx_wu_tick\": null, \"settled_mean_vx_wu_s\": null, \"settlement_criterion\": \"last300 COM(dx,vx) exactly constant/repeating >=2 cycles; NO velocity epsilon; absence is not proof of divergence\", \"vx_decreases\": 130, \"vx_increases\": 168, \"vx_unchanged\": 1}, \"input_mask\": 0, \"mean_com_dx_wu_tick\": -7.1751877234127456e-06, \"mean_completed_com_vx_wu_s\": -0.00043929720755470645, \"mean_label\": \"TRANSIENT WINDOW MEAN, NOT EQUILIBRIUM\", \"net_drift_px_s_at_150px_wu\": -0.06457668951071471, \"net_drift_wu_s\": -0.00043051126340476475, \"observation_ticks\": [300, 599], \"observed_window_lateral_travel_wu\": -0.0021525563170238238, \"power_description\": \"free-hinge baseline; no motor spring return\", \"raw_recurrence_diagnostics\": {\"count_pattern_period_ticks\": 1, \"meaning\": \"observed recurrence differences ONLY; no settlement tolerance/pass criterion\", \"repeat_lag_dx_max_difference_wu_tick\": 1.0323298747956511e-16, \"repeat_lag_vx_max_difference_wu_s\": 4.412702842016003e-17}, \"spring_return_live\": false}}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 21,
+        "start_column": null,
+        "end_line": 21,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R15 mechanics engineering ONLY",
+        "message": "M1 R15 mechanics components: 931 checks, 0 failures",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 23,
+        "start_column": null,
+        "end_line": 23,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R14 sleep COMPONENT",
+        "message": "M1 sleep evidence:600 raw state rows; partial-dwell/asleep restore continuations identical; F42 transition control passes; FA-3/4/5/6 NOT RUN; creature determinism0",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 22,
+        "start_column": null,
+        "end_line": 22,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R14 sleep COMPONENT",
+        "message": "M1 sleep components: 4897 checks, 0 failures",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 21,
+        "start_column": null,
+        "end_line": 21,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R14 sleep COMPONENT",
+        "message": "M1 sleep replay: {\"restore_checkpoint_ticks\":[47,62],\"rows\":600,\"scope\":\"engineering component ONLY; complete-creature determinism0\",\"sleep_ticks\":[61,210,390],\"wake_ticks\":[180,360]}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 20,
+        "start_column": null,
+        "end_line": 20,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R14 sleep COMPONENT",
+        "message": "M1 sleep F52: {\"after_sleep_tick\":-1,\"before_sleep_tick\":29,\"fixture_wu_tick\":0.0005,\"net_30_ticks_wu\":0.015,\"observed_ticks\":600,\"per_tick_wu\":0.0005,\"scope\":\"translated body fixture, not FA acceptance\",\"threshold_wu\":0.001}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 19,
+        "start_column": null,
+        "end_line": 19,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R14 sleep COMPONENT",
+        "message": "M1 sleep F52: {\"after_sleep_tick\":29,\"before_sleep_tick\":29,\"fixture_wu_tick\":9.337328797581247e-06,\"net_30_ticks_wu\":0.0002801198639274374,\"observed_ticks\":600,\"per_tick_wu\":9.337328797581247e-06,\"scope\":\"translated body fixture, not FA acceptance\",\"threshold_wu\":0.001}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 23,
+        "start_column": null,
+        "end_line": 23,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R14 A/A1 pose only",
+        "message": "M1 pose F41: {\"absolute_drift_smaller\": false, \"after_dx_wu_tick\": 9.337328797577746e-06, \"before_dx_wu_tick\": -7.175187723414263e-06, \"difference_wu_tick\": 1.6512516520992007e-05, \"grounded_sets_changed\": false, \"interpretation\": \"HISTORICAL only; R15 F43/F44 supersede pose-causal rejudgment\", \"suspicious_identical_drift_different_support\": false}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 22,
+        "start_column": null,
+        "end_line": 22,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R14 A/A1 pose only",
+        "message": "M1 pose zero-input drift after: {\"convergence\": {\"classification\": \"oscillating transient\", \"dvx_direction_reversals\": 218, \"exact_period_ticks\": null, \"last300_dx_range_wu_tick\": [9.337328797506547e-06, 9.337328797633059e-06], \"last300_vx_range_wu_s\": [0.0005716731916895578, 0.0005716731916896102], \"settled\": false, \"settled_mean_dx_wu_tick\": null, \"settled_mean_vx_wu_s\": null, \"settlement_criterion\": \"last300 COM(dx,vx) exactly constant/repeating >=2 cycles; NO velocity epsilon; absence is not proof of divergence\", \"vx_decreases\": 161, \"vx_increases\": 137, \"vx_unchanged\": 1}, \"input_mask\": 0, \"mean_com_dx_wu_tick\": 9.337328797577746e-06, \"mean_completed_com_vx_wu_s\": 0.0005716731916895806, \"mean_label\": \"TRANSIENT WINDOW MEAN, NOT EQUILIBRIUM\", \"net_drift_px_s_at_150px_wu\": 0.0840359591781997, \"net_drift_wu_s\": 0.0005602397278546647, \"observation_ticks\": [300, 599], \"observed_window_lateral_travel_wu\": 0.002801198639273324, \"power_description\": \"free-hinge baseline; no motor spring return\", \"raw_recurrence_diagnostics\": {\"count_pattern_period_ticks\": 1, \"meaning\": \"observed recurrence differences ONLY; no settlement tolerance/pass criterion\", \"repeat_lag_dx_max_difference_wu_tick\": 1.0260448903270242e-16, \"repeat_lag_vx_max_difference_wu_s\": 4.5102810375396984e-17}, \"spring_return_live\": false}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 21,
+        "start_column": null,
+        "end_line": 21,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R14 A/A1 pose only",
+        "message": "M1 pose after: {\"active_per_part_pass\": {\"0\": {\"0\": {\"3\": 300}, \"1\": {\"3\": 300}}, \"1\": {\"0\": {\"3\": 300}, \"1\": {\"3\": 300}}, \"2\": {\"0\": {\"3\": 300}, \"1\": {\"2\": 300}}}, \"all_grounded_force_window\": true, \"com_vx_range\": [0.0005716731916895578, 0.0005716731916896102], \"f31_verified\": true, \"first_grip_tick\": 19, \"grip_ticks\": 1, \"grounded_sets\": [[0, 1, 2]], \"last300_all_terrain_reaction_n\": [43.596103429635704, 43.59610342963571], \"last300_foot_ranges_n\": {\"sum_applied_load_n\": [9.678122826771673, 9.678122826771675], \"sum_measured_reaction_n\": [9.696051516603347, 9.69605151660335], \"sum_positional_cleanup_n\": [4.13421784038718, 4.134217840387688]}, \"last300_foot_support_share\": 0.22240637932820798, \"last300_grip_fraction\": 0.0, \"loaded_grip_ticks\": 1, \"rows\": 600, \"status\": \"OBSERVED\", \"zero_input_drift\": {\"convergence\": {\"classification\": \"oscillating transient\", \"dvx_direction_reversals\": 218, \"exact_period_ticks\": null, \"last300_dx_range_wu_tick\": [9.337328797506547e-06, 9.337328797633059e-06], \"last300_vx_range_wu_s\": [0.0005716731916895578, 0.0005716731916896102], \"settled\": false, \"settled_mean_dx_wu_tick\": null, \"settled_mean_vx_wu_s\": null, \"settlement_criterion\": \"last300 COM(dx,vx) exactly constant/repeating >=2 cycles; NO velocity epsilon; absence is not proof of divergence\", \"vx_decreases\": 161, \"vx_increases\": 137, \"vx_unchanged\": 1}, \"input_mask\": 0, \"mean_com_dx_wu_tick\": 9.337328797577746e-06, \"mean_completed_com_vx_wu_s\": 0.0005716731916895806, \"mean_label\": \"TRANSIENT WINDOW MEAN, NOT EQUILIBRIUM\", \"net_drift_px_s_at_150px_wu\": 0.0840359591781997, \"net_drift_wu_s\": 0.0005602397278546647, \"observation_ticks\": [300, 599], \"observed_window_lateral_travel_wu\": 0.002801198639273324, \"power_description\": \"free-hinge baseline; no motor spring return\", \"raw_recurrence_diagnostics\": {\"count_pattern_period_ticks\": 1, \"meaning\": \"observed recurrence differences ONLY; no settlement tolerance/pass criterion\", \"repeat_lag_dx_max_difference_wu_tick\": 1.0260448903270242e-16, \"repeat_lag_vx_max_difference_wu_s\": 4.5102810375396984e-17}, \"spring_return_live\": false}}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 20,
+        "start_column": null,
+        "end_line": 20,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R14 A/A1 pose only",
+        "message": "M1 pose zero-input drift before: {\"convergence\": {\"classification\": \"oscillating transient\", \"dvx_direction_reversals\": 206, \"exact_period_ticks\": null, \"last300_dx_range_wu_tick\": [-7.175187723461765e-06, -7.175187723322361e-06], \"last300_vx_range_wu_s\": [-0.0004392972075547341, -0.00043929720755467625], \"settled\": false, \"settled_mean_dx_wu_tick\": null, \"settled_mean_vx_wu_s\": null, \"settlement_criterion\": \"last300 COM(dx,vx) exactly constant/repeating >=2 cycles; NO velocity epsilon; absence is not proof of divergence\", \"vx_decreases\": 132, \"vx_increases\": 167, \"vx_unchanged\": 0}, \"input_mask\": 0, \"mean_com_dx_wu_tick\": -7.175187723414263e-06, \"mean_completed_com_vx_wu_s\": -0.00043929720755470634, \"mean_label\": \"TRANSIENT WINDOW MEAN, NOT EQUILIBRIUM\", \"net_drift_px_s_at_150px_wu\": -0.06457668951072837, \"net_drift_wu_s\": -0.0004305112634048558, \"observation_ticks\": [300, 599], \"observed_window_lateral_travel_wu\": -0.0021525563170242787, \"power_description\": \"free-hinge baseline; no motor spring return\", \"raw_recurrence_diagnostics\": {\"count_pattern_period_ticks\": 1, \"meaning\": \"observed recurrence differences ONLY; no settlement tolerance/pass criterion\", \"repeat_lag_dx_max_difference_wu_tick\": 1.0323214044661785e-16, \"repeat_lag_vx_max_difference_wu_s\": 4.3747557659790104e-17}, \"spring_return_live\": false}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 19,
+        "start_column": null,
+        "end_line": 19,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R14 A/A1 pose only",
+        "message": "M1 pose before: {\"active_per_part_pass\": {\"0\": {\"0\": {\"3\": 300}, \"1\": {\"3\": 300}}, \"1\": {\"0\": {\"3\": 300}, \"1\": {\"3\": 300}}, \"2\": {\"0\": {\"3\": 300}, \"1\": {\"2\": 300}}}, \"all_grounded_force_window\": true, \"com_vx_range\": [-0.0004392972075547341, -0.00043929720755467625], \"f31_verified\": true, \"first_grip_tick\": null, \"grip_ticks\": 0, \"grounded_sets\": [[0, 1, 2]], \"last300_all_terrain_reaction_n\": [43.59610684435376, 43.59610684435377], \"last300_foot_ranges_n\": {\"sum_applied_load_n\": [9.6775186630127, 9.677518663012702], \"sum_measured_reaction_n\": [9.695448846059604, 9.695448846059607], \"sum_positional_cleanup_n\": [4.134452379266757, 4.134452379267277]}, \"last300_foot_support_share\": 0.2223925379546886, \"last300_grip_fraction\": 0.0, \"loaded_grip_ticks\": 0, \"rows\": 600, \"status\": \"OBSERVED\", \"zero_input_drift\": {\"convergence\": {\"classification\": \"oscillating transient\", \"dvx_direction_reversals\": 206, \"exact_period_ticks\": null, \"last300_dx_range_wu_tick\": [-7.175187723461765e-06, -7.175187723322361e-06], \"last300_vx_range_wu_s\": [-0.0004392972075547341, -0.00043929720755467625], \"settled\": false, \"settled_mean_dx_wu_tick\": null, \"settled_mean_vx_wu_s\": null, \"settlement_criterion\": \"last300 COM(dx,vx) exactly constant/repeating >=2 cycles; NO velocity epsilon; absence is not proof of divergence\", \"vx_decreases\": 132, \"vx_increases\": 167, \"vx_unchanged\": 0}, \"input_mask\": 0, \"mean_com_dx_wu_tick\": -7.175187723414263e-06, \"mean_completed_com_vx_wu_s\": -0.00043929720755470634, \"mean_label\": \"TRANSIENT WINDOW MEAN, NOT EQUILIBRIUM\", \"net_drift_px_s_at_150px_wu\": -0.06457668951072837, \"net_drift_wu_s\": -0.0004305112634048558, \"observation_ticks\": [300, 599], \"observed_window_lateral_travel_wu\": -0.0021525563170242787, \"power_description\": \"free-hinge baseline; no motor spring return\", \"raw_recurrence_diagnostics\": {\"count_pattern_period_ticks\": 1, \"meaning\": \"observed recurrence differences ONLY; no settlement tolerance/pass criterion\", \"repeat_lag_dx_max_difference_wu_tick\": 1.0323214044661785e-16, \"repeat_lag_vx_max_difference_wu_s\": 4.3747557659790104e-17}, \"spring_return_live\": false}}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 30,
+        "start_column": null,
+        "end_line": 30,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R13 contact observation ONLY",
+        "message": "M1 slip scope: resource0.15 unchanged; diagnostic1.5 NOT adopted; no sampling/sleep/pose fix",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 29,
+        "start_column": null,
+        "end_line": 29,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R13 contact observation ONLY",
+        "message": "M1 slip comparison: {\"adopted_new_threshold\": false, \"full_branch_counts\": [{\"full_active_sample_count\": 9938, \"full_static_branch_count\": 9875, \"steady_active_sample_count\": 5100, \"steady_static_branch_count\": 5100}, {\"full_active_sample_count\": 9933, \"full_static_branch_count\": 9933, \"steady_active_sample_count\": 5100, \"steady_static_branch_count\": 5100}], \"max_abs_com_vx_difference_all600\": 0.02425666639628648, \"max_abs_com_vx_difference_last300\": 4.87890977618477e-17, \"maximum_endpoint_impulse_identity_error\": 2.220446049250313e-16, \"status\": \"OBSERVED\", \"steady_com_vx_envelopes_overlap\": true, \"steady_com_vx_ranges\": [[0.0005716731916895578, 0.0005716731916896102], [0.0005716731916895592, 0.000571673191689609]]}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 28,
+        "start_column": null,
+        "end_line": 28,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R13 contact observation ONLY",
+        "message": "M1 slip final impulses: [{\"normal_impulse_ns\": 0.10557549034137485, \"part\": 0, \"sample_index\": 0, \"tangential_impulse_ns\": 0.000332964957191495, \"u\": 0.0, \"velocity_pass\": 0}, {\"normal_impulse_ns\": 0.1513088569935133, \"part\": 0, \"sample_index\": 1, \"tangential_impulse_ns\": 1.8984352739454907e-05, \"u\": 0.5, \"velocity_pass\": 0}, {\"normal_impulse_ns\": 0.076252849733649, \"part\": 0, \"sample_index\": 2, \"tangential_impulse_ns\": 9.492176369727452e-06, \"u\": 1.0, \"velocity_pass\": 0}, {\"normal_impulse_ns\": 0.09563867021319944, \"part\": 1, \"sample_index\": 0, \"tangential_impulse_ns\": 1.183440170771207e-05, \"u\": 0.0, \"velocity_pass\": 0}, {\"normal_impulse_ns\": 0.09014243257127877, \"part\": 1, \"sample_index\": 1, \"tangential_impulse_ns\": -0.00034363422364304933, \"u\": 0.5, \"velocity_pass\": 0}, {\"normal_impulse_ns\": 0.046082565364190586, \"part\": 1, \"sample_index\": 2, \"tangential_impulse_ns\": -0.00017181711182152467, \"u\": 1.0, \"velocity_pass\": 0}, {\"normal_impulse_ns\": 0.057534503734714235, \"part\": 2, \"sample_index\": 0, \"tangential_impulse_ns\": -0.00021477138977690584, \"u\": 0.0, \"velocity_pass\": 0}, {\"normal_impulse_ns\": 0.06907091597358879, \"part\": 2, \"sample_index\": 1, \"tangential_impulse_ns\": 0.0010629934799577427, \"u\": 0.5, \"velocity_pass\": 0}, {\"normal_impulse_ns\": 0.034995438901752794, \"part\": 2, \"sample_index\": 2, \"tangential_impulse_ns\": 0.0005314967399788714, \"u\": 1.0, \"velocity_pass\": 0}, {\"normal_impulse_ns\": 0.0, \"part\": 0, \"sample_index\": 0, \"tangential_impulse_ns\": 0.00034796996403682525, \"u\": 0.0, \"velocity_pass\": 1}, {\"normal_impulse_ns\": 0.0, \"part\": 0, \"sample_index\": 1, \"tangential_impulse_ns\": 7.336478171918328e-05, \"u\": 0.5, \"velocity_pass\": 1}, {\"normal_impulse_ns\": 0.0, \"part\": 0, \"sample_index\": 2, \"tangential_impulse_ns\": 3.668239085959164e-05, \"u\": 1.0, \"velocity_pass\": 1}, {\"normal_impulse_ns\": 0.0, \"part\": 1, \"sample_index\": 0, \"tangential_impulse_ns\": 4.5733889902867546e-05, \"u\": 0.0, \"velocity_pass\": 1}, {\"normal_impulse_ns\": 0.0, \"part\": 1, \"sample_index\": 1, \"tangential_impulse_ns\": -0.0018455516759568393, \"u\": 0.5, \"velocity_pass\": 1}, {\"normal_impulse_ns\": 0.0, \"part\": 1, \"sample_index\": 2, \"tangential_impulse_ns\": -0.0009227758379784196, \"u\": 1.0, \"velocity_pass\": 1}, {\"normal_impulse_ns\": 0.0, \"part\": 2, \"sample_index\": 0, \"tangential_impulse_ns\": -0.0011534697974730245, \"u\": 0.0, \"velocity_pass\": 1}, {\"normal_impulse_ns\": 0.0, \"part\": 2, \"sample_index\": 1, \"tangential_impulse_ns\": 0.0021627810332439136, \"u\": 1.0, \"velocity_pass\": 1}]",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 27,
+        "start_column": null,
+        "end_line": 27,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R13 contact observation ONLY",
+        "message": "M1 slip baseline part: {\"active_counts\": [2, 3], \"candidate_counts\": [2, 3], \"earlier_static_sample_changed_by_later_samples_count\": 600, \"last_final_pass_samples\": [{\"avx_after\": 0.0, \"avx_before\": -0.007689798649820164, \"bvx_after\": 0.014418540221626091, \"bvx_before\": 0.014418540221626091, \"normal_impulse_ns\": 0.0, \"retained\": 0.0, \"sample_index\": 0, \"tangent_after\": 0.0, \"tangent_at_body_end\": 0.0, \"tangent_before\": 0.007689798649820164, \"tangential_impulse_ns\": -0.0011534697974730245, \"u\": 0.0}, {\"avx_after\": 0.0, \"avx_before\": 0.0, \"bvx_after\": 0.0, \"bvx_before\": 0.014418540221626091, \"normal_impulse_ns\": 0.0, \"retained\": 0.0, \"sample_index\": 1, \"tangent_after\": 0.0, \"tangent_at_body_end\": 0.0, \"tangent_before\": -0.014418540221626091, \"tangential_impulse_ns\": 0.0021627810332439136, \"u\": 1.0}], \"max_abs_tangent_before\": 0.014418540221626325, \"max_tangent_at_body_end_after_static_response\": 0.0035433115998592004, \"part\": 2, \"per_pass\": {\"0\": {\"active_count_histogram\": {\"3\": 300}, \"body_end_com_vx_max_wu_s\": -0.0017716557999295525, \"body_end_com_vx_min_wu_s\": -0.0017716557999296002, \"candidate_count_histogram\": {\"3\": 300}}, \"1\": {\"active_count_histogram\": {\"2\": 300}, \"body_end_com_vx_max_wu_s\": 1.3010426069826053e-18, \"body_end_com_vx_min_wu_s\": -1.3010426069826053e-18, \"candidate_count_histogram\": {\"2\": 300}}}, \"zero_retained_with_surviving_endpoint_count\": 1351}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 26,
+        "start_column": null,
+        "end_line": 26,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R13 contact observation ONLY",
+        "message": "M1 slip baseline part: {\"active_counts\": [3], \"candidate_counts\": [3], \"earlier_static_sample_changed_by_later_samples_count\": 1200, \"last_final_pass_samples\": [{\"avx_after\": 0.0, \"avx_before\": 0.00019055787459528145, \"bvx_after\": -0.007689798649820164, \"bvx_before\": -0.007689798649820164, \"normal_impulse_ns\": 0.0, \"retained\": 0.0, \"sample_index\": 0, \"tangent_after\": 0.0, \"tangent_at_body_end\": -0.003844899324910082, \"tangent_before\": -0.00019055787459528145, \"tangential_impulse_ns\": 4.5733889902867546e-05, \"u\": 0.0}, {\"avx_after\": 0.003844899324910082, \"avx_before\": 0.0, \"bvx_after\": -0.003844899324910082, \"bvx_before\": -0.007689798649820164, \"normal_impulse_ns\": 0.0, \"retained\": 0.0, \"sample_index\": 1, \"tangent_after\": 0.0, \"tangent_at_body_end\": -0.001922449662455041, \"tangent_before\": 0.003844899324910082, \"tangential_impulse_ns\": -0.0018455516759568393, \"u\": 0.5}, {\"avx_after\": 0.003844899324910082, \"avx_before\": 0.003844899324910082, \"bvx_after\": 0.0, \"bvx_before\": -0.003844899324910082, \"normal_impulse_ns\": 0.0, \"retained\": 0.0, \"sample_index\": 2, \"tangent_after\": 0.0, \"tangent_at_body_end\": 0.0, \"tangent_before\": 0.003844899324910082, \"tangential_impulse_ns\": -0.0009227758379784196, \"u\": 1.0}], \"max_abs_tangent_before\": 0.003844899324910196, \"max_tangent_at_body_end_after_static_response\": 0.003844899324910196, \"part\": 1, \"per_pass\": {\"0\": {\"active_count_histogram\": {\"3\": 300}, \"body_end_com_vx_max_wu_s\": 0.00035795231629485774, \"body_end_com_vx_min_wu_s\": 0.0003579523162948288, \"candidate_count_histogram\": {\"3\": 300}}, \"1\": {\"active_count_histogram\": {\"3\": 300}, \"body_end_com_vx_max_wu_s\": 0.0019224496624550978, \"body_end_com_vx_min_wu_s\": 0.00192244966245498, \"candidate_count_histogram\": {\"3\": 300}}}, \"zero_retained_with_surviving_endpoint_count\": 1800}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 25,
+        "start_column": null,
+        "end_line": 25,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R13 contact observation ONLY",
+        "message": "M1 slip baseline part: {\"active_counts\": [3], \"candidate_counts\": [3], \"earlier_static_sample_changed_by_later_samples_count\": 1200, \"last_final_pass_samples\": [{\"avx_after\": 0.0, \"avx_before\": 0.0009038180884073383, \"bvx_after\": 0.00019055787459528123, \"bvx_before\": 0.00019055787459528123, \"normal_impulse_ns\": 0.0, \"retained\": 0.0, \"sample_index\": 0, \"tangent_after\": 0.0, \"tangent_at_body_end\": 9.527893729764062e-05, \"tangent_before\": -0.0009038180884073383, \"tangential_impulse_ns\": 0.00034796996403682525, \"u\": 0.0}, {\"avx_after\": -9.527893729764062e-05, \"avx_before\": 0.0, \"bvx_after\": 9.527893729764062e-05, \"bvx_before\": 0.00019055787459528123, \"normal_impulse_ns\": 0.0, \"retained\": 0.0, \"sample_index\": 1, \"tangent_after\": 0.0, \"tangent_at_body_end\": 4.763946864882031e-05, \"tangent_before\": -9.527893729764062e-05, \"tangential_impulse_ns\": 7.336478171918328e-05, \"u\": 0.5}, {\"avx_after\": -9.527893729764062e-05, \"avx_before\": -9.527893729764062e-05, \"bvx_after\": 0.0, \"bvx_before\": 9.527893729764062e-05, \"normal_impulse_ns\": 0.0, \"retained\": 0.0, \"sample_index\": 2, \"tangent_after\": 0.0, \"tangent_at_body_end\": 0.0, \"tangent_before\": -9.527893729764062e-05, \"tangential_impulse_ns\": 3.668239085959164e-05, \"u\": 1.0}], \"max_abs_tangent_before\": 0.0009038180884078982, \"max_tangent_at_body_end_after_static_response\": 9.527893729769049e-05, \"part\": 0, \"per_pass\": {\"0\": {\"active_count_histogram\": {\"3\": 300}, \"body_end_com_vx_max_wu_s\": -1.2327501778834485e-05, \"body_end_com_vx_min_wu_s\": -1.2327501778879588e-05, \"candidate_count_histogram\": {\"3\": 300}}, \"1\": {\"active_count_histogram\": {\"3\": 300}, \"body_end_com_vx_max_wu_s\": -4.7639468648728856e-05, \"body_end_com_vx_min_wu_s\": -4.763946864884524e-05, \"candidate_count_histogram\": {\"3\": 300}}}, \"zero_retained_with_surviving_endpoint_count\": 1800}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 24,
+        "start_column": null,
+        "end_line": 24,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R13 contact observation ONLY",
+        "message": "M1 slip zero-input drift: {\"convergence\": {\"classification\": \"oscillating transient\", \"dvx_direction_reversals\": 212, \"exact_period_ticks\": null, \"last300_dx_range_wu_tick\": [9.33732879749276e-06, 9.337328797633059e-06], \"last300_vx_range_wu_s\": [0.0005716731916895592, 0.000571673191689609], \"settled\": false, \"settled_mean_dx_wu_tick\": null, \"settled_mean_vx_wu_s\": null, \"settlement_criterion\": \"last300 COM(dx,vx) exactly constant/repeating >=2 cycles; NO velocity epsilon; absence is not proof of divergence\", \"vx_decreases\": 161, \"vx_increases\": 137, \"vx_unchanged\": 1}, \"input_mask\": 0, \"mean_com_dx_wu_tick\": 9.33732879758182e-06, \"mean_completed_com_vx_wu_s\": 0.0005716731916895803, \"mean_label\": \"TRANSIENT WINDOW MEAN, NOT EQUILIBRIUM\", \"net_drift_px_s_at_150px_wu\": 0.08403595917823638, \"net_drift_wu_s\": 0.0005602397278549092, \"observation_ticks\": [300, 599], \"observed_window_lateral_travel_wu\": 0.002801198639274546, \"power_description\": \"free-hinge baseline; no motor spring return\", \"raw_recurrence_diagnostics\": {\"count_pattern_period_ticks\": 1, \"meaning\": \"observed recurrence differences ONLY; no settlement tolerance/pass criterion\", \"repeat_lag_dx_max_difference_wu_tick\": 1.1576738103303424e-16, \"repeat_lag_vx_max_difference_wu_s\": 4.629543276513104e-17}, \"spring_return_live\": false}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 23,
+        "start_column": null,
+        "end_line": 23,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R13 contact observation ONLY",
+        "message": "M1 slip case: {\"all_grounded_force_window\": true, \"configured_resource_value\": false, \"full_active_sample_count\": 9933, \"full_static_branch_count\": 9933, \"grounded_transition_ticks\": [{\"lifted_parts\": [], \"new_grounded_parts\": [1, 2], \"tick\": 0}, {\"lifted_parts\": [], \"new_grounded_parts\": [0], \"tick\": 7}], \"max_tangent_target_identity_error\": 2.7755575615628914e-17, \"observer_on_off_equal_ticks\": 600, \"rows\": 600, \"sample_events\": 10196, \"static_slip_wu_s\": 1.5, \"status\": \"OBSERVED\", \"steady_active_sample_count\": 5100, \"steady_completed_com_vx_range_wu_s\": [0.0005716731916895592, 0.000571673191689609], \"steady_grounded_sets\": [[0, 1, 2]], \"steady_mean_com_dx_wu_tick\": 9.33732879758182e-06, \"steady_mean_integration_com_dx_wu_tick\": 9.337328797594112e-06, \"steady_new_grounded_transition_count\": 0, \"steady_static_branch_count\": 5100, \"steady_ticks_with_any_active_sample\": 300, \"zero_input_drift\": {\"convergence\": {\"classification\": \"oscillating transient\", \"dvx_direction_reversals\": 212, \"exact_period_ticks\": null, \"last300_dx_range_wu_tick\": [9.33732879749276e-06, 9.337328797633059e-06], \"last300_vx_range_wu_s\": [0.0005716731916895592, 0.000571673191689609], \"settled\": false, \"settled_mean_dx_wu_tick\": null, \"settled_mean_vx_wu_s\": null, \"settlement_criterion\": \"last300 COM(dx,vx) exactly constant/repeating >=2 cycles; NO velocity epsilon; absence is not proof of divergence\", \"vx_decreases\": 161, \"vx_increases\": 137, \"vx_unchanged\": 1}, \"input_mask\": 0, \"mean_com_dx_wu_tick\": 9.33732879758182e-06, \"mean_completed_com_vx_wu_s\": 0.0005716731916895803, \"mean_label\": \"TRANSIENT WINDOW MEAN, NOT EQUILIBRIUM\", \"net_drift_px_s_at_150px_wu\": 0.08403595917823638, \"net_drift_wu_s\": 0.0005602397278549092, \"observation_ticks\": [300, 599], \"observed_window_lateral_travel_wu\": 0.002801198639274546, \"power_description\": \"free-hinge baseline; no motor spring return\", \"raw_recurrence_diagnostics\": {\"count_pattern_period_ticks\": 1, \"meaning\": \"observed recurrence differences ONLY; no settlement tolerance/pass criterion\", \"repeat_lag_dx_max_difference_wu_tick\": 1.1576738103303424e-16, \"repeat_lag_vx_max_difference_wu_s\": 4.629543276513104e-17}, \"spring_return_live\": false}}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 22,
+        "start_column": null,
+        "end_line": 22,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R13 contact observation ONLY",
+        "message": "M1 slip zero-input drift: {\"convergence\": {\"classification\": \"oscillating transient\", \"dvx_direction_reversals\": 218, \"exact_period_ticks\": null, \"last300_dx_range_wu_tick\": [9.337328797506547e-06, 9.337328797633059e-06], \"last300_vx_range_wu_s\": [0.0005716731916895578, 0.0005716731916896102], \"settled\": false, \"settled_mean_dx_wu_tick\": null, \"settled_mean_vx_wu_s\": null, \"settlement_criterion\": \"last300 COM(dx,vx) exactly constant/repeating >=2 cycles; NO velocity epsilon; absence is not proof of divergence\", \"vx_decreases\": 161, \"vx_increases\": 137, \"vx_unchanged\": 1}, \"input_mask\": 0, \"mean_com_dx_wu_tick\": 9.337328797577746e-06, \"mean_completed_com_vx_wu_s\": 0.0005716731916895806, \"mean_label\": \"TRANSIENT WINDOW MEAN, NOT EQUILIBRIUM\", \"net_drift_px_s_at_150px_wu\": 0.0840359591781997, \"net_drift_wu_s\": 0.0005602397278546647, \"observation_ticks\": [300, 599], \"observed_window_lateral_travel_wu\": 0.002801198639273324, \"power_description\": \"free-hinge baseline; no motor spring return\", \"raw_recurrence_diagnostics\": {\"count_pattern_period_ticks\": 1, \"meaning\": \"observed recurrence differences ONLY; no settlement tolerance/pass criterion\", \"repeat_lag_dx_max_difference_wu_tick\": 1.0260448903270242e-16, \"repeat_lag_vx_max_difference_wu_s\": 4.5102810375396984e-17}, \"spring_return_live\": false}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 21,
+        "start_column": null,
+        "end_line": 21,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 R13 contact observation ONLY",
+        "message": "M1 slip case: {\"all_grounded_force_window\": true, \"configured_resource_value\": true, \"full_active_sample_count\": 9938, \"full_static_branch_count\": 9875, \"grounded_transition_ticks\": [{\"lifted_parts\": [], \"new_grounded_parts\": [1, 2], \"tick\": 0}, {\"lifted_parts\": [], \"new_grounded_parts\": [0], \"tick\": 7}], \"max_tangent_target_identity_error\": 6.938893903907228e-17, \"observer_on_off_equal_ticks\": 600, \"rows\": 600, \"sample_events\": 10196, \"static_slip_wu_s\": 0.15, \"status\": \"OBSERVED\", \"steady_active_sample_count\": 5100, \"steady_completed_com_vx_range_wu_s\": [0.0005716731916895578, 0.0005716731916896102], \"steady_grounded_sets\": [[0, 1, 2]], \"steady_mean_com_dx_wu_tick\": 9.337328797577746e-06, \"steady_mean_integration_com_dx_wu_tick\": 9.337328797594112e-06, \"steady_new_grounded_transition_count\": 0, \"steady_static_branch_count\": 5100, \"steady_ticks_with_any_active_sample\": 300, \"zero_input_drift\": {\"convergence\": {\"classification\": \"oscillating transient\", \"dvx_direction_reversals\": 218, \"exact_period_ticks\": null, \"last300_dx_range_wu_tick\": [9.337328797506547e-06, 9.337328797633059e-06], \"last300_vx_range_wu_s\": [0.0005716731916895578, 0.0005716731916896102], \"settled\": false, \"settled_mean_dx_wu_tick\": null, \"settled_mean_vx_wu_s\": null, \"settlement_criterion\": \"last300 COM(dx,vx) exactly constant/repeating >=2 cycles; NO velocity epsilon; absence is not proof of divergence\", \"vx_decreases\": 161, \"vx_increases\": 137, \"vx_unchanged\": 1}, \"input_mask\": 0, \"mean_com_dx_wu_tick\": 9.337328797577746e-06, \"mean_completed_com_vx_wu_s\": 0.0005716731916895806, \"mean_label\": \"TRANSIENT WINDOW MEAN, NOT EQUILIBRIUM\", \"net_drift_px_s_at_150px_wu\": 0.0840359591781997, \"net_drift_wu_s\": 0.0005602397278546647, \"observation_ticks\": [300, 599], \"observed_window_lateral_travel_wu\": 0.002801198639273324, \"power_description\": \"free-hinge baseline; no motor spring return\", \"raw_recurrence_diagnostics\": {\"count_pattern_period_ticks\": 1, \"meaning\": \"observed recurrence differences ONLY; no settlement tolerance/pass criterion\", \"repeat_lag_dx_max_difference_wu_tick\": 1.0260448903270242e-16, \"repeat_lag_vx_max_difference_wu_s\": 4.5102810375396984e-17}, \"spring_return_live\": false}}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 66,
+        "start_column": null,
+        "end_line": 66,
+        "end_column": null,
+        "annotation_level": "failure",
+        "title": "",
+        "message": "Process completed with exit code 1.",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 61,
+        "start_column": null,
+        "end_line": 61,
+        "end_column": null,
+        "annotation_level": "failure",
+        "title": "M1 Slug diagnostic evidence (not FA acceptance)",
+        "message": "M1 Slug zero-input drift: {\"convergence\": {\"classification\": \"oscillating transient\", \"dvx_direction_reversals\": 218, \"exact_period_ticks\": null, \"last300_dx_range_wu_tick\": [9.337328797506547e-06, 9.337328797633059e-06], \"last300_vx_range_wu_s\": [0.0005716731916895578, 0.0005716731916896102], \"settled\": false, \"settled_mean_dx_wu_tick\": null, \"settled_mean_vx_wu_s\": null, \"settlement_criterion\": \"last300 COM(dx,vx) exactly constant/repeating >=2 cycles; NO velocity epsilon; absence is not proof of divergence\", \"vx_decreases\": 161, \"vx_increases\": 137, \"vx_unchanged\": 1}, \"input_mask\": 0, \"mean_com_dx_wu_tick\": 9.337328797577746e-06, \"mean_completed_com_vx_wu_s\": 0.0005716731916895806, \"mean_label\": \"TRANSIENT WINDOW MEAN, NOT EQUILIBRIUM\", \"net_drift_px_s_at_150px_wu\": 0.0840359591781997, \"net_drift_wu_s\": 0.0005602397278546647, \"observation_ticks\": [300, 599], \"observed_window_lateral_travel_wu\": 0.002801198639273324, \"power_description\": \"free-hinge baseline; no motor spring return\", \"raw_recurrence_diagnostics\": {\"count_pattern_period_ticks\": 1, \"meaning\": \"observed recurrence differences ONLY; no settlement tolerance/pass criterion\", \"repeat_lag_dx_max_difference_wu_tick\": 1.0260448903270242e-16, \"repeat_lag_vx_max_difference_wu_s\": 4.5102810375396984e-17}, \"spring_return_live\": false}\nM1 Slug engagement: grip engaged\nM1 Slug sustained-support gate: {\"definition\": \"last300 grip fraction>0 AND same-tick grounded gripping positive-reaction single-foot share>0.50\", \"grip_fraction\": 0.0, \"loaded_majority_grip_ticks\": [], \"max_single_foot_grounded_support_share\": 0.22240637932820803, \"passed\": false, \"window_ticks\": [300, 599]}\nM1 Slug peaks: applied=19.62121195017425N measured=44.524765699910894N (all600), steady measured=9.69605151660335N; N1 gate=17.36N\nM1 Slug F30 BLOCKED: authored R14 A/A1 applied, but sustained majority foot support not exercised (R16/F47)",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 60,
+        "start_column": null,
+        "end_line": 60,
+        "end_column": null,
+        "annotation_level": "failure",
+        "title": "M1 Slug diagnostic evidence (not FA acceptance)",
+        "message": "M1 Slug motion summary: {\"decay_samples\": [{\"distance_from_final_ns\": 0.5751632580297568, \"max_endpoint_speed_wu_s\": 0.4666666666666667, \"p_y_ns\": -0.41174373333333336, \"tick\": 0}, {\"distance_from_final_ns\": 0.9344558535330748, \"max_endpoint_speed_wu_s\": 0.9239204591104084, \"p_y_ns\": -0.7710363288366514, \"tick\": 1}, {\"distance_from_final_ns\": 1.209701686861191, \"max_endpoint_speed_wu_s\": 1.3714698549736215, \"p_y_ns\": -1.0462821621647675, \"tick\": 2}, {\"distance_from_final_ns\": 1.8255641963755411, \"max_endpoint_speed_wu_s\": 2.589847164654986, \"p_y_ns\": -1.6621446716791177, \"tick\": 5}, {\"distance_from_final_ns\": 0.6384060505365957, \"max_endpoint_speed_wu_s\": 0.7254505826496582, \"p_y_ns\": -0.47498652584017226, \"tick\": 10}, {\"distance_from_final_ns\": 0.94626901046645, \"max_endpoint_speed_wu_s\": 1.258957140044712, \"p_y_ns\": -0.7828494857700266, \"tick\": 20}, {\"distance_from_final_ns\": 1.010255194805465e-06, \"max_endpoint_speed_wu_s\": 0.20187379530507849, \"p_y_ns\": 0.16341851444122862, \"tick\": 30}, {\"distance_from_final_ns\": 2.7755575615628914e-17, \"max_endpoint_speed_wu_s\": 0.2018733416622047, \"p_y_ns\": 0.1634195246964234, \"tick\": 60}, {\"distance_from_final_ns\": 2.7755575615628914e-17, \"max_endpoint_speed_wu_s\": 0.20187334166220466, \"p_y_ns\": 0.1634195246964234, \"tick\": 120}, {\"distance_from_final_ns\": 2.7755575615628914e-17, \"max_endpoint_speed_wu_s\": 0.2018733416622047, \"p_y_ns\": 0.1634195246964234, \"tick\": 180}, {\"distance_from_final_ns\": 2.7755575615628914e-17, \"max_endpoint_speed_wu_s\": 0.2018733416622047, \"p_y_ns\": 0.1634195246964234, \"tick\": 240}, {\"distance_from_final_ns\": 5.551115123125783e-17, \"max_endpoint_speed_wu_s\": 0.20187334166220466, \"p_y_ns\": 0.16341952469642337, \"tick\": 299}, {\"distance_from_final_ns\": 0.0, \"max_endpoint_speed_wu_s\": 0.2018733416622047, \"p_y_ns\": 0.16341952469642343, \"tick\": 300}, {\"distance_from_final_ns\": 0.0, \"max_endpoint_speed_wu_s\": 0.2018733416622047, \"p_y_ns\": 0.16341952469642343, \"tick\": 599}], \"envelope_definition\": \"Observed ticks300..599 min/max, NOT an invented velocity/rest tolerance\", \"first_tick_all_remaining_inside_final_observed_envelope\": 52, \"first_tick_exact_constant_suffix_at_least_two_rows\": 598, \"max_position_ledger_residual_wu\": 1.0408340855860843e-17, \"momentum_final_observed_envelope_ns\": [0.16341952469642335, 0.16341952469642343], \"path_exists_scope\": \"At least one loaded gripping tick only; NOT sustained support or a new acceptance threshold\", \"position_ledger_and_speed_identities_verified\": true, \"scope\": \"F35 observation, NOT rest/sleep acceptance; NO velocity epsilon\", \"steady_foot_support_share_mean\": 0.22240637932820798, \"steady_foot_support_share_range\": [0.22240637932820795, 0.22240637932820803], \"steady_grip_fraction\": 0.0, \"steady_grip_ticks\": 0, \"steady_undefined_support_share_ticks\": 0}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 58,
+        "start_column": null,
+        "end_line": 58,
+        "end_column": null,
+        "annotation_level": "failure",
+        "title": "M1 Slug diagnostic evidence (not FA acceptance)",
+        "message": "M1 Slug motion part: {\"kind\": \"motor\", \"last_completed_velocity_dt_wu\": [6.408165541516803e-05, 0.0012917273103530938, 0.0, 0.0015498574871576558], \"last_endpoint_speeds_wu_s\": [0.07759895134821108, 0.09299144922945934], \"last_net_delta_wu\": [9.33732879759841e-06, -1.942890293094024e-16, 9.33732879759841e-06, -1.8041124150158794e-16], \"last_position_delta_wu\": {\"contact\": [0.0, 0.006567065797072377, 0.0, 0.010178938822825473], \"distance\": [-2.1008989794624178e-05, -4.373650615285829e-07, 2.10089897947352e-05, 4.373650615285829e-07], \"hinge\": [-3.245370371462997e-05, -5.474341837929941e-05, -1.167166099713679e-05, -0.0039204587475239056], \"integration\": [6.280002230685255e-05, -0.0065118850136317435, 0.0, -0.006258917440363276]}, \"last_predictor_minus_completed_velocity_dt_wu\": [-1.2816331083154782e-06, -0.007803612323984837, 0.0, -0.0078087749275209326], \"part\": 1, \"steady_com_speed_range_wu_s\": [0.08526921811535776, 0.08526921811535781], \"steady_max_endpoint_speed_range_wu_s\": [0.09299144922945929, 0.09299144922945937], \"steady_net_delta_ranges_wu\": [[9.337328797487388e-06, 9.337328797653921e-06], [-7.077671781985373e-16, 1.0824674490095276e-15], [9.337328797487388e-06, 9.33732879759841e-06], [-1.8041124150158794e-16, 7.077671781985373e-16]], \"steady_phase_y_ranges_wu\": {\"contact\": [[0.006567065797072114, 0.006567065797073779], [0.010178938822825362, 0.01017893882282625]], \"distance\": [[-4.373650615285829e-07, -4.373650615285829e-07], [4.373650615285829e-07, 4.373650615285829e-07]], \"hinge\": [[-5.474341838013208e-05, -5.4743418378910835e-05], [-0.003920458747524128, -0.003920458747523781]], \"integration\": [[-0.0065118850136317435, -0.0065118850136317435], [-0.006258917440363276, -0.006258917440363276]]}}\nM1 Slug motion part: {\"kind\": \"foot\", \"last_completed_velocity_dt_wu\": [0.0, 0.0015498574871576558, 0.0, 0.00011020638614549323], \"last_endpoint_speeds_wu_s\": [0.09299144922945934, 0.006612383168729594], \"last_net_delta_wu\": [9.33732879759841e-06, 2.7755575615628914e-17, 9.337328797487388e-06, -2.463307335887066e-16], \"last_position_delta_wu\": {\"contact\": [0.0, 0.0, 0.0, 0.007655958963680008], \"distance\": [-9.337328797487388e-06, -1.3816555674936448e-05, 9.337328797487388e-06, 1.3816555674939918e-05], \"hinge\": [1.8674657595085797e-05, 0.0062727339960382406, 0.0, 0.0], \"integration\": [0.0, -0.006258917440363276, 0.0, -0.0076697755193551945]}, \"last_predictor_minus_completed_velocity_dt_wu\": [0.0, -0.0078087749275209326, 0.0, -0.0077799819055006875], \"part\": 2, \"steady_com_speed_range_wu_s\": [0.049801916199094416, 0.04980191619909447], \"steady_max_endpoint_speed_range_wu_s\": [0.09299144922945929, 0.09299144922945937], \"steady_net_delta_ranges_wu\": [[9.337328797487388e-06, 9.33732879759841e-06], [-1.6653345369377348e-16, 3.7470027081099033e-16], [9.337328797376365e-06, 9.337328797709432e-06], [-2.463307335887066e-16, 6.418476861114186e-16]], \"steady_phase_y_ranges_wu\": {\"contact\": [[0.0, 0.0], [0.007655958963679963, 0.007655958963680903]], \"distance\": [[-1.3816555674998898e-05, -1.381655567492257e-05], [1.3816555674912162e-05, 1.381655567498502e-05]], \"hinge\": [[0.006272733996038046, 0.00627273399603865], [0.0, 0.0]], \"integration\": [[-0.006258917440363276, -0.006258917440363276], [-0.007669775519355198, -0.0076697755193551945]]}}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 54,
+        "start_column": null,
+        "end_line": 54,
+        "end_column": null,
+        "annotation_level": "failure",
+        "title": "M1 Slug diagnostic evidence (not FA acceptance)",
+        "message": "M1 Slug first: {\"bodies\": [{\"ax\": 0.35, \"ay\": 0.02999999999999978, \"bottom_start_wu\": -0.26999999999999996, \"bottom_wu\": -0.020000000000000222, \"bx\": 0.35, \"by\": 0.030000000000000446, \"part\": 2, \"speed_a_wu_s\": 0.002742564102564099, \"speed_b_wu_s\": 0.00933333333333336}, {\"ax\": 0.0, \"ay\": 0.32222222222222224, \"bottom_start_wu\": 0.23, \"bottom_wu\": 0.22222222222222224, \"bx\": 0.35, \"by\": 0.32222222222222224, \"part\": 0, \"speed_a_wu_s\": 0.4666666666666667, \"speed_b_wu_s\": 0.37527466666666665}, {\"ax\": 0.35, \"ay\": 0.32222222222222224, \"bottom_start_wu\": -0.06499999999999997, \"bottom_wu\": -0.020000000000000226, \"bx\": 0.35, \"by\": 0.07499999999999978, \"part\": 1, \"speed_a_wu_s\": 0.37527466666666665, \"speed_b_wu_s\": 0.002742564102564099}], \"tick\": 0}\nM1 Slug last: {\"bodies\": [{\"ax\": 0.5794601522940499, \"ay\": 0.0648210611771746, \"bottom_start_wu\": -0.019999999999999598, \"bottom_wu\": -0.019999999999999844, \"bx\": 0.3330841923906805, \"by\": 0.03000000000000016, \"part\": 2, \"speed_a_wu_s\": 0.09299144922945934, \"speed_b_wu_s\": 0.006612383168729594}, {\"ax\": -0.07035493654373352, \"ay\": 0.08323879819282957, \"bottom_start_wu\": -0.019999999999999588, \"bottom_wu\": -0.019999999999999657, \"bx\": 0.2796010042850654, \"by\": 0.08000000000000035, \"part\": 0, \"speed_a_wu_s\": 0.20187334166220472, \"speed_b_wu_s\": 0.07750363862118566}, {\"ax\": 0.2796010042850654, \"ay\": 0.08008946941141279, \"bottom_start_wu\": -0.019999999999999754, \"bottom_wu\": -0.019999999999999934, \"bx\": 0.5794601522940499, \"by\": 0.07500000000000007, \"part\": 1, \"speed_a_wu_s\": 0.07759895134821108, \"speed_b_wu_s\": 0.09299144922945934}], \"tick\": 599}\nM1 Slug grip toggle ticks: [19, 20]\nM1 Slug motion part: {\"kind\": \"head\", \"last_completed_velocity_dt_wu\": [-1.5879822882940102e-06, 0.003364555319627004, 0.0, 0.0012917273103530942], \"last_endpoint_speeds_wu_s\": [0.2018733416622047, 0.07750363862118566], \"last_net_delta_wu\": [9.337328797542899e-06, -2.220446049250313e-16, 9.33732879759841e-06, -6.938893903907228e-17], \"last_position_delta_wu\": {\"contact\": [0.0, 0.0044806764252134645, 0.0, 0.006477596385659937], \"distance\": [1.0893551440072091e-05, -1.628606703801827e-07, -1.0893551440072091e-05, 1.628606703801827e-07], \"hinge\": [0.0, 0.0, 2.02308802376705e-05, 3.41257673013573e-05], \"integration\": [-1.5562226425291925e-06, -0.004480513564543306, 0.0, -0.0065118850136317435]}, \"last_predictor_minus_completed_velocity_dt_wu\": [3.17596457648177e-08, -0.00784506888417031, 0.0, -0.007803612323984838], \"part\": 0, \"steady_com_speed_range_wu_s\": [0.1396884870229036, 0.13968848702290365], \"steady_max_endpoint_speed_range_wu_s\": [0.20187334166220466, 0.2018733416622047], \"steady_net_delta_ranges_wu\": [[9.337328797515143e-06, 9.337328797626165e-06], [-9.298117831235686e-16, 1.124100812432971e-15], [9.337328797487388e-06, 9.337328797653921e-06], [-6.938893903907228e-17, 8.187894806610529e-16]], \"steady_phase_y_ranges_wu\": {\"contact\": [[0.004480676425212771, 0.004480676425214811], [0.006477596385659465, 0.006477596385660783]], \"distance\": [[-1.628606703801827e-07, -1.628606703801827e-07], [1.628606703801827e-07, 1.628606703801827e-07]], \"hinge\": [[0.0, 0.0], [3.41257673011075e-05, 3.412576730187078e-05]], \"integration\": [[-0.00448051356454332, -0.004480513564543306], [-0.0065118850136317435, -0.0065118850136317435]]}}",
+        "raw_details": ""
+      }
+    ]
+  },
+  {
+    "id": 124388546074,
+    "name": "M1 invariant/static subset (NOT replay or soak)",
+    "conclusion": "success",
+    "annotations": [
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 5,
+        "start_column": null,
+        "end_line": 5,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 scaffold only",
+        "message": "Static subset only. Runtime results belong exclusively to the public Sim job and measured matrix evidence. Soak, performance, captures, full semantic sweep/five-fakes/A12 remain pending.",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 379,
+        "start_column": null,
+        "end_line": 379,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 actual Python controls",
+        "message": "232 unittest controls executed; failures still propagate via runner status",
+        "raw_details": ""
+      }
+    ]
+  },
+  {
+    "id": 124388546200,
+    "name": "M1 public Sim replay attempt1 and clock gates",
+    "conclusion": "success",
+    "annotations": [
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 2,
+        "start_column": null,
+        "end_line": 2,
+        "end_column": null,
+        "annotation_level": "warning",
+        "title": "",
+        "message": "Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/upload-artifact@v5. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 40,
+        "start_column": null,
+        "end_line": 40,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 public Sim measured",
+        "message": "ck differences explicitly retained\",\"dropped_s\":1.95,\"elapsed_s\":2.0,\"pending_s\":0.0,\"solver_equal_at_tick3\":true,\"steps\":3},\"tuning_sha256\":\"5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666\",\"full_stream_sha256\":\"cf98342cf54a06180a68223fb9aa0cb217209b2adb77c544293348e896e29190\",\"per_tick_digest_table_sha256\":\"ab2be178d0dee0da6d6d08e8ac8109fb3598803d2c970ffbb61235ef8c3288af\",\"delivery\":[{\"actual_ticks\":601,\"checks\":308,\"compared_ticks\":600,\"condition\":30,\"failures\":0,\"final_accumulator\":{\"dropped\":0.0,\"pending\":0.008333333333333338},\"frames\":301,\"scope\":\"actual SceneTree frame callbacks, --fixed-fps, first600 identical released-input fixed ticks; full extra ticks retained; clock outside tick hash\",\"stream_bytes\":3219764,\"tick_hz\":60,\"min_frame_seconds\":0.025,\"max_frame_seconds\":0.04166666666666666,\"startup_frame_seconds\":0.025,\"modal_frame_seconds\":0.03333333333333333},{\"actual_ticks\":600,\"checks\":1446,\"compared_ticks\":600,\"condition\":144,\"failures\":0,\"final_accumulator\":{\"dropped\":0.0,\"pending\":0.0},\"frames\":1439,\"scope\":\"actual SceneTree frame callbacks, --fixed-fps, first600 identical released-input fixed ticks; full extra ticks retained; clock outside tick hash\",\"stream_bytes\":3213172,\"tick_hz\":60,\"min_frame_seconds\":0.006666666666666667,\"max_frame_seconds\":0.008333333333333333,\"startup_frame_seconds\":0.008333333333333333,\"modal_frame_seconds\":0.006944444444444445}],\"delivery_stream_sha256\":\"21ad6b5f37ced386a051feb673ad680f42c30d96050b317d10dc9c13df44c100\",\"baseline_status\":\"MATCHED committed generated baseline\"}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 39,
+        "start_column": null,
+        "end_line": 39,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 public Sim measured",
+        "message": "M1 public summary: {\"actual_input_log\":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],\"attempt_started\":true,\"checks\":9053,\"determinism_attempt\":1,\"engine\":\"4.7.2-stable (official)\",\"failures\":0,\"falsification\":{\"after_input\":1,\"baseline_digest\":\"4ec66a1f719135112c28f4e6678d87f4e3c04221d5236816ec02788faa0a6aaa\",\"before_input\":0,\"bit\":1,\"changed_digest\":\"678201d1cc000ae8ea48d500efcda28f90c7128d6fd618db411dc50fbad27acb\",\"physical_bodies_differ_at_flip\":true,\"tick\":0},\"fixed_tick_hz\":60,\"fixture\":{\"input\":\"0..59 released; alternating L/R per60 ticks thereafter\",\"name\":\"Slug public Sim legal floor\",\"seed\":305419896,\"spawn\":\"actual authored lowest surface at +.01WU; uniform diagnostic material\",\"ticks\":600},\"live_spring_sleep\":{\"any_sleep\":false,\"max_dwell_ticks\":1,\"scope\":\"Actual F52 observation; deadline/drift in separate acceptance evidence\",\"ticks\":600},\"replay_final_digests\":[\"4ec66a1f719135112c28f4e6678d87f4e3c04221d5236816ec02788faa0a6aaa\",\"4ec66a1f719135112c28f4e6678d87f4e3c04221d5236816ec02788faa0a6aaa\",\"4ec66a1f719135112c28f4e6678d87f4e3c04221d5236816ec02788faa0a6aaa\"],\"replay_final_public_state_hashes\":[2748578646,2748578646,2748578646],\"replay_full_stream_bytes\":31112464,\"replay_result\":{\"physics_digest\":\"cbc264cf97bd843171bcb7875ba5ed600f7351697ac48fc11b8d40e190ba1278\",\"scope\":\"physics only; score/flags not implemented\",\"sleep\":{\"asleep\":false,\"dwell_start\":[],\"last_sleep_tick\":-1,\"last_wake_tick\":-1,\"max_body_com_displacement_wu\":0.0004692628150728125,\"max_body_dwell_displacement_wu\":0.0004692628150728125,\"still_ticks\":0},\"ticks\":600},\"replay_streams_byte_equal\":true,\"runtime_gates\":{\"10\":\"MEASURED two-second stall; exact solver equality at tick3, delivery-clock difference retained\",\"12\":\"MEASURED single left-bit tick0 flip, actual bodies AND final hash differ\",\"2\":\"MEASURED held chunks vs fixed ticks + three-step stall/drop, actual accumulator\",\"3\":\"MEASURED same/different-seed injection + canonical stream vectors; no random physics perturbation\",\"9\":\"MEASURED x3 complete Slug, full tick bytes/hashes/results\",\"11\":\"MEASURED real --fixed-fps30/144 callbacks;600 same ticks, streams byte-identical, physics60\",\"13\":\"MEASURED committed real baseline matched, linked DECISIONS provenance\"},\"stall\":{\"clock_hash_scope\":\"whole-Sim hashes include delivery clock; compare full solver+RNG at equal ticks, clo",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 33,
+        "start_column": null,
+        "end_line": 33,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 public Sim measured",
+        "message": "83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666\",\"independent_full_stream_sha256\":\"cf98342cf54a06180a68223fb9aa0cb217209b2adb77c544293348e896e29190\"}\nM1 public delivery: {\"actual_tick_count\":601,\"actual_ticks\":601,\"checks\":308,\"compared_ticks\":600,\"condition\":30,\"failures\":0,\"final_accumulator\":{\"dropped\":0.0,\"pending\":0.008333333333333338},\"first_frame_seconds\":0.025,\"frames\":301,\"last_frame_seconds\":0.03333333333333333,\"scope\":\"actual SceneTree frame callbacks, --fixed-fps, first600 identical released-input fixed ticks; full extra ticks retained; clock outside tick hash\",\"stream_bytes\":3219764,\"tick_hz\":60}\nM1 public delivery: {\"actual_tick_count\":600,\"actual_ticks\":600,\"checks\":1446,\"compared_ticks\":600,\"condition\":144,\"failures\":0,\"final_accumulator\":{\"dropped\":0.0,\"pending\":0.0},\"first_frame_seconds\":0.008333333333333333,\"frames\":1439,\"last_frame_seconds\":0.006944444444444445,\"scope\":\"actual SceneTree frame callbacks, --fixed-fps, first600 identical released-input fixed ticks; full extra ticks retained; clock outside tick hash\",\"stream_bytes\":3213172,\"tick_hz\":60}\nM1 public baseline candidate: {\"fixture\":{\"input\":\"0..59 released; alternating L/R per60 ticks thereafter\",\"name\":\"Slug public Sim legal floor\",\"seed\":305419896,\"spawn\":\"actual authored lowest surface at +.01WU; uniform diagnostic material\",\"ticks\":600},\"tuning_sha256\":\"5f4d0d06564fb3a0847309d83cf5f3c87b9321ea5e2dd87e572e4bd9fe750666\",\"final_digest\":\"4ec66a1f719135112c28f4e6678d87f4e3c04221d5236816ec02788faa0a6aaa\",\"full_stream_sha256\":\"cf98342cf54a06180a68223fb9aa0cb217209b2adb77c544293348e896e29190\",\"per_tick_digest_table_sha256\":\"ab2be178d0dee0da6d6d08e8ac8109fb3598803d2c970ffbb61235ef8c3288af\"}\nM1 public frame-duration support: {\"condition\":30,\"histogram\":{\"0.025\":1,\"0.03333333333333333\":296,\"0.04166666666666666\":1,\"0.029166666666666667\":1,\"0.03\":1,\"0.03250000000000001\":1}}\nM1 public frame-duration support: {\"condition\":144,\"histogram\":{\"0.008333333333333333\":5,\"0.006666666666666667\":4,\"0.006944444444444445\":1429,\"0.008055555555555552\":1}}",
+        "raw_details": ""
+      },
+      {
+        "path": ".github",
+        "blob_href": "https://github.com/sagheerh/clamber/blob/730b2b29c1c7378c0a4a408ecd611a008d1feb98/.github",
+        "start_line": 32,
+        "start_column": null,
+        "end_line": 32,
+        "end_column": null,
+        "annotation_level": "notice",
+        "title": "M1 public Sim measured",
+        "message": "M1 public replay measurement: {\"actual_input_log\":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],\"attempt_started\":true,\"checks\":9053,\"determinism_attempt\":1,\"engine\":\"4.7.2-stable (official)\",\"failures\":0,\"falsification\":{\"after_input\":1,\"baseline_digest\":\"4ec66a1f719135112c28f4e6678d87f4e3c04221d5236816ec02788faa0a6aaa\",\"before_input\":0,\"bit\":1,\"changed_digest\":\"678201d1cc000ae8ea48d500efcda28f90c7128d6fd618db411dc50fbad27acb\",\"physical_bodies_differ_at_flip\":true,\"tick\":0},\"fixed_tick_hz\":60,\"fixture\":{\"input\":\"0..59 released; alternating L/R per60 ticks thereafter\",\"name\":\"Slug public Sim legal floor\",\"seed\":305419896,\"spawn\":\"actual authored lowest surface at +.01WU; uniform diagnostic material\",\"ticks\":600},\"live_spring_sleep\":{\"any_sleep\":false,\"max_dwell_ticks\":1,\"scope\":\"Actual F52 observation; deadline/drift in separate acceptance evidence\",\"ticks\":600},\"replay_final_digests\":[\"4ec66a1f719135112c28f4e6678d87f4e3c04221d5236816ec02788faa0a6aaa\",\"4ec66a1f719135112c28f4e6678d87f4e3c04221d5236816ec02788faa0a6aaa\",\"4ec66a1f719135112c28f4e6678d87f4e3c04221d5236816ec02788faa0a6aaa\"],\"replay_final_public_state_hashes\":[2748578646,2748578646,2748578646],\"replay_full_stream_bytes\":31112464,\"replay_result\":{\"physics_digest\":\"cbc264cf97bd843171bcb7875ba5ed600f7351697ac48fc11b8d40e190ba1278\",\"scope\":\"physics only; score/flags not implemented\",\"sleep\":{\"asleep\":false,\"dwell_start\":[],\"last_sleep_tick\":-1,\"last_wake_tick\":-1,\"max_body_com_displacement_wu\":0.0004692628150728125,\"max_body_dwell_displacement_wu\":0.0004692628150728125,\"still_ticks\":0},\"ticks\":600},\"replay_streams_byte_equal\":true,\"runtime_gates\":{\"10\":\"MEASURED two-second stall; exact solver equality at tick3, delivery-clock difference retained\",\"12\":\"MEASURED single left-bit tick0 flip, actual bodies AND final hash differ\",\"2\":\"MEASURED held chunks vs fixed ticks + three-step stall/drop, actual accumulator\",\"3\":\"MEASURED same/different-seed injection + canonical stream vectors; no random physics perturbation\",\"9\":\"MEASURED x3 complete Slug, full tick bytes/hashes/results\"},\"stall\":{\"clock_hash_scope\":\"whole-Sim hashes include delivery clock; compare full solver+RNG at equal ticks, clock differences explicitly retained\",\"dropped_s\":1.95,\"elapsed_s\":2.0,\"pending_s\":0.0,\"solver_equal_at_tick3\":true,\"steps\":3},\"tuning_sha256\":\"5f4d0d06564fb3a0847309d",
+        "raw_details": ""
+      }
+    ]
+  },
+  {
+    "id": 124388546866,
+    "name": "R21 wide stop then bound diagnostic (NOT runtime acceptance)",
+    "conclusion": "skipped",
+    "annotations": []
+  },
+  {
+    "id": 124388547081,
+    "name": "R26 ORIGINAL archive audit ONLY (ZERO new physics)",
+    "conclusion": "skipped",
+    "annotations": []
+  },
+  {
+    "id": 124388547101,
+    "name": "R16 zero-input convergence observation (NOT runtime acceptance)",
+    "conclusion": "skipped",
+    "annotations": []
+  },
+  {
+    "id": 124388547119,
+    "name": "R26 LAST D1 D2 and independent F77 (one invocation per mode)",
+    "conclusion": "skipped",
+    "annotations": []
+  },
+  {
+    "id": 124388547121,
+    "name": "R28 ac201a-characterisation (one invocation; exact source pin)",
+    "conclusion": "skipped",
+    "annotations": []
+  },
+  {
+    "id": 124388547169,
+    "name": "R24 final A/B round + C archive audit (STOP for package)",
+    "conclusion": "skipped",
+    "annotations": []
+  },
+  {
+    "id": 124388547233,
+    "name": "R28 idle-family (one invocation; exact source pin)",
+    "conclusion": "skipped",
+    "annotations": []
+  },
+  {
+    "id": 124388547338,
+    "name": "D09 three non-adopted proportional proposals (STOP before adoption)",
+    "conclusion": "skipped",
+    "annotations": []
+  },
+  {
+    "id": 124388547378,
+    "name": "R19 F56 complete external prerequisite (literal record retained)",
+    "conclusion": "skipped",
+    "annotations": []
+  },
+  {
+    "id": 124388547382,
+    "name": "R28 generate actual baseline ONLY after penetration PASS",
+    "conclusion": "skipped",
+    "annotations": []
+  },
+  {
+    "id": 124388547432,
+    "name": "R28 adoption-measure (one invocation; exact source pin)",
+    "conclusion": "skipped",
+    "annotations": []
+  },
+  {
+    "id": 124388577525,
+    "name": "R26 OWNER-authorised baseline generation after brace removal",
+    "conclusion": "skipped",
+    "annotations": []
+  },
+  {
+    "id": 124388584983,
+    "name": "R22 single gain0 + wide90 cell (MANDATORY STOP)",
+    "conclusion": "skipped",
+    "annotations": []
+  },
+  {
+    "id": 124388586022,
+    "name": "R28 unchanged M0 headless516",
+    "conclusion": "skipped",
+    "annotations": []
+  },
+  {
+    "id": 124388586135,
+    "name": "R17 spring mechanism diagnostic (NOT runtime acceptance)",
+    "conclusion": "skipped",
+    "annotations": []
+  },
+  {
+    "id": 124388586469,
+    "name": "R25 original-archive reporting ONLY (NO physics run)",
+    "conclusion": "skipped",
+    "annotations": []
+  },
+  {
+    "id": 124388793292,
+    "name": "R27 authored stability, ONE AC202 candidate, static600",
+    "conclusion": "skipped",
+    "annotations": []
+  },
+  {
+    "id": 124388793645,
+    "name": "R27 AC204 ALL 200-run verdict (no missing runs laundered)",
+    "conclusion": "skipped",
+    "annotations": []
+  },
+  {
+    "id": 124388793674,
+    "name": "R27 AC204 numerical soak 200 runs (10 per batch)",
+    "conclusion": "skipped",
+    "annotations": []
+  }
+]

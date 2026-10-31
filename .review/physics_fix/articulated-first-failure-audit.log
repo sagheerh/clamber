@@ -8,8 +8,17 @@ test_later_arms_not_run (__main__.FirstFailureAudit.test_later_arms_not_run) ...
 test_source_clean_and_exact (__main__.FirstFailureAudit.test_source_clean_and_exact) ... ok
 test_transport_integrity (__main__.FirstFailureAudit.test_transport_integrity) ... ok
 test_two_frames_not_600_or_determinism_evidence (__main__.FirstFailureAudit.test_two_frames_not_600_or_determinism_evidence) ... ok
+test_candidate_hashes_bound_to_historical_source (__main__.V2FailureAudit.test_candidate_hashes_bound_to_historical_source) ... ok
+test_exact_source_and_unchanged_production_manifest (__main__.V2FailureAudit.test_exact_source_and_unchanged_production_manifest) ... ok
+test_fourteen_committed_ticks_then_terminal_failure (__main__.V2FailureAudit.test_fourteen_committed_ticks_then_terminal_failure) ... ok
+test_native_binary64_guard_subcondition_not_an_epsilon_waiver (__main__.V2FailureAudit.test_native_binary64_guard_subcondition_not_an_epsilon_waiver) ... ok
+test_native_eight_components_passed_before_world (__main__.V2FailureAudit.test_native_eight_components_passed_before_world) ... ok
+test_native_inspection_not_another_world_run (__main__.V2FailureAudit.test_native_inspection_not_another_world_run) ... ok
+test_partial_geometry_is_not_7200_tick_acceptance (__main__.V2FailureAudit.test_partial_geometry_is_not_7200_tick_acceptance) ... ok
+test_posture_failed_before_numerical_rejection (__main__.V2FailureAudit.test_posture_failed_before_numerical_rejection) ... ok
+test_transport_hashes_and_byte_counts (__main__.V2FailureAudit.test_transport_hashes_and_byte_counts) ... ok
 
 ----------------------------------------------------------------------
-Ran 10 tests in 0.035s
+Ran 19 tests in 0.086s
 
 OK

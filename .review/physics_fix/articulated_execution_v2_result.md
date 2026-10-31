@@ -36,7 +36,8 @@ offline scalar arithmetic mirror of the existing projection on those saved bodie
 reports kinetic energy .00011674319666560506 -> .00011674319666560508, a positive
 2.710505431213761e-20 (2 binary64 ULPs); max hinge RHS1.22514845490862e-17,
 max requested velocity increment5.0187308831723105e-17. This is an OFFLINE MIRROR,
-not yet native subcondition proof. It suggests strict passivity rejection of a
+initially not native subcondition proof. Subsequent native inspection confirms
+these EXACT values and strict passivity rejection of a
 roundoff-scale already-constrained re-projection. Max work-state angular speed
 .057997757374956584rad/s, far below the original24 cap.
 
@@ -47,7 +48,7 @@ on a clone; require rejection and BITWISE atomicity. Ten assertions, no Sim,
 clock, step, advance or new creature ticks. Exact-engine42 operator checks first.
 Opt-in markers `[M1-articulated-units] [M1-articulated-inspect]`, never the
 world-execution marker. Emit native report to CI annotations, save those after
-execution. Inspection native10 NOT RUN at this preregistration.
+execution. Inspection native10 was NOT RUN at preregistration; actual result follows below.
 
 No strict guard/energy epsilon/rescaling/velocity cutoff introduced. Even a
 correct numerical repair would NOT erase the independently measured posture
@@ -63,3 +64,33 @@ coverage of the actual new implementation. Only then explained production
 selection/provenance/public baseline and outstanding physical layout/device/FA
 and performance gates. M1 BLOCKED/NOT SIGNED; production AC201/202 FAILED,
 FA3 uncredited; M2 blocked. Native50 component assertions are not those gates.
+
+## Native diagnosis completed — no new world ticks
+
+Source730b2b29c1c7378c0a4a408ecd611a008d1feb98,
+CI41151408137/job124388545483 SUCCESS. Exact pinned official engine, native42/0
+re-PASS, then **10/0 read-only saved-frame inspection assertions PASS**.
+World-execution and both historical-contact jobs SKIPPED. No new world ticks.
+Saved jobs/annotations: `.review/physics_fix/articulated-inspection-41151408137-*`.
+
+Native output EXACTLY confirms e0=.00011674319666560506,
+e1=.00011674319666560508, delta=2.710505431213761e-20 (2 binary64 ULPs),
+max hinge RHS1.22514845490862e-17, max abs omega.057997757374956584.
+Energy triple little-endian f64 hex:
+`9b50cad8809a1e3f9d50cad8809a1e3f000000000000e03b`.
+Geometry/SPD/finite response and hypothetical body validity all pass; the unchanged
+STRICT energy comparison rejects and leaves component bodies BITWISE unchanged.
+This identifies the numerical subcondition, not a cap conflict. The guard is not
+weakened or bypassed. A sound next integration must avoid unnecessary/inconsistent
+projection publication, not add an epsilon or quietly erase motion. That alone
+still cannot cure the independent measured posture failure at tick8.
+
+Offline immutable-evidence audit now19/0 (v1+v2+native exact-energy linkage),
+labelled runner routing17/0, independent rational/source18/0 PASS. They generate
+no physical captures. M1 remains incomplete, no production adoption/signature.
+
+Regression confirmation on inspection source730b2b2: M0 run41151408189 SUCCESS,
+516/0 headless + debug Android arm64/min26/target36/portrait/16KB + APK alignment;
+independent M1 foundations41151408079 SUCCESS; R2941151408199 SUCCESS,
+compile-only/no physical measurement. Job/annotation records saved. These are
+engineering regressions, NOT physical-device/performance or M1 runtime acceptance.
