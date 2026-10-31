@@ -8,6 +8,27 @@ Session date: 2026-10-31. Normative inputs: `docs/GDD.md` and
 waived for M0 only, not represented as measured. Land M0 before the separate M1
 scaffold/PR; no M1 implementation or gate completion is claimed by this closeout.
 
+## Latest physics repair V12 — CLOSED after37 ticks; main fix NOT complete (2026-10-31)
+
+Source **a45a2b5**, CI **41167162511**, publisher **32d7e4f**: native214PASS,
+then37/600 committed ticks. Prefix posturemax **3.5962402248733243deg**, airborne0;
+**tick37/status30 STOP**. A short prefix is NOT a completed600 posture/grounding
+PASS. No sleep (maxstill1), allthree7200 NOTRUN. Candidate NOT ADOPTED.
+
+Root cause is now independently confirmed: damped support's static tangential
+response injects actual kinetic energy **.00024237950815162584**, not an ULP error.
+The unchanged strict barrier correctly rejects it atomically. Read-only native
+inspection **9a294d0 /41167509873**:42 + archived10 + new12 diagnostics PASS,
+execution SKIPPED/ZERO new world ticks. Exact inclined-rod counterexample gains
+293/484 despite SPD/hinge-compatible response; new rational9 includes this trap.
+Do not relax the guard, rerun unchanged or claim restitution alone fixes posture.
+No next candidate selected. Full closure/source hashes/incident distinctions:
+`.review/physics_fix/articulated_execution_v12_closure.md`, audit10PASS and native
+annotations retained. Original<=15deg/no-airborne600/4s/F52 gates unchanged;
+M1BLOCKED/NOTSIGNED, productionAC201/202FAILED, M2blocked. Core/tuning untouched.
+
+### Earlier V8 summary (historical, not latest result)
+
 ## Active causal repair — coupled constraint correction verified; posture/rest STILL FAIL (2026-10-31)
 
 Latest executed source **d0af122528f4fadcb85584c75beb85119aec1c3c**, CI

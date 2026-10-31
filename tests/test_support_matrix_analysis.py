@@ -33,4 +33,14 @@ class Matrix(unittest.TestCase):
   a=[F(i-4,7)for i in range(9)]
   self.assertEqual(response(self.b,self.p,a,F(1)),mobility(self.w,self.h,self.g,a)[0])
   self.assertEqual(response(self.b,self.p,a,F(0))[2::3],[0]*3)
+ def test_spd_does_not_imply_incremental_kinetic_passivity(self):
+  # Counterexample selected AFTER closed V12; this is algebra, not a new world.
+  r=F(1,5);knn=ktt=1+r/2;knt=r/2;vn=F(1);vt=-F(1,2)
+  det=knn*ktt-knt*knt;jn=(-vn*ktt+vt*knt)/det
+  self.assertLess(jn,0);jn=F(0);jt=-vt/ktt
+  vx=-F(3,2)-jt;omega=2-r*jt/2
+  self.assertEqual(vx+omega,0);self.assertGreater(3-omega,0)
+  before=(F(3,2)**2+3**2+2*2**2)/2
+  after=(vx*vx+3**2+2*omega**2)/2
+  self.assertEqual(after-before,F(293,484))
 if __name__=='__main__':unittest.main(verbosity=2)

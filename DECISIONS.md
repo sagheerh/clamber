@@ -2377,3 +2377,15 @@ No unchanged retry, source adoption, tuning/threshold/energy/sleep waiver or7200
 Preserve failures and full provenance. Contact/damping coupling needs independently
 justified native work; exact unit-rod comparison is not normative/creature evidence.
 M1BLOCKED/NOTSIGNED and physical acceptance/device requirements remain unchanged.
+
+### V12 CLOSED: support SPD is not incremental energy passivity
+
+Selected sourcea45a2b5/native214PASS commits37 ticks thenstatus30, not600PASS.
+Posture3.596deg/no-airborne only applies to37tick prefix; no adoption/7200/M1
+verdict. Native read-only inspection9a294d0/run41167509873 proves finite actual
+energy gain.00024237950815162584 and correct atomic rejection. Exact inclined
+rod counterexample gains293/484. Do NOT treat this as ULP identity, grant an
+energy budget, bypass strict guard, sweep order or rerun unchanged. Coupled
+constitutive composition requires new independent physical justification before
+another source/measurement. Restitution-only fix is not established. Preserve
+failed source, two zero-world setup incidents and all original acceptance gates.
