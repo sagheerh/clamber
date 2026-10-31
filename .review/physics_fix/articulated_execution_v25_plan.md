@@ -293,3 +293,19 @@ poses; independent2D positive-multiplier rank trap also fixed, frozenV26 rejects
 Register fresh207 full input/release/wake/force/typed rollback matrix on new solver,
 NOT a new world yet. Runner gate adds6→480native prerequisites;72failclosed mocks
 PASS67.876s. All previous counters/force classification and acceptance unchanged.
+
+## FIRST V27 ordered world registration
+Fresh changed-source f859a44eac8f/run41221895978/publisherccd784f runtime207PASS,
+66awake audits/all3cases including all previous malformed restore/partial-frame
+rollback/signals/compensated-force/real clamp/input-release-sleep-wake controls.
+Exact369 native6 strict-energy PASS actual1.1980127917498142→.1433451186509247,
+selected material active[1,2,3]; normalfirst[0,1,2] unchanged. No pose alteration.
+
+Register ONCE original600 then Slug/Hopper/Twin7200,480native gates, every fresh
+awake tick full independent force audit and separate parked count. Same original
+600/15deg/noair/.90WU/original4s/F52.001anchored30, original penetration reporting
+>.02*(1+1e-9), length and energy/momentum/controller/material limits. First actual
+or independent-force failure STOP/laterNOTRUN/full exact source+transport evidence.
+No other solver/resource/physical-sweep change after native/runtime proofs. This is
+changed V27 finite exchange, NOT a replay of failed V26 or immutable historical
+R27. All historical evidence stays intact. Pending result, not adopted/signoff.

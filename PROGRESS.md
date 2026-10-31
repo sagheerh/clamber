@@ -39,7 +39,9 @@ now prove genuine positive-multiplier rank exchange needed at369, not merely
 roundoff: fourth gap-2.5042492949506632e-17; feasible face[1,2,3].
 Changed finite independent-face search native09f3fc2/run41221766321:42+6PASS,
 including exact369 original strict-energy/momentum/pose controls and independent
-2D negative/positive trap. Fresh runtime207 next; NO new world until PASS.
+2D negative/positive trap. Fresh V27 runtimef859a44eac8f/run41221895978/publisherccd784f207PASS/66awake,
+all3 cases. FIRST V27 ordered world now registered after these gates; result
+PENDING, not complete/adopted. Last measured world remains V26 CLOSEDFAIL.
 Runner480native gates/72failclosed mocksPASS.
 Shared independent force arithmetic now registered for EVERY fresh awake long-run
 tick, asleep solves explicitly NOTRUN. Runner474 native prereqs/69mocktestsPASS; fresh trace.tick (not clock alone)
