@@ -181,6 +181,11 @@ static func resolve_tick(
 			observed.may_grip = may_grip
 			observed.material_friction = friction[part]
 			observed.sample_friction = sample.friction
+			observed.pose_a = [body.a.x, body.a.y]
+			observed.pose_b = [body.b.x, body.b.y]
+			observed.applied_load_n = body.applied_load_n
+			observed.lowest = lowest[part]
+			observed.frozen_previous_grounded_feet = prior_n
 			observed.part = part
 			observed.active = sample.distance <= body.radius + tuning.physics_contact_slop_wu
 			if not observed.active:

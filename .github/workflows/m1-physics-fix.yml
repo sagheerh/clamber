@@ -159,7 +159,7 @@ jobs:
             expected='Final geometry components: 57 checks, 0 failures'
           elif [[ "$RUNTIME_CONTRACT" == true ]]; then
             script=res://tests/physics_fix/test_candidate_runtime_contract.gd
-            expected='Candidate runtime contract: 183 checks, 0 failures'
+            expected='Candidate runtime contract: 195 checks, 0 failures'
           elif [[ "$HOPPER263_AUDIT" == true ]]; then
             script=res://tests/physics_fix/test_hopper263_audit.gd
             expected='Hopper263 audit: 4 checks, 0 failures'

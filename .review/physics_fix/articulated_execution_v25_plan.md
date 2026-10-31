@@ -41,3 +41,21 @@ change. Runtime/full-frame rollback is separately covered by typed contract.
 Runner has new mandatory57 gate plus old401;60 failclosed double controls.
 World/runtime selection points at NEW explicitly versioned subclass only, no
 world or runtime selector on this proof commit. Require green exact-engine job.
+
+## Exact-engine proof SUCCESS
+adb2d9e/run41218710566: native42 + final-geometry57 PASS, strict scanner clean,
+ZERO public Sim ticks. All3models/all4masks first component step, actual ledgers,
+three old failing final-frame stress inputs and silent material rejection PASS.
+This is NOT long-world or full input acceptance.
+
+Next gate BEFORE spending another ordered world: NEW physics runtime contract
+(first attempt on V25; NOT rerun of failed V23 recipe), expected195 checks across
+three creatures, first failure STOP. Four extra fake-resource cases now require
+independent actual load formula/previousN/grip predicate, fixed actual materials,
+preimpact normal target and independent angular-speed bounds. No acceptance
+threshold changed. Observations add actual POST-position endpoint pose per sample
+so angular impulse is not reconstructed on pre-contact/before-cleanup geometry.
+Typed factory/partial-frame live mutation rollback/no leaked signals and natural
+input wake/release cases retained. Exact success/first failure stored as bounded
+Variant evidence, source manifest and logs on same branch without upload quota.
+Full runtime and long world still pending; no fullF31/FA3/determinism signoff.

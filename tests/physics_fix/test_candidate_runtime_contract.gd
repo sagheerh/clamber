@@ -94,7 +94,18 @@ func _contract(name: String) -> bool:
 		return false
 	var actual_trace: Dictionary = sim.last_row().awake_solver_trace_before_sleep_parking
 	for mutation in [
-		"gravity", "endpoint", "target", "delivered", "N", "clamp", "raw_contact", "raw_damping"
+		"gravity",
+		"endpoint",
+		"target",
+		"delivered",
+		"N",
+		"clamp",
+		"raw_contact",
+		"raw_damping",
+		"raw_material",
+		"raw_load",
+		"raw_grip",
+		"raw_bound"
 	]:
 		var fake: Dictionary = actual_trace.duplicate(true)
 		match mutation:
@@ -112,6 +123,14 @@ func _contract(name: String) -> bool:
 				fake.momentum_budget.clamp_impulse_x_ns += 0.01
 			"raw_contact":
 				fake.contact_samples[0].normal_impulse_ns += 0.01
+			"raw_material":
+				fake.contact_samples[0].material_friction += 0.01
+			"raw_load":
+				fake.contact_batches[0].parts[0].applied_load_n += 0.01
+			"raw_grip":
+				fake.contact_samples[0].may_grip = not fake.contact_samples[0].may_grip
+			"raw_bound":
+				fake.drive_events[0].speed_maximum_impulse += 0.01
 			"raw_damping":
 				for sample in fake.contact_samples:
 					if (
@@ -333,6 +352,20 @@ func _force_ok(trace: Dictionary) -> bool:
 			)
 		else:
 			torque = -TUNING.physics_passive_stiffness * event.q
+		var speed_limit: float = TUNING.physics_max_angular_velocity_rad_s
+		var lower: float = maxf(
+			(event.parent_omega - speed_limit) / event.parent_inverse_inertia,
+			(-speed_limit - event.child_omega) / event.child_inverse_inertia
+		)
+		var upper: float = minf(
+			(event.parent_omega + speed_limit) / event.parent_inverse_inertia,
+			(speed_limit - event.child_omega) / event.child_inverse_inertia
+		)
+		if (
+			absf(lower - event.speed_minimum_impulse) > 1e-12
+			or absf(upper - event.speed_maximum_impulse) > 1e-12
+		):
+			return false
 		var bound: float = (
 			TUNING.physics_max_constraint_angular_impulse_rad_s
 			/ (event.parent_inverse_inertia + event.child_inverse_inertia)
@@ -379,13 +412,74 @@ func _contact_ok(trace: Dictionary, bodies: Array) -> bool:
 	var by_part := {}
 	for body in bodies:
 		by_part[body.part] = body
+	var mass := 0.0
+	for body in bodies:
+		mass += body.mass
+	var n: int = trace.previous_grounded_feet
+	var threshold: float = TUNING.physics_grip_normal_force_floor
+	if n > 0:
+		threshold = maxf(
+			threshold,
+			TUNING.physics_grip_normal_force_ratio * mass * absf(TUNING.physics_gravity_wu_s2) / n
+		)
 	for batch in trace.contact_batches:
+		for part in batch.parts:
+			var load: float = maxf(
+				0.0,
+				(
+					-(
+						(
+							(
+								by_part[part.part].mass * TUNING.physics_gravity_wu_s2 / 60.0
+								+ part.hinge_y_ns
+								+ part.extra.y
+							)
+							* part.normal.ny
+						)
+						+ (part.hinge_x_ns + part.extra.x) * part.normal.nx
+					)
+					* 60.0
+				)
+			)
+			if absf(load - part.applied_load_n) > 1e-12:
+				return false
 		var events := {}
 		var terrain := {}
 		var shared: Dictionary = {}
 		for sample in trace.contact_samples:
 			if sample.velocity_pass != batch.velocity_pass:
 				continue
+			var foot: bool = trace.feet.has(by_part[sample.part])
+			var may_grip: bool = (
+				n > 0 and foot and sample.lowest and sample.applied_load_n >= threshold
+			)
+			if (
+				sample.material_friction != TUNING.physics_grip_friction
+				or sample.sample_friction != TUNING.physics_grip_friction
+				or sample.may_grip != may_grip
+				or sample.frozen_previous_grounded_feet != n
+			):
+				return false
+			if sample.has("normal_target"):
+				var old: Dictionary = by_part[sample.part]
+				var impact: float = (
+					-TUNING.physics_foot_restitution
+					* minf(
+						0.0,
+						(
+							(
+								((1.0 - sample.u) * old.start_avx + sample.u * old.start_bvx)
+								* sample.nx
+							)
+							+ (
+								((1.0 - sample.u) * old.start_avy + sample.u * old.start_bvy)
+								* sample.ny
+							)
+						)
+					)
+				)
+				if absf(sample.normal_target - impact) > 1e-12:
+					return false
 			if not events.has(sample.part):
 				events[sample.part] = sample
 				terrain[sample.part] = {"x": 0.0, "y": 0.0, "torque": 0.0}
@@ -397,7 +491,7 @@ func _contact_ok(trace: Dictionary, bodies: Array) -> bool:
 			var jy: float = (
 				sample.normal_impulse_ns * sample.ny + sample.tangential_impulse_ns * sample.nx
 			)
-			var pose: Dictionary = batch.parts[sample.part]
+			var pose: Dictionary = {"a": sample.pose_a, "b": sample.pose_b}
 			var rx: float = (
 				(sample.u - 0.5) * (pose.b[0] - pose.a[0])
 				- by_part[sample.part].radius_wu * sample.nx
@@ -430,7 +524,7 @@ func _contact_ok(trace: Dictionary, bodies: Array) -> bool:
 			)
 			reported_x += terrain[part].x
 			reported_y += terrain[part].y
-			var pose: Dictionary = batch.parts[part]
+			var pose: Dictionary = {"a": sample.pose_a, "b": sample.pose_b}
 			var dx: float = pose.b[0] - pose.a[0]
 			var dy: float = pose.b[1] - pose.a[1]
 			var actual_angular: float = (
