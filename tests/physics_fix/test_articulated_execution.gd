@@ -1,7 +1,7 @@
 # gdlint: disable=max-line-length,max-returns
 extends "res://tests/sim/test_r28.gd"
 ## Fresh NEW unadopted articulated candidate, NOT a historical R27/R29 run or M1 verdict.
-const CANDIDATE = preload("res://tests/physics_fix/limited_actuated_candidate.gd")
+const CANDIDATE = preload("res://tests/physics_fix/assembly_damped_candidate.gd")
 var _results: Dictionary = {
 	"scope": "NEW unadopted articulated candidate",
 	"arms": {},

@@ -1,0 +1,11 @@
+test_com_momentum_is_not_damped_or_erased (__main__.AssemblyDragAnalysis.test_com_momentum_is_not_damped_or_erased) ... ok
+test_full_angular_damping_leaves_global_translation (__main__.AssemblyDragAnalysis.test_full_angular_damping_leaves_global_translation) ... ok
+test_full_composite_projection_and_drag_are_passive (__main__.AssemblyDragAnalysis.test_full_composite_projection_and_drag_are_passive) ... ok
+test_new_fraction_is_retained_on_all_angular_dofs (__main__.AssemblyDragAnalysis.test_new_fraction_is_retained_on_all_angular_dofs) ... ok
+test_old_independent_spin_target_is_undone_by_hinges (__main__.AssemblyDragAnalysis.test_old_independent_spin_target_is_undone_by_hinges) ... ok
+test_pure_translation_and_disabled_drag_are_identity (__main__.AssemblyDragAnalysis.test_pure_translation_and_disabled_drag_are_identity) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.011s
+
+OK

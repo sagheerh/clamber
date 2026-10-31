@@ -87,6 +87,12 @@ if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/l
 timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_limited_articulated_components.gd > "$folder/limited-components.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/limited-components.log"; then exit 1; fi
 if ! grep -Fxq 'Angular limited components: 36 checks, 0 failures' "$folder/limited-components.log"; then exit 1; fi
+# NEW authored angular-DOF constitutive gate; no world ticks on any failure.
+"$GODOT" --headless --check-only --script res://tests/physics_fix/test_assembly_drag_components.gd > "$folder/assembly-drag-compile.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/assembly-drag-compile.log"; then exit 1; fi
+timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_assembly_drag_components.gd > "$folder/assembly-drag-components.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/assembly-drag-components.log"; then exit 1; fi
+if ! grep -Fxq 'Assembly angular drag components: 24 checks, 0 failures' "$folder/assembly-drag-components.log"; then exit 1; fi
 "$GODOT" --headless --script res://tests/physics_fix/test_articulated_execution.gd -- --report-dir="$folder" > "$folder/engine.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/engine.log"; then
  echo 'STOP: runtime errors; inspect first failure.' >&2
