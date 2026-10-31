@@ -1,0 +1,15 @@
+test_bool_domain_refused (__main__.Inspector.test_bool_domain_refused) ... ok
+test_bound_refused (__main__.Inspector.test_bound_refused) ... ok
+test_excessive_count_refused (__main__.Inspector.test_excessive_count_refused) ... ok
+test_nan_inf_not_sanitized (__main__.Inspector.test_nan_inf_not_sanitized) ... ok
+test_object_refused (__main__.Inspector.test_object_refused) ... ok
+test_trailing_refused (__main__.Inspector.test_trailing_refused) ... ok
+test_truncated_refused (__main__.Inspector.test_truncated_refused) ... ok
+test_two_exact_native_captures (__main__.Inspector.test_two_exact_native_captures) ... ok
+test_typed_object_refused (__main__.Inspector.test_typed_object_refused) ... ok
+test_unknown_flags_refused (__main__.Inspector.test_unknown_flags_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.110s
+
+OK

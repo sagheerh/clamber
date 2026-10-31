@@ -99,6 +99,12 @@ if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/p
 timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_preintegrated_components.gd > "$folder/preintegrated-components.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/preintegrated-components.log"; then exit 1; fi
 if ! grep -Fxq 'Preintegrated components: 27 checks, 0 failures' "$folder/preintegrated-components.log"; then exit 1; fi
+# Existing-motion loss vs full fresh-force components; ZERO public clocks.
+"$GODOT" --headless --check-only --script res://tests/physics_fix/test_force_order_components.gd > "$folder/force-order-compile.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/force-order-compile.log"; then exit 1; fi
+timeout 60s "$GODOT" --headless --quit-after 1 --script res://tests/physics_fix/test_force_order_components.gd > "$folder/force-order-components.log" 2>&1
+if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/force-order-components.log"; then exit 1; fi
+if ! grep -Fxq 'Force-order components: 14 checks, 0 failures' "$folder/force-order-components.log"; then exit 1; fi
 "$GODOT" --headless --script res://tests/physics_fix/test_articulated_execution.gd -- --report-dir="$folder" > "$folder/engine.log" 2>&1
 if grep -Eq 'SCRIPT ERROR:|ERROR:|Parse Error:|Failed to load script' "$folder/engine.log"; then
  echo 'STOP: runtime errors; inspect first failure.' >&2
