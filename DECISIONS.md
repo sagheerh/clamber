@@ -2446,3 +2446,26 @@ No production adoption until complete creature/force/rollback/runtime/replay and
 physical-device/performance/layout evidence passes independent review. Native,
 headless CI, partial audits, one idle arm or one complete geometry arm cannot
 waive missing requirements. Original production core/preset provenance unchanged.
+
+
+## M1-PHYSICS-FIX-D10 — V25 scope credit and strict rank-trap diagnosis
+
+Fresh candidate runtime207/66awake checks is real all-three input/release/wake/
+force/rollback scoped proof, not long-run or production adoption. Withdrawn
+baseline-restored geometry fixtures remain uncredited. Source93b2f1fb0cd7 runtime
+evidence and immutable9343fb06296f ordered world must stay distinct. Ordered world
+passes original600 and Slug7200 only, Hopper285 physical pass0 fails, TwinNOTRUN.
+Final constitutive status3 means NOTRUN despite stale descriptive scope wording;
+report-label fix must not imply failed or completed final energy pass.
+
+Native dc008dfa/run41220291795 exact285/ZEROticks reproduces second material
+active-block rejection before publication. Read-only rational SAME-input solve
+identifies a false binary64 unilateral violation followed by singular supersystem,
+not negative active multipliers, energy gain or a permission to relax constraints.
+Twofold algebraic precision escalation may solve the independent system before
+adding a false row, but every active matrix retains the original strict rank
+barrier and every published endpoint retains the original actual-energy guard.
+No epsilon, diagonal regularization, energy allowance, arbitrary physical sweep,
+unchanged retry or historical provenance relabel. New strict native controls,
+fresh full runtime matrix and separately registered ordered run precede credit.
+Neither requested pair nor M1 is complete until remaining actual runs validate.

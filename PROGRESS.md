@@ -1,6 +1,37 @@
 # CLAMBER progress
 
-## Latest V16 — complete numerical Slug600, original posture/rest still FAIL (2026-10-31)
+## Latest V25 — runtime207 PASS; long-run Hopper285 STOP (2026-10-31)
+
+Correct fresh geometry native runtime source93b2f1fb0cd7/run41219732497:
+**207checks/0failures/66awake force audits**, all Slug/Hopper/TwinRoller cases.
+L/R/BOTH/release, natural sleep/input wake, typed restore, mutated partial-frame
+rollback/no leaked signals, independent angular/contact/controller/material laws,
+compensated fakes and actual force-only nonzero clamp controls pass in that scope.
+Offline saved3first-awake/3clamp arithmetic:6testsPASS; not all66 saved traces,
+not gameplay clamp coverage, FA3 or production adoption.
+
+Ordered source9343fb06296f/run41219891289/publisherffe57e4 CLOSEDFAIL:
+**464native PASS; original600 PASS; Slug7200 PASS; Hopper285 FAIL; TwinNOTRUN.**
+Original posture0deg/air0/net0/sleep29/original4sTRUE. Slug length2.22e-16WU,
+penetration.012012090780530296WU, netCOM.3586042012433926WU. Hopper first physical
+velocity_pass_0 support fails, not final constitutive (status3 NOTRUN).
+Read-only exact285 native dc008dfa/run41220291795:42+4PASS/ZERO ticks; first
+normal block18eq/4ineq succeeds with3active; second material block20eq/4ineq
+rejects before publisher. Independent rational diagnosis: binary64 falsely
+violates fourth normal by -2.609e-15 while exact SAME-input residual+9.595e-17;
+adding it makes a truly singular system. Neither an energy allowance nor the
+earlier negative-multiplier ordering fix addresses this roundoff rank trap.
+
+Next narrowly scoped unadopted algebraic fix: precision escalation only upon rank
+rejection; twofold LDL solve of SAME rows/RHS/weights, original rank/visited/finite
+and strict actual energy publisher kept. Native10 components must pass before
+new runtime matrix and any separately preregistered changed-source ordered world.
+No unchanged-world retry, material/mass/tuning/threshold/physical iteration change.
+**Both requested items are not jointly complete. M1BLOCKED/NOTSIGNED; production
+AC201/202FAILED, FA3uncredited, five runtime gates NOTRUN, M2blocked.**
+
+
+## Historical V16 — complete numerical Slug600, original posture/rest still FAIL (2026-10-31)
 
 Source **253102b4750d42cbe8780fc72c61f4b1749ad83d**, CI **41169768318**,
 publisher **523c181**; immutable34 files `tests/fixtures/m1_articulated_execution/253102b4750d/`.

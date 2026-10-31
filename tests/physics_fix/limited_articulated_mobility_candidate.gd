@@ -301,7 +301,12 @@ func _active_solve(equalities: Array, rhs: Array[float], inequalities: Array) ->
 			values.append(float(inequalities[index].rhs))
 		var factor := _factor_rows(rows)
 		if factor.is_empty() and not rows.is_empty():
-			return {}
+			# A binary64 false violation can add a dependent row. Restart SAME
+			# finite algebra at twofold precision, NOT the rejected singular matrix.
+			# The helper independently retains the original rank/visited guards.
+			return preload("res://tests/physics_fix/twofold_active_solve.gd").solve(
+				self, equalities, rhs, inequalities
+			)
 		var saved := _factor
 		_factor = factor
 		var multipliers := _solve(values)
