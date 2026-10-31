@@ -1,6 +1,6 @@
-"""Read-only V26 CLOSEDFAIL audit; no Godot invocation or new creature ticks.
+"""Read-only V26/V27 CLOSEDFAIL audits; no Godot invocation or new creature ticks.
 
-Long traces do not retain every contact observation. Native7539 force checks are
+Long traces do not retain every contact observation. Native7539/9972 force checks are
 live assertions; offline checks below recheck provenance, fresh/parked accounting,
 geometry, input wake and actual endpoint linear momentum, not full local torque.
 """
@@ -19,37 +19,46 @@ SOURCE = "5d6c4409a19ee310863e3342a5791467ff0c4903"
 FOLDER = ROOT / "tests/fixtures/m1_articulated_execution" / SOURCE[:12]
 
 
-def audit():
-    source = json.loads((FOLDER / 'source.json').read_text())
-    require(source['source_commit'] == source['checkout_head'] == SOURCE
+V27_SOURCE = "617ef4b55efc8c720b102605abb76c422ddfa72e"
+PINNED = {
+    SOURCE: ('41221098908', 369, 432, 7539, 'v26'),
+    V27_SOURCE: ('41221974706', 2802, 438, 9972, 'v27'),
+}
+
+
+def audit(requested=SOURCE):
+    run, failed_tick, native_components, awake_total, version = PINNED[requested]
+    folder = ROOT / "tests/fixtures/m1_articulated_execution" / requested[:12]
+    source = json.loads((folder / 'source.json').read_text())
+    require(source['source_commit'] == source['checkout_head'] == requested
             and source['checkout_dirty'] is False
-            and source['source_ci_run'] == '41221098908', 'exact clean world source')
+            and source['source_ci_run'] == run, 'exact clean world source')
     require(source['engine_build'] == '4.7.2.stable.official.ed1daf0bf', 'exact engine')
-    transport = json.loads((FOLDER / 'transport-index.json').read_text())
-    require(transport['source_commit'] == SOURCE, 'transport source')
-    summary = json.loads((FOLDER / 'summary.json').read_text())
+    transport = json.loads((folder / 'transport-index.json').read_text())
+    require(transport['source_commit'] == requested, 'transport source')
+    summary = json.loads((folder / 'summary.json').read_text())
     require(summary['status'] == 'STOP; inspect first failure; NOT ADOPTED'
             and summary['not_run_arms'] == ['length-TwinRoller'], 'firstfailure STOP')
-    require(not list(FOLDER.glob('length-TwinRoller*')), 'no later arm fabricated')
-    prerequisite = json.loads((ROOT / '.review/physics_fix/v26-world-prerequisite-native-annotations.json').read_text())
+    require(not list(folder.glob('length-TwinRoller*')), 'no later arm fabricated')
+    prerequisite = json.loads((ROOT / ('.review/physics_fix/'+version+'-world-prerequisite-native-annotations.json')).read_text())
     messages = [item['message'] for item in prerequisite]
     require('M1 articulated mobility units: 42 checks, 0 failures' in messages, 'actual prior native42 gate')
     provenance = [json.loads(text) for text in messages if text.startswith('{')]
-    require(any(item.get('source_commit') == SOURCE and item.get('checkout_dirty') is False
+    require(any(item.get('source_commit') == requested and item.get('checkout_dirty') is False
                 for item in provenance), 'same-source prerequisite provenance')
-    # 432 checks in execution job; additional prerequisite job42 is CI evidence,
+    # V26:432 / V27:438 checks in execution job; additional prerequisite job42 is CI evidence,
     # not silently counted as a second copy of a local component log.
     components = 0
-    for file in FOLDER.glob('*.log'):
+    for file in folder.glob('*.log'):
         if file.name != 'engine.log':
             components += sum(map(int, re.findall(r'(\d+) checks, 0 failures', file.read_text())))
-    require(components == 432, 'all execution-job native components complete')
+    require(components == native_components, 'all execution-job native components complete')
     results = {}
     linear_peak = 0.0
     native_awake = 0
-    for arm, target in [('idle-Slug', 600), ('length-Slug', 7200), ('length-Hopper', 369)]:
+    for arm, target in [('idle-Slug', 600), ('length-Slug', 7200), ('length-Hopper', failed_tick)]:
         pin = transport['raw_traces'][arm + '.jsonl']
-        packed = (FOLDER / (arm + '.jsonl.gz')).read_bytes()
+        packed = (folder / (arm + '.jsonl.gz')).read_bytes()
         raw = gzip.decompress(packed)
         for data, kind in [(packed, 'gzip'), (raw, 'raw')]:
             require(len(data) == pin[kind + '_bytes']
@@ -57,7 +66,7 @@ def audit():
         rows = [json.loads(line) for line in raw.splitlines()]
         report = summary['arms'][arm]
         require(len(rows) == report['ticks'] == target, 'complete committed prefix')
-        spawn = json.loads((FOLDER / (arm + '-spawn.json')).read_text())
+        spawn = json.loads((folder / (arm + '-spawn.json')).read_text())
         previous = spawn['rig']
         fresh = parked = 0
         for tick, row in enumerate(rows):
@@ -95,24 +104,24 @@ def audit():
             results[arm]['original600'] = audit_rows(rows, spawn, report)
         if arm == 'length-Slug':
             results[arm]['geometry_input_wake'] = audit_geometry_rows(rows)
-    failure = json.loads((FOLDER / 'length-Hopper-failure.json').read_text())
+    failure = json.loads((folder / 'length-Hopper-failure.json').read_text())
     full = decode(base64.b64decode(failure['full_state_variant_base64']))
     trace = full['awake_trace']
-    require(failure['tick'] == 369 and failure['status'] == 30
+    require(failure['tick'] == failed_tick and failure['status'] == 30
             and trace['stage_order'] == ['forces', 'velocity_pass_0']
             and trace['constitutive_stage']['status'] == 3
             and 'NOTRUN' in trace['constitutive_stage']['scope'], 'actual failed first phase, final NOTRUN')
     require(full['before'] == full['after'], 'snapshot values atomically restored')
-    require(native_awake == 7539 and linear_peak < 1e-12, 'actual successful prefixes only')
-    return dict(source_commit=SOURCE, ci_run='41221098908', status='CLOSEDFAIL; not adopted',
+    require(native_awake == awake_total and linear_peak < 1e-12, 'actual successful prefixes only')
+    return dict(source_commit=requested, ci_run=run, status='CLOSEDFAIL; not adopted',
                 scope='READ ONLY ZERO ticks; native full-force assertions distinguished from offline subset',
                 native_execution_job_checks=components, native_prior_job_checks=42,
                 arms=results, native_successful_fresh_force_audits=native_awake,
-                offline_actual_linear_peak_ns=linear_peak, hopper_failed_tick=369,
+                offline_actual_linear_peak_ns=linear_peak, hopper_failed_tick=failed_tick,
                 failure_phase='velocity_pass_0', final_constitutive='NOTRUN',
                 rollback_snapshot_values_equal=True, twin='NOTRUN',
                 limitations=['Long captures omit raw contact observations; offline proof is not all local-torque checks.',
-                             'Hopper369 prefix is NOT Hopper7200; Twin not run.',
+                             'Hopper prefix is NOT Hopper7200; Twin not run.',
                              'World rollback value equality is NOT typed factory continuation; runtime207 tests that separately.',
                              'No production adoption, FA3, replay/determinism, device or M1 signature.'])
 

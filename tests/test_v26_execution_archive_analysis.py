@@ -1,5 +1,5 @@
 import unittest
-from v26_execution_archive_analysis import audit, SOURCE
+from v26_execution_archive_analysis import audit, SOURCE, V27_SOURCE
 
 
 class V26ExecutionArchiveAnalysis(unittest.TestCase):
@@ -13,7 +13,7 @@ class V26ExecutionArchiveAnalysis(unittest.TestCase):
         self.assertEqual(self.report['twin'], 'NOTRUN')
         self.assertEqual(self.report['hopper_failed_tick'], 369)
 
-    def test_all474_actual_native_prerequisites(self):
+    def test_all_actual_native_prerequisites(self):
         self.assertEqual(self.report['native_execution_job_checks'], 432)
         self.assertEqual(self.report['native_prior_job_checks'], 42)
 
@@ -40,6 +40,28 @@ class V26ExecutionArchiveAnalysis(unittest.TestCase):
         self.assertEqual(self.report['final_constitutive'], 'NOTRUN')
         self.assertTrue(self.report['rollback_snapshot_values_equal'])
         self.assertIn('not all local-torque', ' '.join(self.report['limitations']))
+
+
+class V27ExecutionArchiveAnalysis(V26ExecutionArchiveAnalysis):
+    @classmethod
+    def setUpClass(cls):
+        cls.report = audit(V27_SOURCE)
+
+    def test_real_closed_failure_no_completion_relabel(self):
+        self.assertEqual(self.report['source_commit'], V27_SOURCE)
+        self.assertEqual(self.report['status'], 'CLOSEDFAIL; not adopted')
+        self.assertEqual(self.report['twin'], 'NOTRUN')
+        self.assertEqual(self.report['hopper_failed_tick'], 2802)
+
+    def test_all_actual_native_prerequisites(self):
+        self.assertEqual(self.report['native_execution_job_checks'], 438)
+        self.assertEqual(self.report['native_prior_job_checks'], 42)
+
+    def test_no_stale_or_failure_force_credit(self):
+        self.assertEqual(self.report['native_successful_fresh_force_audits'], 9972)
+        hopper = self.report['arms']['length-Hopper']
+        self.assertEqual((hopper['live_native_awake_audits'], hopper['parked_no_new_force']), (2772, 30))
+        self.assertLess(self.report['offline_actual_linear_peak_ns'], 1e-12)
 
 
 if __name__ == '__main__':

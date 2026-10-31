@@ -1,5 +1,5 @@
 import unittest
-from candidate_runtime_archive_analysis import audit, SOURCE, CHANGED_SOURCE
+from candidate_runtime_archive_analysis import audit, SOURCE, CHANGED_SOURCE, EXCHANGE_SOURCE
 
 
 class CandidateRuntimeArchiveAnalysis(unittest.TestCase):
@@ -46,6 +46,17 @@ class ChangedCandidateRuntimeArchiveAnalysis(CandidateRuntimeArchiveAnalysis):
 
     def test_pinned_complete_native_matrix(self):
         self.assertEqual(self.report["source_commit"], CHANGED_SOURCE)
+        self.assertEqual(self.report["native_checks"], 207)
+        self.assertEqual(self.report["native_awake_audits"], 66)
+
+
+class ExchangeCandidateRuntimeArchiveAnalysis(CandidateRuntimeArchiveAnalysis):
+    @classmethod
+    def setUpClass(cls):
+        cls.report = audit(EXCHANGE_SOURCE)
+
+    def test_pinned_complete_native_matrix(self):
+        self.assertEqual(self.report["source_commit"], EXCHANGE_SOURCE)
         self.assertEqual(self.report["native_checks"], 207)
         self.assertEqual(self.report["native_awake_audits"], 66)
 

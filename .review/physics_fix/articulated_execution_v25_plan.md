@@ -309,3 +309,21 @@ or independent-force failure STOP/laterNOTRUN/full exact source+transport eviden
 No other solver/resource/physical-sweep change after native/runtime proofs. This is
 changed V27 finite exchange, NOT a replay of failed V26 or immutable historical
 R27. All historical evidence stays intact. Pending result, not adopted/signoff.
+
+## FIRST V27 CLOSEDFAIL, no unchanged retry or further world registered
+617ef4b55efc/run41221974706/publisherea35f0a:480nativePASS; original600PASS
+30fresh/570parked, Slug7200PASS7170fresh/30parked with SAME V26 metrics.
+Hopper2802/7200STOP,2772fresh/30parked, no prior metric violation, length4.44e-16WU,
+penetration0. FIRST physical support pass0/status30; final constitutiveNOTRUN3.
+TwinNOTRUN.9972fresh successful awake force audits in this world, prefix credit
+ONLY; failed tick NOT counted. before==after full snapshot values. No deeper2802
+factor/pivot/publisher cause established yet. Exact archived285/369 fixes do not
+mean universal support success. Both requested tasks remain jointly incomplete.
+
+Runtime f859a44 source rechecked offline as third explicit immutable registry,
+18testsPASS; V26+V27 source/transport/actual600/Slug7200wake/fresh/parked/linear
+endpoint audits12PASS, ZERO new ticks. Full per-contact long-run raw records omitted
+by existing transport policy; native live audits, not invented offline local laws.
+Historical independent_force_ok on physical failure was initializedtrue and never
+executed; not a qualifying PASS. Pure future reporting correction marks null/NOTRUN
+unless actual fresh force checker ran. No physics/threshold change, no new world.

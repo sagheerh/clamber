@@ -2483,3 +2483,23 @@ Twin7200 or production acceptance. No epsilon/rank waiver/energy allowance, no
 unchanged retry. Preserve all variants/source/transport and inspect exact369
 components before any further solver change. Both selected tasks remain jointly
 incomplete; M1BLOCKED/NOTSIGNED, FA3uncredited, M2blocked.
+
+
+## M1-PHYSICS-FIX-D12 — V27 scoped fixes and runtime PASS, full pair remains blocked
+
+V27 native09f3fc2/run41221766321 exact369 and independent2D rank-exchange6PASS;
+changed f859a44eac8f/run41221895978 runtime207/0/66awake/all3PASS. First ordered
+V27 source617ef4b55efc/run41221974706/publisherea35f0a CLOSEDFAIL:480native,
+original600 and full-force Slug7200PASS, Hopper2802physicalpass0FAIL,TwinNOTRUN.
+9972successful fresh awake audits in this world are NOT all Hopper/Twin forces.
+Final constitutive NOTRUN; exact2802 deeper cause not established, no unchanged
+retry or complete-pair claim. Snapshot rollback values equal does not assert
+world baseline factory continuation; typed runtime tests are separate evidence.
+
+Keep genuine higher-precision predicates and finite canonical face exchanges,
+strict rank/finite/primal-dual/actual endpoint-energy guards and physical sweep
+counts. Do not call singular-matrix waiver a rank fix. Preserve all prior failures,
+source/transport hashes, literal original acceptance and production provenance.
+Failed physical tick's initialized force_ok flag is not an audit; future report
+must emit null/NOTRUN for that case, not PASS. Production/FA3/device/determinism/
+five-runtime-gate/signature credit unchanged. Selected two tasks not jointly done.

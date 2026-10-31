@@ -150,7 +150,11 @@ func _candidate_run(name: String, target: int, idle: bool) -> bool:
 					"tick": tick,
 					"status": sim.last_status,
 					"nonfinite": _bad,
-					"independent_force_ok": force_ok,
+					# A failed physical solve never reached the force audit. The old
+					# initialized-true control flag was NOT a qualifying force PASS.
+					"independent_force_ok": force_ok if fresh_force else null,
+					"independent_force_status":
+					("PASS" if force_ok else "FAIL") if fresh_force else "NOTRUN",
 					"full_state_variant_base64":
 					Marshalls.raw_to_base64(
 						var_to_bytes(

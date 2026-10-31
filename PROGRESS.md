@@ -1,6 +1,48 @@
 # CLAMBER progress
 
-## Latest V26 — runtime207 PASS; full-force Slug7200 PASS; Hopper369 STOP (2026-10-31)
+## Latest V27 — Hopper2802 STOP; selected pair NOT complete (2026-10-31)
+
+Source **617ef4b55efc8c720b102605abb76c422ddfa72e**, CI **41221974706**,
+publisher **ea35f0a**, immutable `tests/fixtures/m1_articulated_execution/617ef4b55efc/`.
+**480native prerequisite checks PASS** (42prior job +438execution components).
+
+| Ordered arm | Measured outcome | Fresh independent force audits / parked no-solve ticks |
+|---|---|---|
+| Original Slug600 | PASS: posture0deg, airborne0, net0WU, sleep29/original4sTRUE | 30 /570 |
+| Slug7200 | PASS: length2.22e-16WU, penetration.012012090780530296WU, netCOM.3586042012433926WU | 7170 /30 |
+| Hopper7200 | FAIL at2802, completed2802/7200; no earlier metric violation, length4.44e-16WU, penetration0 | 2772 /30 committed prefix ONLY |
+| TwinRoller7200 | NOTRUN — firstfailureSTOP | NOTRUN |
+
+**9,972 successful fresh-awake full force audits in THIS world, not complete
+Hopper/Twin coverage.** Exact failure: simultaneous material support block/status30
+at FIRST physical velocity_pass_0; final constitutive status3/NOTRUN. Snapshot
+before/after values equal; factory continuation separately covered by runtime207.
+Precise rejecting factor/pivot/publisher at2802 NOT YET diagnosed. No unchanged retry.
+
+Archived285 binary64 false-violation and369 genuine positive-multiplier rank traps
+are diagnosed/fixed in scoped native10+6 controls; latter strict actual energy
+1.1980127917498142→.1433451186509247, no pose manipulation. Finite independent
+face exchanges retain original rank/finite/strict primal-dual/actual energy guards;
+no epsilon/diagonal regularizer/extra physical sweep or tuning/material/mass change.
+Changed-source runtime **f859a44eac8f/run41221895978/publisherccd784f:207/0 checks,
+66awake audits, all3 input/release/wake/typed restore/rollback cases complete**.
+This scoped PASS does not replace missing full physical arms or production adoption.
+
+Read-only archived runtime arithmetic18testsPASS (3registered sources); V26/V27
+transport/original600/actual7200wake/fresh-vs-parked/endpoint linear audit12testsPASS;
+exact rational285+369diagnostics8testsPASS; failclosed runner72testsPASS67.876s.
+These are supporting analyses, ZERO new ticks or extra acceptance arms. Long raw
+captures omit local-contact detail; full local torque assertions were live native.
+Historical failed-tick `independent_force_ok:true` was only an initialized control
+flag on physical failure, NOT an audit; failed tick not counted. Pure future report
+correction now emits null/NOTRUN if physical solve never reached independent audit.
+
+**Both requested items are NOT jointly complete; full Hopper/Twin and full-force
+coverage remain blocked at2802. Production untouched; M1BLOCKED/NOTSIGNED,
+productionAC201/202FAILED, FA3uncredited, five runtimegatesNOTRUN, M2blocked.**
+
+
+## Historical V25/V26 diagnosis and V27 preregistration (2026-10-31)
 
 Correct fresh geometry native runtime source93b2f1fb0cd7/run41219732497:
 **207checks/0failures/66awake force audits**, all Slug/Hopper/TwinRoller cases.

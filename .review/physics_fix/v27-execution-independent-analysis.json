@@ -1,0 +1,55 @@
+{
+  "source_commit": "617ef4b55efc8c720b102605abb76c422ddfa72e",
+  "ci_run": "41221974706",
+  "status": "CLOSEDFAIL; not adopted",
+  "scope": "READ ONLY ZERO ticks; native full-force assertions distinguished from offline subset",
+  "native_execution_job_checks": 438,
+  "native_prior_job_checks": 42,
+  "arms": {
+    "idle-Slug": {
+      "committed_ticks": 600,
+      "live_native_awake_audits": 30,
+      "parked_no_new_force": 570,
+      "original600": {
+        "ticks": 600,
+        "max_attitude_deg": 0.0,
+        "airborne_ticks": 0,
+        "net_com_wu": 0.0,
+        "first_sleep_tick": 29,
+        "original4s_pass": true,
+        "scope": "ONE archived idle arm ONLY; not production/M1/replay"
+      }
+    },
+    "length-Slug": {
+      "committed_ticks": 7200,
+      "live_native_awake_audits": 7170,
+      "parked_no_new_force": 30,
+      "geometry_input_wake": {
+        "ticks": 7200,
+        "first_actual_wake_tick": 60,
+        "actual_wake_ticks": [
+          60
+        ],
+        "scope": "Slug long geometry + input-wake subset ONLY; not FA3/feel/force/adoption/replay"
+      }
+    },
+    "length-Hopper": {
+      "committed_ticks": 2802,
+      "live_native_awake_audits": 2772,
+      "parked_no_new_force": 30
+    }
+  },
+  "native_successful_fresh_force_audits": 9972,
+  "offline_actual_linear_peak_ns": 1.1102230246251565e-15,
+  "hopper_failed_tick": 2802,
+  "failure_phase": "velocity_pass_0",
+  "final_constitutive": "NOTRUN",
+  "rollback_snapshot_values_equal": true,
+  "twin": "NOTRUN",
+  "limitations": [
+    "Long captures omit raw contact observations; offline proof is not all local-torque checks.",
+    "Hopper prefix is NOT Hopper7200; Twin not run.",
+    "World rollback value equality is NOT typed factory continuation; runtime207 tests that separately.",
+    "No production adoption, FA3, replay/determinism, device or M1 signature."
+  ]
+}
