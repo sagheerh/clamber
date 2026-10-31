@@ -54,13 +54,15 @@ func _initialize() -> void:
 		SCALAR.add(SCALAR.add([1e16, 0.0], [1.0, 0.0]), [-1e16, 0.0]) == [1.0, 0.0],
 		"twofold cancellation retains exact unit; no epsilon"
 	)
-	var small: Array = SCALAR.mul(
-		[1.0 + 0.000000007450580596923828125, 0.0], [1.0 - 0.000000007450580596923828125, 0.0]
-	)
+	# Construct dyadic values by exact power-of-two division, not a decimal
+	# parser's long-literal conversion. Equality remains exact, no tolerance.
+	var dyadic := 1.0 / 134217728.0
+	var small: Array = SCALAR.mul([1.0 + dyadic, 0.0], [1.0 - dyadic, 0.0])
 	_check(
-		small[0] == 1.0 and small[1] == -0.000000000000000055511151231257827021181583404541015625,
+		small[0] == 1.0 and small[1] == -dyadic * dyadic,
 		"Dekker product retains exact low component"
 	)
+
 	var bad := Probe.new()
 	bad._weights = [1.0, 1.0]
 	_check(

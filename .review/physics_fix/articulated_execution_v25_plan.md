@@ -189,3 +189,10 @@ compile STOPPED: lowercase scalar reference after preload rename toSCALAR on
 wrapped line72. ZERO creature/component ticks for that test; not physical failure.
 Correct test identifier only, retain incident annotations; same preregistered10
 native controls follow before any new runtime/world. No acceptance claim.
+
+fbf629d/run41220578564: actual285 changed component DOES solve same active[0,1,2]
+and original strict publisher passes (actual1.2157209960538857→.1827241817815083),
+endpoint momentum/poses pass. Native10 overall FAIL1: exact long-decimal low-word
+assertion. Fix that test's operand/expectation construction using exact power-of-2
+division, retaining exact equality, not epsilon. No new world or adoption. Full
+5test Python rational analysis retained; no ticks. Subsequent10 must all pass.
